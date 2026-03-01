@@ -1,0 +1,581 @@
+# 니콘 중고 시세 추적 제품 카탈로그
+# query: eBay Browse API 검색어
+# category_id: eBay 카테고리 (31388=Digital Cameras, 3323=Film Cameras, 78997=Lenses)
+# min_price, max_price: 가격 필터 (USD) - 비정상 리스팅 제거용
+
+categories:
+  - id: z-mount-bodies
+    name_ko: Z마운트 바디
+    name_en: Z-Mount Bodies
+    products:
+      - id: nikon-z9
+        name_ko: 니콘 Z9
+        name_en: Nikon Z9
+        query: "Nikon Z9 body"
+        category_id: "31388"
+        min_price: 2000
+        max_price: 6000
+
+      - id: nikon-z8
+        name_ko: 니콘 Z8
+        name_en: Nikon Z8
+        query: "Nikon Z8 body"
+        category_id: "31388"
+        min_price: 2000
+        max_price: 4500
+
+      - id: nikon-z7ii
+        name_ko: 니콘 Z7II
+        name_en: Nikon Z7II
+        query: "Nikon Z7II body"
+        category_id: "31388"
+        min_price: 1000
+        max_price: 2500
+
+      - id: nikon-z7
+        name_ko: 니콘 Z7
+        name_en: Nikon Z7
+        query: "Nikon Z7 body -Z7II"
+        category_id: "31388"
+        min_price: 600
+        max_price: 1800
+
+      - id: nikon-z6iii
+        name_ko: 니콘 Z6III
+        name_en: Nikon Z6III
+        query: "Nikon Z6III body"
+        category_id: "31388"
+        min_price: 1500
+        max_price: 3000
+
+      - id: nikon-z6ii
+        name_ko: 니콘 Z6II
+        name_en: Nikon Z6II
+        query: "Nikon Z6II body"
+        category_id: "31388"
+        min_price: 700
+        max_price: 1800
+
+      - id: nikon-z6
+        name_ko: 니콘 Z6
+        name_en: Nikon Z6
+        query: "Nikon Z6 body -Z6II -Z6III"
+        category_id: "31388"
+        min_price: 400
+        max_price: 1200
+
+      - id: nikon-z5
+        name_ko: 니콘 Z5
+        name_en: Nikon Z5
+        query: "Nikon Z5 body"
+        category_id: "31388"
+        min_price: 500
+        max_price: 1300
+
+      - id: nikon-zf
+        name_ko: 니콘 Zf
+        name_en: Nikon Zf
+        query: "Nikon Zf body"
+        category_id: "31388"
+        min_price: 1200
+        max_price: 2500
+
+      - id: nikon-zfc
+        name_ko: 니콘 Zfc
+        name_en: Nikon Zfc
+        query: "Nikon Zfc body"
+        category_id: "31388"
+        min_price: 400
+        max_price: 1200
+
+      - id: nikon-z50ii
+        name_ko: 니콘 Z50II
+        name_en: Nikon Z50II
+        query: "Nikon Z50II body"
+        category_id: "31388"
+        min_price: 500
+        max_price: 1200
+
+      - id: nikon-z50
+        name_ko: 니콘 Z50
+        name_en: Nikon Z50
+        query: "Nikon Z50 body -Z50II"
+        category_id: "31388"
+        min_price: 300
+        max_price: 900
+
+      - id: nikon-z30
+        name_ko: 니콘 Z30
+        name_en: Nikon Z30
+        query: "Nikon Z30 body"
+        category_id: "31388"
+        min_price: 300
+        max_price: 800
+
+  - id: f-mount-dslr
+    name_ko: F마운트 DSLR
+    name_en: F-Mount DSLR
+    products:
+      - id: nikon-d6
+        name_ko: 니콘 D6
+        name_en: Nikon D6
+        query: "Nikon D6 body"
+        category_id: "31388"
+        min_price: 3000
+        max_price: 7000
+
+      - id: nikon-d5
+        name_ko: 니콘 D5
+        name_en: Nikon D5
+        query: "Nikon D5 body"
+        category_id: "31388"
+        min_price: 1500
+        max_price: 4500
+
+      - id: nikon-d850
+        name_ko: 니콘 D850
+        name_en: Nikon D850
+        query: "Nikon D850 body"
+        category_id: "31388"
+        min_price: 1000
+        max_price: 2500
+
+      - id: nikon-d810
+        name_ko: 니콘 D810
+        name_en: Nikon D810
+        query: "Nikon D810 body"
+        category_id: "31388"
+        min_price: 500
+        max_price: 1500
+
+      - id: nikon-d780
+        name_ko: 니콘 D780
+        name_en: Nikon D780
+        query: "Nikon D780 body"
+        category_id: "31388"
+        min_price: 1000
+        max_price: 2500
+
+      - id: nikon-d750
+        name_ko: 니콘 D750
+        name_en: Nikon D750
+        query: "Nikon D750 body"
+        category_id: "31388"
+        min_price: 400
+        max_price: 1200
+
+      - id: nikon-d700
+        name_ko: 니콘 D700
+        name_en: Nikon D700
+        query: "Nikon D700 body"
+        category_id: "31388"
+        min_price: 200
+        max_price: 900
+
+      - id: nikon-d500
+        name_ko: 니콘 D500
+        name_en: Nikon D500
+        query: "Nikon D500 body"
+        category_id: "31388"
+        min_price: 500
+        max_price: 1500
+
+      - id: nikon-d7500
+        name_ko: 니콘 D7500
+        name_en: Nikon D7500
+        query: "Nikon D7500 body"
+        category_id: "31388"
+        min_price: 300
+        max_price: 1000
+
+      - id: nikon-d7200
+        name_ko: 니콘 D7200
+        name_en: Nikon D7200
+        query: "Nikon D7200 body"
+        category_id: "31388"
+        min_price: 200
+        max_price: 800
+
+  - id: film-cameras
+    name_ko: 필름 카메라
+    name_en: Film Cameras
+    products:
+      - id: nikon-f6
+        name_ko: 니콘 F6
+        name_en: Nikon F6
+        query: "Nikon F6 body"
+        category_id: "3323"
+        min_price: 800
+        max_price: 3000
+
+      - id: nikon-f5
+        name_ko: 니콘 F5
+        name_en: Nikon F5
+        query: "Nikon F5 body"
+        category_id: "3323"
+        min_price: 100
+        max_price: 800
+
+      - id: nikon-f3hp
+        name_ko: 니콘 F3HP
+        name_en: Nikon F3HP
+        query: "Nikon F3HP"
+        category_id: "3323"
+        min_price: 150
+        max_price: 800
+
+      - id: nikon-f3
+        name_ko: 니콘 F3
+        name_en: Nikon F3
+        query: "Nikon F3 body -F3HP -F3/T"
+        category_id: "3323"
+        min_price: 100
+        max_price: 600
+
+      - id: nikon-f2
+        name_ko: 니콘 F2
+        name_en: Nikon F2
+        query: "Nikon F2 body"
+        category_id: "3323"
+        min_price: 100
+        max_price: 1000
+
+      - id: nikon-fm3a
+        name_ko: 니콘 FM3A
+        name_en: Nikon FM3A
+        query: "Nikon FM3A"
+        category_id: "3323"
+        min_price: 300
+        max_price: 1500
+
+      - id: nikon-fm2
+        name_ko: 니콘 FM2
+        name_en: Nikon FM2
+        query: "Nikon FM2 -FM2n"
+        category_id: "3323"
+        min_price: 100
+        max_price: 600
+
+      - id: nikon-fe2
+        name_ko: 니콘 FE2
+        name_en: Nikon FE2
+        query: "Nikon FE2"
+        category_id: "3323"
+        min_price: 80
+        max_price: 500
+
+  - id: z-mount-lenses
+    name_ko: Z마운트 렌즈
+    name_en: Z-Mount Lenses
+    products:
+      - id: nikkor-z-24-70-f28-s
+        name_ko: Z 24-70mm f/2.8 S
+        name_en: NIKKOR Z 24-70mm f/2.8 S
+        query: "Nikkor Z 24-70mm f/2.8 S"
+        category_id: "78997"
+        min_price: 1200
+        max_price: 2500
+
+      - id: nikkor-z-70-200-f28-vr-s
+        name_ko: Z 70-200mm f/2.8 VR S
+        name_en: NIKKOR Z 70-200mm f/2.8 VR S
+        query: "Nikkor Z 70-200mm f/2.8 VR S"
+        category_id: "78997"
+        min_price: 1500
+        max_price: 2800
+
+      - id: nikkor-z-14-24-f28-s
+        name_ko: Z 14-24mm f/2.8 S
+        name_en: NIKKOR Z 14-24mm f/2.8 S
+        query: "Nikkor Z 14-24mm f/2.8 S"
+        category_id: "78997"
+        min_price: 1200
+        max_price: 2500
+
+      - id: nikkor-z-24-120-f4-s
+        name_ko: Z 24-120mm f/4 S
+        name_en: NIKKOR Z 24-120mm f/4 S
+        query: "Nikkor Z 24-120mm f/4 S"
+        category_id: "78997"
+        min_price: 600
+        max_price: 1300
+
+      - id: nikkor-z-100-400-f45-56-vr-s
+        name_ko: Z 100-400mm f/4.5-5.6 VR S
+        name_en: NIKKOR Z 100-400mm f/4.5-5.6 VR S
+        query: "Nikkor Z 100-400mm f/4.5-5.6 VR S"
+        category_id: "78997"
+        min_price: 1500
+        max_price: 2800
+
+      - id: nikkor-z-50mm-f12-s
+        name_ko: Z 50mm f/1.2 S
+        name_en: NIKKOR Z 50mm f/1.2 S
+        query: "Nikkor Z 50mm f/1.2 S"
+        category_id: "78997"
+        min_price: 1200
+        max_price: 2500
+
+      - id: nikkor-z-85mm-f12-s
+        name_ko: Z 85mm f/1.2 S
+        name_en: NIKKOR Z 85mm f/1.2 S
+        query: "Nikkor Z 85mm f/1.2 S"
+        category_id: "78997"
+        min_price: 1800
+        max_price: 3500
+
+      - id: nikkor-z-50mm-f18-s
+        name_ko: Z 50mm f/1.8 S
+        name_en: NIKKOR Z 50mm f/1.8 S
+        query: "Nikkor Z 50mm f/1.8 S"
+        category_id: "78997"
+        min_price: 250
+        max_price: 700
+
+      - id: nikkor-z-35mm-f14
+        name_ko: Z 35mm f/1.4
+        name_en: NIKKOR Z 35mm f/1.4
+        query: "Nikkor Z 35mm f/1.4"
+        category_id: "78997"
+        min_price: 400
+        max_price: 900
+
+      - id: nikkor-z-135mm-f18-s-plena
+        name_ko: Z 135mm f/1.8 S Plena
+        name_en: NIKKOR Z 135mm f/1.8 S Plena
+        query: "Nikkor Z 135mm f/1.8 Plena"
+        category_id: "78997"
+        min_price: 1500
+        max_price: 3000
+
+      - id: nikkor-z-24-200-f4-63-vr
+        name_ko: Z 24-200mm f/4-6.3 VR
+        name_en: NIKKOR Z 24-200mm f/4-6.3 VR
+        query: "Nikkor Z 24-200mm f/4-6.3 VR"
+        category_id: "78997"
+        min_price: 400
+        max_price: 1000
+
+      - id: nikkor-z-28-75-f28
+        name_ko: Z 28-75mm f/2.8
+        name_en: NIKKOR Z 28-75mm f/2.8
+        query: "Nikkor Z 28-75mm f/2.8"
+        category_id: "78997"
+        min_price: 400
+        max_price: 1000
+
+      - id: nikkor-z-26mm-f28
+        name_ko: Z 26mm f/2.8
+        name_en: NIKKOR Z 26mm f/2.8
+        query: "Nikkor Z 26mm f/2.8"
+        category_id: "78997"
+        min_price: 200
+        max_price: 600
+
+      - id: nikkor-z-mc-105mm-f28-vr-s
+        name_ko: Z MC 105mm f/2.8 VR S
+        name_en: NIKKOR Z MC 105mm f/2.8 VR S
+        query: "Nikkor Z MC 105mm f/2.8 VR S"
+        category_id: "78997"
+        min_price: 500
+        max_price: 1200
+
+      - id: nikkor-z-400mm-f45-vr-s
+        name_ko: Z 400mm f/4.5 VR S
+        name_en: NIKKOR Z 400mm f/4.5 VR S
+        query: "Nikkor Z 400mm f/4.5 VR S"
+        category_id: "78997"
+        min_price: 2000
+        max_price: 4000
+
+  - id: f-mount-lenses
+    name_ko: F마운트 렌즈
+    name_en: F-Mount Lenses
+    products:
+      - id: af-s-24-70-f28g-ed
+        name_ko: AF-S 24-70mm f/2.8G ED
+        name_en: AF-S NIKKOR 24-70mm f/2.8G ED
+        query: "Nikon AF-S 24-70mm f/2.8G ED"
+        category_id: "78997"
+        min_price: 500
+        max_price: 1500
+
+      - id: af-s-24-70-f28e-ed-vr
+        name_ko: AF-S 24-70mm f/2.8E ED VR
+        name_en: AF-S NIKKOR 24-70mm f/2.8E ED VR
+        query: "Nikon AF-S 24-70mm f/2.8E ED VR"
+        category_id: "78997"
+        min_price: 800
+        max_price: 2000
+
+      - id: af-s-70-200-f28g-ed-vrii
+        name_ko: AF-S 70-200mm f/2.8G ED VR II
+        name_en: AF-S NIKKOR 70-200mm f/2.8G ED VR II
+        query: "Nikon AF-S 70-200mm f/2.8G VR II"
+        category_id: "78997"
+        min_price: 600
+        max_price: 1500
+
+      - id: af-s-70-200-f28e-fl-ed-vr
+        name_ko: AF-S 70-200mm f/2.8E FL ED VR
+        name_en: AF-S NIKKOR 70-200mm f/2.8E FL ED VR
+        query: "Nikon AF-S 70-200mm f/2.8E FL ED VR"
+        category_id: "78997"
+        min_price: 1000
+        max_price: 2200
+
+      - id: af-s-14-24-f28g-ed
+        name_ko: AF-S 14-24mm f/2.8G ED
+        name_en: AF-S NIKKOR 14-24mm f/2.8G ED
+        query: "Nikon AF-S 14-24mm f/2.8G ED"
+        category_id: "78997"
+        min_price: 400
+        max_price: 1200
+
+      - id: af-s-58mm-f14g
+        name_ko: AF-S 58mm f/1.4G
+        name_en: AF-S NIKKOR 58mm f/1.4G
+        query: "Nikon AF-S 58mm f/1.4G"
+        category_id: "78997"
+        min_price: 800
+        max_price: 2000
+
+      - id: af-s-105mm-f14e-ed
+        name_ko: AF-S 105mm f/1.4E ED
+        name_en: AF-S NIKKOR 105mm f/1.4E ED
+        query: "Nikon AF-S 105mm f/1.4E ED"
+        category_id: "78997"
+        min_price: 1000
+        max_price: 2500
+
+      - id: af-s-85mm-f14g
+        name_ko: AF-S 85mm f/1.4G
+        name_en: AF-S NIKKOR 85mm f/1.4G
+        query: "Nikon AF-S 85mm f/1.4G"
+        category_id: "78997"
+        min_price: 500
+        max_price: 1500
+
+      - id: af-s-50mm-f14g
+        name_ko: AF-S 50mm f/1.4G
+        name_en: AF-S NIKKOR 50mm f/1.4G
+        query: "Nikon AF-S 50mm f/1.4G"
+        category_id: "78997"
+        min_price: 150
+        max_price: 500
+
+      - id: af-s-35mm-f14g
+        name_ko: AF-S 35mm f/1.4G
+        name_en: AF-S NIKKOR 35mm f/1.4G
+        query: "Nikon AF-S 35mm f/1.4G"
+        category_id: "78997"
+        min_price: 500
+        max_price: 1500
+
+      - id: af-s-200-500-f56e-ed-vr
+        name_ko: AF-S 200-500mm f/5.6E ED VR
+        name_en: AF-S NIKKOR 200-500mm f/5.6E ED VR
+        query: "Nikon AF-S 200-500mm f/5.6E ED VR"
+        category_id: "78997"
+        min_price: 500
+        max_price: 1500
+
+      - id: af-s-300mm-f4e-pf-ed-vr
+        name_ko: AF-S 300mm f/4E PF ED VR
+        name_en: AF-S NIKKOR 300mm f/4E PF ED VR
+        query: "Nikon AF-S 300mm f/4E PF ED VR"
+        category_id: "78997"
+        min_price: 600
+        max_price: 1500
+
+      - id: af-s-500mm-f56e-pf-ed-vr
+        name_ko: AF-S 500mm f/5.6E PF ED VR
+        name_en: AF-S NIKKOR 500mm f/5.6E PF ED VR
+        query: "Nikon AF-S 500mm f/5.6E PF ED VR"
+        category_id: "78997"
+        min_price: 2000
+        max_price: 4000
+
+      - id: af-p-70-300-f45-63e-ed-vr
+        name_ko: AF-P 70-300mm f/4.5-6.3E ED VR
+        name_en: AF-P NIKKOR 70-300mm f/4.5-6.3E ED VR
+        query: "Nikon AF-P 70-300mm f/4.5-6.3E ED VR"
+        category_id: "78997"
+        min_price: 200
+        max_price: 700
+
+      - id: af-s-micro-105mm-f28g-ed-vr
+        name_ko: AF-S Micro 105mm f/2.8G ED VR
+        name_en: AF-S Micro NIKKOR 105mm f/2.8G IF-ED VR
+        query: "Nikon AF-S Micro 105mm f/2.8G VR"
+        category_id: "78997"
+        min_price: 200
+        max_price: 700
+
+  - id: classic-lenses
+    name_ko: 클래식 렌즈
+    name_en: Classic Lenses
+    products:
+      - id: ai-s-50mm-f12
+        name_ko: AI-S 50mm f/1.2
+        name_en: Nikon AI-S 50mm f/1.2
+        query: "Nikon AIS 50mm f/1.2"
+        category_id: "78997"
+        min_price: 200
+        max_price: 800
+
+      - id: ai-s-50mm-f14
+        name_ko: AI-S 50mm f/1.4
+        name_en: Nikon AI-S 50mm f/1.4
+        query: "Nikon AIS 50mm f/1.4"
+        category_id: "78997"
+        min_price: 80
+        max_price: 400
+
+      - id: ai-s-35mm-f14
+        name_ko: AI-S 35mm f/1.4
+        name_en: Nikon AI-S 35mm f/1.4
+        query: "Nikon AIS 35mm f/1.4"
+        category_id: "78997"
+        min_price: 200
+        max_price: 900
+
+      - id: ai-s-28mm-f28
+        name_ko: AI-S 28mm f/2.8
+        name_en: Nikon AI-S 28mm f/2.8
+        query: "Nikon AIS 28mm f/2.8"
+        category_id: "78997"
+        min_price: 50
+        max_price: 300
+
+      - id: ai-s-105mm-f25
+        name_ko: AI-S 105mm f/2.5
+        name_en: Nikon AI-S 105mm f/2.5
+        query: "Nikon AIS 105mm f/2.5"
+        category_id: "78997"
+        min_price: 50
+        max_price: 300
+
+      - id: ai-s-135mm-f28
+        name_ko: AI-S 135mm f/2.8
+        name_en: Nikon AI-S 135mm f/2.8
+        query: "Nikon AIS 135mm f/2.8"
+        category_id: "78997"
+        min_price: 50
+        max_price: 300
+
+      - id: ai-s-180mm-f28-ed
+        name_ko: AI-S 180mm f/2.8 ED
+        name_en: Nikon AI-S 180mm f/2.8 ED
+        query: "Nikon AIS 180mm f/2.8 ED"
+        category_id: "78997"
+        min_price: 100
+        max_price: 500
+
+      - id: ai-s-55mm-f28-micro
+        name_ko: AI-S Micro 55mm f/2.8
+        name_en: Nikon AI-S Micro-Nikkor 55mm f/2.8
+        query: "Nikon AIS Micro 55mm f/2.8"
+        category_id: "78997"
+        min_price: 50
+        max_price: 300

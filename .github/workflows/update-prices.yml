@@ -1,0 +1,42 @@
+name: Update Nikon Prices
+
+on:
+  schedule:
+    - cron: '0 6 * * *'  # 매일 06:00 UTC
+  workflow_dispatch:       # 수동 트리거
+
+permissions:
+  contents: write
+
+jobs:
+  fetch-prices:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install dependencies
+        run: pip install -r scripts/requirements.txt
+
+      - name: Fetch eBay prices
+        env:
+          EBAY_CLIENT_ID: ${{ secrets.EBAY_CLIENT_ID }}
+          EBAY_CLIENT_SECRET: ${{ secrets.EBAY_CLIENT_SECRET }}
+        run: python scripts/fetch_prices.py
+
+      - name: Commit and push data
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add data/
+          if git diff --staged --quiet; then
+            echo "No data changes to commit"
+          else
+            git commit -m "📊 Update price data $(date -u +%Y-%m-%d)"
+            git push
+          fi
