@@ -99,9 +99,37 @@
       : catalogData.categories;
 
     for (const cat of categories) {
-      const sorted = sortProducts(cat.products, cat.id);
+      if (activeCategory && cat.subcategories && cat.subcategories.length > 0) {
+        renderGroupedProducts(grid, cat);
+      } else {
+        const sorted = sortProducts(cat.products, cat.id);
+        for (const product of sorted) {
+          const card = createProductCard(product, cat.id);
+          grid.appendChild(card);
+        }
+      }
+    }
+  }
+
+  function renderGroupedProducts(grid, category) {
+    const subcategories = [...category.subcategories].sort(
+      (a, b) => a.sort_order - b.sort_order
+    );
+
+    for (const sub of subcategories) {
+      const products = category.products.filter(
+        (p) => p.subcategory === sub.id
+      );
+      if (products.length === 0) continue;
+
+      const header = document.createElement("div");
+      header.className = "subcategory-header";
+      header.textContent = sub.name_ko;
+      grid.appendChild(header);
+
+      const sorted = sortProducts(products, category.id);
       for (const product of sorted) {
-        const card = createProductCard(product, cat.id);
+        const card = createProductCard(product, category.id);
         grid.appendChild(card);
       }
     }

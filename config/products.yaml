@@ -7,11 +7,25 @@ categories:
   - id: z-mount-bodies
     name_ko: Z마운트 바디
     name_en: Z-Mount Bodies
+    subcategories:
+      - id: flagship
+        name_ko: 플래그십
+        name_en: Flagship
+        sort_order: 1
+      - id: midrange
+        name_ko: 중급기
+        name_en: Midrange
+        sort_order: 2
+      - id: entry
+        name_ko: 입문기
+        name_en: Entry
+        sort_order: 3
     products:
       - id: nikon-z9
         name_ko: 니콘 Z9
         name_en: Nikon Z9
         release_year: 2021
+        subcategory: flagship
         query: "Nikon Z9 body"
         category_id: "31388"
         min_price: 2000
@@ -21,6 +35,7 @@ categories:
         name_ko: 니콘 Z8
         name_en: Nikon Z8
         release_year: 2023
+        subcategory: flagship
         query: "Nikon Z8 body"
         category_id: "31388"
         min_price: 2000
@@ -30,6 +45,7 @@ categories:
         name_ko: 니콘 Z7II
         name_en: Nikon Z7II
         release_year: 2020
+        subcategory: midrange
         query: "Nikon Z7II body"
         category_id: "31388"
         min_price: 1000
@@ -39,6 +55,7 @@ categories:
         name_ko: 니콘 Z7
         name_en: Nikon Z7
         release_year: 2018
+        subcategory: midrange
         query: "Nikon Z7 body -Z7II"
         category_id: "31388"
         min_price: 600
@@ -48,6 +65,7 @@ categories:
         name_ko: 니콘 Z6III
         name_en: Nikon Z6III
         release_year: 2024
+        subcategory: midrange
         query: "Nikon Z6III body"
         category_id: "31388"
         min_price: 1500
@@ -57,6 +75,7 @@ categories:
         name_ko: 니콘 Z6II
         name_en: Nikon Z6II
         release_year: 2020
+        subcategory: midrange
         query: "Nikon Z6II body"
         category_id: "31388"
         min_price: 700
@@ -66,6 +85,7 @@ categories:
         name_ko: 니콘 Z6
         name_en: Nikon Z6
         release_year: 2018
+        subcategory: midrange
         query: "Nikon Z6 body -Z6II -Z6III"
         category_id: "31388"
         min_price: 400
@@ -75,6 +95,7 @@ categories:
         name_ko: 니콘 Z5
         name_en: Nikon Z5
         release_year: 2020
+        subcategory: entry
         query: "Nikon Z5 body -Z50 -Z50II -Z30"
         category_id: "31388"
         min_price: 500
@@ -84,6 +105,7 @@ categories:
         name_ko: 니콘 Zf
         name_en: Nikon Zf
         release_year: 2023
+        subcategory: midrange
         query: "Nikon Zf body"
         category_id: "31388"
         min_price: 1200
@@ -93,6 +115,7 @@ categories:
         name_ko: 니콘 Zfc
         name_en: Nikon Zfc
         release_year: 2021
+        subcategory: entry
         query: "Nikon Zfc body"
         category_id: "31388"
         min_price: 400
@@ -102,6 +125,7 @@ categories:
         name_ko: 니콘 Z50II
         name_en: Nikon Z50II
         release_year: 2024
+        subcategory: entry
         query: "Nikon Z50II body"
         category_id: "31388"
         min_price: 500
@@ -111,6 +135,7 @@ categories:
         name_ko: 니콘 Z50
         name_en: Nikon Z50
         release_year: 2019
+        subcategory: entry
         query: "Nikon Z50 body -Z50II"
         category_id: "31388"
         min_price: 300
@@ -120,6 +145,7 @@ categories:
         name_ko: 니콘 Z30
         name_en: Nikon Z30
         release_year: 2022
+        subcategory: entry
         query: "Nikon Z30 body"
         category_id: "31388"
         min_price: 300
@@ -128,11 +154,25 @@ categories:
   - id: f-mount-dslr
     name_ko: F마운트 DSLR
     name_en: F-Mount DSLR
+    subcategories:
+      - id: flagship
+        name_ko: 플래그십
+        name_en: Flagship
+        sort_order: 1
+      - id: midrange
+        name_ko: 중급기
+        name_en: Midrange
+        sort_order: 2
+      - id: entry
+        name_ko: 입문기
+        name_en: Entry
+        sort_order: 3
     products:
       - id: nikon-d6
         name_ko: 니콘 D6
         name_en: Nikon D6
         release_year: 2020
+        subcategory: flagship
         query: "Nikon D6 body"
         category_id: "31388"
         min_price: 3000
@@ -142,6 +182,7 @@ categories:
         name_ko: 니콘 D5
         name_en: Nikon D5
         release_year: 2016
+        subcategory: flagship
         query: "Nikon D5 body"
         category_id: "31388"
         min_price: 1500
@@ -151,6 +192,7 @@ categories:
         name_ko: 니콘 D850
         name_en: Nikon D850
         release_year: 2017
+        subcategory: midrange
         query: "Nikon D850 body"
         category_id: "31388"
         min_price: 1000
@@ -160,6 +202,7 @@ categories:
         name_ko: 니콘 D810
         name_en: Nikon D810
         release_year: 2014
+        subcategory: midrange
         query: "Nikon D810 body -D800 -D800E"
         category_id: "31388"
         min_price: 500
@@ -169,6 +212,7 @@ categories:
         name_ko: 니콘 D780
         name_en: Nikon D780
         release_year: 2020
+        subcategory: midrange
         query: "Nikon D780 body"
         category_id: "31388"
         min_price: 1000
@@ -178,6 +222,7 @@ categories:
         name_ko: 니콘 D750
         name_en: Nikon D750
         release_year: 2014
+        subcategory: midrange
         query: "Nikon D750 body"
         category_id: "31388"
         min_price: 400
@@ -187,6 +232,7 @@ categories:
         name_ko: 니콘 D700
         name_en: Nikon D700
         release_year: 2008
+        subcategory: midrange
         query: "Nikon D700 body"
         category_id: "31388"
         min_price: 200
@@ -196,6 +242,7 @@ categories:
         name_ko: 니콘 D500
         name_en: Nikon D500
         release_year: 2016
+        subcategory: entry
         query: "Nikon D500 body -lens -nikkor"
         category_id: "31388"
         min_price: 500
@@ -205,6 +252,7 @@ categories:
         name_ko: 니콘 D7500
         name_en: Nikon D7500
         release_year: 2017
+        subcategory: entry
         query: "Nikon D7500 body"
         category_id: "31388"
         min_price: 300
@@ -214,6 +262,7 @@ categories:
         name_ko: 니콘 D7200
         name_en: Nikon D7200
         release_year: 2015
+        subcategory: entry
         query: "Nikon D7200 body"
         category_id: "31388"
         min_price: 200
@@ -222,11 +271,25 @@ categories:
   - id: film-cameras
     name_ko: 필름 카메라
     name_en: Film Cameras
+    subcategories:
+      - id: flagship
+        name_ko: 플래그십
+        name_en: Flagship
+        sort_order: 1
+      - id: midrange
+        name_ko: 중급기
+        name_en: Midrange
+        sort_order: 2
+      - id: entry
+        name_ko: 입문기
+        name_en: Entry
+        sort_order: 3
     products:
       - id: nikon-f6
         name_ko: 니콘 F6
         name_en: Nikon F6
         release_year: 2004
+        subcategory: flagship
         query: "Nikon F6 body -lens -nikkor -filter -hood -cap"
         category_id: "3323"
         min_price: 800
@@ -236,6 +299,7 @@ categories:
         name_ko: 니콘 F5
         name_en: Nikon F5
         release_year: 1996
+        subcategory: flagship
         query: "Nikon F5 body -lens -nikkor -filter -hood -cap"
         category_id: "3323"
         min_price: 100
@@ -245,6 +309,7 @@ categories:
         name_ko: 니콘 F3HP
         name_en: Nikon F3HP
         release_year: 1982
+        subcategory: flagship
         query: "Nikon F3HP body -lens -nikkor -filter -hood -cap"
         category_id: "3323"
         min_price: 150
@@ -254,6 +319,7 @@ categories:
         name_ko: 니콘 F3
         name_en: Nikon F3
         release_year: 1980
+        subcategory: flagship
         query: "Nikon F3 body -F3HP -F3/T -lens -nikkor -filter -hood -cap"
         category_id: "3323"
         min_price: 100
@@ -263,44 +329,17 @@ categories:
         name_ko: 니콘 F2
         name_en: Nikon F2
         release_year: 1971
+        subcategory: flagship
         query: "Nikon F2 body -lens -nikkor -filter -hood -cap"
         category_id: "3323"
         min_price: 100
         max_price: 1000
 
-      - id: nikon-fm3a
-        name_ko: 니콘 FM3A
-        name_en: Nikon FM3A
-        release_year: 2001
-        query: "Nikon FM3A body -lens -nikkor -filter -hood -cap"
-        category_id: "3323"
-        min_price: 300
-        max_price: 1500
-
-      - id: nikon-fm2
-        name_ko: 니콘 FM2
-        name_en: Nikon FM2
-        release_year: 1982
-        query: "Nikon FM2 body -FM2n -lens -nikkor -filter -hood -cap"
-        category_id: "3323"
-        min_price: 100
-        max_price: 600
-
-      - id: nikon-fe2
-        name_ko: 니콘 FE2
-        name_en: Nikon FE2
-        release_year: 1983
-        query: "Nikon FE2 body -lens -nikkor -filter -hood -cap"
-        category_id: "3323"
-        min_price: 80
-        max_price: 500
-
-      # --- 프로/세미프로 ---
-
       - id: nikon-f
         name_ko: 니콘 F
         name_en: Nikon F
         release_year: 1959
+        subcategory: flagship
         query: "Nikon F body -F2 -F3 -F4 -F5 -F6 -FA -FE -FM -FG -EM -lens -nikkor -filter -hood -cap"
         category_id: "3323"
         min_price: 80
@@ -310,6 +349,7 @@ categories:
         name_ko: 니콘 F3/T
         name_en: Nikon F3/T
         release_year: 1982
+        subcategory: flagship
         query: "Nikon F3/T body -lens -nikkor -filter -hood -cap"
         category_id: "3323"
         min_price: 200
@@ -319,17 +359,47 @@ categories:
         name_ko: 니콘 F3AF
         name_en: Nikon F3AF
         release_year: 1983
+        subcategory: flagship
         query: "Nikon F3AF -lens -nikkor -filter -hood -cap"
         category_id: "3323"
         min_price: 150
         max_price: 800
 
-      # --- 중급기 ---
+      - id: nikon-fm3a
+        name_ko: 니콘 FM3A
+        name_en: Nikon FM3A
+        release_year: 2001
+        subcategory: midrange
+        query: "Nikon FM3A body -lens -nikkor -filter -hood -cap"
+        category_id: "3323"
+        min_price: 300
+        max_price: 1500
+
+      - id: nikon-fm2
+        name_ko: 니콘 FM2
+        name_en: Nikon FM2
+        release_year: 1982
+        subcategory: midrange
+        query: "Nikon FM2 body -FM2n -lens -nikkor -filter -hood -cap"
+        category_id: "3323"
+        min_price: 100
+        max_price: 600
+
+      - id: nikon-fe2
+        name_ko: 니콘 FE2
+        name_en: Nikon FE2
+        release_year: 1983
+        subcategory: midrange
+        query: "Nikon FE2 body -lens -nikkor -filter -hood -cap"
+        category_id: "3323"
+        min_price: 80
+        max_price: 500
 
       - id: nikon-fa
         name_ko: 니콘 FA
         name_en: Nikon FA
         release_year: 1983
+        subcategory: midrange
         query: "Nikon FA body -lens -nikkor -filter -hood -cap"
         category_id: "3323"
         min_price: 30
@@ -339,6 +409,7 @@ categories:
         name_ko: 니콘 FE
         name_en: Nikon FE
         release_year: 1978
+        subcategory: entry
         query: "Nikon FE body -FE2 -FE10 -lens -nikkor -filter -hood -cap"
         category_id: "3323"
         min_price: 30
@@ -348,6 +419,7 @@ categories:
         name_ko: 니콘 FM
         name_en: Nikon FM
         release_year: 1977
+        subcategory: entry
         query: "Nikon FM body -FM2 -FM3A -FM10 -lens -nikkor -filter -hood -cap"
         category_id: "3323"
         min_price: 30
@@ -357,6 +429,7 @@ categories:
         name_ko: 니콘 EM
         name_en: Nikon EM
         release_year: 1979
+        subcategory: entry
         query: "Nikon EM body -lens -nikkor -filter -hood -cap"
         category_id: "3323"
         min_price: 20
@@ -366,6 +439,7 @@ categories:
         name_ko: 니콘 FG
         name_en: Nikon FG
         release_year: 1982
+        subcategory: entry
         query: "Nikon FG -FG-20 -FG20 -lens -nikkor -filter -hood -cap"
         category_id: "3323"
         min_price: 20
@@ -375,6 +449,7 @@ categories:
         name_ko: 니콘 FG-20
         name_en: Nikon FG-20
         release_year: 1984
+        subcategory: entry
         query: "Nikon FG-20 -lens -nikkor -filter -hood -cap"
         category_id: "3323"
         min_price: 15
@@ -384,6 +459,7 @@ categories:
         name_ko: 니콘 FM10
         name_en: Nikon FM10
         release_year: 1995
+        subcategory: entry
         query: "Nikon FM10 -lens -nikkor -filter -hood -cap"
         category_id: "3323"
         min_price: 20
@@ -393,17 +469,17 @@ categories:
         name_ko: 니콘 FE10
         name_en: Nikon FE10
         release_year: 1996
+        subcategory: entry
         query: "Nikon FE10 -lens -nikkor -filter -hood -cap"
         category_id: "3323"
         min_price: 20
         max_price: 150
 
-      # --- 니코마트 ---
-
       - id: nikkormat
         name_ko: 니코마트
         name_en: Nikkormat
         release_year: 1965
+        subcategory: entry
         query: "Nikkormat body -lens -filter -hood -cap"
         category_id: "3323"
         min_price: 15
@@ -412,11 +488,25 @@ categories:
   - id: z-mount-lenses
     name_ko: Z마운트 렌즈
     name_en: Z-Mount Lenses
+    subcategories:
+      - id: zoom
+        name_ko: 줌 렌즈
+        name_en: Zoom
+        sort_order: 1
+      - id: prime
+        name_ko: 단초점 렌즈
+        name_en: Prime
+        sort_order: 2
+      - id: macro
+        name_ko: 매크로
+        name_en: Macro
+        sort_order: 3
     products:
       - id: nikkor-z-24-70-f28-s
         name_ko: Z 24-70mm f/2.8 S
         name_en: NIKKOR Z 24-70mm f/2.8 S
         focal_length_min: 24
+        subcategory: zoom
         query: "Nikkor Z 24-70mm f/2.8 S"
         category_id: "78997"
         min_price: 1200
@@ -426,6 +516,7 @@ categories:
         name_ko: Z 70-200mm f/2.8 VR S
         name_en: NIKKOR Z 70-200mm f/2.8 VR S
         focal_length_min: 70
+        subcategory: zoom
         query: "Nikkor Z 70-200mm f/2.8 VR S"
         category_id: "78997"
         min_price: 1500
@@ -435,6 +526,7 @@ categories:
         name_ko: Z 14-24mm f/2.8 S
         name_en: NIKKOR Z 14-24mm f/2.8 S
         focal_length_min: 14
+        subcategory: zoom
         query: "Nikkor Z 14-24mm f/2.8 S"
         category_id: "78997"
         min_price: 1200
@@ -444,6 +536,7 @@ categories:
         name_ko: Z 24-120mm f/4 S
         name_en: NIKKOR Z 24-120mm f/4 S
         focal_length_min: 24
+        subcategory: zoom
         query: "Nikkor Z 24-120mm f/4 S"
         category_id: "78997"
         min_price: 600
@@ -453,60 +546,17 @@ categories:
         name_ko: Z 100-400mm f/4.5-5.6 VR S
         name_en: NIKKOR Z 100-400mm f/4.5-5.6 VR S
         focal_length_min: 100
+        subcategory: zoom
         query: "Nikkor Z 100-400mm f/4.5-5.6 VR S"
         category_id: "78997"
         min_price: 1500
         max_price: 2800
 
-      - id: nikkor-z-50mm-f12-s
-        name_ko: Z 50mm f/1.2 S
-        name_en: NIKKOR Z 50mm f/1.2 S
-        focal_length_min: 50
-        query: "Nikkor Z 50mm f/1.2 S"
-        category_id: "78997"
-        min_price: 1200
-        max_price: 2500
-
-      - id: nikkor-z-85mm-f12-s
-        name_ko: Z 85mm f/1.2 S
-        name_en: NIKKOR Z 85mm f/1.2 S
-        focal_length_min: 85
-        query: "Nikkor Z 85mm f/1.2 S"
-        category_id: "78997"
-        min_price: 1800
-        max_price: 3500
-
-      - id: nikkor-z-50mm-f18-s
-        name_ko: Z 50mm f/1.8 S
-        name_en: NIKKOR Z 50mm f/1.8 S
-        focal_length_min: 50
-        query: "Nikkor Z 50mm f/1.8 S"
-        category_id: "78997"
-        min_price: 250
-        max_price: 700
-
-      - id: nikkor-z-35mm-f14
-        name_ko: Z 35mm f/1.4
-        name_en: NIKKOR Z 35mm f/1.4
-        focal_length_min: 35
-        query: "Nikkor Z 35mm f/1.4"
-        category_id: "78997"
-        min_price: 400
-        max_price: 900
-
-      - id: nikkor-z-135mm-f18-s-plena
-        name_ko: Z 135mm f/1.8 S Plena
-        name_en: NIKKOR Z 135mm f/1.8 S Plena
-        focal_length_min: 135
-        query: "Nikkor Z 135mm f/1.8 Plena"
-        category_id: "78997"
-        min_price: 1500
-        max_price: 3000
-
       - id: nikkor-z-24-200-f4-63-vr
         name_ko: Z 24-200mm f/4-6.3 VR
         name_en: NIKKOR Z 24-200mm f/4-6.3 VR
         focal_length_min: 24
+        subcategory: zoom
         query: "Nikkor Z 24-200mm f/4-6.3 VR"
         category_id: "78997"
         min_price: 400
@@ -516,46 +566,114 @@ categories:
         name_ko: Z 28-75mm f/2.8
         name_en: NIKKOR Z 28-75mm f/2.8
         focal_length_min: 28
+        subcategory: zoom
         query: "Nikkor Z 28-75mm f/2.8"
         category_id: "78997"
         min_price: 400
         max_price: 1000
 
+      - id: nikkor-z-50mm-f12-s
+        name_ko: Z 50mm f/1.2 S
+        name_en: NIKKOR Z 50mm f/1.2 S
+        focal_length_min: 50
+        subcategory: prime
+        query: "Nikkor Z 50mm f/1.2 S"
+        category_id: "78997"
+        min_price: 1200
+        max_price: 2500
+
+      - id: nikkor-z-85mm-f12-s
+        name_ko: Z 85mm f/1.2 S
+        name_en: NIKKOR Z 85mm f/1.2 S
+        focal_length_min: 85
+        subcategory: prime
+        query: "Nikkor Z 85mm f/1.2 S"
+        category_id: "78997"
+        min_price: 1800
+        max_price: 3500
+
+      - id: nikkor-z-50mm-f18-s
+        name_ko: Z 50mm f/1.8 S
+        name_en: NIKKOR Z 50mm f/1.8 S
+        focal_length_min: 50
+        subcategory: prime
+        query: "Nikkor Z 50mm f/1.8 S"
+        category_id: "78997"
+        min_price: 250
+        max_price: 700
+
+      - id: nikkor-z-35mm-f14
+        name_ko: Z 35mm f/1.4
+        name_en: NIKKOR Z 35mm f/1.4
+        focal_length_min: 35
+        subcategory: prime
+        query: "Nikkor Z 35mm f/1.4"
+        category_id: "78997"
+        min_price: 400
+        max_price: 900
+
+      - id: nikkor-z-135mm-f18-s-plena
+        name_ko: Z 135mm f/1.8 S Plena
+        name_en: NIKKOR Z 135mm f/1.8 S Plena
+        focal_length_min: 135
+        subcategory: prime
+        query: "Nikkor Z 135mm f/1.8 Plena"
+        category_id: "78997"
+        min_price: 1500
+        max_price: 3000
+
       - id: nikkor-z-26mm-f28
         name_ko: Z 26mm f/2.8
         name_en: NIKKOR Z 26mm f/2.8
         focal_length_min: 26
+        subcategory: prime
         query: "Nikkor Z 26mm f/2.8"
         category_id: "78997"
         min_price: 200
         max_price: 600
 
-      - id: nikkor-z-mc-105mm-f28-vr-s
-        name_ko: Z MC 105mm f/2.8 VR S
-        name_en: NIKKOR Z MC 105mm f/2.8 VR S
-        focal_length_min: 105
-        query: "Nikkor Z MC 105mm f/2.8 VR S"
-        category_id: "78997"
-        min_price: 500
-        max_price: 1200
-
       - id: nikkor-z-400mm-f45-vr-s
         name_ko: Z 400mm f/4.5 VR S
         name_en: NIKKOR Z 400mm f/4.5 VR S
         focal_length_min: 400
+        subcategory: prime
         query: "Nikkor Z 400mm f/4.5 VR S"
         category_id: "78997"
         min_price: 2000
         max_price: 4000
 
+      - id: nikkor-z-mc-105mm-f28-vr-s
+        name_ko: Z MC 105mm f/2.8 VR S
+        name_en: NIKKOR Z MC 105mm f/2.8 VR S
+        focal_length_min: 105
+        subcategory: macro
+        query: "Nikkor Z MC 105mm f/2.8 VR S"
+        category_id: "78997"
+        min_price: 500
+        max_price: 1200
+
   - id: f-mount-lenses
     name_ko: F마운트 렌즈
     name_en: F-Mount Lenses
+    subcategories:
+      - id: zoom
+        name_ko: 줌 렌즈
+        name_en: Zoom
+        sort_order: 1
+      - id: prime
+        name_ko: 단초점 렌즈
+        name_en: Prime
+        sort_order: 2
+      - id: macro
+        name_ko: 매크로
+        name_en: Macro
+        sort_order: 3
     products:
       - id: af-s-24-70-f28g-ed
         name_ko: AF-S 24-70mm f/2.8G ED
         name_en: AF-S NIKKOR 24-70mm f/2.8G ED
         focal_length_min: 24
+        subcategory: zoom
         query: "Nikon AF-S 24-70mm f/2.8G ED"
         category_id: "78997"
         min_price: 500
@@ -565,6 +683,7 @@ categories:
         name_ko: AF-S 24-70mm f/2.8E ED VR
         name_en: AF-S NIKKOR 24-70mm f/2.8E ED VR
         focal_length_min: 24
+        subcategory: zoom
         query: "Nikon AF-S 24-70mm f/2.8E ED VR"
         category_id: "78997"
         min_price: 800
@@ -574,6 +693,7 @@ categories:
         name_ko: AF-S 70-200mm f/2.8G ED VR II
         name_en: AF-S NIKKOR 70-200mm f/2.8G ED VR II
         focal_length_min: 70
+        subcategory: zoom
         query: "Nikon AF-S 70-200mm f/2.8G VR II"
         category_id: "78997"
         min_price: 600
@@ -583,6 +703,7 @@ categories:
         name_ko: AF-S 70-200mm f/2.8E FL ED VR
         name_en: AF-S NIKKOR 70-200mm f/2.8E FL ED VR
         focal_length_min: 70
+        subcategory: zoom
         query: "Nikon AF-S 70-200mm f/2.8E FL ED VR"
         category_id: "78997"
         min_price: 1000
@@ -592,15 +713,37 @@ categories:
         name_ko: AF-S 14-24mm f/2.8G ED
         name_en: AF-S NIKKOR 14-24mm f/2.8G ED
         focal_length_min: 14
+        subcategory: zoom
         query: "Nikon AF-S 14-24mm f/2.8G ED"
         category_id: "78997"
         min_price: 400
         max_price: 1200
 
+      - id: af-s-200-500-f56e-ed-vr
+        name_ko: AF-S 200-500mm f/5.6E ED VR
+        name_en: AF-S NIKKOR 200-500mm f/5.6E ED VR
+        focal_length_min: 200
+        subcategory: zoom
+        query: "Nikon AF-S 200-500mm f/5.6E ED VR"
+        category_id: "78997"
+        min_price: 500
+        max_price: 1500
+
+      - id: af-p-70-300-f45-63e-ed-vr
+        name_ko: AF-P 70-300mm f/4.5-6.3E ED VR
+        name_en: AF-P NIKKOR 70-300mm f/4.5-6.3E ED VR
+        focal_length_min: 70
+        subcategory: zoom
+        query: "Nikon AF-P 70-300mm f/4.5-6.3E ED VR"
+        category_id: "78997"
+        min_price: 200
+        max_price: 700
+
       - id: af-s-58mm-f14g
         name_ko: AF-S 58mm f/1.4G
         name_en: AF-S NIKKOR 58mm f/1.4G
         focal_length_min: 58
+        subcategory: prime
         query: "Nikon AF-S 58mm f/1.4G"
         category_id: "78997"
         min_price: 800
@@ -610,6 +753,7 @@ categories:
         name_ko: AF-S 105mm f/1.4E ED
         name_en: AF-S NIKKOR 105mm f/1.4E ED
         focal_length_min: 105
+        subcategory: prime
         query: "Nikon AF-S 105mm f/1.4E ED"
         category_id: "78997"
         min_price: 1000
@@ -619,6 +763,7 @@ categories:
         name_ko: AF-S 85mm f/1.4G
         name_en: AF-S NIKKOR 85mm f/1.4G
         focal_length_min: 85
+        subcategory: prime
         query: "Nikon AF-S 85mm f/1.4G"
         category_id: "78997"
         min_price: 500
@@ -628,6 +773,7 @@ categories:
         name_ko: AF-S 50mm f/1.4G
         name_en: AF-S NIKKOR 50mm f/1.4G
         focal_length_min: 50
+        subcategory: prime
         query: "Nikon AF-S 50mm f/1.4G"
         category_id: "78997"
         min_price: 150
@@ -637,16 +783,8 @@ categories:
         name_ko: AF-S 35mm f/1.4G
         name_en: AF-S NIKKOR 35mm f/1.4G
         focal_length_min: 35
+        subcategory: prime
         query: "Nikon AF-S 35mm f/1.4G"
-        category_id: "78997"
-        min_price: 500
-        max_price: 1500
-
-      - id: af-s-200-500-f56e-ed-vr
-        name_ko: AF-S 200-500mm f/5.6E ED VR
-        name_en: AF-S NIKKOR 200-500mm f/5.6E ED VR
-        focal_length_min: 200
-        query: "Nikon AF-S 200-500mm f/5.6E ED VR"
         category_id: "78997"
         min_price: 500
         max_price: 1500
@@ -655,6 +793,7 @@ categories:
         name_ko: AF-S 300mm f/4E PF ED VR
         name_en: AF-S NIKKOR 300mm f/4E PF ED VR
         focal_length_min: 300
+        subcategory: prime
         query: "Nikon AF-S 300mm f/4E PF ED VR"
         category_id: "78997"
         min_price: 600
@@ -664,24 +803,17 @@ categories:
         name_ko: AF-S 500mm f/5.6E PF ED VR
         name_en: AF-S NIKKOR 500mm f/5.6E PF ED VR
         focal_length_min: 500
+        subcategory: prime
         query: "Nikon AF-S 500mm f/5.6E PF ED VR"
         category_id: "78997"
         min_price: 2000
         max_price: 4000
 
-      - id: af-p-70-300-f45-63e-ed-vr
-        name_ko: AF-P 70-300mm f/4.5-6.3E ED VR
-        name_en: AF-P NIKKOR 70-300mm f/4.5-6.3E ED VR
-        focal_length_min: 70
-        query: "Nikon AF-P 70-300mm f/4.5-6.3E ED VR"
-        category_id: "78997"
-        min_price: 200
-        max_price: 700
-
       - id: af-s-micro-105mm-f28g-ed-vr
         name_ko: AF-S Micro 105mm f/2.8G ED VR
         name_en: AF-S Micro NIKKOR 105mm f/2.8G IF-ED VR
         focal_length_min: 105
+        subcategory: macro
         query: "Nikon AF-S Micro 105mm f/2.8G VR"
         category_id: "78997"
         min_price: 200
@@ -690,11 +822,225 @@ categories:
   - id: classic-lenses
     name_ko: 클래식 렌즈
     name_en: Classic Lenses
+    subcategories:
+      - id: pre-ai
+        name_ko: Pre-AI
+        name_en: Pre-AI
+        sort_order: 1
+      - id: ai
+        name_ko: AI
+        name_en: AI
+        sort_order: 2
+      - id: ais
+        name_ko: AI-S
+        name_en: AI-S
+        sort_order: 3
+      - id: series-e
+        name_ko: Series E
+        name_en: Series E
+        sort_order: 4
     products:
+      # --- Pre-AI ---
+
+      - id: nikkor-auto-50mm-f14
+        name_ko: Nikkor Auto 50mm f/1.4
+        name_en: Nikkor Auto 50mm f/1.4
+        focal_length_min: 50
+        subcategory: pre-ai
+        query: "Nikkor Auto 50mm f/1.4 -AI-S -AIS"
+        category_id: "78997"
+        min_price: 30
+        max_price: 250
+
+      - id: nikkor-auto-50mm-f2
+        name_ko: Nikkor-H Auto 50mm f/2
+        name_en: Nikkor-H Auto 50mm f/2
+        focal_length_min: 50
+        subcategory: pre-ai
+        query: "Nikkor Auto 50mm f/2 -AI -AIS"
+        category_id: "78997"
+        min_price: 20
+        max_price: 200
+
+      - id: nikkor-auto-28mm-f35
+        name_ko: Nikkor-H Auto 28mm f/3.5
+        name_en: Nikkor-H Auto 28mm f/3.5
+        focal_length_min: 28
+        subcategory: pre-ai
+        query: "Nikkor Auto 28mm f/3.5 -AI -AIS"
+        category_id: "78997"
+        min_price: 20
+        max_price: 200
+
+      - id: nikkor-auto-35mm-f28
+        name_ko: Nikkor Auto 35mm f/2.8
+        name_en: Nikkor Auto 35mm f/2.8
+        focal_length_min: 35
+        subcategory: pre-ai
+        query: "Nikkor Auto 35mm f/2.8 -AI -AIS"
+        category_id: "78997"
+        min_price: 30
+        max_price: 250
+
+      - id: nikkor-auto-105mm-f25
+        name_ko: Nikkor-P Auto 105mm f/2.5
+        name_en: Nikkor-P Auto 105mm f/2.5
+        focal_length_min: 105
+        subcategory: pre-ai
+        query: "Nikkor Auto 105mm f/2.5 -AI -AIS"
+        category_id: "78997"
+        min_price: 30
+        max_price: 250
+
+      - id: nikkor-auto-135mm-f35
+        name_ko: Nikkor-Q Auto 135mm f/3.5
+        name_en: Nikkor-Q Auto 135mm f/3.5
+        focal_length_min: 135
+        subcategory: pre-ai
+        query: "Nikkor Auto 135mm f/3.5 -AI -AIS"
+        category_id: "78997"
+        min_price: 20
+        max_price: 200
+
+      - id: nikkor-auto-200mm-f4
+        name_ko: Nikkor Auto 200mm f/4
+        name_en: Nikkor Auto 200mm f/4
+        focal_length_min: 200
+        subcategory: pre-ai
+        query: "Nikkor Auto 200mm f/4 -AI -AIS"
+        category_id: "78997"
+        min_price: 20
+        max_price: 200
+
+      - id: micro-nikkor-auto-55mm-f35
+        name_ko: Micro-Nikkor Auto 55mm f/3.5
+        name_en: Micro-Nikkor Auto 55mm f/3.5
+        focal_length_min: 55
+        subcategory: pre-ai
+        query: "Micro Nikkor Auto 55mm f/3.5 -AI -AIS"
+        category_id: "78997"
+        min_price: 30
+        max_price: 250
+
+      - id: nikkor-auto-35mm-f2
+        name_ko: Nikkor-O Auto 35mm f/2
+        name_en: Nikkor-O Auto 35mm f/2
+        focal_length_min: 35
+        subcategory: pre-ai
+        query: "Nikkor Auto 35mm f/2 -AI -AIS -f/2.8"
+        category_id: "78997"
+        min_price: 40
+        max_price: 300
+
+      - id: nikkor-auto-24mm-f28
+        name_ko: Nikkor Auto 24mm f/2.8
+        name_en: Nikkor Auto 24mm f/2.8
+        focal_length_min: 24
+        subcategory: pre-ai
+        query: "Nikkor Auto 24mm f/2.8 -AI -AIS"
+        category_id: "78997"
+        min_price: 30
+        max_price: 300
+
+      # --- AI ---
+
+      - id: nikkor-50mm-f14-ai
+        name_ko: Nikkor 50mm f/1.4 AI
+        name_en: Nikkor 50mm f/1.4 AI
+        focal_length_min: 50
+        subcategory: ai
+        query: "Nikon Nikkor 50mm f/1.4 AI -AIS -AI-S -Auto"
+        category_id: "78997"
+        min_price: 50
+        max_price: 300
+
+      - id: nikkor-50mm-f18-ai
+        name_ko: Nikkor 50mm f/1.8 AI
+        name_en: Nikkor 50mm f/1.8 AI
+        focal_length_min: 50
+        subcategory: ai
+        query: "Nikon Nikkor 50mm f/1.8 AI -AIS -AI-S -series -pancake"
+        category_id: "78997"
+        min_price: 30
+        max_price: 200
+
+      - id: nikkor-28mm-f28-ai
+        name_ko: Nikkor 28mm f/2.8 AI
+        name_en: Nikkor 28mm f/2.8 AI
+        focal_length_min: 28
+        subcategory: ai
+        query: "Nikon Nikkor 28mm f/2.8 AI -AIS -AI-S -Auto"
+        category_id: "78997"
+        min_price: 30
+        max_price: 200
+
+      - id: nikkor-35mm-f2-ai
+        name_ko: Nikkor 35mm f/2 AI
+        name_en: Nikkor 35mm f/2 AI
+        focal_length_min: 35
+        subcategory: ai
+        query: "Nikon Nikkor 35mm f/2 AI -AIS -AI-S -Auto"
+        category_id: "78997"
+        min_price: 50
+        max_price: 300
+
+      - id: nikkor-85mm-f2-ai
+        name_ko: Nikkor 85mm f/2 AI
+        name_en: Nikkor 85mm f/2 AI
+        focal_length_min: 85
+        subcategory: ai
+        query: "Nikon Nikkor 85mm f/2 AI -AIS -AI-S"
+        category_id: "78997"
+        min_price: 50
+        max_price: 350
+
+      - id: nikkor-105mm-f25-ai
+        name_ko: Nikkor 105mm f/2.5 AI
+        name_en: Nikkor 105mm f/2.5 AI
+        focal_length_min: 105
+        subcategory: ai
+        query: "Nikon Nikkor 105mm f/2.5 AI -AIS -AI-S -Auto"
+        category_id: "78997"
+        min_price: 40
+        max_price: 250
+
+      - id: nikkor-135mm-f28-ai
+        name_ko: Nikkor 135mm f/2.8 AI
+        name_en: Nikkor 135mm f/2.8 AI
+        focal_length_min: 135
+        subcategory: ai
+        query: "Nikon Nikkor 135mm f/2.8 AI -AIS -AI-S"
+        category_id: "78997"
+        min_price: 30
+        max_price: 200
+
+      - id: nikkor-24mm-f28-ai
+        name_ko: Nikkor 24mm f/2.8 AI
+        name_en: Nikkor 24mm f/2.8 AI
+        focal_length_min: 24
+        subcategory: ai
+        query: "Nikon Nikkor 24mm f/2.8 AI -AIS -AI-S -Auto"
+        category_id: "78997"
+        min_price: 40
+        max_price: 250
+
+      - id: nikkor-180mm-f28-ai
+        name_ko: Nikkor 180mm f/2.8 ED AI
+        name_en: Nikkor 180mm f/2.8 ED AI
+        focal_length_min: 180
+        subcategory: ai
+        query: "Nikon Nikkor 180mm f/2.8 ED AI -AIS -AI-S"
+        category_id: "78997"
+        min_price: 80
+        max_price: 400
+
+      # --- AI-S ---
+
       - id: ai-s-50mm-f12
         name_ko: AI-S 50mm f/1.2
         name_en: Nikon AI-S 50mm f/1.2
         focal_length_min: 50
+        subcategory: ais
         query: "Nikon AIS 50mm f/1.2"
         category_id: "78997"
         min_price: 200
@@ -704,6 +1050,7 @@ categories:
         name_ko: AI-S 50mm f/1.4
         name_en: Nikon AI-S 50mm f/1.4
         focal_length_min: 50
+        subcategory: ais
         query: "Nikon AIS 50mm f/1.4"
         category_id: "78997"
         min_price: 80
@@ -713,6 +1060,7 @@ categories:
         name_ko: AI-S 35mm f/1.4
         name_en: Nikon AI-S 35mm f/1.4
         focal_length_min: 35
+        subcategory: ais
         query: "Nikon AIS 35mm f/1.4"
         category_id: "78997"
         min_price: 200
@@ -722,6 +1070,7 @@ categories:
         name_ko: AI-S 28mm f/2.8
         name_en: Nikon AI-S 28mm f/2.8
         focal_length_min: 28
+        subcategory: ais
         query: "Nikon AIS 28mm f/2.8"
         category_id: "78997"
         min_price: 50
@@ -731,6 +1080,7 @@ categories:
         name_ko: AI-S 105mm f/2.5
         name_en: Nikon AI-S 105mm f/2.5
         focal_length_min: 105
+        subcategory: ais
         query: "Nikon AIS 105mm f/2.5"
         category_id: "78997"
         min_price: 50
@@ -740,6 +1090,7 @@ categories:
         name_ko: AI-S 135mm f/2.8
         name_en: Nikon AI-S 135mm f/2.8
         focal_length_min: 135
+        subcategory: ais
         query: "Nikon AIS 135mm f/2.8"
         category_id: "78997"
         min_price: 50
@@ -749,6 +1100,7 @@ categories:
         name_ko: AI-S 180mm f/2.8 ED
         name_en: Nikon AI-S 180mm f/2.8 ED
         focal_length_min: 180
+        subcategory: ais
         query: "Nikon AIS 180mm f/2.8 ED"
         category_id: "78997"
         min_price: 100
@@ -758,17 +1110,17 @@ categories:
         name_ko: AI-S Micro 55mm f/2.8
         name_en: Nikon AI-S Micro-Nikkor 55mm f/2.8
         focal_length_min: 55
+        subcategory: ais
         query: "Nikon AIS Micro 55mm f/2.8"
         category_id: "78997"
         min_price: 50
         max_price: 300
 
-      # --- 아래부터 추가 ---
-
       - id: ai-s-20mm-f28
         name_ko: AI-S 20mm f/2.8
         name_en: Nikon AI-S 20mm f/2.8
         focal_length_min: 20
+        subcategory: ais
         query: "Nikon AIS 20mm f/2.8"
         category_id: "78997"
         min_price: 100
@@ -778,6 +1130,7 @@ categories:
         name_ko: AI-S 24mm f/2
         name_en: Nikon AI-S 24mm f/2
         focal_length_min: 24
+        subcategory: ais
         query: "Nikon AIS 24mm f/2 -f/2.8"
         category_id: "78997"
         min_price: 150
@@ -787,6 +1140,7 @@ categories:
         name_ko: AI-S 24mm f/2.8
         name_en: Nikon AI-S 24mm f/2.8
         focal_length_min: 24
+        subcategory: ais
         query: "Nikon AIS 24mm f/2.8"
         category_id: "78997"
         min_price: 80
@@ -796,6 +1150,7 @@ categories:
         name_ko: AI-S 28mm f/2
         name_en: Nikon AI-S 28mm f/2
         focal_length_min: 28
+        subcategory: ais
         query: "Nikon AIS 28mm f/2 -f/2.8"
         category_id: "78997"
         min_price: 100
@@ -805,6 +1160,7 @@ categories:
         name_ko: AI-S 35mm f/2
         name_en: Nikon AI-S 35mm f/2
         focal_length_min: 35
+        subcategory: ais
         query: "Nikon AIS 35mm f/2 -f/2.8 -f/1.4"
         category_id: "78997"
         min_price: 80
@@ -814,6 +1170,7 @@ categories:
         name_ko: AI-S 50mm f/1.8
         name_en: Nikon AI-S 50mm f/1.8
         focal_length_min: 50
+        subcategory: ais
         query: "Nikon AIS 50mm f/1.8 -series"
         category_id: "78997"
         min_price: 50
@@ -823,6 +1180,7 @@ categories:
         name_ko: Noct-Nikkor 58mm f/1.2
         name_en: Nikon Noct-Nikkor 58mm f/1.2
         focal_length_min: 58
+        subcategory: ais
         query: "Nikon Noct Nikkor 58mm"
         category_id: "78997"
         min_price: 2000
@@ -832,6 +1190,7 @@ categories:
         name_ko: AI-S 85mm f/1.4
         name_en: Nikon AI-S 85mm f/1.4
         focal_length_min: 85
+        subcategory: ais
         query: "Nikon AIS 85mm f/1.4"
         category_id: "78997"
         min_price: 200
@@ -841,6 +1200,7 @@ categories:
         name_ko: AI-S 85mm f/2
         name_en: Nikon AI-S 85mm f/2
         focal_length_min: 85
+        subcategory: ais
         query: "Nikon AIS 85mm f/2 -f/1.4"
         category_id: "78997"
         min_price: 100
@@ -850,6 +1210,7 @@ categories:
         name_ko: AI-S 105mm f/1.8
         name_en: Nikon AI-S 105mm f/1.8
         focal_length_min: 105
+        subcategory: ais
         query: "Nikon AIS 105mm f/1.8"
         category_id: "78997"
         min_price: 200
@@ -859,6 +1220,7 @@ categories:
         name_ko: AI-S Micro 105mm f/2.8
         name_en: Nikon AI-S Micro-Nikkor 105mm f/2.8
         focal_length_min: 105
+        subcategory: ais
         query: "Nikon AIS Micro 105mm f/2.8"
         category_id: "78997"
         min_price: 100
@@ -868,6 +1230,7 @@ categories:
         name_ko: AI-S 135mm f/2
         name_en: Nikon AI-S 135mm f/2
         focal_length_min: 135
+        subcategory: ais
         query: "Nikon AIS 135mm f/2 -f/2.8"
         category_id: "78997"
         min_price: 200
@@ -877,6 +1240,7 @@ categories:
         name_ko: AI-S 200mm f/4
         name_en: Nikon AI-S 200mm f/4
         focal_length_min: 200
+        subcategory: ais
         query: "Nikon AIS 200mm f/4 -Micro"
         category_id: "78997"
         min_price: 50
@@ -886,15 +1250,19 @@ categories:
         name_ko: AI-S 300mm f/4.5 ED
         name_en: Nikon AI-S 300mm f/4.5 ED
         focal_length_min: 300
+        subcategory: ais
         query: "Nikon AIS 300mm f/4.5"
         category_id: "78997"
         min_price: 80
         max_price: 400
 
+      # --- Series E ---
+
       - id: series-e-28mm-f28
         name_ko: Series E 28mm f/2.8
         name_en: Nikon Series E 28mm f/2.8
         focal_length_min: 28
+        subcategory: series-e
         query: "Nikon Series E 28mm f/2.8"
         category_id: "78997"
         min_price: 20
@@ -904,6 +1272,7 @@ categories:
         name_ko: Series E 35mm f/2.5
         name_en: Nikon Series E 35mm f/2.5
         focal_length_min: 35
+        subcategory: series-e
         query: "Nikon Series E 35mm f/2.5"
         category_id: "78997"
         min_price: 20
@@ -913,6 +1282,7 @@ categories:
         name_ko: Series E 50mm f/1.8
         name_en: Nikon Series E 50mm f/1.8
         focal_length_min: 50
+        subcategory: series-e
         query: "Nikon Series E 50mm f/1.8"
         category_id: "78997"
         min_price: 15
@@ -922,6 +1292,7 @@ categories:
         name_ko: Series E 100mm f/2.8
         name_en: Nikon Series E 100mm f/2.8
         focal_length_min: 100
+        subcategory: series-e
         query: "Nikon Series E 100mm f/2.8"
         category_id: "78997"
         min_price: 20

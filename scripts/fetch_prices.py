@@ -313,6 +313,7 @@ def main():
             "id": category["id"],
             "name_ko": category["name_ko"],
             "name_en": category["name_en"],
+            "subcategories": category.get("subcategories", []),
             "products": [],
         }
 
@@ -348,6 +349,8 @@ def main():
                     "name_ko": product["name_ko"],
                     "name_en": product["name_en"],
                 }
+                if "subcategory" in product:
+                    product_entry["subcategory"] = product["subcategory"]
                 if "release_year" in product:
                     product_entry["release_year"] = product["release_year"]
                 if "focal_length_min" in product:
@@ -372,6 +375,8 @@ def main():
                     "name_ko": product["name_ko"],
                     "name_en": product["name_en"],
                 }
+                if "subcategory" in product:
+                    error_entry["subcategory"] = product["subcategory"]
                 if "release_year" in product:
                     error_entry["release_year"] = product["release_year"]
                 if "focal_length_min" in product:
