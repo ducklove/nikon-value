@@ -23,17 +23,26 @@ PROJECT_ROOT = Path(__file__).resolve().parent.parent
 CONFIG_PATH = PROJECT_ROOT / "config" / "products.yaml"
 DATA_DIR = PROJECT_ROOT / "data"
 
-EBAY_AUTH_URL = "https://api.ebay.com/identity/v1/oauth2/token"
-EBAY_BROWSE_URL = "https://api.ebay.com/buy/browse/v1/item_summary/search"
+EBAY_AUTH_URL_PROD = "https://api.ebay.com/identity/v1/oauth2/token"
+EBAY_AUTH_URL_SANDBOX = "https://api.sandbox.ebay.com/identity/v1/oauth2/token"
+EBAY_BROWSE_URL_PROD = "https://api.ebay.com/buy/browse/v1/item_summary/search"
+EBAY_BROWSE_URL_SANDBOX = "https://api.sandbox.ebay.com/buy/browse/v1/item_summary/search"
 
 MAX_DAILY_SNAPSHOTS = 400
 MAX_PRODUCT_HISTORY = 365
 
 
-def get_access_token(client_id: str, client_secret: str) -> str:
+def get_ebay_urls(sandbox: bool) -> tuple[str, str]:
+    """환경에 맞는 eBay API URL을 반환합니다."""
+    if sandbox:
+        return EBAY_AUTH_URL_SANDBOX, EBAY_BROWSE_URL_SANDBOX
+    return EBAY_AUTH_URL_PROD, EBAY_BROWSE_URL_PROD
+
+
+def get_access_token(client_id: str, client_secret: str, auth_url: str) -> str:
     """OAuth 2.0 client credentials grant로 액세스 토큰을 발급받습니다."""
     resp = requests.post(
-        EBAY_AUTH_URL,
+        auth_url,
         auth=(client_id, client_secret),
         headers={"Content-Type": "application/x-www-form-urlencoded"},
         data={
@@ -48,7 +57,7 @@ def get_access_token(client_id: str, client_secret: str) -> str:
     return token
 
 
-def search_items(token: str, query: str, category_id: str,
+def search_items(token: str, browse_url: str, query: str, category_id: str,
                  min_price: float, max_price: float) -> list[dict]:
     """Browse API로 중고 매물을 검색합니다. 페이지네이션 처리."""
     headers = {
@@ -79,7 +88,7 @@ def search_items(token: str, query: str, category_id: str,
         }
 
         resp = requests.get(
-            EBAY_BROWSE_URL,
+            browse_url,
             headers=headers,
             params=params,
             timeout=30,
@@ -242,20 +251,45 @@ def cleanup_daily_snapshots():
             log.info("Deleted old snapshot: %s", f.name)
 
 
+def load_env_file(path: Path):
+    """KEY=VALUE 형식의 환경변수 파일을 로드합니다."""
+    if not path.exists():
+        return
+    with open(path, "r") as f:
+        for line in f:
+            line = line.strip()
+            if not line or line.startswith("#"):
+                continue
+            if "=" in line:
+                key, value = line.split("=", 1)
+                os.environ.setdefault(key.strip(), value.strip())
+    log.info("Loaded credentials from %s", path)
+
+
 def main():
+    # ebay.key 파일이 있으면 환경변수로 로드
+    load_env_file(PROJECT_ROOT / "ebay.key")
+
     client_id = os.environ.get("EBAY_CLIENT_ID")
     client_secret = os.environ.get("EBAY_CLIENT_SECRET")
 
     if not client_id or not client_secret:
         log.error("EBAY_CLIENT_ID and EBAY_CLIENT_SECRET environment variables required")
+        log.error("Set them or create ebay.key file in project root")
         sys.exit(1)
+
+    sandbox = "--sandbox" in sys.argv or "SBX" in client_id
+    if sandbox:
+        log.info("Using eBay SANDBOX environment")
+
+    auth_url, browse_url = get_ebay_urls(sandbox)
 
     # 디렉토리 생성
     (DATA_DIR / "products").mkdir(parents=True, exist_ok=True)
     (DATA_DIR / "daily").mkdir(parents=True, exist_ok=True)
 
     catalog_config = load_catalog()
-    token = get_access_token(client_id, client_secret)
+    token = get_access_token(client_id, client_secret, auth_url)
 
     today = datetime.now(timezone.utc).strftime("%Y-%m-%d")
     log.info("Fetching prices for %s", today)
@@ -293,6 +327,7 @@ def main():
             try:
                 items = search_items(
                     token,
+                    browse_url,
                     product["query"],
                     product["category_id"],
                     product["min_price"],
@@ -308,13 +343,18 @@ def main():
                 stats = compute_stats(prices)
                 samples = extract_sample_listings(items)
 
-                cat_entry["products"].append({
+                product_entry = {
                     "id": pid,
                     "name_ko": product["name_ko"],
                     "name_en": product["name_en"],
-                    **stats,
-                    "samples": samples,
-                })
+                }
+                if "release_year" in product:
+                    product_entry["release_year"] = product["release_year"]
+                if "focal_length_min" in product:
+                    product_entry["focal_length_min"] = product["focal_length_min"]
+                product_entry.update(stats)
+                product_entry["samples"] = samples
+                cat_entry["products"].append(product_entry)
 
                 daily_snapshot["products"][pid] = stats
                 update_product_history(pid, today, stats)
@@ -327,10 +367,16 @@ def main():
 
             except requests.exceptions.HTTPError as e:
                 log.error("  → HTTP error for %s: %s", pid, e)
-                cat_entry["products"].append({
+                error_entry = {
                     "id": pid,
                     "name_ko": product["name_ko"],
                     "name_en": product["name_en"],
+                }
+                if "release_year" in product:
+                    error_entry["release_year"] = product["release_year"]
+                if "focal_length_min" in product:
+                    error_entry["focal_length_min"] = product["focal_length_min"]
+                error_entry.update({
                     "median": None,
                     "mean": None,
                     "min": None,
@@ -342,6 +388,7 @@ def main():
                     "samples": [],
                     "error": str(e),
                 })
+                cat_entry["products"].append(error_entry)
 
             # API 부하 방지
             time.sleep(0.3)
