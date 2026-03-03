@@ -78,7 +78,7 @@ def search_items(token: str, browse_url: str, query: str, category_id: str,
                 "conditionIds:{3000}",  # USED
                 f"price:[{min_price}..{max_price}]",
                 "priceCurrency:USD",
-                "deliveryCountry:US",
+                "deliveryCountry:KR",
                 "buyingOptions:{FIXED_PRICE}",
             ]),
             "sort": "price",
