@@ -28,8 +28,95 @@ EBAY_AUTH_URL_SANDBOX = "https://api.sandbox.ebay.com/identity/v1/oauth2/token"
 EBAY_BROWSE_URL_PROD = "https://api.ebay.com/buy/browse/v1/item_summary/search"
 EBAY_BROWSE_URL_SANDBOX = "https://api.sandbox.ebay.com/buy/browse/v1/item_summary/search"
 
+GEMINI_API_URL = "https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite-preview:generateContent"
+
 MAX_DAILY_SNAPSHOTS = 400
 MAX_PRODUCT_HISTORY = 365
+
+
+def load_gemini_key() -> str | None:
+    """gemini.key 파일 또는 GEMINI_API_KEY 환경변수에서 API 키를 로드합니다."""
+    key_file = PROJECT_ROOT / "gemini.key"
+    if key_file.exists():
+        with open(key_file, "r") as f:
+            for line in f:
+                line = line.strip()
+                if not line or line.startswith("#"):
+                    continue
+                if "=" in line:
+                    _, value = line.split("=", 1)
+                    return value.strip()
+                return line
+    key = os.environ.get("GEMINI_API_KEY")
+    if key:
+        return key
+    return None
+
+
+def filter_items_with_llm(
+    items: list[dict], product: dict, gemini_key: str
+) -> list[dict]:
+    """Gemini API를 사용하여 리스팅 타이틀이 실제 해당 제품인지 검증합니다."""
+    if not items:
+        return items
+
+    titles = [item.get("title", "") for item in items]
+    listings_text = "\n".join(f"{i}: \"{t}\"" for i, t in enumerate(titles))
+
+    prompt = (
+        "You are a camera/lens equipment expert. "
+        "I need to find listings that are selling exactly this product:\n"
+        f"Product: {product['name_en']}\n"
+        f"Search query used: {product['query']}\n\n"
+        "Below are eBay listing titles. Return a JSON array of indices "
+        "(0-based) for listings that ARE actually selling this specific product.\n\n"
+        "Exclude:\n"
+        "- Different camera/lens models\n"
+        "- IMPORTANT: Lens hoods MUST be excluded. Any title containing \"hood\", \"shade\", or hood model numbers (HB-*, HN-*, HR-*, HS-*, HK-*, HE-*, HF-*) is NOT the lens itself — exclude it even if the lens name appears in the title\n"
+        "- Accessories, grips, batteries, straps, caps, filters, adapters, cases\n"
+        "- Viewfinders, focusing screens, eyepieces, motor drives, and other camera body parts sold separately\n"
+        "- Lens-only listings when the product is a camera body\n"
+        "- Kits or bundles (unless the product itself is a kit)\n"
+        "- Parts, repairs, or \"for parts\" listings\n"
+        "- Manuals, boxes, or packaging only\n\n"
+        f"Listings:\n{listings_text}"
+    )
+
+    try:
+        resp = requests.post(
+            GEMINI_API_URL,
+            params={"key": gemini_key},
+            headers={"Content-Type": "application/json"},
+            json={
+                "contents": [{"parts": [{"text": prompt}]}],
+                "generationConfig": {
+                    "responseMimeType": "application/json",
+                },
+            },
+            timeout=60,
+        )
+        resp.raise_for_status()
+        data = resp.json()
+
+        text = data["candidates"][0]["content"]["parts"][0]["text"]
+        indices = json.loads(text)
+
+        if not isinstance(indices, list):
+            log.warning("  LLM returned non-list, skipping filter")
+            return items
+
+        valid_indices = [i for i in indices if isinstance(i, int) and 0 <= i < len(items)]
+        filtered = [items[i] for i in valid_indices]
+
+        if not filtered:
+            log.warning("  LLM filtered all items, keeping original")
+            return items
+
+        return filtered
+
+    except Exception as e:
+        log.warning("  LLM filter failed (%s), keeping all items", e)
+        return items
 
 
 def get_ebay_urls(sandbox: bool) -> tuple[str, str]:
@@ -291,6 +378,12 @@ def main():
     catalog_config = load_catalog()
     token = get_access_token(client_id, client_secret, auth_url)
 
+    gemini_key = load_gemini_key()
+    if gemini_key:
+        log.info("Gemini API key loaded, LLM filtering enabled")
+    else:
+        log.info("No Gemini API key found, LLM filtering disabled")
+
     today = datetime.now(timezone.utc).strftime("%Y-%m-%d")
     log.info("Fetching prices for %s", today)
 
@@ -334,6 +427,13 @@ def main():
                     product["min_price"],
                     product["max_price"],
                 )
+
+                if gemini_key and items:
+                    pre_count = len(items)
+                    items = filter_items_with_llm(items, product, gemini_key)
+                    log.info(
+                        "  LLM filtered: %d → %d items", pre_count, len(items)
+                    )
 
                 prices = []
                 for item in items:
