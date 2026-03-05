@@ -284,6 +284,10 @@ categories:
         name_ko: 입문기
         name_en: Entry
         sort_order: 3
+      - id: rangefinder
+        name_ko: 레인지파인더
+        name_en: Rangefinder
+        sort_order: 4
     products:
       - id: nikon-f6
         name_ko: 니콘 F6
@@ -484,6 +488,56 @@ categories:
         category_id: "3323"
         min_price: 15
         max_price: 300
+
+      - id: nikon-s
+        name_ko: 니콘 S
+        name_en: Nikon S
+        release_year: 1950
+        subcategory: rangefinder
+        query: "Nikon S rangefinder -S2 -S3 -S4 -SP -lens -nikkor -filter -hood -cap"
+        category_id: "3323"
+        min_price: 100
+        max_price: 3000
+
+      - id: nikon-s2
+        name_ko: 니콘 S2
+        name_en: Nikon S2
+        release_year: 1954
+        subcategory: rangefinder
+        query: "Nikon S2 rangefinder -S3 -S4 -SP -lens -nikkor -filter -hood -cap"
+        category_id: "3323"
+        min_price: 100
+        max_price: 3000
+
+      - id: nikon-s3
+        name_ko: 니콘 S3
+        name_en: Nikon S3
+        release_year: 1958
+        subcategory: rangefinder
+        query: "Nikon S3 rangefinder -S4 -SP -lens -nikkor -filter -hood -cap"
+        category_id: "3323"
+        min_price: 200
+        max_price: 5000
+
+      - id: nikon-s4
+        name_ko: 니콘 S4
+        name_en: Nikon S4
+        release_year: 1959
+        subcategory: rangefinder
+        query: "Nikon S4 rangefinder -lens -nikkor -filter -hood -cap"
+        category_id: "3323"
+        min_price: 100
+        max_price: 3000
+
+      - id: nikon-sp
+        name_ko: 니콘 SP
+        name_en: Nikon SP
+        release_year: 1957
+        subcategory: rangefinder
+        query: "Nikon SP rangefinder -lens -nikkor -filter -hood -cap"
+        category_id: "3323"
+        min_price: 500
+        max_price: 15000
 
   - id: z-mount-lenses
     name_ko: Z마운트 렌즈
