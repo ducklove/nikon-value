@@ -1,0 +1,759 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admin - 니콘 시세 트래커</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bg: #f0f2f5;
+  --surface: #ffffff;
+  --text: #1d1d1f;
+  --text2: #6e6e73;
+  --accent: #2563eb;
+  --accent-hover: #1d4ed8;
+  --danger: #dc3545;
+  --danger-hover: #b02a37;
+  --success: #28a745;
+  --border: #e5e7eb;
+  --radius: 8px;
+  --shadow: 0 1px 3px rgba(0,0,0,0.08);
+  --font: 'Noto Sans KR', -apple-system, sans-serif;
+}
+
+html { font-size: 14px; }
+body { font-family: var(--font); background: var(--bg); color: var(--text); min-height: 100vh; }
+
+/* Layout */
+.app { display: flex; height: 100vh; overflow: hidden; }
+.sidebar { width: 280px; background: var(--surface); border-right: 1px solid var(--border); display: flex; flex-direction: column; flex-shrink: 0; }
+.main { flex: 1; display: flex; flex-direction: column; overflow: hidden; }
+.topbar { background: var(--surface); border-bottom: 1px solid var(--border); padding: 12px 24px; display: flex; align-items: center; gap: 12px; flex-shrink: 0; }
+.content { flex: 1; overflow-y: auto; padding: 24px; }
+
+/* Sidebar */
+.sidebar-header { padding: 16px; border-bottom: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; }
+.sidebar-header h2 { font-size: 1rem; font-weight: 700; }
+.sidebar-list { flex: 1; overflow-y: auto; }
+.sidebar-item { padding: 10px 16px; cursor: pointer; border-bottom: 1px solid var(--border); transition: background 0.15s; display: flex; align-items: center; justify-content: space-between; }
+.sidebar-item:hover { background: var(--bg); }
+.sidebar-item.active { background: #eff6ff; border-left: 3px solid var(--accent); }
+.sidebar-item-info { display: flex; flex-direction: column; gap: 2px; }
+.sidebar-item-name { font-weight: 600; font-size: 0.9rem; }
+.sidebar-item-count { font-size: 0.75rem; color: var(--text2); }
+.sidebar-actions { display: flex; gap: 4px; opacity: 0; transition: opacity 0.15s; }
+.sidebar-item:hover .sidebar-actions { opacity: 1; }
+
+/* Buttons */
+.btn { display: inline-flex; align-items: center; gap: 6px; padding: 6px 14px; border: none; border-radius: var(--radius); font-family: var(--font); font-size: 0.85rem; font-weight: 500; cursor: pointer; transition: all 0.15s; white-space: nowrap; }
+.btn-primary { background: var(--accent); color: #fff; }
+.btn-primary:hover { background: var(--accent-hover); }
+.btn-danger { background: var(--danger); color: #fff; }
+.btn-danger:hover { background: var(--danger-hover); }
+.btn-outline { background: transparent; border: 1px solid var(--border); color: var(--text); }
+.btn-outline:hover { background: var(--bg); }
+.btn-sm { padding: 4px 8px; font-size: 0.75rem; }
+.btn-icon { padding: 4px 6px; background: none; border: none; cursor: pointer; color: var(--text2); font-size: 1rem; border-radius: 4px; }
+.btn-icon:hover { background: var(--bg); color: var(--text); }
+.btn-icon.danger:hover { color: var(--danger); }
+
+/* Table */
+.table-wrap { background: var(--surface); border-radius: var(--radius); box-shadow: var(--shadow); overflow: hidden; }
+table { width: 100%; border-collapse: collapse; font-size: 0.85rem; }
+th { background: var(--bg); text-align: left; padding: 10px 12px; font-weight: 600; color: var(--text2); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.03em; position: sticky; top: 0; z-index: 1; }
+td { padding: 10px 12px; border-top: 1px solid var(--border); vertical-align: middle; }
+tr:hover td { background: #fafbfc; }
+.cell-id { font-family: monospace; font-size: 0.8rem; color: var(--text2); max-width: 160px; overflow: hidden; text-overflow: ellipsis; }
+.cell-price { font-family: monospace; text-align: right; }
+.cell-actions { white-space: nowrap; text-align: right; }
+
+/* Subcategory group header */
+.subcat-header td { background: var(--bg); font-weight: 600; font-size: 0.8rem; color: var(--text2); padding: 6px 12px; }
+
+/* Modal */
+.modal-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.4); z-index: 100; display: flex; align-items: center; justify-content: center; opacity: 0; pointer-events: none; transition: opacity 0.2s; }
+.modal-overlay.open { opacity: 1; pointer-events: auto; }
+.modal { background: var(--surface); border-radius: 12px; box-shadow: 0 20px 60px rgba(0,0,0,0.2); width: 560px; max-width: 95vw; max-height: 90vh; display: flex; flex-direction: column; transform: translateY(10px); transition: transform 0.2s; }
+.modal-overlay.open .modal { transform: translateY(0); }
+.modal-header { padding: 20px 24px 0; display: flex; align-items: center; justify-content: space-between; }
+.modal-header h3 { font-size: 1.1rem; font-weight: 700; }
+.modal-body { padding: 20px 24px; overflow-y: auto; flex: 1; }
+.modal-footer { padding: 16px 24px; border-top: 1px solid var(--border); display: flex; justify-content: flex-end; gap: 8px; }
+
+/* Form */
+.form-group { margin-bottom: 16px; }
+.form-group label { display: block; font-size: 0.8rem; font-weight: 600; color: var(--text2); margin-bottom: 4px; }
+.form-group input, .form-group select { width: 100%; padding: 8px 12px; border: 1px solid var(--border); border-radius: var(--radius); font-family: var(--font); font-size: 0.9rem; transition: border-color 0.15s; }
+.form-group input:focus, .form-group select:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 0 3px rgba(37,99,235,0.1); }
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.form-hint { font-size: 0.75rem; color: var(--text2); margin-top: 2px; }
+
+/* Search */
+.search-box { position: relative; }
+.search-box input { width: 260px; padding: 7px 12px 7px 32px; border: 1px solid var(--border); border-radius: 20px; font-size: 0.85rem; font-family: var(--font); }
+.search-box input:focus { outline: none; border-color: var(--accent); }
+.search-box::before { content: '\1F50D'; position: absolute; left: 10px; top: 50%; transform: translateY(-50%); font-size: 0.8rem; }
+
+/* Stats bar */
+.stats-bar { display: flex; gap: 24px; padding: 16px 0; font-size: 0.85rem; color: var(--text2); }
+.stat-item strong { color: var(--text); }
+
+/* Toast */
+.toast { position: fixed; bottom: 24px; right: 24px; background: #1d1d1f; color: #fff; padding: 12px 20px; border-radius: var(--radius); font-size: 0.85rem; z-index: 200; transform: translateY(100px); opacity: 0; transition: all 0.3s; }
+.toast.show { transform: translateY(0); opacity: 1; }
+.toast.error { background: var(--danger); }
+
+/* Empty state */
+.empty-state { text-align: center; padding: 60px 20px; color: var(--text2); }
+.empty-state p { font-size: 0.9rem; }
+
+/* Unsaved indicator */
+.unsaved-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--danger); display: none; }
+.unsaved-dot.show { display: inline-block; }
+
+/* Subcategory chips */
+.subcat-chips { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 16px; }
+.subcat-chip { padding: 4px 10px; border-radius: 12px; font-size: 0.75rem; background: var(--bg); border: 1px solid var(--border); cursor: default; display: flex; align-items: center; gap: 4px; }
+.subcat-chip .chip-remove { cursor: pointer; font-size: 0.9rem; color: var(--text2); line-height: 1; }
+.subcat-chip .chip-remove:hover { color: var(--danger); }
+</style>
+</head>
+<body>
+<div class="app">
+  <!-- Sidebar -->
+  <aside class="sidebar">
+    <div class="sidebar-header">
+      <h2>Categories</h2>
+      <button class="btn btn-primary btn-sm" onclick="showCategoryModal()">+ 추가</button>
+    </div>
+    <div class="sidebar-list" id="sidebar-list"></div>
+    <div style="padding: 12px 16px; border-top: 1px solid var(--border); font-size: 0.75rem; color: var(--text2);">
+      <span id="total-stats"></span>
+    </div>
+  </aside>
+
+  <!-- Main -->
+  <div class="main">
+    <div class="topbar">
+      <div class="search-box">
+        <input type="text" id="search-input" placeholder="제품 검색 (이름, ID, 쿼리)..." oninput="renderProducts()">
+      </div>
+      <div style="flex:1"></div>
+      <span class="unsaved-dot" id="unsaved-dot" title="저장되지 않은 변경사항"></span>
+      <button class="btn btn-outline" onclick="loadCatalog()">새로고침</button>
+      <button class="btn btn-primary" id="save-btn" onclick="saveCatalog()">저장</button>
+    </div>
+    <div class="content" id="content">
+      <div class="empty-state">
+        <p>왼쪽에서 카테고리를 선택하세요</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Category Modal -->
+<div class="modal-overlay" id="category-modal">
+  <div class="modal">
+    <div class="modal-header">
+      <h3 id="category-modal-title">카테고리 추가</h3>
+      <button class="btn-icon" onclick="closeModal('category-modal')">&times;</button>
+    </div>
+    <div class="modal-body">
+      <input type="hidden" id="cat-edit-index">
+      <div class="form-group">
+        <label>ID (영문, 하이픈)</label>
+        <input type="text" id="cat-id" placeholder="예: z-mount-bodies">
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label>한국어 이름</label>
+          <input type="text" id="cat-name-ko" placeholder="예: Z마운트 바디">
+        </div>
+        <div class="form-group">
+          <label>영어 이름</label>
+          <input type="text" id="cat-name-en" placeholder="예: Z-Mount Bodies">
+        </div>
+      </div>
+      <div class="form-group">
+        <label>서브카테고리</label>
+        <div class="subcat-chips" id="cat-subcats"></div>
+        <div style="display:flex; gap:6px;">
+          <input type="text" id="subcat-id-input" placeholder="ID" style="width:100px;">
+          <input type="text" id="subcat-ko-input" placeholder="한국어명" style="width:100px;">
+          <input type="text" id="subcat-en-input" placeholder="영어명" style="width:100px;">
+          <button class="btn btn-outline btn-sm" onclick="addSubcatChip()">추가</button>
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-outline" onclick="closeModal('category-modal')">취소</button>
+      <button class="btn btn-primary" onclick="saveCategory()">저장</button>
+    </div>
+  </div>
+</div>
+
+<!-- Product Modal -->
+<div class="modal-overlay" id="product-modal">
+  <div class="modal">
+    <div class="modal-header">
+      <h3 id="product-modal-title">제품 추가</h3>
+      <button class="btn-icon" onclick="closeModal('product-modal')">&times;</button>
+    </div>
+    <div class="modal-body">
+      <input type="hidden" id="prod-edit-index">
+      <div class="form-row">
+        <div class="form-group">
+          <label>ID</label>
+          <input type="text" id="prod-id" placeholder="예: nikon-z9">
+        </div>
+        <div class="form-group">
+          <label>서브카테고리</label>
+          <select id="prod-subcategory"></select>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label>한국어 이름</label>
+          <input type="text" id="prod-name-ko" placeholder="예: 니콘 Z9">
+        </div>
+        <div class="form-group">
+          <label>영어 이름</label>
+          <input type="text" id="prod-name-en" placeholder="예: Nikon Z9">
+        </div>
+      </div>
+      <div class="form-group">
+        <label>eBay 검색 쿼리</label>
+        <input type="text" id="prod-query" placeholder='예: "Nikon Z9 body"'>
+        <div class="form-hint">정확한 검색 결과를 위해 제외 키워드(-lens, -nikkor 등) 활용</div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label>eBay 카테고리 ID</label>
+          <select id="prod-category-id">
+            <option value="31388">31388 (Digital Cameras)</option>
+            <option value="3323">3323 (Film Cameras)</option>
+            <option value="78997">78997 (Lenses)</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>출시년도</label>
+          <input type="number" id="prod-release-year" placeholder="예: 2021">
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label>최소 초점거리 (mm)</label>
+          <input type="number" id="prod-focal-length" placeholder="렌즈만 해당">
+        </div>
+        <div class="form-group">&nbsp;</div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label>최소 가격 (USD)</label>
+          <input type="number" id="prod-min-price" placeholder="예: 2000">
+        </div>
+        <div class="form-group">
+          <label>최대 가격 (USD)</label>
+          <input type="number" id="prod-max-price" placeholder="예: 6000">
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-outline" onclick="closeModal('product-modal')">취소</button>
+      <button class="btn btn-primary" onclick="saveProduct()">저장</button>
+    </div>
+  </div>
+</div>
+
+<!-- Delete Confirm Modal -->
+<div class="modal-overlay" id="delete-modal">
+  <div class="modal" style="width: 400px;">
+    <div class="modal-header">
+      <h3>삭제 확인</h3>
+      <button class="btn-icon" onclick="closeModal('delete-modal')">&times;</button>
+    </div>
+    <div class="modal-body">
+      <p id="delete-message"></p>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-outline" onclick="closeModal('delete-modal')">취소</button>
+      <button class="btn btn-danger" id="delete-confirm-btn">삭제</button>
+    </div>
+  </div>
+</div>
+
+<!-- Toast -->
+<div class="toast" id="toast"></div>
+
+<script>
+let catalog = null;
+let activeCategoryIndex = null;
+let unsaved = false;
+
+// --- API ---
+async function loadCatalog() {
+  try {
+    const resp = await fetch('/api/catalog');
+    if (!resp.ok) throw new Error(`HTTP ${resp.status}`);
+    catalog = await resp.json();
+    unsaved = false;
+    updateUnsaved();
+    renderSidebar();
+    if (activeCategoryIndex !== null && activeCategoryIndex < catalog.categories.length) {
+      renderProducts();
+    } else {
+      activeCategoryIndex = null;
+      document.getElementById('content').innerHTML = '<div class="empty-state"><p>왼쪽에서 카테고리를 선택하세요</p></div>';
+    }
+    showToast('카탈로그 로드 완료');
+  } catch (e) {
+    showToast('로드 실패: ' + e.message, true);
+  }
+}
+
+async function saveCatalog() {
+  try {
+    const resp = await fetch('/api/catalog', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(catalog),
+    });
+    if (!resp.ok) throw new Error(`HTTP ${resp.status}`);
+    const result = await resp.json();
+    unsaved = false;
+    updateUnsaved();
+    showToast('저장 완료 (백업: ' + result.backup + ')');
+  } catch (e) {
+    showToast('저장 실패: ' + e.message, true);
+  }
+}
+
+function markUnsaved() {
+  unsaved = true;
+  updateUnsaved();
+}
+
+function updateUnsaved() {
+  document.getElementById('unsaved-dot').classList.toggle('show', unsaved);
+  document.getElementById('save-btn').textContent = unsaved ? '저장 *' : '저장';
+}
+
+// --- Sidebar ---
+function renderSidebar() {
+  const list = document.getElementById('sidebar-list');
+  list.innerHTML = '';
+  let total = 0;
+
+  catalog.categories.forEach((cat, i) => {
+    total += cat.products.length;
+    const item = document.createElement('div');
+    item.className = 'sidebar-item' + (i === activeCategoryIndex ? ' active' : '');
+    item.innerHTML = `
+      <div class="sidebar-item-info">
+        <span class="sidebar-item-name">${esc(cat.name_ko)}</span>
+        <span class="sidebar-item-count">${cat.products.length}개 제품</span>
+      </div>
+      <div class="sidebar-actions">
+        <button class="btn-icon" onclick="event.stopPropagation(); showCategoryModal(${i})" title="편집">&#9998;</button>
+        <button class="btn-icon danger" onclick="event.stopPropagation(); deleteCategory(${i})" title="삭제">&#128465;</button>
+      </div>
+    `;
+    item.addEventListener('click', () => {
+      activeCategoryIndex = i;
+      renderSidebar();
+      renderProducts();
+    });
+    list.appendChild(item);
+  });
+
+  document.getElementById('total-stats').textContent = `${catalog.categories.length}개 카테고리, ${total}개 제품`;
+}
+
+// --- Products Table ---
+function renderProducts() {
+  const content = document.getElementById('content');
+  if (activeCategoryIndex === null || !catalog) {
+    content.innerHTML = '<div class="empty-state"><p>왼쪽에서 카테고리를 선택하세요</p></div>';
+    return;
+  }
+
+  const cat = catalog.categories[activeCategoryIndex];
+  const search = document.getElementById('search-input').value.toLowerCase().trim();
+
+  let products = cat.products;
+  if (search) {
+    products = products.filter(p =>
+      p.id.toLowerCase().includes(search) ||
+      p.name_ko.toLowerCase().includes(search) ||
+      p.name_en.toLowerCase().includes(search) ||
+      p.query.toLowerCase().includes(search)
+    );
+  }
+
+  // Group by subcategory
+  const subcats = cat.subcategories || [];
+  const hasSubcats = subcats.length > 0;
+
+  let html = `
+    <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:16px;">
+      <div>
+        <h2 style="font-size:1.2rem; font-weight:700;">${esc(cat.name_ko)} <span style="color:var(--text2); font-weight:400; font-size:0.9rem;">${esc(cat.name_en)}</span></h2>
+        <div class="stats-bar">
+          <span><strong>${products.length}</strong> 제품${search ? ' (검색결과)' : ''}</span>
+          ${hasSubcats ? `<span>${subcats.length} 서브카테고리</span>` : ''}
+        </div>
+      </div>
+      <button class="btn btn-primary" onclick="showProductModal()">+ 제품 추가</button>
+    </div>
+    <div class="table-wrap">
+      <table>
+        <thead><tr>
+          <th style="width:40px">#</th>
+          <th>ID</th>
+          <th>한국어명</th>
+          <th>영어명</th>
+          <th>쿼리</th>
+          <th class="cell-price">가격범위</th>
+          <th style="width:80px"></th>
+        </tr></thead>
+        <tbody>
+  `;
+
+  if (hasSubcats && !search) {
+    // Grouped rendering
+    const sortedSubcats = [...subcats].sort((a, b) => (a.sort_order || 0) - (b.sort_order || 0));
+    for (const sub of sortedSubcats) {
+      const subProducts = products.filter(p => p.subcategory === sub.id);
+      if (subProducts.length === 0) continue;
+      html += `<tr class="subcat-header"><td colspan="7">${esc(sub.name_ko)} (${esc(sub.name_en)}) - ${subProducts.length}개</td></tr>`;
+      subProducts.forEach((p, pi) => {
+        const realIndex = cat.products.indexOf(p);
+        html += productRow(p, realIndex, pi + 1);
+      });
+    }
+    // Uncategorized
+    const uncategorized = products.filter(p => !subcats.some(s => s.id === p.subcategory));
+    if (uncategorized.length > 0) {
+      html += `<tr class="subcat-header"><td colspan="7">미분류 - ${uncategorized.length}개</td></tr>`;
+      uncategorized.forEach((p, pi) => {
+        const realIndex = cat.products.indexOf(p);
+        html += productRow(p, realIndex, pi + 1);
+      });
+    }
+  } else {
+    products.forEach((p, pi) => {
+      const realIndex = cat.products.indexOf(p);
+      html += productRow(p, realIndex, pi + 1);
+    });
+  }
+
+  html += '</tbody></table></div>';
+  content.innerHTML = html;
+}
+
+function productRow(p, realIndex, displayNum) {
+  const priceRange = `$${p.min_price} - $${p.max_price}`;
+  const extra = [];
+  if (p.release_year) extra.push(p.release_year);
+  if (p.focal_length_min) extra.push(p.focal_length_min + 'mm');
+  const extraStr = extra.length > 0 ? ` <span style="color:var(--text2); font-size:0.75rem;">(${extra.join(', ')})</span>` : '';
+
+  return `<tr>
+    <td style="color:var(--text2)">${displayNum}</td>
+    <td class="cell-id">${esc(p.id)}</td>
+    <td>${esc(p.name_ko)}${extraStr}</td>
+    <td style="font-size:0.8rem;">${esc(p.name_en)}</td>
+    <td style="font-size:0.8rem; max-width:200px; overflow:hidden; text-overflow:ellipsis;" title="${esc(p.query)}">${esc(p.query)}</td>
+    <td class="cell-price">${priceRange}</td>
+    <td class="cell-actions">
+      <button class="btn-icon" onclick="showProductModal(${realIndex})" title="편집">&#9998;</button>
+      <button class="btn-icon danger" onclick="deleteProduct(${realIndex})" title="삭제">&#128465;</button>
+    </td>
+  </tr>`;
+}
+
+// --- Category Modal ---
+let tempSubcats = [];
+
+function showCategoryModal(editIndex) {
+  const isEdit = editIndex !== undefined;
+  document.getElementById('category-modal-title').textContent = isEdit ? '카테고리 편집' : '카테고리 추가';
+  document.getElementById('cat-edit-index').value = isEdit ? editIndex : '';
+
+  if (isEdit) {
+    const cat = catalog.categories[editIndex];
+    document.getElementById('cat-id').value = cat.id;
+    document.getElementById('cat-id').disabled = true;
+    document.getElementById('cat-name-ko').value = cat.name_ko;
+    document.getElementById('cat-name-en').value = cat.name_en;
+    tempSubcats = (cat.subcategories || []).map(s => ({ ...s }));
+  } else {
+    document.getElementById('cat-id').value = '';
+    document.getElementById('cat-id').disabled = false;
+    document.getElementById('cat-name-ko').value = '';
+    document.getElementById('cat-name-en').value = '';
+    tempSubcats = [];
+  }
+  renderSubcatChips();
+  openModal('category-modal');
+}
+
+function renderSubcatChips() {
+  const container = document.getElementById('cat-subcats');
+  container.innerHTML = tempSubcats.map((s, i) =>
+    `<span class="subcat-chip">${esc(s.name_ko)} (${esc(s.id)}) <span class="chip-remove" onclick="removeSubcatChip(${i})">&times;</span></span>`
+  ).join('');
+}
+
+function addSubcatChip() {
+  const id = document.getElementById('subcat-id-input').value.trim();
+  const ko = document.getElementById('subcat-ko-input').value.trim();
+  const en = document.getElementById('subcat-en-input').value.trim();
+  if (!id || !ko) return showToast('서브카테고리 ID와 한국어명은 필수입니다', true);
+  if (tempSubcats.some(s => s.id === id)) return showToast('중복된 서브카테고리 ID', true);
+  tempSubcats.push({ id, name_ko: ko, name_en: en || ko, sort_order: tempSubcats.length + 1 });
+  renderSubcatChips();
+  document.getElementById('subcat-id-input').value = '';
+  document.getElementById('subcat-ko-input').value = '';
+  document.getElementById('subcat-en-input').value = '';
+}
+
+function removeSubcatChip(i) {
+  tempSubcats.splice(i, 1);
+  renderSubcatChips();
+}
+
+function saveCategory() {
+  const editIndex = document.getElementById('cat-edit-index').value;
+  const isEdit = editIndex !== '';
+  const id = document.getElementById('cat-id').value.trim();
+  const name_ko = document.getElementById('cat-name-ko').value.trim();
+  const name_en = document.getElementById('cat-name-en').value.trim();
+
+  if (!id || !name_ko || !name_en) return showToast('모든 필드를 입력하세요', true);
+  if (!isEdit && catalog.categories.some(c => c.id === id)) return showToast('중복된 카테고리 ID', true);
+
+  if (isEdit) {
+    const cat = catalog.categories[parseInt(editIndex)];
+    cat.name_ko = name_ko;
+    cat.name_en = name_en;
+    cat.subcategories = tempSubcats;
+  } else {
+    catalog.categories.push({
+      id,
+      name_ko,
+      name_en,
+      subcategories: tempSubcats,
+      products: [],
+    });
+    activeCategoryIndex = catalog.categories.length - 1;
+  }
+
+  markUnsaved();
+  renderSidebar();
+  renderProducts();
+  closeModal('category-modal');
+  showToast(isEdit ? '카테고리 수정됨' : '카테고리 추가됨');
+}
+
+function deleteCategory(index) {
+  const cat = catalog.categories[index];
+  showDeleteConfirm(
+    `"${cat.name_ko}" 카테고리와 포함된 ${cat.products.length}개 제품을 삭제하시겠습니까?`,
+    () => {
+      catalog.categories.splice(index, 1);
+      if (activeCategoryIndex === index) activeCategoryIndex = null;
+      else if (activeCategoryIndex > index) activeCategoryIndex--;
+      markUnsaved();
+      renderSidebar();
+      renderProducts();
+      showToast('카테고리 삭제됨');
+    }
+  );
+}
+
+// --- Product Modal ---
+function showProductModal(editIndex) {
+  const isEdit = editIndex !== undefined;
+  const cat = catalog.categories[activeCategoryIndex];
+  document.getElementById('product-modal-title').textContent = isEdit ? '제품 편집' : '제품 추가';
+  document.getElementById('prod-edit-index').value = isEdit ? editIndex : '';
+
+  // Populate subcategory select
+  const subcatSelect = document.getElementById('prod-subcategory');
+  subcatSelect.innerHTML = '<option value="">(없음)</option>';
+  (cat.subcategories || []).forEach(s => {
+    subcatSelect.innerHTML += `<option value="${esc(s.id)}">${esc(s.name_ko)}</option>`;
+  });
+
+  if (isEdit) {
+    const p = cat.products[editIndex];
+    document.getElementById('prod-id').value = p.id;
+    document.getElementById('prod-id').disabled = true;
+    document.getElementById('prod-name-ko').value = p.name_ko;
+    document.getElementById('prod-name-en').value = p.name_en;
+    document.getElementById('prod-query').value = p.query;
+    document.getElementById('prod-category-id').value = p.category_id;
+    document.getElementById('prod-release-year').value = p.release_year || '';
+    document.getElementById('prod-focal-length').value = p.focal_length_min || '';
+    document.getElementById('prod-min-price').value = p.min_price;
+    document.getElementById('prod-max-price').value = p.max_price;
+    subcatSelect.value = p.subcategory || '';
+  } else {
+    document.getElementById('prod-id').value = '';
+    document.getElementById('prod-id').disabled = false;
+    document.getElementById('prod-name-ko').value = '';
+    document.getElementById('prod-name-en').value = '';
+    document.getElementById('prod-query').value = '';
+    document.getElementById('prod-category-id').value = '31388';
+    document.getElementById('prod-release-year').value = '';
+    document.getElementById('prod-focal-length').value = '';
+    document.getElementById('prod-min-price').value = '';
+    document.getElementById('prod-max-price').value = '';
+    subcatSelect.value = '';
+  }
+
+  openModal('product-modal');
+}
+
+function saveProduct() {
+  const editIndex = document.getElementById('prod-edit-index').value;
+  const isEdit = editIndex !== '';
+  const cat = catalog.categories[activeCategoryIndex];
+
+  const id = document.getElementById('prod-id').value.trim();
+  const name_ko = document.getElementById('prod-name-ko').value.trim();
+  const name_en = document.getElementById('prod-name-en').value.trim();
+  const query = document.getElementById('prod-query').value.trim();
+  const category_id = document.getElementById('prod-category-id').value;
+  const min_price = parseInt(document.getElementById('prod-min-price').value);
+  const max_price = parseInt(document.getElementById('prod-max-price').value);
+  const subcategory = document.getElementById('prod-subcategory').value;
+  const release_year = document.getElementById('prod-release-year').value ? parseInt(document.getElementById('prod-release-year').value) : null;
+  const focal_length_min = document.getElementById('prod-focal-length').value ? parseInt(document.getElementById('prod-focal-length').value) : null;
+
+  if (!id || !name_ko || !name_en || !query) return showToast('필수 필드를 입력하세요 (ID, 이름, 쿼리)', true);
+  if (isNaN(min_price) || isNaN(max_price)) return showToast('가격 범위를 입력하세요', true);
+  if (min_price >= max_price) return showToast('최소 가격이 최대 가격보다 작아야 합니다', true);
+
+  // Check duplicate ID across all categories
+  if (!isEdit) {
+    for (const c of catalog.categories) {
+      if (c.products.some(p => p.id === id)) {
+        return showToast('중복된 제품 ID: ' + id, true);
+      }
+    }
+  }
+
+  const product = { id, name_ko, name_en };
+  if (release_year) product.release_year = release_year;
+  if (focal_length_min) product.focal_length_min = focal_length_min;
+  if (subcategory) product.subcategory = subcategory;
+  product.query = query;
+  product.category_id = category_id;
+  product.min_price = min_price;
+  product.max_price = max_price;
+
+  if (isEdit) {
+    cat.products[parseInt(editIndex)] = product;
+  } else {
+    cat.products.push(product);
+  }
+
+  markUnsaved();
+  renderSidebar();
+  renderProducts();
+  closeModal('product-modal');
+  showToast(isEdit ? '제품 수정됨' : '제품 추가됨');
+}
+
+function deleteProduct(index) {
+  const cat = catalog.categories[activeCategoryIndex];
+  const p = cat.products[index];
+  showDeleteConfirm(
+    `"${p.name_ko}" (${p.id}) 제품을 삭제하시겠습니까?`,
+    () => {
+      cat.products.splice(index, 1);
+      markUnsaved();
+      renderSidebar();
+      renderProducts();
+      showToast('제품 삭제됨');
+    }
+  );
+}
+
+// --- Modal helpers ---
+function openModal(id) {
+  document.getElementById(id).classList.add('open');
+}
+
+function closeModal(id) {
+  document.getElementById(id).classList.remove('open');
+}
+
+function showDeleteConfirm(message, onConfirm) {
+  document.getElementById('delete-message').textContent = message;
+  const btn = document.getElementById('delete-confirm-btn');
+  const newBtn = btn.cloneNode(true);
+  btn.parentNode.replaceChild(newBtn, btn);
+  newBtn.addEventListener('click', () => {
+    onConfirm();
+    closeModal('delete-modal');
+  });
+  openModal('delete-modal');
+}
+
+// --- Toast ---
+let toastTimer;
+function showToast(msg, isError) {
+  const toast = document.getElementById('toast');
+  toast.textContent = msg;
+  toast.className = 'toast show' + (isError ? ' error' : '');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => { toast.className = 'toast'; }, 3000);
+}
+
+// --- Utility ---
+function esc(str) {
+  if (!str) return '';
+  const div = document.createElement('div');
+  div.textContent = str;
+  return div.innerHTML;
+}
+
+// --- Keyboard shortcuts ---
+document.addEventListener('keydown', (e) => {
+  if ((e.ctrlKey || e.metaKey) && e.key === 's') {
+    e.preventDefault();
+    saveCatalog();
+  }
+  if (e.key === 'Escape') {
+    document.querySelectorAll('.modal-overlay.open').forEach(m => m.classList.remove('open'));
+  }
+});
+
+// Close modal on overlay click
+document.querySelectorAll('.modal-overlay').forEach(overlay => {
+  overlay.addEventListener('click', (e) => {
+    if (e.target === overlay) overlay.classList.remove('open');
+  });
+});
+
+// Warn before unload
+window.addEventListener('beforeunload', (e) => {
+  if (unsaved) {
+    e.preventDefault();
+    e.returnValue = '';
+  }
+});
+
+// --- Init ---
+loadCatalog();
+</script>
+</body>
+</html>
