@@ -385,14 +385,7 @@ def build_home_page(catalog: dict[str, Any], base_url: str) -> str:
         'dateModified': updated,
     }
     extra_meta = f"  <script type=\"application/ld+json\">{json_script(schema)}</script>\n"
-    shortcut_cards = """
-    <section class="shortcut-grid" aria-label="사이트 바로가기">
-      <a class="shortcut-card" href="resources.html">
-        <span class="shortcut-card__eyebrow">References</span>
-        <strong>참고 사이트 링크</strong>
-        <p>렌즈 계보, 사양, 역사 자료를 함께 볼 수 있는 외부 자료를 모았습니다.</p>
-      </a>
-    </section>"""
+    shortcut_cards = ""
 
     return f"""<!DOCTYPE html>
 <html lang=\"ko\">
