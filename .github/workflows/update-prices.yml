@@ -5,6 +5,10 @@ on:
     - cron: '0 0 * * *'  # 매일 09:00 KST (00:00 UTC)
   workflow_dispatch:       # 수동 트리거
 
+concurrency:
+  group: update-prices
+  cancel-in-progress: false
+
 permissions:
   contents: write
 
@@ -29,6 +33,9 @@ jobs:
           EBAY_CLIENT_SECRET: ${{ secrets.EBAY_CLIENT_SECRET }}
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
         run: python scripts/fetch_prices.py
+
+      - name: Validate public site build
+        run: python scripts/build_static_site.py --output dist
 
       - name: Commit and push data
         run: |

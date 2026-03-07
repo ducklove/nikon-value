@@ -1,0 +1,621 @@
+#!/usr/bin/env python3
+"""Build the static GitHub Pages artifact for the Nikon value tracker."""
+
+from __future__ import annotations
+
+import argparse
+import json
+import os
+import shutil
+import subprocess
+from datetime import date, datetime
+from html import escape
+from pathlib import Path
+from typing import Any
+
+PROJECT_ROOT = Path(__file__).resolve().parent.parent
+DATA_DIR = PROJECT_ROOT / 'data'
+CATALOG_PATH = DATA_DIR / 'catalog.json'
+STYLE_PATH = PROJECT_ROOT / 'css' / 'style.css'
+SITE_JS_PATH = PROJECT_ROOT / 'js' / 'site.js'
+HERO_JPG = PROJECT_ROOT / 'mynikons.jpg'
+HERO_WEBP_800 = PROJECT_ROOT / 'assets' / 'mynikons-800.webp'
+HERO_WEBP_1600 = PROJECT_ROOT / 'assets' / 'mynikons-1600.webp'
+EBAY_LOGO = PROJECT_ROOT / 'assets' / 'ebay-logo.svg'
+DEFAULT_OUTPUT = PROJECT_ROOT / 'dist'
+BODY_CATEGORIES = {'z-mount-bodies', 'f-mount-dslr', 'film-cameras'}
+GA_MEASUREMENT_ID = 'G-823D75RRWJ'
+
+
+def parse_args() -> argparse.Namespace:
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--output', default=str(DEFAULT_OUTPUT))
+    parser.add_argument('--base-url', default='')
+    return parser.parse_args()
+
+
+def load_catalog() -> dict[str, Any]:
+    return json.loads(CATALOG_PATH.read_text(encoding='utf-8'))
+
+
+def load_history(product_id: str) -> list[dict[str, Any]]:
+    history_path = DATA_DIR / 'products' / f'{product_id}.json'
+    if not history_path.exists():
+        return []
+    return json.loads(history_path.read_text(encoding='utf-8'))
+
+
+def detect_base_url(cli_value: str) -> str:
+    if cli_value:
+        return cli_value.rstrip('/')
+
+    env_value = os.environ.get('SITE_BASE_URL')
+    if env_value:
+        return env_value.rstrip('/')
+
+    repo_slug = os.environ.get('GITHUB_REPOSITORY')
+    if repo_slug and '/' in repo_slug:
+        owner, repo = repo_slug.split('/', 1)
+        return f'https://{owner}.github.io/{repo}'
+
+    try:
+        remote = subprocess.check_output(
+            ['git', 'config', '--get', 'remote.origin.url'],
+            cwd=PROJECT_ROOT,
+            text=True,
+        ).strip()
+    except Exception:
+        return ''
+
+    remote = remote.removesuffix('.git')
+    if remote.startswith('git@github.com:'):
+        repo_slug = remote.split(':', 1)[1]
+    elif remote.startswith('https://github.com/'):
+        repo_slug = remote.split('https://github.com/', 1)[1]
+    else:
+        return ''
+
+    if '/' not in repo_slug:
+        return ''
+    owner, repo = repo_slug.split('/', 1)
+    return f'https://{owner}.github.io/{repo}'
+
+
+def ensure_dir(path: Path) -> None:
+    path.mkdir(parents=True, exist_ok=True)
+
+
+def clean_output(path: Path) -> None:
+    if path.exists():
+        shutil.rmtree(path)
+    ensure_dir(path)
+
+
+def is_lens_category(category_id: str) -> bool:
+    return category_id.endswith('-lenses')
+
+
+def sort_products(products: list[dict[str, Any]], category_id: str) -> list[dict[str, Any]]:
+    items = list(products)
+    if category_id in BODY_CATEGORIES:
+        items.sort(key=lambda item: item.get('release_year') or 0, reverse=True)
+    elif is_lens_category(category_id):
+        items.sort(key=lambda item: item.get('focal_length_min') or 0)
+    return items
+
+
+def format_money(value: Any) -> str:
+    if value is None:
+        return '-'
+    amount = float(value)
+    if amount.is_integer():
+        return f'${int(amount):,}'
+    return f'${amount:,.2f}'
+
+
+def json_script(data: Any) -> str:
+    return json.dumps(data, ensure_ascii=False).replace('</script>', '<\\/script>')
+
+
+def ga_snippet() -> str:
+    return f"""  <script async src=\"https://www.googletagmanager.com/gtag/js?id={GA_MEASUREMENT_ID}\"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){{dataLayer.push(arguments);}}
+    gtag('js', new Date());
+    gtag('config', '{GA_MEASUREMENT_ID}');
+  </script>"""
+
+
+def head_block(*, title: str, description: str, canonical: str, image_url: str, extra_meta: str = '') -> str:
+    canonical_tag = f'  <link rel="canonical" href="{escape(canonical)}">\n' if canonical else ''
+    og_url = f'  <meta property="og:url" content="{escape(canonical)}">\n' if canonical else ''
+    return f"""<head>
+  <meta charset=\"UTF-8\">
+  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">
+  <title>{escape(title)}</title>
+  <meta name=\"description\" content=\"{escape(description)}\">
+  <meta property=\"og:type\" content=\"website\">
+  <meta property=\"og:title\" content=\"{escape(title)}\">
+  <meta property=\"og:description\" content=\"{escape(description)}\">
+  <meta property=\"og:image\" content=\"{escape(image_url)}\">
+{og_url}{canonical_tag}{ga_snippet()}
+  <link rel=\"preconnect\" href=\"https://fonts.googleapis.com\">
+  <link rel=\"preconnect\" href=\"https://fonts.gstatic.com\" crossorigin>
+  <link href=\"https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap\" rel=\"stylesheet\">
+  <link rel=\"stylesheet\" href=\"css/style.css\">
+{extra_meta}</head>"""
+
+
+def head_block_product(*, title: str, description: str, canonical: str, image_url: str, extra_meta: str = '') -> str:
+    canonical_tag = f'  <link rel="canonical" href="{escape(canonical)}">\n' if canonical else ''
+    og_url = f'  <meta property="og:url" content="{escape(canonical)}">\n' if canonical else ''
+    return f"""<head>
+  <meta charset=\"UTF-8\">
+  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">
+  <title>{escape(title)}</title>
+  <meta name=\"description\" content=\"{escape(description)}\">
+  <meta property=\"og:type\" content=\"article\">
+  <meta property=\"og:title\" content=\"{escape(title)}\">
+  <meta property=\"og:description\" content=\"{escape(description)}\">
+  <meta property=\"og:image\" content=\"{escape(image_url)}\">
+{og_url}{canonical_tag}{ga_snippet()}
+  <link rel=\"preconnect\" href=\"https://fonts.googleapis.com\">
+  <link rel=\"preconnect\" href=\"https://fonts.gstatic.com\" crossorigin>
+  <link href=\"https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap\" rel=\"stylesheet\">
+  <link rel=\"stylesheet\" href=\"../css/style.css\">
+{extra_meta}</head>"""
+
+
+def compute_stale_days(updated: str) -> int:
+    updated_date = date.fromisoformat(updated)
+    return (datetime.now().date() - updated_date).days
+
+
+def build_home_page(catalog: dict[str, Any], base_url: str) -> str:
+    updated = catalog['updated']
+    stale_days = compute_stale_days(updated)
+    total_products = sum(len(category['products']) for category in catalog['categories'])
+    total_listings = sum((product.get('count') or 0) for category in catalog['categories'] for product in category['products'])
+    total_categories = len(catalog['categories'])
+    stale_banner = ''
+    if stale_days >= 2:
+        stale_banner = f"""
+      <div class=\"stale-banner\" role=\"status\">
+        <strong>데이터 점검 필요</strong>
+        <span>마지막 업데이트가 {stale_days}일 전({escape(updated)})입니다. 자동 수집 워크플로 상태를 확인하세요.</span>
+      </div>"""
+
+    tabs = ['<button class="category-tab active" type="button" data-category-id="all">전체</button>']
+    feature_order = 0
+    cards = []
+    image_url = f'{base_url}/assets/mynikons-1600.webp' if base_url else 'assets/mynikons-1600.webp'
+
+    for category in catalog['categories']:
+        tabs.append(
+            f'<button class="category-tab" type="button" data-category-id="{escape(category["id"])}">{escape(category["name_ko"])}</button>'
+        )
+        subcategory_lookup = {
+            item['id']: item['name_ko']
+            for item in category.get('subcategories', [])
+        }
+        for product in sort_products(category['products'], category['id']):
+            feature_order += 1
+            thumb = ''
+            samples = product.get('samples') or []
+            if samples and samples[0].get('image'):
+                thumb = (
+                    f'<img class="product-card__thumb" src="{escape(samples[0]["image"])}" '
+                    f'alt="{escape(product["name_en"])}" loading="lazy">'
+                )
+            else:
+                thumb = '<div class="product-card__thumb-placeholder" aria-hidden="true">Nikon</div>'
+
+            category_label = category['name_ko']
+            if product.get('subcategory') and subcategory_lookup.get(product['subcategory']):
+                category_label = f"{category_label} / {subcategory_lookup[product['subcategory']]}"
+
+            price_html = (
+                f'<div class="product-card__price">{format_money(product.get("median"))}</div>'
+                if product.get('median') is not None
+                else '<div class="product-card__price product-card__price--na">데이터 없음</div>'
+            )
+            range_html = ''
+            if product.get('q1') is not None and product.get('q3') is not None:
+                range_html = (
+                    f'<div class="product-card__range">Q1-Q3: {format_money(product["q1"])} - {format_money(product["q3"])}</div>'
+                )
+            badge_value = product.get('release_year') or (
+                f'{product["focal_length_min"]}mm' if product.get('focal_length_min') else ''
+            )
+            badge_html = (
+                f'<span class="product-card__badge">{escape(str(badge_value))}</span>'
+                if badge_value
+                else ''
+            )
+            priority_value = product.get('release_year') or product.get('focal_length_min') or 0
+            search_index = ' '.join(
+                filter(
+                    None,
+                    [
+                        product['id'],
+                        product['name_ko'],
+                        product['name_en'],
+                        category['name_ko'],
+                        category['name_en'],
+                        subcategory_lookup.get(product.get('subcategory') or '', ''),
+                    ],
+                )
+            ).lower()
+            cards.append(
+                f"""
+      <a class=\"product-card\" href=\"products/{escape(product['id'])}.html\"
+         data-product-id=\"{escape(product['id'])}\"
+         data-category-id=\"{escape(category['id'])}\"
+         data-search=\"{escape(search_index)}\"
+         data-name-ko=\"{escape(product['name_ko'])}\"
+         data-median=\"{'' if product.get('median') is None else escape(str(product['median']))}\"
+         data-count=\"{escape(str(product.get('count') or 0))}\"
+         data-release-year=\"{escape(str(product.get('release_year') or 0))}\"
+         data-priority=\"{escape(str(priority_value))}\"
+         data-feature-order=\"{feature_order}\">
+        {thumb}
+        <div class=\"product-card__body\">
+          <div class=\"product-card__header\">
+            <div class=\"product-card__name\">{escape(product['name_ko'])}</div>
+            {badge_html}
+          </div>
+          <div class=\"product-card__name-en\">{escape(product['name_en'])}</div>
+          <div class=\"product-card__taxonomy\">{escape(category_label)}</div>
+          {price_html}
+          <div class=\"product-card__meta\"><span>현재 매물 {escape(str(product.get('count') or 0))}개</span></div>
+          {range_html}
+        </div>
+      </a>"""
+            )
+
+    description = (
+        f'eBay 미국 현재 매물 기준으로 니콘 카메라와 렌즈 {total_products}개 모델의 중고 시세를 추적합니다. '
+        f'마지막 업데이트 {updated}.'
+    )
+    canonical = f'{base_url}/' if base_url else ''
+    schema = {
+        '@context': 'https://schema.org',
+        '@type': 'CollectionPage',
+        'name': '니콘 중고 시세 트래커',
+        'description': description,
+        'dateModified': updated,
+    }
+    extra_meta = f"  <script type=\"application/ld+json\">{json_script(schema)}</script>\n"
+
+    return f"""<!DOCTYPE html>
+<html lang=\"ko\">
+{head_block(title='니콘 중고 시세 트래커', description=description, canonical=canonical, image_url=image_url, extra_meta=extra_meta)}
+<body data-page=\"catalog\">
+  <header class=\"site-header\">
+    <div class=\"hero-banner\">
+      <picture>
+        <source type=\"image/webp\" srcset=\"assets/mynikons-800.webp 800w, assets/mynikons-1600.webp 1600w\" sizes=\"100vw\">
+        <img src=\"mynikons.jpg\" alt=\"Nikon camera collection\" class=\"hero-image\" width=\"1600\" height=\"900\" fetchpriority=\"high\" loading=\"eager\" decoding=\"async\">
+      </picture>
+      <div class=\"hero-overlay\">
+        <div class=\"container\">
+          <h1 class=\"site-title\">니콘 중고 시세 트래커</h1>
+          <p class=\"site-subtitle\">eBay 현재 매물 기준 시세 (배송비 포함 USD)</p>
+          <p class=\"site-updated\">최종 업데이트: {escape(updated)}</p>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <nav class=\"category-nav\" aria-label=\"카테고리 필터\">
+    <div class=\"container\">
+      <div class=\"category-tabs\">{''.join(tabs)}</div>
+    </div>
+  </nav>
+
+  <main class=\"container\">
+    <section class=\"catalog-toolbar\" aria-label=\"시세 탐색\">
+      <div class=\"catalog-toolbar__copy\">
+        <span class=\"section-kicker\">Nikon used value tracker</span>
+        <h2 class=\"section-heading\">카테고리 <span id=\"catalog-context\">전체</span></h2>
+        <div class=\"catalog-stats\">
+          <span><strong id=\"visible-count\">{total_products}</strong>개 모델 표시 중</span>
+          <span><strong>{total_categories}</strong>개 카테고리</span>
+          <span><strong>{total_listings:,}</strong>개 현재 매물 추적</span>
+        </div>
+      </div>
+      <div class=\"toolbar-controls\">
+        <label class=\"visually-hidden\" for=\"search-input\">제품 검색</label>
+        <input class=\"search-input\" id=\"search-input\" type=\"search\" placeholder=\"제품명, 영문명, 카테고리 검색\">
+        <label class=\"visually-hidden\" for=\"sort-select\">정렬</label>
+        <select class=\"sort-select\" id=\"sort-select\">
+          <option value=\"featured\">기본 정렬</option>
+          <option value=\"price-asc\">중앙값 낮은 순</option>
+          <option value=\"price-desc\">중앙값 높은 순</option>
+          <option value=\"count-desc\">매물 많은 순</option>
+          <option value=\"updated-desc\">최신 바디/긴 초점거리 우선</option>
+          <option value=\"name-asc\">이름 순</option>
+        </select>
+      </div>
+    </section>{stale_banner}
+
+    <div id=\"product-grid\" class=\"product-grid\">
+{''.join(cards)}
+    </div>
+    <p id=\"catalog-empty\" class=\"empty-state-inline\" hidden>조건에 맞는 제품이 없습니다.</p>
+  </main>
+
+  <footer class=\"site-footer\">
+    <div class=\"container\">
+      <div class=\"footer-attribution\">
+        <img src=\"assets/ebay-logo.svg\" alt=\"eBay\" class=\"ebay-logo\">
+        <span>Powered by eBay Browse API</span>
+      </div>
+      <p class=\"footer-note\">가격은 현재 eBay 매물 기준이며, 실제 거래가와 다를 수 있습니다.</p>
+    </div>
+  </footer>
+
+  <script src=\"js/site.js\" defer></script>
+</body>
+</html>
+"""
+
+
+def product_image(product: dict[str, Any], base_url: str) -> str:
+    samples = product.get('samples') or []
+    if samples and samples[0].get('image'):
+        return samples[0]['image']
+    if base_url:
+        return f'{base_url}/assets/mynikons-1600.webp'
+    return '../assets/mynikons-1600.webp'
+
+
+def render_product_offer_schema(product: dict[str, Any]) -> dict[str, Any]:
+    schema: dict[str, Any] = {
+        '@context': 'https://schema.org',
+        '@type': 'Product',
+        'brand': {'@type': 'Brand', 'name': 'Nikon'},
+        'name': product['name_en'],
+    }
+    if product.get('count'):
+        schema['offers'] = {
+            '@type': 'AggregateOffer',
+            'priceCurrency': 'USD',
+            'offerCount': product['count'],
+            'lowPrice': product.get('min'),
+            'highPrice': product.get('max'),
+        }
+    return schema
+
+
+def build_product_page(
+    product: dict[str, Any],
+    category: dict[str, Any],
+    updated: str,
+    history: list[dict[str, Any]],
+    base_url: str,
+) -> str:
+    description = (
+        f"{product['name_ko']} eBay 현재 매물 기준 중고 시세. "
+        f"중앙값 {format_money(product.get('median'))}, 현재 매물 {product.get('count') or 0}개, 마지막 업데이트 {updated}."
+    )
+    canonical = f"{base_url}/products/{product['id']}.html" if base_url else ''
+    image_url = product_image(product, base_url)
+    schema = render_product_offer_schema(product)
+    extra_meta = f"  <script type=\"application/ld+json\">{json_script(schema)}</script>\n"
+    subcategory_lookup = {
+        item['id']: item['name_ko']
+        for item in category.get('subcategories', [])
+    }
+    breadcrumb = category['name_ko']
+    if product.get('subcategory') and product['subcategory'] in subcategory_lookup:
+        breadcrumb = f"{breadcrumb} / {subcategory_lookup[product['subcategory']]}"
+
+    summary_cards = [
+        ('중앙값', format_money(product.get('median')), 'price-card price-card--primary'),
+        ('평균', format_money(product.get('mean')), 'price-card'),
+        ('최저', format_money(product.get('min')), 'price-card'),
+        ('최고', format_money(product.get('max')), 'price-card'),
+        ('매물 수', str(product.get('count') or 0), 'price-card'),
+        ('Q1 - Q3', f"{format_money(product.get('q1'))} - {format_money(product.get('q3'))}" if product.get('q1') is not None and product.get('q3') is not None else '-', 'price-card'),
+    ]
+    summary_html = '\n'.join(
+        f"""        <div class=\"{klass}\">\n          <span class=\"price-label\">{escape(label)}</span>\n          <span class=\"price-value{' price-value--small' if 'Q1' in label else ''}\">{escape(value)}</span>\n        </div>"""
+        for label, value, klass in summary_cards
+    )
+
+    listing_cards = []
+    for sample in product.get('samples') or []:
+        image = sample.get('image') or ''
+        image_tag = (
+            f'<img class="listing-card__image" src="{escape(image)}" alt="{escape(sample.get("title", ""))}" loading="lazy">'
+            if image
+            else ''
+        )
+        listing_cards.append(
+            f"""
+        <a class=\"listing-card\" href=\"{escape(sample.get('url', '#'))}\" target=\"_blank\" rel=\"noopener noreferrer nofollow\">
+          {image_tag}
+          <div class=\"listing-card__info\">
+            <div class=\"listing-card__title\">{escape(sample.get('title', ''))}</div>
+            <div class=\"listing-card__price\">{escape(format_money(sample.get('price')))}</div>
+          </div>
+        </a>"""
+        )
+    if not listing_cards:
+        listing_cards.append('<p class="detail-note">현재 노출할 샘플 매물이 없습니다.</p>')
+
+    history_rows = []
+    for entry in reversed(history[-10:]):
+        history_rows.append(
+            f"<tr><td>{escape(entry['date'])}</td><td>{escape(format_money(entry.get('median')))}</td><td>{escape(format_money(entry.get('q1')))} - {escape(format_money(entry.get('q3')))}</td><td>{escape(str(entry.get('count') or 0))}</td></tr>"
+        )
+    history_table = ''
+    if history_rows:
+        history_table = f"""
+      <noscript>
+        <table class=\"history-table\">
+          <thead>
+            <tr><th>날짜</th><th>중앙값</th><th>Q1-Q3</th><th>매물 수</th></tr>
+          </thead>
+          <tbody>{''.join(history_rows)}</tbody>
+        </table>
+      </noscript>"""
+
+    meta_pills = [
+        f'<span class="meta-pill">카테고리 {escape(breadcrumb)}</span>',
+        f'<span class="meta-pill">업데이트 {escape(updated)}</span>',
+        f'<span class="meta-pill">매물 {escape(str(product.get("count") or 0))}개</span>',
+    ]
+
+    return f"""<!DOCTYPE html>
+<html lang=\"ko\">
+{head_block_product(title=f"{product['name_ko']} - 니콘 중고 시세", description=description, canonical=canonical, image_url=image_url, extra_meta=extra_meta)}
+<body data-page=\"product\" data-default-period=\"180\">
+  <header class=\"site-header\">
+    <div class=\"container\">
+      <a href=\"../index.html\" class=\"back-link\">&larr; 전체 목록</a>
+      <h1 class=\"product-title\">{escape(product['name_ko'])}</h1>
+      <p class=\"product-subtitle\">{escape(product['name_en'])}</p>
+      <div class=\"product-header-meta\">{''.join(meta_pills)}</div>
+    </div>
+  </header>
+
+  <main class=\"container\">
+    <div class=\"price-summary\">
+{summary_html}
+    </div>
+
+    <p class=\"detail-note\">시세는 eBay 미국 현재 매물 기준이며, 실제 체결가와는 차이가 있을 수 있습니다.</p>
+
+    <section class=\"chart-section\">
+      <div class=\"chart-header\">
+        <h2>시세 추이</h2>
+        <div class=\"period-selector\">
+          <button class=\"period-btn\" type=\"button\" data-period=\"30\">1개월</button>
+          <button class=\"period-btn\" type=\"button\" data-period=\"90\">3개월</button>
+          <button class=\"period-btn active\" type=\"button\" data-period=\"180\">6개월</button>
+          <button class=\"period-btn\" type=\"button\" data-period=\"365\">1년</button>
+          <button class=\"period-btn\" type=\"button\" data-period=\"0\">전체</button>
+        </div>
+      </div>
+      <div class=\"chart-container\">
+        <canvas id=\"price-chart\"></canvas>
+        <p class=\"chart-empty\" id=\"chart-empty\" hidden>표시할 시계열 데이터가 충분하지 않습니다.</p>
+      </div>
+{history_table}
+    </section>
+
+    <section class=\"listings-section\">
+      <h2>현재 매물 예시</h2>
+      <div class=\"listings-grid\">
+{''.join(listing_cards)}
+      </div>
+    </section>
+  </main>
+
+  <footer class=\"site-footer\">
+    <div class=\"container\">
+      <div class=\"footer-attribution\">
+        <img src=\"../assets/ebay-logo.svg\" alt=\"eBay\" class=\"ebay-logo\">
+        <span>Powered by eBay Browse API</span>
+      </div>
+      <p class=\"footer-note\">가격은 현재 eBay 매물 기준이며, 실제 거래가와 다를 수 있습니다.</p>
+    </div>
+  </footer>
+
+  <script id=\"history-data\" type=\"application/json\">{json_script(history)}</script>
+  <script src=\"https://cdn.jsdelivr.net/npm/chart.js@4/dist/chart.umd.min.js\"></script>
+  <script src=\"../js/site.js\" defer></script>
+</body>
+</html>
+"""
+
+
+def build_404_page(base_url: str) -> str:
+    home_href = f'{base_url}/' if base_url else 'index.html'
+    image_url = f'{base_url}/assets/mynikons-1600.webp' if base_url else 'assets/mynikons-1600.webp'
+    return f"""<!DOCTYPE html>
+<html lang=\"ko\">
+{head_block(title='페이지를 찾을 수 없습니다', description='요청한 페이지를 찾을 수 없습니다.', canonical='', image_url=image_url)}
+<body>
+  <main class=\"container\" style=\"padding:80px 20px\">
+    <div class=\"empty-state-inline\" style=\"max-width:560px;margin:0 auto\">
+      <h1 class=\"section-heading\">페이지를 찾을 수 없습니다</h1>
+      <p class=\"detail-note\">주소가 바뀌었거나 삭제된 페이지입니다.</p>
+      <a class=\"category-tab active\" href=\"{escape(home_href)}\" style=\"display:inline-flex;text-decoration:none\">홈으로 돌아가기</a>
+    </div>
+  </main>
+</body>
+</html>
+"""
+
+
+def build_sitemap(catalog: dict[str, Any], base_url: str) -> str:
+    if not base_url:
+        return ''
+    urls = [f'{base_url}/']
+    for category in catalog['categories']:
+        for product in category['products']:
+            urls.append(f"{base_url}/products/{product['id']}.html")
+    entries = '\n'.join(
+        f'  <url><loc>{escape(url)}</loc><lastmod>{escape(catalog["updated"])}</lastmod></url>'
+        for url in urls
+    )
+    return (
+        '<?xml version="1.0" encoding="UTF-8"?>\n'
+        '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
+        f'{entries}\n'
+        '</urlset>\n'
+    )
+
+
+def build_robots(base_url: str) -> str:
+    lines = ['User-agent: *', 'Allow: /']
+    if base_url:
+        lines.append(f'Sitemap: {base_url}/sitemap.xml')
+    return '\n'.join(lines) + '\n'
+
+
+def copy_assets(output_dir: Path) -> None:
+    ensure_dir(output_dir / 'css')
+    ensure_dir(output_dir / 'js')
+    ensure_dir(output_dir / 'assets')
+    ensure_dir(output_dir / 'products')
+
+    shutil.copy2(STYLE_PATH, output_dir / 'css' / 'style.css')
+    shutil.copy2(SITE_JS_PATH, output_dir / 'js' / 'site.js')
+    shutil.copy2(EBAY_LOGO, output_dir / 'assets' / 'ebay-logo.svg')
+    shutil.copy2(HERO_WEBP_800, output_dir / 'assets' / 'mynikons-800.webp')
+    shutil.copy2(HERO_WEBP_1600, output_dir / 'assets' / 'mynikons-1600.webp')
+    shutil.copy2(HERO_JPG, output_dir / 'mynikons.jpg')
+    (output_dir / '.nojekyll').write_text('', encoding='utf-8')
+
+
+def main() -> None:
+    args = parse_args()
+    output_dir = Path(args.output).resolve()
+    base_url = detect_base_url(args.base_url)
+    catalog = load_catalog()
+
+    clean_output(output_dir)
+    copy_assets(output_dir)
+
+    (output_dir / 'index.html').write_text(build_home_page(catalog, base_url), encoding='utf-8')
+    (output_dir / '404.html').write_text(build_404_page(base_url), encoding='utf-8')
+    (output_dir / 'robots.txt').write_text(build_robots(base_url), encoding='utf-8')
+
+    sitemap = build_sitemap(catalog, base_url)
+    if sitemap:
+        (output_dir / 'sitemap.xml').write_text(sitemap, encoding='utf-8')
+
+    for category in catalog['categories']:
+        for product in category['products']:
+            history = load_history(product['id'])
+            product_html = build_product_page(product, category, catalog['updated'], history, base_url)
+            (output_dir / 'products' / f"{product['id']}.html").write_text(product_html, encoding='utf-8')
+
+
+if __name__ == '__main__':
+    main()

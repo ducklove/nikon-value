@@ -4,6 +4,7 @@
 import json
 import logging
 import os
+import re
 import statistics
 import sys
 import time
@@ -32,6 +33,51 @@ GEMINI_API_URL = "https://generativelanguage.googleapis.com/v1beta/models/gemini
 
 MAX_DAILY_SNAPSHOTS = 400
 MAX_PRODUCT_HISTORY = 365
+
+COMMON_EXCLUDE_PATTERNS = [
+    " for parts",
+    " parts only",
+    " not working",
+    " broken",
+    " repair",
+    " manual",
+    " instruction",
+    " empty box",
+    " box only",
+    " packaging only",
+    " body cap",
+    " rear cap",
+    " front cap",
+    " battery",
+    " charger",
+    " strap",
+    " adapter",
+    " filter",
+    " grip",
+    " eyepiece",
+    " focusing screen",
+    " viewfinder",
+    " motor drive",
+    " screen protector",
+    " camera case",
+    " lens case",
+    " bag only",
+    " case only",
+    " cap only",
+    " bundle",
+]
+LENS_HOOD_RE = re.compile(r"\b(?:hood|shade|hb-\d+|hn-\d+|hr-\d+|hs-\d+|hk-\d+|he-\d+|hf-\d+)\b")
+CAMERA_BODY_EXCLUDE_PATTERNS = [
+    " lens ",
+    " nikkor ",
+    " sigma ",
+    " tamron ",
+    " tokina ",
+    " teleconverter ",
+    " tc-",
+    " lens kit",
+    " kit lens",
+]
 
 
 def load_gemini_key() -> str | None:
@@ -109,14 +155,62 @@ def filter_items_with_llm(
         filtered = [items[i] for i in valid_indices]
 
         if not filtered:
-            log.warning("  LLM filtered all items, keeping original")
+            log.warning("  LLM filtered all items, keeping heuristic-filtered set")
             return items
 
         return filtered
 
     except Exception as e:
-        log.warning("  LLM filter failed (%s), keeping all items", e)
+        log.warning("  LLM filter failed (%s), keeping heuristic-filtered set", e)
         return items
+
+
+def normalize_title(title: str) -> str:
+    """간단한 키워드 매칭을 위해 타이틀을 정규화합니다."""
+    text = re.sub(r"[^a-z0-9/+.-]+", " ", title.lower())
+    return f" {text} "
+
+
+def is_camera_body_product(product: dict) -> bool:
+    """카메라 바디 분류인지 판별합니다."""
+    return product.get("category_id") in {"31388", "3323"}
+
+
+def is_obvious_non_match(title: str, product: dict) -> bool:
+    """명백한 비매칭/액세서리 매물을 규칙 기반으로 제거합니다."""
+    normalized = normalize_title(title)
+
+    if any(pattern in normalized for pattern in COMMON_EXCLUDE_PATTERNS):
+        return True
+    if LENS_HOOD_RE.search(normalized):
+        return True
+
+    if is_camera_body_product(product):
+        if any(pattern in normalized for pattern in CAMERA_BODY_EXCLUDE_PATTERNS):
+            return True
+
+    return False
+
+
+def filter_items_with_rules(items: list[dict], product: dict) -> list[dict]:
+    """LLM 이전에 명백한 비매칭을 제거합니다."""
+    if not items:
+        return items
+
+    filtered = [
+        item
+        for item in items
+        if not is_obvious_non_match(item.get("title", ""), product)
+    ]
+
+    if not filtered:
+        log.warning("  Rule filter removed all items, keeping original set")
+        return items
+
+    if len(filtered) != len(items):
+        log.info("  Rule filter: %d → %d items", len(items), len(filtered))
+
+    return filtered
 
 
 def get_ebay_urls(sandbox: bool) -> tuple[str, str]:
@@ -427,6 +521,7 @@ def main():
                     product["min_price"],
                     product["max_price"],
                 )
+                items = filter_items_with_rules(items, product)
 
                 if gemini_key and items:
                     pre_count = len(items)
