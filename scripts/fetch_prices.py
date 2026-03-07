@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """eBay Browse API를 사용하여 니콘 중고 장비 시세를 수집합니다."""
 
+import argparse
 import json
 import logging
 import os
@@ -65,6 +66,12 @@ COMMON_EXCLUDE_PATTERNS = [
     " case only",
     " cap only",
     " bundle",
+    " issues",
+    " issue",
+    " untested",
+    " as is",
+    " as-is",
+    " junk",
 ]
 LENS_HOOD_RE = re.compile(r"\b(?:hood|shade|hb-\d+|hn-\d+|hr-\d+|hs-\d+|hk-\d+|he-\d+|hf-\d+)\b")
 CAMERA_BODY_EXCLUDE_PATTERNS = [
@@ -78,6 +85,35 @@ CAMERA_BODY_EXCLUDE_PATTERNS = [
     " lens kit",
     " kit lens",
 ]
+AI_S_TOKEN_RE = re.compile(r"\b(?:ai-s|ai s|ais)\b")
+AI_TOKEN_RE = re.compile(r"\bai\b")
+NON_AI_TOKEN_RE = re.compile(r"\b(?:non[- ]ai|new nikkor|nikkor-[a-z.]+ auto|nikkor [a-z.]+ auto|auto)\b")
+AF_TOKEN_RE = re.compile(r"\b(?:af(?:-s|-p|-d)?|af nikkor|autofocus|auto focus)\b")
+SERIES_E_TOKEN_RE = re.compile(r"\b(?:series e|e series)\b")
+
+
+def parse_args() -> argparse.Namespace:
+    """CLI 인자를 파싱합니다."""
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--sandbox", action="store_true")
+    parser.add_argument(
+        "--only",
+        action="append",
+        default=[],
+        help="특정 제품 ID만 갱신합니다. 쉼표로 여러 개 지정 가능",
+    )
+    return parser.parse_args()
+
+
+def parse_only_ids(values: list[str]) -> set[str]:
+    """--only 인자를 제품 ID 집합으로 변환합니다."""
+    result = set()
+    for value in values:
+        for item in value.split(","):
+            item = item.strip()
+            if item:
+                result.add(item)
+    return result
 
 
 def load_gemini_key() -> str | None:
@@ -171,6 +207,48 @@ def normalize_title(title: str) -> str:
     return f" {text} "
 
 
+def get_title_variant_group(product: dict) -> str | None:
+    """제품 ID를 바탕으로 수동 렌즈 세대 그룹을 판별합니다."""
+    pid = product.get("id", "")
+    if pid.startswith("ai-s-"):
+        return "ai-s"
+    if pid.startswith("series-e-"):
+        return "series-e"
+    if pid.startswith("nikkor-auto-") or pid.startswith("micro-nikkor-auto-") or pid.startswith("noct-nikkor-"):
+        return "non-ai"
+    if pid.startswith("nikkor-") and pid.endswith("-ai"):
+        return "ai"
+    return None
+
+
+def is_variant_conflict(title: str, product: dict) -> bool:
+    """수동 렌즈 세대가 다른 매물인지 판별합니다."""
+    variant_group = get_title_variant_group(product)
+    if not variant_group:
+        return False
+
+    normalized = normalize_title(title)
+    has_ai_s = bool(AI_S_TOKEN_RE.search(normalized))
+    has_ai = bool(AI_TOKEN_RE.search(normalized))
+    has_non_ai = bool(NON_AI_TOKEN_RE.search(normalized))
+    has_af = bool(AF_TOKEN_RE.search(normalized))
+    has_series_e = bool(SERIES_E_TOKEN_RE.search(normalized))
+
+    if variant_group == "ai-s":
+        return has_non_ai or has_af or has_series_e or not has_ai_s
+
+    if variant_group == "ai":
+        return has_non_ai or has_af or has_series_e or has_ai_s or not has_ai
+
+    if variant_group == "non-ai":
+        return has_af or has_ai_s or has_series_e or (has_ai and not has_non_ai)
+
+    if variant_group == "series-e":
+        return has_af or not has_series_e
+
+    return False
+
+
 def is_camera_body_product(product: dict) -> bool:
     """카메라 바디 분류인지 판별합니다."""
     return product.get("category_id") in {"31388", "3323"}
@@ -183,6 +261,8 @@ def is_obvious_non_match(title: str, product: dict) -> bool:
     if any(pattern in normalized for pattern in COMMON_EXCLUDE_PATTERNS):
         return True
     if LENS_HOOD_RE.search(normalized):
+        return True
+    if is_variant_conflict(title, product):
         return True
 
     if is_camera_body_product(product):
@@ -373,11 +453,20 @@ def compute_stats(prices: list[float]) -> dict:
 
 def extract_sample_listings(items: list[dict], max_samples: int = 5) -> list[dict]:
     """차트 아래 표시할 샘플 매물을 추출합니다."""
-    samples = []
-    for item in items[:max_samples]:
+    priced_items = []
+    for item in items:
         price = extract_price(item)
         if price is None:
             continue
+        priced_items.append((item, price))
+
+    if len(priced_items) > max_samples:
+        center = len(priced_items) // 2
+        start = max(0, center - (max_samples // 2))
+        priced_items = priced_items[start : start + max_samples]
+
+    samples = []
+    for item, price in priced_items:
         samples.append({
             "title": item.get("title", ""),
             "price": price,
@@ -393,6 +482,43 @@ def load_catalog() -> dict:
     """products.yaml를 로드합니다."""
     with open(CONFIG_PATH, "r", encoding="utf-8") as f:
         return yaml.safe_load(f)
+
+
+def load_existing_catalog_output() -> dict | None:
+    """기존 catalog.json을 로드합니다."""
+    catalog_path = DATA_DIR / "catalog.json"
+    if not catalog_path.exists():
+        return None
+    with open(catalog_path, "r", encoding="utf-8") as f:
+        return json.load(f)
+
+
+def load_daily_snapshot_for_date(date_str: str) -> dict:
+    """특정 날짜의 기존 일별 스냅샷을 로드합니다."""
+    filepath = DATA_DIR / "daily" / f"{date_str}.json"
+    if not filepath.exists():
+        return {"date": date_str, "products": {}}
+    with open(filepath, "r", encoding="utf-8") as f:
+        data = json.load(f)
+    data["date"] = date_str
+    data.setdefault("products", {})
+    return data
+
+
+def build_base_product_entry(product: dict) -> dict:
+    """설정 기반 기본 제품 메타데이터를 만듭니다."""
+    entry = {
+        "id": product["id"],
+        "name_ko": product["name_ko"],
+        "name_en": product["name_en"],
+    }
+    if "subcategory" in product:
+        entry["subcategory"] = product["subcategory"]
+    if "release_year" in product:
+        entry["release_year"] = product["release_year"]
+    if "focal_length_min" in product:
+        entry["focal_length_min"] = product["focal_length_min"]
+    return entry
 
 
 def update_product_history(product_id: str, date_str: str, stats: dict):
@@ -448,6 +574,9 @@ def load_env_file(path: Path):
 
 
 def main():
+    args = parse_args()
+    only_ids = parse_only_ids(args.only)
+
     # ebay.key 파일이 있으면 환경변수로 로드
     load_env_file(PROJECT_ROOT / "ebay.key")
 
@@ -459,7 +588,7 @@ def main():
         log.error("Set them or create ebay.key file in project root")
         sys.exit(1)
 
-    sandbox = "--sandbox" in sys.argv or "SBX" in client_id
+    sandbox = args.sandbox or "SBX" in client_id
     if sandbox:
         log.info("Using eBay SANDBOX environment")
 
@@ -470,6 +599,13 @@ def main():
     (DATA_DIR / "daily").mkdir(parents=True, exist_ok=True)
 
     catalog_config = load_catalog()
+    existing_catalog = load_existing_catalog_output()
+    existing_products = {}
+    if existing_catalog:
+        for category in existing_catalog.get("categories", []):
+            for product in category.get("products", []):
+                existing_products[product["id"]] = product
+
     token = get_access_token(client_id, client_secret, auth_url)
 
     gemini_key = load_gemini_key()
@@ -485,13 +621,16 @@ def main():
         "updated": today,
         "categories": [],
     }
-    daily_snapshot = {
+    daily_snapshot = load_daily_snapshot_for_date(today) if only_ids else {
         "date": today,
         "products": {},
     }
 
     total_products = sum(
-        len(cat["products"]) for cat in catalog_config["categories"]
+        1
+        for cat in catalog_config["categories"]
+        for product in cat["products"]
+        if not only_ids or product["id"] in only_ids
     )
     processed = 0
 
@@ -505,8 +644,28 @@ def main():
         }
 
         for product in category["products"]:
-            processed += 1
             pid = product["id"]
+            if only_ids and pid not in only_ids:
+                existing = existing_products.get(pid)
+                if existing:
+                    cat_entry["products"].append(existing)
+                else:
+                    empty_entry = build_base_product_entry(product)
+                    empty_entry.update({
+                        "median": None,
+                        "mean": None,
+                        "min": None,
+                        "max": None,
+                        "q1": None,
+                        "q3": None,
+                        "count": 0,
+                        "count_filtered": 0,
+                        "samples": [],
+                    })
+                    cat_entry["products"].append(empty_entry)
+                continue
+
+            processed += 1
             log.info(
                 "[%d/%d] Fetching: %s (%s)",
                 processed, total_products, pid, product["query"],
@@ -539,17 +698,7 @@ def main():
                 stats = compute_stats(prices)
                 samples = extract_sample_listings(items)
 
-                product_entry = {
-                    "id": pid,
-                    "name_ko": product["name_ko"],
-                    "name_en": product["name_en"],
-                }
-                if "subcategory" in product:
-                    product_entry["subcategory"] = product["subcategory"]
-                if "release_year" in product:
-                    product_entry["release_year"] = product["release_year"]
-                if "focal_length_min" in product:
-                    product_entry["focal_length_min"] = product["focal_length_min"]
+                product_entry = build_base_product_entry(product)
                 product_entry.update(stats)
                 product_entry["samples"] = samples
                 cat_entry["products"].append(product_entry)
@@ -565,17 +714,7 @@ def main():
 
             except requests.exceptions.HTTPError as e:
                 log.error("  → HTTP error for %s: %s", pid, e)
-                error_entry = {
-                    "id": pid,
-                    "name_ko": product["name_ko"],
-                    "name_en": product["name_en"],
-                }
-                if "subcategory" in product:
-                    error_entry["subcategory"] = product["subcategory"]
-                if "release_year" in product:
-                    error_entry["release_year"] = product["release_year"]
-                if "focal_length_min" in product:
-                    error_entry["focal_length_min"] = product["focal_length_min"]
+                error_entry = build_base_product_entry(product)
                 error_entry.update({
                     "median": None,
                     "mean": None,
