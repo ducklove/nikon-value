@@ -731,9 +731,17 @@ def build_resources_page(base_url: str) -> str:
 {head_block(title='참고 사이트 링크 - 니콘 중고 시세 트래커', description=description, canonical=canonical, image_url=image_url, extra_meta=extra_meta)}
 <body data-page=\"resources\">
   <header class=\"site-header\">
-    <div class=\"container page-header\">
-      <h1 class=\"site-title\">참고 사이트 링크</h1>
-      <p class=\"site-subtitle\">시세 숫자 외에 계보, 사양, 역사 자료를 같이 볼 때 유용한 레퍼런스입니다.</p>
+    <div class=\"hero-banner\">
+      <picture>
+        <source type=\"image/webp\" srcset=\"assets/mynikons-800.webp 800w, assets/mynikons-1600.webp 1600w\" sizes=\"100vw\">
+        <img src=\"mynikons.jpg\" alt=\"Nikon camera collection\" class=\"hero-image\" width=\"1600\" height=\"900\" fetchpriority=\"high\" loading=\"eager\" decoding=\"async\">
+      </picture>
+      <div class=\"hero-overlay\">
+        <div class=\"container\">
+          <h1 class=\"site-title\">참고 사이트 링크</h1>
+          <p class=\"site-subtitle\">시세 숫자 외에 계보, 사양, 역사 자료를 같이 볼 때 유용한 레퍼런스입니다.</p>
+        </div>
+      </div>
     </div>
   </header>
   {build_site_links('resources')}
