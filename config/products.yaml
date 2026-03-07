@@ -260,6 +260,10 @@ categories:
     name_ko: 레인지파인더
     name_en: Rangefinder
     sort_order: 4
+  - id: premium-compact
+    name_ko: 프리미엄 컴팩트
+    name_en: Premium Compact
+    sort_order: 5
   products:
   - id: nikon-f6
     name_ko: 니콘 F6
@@ -432,6 +436,24 @@ categories:
     category_id: '3323'
     min_price: 20
     max_price: 150
+  - id: nikon-28ti
+    name_ko: 니콘 28Ti
+    name_en: Nikon 28Ti
+    release_year: 1994
+    subcategory: premium-compact
+    query: Nikon 28Ti camera -manual -brochure -case -strap -battery -film
+    category_id: '3323'
+    min_price: 300
+    max_price: 2000
+  - id: nikon-35ti
+    name_ko: 니콘 35Ti
+    name_en: Nikon 35Ti
+    release_year: 1993
+    subcategory: premium-compact
+    query: Nikon 35Ti camera -manual -brochure -case -strap -battery -film
+    category_id: '3323'
+    min_price: 250
+    max_price: 1800
   - id: nikkormat
     name_ko: 니코마트
     name_en: Nikkormat

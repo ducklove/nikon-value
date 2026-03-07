@@ -1394,6 +1394,12 @@
      "name_ko": "레인지파인더",
      "name_en": "Rangefinder",
      "sort_order": 4
+    },
+    {
+     "id": "premium-compact",
+     "name_ko": "프리미엄 컴팩트",
+     "name_en": "Premium Compact",
+     "sort_order": 5
     }
    ],
    "products": [
@@ -2081,6 +2087,38 @@
      "name_en": "Nikon FE10",
      "subcategory": "entry",
      "release_year": 1996,
+     "median": null,
+     "mean": null,
+     "min": null,
+     "max": null,
+     "q1": null,
+     "q3": null,
+     "count": 0,
+     "count_filtered": 0,
+     "samples": []
+    },
+    {
+     "id": "nikon-28ti",
+     "name_ko": "니콘 28Ti",
+     "name_en": "Nikon 28Ti",
+     "subcategory": "premium-compact",
+     "release_year": 1994,
+     "median": null,
+     "mean": null,
+     "min": null,
+     "max": null,
+     "q1": null,
+     "q3": null,
+     "count": 0,
+     "count_filtered": 0,
+     "samples": []
+    },
+    {
+     "id": "nikon-35ti",
+     "name_ko": "니콘 35Ti",
+     "name_en": "Nikon 35Ti",
+     "subcategory": "premium-compact",
+     "release_year": 1993,
      "median": null,
      "mean": null,
      "min": null,
