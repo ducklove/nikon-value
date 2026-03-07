@@ -25,12 +25,21 @@ EBAY_LOGO = PROJECT_ROOT / 'assets' / 'ebay-logo.svg'
 DEFAULT_OUTPUT = PROJECT_ROOT / 'dist'
 BODY_CATEGORIES = {'z-mount-bodies', 'f-mount-dslr', 'film-cameras'}
 GA_MEASUREMENT_ID = 'G-823D75RRWJ'
+ROOT_PRODUCTS_DIR = PROJECT_ROOT / 'products'
+ROOT_FILES_TO_PUBLISH = [
+    'index.html',
+    '404.html',
+    'robots.txt',
+    'sitemap.xml',
+    '.nojekyll',
+]
 
 
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser()
     parser.add_argument('--output', default=str(DEFAULT_OUTPUT))
     parser.add_argument('--base-url', default='')
+    parser.add_argument('--publish-root', action='store_true')
     return parser.parse_args()
 
 
@@ -593,6 +602,17 @@ def copy_assets(output_dir: Path) -> None:
     (output_dir / '.nojekyll').write_text('', encoding='utf-8')
 
 
+def publish_root_site(output_dir: Path) -> None:
+    for name in ROOT_FILES_TO_PUBLISH:
+        source = output_dir / name
+        if source.exists():
+            shutil.copy2(source, PROJECT_ROOT / name)
+
+    if ROOT_PRODUCTS_DIR.exists():
+        shutil.rmtree(ROOT_PRODUCTS_DIR)
+    shutil.copytree(output_dir / 'products', ROOT_PRODUCTS_DIR)
+
+
 def main() -> None:
     args = parse_args()
     output_dir = Path(args.output).resolve()
@@ -615,6 +635,9 @@ def main() -> None:
             history = load_history(product['id'])
             product_html = build_product_page(product, category, catalog['updated'], history, base_url)
             (output_dir / 'products' / f"{product['id']}.html").write_text(product_html, encoding='utf-8')
+
+    if args.publish_root:
+        publish_root_site(output_dir)
 
 
 if __name__ == '__main__':

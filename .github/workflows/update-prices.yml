@@ -35,10 +35,7 @@ jobs:
         run: python scripts/fetch_prices.py
 
       - name: Validate public site build
-        run: python scripts/build_static_site.py --output dist
-
-      - name: Publish branch-based Pages files
-        run: python scripts/publish_branch_site.py
+        run: python scripts/build_static_site.py --output dist --publish-root
 
       - name: Commit and push data
         run: |
