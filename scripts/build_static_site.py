@@ -8,7 +8,7 @@ import json
 import os
 import shutil
 import subprocess
-from datetime import date, datetime
+from datetime import date, datetime, timedelta
 from html import escape
 from pathlib import Path
 from typing import Any
@@ -28,13 +28,13 @@ GA_MEASUREMENT_ID = 'G-823D75RRWJ'
 ROOT_PRODUCTS_DIR = PROJECT_ROOT / 'products'
 ROOT_FILES_TO_PUBLISH = [
     'index.html',
-    'board.html',
     'resources.html',
     '404.html',
     'robots.txt',
     'sitemap.xml',
     '.nojekyll',
 ]
+LEGACY_ROOT_FILES_TO_REMOVE = ['board.html']
 
 
 def parse_args() -> argparse.Namespace:
@@ -203,7 +203,6 @@ def head_block_product(*, title: str, description: str, canonical: str, image_ur
 def build_site_links(active: str, prefix: str = '') -> str:
     links = [
         ('home', f'{prefix}index.html', '시세 목록'),
-        ('board', f'{prefix}board.html', 'QnA / 건의'),
         ('resources', f'{prefix}resources.html', '참고 링크'),
     ]
     items = []
@@ -221,7 +220,20 @@ def build_site_links(active: str, prefix: str = '') -> str:
     )
 
 
-def build_footer(asset_prefix: str = '') -> str:
+def build_issue_report_url(repo_slug: str) -> str:
+    if not repo_slug:
+        return ''
+    return f'https://github.com/{repo_slug}/issues/new?title=%5BData%20Error%5D%20'
+
+
+def build_footer(asset_prefix: str = '', issue_url: str = '') -> str:
+    report_link = ''
+    if issue_url:
+        report_link = (
+            '<div class="footer-actions">'
+            f'<a href="{escape(issue_url)}" target="_blank" rel="noopener noreferrer">데이터 오류 제보</a>'
+            '</div>'
+        )
     return f"""
   <footer class=\"site-footer\">
     <div class=\"container\">
@@ -229,6 +241,7 @@ def build_footer(asset_prefix: str = '') -> str:
         <img src=\"{escape(asset_prefix)}assets/ebay-logo.svg\" alt=\"eBay\" class=\"ebay-logo\">
         <span>Powered by eBay Browse API</span>
       </div>
+      {report_link}
       <p class=\"footer-note\">가격은 현재 eBay 매물 기준이며, 실제 거래가와 다를 수 있습니다.</p>
     </div>
   </footer>"""
@@ -239,12 +252,91 @@ def compute_stale_days(updated: str) -> int:
     return (datetime.now().date() - updated_date).days
 
 
-def build_home_page(catalog: dict[str, Any], base_url: str) -> str:
+def compute_price_change(history: list[dict[str, Any]], days: int) -> dict[str, Any] | None:
+    valid = [entry for entry in history if entry.get('median') is not None]
+    if len(valid) < 2:
+        return None
+
+    latest = valid[-1]
+    latest_date = date.fromisoformat(latest['date'])
+    cutoff = latest_date - timedelta(days=days)
+    baseline = None
+    for entry in reversed(valid[:-1]):
+        if date.fromisoformat(entry['date']) <= cutoff:
+            baseline = entry
+            break
+
+    if baseline is None:
+        baseline = valid[0]
+        if baseline['date'] == latest['date']:
+            return None
+
+    baseline_price = float(baseline['median'])
+    latest_price = float(latest['median'])
+    if baseline_price <= 0:
+        return None
+
+    delta_value = latest_price - baseline_price
+    delta_pct = (delta_value / baseline_price) * 100
+    baseline_date = date.fromisoformat(baseline['date'])
+    return {
+        'days': days,
+        'baseline_date': baseline['date'],
+        'baseline_median': baseline_price,
+        'latest_date': latest['date'],
+        'latest_median': latest_price,
+        'delta_value': delta_value,
+        'delta_pct': delta_pct,
+        'actual_days': (latest_date - baseline_date).days,
+    }
+
+
+def format_change_percent(change: dict[str, Any] | None) -> str:
+    if not change:
+        return '-'
+    value = change['delta_pct']
+    sign = '+' if value > 0 else ''
+    return f'{sign}{value:.1f}%'
+
+
+def format_change_value(change: dict[str, Any] | None) -> str:
+    if not change:
+        return '-'
+    value = change['delta_value']
+    sign = '+' if value > 0 else ''
+    return f'{sign}{format_money(value)}'
+
+
+def change_tone(change: dict[str, Any] | None) -> str:
+    if not change:
+        return 'flat'
+    value = change['delta_pct']
+    if value > 0.2:
+        return 'up'
+    if value < -0.2:
+        return 'down'
+    return 'flat'
+
+
+def build_change_pill(change: dict[str, Any] | None, label: str = '30일') -> str:
+    if not change:
+        return '<span class="product-card__change product-card__change--flat">변동 데이터 부족</span>'
+    tone = change_tone(change)
+    actual_label = f"{change['actual_days']}일" if change.get('actual_days') else label
+    return (
+        f'<span class="product-card__change product-card__change--{tone}">'
+        f'{escape(actual_label)} {escape(format_change_percent(change))}'
+        '</span>'
+    )
+
+
+def build_home_page(catalog: dict[str, Any], histories: dict[str, list[dict[str, Any]]], base_url: str, repo_slug: str) -> str:
     updated = catalog['updated']
     stale_days = compute_stale_days(updated)
     total_products = sum(len(category['products']) for category in catalog['categories'])
     total_listings = sum((product.get('count') or 0) for category in catalog['categories'] for product in category['products'])
     total_categories = len(catalog['categories'])
+    issue_url = build_issue_report_url(repo_slug)
     stale_banner = ''
     if stale_days >= 2:
         stale_banner = f"""
@@ -257,6 +349,7 @@ def build_home_page(catalog: dict[str, Any], base_url: str) -> str:
     feature_order = 0
     cards = []
     image_url = f'{base_url}/assets/mynikons-1600.webp' if base_url else 'assets/mynikons-1600.webp'
+    movers: list[dict[str, Any]] = []
 
     for category in catalog['categories']:
         tabs.append(
@@ -268,6 +361,7 @@ def build_home_page(catalog: dict[str, Any], base_url: str) -> str:
         }
         for product in sort_products(category['products'], category['id']):
             feature_order += 1
+            change_30 = compute_price_change(histories.get(product['id'], []), 30)
             thumb = ''
             samples = product.get('samples') or []
             if samples and samples[0].get('image'):
@@ -281,12 +375,21 @@ def build_home_page(catalog: dict[str, Any], base_url: str) -> str:
             category_label = category['name_ko']
             if product.get('subcategory') and subcategory_lookup.get(product['subcategory']):
                 category_label = f"{category_label} / {subcategory_lookup[product['subcategory']]}"
+            if change_30:
+                movers.append(
+                    {
+                        'product': product,
+                        'category_label': category_label,
+                        'change': change_30,
+                    }
+                )
 
             price_html = (
                 f'<div class="product-card__price">{format_money(product.get("median"))}</div>'
                 if product.get('median') is not None
                 else '<div class="product-card__price product-card__price--na">데이터 없음</div>'
             )
+            change_html = build_change_pill(change_30)
             range_html = ''
             if product.get('q1') is not None and product.get('q3') is not None:
                 range_html = (
@@ -335,7 +438,7 @@ def build_home_page(catalog: dict[str, Any], base_url: str) -> str:
           <div class=\"product-card__name-en\">{escape(product['name_en'])}</div>
           <div class=\"product-card__taxonomy\">{escape(category_label)}</div>
           {price_html}
-          <div class=\"product-card__meta\"><span>현재 매물 {escape(str(product.get('count') or 0))}개</span></div>
+          <div class=\"product-card__meta\"><span>현재 매물 {escape(str(product.get('count') or 0))}개</span>{change_html}</div>
           {range_html}
         </div>
       </a>"""
@@ -354,17 +457,58 @@ def build_home_page(catalog: dict[str, Any], base_url: str) -> str:
         'dateModified': updated,
     }
     extra_meta = f"  <script type=\"application/ld+json\">{json_script(schema)}</script>\n"
-    shortcut_cards = """
+    movers_up = sorted((item for item in movers if item['change']['delta_pct'] > 0), key=lambda item: item['change']['delta_pct'], reverse=True)[:4]
+    movers_down = sorted((item for item in movers if item['change']['delta_pct'] < 0), key=lambda item: item['change']['delta_pct'])[:4]
+
+    def render_mover_cards(title: str, entries: list[dict[str, Any]], tone: str) -> str:
+        if not entries:
+            return ''
+        cards_html = []
+        for entry in entries:
+            product = entry['product']
+            change = entry['change']
+            cards_html.append(
+                f"""
+        <a class=\"mover-card mover-card--{tone}\" href=\"products/{escape(product['id'])}.html\">
+          <div class=\"mover-card__trend\">최근 {escape(str(change['actual_days']))}일 {escape('상승' if tone == 'up' else '하락')}</div>
+          <div class=\"mover-card__name\">{escape(product['name_ko'])}</div>
+          <div class=\"mover-card__category\">{escape(entry['category_label'])}</div>
+          <div class=\"mover-card__value\">{escape(format_change_percent(change))}</div>
+          <div class=\"mover-card__detail\">{escape(format_money(change['baseline_median']))} → {escape(format_money(change['latest_median']))}</div>
+        </a>"""
+            )
+        return f"""
+      <section class=\"mover-panel\">
+        <div class=\"section-header-row\">
+          <div>
+            <span class=\"section-kicker\">Price movers</span>
+            <h2 class=\"section-heading\">{escape(title)}</h2>
+          </div>
+        </div>
+        <div class=\"mover-grid\">
+{''.join(cards_html)}
+        </div>
+      </section>"""
+
+    movers_section = ''
+    if movers_up or movers_down:
+        movers_section = f"""
+    <section class=\"movers-layout\" aria-label=\"최근 가격 변동\">
+{render_mover_cards('최근 관측 구간 상승 상위', movers_up, 'up')}
+{render_mover_cards('최근 관측 구간 하락 상위', movers_down, 'down')}
+    </section>"""
+
+    shortcut_cards = f"""
     <section class="shortcut-grid" aria-label="사이트 바로가기">
-      <a class="shortcut-card" href="board.html">
-        <span class="shortcut-card__eyebrow">Community</span>
-        <strong>QnA / 건의사항</strong>
-        <p>사이트 가입 없이 질문과 개선 요청을 남길 수 있는 공개 게시판입니다.</p>
-      </a>
       <a class="shortcut-card" href="resources.html">
         <span class="shortcut-card__eyebrow">References</span>
         <strong>참고 사이트 링크</strong>
         <p>렌즈 계보, 사양, 역사 자료를 함께 볼 수 있는 외부 자료를 모았습니다.</p>
+      </a>
+      <a class="shortcut-card" href="{escape(issue_url)}" target="_blank" rel="noopener noreferrer">
+        <span class="shortcut-card__eyebrow">Report</span>
+        <strong>데이터 오류 제보</strong>
+        <p>오분류 매물, 이상 가격, 잘못된 모델 연결을 이슈로 바로 남길 수 있습니다.</p>
       </a>
     </section>"""
 
@@ -420,6 +564,7 @@ def build_home_page(catalog: dict[str, Any], base_url: str) -> str:
         </select>
       </div>
     </section>{stale_banner}
+{movers_section}
 {shortcut_cards}
 
     <div id=\"product-grid\" class=\"product-grid\">
@@ -427,7 +572,7 @@ def build_home_page(catalog: dict[str, Any], base_url: str) -> str:
     </div>
     <p id=\"catalog-empty\" class=\"empty-state-inline\" hidden>조건에 맞는 제품이 없습니다.</p>
   </main>
-{build_footer()}
+{build_footer(issue_url=issue_url)}
 
   <script src=\"js/site.js\" defer></script>
 </body>
@@ -462,12 +607,62 @@ def render_product_offer_schema(product: dict[str, Any]) -> dict[str, Any]:
     return schema
 
 
+def build_product_reference_cards(product: dict[str, Any], category: dict[str, Any], asset_prefix: str = '../') -> str:
+    cards = [
+        (
+            f'{asset_prefix}resources.html',
+            '사이트 참고 링크 모음',
+            '이 제품군을 볼 때 함께 참고할 외부 자료를 한 페이지에 모아 두었습니다.',
+            False,
+        ),
+        (
+            'https://www.nikonmuseum.com/',
+            'Nikon Museum',
+            f'{product["name_ko"]}가 속한 니콘 시스템의 역사와 아카이브를 확인할 수 있습니다.',
+            True,
+        ),
+    ]
+
+    if is_lens_category(category['id']):
+        cards.insert(
+            1,
+            (
+                'http://www.photosynthesis.co.nz/nikon/lenses.html',
+                'Photosynthesis Lens Database',
+                '수동 렌즈 포함 Nikkor 계보와 변형 확인에 가장 실용적인 데이터베이스입니다.',
+                True,
+            ),
+        )
+        cards.insert(
+            2,
+            (
+                'https://www.kenrockwell.com/nikon/nikkor.htm',
+                'Ken Rockwell Nikon Lens Index',
+                '렌즈 세대별 특징과 실사용 맥락을 빠르게 훑어보기 좋습니다.',
+                True,
+            ),
+        )
+
+    rendered = []
+    for href, title, description, external in cards:
+        target = ' target="_blank" rel="noopener noreferrer"' if external else ''
+        rendered.append(
+            f"""
+        <a class=\"detail-link-card\" href=\"{escape(href)}\"{target}>
+          <strong>{escape(title)}</strong>
+          <p>{escape(description)}</p>
+        </a>"""
+        )
+    return ''.join(rendered)
+
+
 def build_product_page(
     product: dict[str, Any],
     category: dict[str, Any],
     updated: str,
     history: list[dict[str, Any]],
     base_url: str,
+    repo_slug: str,
 ) -> str:
     description = (
         f"{product['name_ko']} eBay 현재 매물 기준 중고 시세. "
@@ -475,6 +670,8 @@ def build_product_page(
     )
     canonical = f"{base_url}/products/{product['id']}.html" if base_url else ''
     image_url = product_image(product, base_url)
+    issue_url = build_issue_report_url(repo_slug)
+    recent_change = compute_price_change(history, 30)
     schema = render_product_offer_schema(product)
     extra_meta = f"  <script type=\"application/ld+json\">{json_script(schema)}</script>\n"
     subcategory_lookup = {
@@ -492,6 +689,8 @@ def build_product_page(
         ('최고', format_money(product.get('max')), 'price-card'),
         ('매물 수', str(product.get('count') or 0), 'price-card'),
         ('Q1 - Q3', f"{format_money(product.get('q1'))} - {format_money(product.get('q3'))}" if product.get('q1') is not None and product.get('q3') is not None else '-', 'price-card'),
+        ('최근 변화', format_change_percent(recent_change), 'price-card'),
+        ('변화 금액', format_change_value(recent_change), 'price-card'),
     ]
     summary_html = '\n'.join(
         f"""        <div class=\"{klass}\">\n          <span class=\"price-label\">{escape(label)}</span>\n          <span class=\"price-value{' price-value--small' if 'Q1' in label else ''}\">{escape(value)}</span>\n        </div>"""
@@ -541,6 +740,13 @@ def build_product_page(
         f'<span class="meta-pill">업데이트 {escape(updated)}</span>',
         f'<span class="meta-pill">매물 {escape(str(product.get("count") or 0))}개</span>',
     ]
+    reference_cards = build_product_reference_cards(product, category)
+    movement_note = '최근 변화 데이터를 아직 만들기 어렵습니다.'
+    if recent_change:
+        movement_note = (
+            f"최근 {recent_change['actual_days']}일 기준 중앙값 {format_change_percent(recent_change)} "
+            f"({format_change_value(recent_change)}) 변동했습니다."
+        )
 
     return f"""<!DOCTYPE html>
 <html lang=\"ko\">
@@ -561,7 +767,7 @@ def build_product_page(
 {summary_html}
     </div>
 
-    <p class=\"detail-note\">시세는 eBay 미국 현재 매물 기준이며, 실제 체결가와는 차이가 있을 수 있습니다.</p>
+    <p class=\"detail-note\">시세는 eBay 미국 현재 매물 기준이며, 실제 체결가와는 차이가 있을 수 있습니다. {escape(movement_note)}</p>
 
     <section class=\"chart-section\">
       <div class=\"chart-header\">
@@ -587,8 +793,20 @@ def build_product_page(
 {''.join(listing_cards)}
       </div>
     </section>
+
+    <section class=\"references-section\">
+      <div class=\"section-header-row\">
+        <div>
+          <span class=\"section-kicker\">Research links</span>
+          <h2 class=\"section-heading\">참고 자료</h2>
+        </div>
+      </div>
+      <div class=\"detail-links-grid\">
+{reference_cards}
+      </div>
+    </section>
   </main>
-{build_footer('../')}
+{build_footer('../', issue_url=issue_url)}
 
   <script id=\"history-data\" type=\"application/json\">{json_script(history)}</script>
   <script src=\"https://cdn.jsdelivr.net/npm/chart.js@4/dist/chart.umd.min.js\"></script>
@@ -598,76 +816,11 @@ def build_product_page(
 """
 
 
-def build_board_page(base_url: str, repo_slug: str) -> str:
-    canonical = f'{base_url}/board.html' if base_url else ''
-    image_url = f'{base_url}/assets/mynikons-1600.webp' if base_url else 'assets/mynikons-1600.webp'
-    description = '질문, 건의사항, 데이터 오류 제보를 남길 수 있는 공개 게시판입니다.'
-    api_url = f'https://api.github.com/repos/{repo_slug}/issues?state=open&per_page=30'
-    question_url = f'https://github.com/{repo_slug}/issues/new?title=%5BQnA%5D%20'
-    feedback_url = f'https://github.com/{repo_slug}/issues/new?title=%5BFeedback%5D%20'
-    schema = {
-        '@context': 'https://schema.org',
-        '@type': 'CollectionPage',
-        'name': 'QnA / 건의사항',
-        'description': description,
-    }
-    extra_meta = f"  <script type=\"application/ld+json\">{json_script(schema)}</script>\n"
-    board_config = {
-        'api_url': api_url,
-        'question_url': question_url,
-        'feedback_url': feedback_url,
-    }
-    return f"""<!DOCTYPE html>
-<html lang=\"ko\">
-{head_block(title='QnA / 건의사항 - 니콘 중고 시세 트래커', description=description, canonical=canonical, image_url=image_url, extra_meta=extra_meta)}
-<body data-page=\"board\">
-  <header class=\"site-header\">
-    <div class=\"container page-header\">
-      <h1 class=\"site-title\">QnA / 건의사항</h1>
-      <p class=\"site-subtitle\">읽기는 사이트에서 바로 보고, 작성은 GitHub Issues로 연결합니다.</p>
-      <p class=\"site-updated\">사이트 회원가입은 없고, 글 작성에는 GitHub 로그인만 필요합니다.</p>
-    </div>
-  </header>
-  {build_site_links('board')}
-
-  <main class=\"container page-main\">
-    <section class=\"board-intro\">
-      <div class=\"info-card\">
-        <span class=\"section-kicker\">Community board</span>
-        <h2 class=\"section-heading\">질문과 개선 요청을 남길 수 있습니다</h2>
-        <p class=\"detail-note detail-note--normal\">순수 정적 GitHub Pages 환경이라 익명 DB 저장은 붙이지 않았습니다. 대신 공개 이슈 기반으로 운영해 관리와 스팸 대응을 단순하게 유지합니다.</p>
-      </div>
-      <div class=\"board-actions\">
-        <a class=\"action-button action-button--primary\" href=\"{escape(question_url)}\" target=\"_blank\" rel=\"noopener noreferrer\">QnA 남기기</a>
-        <a class=\"action-button\" href=\"{escape(feedback_url)}\" target=\"_blank\" rel=\"noopener noreferrer\">건의사항 남기기</a>
-      </div>
-    </section>
-
-    <section class=\"board-list-section\">
-      <div class=\"section-header-row\">
-        <div>
-          <span class=\"section-kicker\">Latest issues</span>
-          <h2 class=\"section-heading\">최근 글</h2>
-        </div>
-      </div>
-      <div id=\"board-list\" class=\"board-list\" aria-live=\"polite\">
-        <p class=\"loading\">게시글을 불러오는 중입니다.</p>
-      </div>
-    </section>
-  </main>
-
-{build_footer()}
-  <script id=\"board-config\" type=\"application/json\">{json_script(board_config)}</script>
-  <script src=\"js/site.js\" defer></script>
-</body>
-</html>
-"""
-
-
-def build_resources_page(base_url: str) -> str:
+def build_resources_page(base_url: str, repo_slug: str) -> str:
     canonical = f'{base_url}/resources.html' if base_url else ''
     image_url = f'{base_url}/assets/mynikons-1600.webp' if base_url else 'assets/mynikons-1600.webp'
     description = '니콘 렌즈 계보, 리뷰, 역사 자료를 볼 수 있는 참고 사이트 모음입니다.'
+    issue_url = build_issue_report_url(repo_slug)
     schema = {
         '@context': 'https://schema.org',
         '@type': 'CollectionPage',
@@ -726,7 +879,7 @@ def build_resources_page(base_url: str) -> str:
     </section>
   </main>
 
-{build_footer()}
+{build_footer(issue_url=issue_url)}
   <script src=\"js/site.js\" defer></script>
 </body>
 </html>
@@ -755,7 +908,7 @@ def build_404_page(base_url: str) -> str:
 def build_sitemap(catalog: dict[str, Any], base_url: str) -> str:
     if not base_url:
         return ''
-    urls = [f'{base_url}/', f'{base_url}/board.html', f'{base_url}/resources.html']
+    urls = [f'{base_url}/', f'{base_url}/resources.html']
     for category in catalog['categories']:
         for product in category['products']:
             urls.append(f"{base_url}/products/{product['id']}.html")
@@ -799,6 +952,11 @@ def publish_root_site(output_dir: Path) -> None:
         if source.exists():
             shutil.copy2(source, PROJECT_ROOT / name)
 
+    for name in LEGACY_ROOT_FILES_TO_REMOVE:
+        target = PROJECT_ROOT / name
+        if target.exists():
+            target.unlink()
+
     if ROOT_PRODUCTS_DIR.exists():
         shutil.rmtree(ROOT_PRODUCTS_DIR)
     shutil.copytree(output_dir / 'products', ROOT_PRODUCTS_DIR)
@@ -810,13 +968,17 @@ def main() -> None:
     base_url = detect_base_url(args.base_url)
     repo_slug = detect_repo_slug()
     catalog = load_catalog()
+    histories = {
+        product['id']: load_history(product['id'])
+        for category in catalog['categories']
+        for product in category['products']
+    }
 
     clean_output(output_dir)
     copy_assets(output_dir)
 
-    (output_dir / 'index.html').write_text(build_home_page(catalog, base_url), encoding='utf-8')
-    (output_dir / 'board.html').write_text(build_board_page(base_url, repo_slug), encoding='utf-8')
-    (output_dir / 'resources.html').write_text(build_resources_page(base_url), encoding='utf-8')
+    (output_dir / 'index.html').write_text(build_home_page(catalog, histories, base_url, repo_slug), encoding='utf-8')
+    (output_dir / 'resources.html').write_text(build_resources_page(base_url, repo_slug), encoding='utf-8')
     (output_dir / '404.html').write_text(build_404_page(base_url), encoding='utf-8')
     (output_dir / 'robots.txt').write_text(build_robots(base_url), encoding='utf-8')
 
@@ -826,8 +988,8 @@ def main() -> None:
 
     for category in catalog['categories']:
         for product in category['products']:
-            history = load_history(product['id'])
-            product_html = build_product_page(product, category, catalog['updated'], history, base_url)
+            history = histories[product['id']]
+            product_html = build_product_page(product, category, catalog['updated'], history, base_url, repo_slug)
             (output_dir / 'products' / f"{product['id']}.html").write_text(product_html, encoding='utf-8')
 
     if args.publish_root:

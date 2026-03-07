@@ -269,102 +269,10 @@
     applyPeriod(activePeriod);
   }
 
-  function formatDate(value) {
-    if (!value) return '';
-    const date = new Date(value);
-    if (Number.isNaN(date.getTime())) return value;
-    return date.toLocaleDateString('ko-KR', {
-      year: 'numeric',
-      month: 'short',
-      day: 'numeric',
-    });
-  }
-
-  function renderBoardItems(container, items) {
-    if (!items.length) {
-      container.innerHTML = '<p class="empty-state-inline">아직 공개된 QnA나 건의사항이 없습니다.</p>';
-      return;
-    }
-
-    container.innerHTML = items
-      .map((item) => {
-        const title = item.title || '';
-        const labels = (item.labels || [])
-          .filter((label) => ['question', 'feedback'].includes((label.name || '').toLowerCase()))
-          .map((label) => {
-            const name = (label.name || '').toLowerCase() === 'question' ? 'QnA' : '건의';
-            return `<span class="issue-label">${name}</span>`;
-          })
-          .join('') || (
-            title.startsWith('[QnA]') ? '<span class="issue-label">QnA</span>' :
-            title.startsWith('[Feedback]') ? '<span class="issue-label">건의</span>' :
-            ''
-          );
-        const body = (item.body || '').trim().replace(/\s+/g, ' ');
-        const snippet = body ? `${body.slice(0, 180)}${body.length > 180 ? '...' : ''}` : '본문 미리보기가 없습니다.';
-        const author = item.user?.login || 'unknown';
-        return `
-          <article class="board-card">
-            <div class="board-card__meta">
-              <div class="board-card__labels">${labels}</div>
-              <span>#${item.number}</span>
-            </div>
-            <h3 class="board-card__title">
-              <a href="${item.html_url}" target="_blank" rel="noopener noreferrer">${title}</a>
-            </h3>
-            <p class="board-card__snippet">${snippet}</p>
-            <div class="board-card__footer">
-              <span>${author}</span>
-              <span>${formatDate(item.created_at)}</span>
-            </div>
-          </article>`;
-      })
-      .join('');
-  }
-
-  function initBoardPage() {
-    const container = document.getElementById('board-list');
-    const config = readJsonScript('board-config', null);
-    if (!container || !config?.api_url) return;
-
-    fetch(config.api_url, {
-      headers: { Accept: 'application/vnd.github+json' },
-    })
-      .then((response) => {
-        if (!response.ok) throw new Error(`HTTP ${response.status}`);
-        return response.json();
-      })
-      .then((items) => {
-        const filtered = items
-          .filter((item) => !item.pull_request)
-          .filter((item) => {
-            const title = item.title || '';
-            const labels = (item.labels || []).map((label) => (label.name || '').toLowerCase());
-            return (
-              labels.includes('question') ||
-              labels.includes('feedback') ||
-              title.startsWith('[QnA]') ||
-              title.startsWith('[Feedback]')
-            );
-          });
-        renderBoardItems(container, filtered);
-      })
-      .catch((error) => {
-        console.error('Failed to load board items:', error);
-        container.innerHTML = `
-          <div class="empty-state-inline">
-            <p>게시글을 불러오지 못했습니다.</p>
-            <p class="detail-note detail-note--normal">GitHub API 호출 제한 또는 네트워크 오류일 수 있습니다. 잠시 후 다시 시도하거나 직접 이슈 작성 버튼을 사용하세요.</p>
-          </div>`;
-      });
-  }
-
   const pageType = document.body.dataset.page;
   if (pageType === 'catalog') {
     initCatalogPage();
   } else if (pageType === 'product') {
     initProductPage();
-  } else if (pageType === 'board') {
-    initBoardPage();
   }
 })();
