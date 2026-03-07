@@ -6,7 +6,6 @@
 
   let catalogData = null;
   let activeCategory = null;
-  let searchQuery = "";
 
   async function init() {
     try {
@@ -19,7 +18,6 @@
         `최종 업데이트: ${catalogData.updated}`;
 
       renderCategoryTabs();
-      initSearch();
       renderProducts();
     } catch (err) {
       console.error("Failed to load catalog:", err);
@@ -74,23 +72,6 @@
     });
   }
 
-  function initSearch() {
-    const input = document.getElementById("search-input");
-    input.addEventListener("input", () => {
-      searchQuery = input.value.trim().toLowerCase();
-      renderProducts();
-    });
-  }
-
-  function matchesSearch(product) {
-    if (!searchQuery) return true;
-    return (
-      product.name_ko.toLowerCase().includes(searchQuery) ||
-      product.name_en.toLowerCase().includes(searchQuery) ||
-      product.id.toLowerCase().includes(searchQuery)
-    );
-  }
-
   const BODY_CATEGORIES = ["z-mount-bodies", "f-mount-dslr", "film-cameras"];
 
   function isLensCategory(catId) {
@@ -118,13 +99,10 @@
       : catalogData.categories;
 
     for (const cat of categories) {
-      const filtered = cat.products.filter(matchesSearch);
-      if (filtered.length === 0) continue;
-
       if (activeCategory && cat.subcategories && cat.subcategories.length > 0) {
-        renderGroupedProducts(grid, cat, filtered);
+        renderGroupedProducts(grid, cat);
       } else {
-        const sorted = sortProducts(filtered, cat.id);
+        const sorted = sortProducts(cat.products, cat.id);
         for (const product of sorted) {
           const card = createProductCard(product, cat.id);
           grid.appendChild(card);
@@ -133,13 +111,13 @@
     }
   }
 
-  function renderGroupedProducts(grid, category, filteredProducts) {
+  function renderGroupedProducts(grid, category) {
     const subcategories = [...category.subcategories].sort(
       (a, b) => a.sort_order - b.sort_order
     );
 
     for (const sub of subcategories) {
-      const products = filteredProducts.filter(
+      const products = category.products.filter(
         (p) => p.subcategory === sub.id
       );
       if (products.length === 0) continue;
