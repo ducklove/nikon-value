@@ -92,28 +92,6 @@ def detect_base_url(cli_value: str) -> str:
     return f'https://{owner}.github.io/{repo}'
 
 
-def detect_repo_slug() -> str:
-    repo_slug = os.environ.get('GITHUB_REPOSITORY')
-    if repo_slug and '/' in repo_slug:
-        return repo_slug
-
-    try:
-        remote = subprocess.check_output(
-            ['git', 'config', '--get', 'remote.origin.url'],
-            cwd=PROJECT_ROOT,
-            text=True,
-        ).strip()
-    except Exception:
-        return ''
-
-    remote = remote.removesuffix('.git')
-    if remote.startswith('git@github.com:'):
-        return remote.split(':', 1)[1]
-    if remote.startswith('https://github.com/'):
-        return remote.split('https://github.com/', 1)[1]
-    return ''
-
-
 def ensure_dir(path: Path) -> None:
     path.mkdir(parents=True, exist_ok=True)
 
@@ -220,20 +198,7 @@ def build_site_links(active: str, prefix: str = '') -> str:
     )
 
 
-def build_issue_report_url(repo_slug: str) -> str:
-    if not repo_slug:
-        return ''
-    return f'https://github.com/{repo_slug}/issues/new?title=%5BData%20Error%5D%20'
-
-
-def build_footer(asset_prefix: str = '', issue_url: str = '') -> str:
-    report_link = ''
-    if issue_url:
-        report_link = (
-            '<div class="footer-actions">'
-            f'<a href="{escape(issue_url)}" target="_blank" rel="noopener noreferrer">데이터 오류 제보</a>'
-            '</div>'
-        )
+def build_footer(asset_prefix: str = '') -> str:
     return f"""
   <footer class=\"site-footer\">
     <div class=\"container\">
@@ -241,7 +206,6 @@ def build_footer(asset_prefix: str = '', issue_url: str = '') -> str:
         <img src=\"{escape(asset_prefix)}assets/ebay-logo.svg\" alt=\"eBay\" class=\"ebay-logo\">
         <span>Powered by eBay Browse API</span>
       </div>
-      {report_link}
       <p class=\"footer-note\">가격은 현재 eBay 매물 기준이며, 실제 거래가와 다를 수 있습니다.</p>
     </div>
   </footer>"""
@@ -307,36 +271,12 @@ def format_change_value(change: dict[str, Any] | None) -> str:
     return f'{sign}{format_money(value)}'
 
 
-def change_tone(change: dict[str, Any] | None) -> str:
-    if not change:
-        return 'flat'
-    value = change['delta_pct']
-    if value > 0.2:
-        return 'up'
-    if value < -0.2:
-        return 'down'
-    return 'flat'
-
-
-def build_change_pill(change: dict[str, Any] | None, label: str = '30일') -> str:
-    if not change:
-        return '<span class="product-card__change product-card__change--flat">변동 데이터 부족</span>'
-    tone = change_tone(change)
-    actual_label = f"{change['actual_days']}일" if change.get('actual_days') else label
-    return (
-        f'<span class="product-card__change product-card__change--{tone}">'
-        f'{escape(actual_label)} {escape(format_change_percent(change))}'
-        '</span>'
-    )
-
-
-def build_home_page(catalog: dict[str, Any], histories: dict[str, list[dict[str, Any]]], base_url: str, repo_slug: str) -> str:
+def build_home_page(catalog: dict[str, Any], base_url: str) -> str:
     updated = catalog['updated']
     stale_days = compute_stale_days(updated)
     total_products = sum(len(category['products']) for category in catalog['categories'])
     total_listings = sum((product.get('count') or 0) for category in catalog['categories'] for product in category['products'])
     total_categories = len(catalog['categories'])
-    issue_url = build_issue_report_url(repo_slug)
     stale_banner = ''
     if stale_days >= 2:
         stale_banner = f"""
@@ -349,7 +289,6 @@ def build_home_page(catalog: dict[str, Any], histories: dict[str, list[dict[str,
     feature_order = 0
     cards = []
     image_url = f'{base_url}/assets/mynikons-1600.webp' if base_url else 'assets/mynikons-1600.webp'
-    movers: list[dict[str, Any]] = []
 
     for category in catalog['categories']:
         tabs.append(
@@ -361,7 +300,6 @@ def build_home_page(catalog: dict[str, Any], histories: dict[str, list[dict[str,
         }
         for product in sort_products(category['products'], category['id']):
             feature_order += 1
-            change_30 = compute_price_change(histories.get(product['id'], []), 30)
             thumb = ''
             samples = product.get('samples') or []
             if samples and samples[0].get('image'):
@@ -375,21 +313,11 @@ def build_home_page(catalog: dict[str, Any], histories: dict[str, list[dict[str,
             category_label = category['name_ko']
             if product.get('subcategory') and subcategory_lookup.get(product['subcategory']):
                 category_label = f"{category_label} / {subcategory_lookup[product['subcategory']]}"
-            if change_30:
-                movers.append(
-                    {
-                        'product': product,
-                        'category_label': category_label,
-                        'change': change_30,
-                    }
-                )
-
             price_html = (
                 f'<div class="product-card__price">{format_money(product.get("median"))}</div>'
                 if product.get('median') is not None
                 else '<div class="product-card__price product-card__price--na">데이터 없음</div>'
             )
-            change_html = build_change_pill(change_30)
             range_html = ''
             if product.get('q1') is not None and product.get('q3') is not None:
                 range_html = (
@@ -438,7 +366,7 @@ def build_home_page(catalog: dict[str, Any], histories: dict[str, list[dict[str,
           <div class=\"product-card__name-en\">{escape(product['name_en'])}</div>
           <div class=\"product-card__taxonomy\">{escape(category_label)}</div>
           {price_html}
-          <div class=\"product-card__meta\"><span>현재 매물 {escape(str(product.get('count') or 0))}개</span>{change_html}</div>
+          <div class=\"product-card__meta\"><span>현재 매물 {escape(str(product.get('count') or 0))}개</span></div>
           {range_html}
         </div>
       </a>"""
@@ -457,58 +385,12 @@ def build_home_page(catalog: dict[str, Any], histories: dict[str, list[dict[str,
         'dateModified': updated,
     }
     extra_meta = f"  <script type=\"application/ld+json\">{json_script(schema)}</script>\n"
-    movers_up = sorted((item for item in movers if item['change']['delta_pct'] > 0), key=lambda item: item['change']['delta_pct'], reverse=True)[:4]
-    movers_down = sorted((item for item in movers if item['change']['delta_pct'] < 0), key=lambda item: item['change']['delta_pct'])[:4]
-
-    def render_mover_cards(title: str, entries: list[dict[str, Any]], tone: str) -> str:
-        if not entries:
-            return ''
-        cards_html = []
-        for entry in entries:
-            product = entry['product']
-            change = entry['change']
-            cards_html.append(
-                f"""
-        <a class=\"mover-card mover-card--{tone}\" href=\"products/{escape(product['id'])}.html\">
-          <div class=\"mover-card__trend\">최근 {escape(str(change['actual_days']))}일 {escape('상승' if tone == 'up' else '하락')}</div>
-          <div class=\"mover-card__name\">{escape(product['name_ko'])}</div>
-          <div class=\"mover-card__category\">{escape(entry['category_label'])}</div>
-          <div class=\"mover-card__value\">{escape(format_change_percent(change))}</div>
-          <div class=\"mover-card__detail\">{escape(format_money(change['baseline_median']))} → {escape(format_money(change['latest_median']))}</div>
-        </a>"""
-            )
-        return f"""
-      <section class=\"mover-panel\">
-        <div class=\"section-header-row\">
-          <div>
-            <span class=\"section-kicker\">Price movers</span>
-            <h2 class=\"section-heading\">{escape(title)}</h2>
-          </div>
-        </div>
-        <div class=\"mover-grid\">
-{''.join(cards_html)}
-        </div>
-      </section>"""
-
-    movers_section = ''
-    if movers_up or movers_down:
-        movers_section = f"""
-    <section class=\"movers-layout\" aria-label=\"최근 가격 변동\">
-{render_mover_cards('최근 관측 구간 상승 상위', movers_up, 'up')}
-{render_mover_cards('최근 관측 구간 하락 상위', movers_down, 'down')}
-    </section>"""
-
-    shortcut_cards = f"""
+    shortcut_cards = """
     <section class="shortcut-grid" aria-label="사이트 바로가기">
       <a class="shortcut-card" href="resources.html">
         <span class="shortcut-card__eyebrow">References</span>
         <strong>참고 사이트 링크</strong>
         <p>렌즈 계보, 사양, 역사 자료를 함께 볼 수 있는 외부 자료를 모았습니다.</p>
-      </a>
-      <a class="shortcut-card" href="{escape(issue_url)}" target="_blank" rel="noopener noreferrer">
-        <span class="shortcut-card__eyebrow">Report</span>
-        <strong>데이터 오류 제보</strong>
-        <p>오분류 매물, 이상 가격, 잘못된 모델 연결을 이슈로 바로 남길 수 있습니다.</p>
       </a>
     </section>"""
 
@@ -564,7 +446,6 @@ def build_home_page(catalog: dict[str, Any], histories: dict[str, list[dict[str,
         </select>
       </div>
     </section>{stale_banner}
-{movers_section}
 {shortcut_cards}
 
     <div id=\"product-grid\" class=\"product-grid\">
@@ -572,7 +453,7 @@ def build_home_page(catalog: dict[str, Any], histories: dict[str, list[dict[str,
     </div>
     <p id=\"catalog-empty\" class=\"empty-state-inline\" hidden>조건에 맞는 제품이 없습니다.</p>
   </main>
-{build_footer(issue_url=issue_url)}
+{build_footer()}
 
   <script src=\"js/site.js\" defer></script>
 </body>
@@ -662,7 +543,6 @@ def build_product_page(
     updated: str,
     history: list[dict[str, Any]],
     base_url: str,
-    repo_slug: str,
 ) -> str:
     description = (
         f"{product['name_ko']} eBay 현재 매물 기준 중고 시세. "
@@ -670,7 +550,6 @@ def build_product_page(
     )
     canonical = f"{base_url}/products/{product['id']}.html" if base_url else ''
     image_url = product_image(product, base_url)
-    issue_url = build_issue_report_url(repo_slug)
     recent_change = compute_price_change(history, 30)
     schema = render_product_offer_schema(product)
     extra_meta = f"  <script type=\"application/ld+json\">{json_script(schema)}</script>\n"
@@ -806,7 +685,7 @@ def build_product_page(
       </div>
     </section>
   </main>
-{build_footer('../', issue_url=issue_url)}
+{build_footer('../')}
 
   <script id=\"history-data\" type=\"application/json\">{json_script(history)}</script>
   <script src=\"https://cdn.jsdelivr.net/npm/chart.js@4/dist/chart.umd.min.js\"></script>
@@ -816,11 +695,10 @@ def build_product_page(
 """
 
 
-def build_resources_page(base_url: str, repo_slug: str) -> str:
+def build_resources_page(base_url: str) -> str:
     canonical = f'{base_url}/resources.html' if base_url else ''
     image_url = f'{base_url}/assets/mynikons-1600.webp' if base_url else 'assets/mynikons-1600.webp'
     description = '니콘 렌즈 계보, 리뷰, 역사 자료를 볼 수 있는 참고 사이트 모음입니다.'
-    issue_url = build_issue_report_url(repo_slug)
     schema = {
         '@context': 'https://schema.org',
         '@type': 'CollectionPage',
@@ -879,7 +757,7 @@ def build_resources_page(base_url: str, repo_slug: str) -> str:
     </section>
   </main>
 
-{build_footer(issue_url=issue_url)}
+{build_footer()}
   <script src=\"js/site.js\" defer></script>
 </body>
 </html>
@@ -966,7 +844,6 @@ def main() -> None:
     args = parse_args()
     output_dir = Path(args.output).resolve()
     base_url = detect_base_url(args.base_url)
-    repo_slug = detect_repo_slug()
     catalog = load_catalog()
     histories = {
         product['id']: load_history(product['id'])
@@ -977,8 +854,8 @@ def main() -> None:
     clean_output(output_dir)
     copy_assets(output_dir)
 
-    (output_dir / 'index.html').write_text(build_home_page(catalog, histories, base_url, repo_slug), encoding='utf-8')
-    (output_dir / 'resources.html').write_text(build_resources_page(base_url, repo_slug), encoding='utf-8')
+    (output_dir / 'index.html').write_text(build_home_page(catalog, base_url), encoding='utf-8')
+    (output_dir / 'resources.html').write_text(build_resources_page(base_url), encoding='utf-8')
     (output_dir / '404.html').write_text(build_404_page(base_url), encoding='utf-8')
     (output_dir / 'robots.txt').write_text(build_robots(base_url), encoding='utf-8')
 
@@ -989,7 +866,7 @@ def main() -> None:
     for category in catalog['categories']:
         for product in category['products']:
             history = histories[product['id']]
-            product_html = build_product_page(product, category, catalog['updated'], history, base_url, repo_slug)
+            product_html = build_product_page(product, category, catalog['updated'], history, base_url)
             (output_dir / 'products' / f"{product['id']}.html").write_text(product_html, encoding='utf-8')
 
     if args.publish_root:

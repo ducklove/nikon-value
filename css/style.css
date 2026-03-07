@@ -329,7 +329,7 @@ select:focus-visible {
 
 .shortcut-grid {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 16px;
   margin-top: 20px;
 }
@@ -362,65 +362,6 @@ select:focus-visible {
   font-weight: 700;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-}
-
-.movers-layout {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 16px;
-  margin-top: 20px;
-}
-
-.mover-panel {
-  background: var(--color-surface);
-  border-radius: var(--radius);
-  padding: 20px;
-  box-shadow: var(--shadow);
-}
-
-.mover-grid {
-  display: grid;
-  gap: 12px;
-}
-
-.mover-card {
-  display: block;
-  padding: 16px;
-  border-radius: var(--radius-sm);
-  text-decoration: none;
-  color: inherit;
-  background: var(--color-bg);
-}
-
-.mover-card--up {
-  background: linear-gradient(135deg, #f2fbf3 0%, #ffffff 100%);
-}
-
-.mover-card--down {
-  background: linear-gradient(135deg, #fff4f4 0%, #ffffff 100%);
-}
-
-.mover-card__trend,
-.mover-card__category {
-  color: var(--color-text-secondary);
-  font-size: 0.8rem;
-}
-
-.mover-card__name {
-  font-size: 0.98rem;
-  font-weight: 700;
-  margin: 6px 0 4px;
-}
-
-.mover-card__value {
-  font-size: 1.15rem;
-  font-weight: 700;
-  margin-top: 10px;
-}
-
-.mover-card__detail {
-  color: var(--color-text-secondary);
-  font-size: 0.82rem;
 }
 
 /* === Product Grid === */
@@ -531,32 +472,6 @@ select:focus-visible {
   align-items: center;
   gap: 8px;
   font-size: 0.75rem;
-  color: var(--color-text-secondary);
-}
-
-.product-card__change {
-  display: inline-flex;
-  align-items: center;
-  min-height: 24px;
-  padding: 0 8px;
-  border-radius: 999px;
-  font-size: 0.72rem;
-  font-weight: 700;
-  white-space: nowrap;
-}
-
-.product-card__change--up {
-  background: #eef8ef;
-  color: #1d6d2f;
-}
-
-.product-card__change--down {
-  background: #fff0f0;
-  color: #a13030;
-}
-
-.product-card__change--flat {
-  background: #f0f0f2;
   color: var(--color-text-secondary);
 }
 
@@ -857,21 +772,6 @@ select:focus-visible {
   width: auto;
 }
 
-.footer-actions {
-  margin-top: 12px;
-}
-
-.footer-actions a {
-  color: var(--color-text);
-  text-decoration: none;
-  font-size: 0.84rem;
-  font-weight: 600;
-}
-
-.footer-actions a:hover {
-  text-decoration: underline;
-}
-
 .footer-note {
   font-size: 0.75rem;
   color: var(--color-text-secondary);
@@ -972,7 +872,6 @@ select:focus-visible {
   }
 
   .shortcut-grid,
-  .movers-layout,
   .resources-grid,
   .detail-links-grid {
     grid-template-columns: 1fr;
