@@ -28,6 +28,8 @@ GA_MEASUREMENT_ID = 'G-823D75RRWJ'
 ROOT_PRODUCTS_DIR = PROJECT_ROOT / 'products'
 ROOT_FILES_TO_PUBLISH = [
     'index.html',
+    'board.html',
+    'resources.html',
     '404.html',
     'robots.txt',
     'sitemap.xml',
@@ -88,6 +90,28 @@ def detect_base_url(cli_value: str) -> str:
         return ''
     owner, repo = repo_slug.split('/', 1)
     return f'https://{owner}.github.io/{repo}'
+
+
+def detect_repo_slug() -> str:
+    repo_slug = os.environ.get('GITHUB_REPOSITORY')
+    if repo_slug and '/' in repo_slug:
+        return repo_slug
+
+    try:
+        remote = subprocess.check_output(
+            ['git', 'config', '--get', 'remote.origin.url'],
+            cwd=PROJECT_ROOT,
+            text=True,
+        ).strip()
+    except Exception:
+        return ''
+
+    remote = remote.removesuffix('.git')
+    if remote.startswith('git@github.com:'):
+        return remote.split(':', 1)[1]
+    if remote.startswith('https://github.com/'):
+        return remote.split('https://github.com/', 1)[1]
+    return ''
 
 
 def ensure_dir(path: Path) -> None:
@@ -174,6 +198,40 @@ def head_block_product(*, title: str, description: str, canonical: str, image_ur
   <link href=\"https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap\" rel=\"stylesheet\">
   <link rel=\"stylesheet\" href=\"../css/style.css\">
 {extra_meta}</head>"""
+
+
+def build_site_links(active: str, prefix: str = '') -> str:
+    links = [
+        ('home', f'{prefix}index.html', '시세 목록'),
+        ('board', f'{prefix}board.html', 'QnA / 건의'),
+        ('resources', f'{prefix}resources.html', '참고 링크'),
+    ]
+    items = []
+    for key, href, label in links:
+        class_name = 'site-link is-active' if key == active else 'site-link'
+        items.append(f'<a class="{class_name}" href="{escape(href)}">{escape(label)}</a>')
+    return (
+        '<div class="site-links-wrap">'
+        '<div class="container">'
+        '<nav class="site-links" aria-label="사이트 바로가기">'
+        f'{"".join(items)}'
+        '</nav>'
+        '</div>'
+        '</div>'
+    )
+
+
+def build_footer(asset_prefix: str = '') -> str:
+    return f"""
+  <footer class=\"site-footer\">
+    <div class=\"container\">
+      <div class=\"footer-attribution\">
+        <img src=\"{escape(asset_prefix)}assets/ebay-logo.svg\" alt=\"eBay\" class=\"ebay-logo\">
+        <span>Powered by eBay Browse API</span>
+      </div>
+      <p class=\"footer-note\">가격은 현재 eBay 매물 기준이며, 실제 거래가와 다를 수 있습니다.</p>
+    </div>
+  </footer>"""
 
 
 def compute_stale_days(updated: str) -> int:
@@ -296,6 +354,19 @@ def build_home_page(catalog: dict[str, Any], base_url: str) -> str:
         'dateModified': updated,
     }
     extra_meta = f"  <script type=\"application/ld+json\">{json_script(schema)}</script>\n"
+    shortcut_cards = """
+    <section class="shortcut-grid" aria-label="사이트 바로가기">
+      <a class="shortcut-card" href="board.html">
+        <span class="shortcut-card__eyebrow">Community</span>
+        <strong>QnA / 건의사항</strong>
+        <p>사이트 가입 없이 질문과 개선 요청을 남길 수 있는 공개 게시판입니다.</p>
+      </a>
+      <a class="shortcut-card" href="resources.html">
+        <span class="shortcut-card__eyebrow">References</span>
+        <strong>참고 사이트 링크</strong>
+        <p>렌즈 계보, 사양, 역사 자료를 함께 볼 수 있는 외부 자료를 모았습니다.</p>
+      </a>
+    </section>"""
 
     return f"""<!DOCTYPE html>
 <html lang=\"ko\">
@@ -316,6 +387,7 @@ def build_home_page(catalog: dict[str, Any], base_url: str) -> str:
       </div>
     </div>
   </header>
+  {build_site_links('home')}
 
   <nav class=\"category-nav\" aria-label=\"카테고리 필터\">
     <div class=\"container\">
@@ -348,22 +420,14 @@ def build_home_page(catalog: dict[str, Any], base_url: str) -> str:
         </select>
       </div>
     </section>{stale_banner}
+{shortcut_cards}
 
     <div id=\"product-grid\" class=\"product-grid\">
 {''.join(cards)}
     </div>
     <p id=\"catalog-empty\" class=\"empty-state-inline\" hidden>조건에 맞는 제품이 없습니다.</p>
   </main>
-
-  <footer class=\"site-footer\">
-    <div class=\"container\">
-      <div class=\"footer-attribution\">
-        <img src=\"assets/ebay-logo.svg\" alt=\"eBay\" class=\"ebay-logo\">
-        <span>Powered by eBay Browse API</span>
-      </div>
-      <p class=\"footer-note\">가격은 현재 eBay 매물 기준이며, 실제 거래가와 다를 수 있습니다.</p>
-    </div>
-  </footer>
+{build_footer()}
 
   <script src=\"js/site.js\" defer></script>
 </body>
@@ -490,6 +554,7 @@ def build_product_page(
       <div class=\"product-header-meta\">{''.join(meta_pills)}</div>
     </div>
   </header>
+  {build_site_links('home', '../')}
 
   <main class=\"container\">
     <div class=\"price-summary\">
@@ -523,20 +588,146 @@ def build_product_page(
       </div>
     </section>
   </main>
-
-  <footer class=\"site-footer\">
-    <div class=\"container\">
-      <div class=\"footer-attribution\">
-        <img src=\"../assets/ebay-logo.svg\" alt=\"eBay\" class=\"ebay-logo\">
-        <span>Powered by eBay Browse API</span>
-      </div>
-      <p class=\"footer-note\">가격은 현재 eBay 매물 기준이며, 실제 거래가와 다를 수 있습니다.</p>
-    </div>
-  </footer>
+{build_footer('../')}
 
   <script id=\"history-data\" type=\"application/json\">{json_script(history)}</script>
   <script src=\"https://cdn.jsdelivr.net/npm/chart.js@4/dist/chart.umd.min.js\"></script>
   <script src=\"../js/site.js\" defer></script>
+</body>
+</html>
+"""
+
+
+def build_board_page(base_url: str, repo_slug: str) -> str:
+    canonical = f'{base_url}/board.html' if base_url else ''
+    image_url = f'{base_url}/assets/mynikons-1600.webp' if base_url else 'assets/mynikons-1600.webp'
+    description = '질문, 건의사항, 데이터 오류 제보를 남길 수 있는 공개 게시판입니다.'
+    api_url = f'https://api.github.com/repos/{repo_slug}/issues?state=open&per_page=30'
+    question_url = f'https://github.com/{repo_slug}/issues/new?title=%5BQnA%5D%20'
+    feedback_url = f'https://github.com/{repo_slug}/issues/new?title=%5BFeedback%5D%20'
+    schema = {
+        '@context': 'https://schema.org',
+        '@type': 'CollectionPage',
+        'name': 'QnA / 건의사항',
+        'description': description,
+    }
+    extra_meta = f"  <script type=\"application/ld+json\">{json_script(schema)}</script>\n"
+    board_config = {
+        'api_url': api_url,
+        'question_url': question_url,
+        'feedback_url': feedback_url,
+    }
+    return f"""<!DOCTYPE html>
+<html lang=\"ko\">
+{head_block(title='QnA / 건의사항 - 니콘 중고 시세 트래커', description=description, canonical=canonical, image_url=image_url, extra_meta=extra_meta)}
+<body data-page=\"board\">
+  <header class=\"site-header\">
+    <div class=\"container page-header\">
+      <h1 class=\"site-title\">QnA / 건의사항</h1>
+      <p class=\"site-subtitle\">읽기는 사이트에서 바로 보고, 작성은 GitHub Issues로 연결합니다.</p>
+      <p class=\"site-updated\">사이트 회원가입은 없고, 글 작성에는 GitHub 로그인만 필요합니다.</p>
+    </div>
+  </header>
+  {build_site_links('board')}
+
+  <main class=\"container page-main\">
+    <section class=\"board-intro\">
+      <div class=\"info-card\">
+        <span class=\"section-kicker\">Community board</span>
+        <h2 class=\"section-heading\">질문과 개선 요청을 남길 수 있습니다</h2>
+        <p class=\"detail-note detail-note--normal\">순수 정적 GitHub Pages 환경이라 익명 DB 저장은 붙이지 않았습니다. 대신 공개 이슈 기반으로 운영해 관리와 스팸 대응을 단순하게 유지합니다.</p>
+      </div>
+      <div class=\"board-actions\">
+        <a class=\"action-button action-button--primary\" href=\"{escape(question_url)}\" target=\"_blank\" rel=\"noopener noreferrer\">QnA 남기기</a>
+        <a class=\"action-button\" href=\"{escape(feedback_url)}\" target=\"_blank\" rel=\"noopener noreferrer\">건의사항 남기기</a>
+      </div>
+    </section>
+
+    <section class=\"board-list-section\">
+      <div class=\"section-header-row\">
+        <div>
+          <span class=\"section-kicker\">Latest issues</span>
+          <h2 class=\"section-heading\">최근 글</h2>
+        </div>
+      </div>
+      <div id=\"board-list\" class=\"board-list\" aria-live=\"polite\">
+        <p class=\"loading\">게시글을 불러오는 중입니다.</p>
+      </div>
+    </section>
+  </main>
+
+{build_footer()}
+  <script id=\"board-config\" type=\"application/json\">{json_script(board_config)}</script>
+  <script src=\"js/site.js\" defer></script>
+</body>
+</html>
+"""
+
+
+def build_resources_page(base_url: str) -> str:
+    canonical = f'{base_url}/resources.html' if base_url else ''
+    image_url = f'{base_url}/assets/mynikons-1600.webp' if base_url else 'assets/mynikons-1600.webp'
+    description = '니콘 렌즈 계보, 리뷰, 역사 자료를 볼 수 있는 참고 사이트 모음입니다.'
+    schema = {
+        '@context': 'https://schema.org',
+        '@type': 'CollectionPage',
+        'name': '참고 사이트 링크',
+        'description': description,
+    }
+    extra_meta = f"  <script type=\"application/ld+json\">{json_script(schema)}</script>\n"
+    resources = [
+        (
+            'Photosynthesis Nikon Lens Database',
+            'http://www.photosynthesis.co.nz/nikon/lenses.html',
+            '수동 렌즈 포함 Nikon/Nikkor 렌즈 계보와 세부 변형을 추적하기 좋습니다.',
+        ),
+        (
+            'Ken Rockwell Nikon Lens Reviews',
+            'https://www.kenrockwell.com/nikon/nikkor.htm',
+            '렌즈별 실사용 리뷰와 세대별 특징을 빠르게 훑어보기 좋습니다.',
+        ),
+        (
+            'Nikon Museum',
+            'https://www.nikonmuseum.com/',
+            '바디와 렌즈의 역사, 연표, 아카이브 자료를 확인할 수 있습니다.',
+        ),
+    ]
+    cards = []
+    for title, url, desc in resources:
+        cards.append(
+            f"""
+      <a class=\"resource-card\" href=\"{escape(url)}\" target=\"_blank\" rel=\"noopener noreferrer\">
+        <span class=\"resource-card__host\">{escape(url.split('//', 1)[1].split('/', 1)[0])}</span>
+        <h2>{escape(title)}</h2>
+        <p>{escape(desc)}</p>
+      </a>"""
+        )
+    return f"""<!DOCTYPE html>
+<html lang=\"ko\">
+{head_block(title='참고 사이트 링크 - 니콘 중고 시세 트래커', description=description, canonical=canonical, image_url=image_url, extra_meta=extra_meta)}
+<body data-page=\"resources\">
+  <header class=\"site-header\">
+    <div class=\"container page-header\">
+      <h1 class=\"site-title\">참고 사이트 링크</h1>
+      <p class=\"site-subtitle\">시세 숫자 외에 계보, 사양, 역사 자료를 같이 볼 때 유용한 레퍼런스입니다.</p>
+    </div>
+  </header>
+  {build_site_links('resources')}
+
+  <main class=\"container page-main\">
+    <section class=\"info-card info-card--wide\">
+      <span class=\"section-kicker\">Reference library</span>
+      <h2 class=\"section-heading\">니콘 자료실</h2>
+      <p class=\"detail-note detail-note--normal\">렌즈 변형 확인, 세대 분류 검증, 제품 히스토리 파악에 자주 쓰는 링크만 우선 정리했습니다.</p>
+    </section>
+
+    <section class=\"resources-grid\" aria-label=\"외부 참고 링크\">
+{''.join(cards)}
+    </section>
+  </main>
+
+{build_footer()}
+  <script src=\"js/site.js\" defer></script>
 </body>
 </html>
 """
@@ -564,7 +755,7 @@ def build_404_page(base_url: str) -> str:
 def build_sitemap(catalog: dict[str, Any], base_url: str) -> str:
     if not base_url:
         return ''
-    urls = [f'{base_url}/']
+    urls = [f'{base_url}/', f'{base_url}/board.html', f'{base_url}/resources.html']
     for category in catalog['categories']:
         for product in category['products']:
             urls.append(f"{base_url}/products/{product['id']}.html")
@@ -617,12 +808,15 @@ def main() -> None:
     args = parse_args()
     output_dir = Path(args.output).resolve()
     base_url = detect_base_url(args.base_url)
+    repo_slug = detect_repo_slug()
     catalog = load_catalog()
 
     clean_output(output_dir)
     copy_assets(output_dir)
 
     (output_dir / 'index.html').write_text(build_home_page(catalog, base_url), encoding='utf-8')
+    (output_dir / 'board.html').write_text(build_board_page(base_url, repo_slug), encoding='utf-8')
+    (output_dir / 'resources.html').write_text(build_resources_page(base_url), encoding='utf-8')
     (output_dir / '404.html').write_text(build_404_page(base_url), encoding='utf-8')
     (output_dir / 'robots.txt').write_text(build_robots(base_url), encoding='utf-8')
 

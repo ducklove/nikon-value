@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>QnA / 건의사항 - 니콘 중고 시세 트래커</title>
+  <meta name="description" content="질문, 건의사항, 데이터 오류 제보를 남길 수 있는 공개 게시판입니다.">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="QnA / 건의사항 - 니콘 중고 시세 트래커">
+  <meta property="og:description" content="질문, 건의사항, 데이터 오류 제보를 남길 수 있는 공개 게시판입니다.">
+  <meta property="og:image" content="https://ducklove.github.io/nikon-value/assets/mynikons-1600.webp">
+  <meta property="og:url" content="https://ducklove.github.io/nikon-value/board.html">
+  <link rel="canonical" href="https://ducklove.github.io/nikon-value/board.html">
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-823D75RRWJ"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-823D75RRWJ');
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "CollectionPage", "name": "QnA / 건의사항", "description": "질문, 건의사항, 데이터 오류 제보를 남길 수 있는 공개 게시판입니다."}</script>
+</head>
+<body data-page="board">
+  <header class="site-header">
+    <div class="container page-header">
+      <h1 class="site-title">QnA / 건의사항</h1>
+      <p class="site-subtitle">읽기는 사이트에서 바로 보고, 작성은 GitHub Issues로 연결합니다.</p>
+      <p class="site-updated">사이트 회원가입은 없고, 글 작성에는 GitHub 로그인만 필요합니다.</p>
+    </div>
+  </header>
+  <div class="site-links-wrap"><div class="container"><nav class="site-links" aria-label="사이트 바로가기"><a class="site-link" href="index.html">시세 목록</a><a class="site-link is-active" href="board.html">QnA / 건의</a><a class="site-link" href="resources.html">참고 링크</a></nav></div></div>
+
+  <main class="container page-main">
+    <section class="board-intro">
+      <div class="info-card">
+        <span class="section-kicker">Community board</span>
+        <h2 class="section-heading">질문과 개선 요청을 남길 수 있습니다</h2>
+        <p class="detail-note detail-note--normal">순수 정적 GitHub Pages 환경이라 익명 DB 저장은 붙이지 않았습니다. 대신 공개 이슈 기반으로 운영해 관리와 스팸 대응을 단순하게 유지합니다.</p>
+      </div>
+      <div class="board-actions">
+        <a class="action-button action-button--primary" href="https://github.com/ducklove/nikon-value/issues/new?title=%5BQnA%5D%20" target="_blank" rel="noopener noreferrer">QnA 남기기</a>
+        <a class="action-button" href="https://github.com/ducklove/nikon-value/issues/new?title=%5BFeedback%5D%20" target="_blank" rel="noopener noreferrer">건의사항 남기기</a>
+      </div>
+    </section>
+
+    <section class="board-list-section">
+      <div class="section-header-row">
+        <div>
+          <span class="section-kicker">Latest issues</span>
+          <h2 class="section-heading">최근 글</h2>
+        </div>
+      </div>
+      <div id="board-list" class="board-list" aria-live="polite">
+        <p class="loading">게시글을 불러오는 중입니다.</p>
+      </div>
+    </section>
+  </main>
+
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-attribution">
+        <img src="assets/ebay-logo.svg" alt="eBay" class="ebay-logo">
+        <span>Powered by eBay Browse API</span>
+      </div>
+      <p class="footer-note">가격은 현재 eBay 매물 기준이며, 실제 거래가와 다를 수 있습니다.</p>
+    </div>
+  </footer>
+  <script id="board-config" type="application/json">{"api_url": "https://api.github.com/repos/ducklove/nikon-value/issues?state=open&per_page=30", "question_url": "https://github.com/ducklove/nikon-value/issues/new?title=%5BQnA%5D%20", "feedback_url": "https://github.com/ducklove/nikon-value/issues/new?title=%5BFeedback%5D%20"}</script>
+  <script src="js/site.js" defer></script>
+</body>
+</html>

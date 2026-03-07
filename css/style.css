@@ -212,6 +212,36 @@ select:focus-visible {
   color: var(--color-surface);
 }
 
+.site-links-wrap {
+  background: var(--color-surface);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.site-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  padding: 14px 0;
+}
+
+.site-link {
+  display: inline-flex;
+  align-items: center;
+  min-height: 40px;
+  padding: 0 14px;
+  border-radius: 999px;
+  color: var(--color-text-secondary);
+  text-decoration: none;
+  background: var(--color-bg);
+  transition: background 0.2s, color 0.2s;
+}
+
+.site-link:hover,
+.site-link.is-active {
+  background: var(--color-text);
+  color: var(--color-surface);
+}
+
 .catalog-toolbar {
   display: flex;
   flex-wrap: wrap;
@@ -295,6 +325,43 @@ select:focus-visible {
 
 .stale-banner strong {
   color: #523900;
+}
+
+.shortcut-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+  margin-top: 20px;
+}
+
+.shortcut-card {
+  display: block;
+  padding: 20px 22px;
+  border-radius: var(--radius);
+  background: linear-gradient(135deg, #ffffff 0%, #f0f2f5 100%);
+  box-shadow: var(--shadow);
+  text-decoration: none;
+  color: inherit;
+}
+
+.shortcut-card strong {
+  display: block;
+  font-size: 1.1rem;
+  margin: 4px 0 8px;
+}
+
+.shortcut-card p {
+  color: var(--color-text-secondary);
+  font-size: 0.9rem;
+}
+
+.shortcut-card__eyebrow {
+  display: inline-flex;
+  color: #8b6b00;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
 }
 
 /* === Product Grid === */
@@ -441,6 +508,164 @@ select:focus-visible {
   color: var(--color-text-secondary);
   text-align: center;
   box-shadow: var(--shadow);
+}
+
+.page-header {
+  padding: 28px 20px;
+}
+
+.page-main {
+  padding-top: 28px;
+  padding-bottom: 40px;
+}
+
+.info-card {
+  background: var(--color-surface);
+  border-radius: var(--radius);
+  padding: 24px;
+  box-shadow: var(--shadow);
+}
+
+.info-card--wide {
+  margin-bottom: 20px;
+}
+
+.section-header-row {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.board-intro {
+  display: grid;
+  grid-template-columns: minmax(0, 1.8fr) minmax(280px, 1fr);
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.board-actions {
+  display: grid;
+  gap: 12px;
+}
+
+.action-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 48px;
+  padding: 0 18px;
+  border-radius: 14px;
+  border: 1px solid var(--color-border);
+  background: var(--color-surface);
+  color: var(--color-text);
+  text-decoration: none;
+  font-weight: 600;
+  box-shadow: var(--shadow);
+}
+
+.action-button--primary {
+  background: var(--color-accent);
+  border-color: var(--color-accent-dark);
+}
+
+.board-list-section {
+  margin-bottom: 24px;
+}
+
+.board-list {
+  display: grid;
+  gap: 14px;
+}
+
+.board-card {
+  background: var(--color-surface);
+  border-radius: var(--radius);
+  padding: 18px 20px;
+  box-shadow: var(--shadow);
+}
+
+.board-card__meta,
+.board-card__footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  color: var(--color-text-secondary);
+  font-size: 0.82rem;
+}
+
+.board-card__labels {
+  display: inline-flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.issue-label {
+  display: inline-flex;
+  align-items: center;
+  min-height: 24px;
+  padding: 0 10px;
+  border-radius: 999px;
+  background: #fff6d8;
+  color: #6f4f00;
+  font-size: 0.75rem;
+  font-weight: 700;
+}
+
+.board-card__title {
+  font-size: 1.05rem;
+  line-height: 1.4;
+  margin: 10px 0 8px;
+}
+
+.board-card__title a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.board-card__title a:hover {
+  text-decoration: underline;
+}
+
+.board-card__snippet {
+  color: var(--color-text-secondary);
+  margin-bottom: 12px;
+}
+
+.resources-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.resource-card {
+  display: block;
+  min-height: 220px;
+  padding: 24px;
+  border-radius: var(--radius);
+  background: var(--color-surface);
+  box-shadow: var(--shadow);
+  color: inherit;
+  text-decoration: none;
+}
+
+.resource-card h2 {
+  font-size: 1.1rem;
+  line-height: 1.4;
+  margin: 8px 0 10px;
+}
+
+.resource-card p {
+  color: var(--color-text-secondary);
+}
+
+.resource-card__host {
+  display: inline-flex;
+  color: #8b6b00;
+  font-size: 0.78rem;
+  font-weight: 700;
 }
 
 /* === Price Summary === */
@@ -644,6 +869,10 @@ select:focus-visible {
   font-size: 0.82rem;
 }
 
+.detail-note--normal {
+  margin: 8px 0 0;
+}
+
 .history-table {
   width: 100%;
   border-collapse: collapse;
@@ -698,6 +927,10 @@ select:focus-visible {
   .search-input {
     min-width: 220px;
   }
+
+  .resources-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
 }
 
 @media (max-width: 768px) {
@@ -722,6 +955,12 @@ select:focus-visible {
     grid-template-columns: repeat(2, 1fr);
   }
 
+  .shortcut-grid,
+  .board-intro,
+  .resources-grid {
+    grid-template-columns: 1fr;
+  }
+
   .chart-container {
     height: 280px;
   }
@@ -733,6 +972,11 @@ select:focus-visible {
 
   .product-header-meta {
     gap: 6px;
+  }
+
+  .page-header {
+    padding-left: 20px;
+    padding-right: 20px;
   }
 }
 
@@ -773,5 +1017,14 @@ select:focus-visible {
 
   .meta-pill {
     font-size: 0.75rem;
+  }
+
+  .site-links {
+    gap: 8px;
+  }
+
+  .site-link {
+    width: 100%;
+    justify-content: center;
   }
 }
