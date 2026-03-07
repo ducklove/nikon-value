@@ -318,7 +318,7 @@ def get_access_token(client_id: str, client_secret: str, auth_url: str) -> str:
     return token
 
 
-def search_items(token: str, browse_url: str, query: str, category_id: str,
+def search_items(token: str, browse_url: str, query: str, category_id: str | None,
                  min_price: float, max_price: float) -> list[dict]:
     """Browse API로 중고 매물을 검색합니다. 페이지네이션 처리."""
     headers = {
@@ -334,7 +334,6 @@ def search_items(token: str, browse_url: str, query: str, category_id: str,
     while True:
         params = {
             "q": query,
-            "category_ids": category_id,
             "filter": ",".join([
                 "conditionIds:{3000}",  # USED
                 f"price:[{min_price}..{max_price}]",
@@ -347,6 +346,9 @@ def search_items(token: str, browse_url: str, query: str, category_id: str,
             "offset": offset,
             "fieldgroups": "MATCHING_ITEMS",
         }
+
+        if category_id:
+            params["category_ids"] = category_id
 
         resp = requests.get(
             browse_url,
@@ -676,7 +678,7 @@ def main():
                     token,
                     browse_url,
                     product["query"],
-                    product["category_id"],
+                    product.get("search_category_id", product["category_id"]),
                     product["min_price"],
                     product["max_price"],
                 )

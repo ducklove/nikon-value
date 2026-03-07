@@ -441,8 +441,9 @@ categories:
     name_en: Nikon 28Ti
     release_year: 1994
     subcategory: premium-compact
-    query: Nikon 28Ti camera -manual -brochure -case -strap -battery -film
+    query: Nikon 28Ti film camera -case -manual -brochure -battery -strap
     category_id: '3323'
+    search_category_id: null
     min_price: 300
     max_price: 2000
   - id: nikon-35ti
@@ -450,8 +451,9 @@ categories:
     name_en: Nikon 35Ti
     release_year: 1993
     subcategory: premium-compact
-    query: Nikon 35Ti camera -manual -brochure -case -strap -battery -film
+    query: Nikon 35Ti film camera -Minolta -case -manual -brochure -battery -strap
     category_id: '3323'
+    search_category_id: null
     min_price: 250
     max_price: 1800
   - id: nikkormat
