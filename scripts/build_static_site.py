@@ -200,23 +200,21 @@ def ga_snippet() -> str:
 
 def build_hero_manual_hotspots() -> str:
     hotspots = [
-        ('Nikkormat', 'https://www.cameramanuals.org/nikon_pdf/nikkormat_ftn.pdf', 'left: 18%; top: 47%;'),
-        ('FM2', 'https://cdn-10.nikon-cdn.com/pdf/manuals/archive/FM2.pdf', 'left: 39%; top: 44%;'),
-        ('F3', 'https://cdn-10.nikon-cdn.com/pdf/manuals/archive/F3.pdf', 'left: 57%; top: 43%;'),
-        ('Zf', 'https://onlinemanual.nikonimglib.com/zf/ko/', 'left: 77%; top: 47%;'),
+        ('Zf', 'https://onlinemanual.nikonimglib.com/zf/ko/', 'left: 16%; top: 43%; width: 12%; height: 16%;'),
+        ('F3', 'https://cdn-10.nikon-cdn.com/pdf/manuals/archive/F3.pdf', 'left: 47%; top: 42%; width: 12%; height: 16%;'),
+        ('Nikkormat', 'https://www.cameramanuals.org/nikon_pdf/nikkormat_ftn.pdf', 'left: 71%; top: 34%; width: 14%; height: 16%;'),
+        ('FM2', 'https://cdn-10.nikon-cdn.com/pdf/manuals/archive/FM2.pdf', 'left: 88%; top: 41%; width: 11%; height: 15%;'),
     ]
     links = []
     for label, href, position in hotspots:
         links.append(
             f'<a class="hero-hotspot" href="{escape(href)}" target="_blank" rel="noopener noreferrer" style="{position}">'
-            f'<span class="hero-hotspot__dot" aria-hidden="true"></span>'
-            f'<span class="hero-hotspot__label">{escape(label)} manual</span>'
+            f'<span class="visually-hidden">{escape(label)} manual</span>'
             '</a>'
         )
     return (
         '<div class="hero-hotspots" aria-label="히어로 이미지 카메라 메뉴얼 바로가기">'
         f'{"".join(links)}'
-        '<p class="hero-hotspots__hint">이미지 속 카메라를 누르면 메뉴얼이 열립니다.</p>'
         '</div>'
     )
 
