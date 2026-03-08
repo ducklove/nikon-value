@@ -337,6 +337,19 @@ categories:
     category_id: '3323'
     min_price: 150
     max_price: 800
+  - id: nikon-f3-limited
+    name_ko: Nikon F3 Limited
+    name_en: Nikon F3 Limited
+    subcategory: flagship
+    query: Nikon F3 Limited Ando Camera -manual -brochure -strap -case -finder
+    category_id: '3323'
+    min_price: 1500
+    max_price: 7000
+    is_rare: true
+    rarity_tier: A
+    rarity_sort: 30
+    rarity_price_hint: 공개 표본 부족
+    rarity_note: Ando Camera 50주년 기념의 F3/T Classic 기반 한정판 100대. 시리얼 L로 시작.
   - id: nikon-f-high-speed
     name_ko: Nikon F High Speed
     name_en: Nikon F High Speed
