@@ -168,17 +168,21 @@ def format_exchange_rate(exchange_rate: dict[str, Any] | None) -> str:
     return f'USD 1 = KRW {rate:,.2f} ({source} {reference_date} 기준)'
 
 
+def format_exchange_rate_inline(exchange_rate: dict[str, Any] | None) -> str:
+    if not exchange_rate or exchange_rate.get('rate') is None:
+        return ''
+    return f' (USD/KRW = {float(exchange_rate["rate"]):,.2f})'
+
+
 def build_currency_toggle(exchange_rate: dict[str, Any] | None, *, compact: bool = False) -> str:
     disabled = '' if exchange_rate and exchange_rate.get('rate') else ' disabled'
     compact_class = ' currency-toggle-panel--compact' if compact else ''
     return f"""
         <div class=\"currency-toggle-panel{compact_class}\">
-          <span class=\"currency-toggle-panel__label\">표시 통화</span>
           <div class=\"currency-toggle\" role=\"group\" aria-label=\"표시 통화 선택\">
             <button class=\"currency-toggle__button\" type=\"button\" data-currency=\"usd\">USD</button>
             <button class=\"currency-toggle__button\" type=\"button\" data-currency=\"krw\"{disabled}>KRW</button>
           </div>
-          <p class=\"currency-toggle__meta\" data-exchange-note>{escape(format_exchange_rate(exchange_rate))}</p>
         </div>"""
 
 
@@ -607,8 +611,8 @@ def build_home_page(catalog: dict[str, Any], base_url: str) -> str:
       <div class=\"hero-overlay\">
         <div class=\"container\">
           <h1 class=\"site-title\">니콘 중고 시세 트래커</h1>
-          <p class=\"site-subtitle\">eBay 현재 매물 기준 시세 (배송비 포함, USD/KRW 전환 지원)</p>
-          <p class=\"site-updated\">최종 업데이트: {escape(updated)}</p>
+          <p class=\"site-subtitle\">eBay 현재 매물 기준 시세 (배송비 포함)</p>
+          <p class=\"site-updated\">최종 업데이트: {escape(updated)}{escape(format_exchange_rate_inline(exchange_rate))}</p>
         </div>
       </div>
     </div>
