@@ -36,22 +36,33 @@
   <div class="site-links-wrap"><div class="container"><nav class="site-links" aria-label="사이트 바로가기"><a class="site-link is-active" href="../index.html">시세 목록</a><a class="site-link" href="../resources.html">참고 링크</a></nav></div></div>
 
   <main class="container">
+    <div class="detail-toolbar">
+      
+        <div class="currency-toggle-panel currency-toggle-panel--compact">
+          <span class="currency-toggle-panel__label">표시 통화</span>
+          <div class="currency-toggle" role="group" aria-label="표시 통화 선택">
+            <button class="currency-toggle__button" type="button" data-currency="usd">USD</button>
+            <button class="currency-toggle__button" type="button" data-currency="krw">KRW</button>
+          </div>
+          <p class="currency-toggle__meta" data-exchange-note>USD 1 = KRW 1,485.18 (ECB reference rates 2026-03-06 기준)</p>
+        </div>
+    </div>
     <div class="price-summary">
         <div class="price-card price-card--primary">
           <span class="price-label">중앙값</span>
-          <span class="price-value">$1,106.42</span>
+          <span class="price-value"><span class="money-value" data-money-usd="1106.42" data-money-sign="auto">$1,106.42</span></span>
         </div>
         <div class="price-card">
           <span class="price-label">평균</span>
-          <span class="price-value">$1,053.16</span>
+          <span class="price-value"><span class="money-value" data-money-usd="1053.16" data-money-sign="auto">$1,053.16</span></span>
         </div>
         <div class="price-card">
           <span class="price-label">최저</span>
-          <span class="price-value">$877.68</span>
+          <span class="price-value"><span class="money-value" data-money-usd="877.68" data-money-sign="auto">$877.68</span></span>
         </div>
         <div class="price-card">
           <span class="price-label">최고</span>
-          <span class="price-value">$1,260.31</span>
+          <span class="price-value"><span class="money-value" data-money-usd="1260.31" data-money-sign="auto">$1,260.31</span></span>
         </div>
         <div class="price-card">
           <span class="price-label">매물 수</span>
@@ -59,7 +70,7 @@
         </div>
         <div class="price-card">
           <span class="price-label">Q1 - Q3</span>
-          <span class="price-value price-value--small">$970.06 - $1,118.24</span>
+          <span class="price-value price-value--small"><span class="money-range price-value--small"><span class="money-value price-value--small" data-money-usd="970.06" data-money-sign="auto">$970.06</span> - <span class="money-value price-value--small" data-money-usd="1118.24" data-money-sign="auto">$1,118.24</span></span></span>
         </div>
         <div class="price-card">
           <span class="price-label">최근 변화</span>
@@ -67,12 +78,12 @@
         </div>
         <div class="price-card">
           <span class="price-label">변화 금액</span>
-          <span class="price-value">+$57.43</span>
+          <span class="price-value"><span class="money-value" data-money-usd="57.430000000000064" data-money-sign="always">$57.43</span></span>
         </div>
     </div>
     
 
-    <p class="detail-note">시세는 eBay 미국 현재 매물 기준이며, 실제 체결가와는 차이가 있을 수 있습니다. 최근 5일 기준 중앙값 +5.5% (+$57.43) 변동했습니다.</p>
+    <p class="detail-note">시세는 eBay 미국 현재 매물 기준이며, 실제 체결가와는 차이가 있을 수 있습니다. 최근 5일 기준 중앙값 +5.5% (<span class="money-value" data-money-usd="57.430000000000064" data-money-sign="always">$57.43</span>) 변동했습니다.</p>
 
     <section class="chart-section">
       <div class="chart-header">
@@ -108,35 +119,35 @@
           <img class="listing-card__image" src="https://i.ebayimg.com/images/g/TG8AAeSwVfJoyVRX/s-l1600.jpg" alt="Nikkor Z 24-120mm F4 S #20191267 New Without Box" loading="lazy">
           <div class="listing-card__info">
             <div class="listing-card__title">Nikkor Z 24-120mm F4 S #20191267 New Without Box</div>
-            <div class="listing-card__price">$1,079.20</div>
+            <div class="listing-card__price"><span class="money-value" data-money-usd="1079.2" data-money-sign="auto">$1,079.20</span></div>
           </div>
         </a>
         <a class="listing-card" href="https://www.ebay.com/itm/127680870754?_skw=Nikkor+Z+24-120mm+f%2F4+S&amp;hash=item1dba5f7962:g:YZ8AAeSwZeNpQWB4" target="_blank" rel="noopener noreferrer nofollow">
           <img class="listing-card__image" src="https://i.ebayimg.com/images/g/YZ8AAeSwZeNpQWB4/s-l1600.jpg" alt="NIKON Z 24-120mm f/4 S LENS - NIKKOR Z 24-120 mm 1:4.0S - pristine condition " loading="lazy">
           <div class="listing-card__info">
             <div class="listing-card__title">NIKON Z 24-120mm f/4 S LENS - NIKKOR Z 24-120 mm 1:4.0S - pristine condition </div>
-            <div class="listing-card__price">$1,106.42</div>
+            <div class="listing-card__price"><span class="money-value" data-money-usd="1106.42" data-money-sign="auto">$1,106.42</span></div>
           </div>
         </a>
         <a class="listing-card" href="https://www.ebay.com/itm/157714445089?_skw=Nikkor+Z+24-120mm+f%2F4+S&amp;hash=item24b8837321:g:s9wAAOSwWiFnn1uD" target="_blank" rel="noopener noreferrer nofollow">
           <img class="listing-card__image" src="https://i.ebayimg.com/images/g/s9wAAOSwWiFnn1uD/s-l960.jpg" alt="Nearly New Nikon Nikkor Z 24-120mm F/4 S Wide Angle Lens for Mirrorless #20052" loading="lazy">
           <div class="listing-card__info">
             <div class="listing-card__title">Nearly New Nikon Nikkor Z 24-120mm F/4 S Wide Angle Lens for Mirrorless #20052</div>
-            <div class="listing-card__price">$1,108.90</div>
+            <div class="listing-card__price"><span class="money-value" data-money-usd="1108.9" data-money-sign="auto">$1,108.90</span></div>
           </div>
         </a>
         <a class="listing-card" href="https://www.ebay.com/itm/157714499482?_skw=Nikkor+Z+24-120mm+f%2F4+S&amp;hash=item24b884479a:g:s9wAAOSwWiFnn1uD" target="_blank" rel="noopener noreferrer nofollow">
           <img class="listing-card__image" src="https://i.ebayimg.com/images/g/s9wAAOSwWiFnn1uD/s-l960.jpg" alt="Near Mint Nikon Nikkor Z 24-120mm F/4 S Wide Angle Lens For Mirrorless #20052" loading="lazy">
           <div class="listing-card__info">
             <div class="listing-card__title">Near Mint Nikon Nikkor Z 24-120mm F/4 S Wide Angle Lens For Mirrorless #20052</div>
-            <div class="listing-card__price">$1,108.90</div>
+            <div class="listing-card__price"><span class="money-value" data-money-usd="1108.9" data-money-sign="auto">$1,108.90</span></div>
           </div>
         </a>
         <a class="listing-card" href="https://www.ebay.com/itm/157714545917?_skw=Nikkor+Z+24-120mm+f%2F4+S&amp;hash=item24b884fcfd:g:s9wAAOSwWiFnn1uD" target="_blank" rel="noopener noreferrer nofollow">
           <img class="listing-card__image" src="https://i.ebayimg.com/images/g/s9wAAOSwWiFnn1uD/s-l960.jpg" alt="Casi Mint Nikon Nikkor Z 24-120mm F / 4S Lente Gran Angular Para sin Espejo #" loading="lazy">
           <div class="listing-card__info">
             <div class="listing-card__title">Casi Mint Nikon Nikkor Z 24-120mm F / 4S Lente Gran Angular Para sin Espejo #</div>
-            <div class="listing-card__price">$1,108.90</div>
+            <div class="listing-card__price"><span class="money-value" data-money-usd="1108.9" data-money-sign="auto">$1,108.90</span></div>
           </div>
         </a>
       </div>
@@ -181,6 +192,7 @@
     </div>
   </footer>
 
+  <script id="exchange-rate-data" type="application/json">{"base": "USD", "quote": "KRW", "rate": 1485.1829, "reference_date": "2026-03-06", "source": "ECB reference rates"}</script>
   <script id="history-data" type="application/json">[{"date": "2026-03-02", "median": null, "mean": null, "min": null, "max": null, "q1": null, "q3": null, "count": 0, "count_filtered": 0}, {"date": "2026-03-03", "median": 1048.99, "mean": 1023.37, "min": 798.4, "max": 1260.31, "q1": 890.0, "q3": 1130.62, "count": 22, "count_filtered": 22}, {"date": "2026-03-04", "median": 1108.43, "mean": 1064.03, "min": 890.0, "max": 1260.31, "q1": 985.15, "q3": 1117.24, "count": 22, "count_filtered": 21}, {"date": "2026-03-05", "median": 1106.86, "mean": 1062.4, "min": 890.0, "max": 1260.31, "q1": 985.15, "q3": 1121.78, "count": 23, "count_filtered": 22}, {"date": "2026-03-06", "median": 1103.29, "mean": 1056.83, "min": 890.0, "max": 1260.31, "q1": 970.06, "q3": 1120.22, "count": 24, "count_filtered": 23}, {"date": "2026-03-07", "median": 1108.04, "mean": 1068.09, "min": 887.3, "max": 1347.71, "q1": 970.06, "q3": 1121.66, "count": 25, "count_filtered": 25}, {"date": "2026-03-08", "median": 1106.42, "mean": 1053.16, "min": 877.68, "max": 1260.31, "q1": 970.06, "q3": 1118.24, "count": 24, "count_filtered": 23}]</script>
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4/dist/chart.umd.min.js"></script>
   <script src="../js/site.js" defer></script>

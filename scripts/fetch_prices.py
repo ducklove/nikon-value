@@ -9,6 +9,7 @@ import re
 import statistics
 import sys
 import time
+import xml.etree.ElementTree as ET
 from datetime import datetime, timezone
 from pathlib import Path
 
@@ -31,6 +32,7 @@ EBAY_BROWSE_URL_PROD = "https://api.ebay.com/buy/browse/v1/item_summary/search"
 EBAY_BROWSE_URL_SANDBOX = "https://api.sandbox.ebay.com/buy/browse/v1/item_summary/search"
 
 GEMINI_API_URL = "https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite-preview:generateContent"
+ECB_EXCHANGE_RATES_URL = "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-daily.xml"
 
 MAX_DAILY_SNAPSHOTS = 400
 MAX_PRODUCT_HISTORY = 365
@@ -585,6 +587,38 @@ def load_env_file(path: Path):
     log.info("Loaded credentials from %s", path)
 
 
+def fetch_usd_krw_exchange_rate() -> dict[str, object]:
+    """ECB 일일 기준환율에서 USD/KRW 환산값을 가져옵니다."""
+    resp = requests.get(ECB_EXCHANGE_RATES_URL, timeout=30)
+    resp.raise_for_status()
+
+    root = ET.fromstring(resp.content)
+    cube_with_time = root.find(".//{*}Cube[@time]")
+    if cube_with_time is None:
+        raise ValueError("ECB exchange rate payload does not include a dated Cube node")
+
+    rates: dict[str, float] = {}
+    for entry in cube_with_time.findall("{*}Cube"):
+        currency = entry.attrib.get("currency")
+        rate = entry.attrib.get("rate")
+        if currency and rate:
+            rates[currency] = float(rate)
+
+    usd_per_eur = rates.get("USD")
+    krw_per_eur = rates.get("KRW")
+    if not usd_per_eur or not krw_per_eur:
+        raise ValueError("ECB daily rates do not include both USD and KRW")
+
+    usd_to_krw = krw_per_eur / usd_per_eur
+    return {
+        "base": "USD",
+        "quote": "KRW",
+        "rate": round(usd_to_krw, 4),
+        "reference_date": cube_with_time.attrib["time"],
+        "source": "ECB reference rates",
+    }
+
+
 def main():
     args = parse_args()
     only_ids = parse_only_ids(args.only)
@@ -613,7 +647,9 @@ def main():
     catalog_config = load_catalog()
     existing_catalog = load_existing_catalog_output()
     existing_products = {}
+    exchange_rate = None
     if existing_catalog:
+        exchange_rate = existing_catalog.get("exchange_rate")
         for category in existing_catalog.get("categories", []):
             for product in category.get("products", []):
                 existing_products[product["id"]] = product
@@ -629,14 +665,29 @@ def main():
     today = datetime.now(timezone.utc).strftime("%Y-%m-%d")
     log.info("Fetching prices for %s", today)
 
+    try:
+        exchange_rate = fetch_usd_krw_exchange_rate()
+        log.info(
+            "Loaded exchange rate: USD 1 = KRW %.2f (ECB %s)",
+            exchange_rate["rate"],
+            exchange_rate["reference_date"],
+        )
+    except Exception as exc:
+        if exchange_rate:
+            log.warning("Exchange rate refresh failed (%s), keeping existing rate", exc)
+        else:
+            log.warning("Exchange rate refresh failed (%s), KRW conversion will be unavailable", exc)
+
     catalog_output = {
         "updated": today,
+        "exchange_rate": exchange_rate,
         "categories": [],
     }
     daily_snapshot = load_daily_snapshot_for_date(today) if only_ids else {
         "date": today,
         "products": {},
     }
+    daily_snapshot["exchange_rate"] = exchange_rate
 
     total_products = sum(
         1

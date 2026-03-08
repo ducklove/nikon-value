@@ -36,22 +36,33 @@
   <div class="site-links-wrap"><div class="container"><nav class="site-links" aria-label="사이트 바로가기"><a class="site-link is-active" href="../index.html">시세 목록</a><a class="site-link" href="../resources.html">참고 링크</a></nav></div></div>
 
   <main class="container">
+    <div class="detail-toolbar">
+      
+        <div class="currency-toggle-panel currency-toggle-panel--compact">
+          <span class="currency-toggle-panel__label">표시 통화</span>
+          <div class="currency-toggle" role="group" aria-label="표시 통화 선택">
+            <button class="currency-toggle__button" type="button" data-currency="usd">USD</button>
+            <button class="currency-toggle__button" type="button" data-currency="krw">KRW</button>
+          </div>
+          <p class="currency-toggle__meta" data-exchange-note>USD 1 = KRW 1,485.18 (ECB reference rates 2026-03-06 기준)</p>
+        </div>
+    </div>
     <div class="price-summary">
         <div class="price-card price-card--primary">
           <span class="price-label">중앙값</span>
-          <span class="price-value">$584.50</span>
+          <span class="price-value"><span class="money-value" data-money-usd="584.5" data-money-sign="auto">$584.50</span></span>
         </div>
         <div class="price-card">
           <span class="price-label">평균</span>
-          <span class="price-value">$589.62</span>
+          <span class="price-value"><span class="money-value" data-money-usd="589.62" data-money-sign="auto">$589.62</span></span>
         </div>
         <div class="price-card">
           <span class="price-label">최저</span>
-          <span class="price-value">$550.13</span>
+          <span class="price-value"><span class="money-value" data-money-usd="550.13" data-money-sign="auto">$550.13</span></span>
         </div>
         <div class="price-card">
           <span class="price-label">최고</span>
-          <span class="price-value">$645.93</span>
+          <span class="price-value"><span class="money-value" data-money-usd="645.93" data-money-sign="auto">$645.93</span></span>
         </div>
         <div class="price-card">
           <span class="price-label">매물 수</span>
@@ -59,7 +70,7 @@
         </div>
         <div class="price-card">
           <span class="price-label">Q1 - Q3</span>
-          <span class="price-value price-value--small">$551.67 - $645.93</span>
+          <span class="price-value price-value--small"><span class="money-range price-value--small"><span class="money-value price-value--small" data-money-usd="551.67" data-money-sign="auto">$551.67</span> - <span class="money-value price-value--small" data-money-usd="645.93" data-money-sign="auto">$645.93</span></span></span>
         </div>
         <div class="price-card">
           <span class="price-label">최근 변화</span>
@@ -67,12 +78,12 @@
         </div>
         <div class="price-card">
           <span class="price-label">변화 금액</span>
-          <span class="price-value">$-19.94</span>
+          <span class="price-value"><span class="money-value" data-money-usd="-19.940000000000055" data-money-sign="always">$-19.94</span></span>
         </div>
     </div>
     
 
-    <p class="detail-note">시세는 eBay 미국 현재 매물 기준이며, 실제 체결가와는 차이가 있을 수 있습니다. 최근 5일 기준 중앙값 -3.3% ($-19.94) 변동했습니다.</p>
+    <p class="detail-note">시세는 eBay 미국 현재 매물 기준이며, 실제 체결가와는 차이가 있을 수 있습니다. 최근 5일 기준 중앙값 -3.3% (<span class="money-value" data-money-usd="-19.940000000000055" data-money-sign="always">$-19.94</span>) 변동했습니다.</p>
 
     <section class="chart-section">
       <div class="chart-header">
@@ -108,35 +119,35 @@
           <img class="listing-card__image" src="https://i.ebayimg.com/images/g/oEkAAeSwrcVpddZz/s-l1600.jpg" alt="Nikon NIKKOR Z 35mm f/1.4 Lens – Excellent Condition – Z-Mount" loading="lazy">
           <div class="listing-card__info">
             <div class="listing-card__title">Nikon NIKKOR Z 35mm f/1.4 Lens – Excellent Condition – Z-Mount</div>
-            <div class="listing-card__price">$551.67</div>
+            <div class="listing-card__price"><span class="money-value" data-money-usd="551.67" data-money-sign="auto">$551.67</span></div>
           </div>
         </a>
         <a class="listing-card" href="https://www.ebay.com/itm/136915249797?_skw=Nikkor+Z+35mm+f%2F1.4&amp;hash=item1fe0c8ea85:g:4eUAAeSwqJZpWVyH" target="_blank" rel="noopener noreferrer nofollow">
           <img class="listing-card__image" src="https://i.ebayimg.com/images/g/4eUAAeSwqJZpWVyH/s-l1600.jpg" alt="Nikon NIKKOR Z 35mm f/1.4 Lens #B43" loading="lazy">
           <div class="listing-card__info">
             <div class="listing-card__title">Nikon NIKKOR Z 35mm f/1.4 Lens #B43</div>
-            <div class="listing-card__price">$564.56</div>
+            <div class="listing-card__price"><span class="money-value" data-money-usd="564.56" data-money-sign="auto">$564.56</span></div>
           </div>
         </a>
         <a class="listing-card" href="https://www.ebay.com/itm/358210661135?_skw=Nikkor+Z+35mm+f%2F1.4&amp;hash=item536704eb0f:g:9JYAAeSwJPdpjQ9g" target="_blank" rel="noopener noreferrer nofollow">
           <img class="listing-card__image" src="https://i.ebayimg.com/images/g/9JYAAeSwJPdpjQ9g/s-l1600.jpg" alt="Nikon Nikkor Z 35mm f/1.4 Lens" loading="lazy">
           <div class="listing-card__info">
             <div class="listing-card__title">Nikon Nikkor Z 35mm f/1.4 Lens</div>
-            <div class="listing-card__price">$604.44</div>
+            <div class="listing-card__price"><span class="money-value" data-money-usd="604.44" data-money-sign="auto">$604.44</span></div>
           </div>
         </a>
         <a class="listing-card" href="https://www.ebay.com/itm/287110535495?_skw=Nikkor+Z+35mm+f%2F1.4&amp;hash=item42d91f1947:g:FiEAAeSwP-VpfNFZ" target="_blank" rel="noopener noreferrer nofollow">
           <img class="listing-card__image" src="https://i.ebayimg.com/images/g/FiEAAeSwP-VpfNFZ/s-l1600.jpg" alt="Nikon NIKKOR Z 35mm f/1.4 Lens" loading="lazy">
           <div class="listing-card__info">
             <div class="listing-card__title">Nikon NIKKOR Z 35mm f/1.4 Lens</div>
-            <div class="listing-card__price">$621.01</div>
+            <div class="listing-card__price"><span class="money-value" data-money-usd="621.01" data-money-sign="auto">$621.01</span></div>
           </div>
         </a>
         <a class="listing-card" href="https://www.ebay.com/itm/277506527662?_skw=Nikkor+Z+35mm+f%2F1.4&amp;hash=item409cad91ae:g:RuIAAeSwoippjtg1" target="_blank" rel="noopener noreferrer nofollow">
           <img class="listing-card__image" src="https://i.ebayimg.com/images/g/RuIAAeSwoippjtg1/s-l1600.jpg" alt="Nikkor Z 35mm f/1.4" loading="lazy">
           <div class="listing-card__info">
             <div class="listing-card__title">Nikkor Z 35mm f/1.4</div>
-            <div class="listing-card__price">$645.93</div>
+            <div class="listing-card__price"><span class="money-value" data-money-usd="645.93" data-money-sign="auto">$645.93</span></div>
           </div>
         </a>
       </div>
@@ -181,6 +192,7 @@
     </div>
   </footer>
 
+  <script id="exchange-rate-data" type="application/json">{"base": "USD", "quote": "KRW", "rate": 1485.1829, "reference_date": "2026-03-06", "source": "ECB reference rates"}</script>
   <script id="history-data" type="application/json">[{"date": "2026-03-02", "median": null, "mean": null, "min": null, "max": null, "q1": null, "q3": null, "count": 0, "count_filtered": 0}, {"date": "2026-03-03", "median": 604.44, "mean": 643.61, "min": 501.74, "max": 892.91, "q1": 564.56, "q3": 749.18, "count": 11, "count_filtered": 11}, {"date": "2026-03-04", "median": 604.44, "mean": 643.61, "min": 501.74, "max": 892.91, "q1": 564.56, "q3": 749.18, "count": 11, "count_filtered": 11}, {"date": "2026-03-04", "median": 568.86, "mean": 573.89, "min": 501.74, "max": 623.08, "q1": 557.35, "q3": 613.76, "count": 8, "count_filtered": 7}, {"date": "2026-03-05", "median": 564.56, "mean": 566.35, "min": 501.74, "max": 623.08, "q1": 550.9, "q3": 613.76, "count": 8, "count_filtered": 7}, {"date": "2026-03-06", "median": 566.71, "mean": 577.12, "min": 550.13, "max": 623.08, "q1": 551.67, "q3": 623.08, "count": 7, "count_filtered": 6}, {"date": "2026-03-07", "median": 584.5, "mean": 589.62, "min": 550.13, "max": 645.93, "q1": 551.67, "q3": 645.93, "count": 7, "count_filtered": 6}, {"date": "2026-03-08", "median": 584.5, "mean": 589.62, "min": 550.13, "max": 645.93, "q1": 551.67, "q3": 645.93, "count": 7, "count_filtered": 6}]</script>
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4/dist/chart.umd.min.js"></script>
   <script src="../js/site.js" defer></script>

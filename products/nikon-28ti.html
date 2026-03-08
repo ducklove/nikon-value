@@ -36,22 +36,33 @@
   <div class="site-links-wrap"><div class="container"><nav class="site-links" aria-label="사이트 바로가기"><a class="site-link is-active" href="../index.html">시세 목록</a><a class="site-link" href="../resources.html">참고 링크</a></nav></div></div>
 
   <main class="container">
+    <div class="detail-toolbar">
+      
+        <div class="currency-toggle-panel currency-toggle-panel--compact">
+          <span class="currency-toggle-panel__label">표시 통화</span>
+          <div class="currency-toggle" role="group" aria-label="표시 통화 선택">
+            <button class="currency-toggle__button" type="button" data-currency="usd">USD</button>
+            <button class="currency-toggle__button" type="button" data-currency="krw">KRW</button>
+          </div>
+          <p class="currency-toggle__meta" data-exchange-note>USD 1 = KRW 1,485.18 (ECB reference rates 2026-03-06 기준)</p>
+        </div>
+    </div>
     <div class="price-summary">
         <div class="price-card price-card--primary">
           <span class="price-label">중앙값</span>
-          <span class="price-value">$1,339.99</span>
+          <span class="price-value"><span class="money-value" data-money-usd="1339.99" data-money-sign="auto">$1,339.99</span></span>
         </div>
         <div class="price-card">
           <span class="price-label">평균</span>
-          <span class="price-value">$1,389.20</span>
+          <span class="price-value"><span class="money-value" data-money-usd="1389.2" data-money-sign="auto">$1,389.20</span></span>
         </div>
         <div class="price-card">
           <span class="price-label">최저</span>
-          <span class="price-value">$929.99</span>
+          <span class="price-value"><span class="money-value" data-money-usd="929.99" data-money-sign="auto">$929.99</span></span>
         </div>
         <div class="price-card">
           <span class="price-label">최고</span>
-          <span class="price-value">$1,860.05</span>
+          <span class="price-value"><span class="money-value" data-money-usd="1860.05" data-money-sign="auto">$1,860.05</span></span>
         </div>
         <div class="price-card">
           <span class="price-label">매물 수</span>
@@ -59,7 +70,7 @@
         </div>
         <div class="price-card">
           <span class="price-label">Q1 - Q3</span>
-          <span class="price-value price-value--small">$1,199.99 - $1,634.98</span>
+          <span class="price-value price-value--small"><span class="money-range price-value--small"><span class="money-value price-value--small" data-money-usd="1199.99" data-money-sign="auto">$1,199.99</span> - <span class="money-value price-value--small" data-money-usd="1634.98" data-money-sign="auto">$1,634.98</span></span></span>
         </div>
         <div class="price-card">
           <span class="price-label">최근 변화</span>
@@ -67,12 +78,12 @@
         </div>
         <div class="price-card">
           <span class="price-label">변화 금액</span>
-          <span class="price-value">$0</span>
+          <span class="price-value"><span class="money-value" data-money-usd="0.0" data-money-sign="always">$0</span></span>
         </div>
     </div>
     
 
-    <p class="detail-note">시세는 eBay 미국 현재 매물 기준이며, 실제 체결가와는 차이가 있을 수 있습니다. 최근 1일 기준 중앙값 0.0% ($0) 변동했습니다.</p>
+    <p class="detail-note">시세는 eBay 미국 현재 매물 기준이며, 실제 체결가와는 차이가 있을 수 있습니다. 최근 1일 기준 중앙값 0.0% (<span class="money-value" data-money-usd="0.0" data-money-sign="always">$0</span>) 변동했습니다.</p>
 
     <section class="chart-section">
       <div class="chart-header">
@@ -108,35 +119,35 @@
           <img class="listing-card__image" src="https://i.ebayimg.com/images/g/vTUAAeSwkyxpns8F/s-l640.jpg" alt="Nikon 28Ti 28mm F2.8 Compact Film Camera #K731" loading="lazy">
           <div class="listing-card__info">
             <div class="listing-card__title">Nikon 28Ti 28mm F2.8 Compact Film Camera #K731</div>
-            <div class="listing-card__price">$1,287.37</div>
+            <div class="listing-card__price"><span class="money-value" data-money-usd="1287.37" data-money-sign="auto">$1,287.37</span></div>
           </div>
         </a>
         <a class="listing-card" href="https://www.ebay.com/itm/188104202293?_skw=Nikon+28Ti+film+camera+-case+-manual+-brochure+-battery+-strap&amp;hash=item2bcbe25835:g:-VMAAeSwZFppokk-" target="_blank" rel="noopener noreferrer nofollow">
           <img class="listing-card__image" src="https://i.ebayimg.com/images/g/-VMAAeSwZFppokk-/s-l1600.jpg" alt="[ OPT MINT Boxed ] Nikon 28 Ti Black 35mm Point&amp;Shoot Film Camera From JAPAN" loading="lazy">
           <div class="listing-card__info">
             <div class="listing-card__title">[ OPT MINT Boxed ] Nikon 28 Ti Black 35mm Point&amp;Shoot Film Camera From JAPAN</div>
-            <div class="listing-card__price">$1,339.99</div>
+            <div class="listing-card__price"><span class="money-value" data-money-usd="1339.99" data-money-sign="auto">$1,339.99</span></div>
           </div>
         </a>
         <a class="listing-card" href="https://www.ebay.com/itm/366239350407?_skw=Nikon+28Ti+film+camera+-case+-manual+-brochure+-battery+-strap&amp;hash=item554590fe87:g:ay8AAeSwYsBppT~7" target="_blank" rel="noopener noreferrer nofollow">
           <img class="listing-card__image" src="https://i.ebayimg.com/images/g/ay8AAeSwYsBppT~7/s-l1200.jpg" alt="[ MINT+ ] ALL Works Nikon 28Ti Point &amp; Shoot 35mm Film Camera From JAPAN" loading="lazy">
           <div class="listing-card__info">
             <div class="listing-card__title">[ MINT+ ] ALL Works Nikon 28Ti Point &amp; Shoot 35mm Film Camera From JAPAN</div>
-            <div class="listing-card__price">$1,339.99</div>
+            <div class="listing-card__price"><span class="money-value" data-money-usd="1339.99" data-money-sign="auto">$1,339.99</span></div>
           </div>
         </a>
         <a class="listing-card" href="https://www.ebay.com/itm/137033000808?_skw=Nikon+28Ti+film+camera+-case+-manual+-brochure+-battery+-strap&amp;hash=item1fe7cda768:g:AXkAAeSwhA5pjfzQ" target="_blank" rel="noopener noreferrer nofollow">
           <img class="listing-card__image" src="https://i.ebayimg.com/images/g/AXkAAeSwhA5pjfzQ/s-l1600.jpg" alt="[Top MINT in Box] Nikon 28Ti 28 Ti Black 35mm Point&amp;Shoot Film Camera From JAPAN" loading="lazy">
           <div class="listing-card__info">
             <div class="listing-card__title">[Top MINT in Box] Nikon 28Ti 28 Ti Black 35mm Point&amp;Shoot Film Camera From JAPAN</div>
-            <div class="listing-card__price">$1,429.99</div>
+            <div class="listing-card__price"><span class="money-value" data-money-usd="1429.99" data-money-sign="auto">$1,429.99</span></div>
           </div>
         </a>
         <a class="listing-card" href="https://www.ebay.com/itm/389279994228?_skw=Nikon+28Ti+film+camera+-case+-manual+-brochure+-battery+-strap&amp;hash=item5aa2e55174:g:70sAAeSwOrlpXppQ" target="_blank" rel="noopener noreferrer nofollow">
           <img class="listing-card__image" src="https://i.ebayimg.com/images/g/70sAAeSwOrlpXppQ/s-l1600.jpg" alt="NIKON 28TI Film Camera Compact Point and Shoot" loading="lazy">
           <div class="listing-card__info">
             <div class="listing-card__title">NIKON 28TI Film Camera Compact Point and Shoot</div>
-            <div class="listing-card__price">$1,433.90</div>
+            <div class="listing-card__price"><span class="money-value" data-money-usd="1433.9" data-money-sign="auto">$1,433.90</span></div>
           </div>
         </a>
       </div>
@@ -173,6 +184,7 @@
     </div>
   </footer>
 
+  <script id="exchange-rate-data" type="application/json">{"base": "USD", "quote": "KRW", "rate": 1485.1829, "reference_date": "2026-03-06", "source": "ECB reference rates"}</script>
   <script id="history-data" type="application/json">[{"date": "2026-03-07", "median": 1339.99, "mean": 1380.93, "min": 929.99, "max": 1860.05, "q1": 1199.99, "q3": 1593.0, "count": 22, "count_filtered": 22}, {"date": "2026-03-08", "median": 1339.99, "mean": 1389.2, "min": 929.99, "max": 1860.05, "q1": 1199.99, "q3": 1634.98, "count": 23, "count_filtered": 23}]</script>
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4/dist/chart.umd.min.js"></script>
   <script src="../js/site.js" defer></script>

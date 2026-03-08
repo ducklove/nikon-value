@@ -36,22 +36,33 @@
   <div class="site-links-wrap"><div class="container"><nav class="site-links" aria-label="사이트 바로가기"><a class="site-link is-active" href="../index.html">시세 목록</a><a class="site-link" href="../resources.html">참고 링크</a></nav></div></div>
 
   <main class="container">
+    <div class="detail-toolbar">
+      
+        <div class="currency-toggle-panel currency-toggle-panel--compact">
+          <span class="currency-toggle-panel__label">표시 통화</span>
+          <div class="currency-toggle" role="group" aria-label="표시 통화 선택">
+            <button class="currency-toggle__button" type="button" data-currency="usd">USD</button>
+            <button class="currency-toggle__button" type="button" data-currency="krw">KRW</button>
+          </div>
+          <p class="currency-toggle__meta" data-exchange-note>USD 1 = KRW 1,485.18 (ECB reference rates 2026-03-06 기준)</p>
+        </div>
+    </div>
     <div class="price-summary">
         <div class="price-card price-card--primary">
           <span class="price-label">중앙값</span>
-          <span class="price-value">$668.13</span>
+          <span class="price-value"><span class="money-value" data-money-usd="668.13" data-money-sign="auto">$668.13</span></span>
         </div>
         <div class="price-card">
           <span class="price-label">평균</span>
-          <span class="price-value">$698</span>
+          <span class="price-value"><span class="money-value" data-money-usd="698.0" data-money-sign="auto">$698</span></span>
         </div>
         <div class="price-card">
           <span class="price-label">최저</span>
-          <span class="price-value">$509.99</span>
+          <span class="price-value"><span class="money-value" data-money-usd="509.99" data-money-sign="auto">$509.99</span></span>
         </div>
         <div class="price-card">
           <span class="price-label">최고</span>
-          <span class="price-value">$1,101.99</span>
+          <span class="price-value"><span class="money-value" data-money-usd="1101.99" data-money-sign="auto">$1,101.99</span></span>
         </div>
         <div class="price-card">
           <span class="price-label">매물 수</span>
@@ -59,7 +70,7 @@
         </div>
         <div class="price-card">
           <span class="price-label">Q1 - Q3</span>
-          <span class="price-value price-value--small">$583.99 - $800.04</span>
+          <span class="price-value price-value--small"><span class="money-range price-value--small"><span class="money-value price-value--small" data-money-usd="583.99" data-money-sign="auto">$583.99</span> - <span class="money-value price-value--small" data-money-usd="800.04" data-money-sign="auto">$800.04</span></span></span>
         </div>
         <div class="price-card">
           <span class="price-label">최근 변화</span>
@@ -67,12 +78,12 @@
         </div>
         <div class="price-card">
           <span class="price-label">변화 금액</span>
-          <span class="price-value">$-81.87</span>
+          <span class="price-value"><span class="money-value" data-money-usd="-81.87" data-money-sign="always">$-81.87</span></span>
         </div>
     </div>
     
 
-    <p class="detail-note">시세는 eBay 미국 현재 매물 기준이며, 실제 체결가와는 차이가 있을 수 있습니다. 최근 5일 기준 중앙값 -10.9% ($-81.87) 변동했습니다.</p>
+    <p class="detail-note">시세는 eBay 미국 현재 매물 기준이며, 실제 체결가와는 차이가 있을 수 있습니다. 최근 5일 기준 중앙값 -10.9% (<span class="money-value" data-money-usd="-81.87" data-money-sign="always">$-81.87</span>) 변동했습니다.</p>
 
     <section class="chart-section">
       <div class="chart-header">
@@ -108,35 +119,35 @@
           <img class="listing-card__image" src="https://i.ebayimg.com/images/g/~-wAAeSwmNdpgBcm/s-l1600.jpg" alt="Nikon AF-S 24-70mm f/2.8G ED Zoom Lens Tested Working" loading="lazy">
           <div class="listing-card__info">
             <div class="listing-card__title">Nikon AF-S 24-70mm f/2.8G ED Zoom Lens Tested Working</div>
-            <div class="listing-card__price">$686</div>
+            <div class="listing-card__price"><span class="money-value" data-money-usd="686.0" data-money-sign="auto">$686</span></div>
           </div>
         </a>
         <a class="listing-card" href="https://www.ebay.com/itm/306803927414?_skw=Nikon+AF-S+24-70mm+f%2F2.8G+ED&amp;hash=item476ef06976:g:u~wAAeSwvwZprMFN" target="_blank" rel="noopener noreferrer nofollow">
           <img class="listing-card__image" src="https://i.ebayimg.com/images/g/u~wAAeSwvwZprMFN/s-l640.jpg" alt="Nikon AF-S NIKKOR 24-70mm f/2.8g ED 536110" loading="lazy">
           <div class="listing-card__info">
             <div class="listing-card__title">Nikon AF-S NIKKOR 24-70mm f/2.8g ED 536110</div>
-            <div class="listing-card__price">$689.05</div>
+            <div class="listing-card__price"><span class="money-value" data-money-usd="689.05" data-money-sign="auto">$689.05</span></div>
           </div>
         </a>
         <a class="listing-card" href="https://www.ebay.com/itm/317953953832?_skw=Nikon+AF-S+24-70mm+f%2F2.8G+ED&amp;hash=item4a07885028:g:tyMAAeSwO1hpqFgm" target="_blank" rel="noopener noreferrer nofollow">
           <img class="listing-card__image" src="https://i.ebayimg.com/images/g/tyMAAeSwO1hpqFgm/s-l1600.jpg" alt="[ Unused in Box ] Nikon AF-S NIKKOR 24-70mm F2.8 G ED Zoom AF Lens From JAPAN" loading="lazy">
           <div class="listing-card__info">
             <div class="listing-card__title">[ Unused in Box ] Nikon AF-S NIKKOR 24-70mm F2.8 G ED Zoom AF Lens From JAPAN</div>
-            <div class="listing-card__price">$689.99</div>
+            <div class="listing-card__price"><span class="money-value" data-money-usd="689.99" data-money-sign="auto">$689.99</span></div>
           </div>
         </a>
         <a class="listing-card" href="https://www.ebay.com/itm/147186133005?_skw=Nikon+AF-S+24-70mm+f%2F2.8G+ED&amp;hash=item2244fa280d:g:4WgAAeSw8AZpqScn" target="_blank" rel="noopener noreferrer nofollow">
           <img class="listing-card__image" src="https://i.ebayimg.com/images/g/4WgAAeSw8AZpqScn/s-l1600.jpg" alt="Tested [Almost Unused / Box] Nikon AF-S Nikkor 24-70mm f2.8 G ED Zoom Lens JAPAN" loading="lazy">
           <div class="listing-card__info">
             <div class="listing-card__title">Tested [Almost Unused / Box] Nikon AF-S Nikkor 24-70mm f2.8 G ED Zoom Lens JAPAN</div>
-            <div class="listing-card__price">$689.99</div>
+            <div class="listing-card__price"><span class="money-value" data-money-usd="689.99" data-money-sign="auto">$689.99</span></div>
           </div>
         </a>
         <a class="listing-card" href="https://www.ebay.com/itm/127723361403?_skw=Nikon+AF-S+24-70mm+f%2F2.8G+ED&amp;hash=item1dbce7d47b:g:FGsAAeSw0gNpqvuR" target="_blank" rel="noopener noreferrer nofollow">
           <img class="listing-card__image" src="https://i.ebayimg.com/images/g/FGsAAeSw0gNpqvuR/s-l1600.jpg" alt="Nikon  AF-S Nikkor 24-70mm F2.8G ED Lens Excellent Cond. w/ Original Box &amp; Case" loading="lazy">
           <div class="listing-card__info">
             <div class="listing-card__title">Nikon  AF-S Nikkor 24-70mm F2.8G ED Lens Excellent Cond. w/ Original Box &amp; Case</div>
-            <div class="listing-card__price">$690.88</div>
+            <div class="listing-card__price"><span class="money-value" data-money-usd="690.88" data-money-sign="auto">$690.88</span></div>
           </div>
         </a>
       </div>
@@ -181,6 +192,7 @@
     </div>
   </footer>
 
+  <script id="exchange-rate-data" type="application/json">{"base": "USD", "quote": "KRW", "rate": 1485.1829, "reference_date": "2026-03-06", "source": "ECB reference rates"}</script>
   <script id="history-data" type="application/json">[{"date": "2026-03-02", "median": null, "mean": null, "min": null, "max": null, "q1": null, "q3": null, "count": 0, "count_filtered": 0}, {"date": "2026-03-03", "median": 750.0, "mean": 848.06, "min": 500.0, "max": 1487.99, "q1": 649.99, "q3": 1059.0, "count": 339, "count_filtered": 338}, {"date": "2026-03-04", "median": 689.23, "mean": 733.41, "min": 499.58, "max": 1233.99, "q1": 591.45, "q3": 858.39, "count": 203, "count_filtered": 194}, {"date": "2026-03-05", "median": 689.52, "mean": 728.6, "min": 509.99, "max": 1209.99, "q1": 591.15, "q3": 842.65, "count": 197, "count_filtered": 188}, {"date": "2026-03-06", "median": 678.96, "mean": 708.96, "min": 500.21, "max": 1185.99, "q1": 587.02, "q3": 827.6, "count": 205, "count_filtered": 191}, {"date": "2026-03-07", "median": 668.13, "mean": 696.44, "min": 509.99, "max": 1101.99, "q1": 583.99, "q3": 800.04, "count": 200, "count_filtered": 188}, {"date": "2026-03-08", "median": 668.13, "mean": 698.0, "min": 509.99, "max": 1101.99, "q1": 583.99, "q3": 800.04, "count": 200, "count_filtered": 188}]</script>
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4/dist/chart.umd.min.js"></script>
   <script src="../js/site.js" defer></script>

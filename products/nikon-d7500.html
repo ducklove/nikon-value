@@ -36,22 +36,33 @@
   <div class="site-links-wrap"><div class="container"><nav class="site-links" aria-label="사이트 바로가기"><a class="site-link is-active" href="../index.html">시세 목록</a><a class="site-link" href="../resources.html">참고 링크</a></nav></div></div>
 
   <main class="container">
+    <div class="detail-toolbar">
+      
+        <div class="currency-toggle-panel currency-toggle-panel--compact">
+          <span class="currency-toggle-panel__label">표시 통화</span>
+          <div class="currency-toggle" role="group" aria-label="표시 통화 선택">
+            <button class="currency-toggle__button" type="button" data-currency="usd">USD</button>
+            <button class="currency-toggle__button" type="button" data-currency="krw">KRW</button>
+          </div>
+          <p class="currency-toggle__meta" data-exchange-note>USD 1 = KRW 1,485.18 (ECB reference rates 2026-03-06 기준)</p>
+        </div>
+    </div>
     <div class="price-summary">
         <div class="price-card price-card--primary">
           <span class="price-label">중앙값</span>
-          <span class="price-value">$785.19</span>
+          <span class="price-value"><span class="money-value" data-money-usd="785.19" data-money-sign="auto">$785.19</span></span>
         </div>
         <div class="price-card">
           <span class="price-label">평균</span>
-          <span class="price-value">$770.44</span>
+          <span class="price-value"><span class="money-value" data-money-usd="770.44" data-money-sign="auto">$770.44</span></span>
         </div>
         <div class="price-card">
           <span class="price-label">최저</span>
-          <span class="price-value">$449.39</span>
+          <span class="price-value"><span class="money-value" data-money-usd="449.39" data-money-sign="auto">$449.39</span></span>
         </div>
         <div class="price-card">
           <span class="price-label">최고</span>
-          <span class="price-value">$1,140.25</span>
+          <span class="price-value"><span class="money-value" data-money-usd="1140.25" data-money-sign="auto">$1,140.25</span></span>
         </div>
         <div class="price-card">
           <span class="price-label">매물 수</span>
@@ -59,7 +70,7 @@
         </div>
         <div class="price-card">
           <span class="price-label">Q1 - Q3</span>
-          <span class="price-value price-value--small">$676.94 - $864.66</span>
+          <span class="price-value price-value--small"><span class="money-range price-value--small"><span class="money-value price-value--small" data-money-usd="676.94" data-money-sign="auto">$676.94</span> - <span class="money-value price-value--small" data-money-usd="864.66" data-money-sign="auto">$864.66</span></span></span>
         </div>
         <div class="price-card">
           <span class="price-label">최근 변화</span>
@@ -67,12 +78,12 @@
         </div>
         <div class="price-card">
           <span class="price-label">변화 금액</span>
-          <span class="price-value">+$35.20</span>
+          <span class="price-value"><span class="money-value" data-money-usd="35.200000000000045" data-money-sign="always">$35.20</span></span>
         </div>
     </div>
     
 
-    <p class="detail-note">시세는 eBay 미국 현재 매물 기준이며, 실제 체결가와는 차이가 있을 수 있습니다. 최근 5일 기준 중앙값 +4.7% (+$35.20) 변동했습니다.</p>
+    <p class="detail-note">시세는 eBay 미국 현재 매물 기준이며, 실제 체결가와는 차이가 있을 수 있습니다. 최근 5일 기준 중앙값 +4.7% (<span class="money-value" data-money-usd="35.200000000000045" data-money-sign="always">$35.20</span>) 변동했습니다.</p>
 
     <section class="chart-section">
       <div class="chart-header">
@@ -108,35 +119,35 @@
           <img class="listing-card__image" src="https://i.ebayimg.com/images/g/7XwAAeSwZqVprMzE/s-l1200.jpg" alt="Nikon D7500 Body 499155" loading="lazy">
           <div class="listing-card__info">
             <div class="listing-card__title">Nikon D7500 Body 499155</div>
-            <div class="listing-card__price">$784.39</div>
+            <div class="listing-card__price"><span class="money-value" data-money-usd="784.39" data-money-sign="auto">$784.39</span></div>
           </div>
         </a>
         <a class="listing-card" href="https://www.ebay.com/itm/358052116699?_skw=Nikon+D7500+body&amp;hash=item535d91b8db:g:29AAAeSwzKppTUzf" target="_blank" rel="noopener noreferrer nofollow">
           <img class="listing-card__image" src="https://i.ebayimg.com/images/g/29AAAeSwzKppTUzf/s-l1600.jpg" alt="NIKON D7500 BODY" loading="lazy">
           <div class="listing-card__info">
             <div class="listing-card__title">NIKON D7500 BODY</div>
-            <div class="listing-card__price">$785.19</div>
+            <div class="listing-card__price"><span class="money-value" data-money-usd="785.19" data-money-sign="auto">$785.19</span></div>
           </div>
         </a>
         <a class="listing-card" href="https://www.ebay.com/itm/277776672035?_skw=Nikon+D7500+body&amp;hash=item40acc7a523:g:TT4AAeSwGR9pqIoo" target="_blank" rel="noopener noreferrer nofollow">
           <img class="listing-card__image" src="https://i.ebayimg.com/images/g/TT4AAeSwGR9pqIoo/s-l1600.jpg" alt="Nikon D7500 20.9MP Digital SLR DSLR Camera (Body Only) Shutter Count - 1" loading="lazy">
           <div class="listing-card__info">
             <div class="listing-card__title">Nikon D7500 20.9MP Digital SLR DSLR Camera (Body Only) Shutter Count - 1</div>
-            <div class="listing-card__price">$785.19</div>
+            <div class="listing-card__price"><span class="money-value" data-money-usd="785.19" data-money-sign="auto">$785.19</span></div>
           </div>
         </a>
         <a class="listing-card" href="https://www.ebay.com/itm/306658534894?_skw=Nikon+D7500+body&amp;hash=item476645e5ee:g:87IAAeSw6IJprMyH" target="_blank" rel="noopener noreferrer nofollow">
           <img class="listing-card__image" src="https://i.ebayimg.com/images/g/87IAAeSw6IJprMyH/s-l1200.jpg" alt="Nikon D7500 Body 714404" loading="lazy">
           <div class="listing-card__info">
             <div class="listing-card__title">Nikon D7500 Body 714404</div>
-            <div class="listing-card__price">$791.95</div>
+            <div class="listing-card__price"><span class="money-value" data-money-usd="791.95" data-money-sign="auto">$791.95</span></div>
           </div>
         </a>
         <a class="listing-card" href="https://www.ebay.com/itm/167870121773?_skw=Nikon+D7500+body&amp;hash=item2715d6c72d:g:rHoAAOSwtzRlUgZS" target="_blank" rel="noopener noreferrer nofollow">
           <img class="listing-card__image" src="https://i.ebayimg.com/images/g/rHoAAOSwtzRlUgZS/s-l1600.jpg" alt="[Mint SC:12464 (8%)] Nikon D7500 20.9MP DSLR DX APS-C Body from Japan #2158" loading="lazy">
           <div class="listing-card__info">
             <div class="listing-card__title">[Mint SC:12464 (8%)] Nikon D7500 20.9MP DSLR DX APS-C Body from Japan #2158</div>
-            <div class="listing-card__price">$795</div>
+            <div class="listing-card__price"><span class="money-value" data-money-usd="795.0" data-money-sign="auto">$795</span></div>
           </div>
         </a>
       </div>
@@ -173,6 +184,7 @@
     </div>
   </footer>
 
+  <script id="exchange-rate-data" type="application/json">{"base": "USD", "quote": "KRW", "rate": 1485.1829, "reference_date": "2026-03-06", "source": "ECB reference rates"}</script>
   <script id="history-data" type="application/json">[{"date": "2026-03-02", "median": null, "mean": null, "min": null, "max": null, "q1": null, "q3": null, "count": 0, "count_filtered": 0}, {"date": "2026-03-03", "median": 749.99, "mean": 743.18, "min": 350.0, "max": 1111.22, "q1": 640.4, "q3": 871.97, "count": 106, "count_filtered": 105}, {"date": "2026-03-04", "median": 779.39, "mean": 764.16, "min": 449.39, "max": 1139.1, "q1": 671.54, "q3": 863.12, "count": 85, "count_filtered": 85}, {"date": "2026-03-05", "median": 779.39, "mean": 761.1, "min": 449.39, "max": 1001.69, "q1": 671.54, "q3": 855.33, "count": 88, "count_filtered": 87}, {"date": "2026-03-06", "median": 779.39, "mean": 756.76, "min": 449.39, "max": 999.99, "q1": 670.74, "q3": 839.86, "count": 86, "count_filtered": 85}, {"date": "2026-03-07", "median": 784.75, "mean": 770.18, "min": 449.39, "max": 1140.25, "q1": 672.38, "q3": 865.7, "count": 86, "count_filtered": 86}, {"date": "2026-03-08", "median": 785.19, "mean": 770.44, "min": 449.39, "max": 1140.25, "q1": 676.94, "q3": 864.66, "count": 75, "count_filtered": 75}]</script>
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4/dist/chart.umd.min.js"></script>
   <script src="../js/site.js" defer></script>

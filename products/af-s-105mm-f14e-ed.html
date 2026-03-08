@@ -36,22 +36,33 @@
   <div class="site-links-wrap"><div class="container"><nav class="site-links" aria-label="사이트 바로가기"><a class="site-link is-active" href="../index.html">시세 목록</a><a class="site-link" href="../resources.html">참고 링크</a></nav></div></div>
 
   <main class="container">
+    <div class="detail-toolbar">
+      
+        <div class="currency-toggle-panel currency-toggle-panel--compact">
+          <span class="currency-toggle-panel__label">표시 통화</span>
+          <div class="currency-toggle" role="group" aria-label="표시 통화 선택">
+            <button class="currency-toggle__button" type="button" data-currency="usd">USD</button>
+            <button class="currency-toggle__button" type="button" data-currency="krw">KRW</button>
+          </div>
+          <p class="currency-toggle__meta" data-exchange-note>USD 1 = KRW 1,485.18 (ECB reference rates 2026-03-06 기준)</p>
+        </div>
+    </div>
     <div class="price-summary">
         <div class="price-card price-card--primary">
           <span class="price-label">중앙값</span>
-          <span class="price-value">$1,290.26</span>
+          <span class="price-value"><span class="money-value" data-money-usd="1290.26" data-money-sign="auto">$1,290.26</span></span>
         </div>
         <div class="price-card">
           <span class="price-label">평균</span>
-          <span class="price-value">$1,445.12</span>
+          <span class="price-value"><span class="money-value" data-money-usd="1445.12" data-money-sign="auto">$1,445.12</span></span>
         </div>
         <div class="price-card">
           <span class="price-label">최저</span>
-          <span class="price-value">$1,102</span>
+          <span class="price-value"><span class="money-value" data-money-usd="1102.0" data-money-sign="auto">$1,102</span></span>
         </div>
         <div class="price-card">
           <span class="price-label">최고</span>
-          <span class="price-value">$2,104.13</span>
+          <span class="price-value"><span class="money-value" data-money-usd="2104.13" data-money-sign="auto">$2,104.13</span></span>
         </div>
         <div class="price-card">
           <span class="price-label">매물 수</span>
@@ -59,7 +70,7 @@
         </div>
         <div class="price-card">
           <span class="price-label">Q1 - Q3</span>
-          <span class="price-value price-value--small">$1,160 - $1,735.65</span>
+          <span class="price-value price-value--small"><span class="money-range price-value--small"><span class="money-value price-value--small" data-money-usd="1160.0" data-money-sign="auto">$1,160</span> - <span class="money-value price-value--small" data-money-usd="1735.65" data-money-sign="auto">$1,735.65</span></span></span>
         </div>
         <div class="price-card">
           <span class="price-label">최근 변화</span>
@@ -67,12 +78,12 @@
         </div>
         <div class="price-card">
           <span class="price-label">변화 금액</span>
-          <span class="price-value">$-228.61</span>
+          <span class="price-value"><span class="money-value" data-money-usd="-228.6099999999999" data-money-sign="always">$-228.61</span></span>
         </div>
     </div>
     
 
-    <p class="detail-note">시세는 eBay 미국 현재 매물 기준이며, 실제 체결가와는 차이가 있을 수 있습니다. 최근 5일 기준 중앙값 -15.1% ($-228.61) 변동했습니다.</p>
+    <p class="detail-note">시세는 eBay 미국 현재 매물 기준이며, 실제 체결가와는 차이가 있을 수 있습니다. 최근 5일 기준 중앙값 -15.1% (<span class="money-value" data-money-usd="-228.6099999999999" data-money-sign="always">$-228.61</span>) 변동했습니다.</p>
 
     <section class="chart-section">
       <div class="chart-header">
@@ -108,35 +119,35 @@
           <img class="listing-card__image" src="https://i.ebayimg.com/images/g/oPAAAeSwREFppSCP/s-l1600.jpg" alt="Nikon Nikkor AF-S 105mm f1.4 E N ED Lens AFS *Light Dust*" loading="lazy">
           <div class="listing-card__info">
             <div class="listing-card__title">Nikon Nikkor AF-S 105mm f1.4 E N ED Lens AFS *Light Dust*</div>
-            <div class="listing-card__price">$1,195.34</div>
+            <div class="listing-card__price"><span class="money-value" data-money-usd="1195.34" data-money-sign="auto">$1,195.34</span></div>
           </div>
         </a>
         <a class="listing-card" href="https://www.ebay.com/itm/286367374810?_skw=Nikon+AF-S+105mm+f%2F1.4E+ED&amp;hash=item42acd35dda:g:rGkAAeSwfP9pduRD" target="_blank" rel="noopener noreferrer nofollow">
           <img class="listing-card__image" src="https://i.ebayimg.com/images/g/rGkAAeSwfP9pduRD/s-l1600.jpg" alt="Nikon AF-S NIKKOR 105mm f/1.4E ED Lens Prime PRO" loading="lazy">
           <div class="listing-card__info">
             <div class="listing-card__title">Nikon AF-S NIKKOR 105mm f/1.4E ED Lens Prime PRO</div>
-            <div class="listing-card__price">$1,283.41</div>
+            <div class="listing-card__price"><span class="money-value" data-money-usd="1283.41" data-money-sign="auto">$1,283.41</span></div>
           </div>
         </a>
         <a class="listing-card" href="https://www.ebay.com/itm/167977594545?_skw=Nikon+AF-S+105mm+f%2F1.4E+ED&amp;hash=item271c3eaeb1:g:6Q0AAeSwhSppLiUh" target="_blank" rel="noopener noreferrer nofollow">
           <img class="listing-card__image" src="https://i.ebayimg.com/images/g/6Q0AAeSwhSppLiUh/s-l1600.jpg" alt="Nikon AF-S NIKKOR 105mm f/1.4E ED Lens" loading="lazy">
           <div class="listing-card__info">
             <div class="listing-card__title">Nikon AF-S NIKKOR 105mm f/1.4E ED Lens</div>
-            <div class="listing-card__price">$1,297.10</div>
+            <div class="listing-card__price"><span class="money-value" data-money-usd="1297.1" data-money-sign="auto">$1,297.10</span></div>
           </div>
         </a>
         <a class="listing-card" href="https://www.ebay.com/itm/404429973226?_skw=Nikon+AF-S+105mm+f%2F1.4E+ED&amp;hash=item5e29e7a6ea:g:6ioAAOSw-~Rk0283" target="_blank" rel="noopener noreferrer nofollow">
           <img class="listing-card__image" src="https://i.ebayimg.com/images/g/6ioAAOSw-~Rk0283/s-l1200.jpg" alt="Nikon AF-S NIKKOR 105mm f/1.4E ED single focal length lens for full size" loading="lazy">
           <div class="listing-card__info">
             <div class="listing-card__title">Nikon AF-S NIKKOR 105mm f/1.4E ED single focal length lens for full size</div>
-            <div class="listing-card__price">$1,350.97</div>
+            <div class="listing-card__price"><span class="money-value" data-money-usd="1350.97" data-money-sign="auto">$1,350.97</span></div>
           </div>
         </a>
         <a class="listing-card" href="https://www.ebay.com/itm/137093288194?_skw=Nikon+AF-S+105mm+f%2F1.4E+ED&amp;hash=item1feb659102:g:euoAAeSwFAlpp-5e" target="_blank" rel="noopener noreferrer nofollow">
           <img class="listing-card__image" src="https://i.ebayimg.com/images/g/euoAAeSwFAlpp-5e/s-l1600.jpg" alt="Nikon AF-S NIKKOR 105mm F1.4 E ED Black Lens F-Mount DSLR FX DX Exc+++++" loading="lazy">
           <div class="listing-card__info">
             <div class="listing-card__title">Nikon AF-S NIKKOR 105mm F1.4 E ED Black Lens F-Mount DSLR FX DX Exc+++++</div>
-            <div class="listing-card__price">$1,535</div>
+            <div class="listing-card__price"><span class="money-value" data-money-usd="1535.0" data-money-sign="auto">$1,535</span></div>
           </div>
         </a>
       </div>
@@ -181,6 +192,7 @@
     </div>
   </footer>
 
+  <script id="exchange-rate-data" type="application/json">{"base": "USD", "quote": "KRW", "rate": 1485.1829, "reference_date": "2026-03-06", "source": "ECB reference rates"}</script>
   <script id="history-data" type="application/json">[{"date": "2026-03-02", "median": null, "mean": null, "min": null, "max": null, "q1": null, "q3": null, "count": 0, "count_filtered": 0}, {"date": "2026-03-03", "median": 1518.87, "mean": 1535.5, "min": 1069.0, "max": 2154.13, "q1": 1294.23, "q3": 1667.5, "count": 18, "count_filtered": 18}, {"date": "2026-03-04", "median": 1350.97, "mean": 1514.58, "min": 1102.0, "max": 2104.13, "q1": 1170.0, "q3": 1936.31, "count": 11, "count_filtered": 11}, {"date": "2026-03-05", "median": 1442.99, "mean": 1509.92, "min": 1102.0, "max": 2104.13, "q1": 1160.0, "q3": 1795.7, "count": 12, "count_filtered": 12}, {"date": "2026-03-06", "median": 1350.97, "mean": 1485.72, "min": 1102.0, "max": 2104.13, "q1": 1160.0, "q3": 1795.7, "count": 13, "count_filtered": 13}, {"date": "2026-03-07", "median": 1290.26, "mean": 1410.22, "min": 1102.0, "max": 2104.13, "q1": 1160.0, "q3": 1595.05, "count": 12, "count_filtered": 12}, {"date": "2026-03-08", "median": 1290.26, "mean": 1445.12, "min": 1102.0, "max": 2104.13, "q1": 1160.0, "q3": 1735.65, "count": 12, "count_filtered": 12}]</script>
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4/dist/chart.umd.min.js"></script>
   <script src="../js/site.js" defer></script>

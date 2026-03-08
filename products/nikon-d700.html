@@ -36,22 +36,33 @@
   <div class="site-links-wrap"><div class="container"><nav class="site-links" aria-label="사이트 바로가기"><a class="site-link is-active" href="../index.html">시세 목록</a><a class="site-link" href="../resources.html">참고 링크</a></nav></div></div>
 
   <main class="container">
+    <div class="detail-toolbar">
+      
+        <div class="currency-toggle-panel currency-toggle-panel--compact">
+          <span class="currency-toggle-panel__label">표시 통화</span>
+          <div class="currency-toggle" role="group" aria-label="표시 통화 선택">
+            <button class="currency-toggle__button" type="button" data-currency="usd">USD</button>
+            <button class="currency-toggle__button" type="button" data-currency="krw">KRW</button>
+          </div>
+          <p class="currency-toggle__meta" data-exchange-note>USD 1 = KRW 1,485.18 (ECB reference rates 2026-03-06 기준)</p>
+        </div>
+    </div>
     <div class="price-summary">
         <div class="price-card price-card--primary">
           <span class="price-label">중앙값</span>
-          <span class="price-value">$412.99</span>
+          <span class="price-value"><span class="money-value" data-money-usd="412.99" data-money-sign="auto">$412.99</span></span>
         </div>
         <div class="price-card">
           <span class="price-label">평균</span>
-          <span class="price-value">$448.37</span>
+          <span class="price-value"><span class="money-value" data-money-usd="448.37" data-money-sign="auto">$448.37</span></span>
         </div>
         <div class="price-card">
           <span class="price-label">최저</span>
-          <span class="price-value">$273.98</span>
+          <span class="price-value"><span class="money-value" data-money-usd="273.98" data-money-sign="auto">$273.98</span></span>
         </div>
         <div class="price-card">
           <span class="price-label">최고</span>
-          <span class="price-value">$798</span>
+          <span class="price-value"><span class="money-value" data-money-usd="798.0" data-money-sign="auto">$798</span></span>
         </div>
         <div class="price-card">
           <span class="price-label">매물 수</span>
@@ -59,7 +70,7 @@
         </div>
         <div class="price-card">
           <span class="price-label">Q1 - Q3</span>
-          <span class="price-value price-value--small">$370 - $541.61</span>
+          <span class="price-value price-value--small"><span class="money-range price-value--small"><span class="money-value price-value--small" data-money-usd="370.0" data-money-sign="auto">$370</span> - <span class="money-value price-value--small" data-money-usd="541.61" data-money-sign="auto">$541.61</span></span></span>
         </div>
         <div class="price-card">
           <span class="price-label">최근 변화</span>
@@ -67,12 +78,12 @@
         </div>
         <div class="price-card">
           <span class="price-label">변화 금액</span>
-          <span class="price-value">$-6.99</span>
+          <span class="price-value"><span class="money-value" data-money-usd="-6.990000000000009" data-money-sign="always">$-6.99</span></span>
         </div>
     </div>
     
 
-    <p class="detail-note">시세는 eBay 미국 현재 매물 기준이며, 실제 체결가와는 차이가 있을 수 있습니다. 최근 5일 기준 중앙값 -1.7% ($-6.99) 변동했습니다.</p>
+    <p class="detail-note">시세는 eBay 미국 현재 매물 기준이며, 실제 체결가와는 차이가 있을 수 있습니다. 최근 5일 기준 중앙값 -1.7% (<span class="money-value" data-money-usd="-6.990000000000009" data-money-sign="always">$-6.99</span>) 변동했습니다.</p>
 
     <section class="chart-section">
       <div class="chart-header">
@@ -108,35 +119,35 @@
           <img class="listing-card__image" src="https://i.ebayimg.com/images/g/3jIAAeSwnM1pgMyc/s-l1600.jpg" alt="Nikon D700 12.1 Megapixel Full Frame (FX) DSLR Camera body" loading="lazy">
           <div class="listing-card__info">
             <div class="listing-card__title">Nikon D700 12.1 Megapixel Full Frame (FX) DSLR Camera body</div>
-            <div class="listing-card__price">$420.19</div>
+            <div class="listing-card__price"><span class="money-value" data-money-usd="420.19" data-money-sign="auto">$420.19</span></div>
           </div>
         </a>
         <a class="listing-card" href="https://www.ebay.com/itm/306784142985?_skw=Nikon+D700+body&amp;hash=item476dc28689:g:BjgAAeSwJ9NprMyp" target="_blank" rel="noopener noreferrer nofollow">
           <img class="listing-card__image" src="https://i.ebayimg.com/images/g/BjgAAeSwJ9NprMyp/s-l1200.jpg" alt="Nikon D700 Body 138434" loading="lazy">
           <div class="listing-card__info">
             <div class="listing-card__title">Nikon D700 Body 138434</div>
-            <div class="listing-card__price">$421.68</div>
+            <div class="listing-card__price"><span class="money-value" data-money-usd="421.68" data-money-sign="auto">$421.68</span></div>
           </div>
         </a>
         <a class="listing-card" href="https://www.ebay.com/itm/177856240641?_skw=Nikon+D700+body&amp;hash=item29690edc01:g:CSUAAeSwuzBpjSqY" target="_blank" rel="noopener noreferrer nofollow">
           <img class="listing-card__image" src="https://i.ebayimg.com/images/g/CSUAAeSwuzBpjSqY/s-l1600.jpg" alt="[Near MINT] Nikon D700 12.1 MP Digital SLR Camera Black From JAPAN" loading="lazy">
           <div class="listing-card__info">
             <div class="listing-card__title">[Near MINT] Nikon D700 12.1 MP Digital SLR Camera Black From JAPAN</div>
-            <div class="listing-card__price">$429.98</div>
+            <div class="listing-card__price"><span class="money-value" data-money-usd="429.98" data-money-sign="auto">$429.98</span></div>
           </div>
         </a>
         <a class="listing-card" href="https://www.ebay.com/itm/306790888801?_skw=Nikon+D700+body&amp;hash=item476e297561:g:AfkAAeSwHCNprM-R" target="_blank" rel="noopener noreferrer nofollow">
           <img class="listing-card__image" src="https://i.ebayimg.com/images/g/AfkAAeSwHCNprM-R/s-l1200.jpg" alt="Nikon D700 Body 765672" loading="lazy">
           <div class="listing-card__info">
             <div class="listing-card__title">Nikon D700 Body 765672</div>
-            <div class="listing-card__price">$432.24</div>
+            <div class="listing-card__price"><span class="money-value" data-money-usd="432.24" data-money-sign="auto">$432.24</span></div>
           </div>
         </a>
         <a class="listing-card" href="https://www.ebay.com/itm/327029399701?_skw=Nikon+D700+body&amp;hash=item4c2478a095:g:v4sAAeSwf6xpqNhT" target="_blank" rel="noopener noreferrer nofollow">
           <img class="listing-card__image" src="https://i.ebayimg.com/images/g/v4sAAeSwf6xpqNhT/s-l1600.jpg" alt="[NEAR MINT+] Nikon D700 12.1MP Full Frame DSLR Digital Camera Body w/ CF Card Jp" loading="lazy">
           <div class="listing-card__info">
             <div class="listing-card__title">[NEAR MINT+] Nikon D700 12.1MP Full Frame DSLR Digital Camera Body w/ CF Card Jp</div>
-            <div class="listing-card__price">$449.99</div>
+            <div class="listing-card__price"><span class="money-value" data-money-usd="449.99" data-money-sign="auto">$449.99</span></div>
           </div>
         </a>
       </div>
@@ -173,6 +184,7 @@
     </div>
   </footer>
 
+  <script id="exchange-rate-data" type="application/json">{"base": "USD", "quote": "KRW", "rate": 1485.1829, "reference_date": "2026-03-06", "source": "ECB reference rates"}</script>
   <script id="history-data" type="application/json">[{"date": "2026-03-02", "median": null, "mean": null, "min": null, "max": null, "q1": null, "q3": null, "count": 0, "count_filtered": 0}, {"date": "2026-03-03", "median": 419.98, "mean": 450.8, "min": 257.0, "max": 800.0, "q1": 349.0, "q3": 545.45, "count": 182, "count_filtered": 179}, {"date": "2026-03-04", "median": 414.82, "mean": 447.53, "min": 273.98, "max": 798.0, "q1": 375.25, "q3": 567.23, "count": 104, "count_filtered": 97}, {"date": "2026-03-05", "median": 422.44, "mean": 450.9, "min": 273.98, "max": 798.0, "q1": 375.75, "q3": 562.41, "count": 113, "count_filtered": 106}, {"date": "2026-03-06", "median": 423.2, "mean": 449.98, "min": 273.98, "max": 798.0, "q1": 377.17, "q3": 561.74, "count": 110, "count_filtered": 103}, {"date": "2026-03-07", "median": 429.98, "mean": 454.94, "min": 273.98, "max": 798.0, "q1": 378.98, "q3": 558.84, "count": 108, "count_filtered": 101}, {"date": "2026-03-08", "median": 412.99, "mean": 448.37, "min": 273.98, "max": 798.0, "q1": 370.0, "q3": 541.61, "count": 90, "count_filtered": 85}]</script>
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4/dist/chart.umd.min.js"></script>
   <script src="../js/site.js" defer></script>

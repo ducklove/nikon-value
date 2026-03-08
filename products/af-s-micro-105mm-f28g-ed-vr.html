@@ -36,22 +36,33 @@
   <div class="site-links-wrap"><div class="container"><nav class="site-links" aria-label="사이트 바로가기"><a class="site-link is-active" href="../index.html">시세 목록</a><a class="site-link" href="../resources.html">참고 링크</a></nav></div></div>
 
   <main class="container">
+    <div class="detail-toolbar">
+      
+        <div class="currency-toggle-panel currency-toggle-panel--compact">
+          <span class="currency-toggle-panel__label">표시 통화</span>
+          <div class="currency-toggle" role="group" aria-label="표시 통화 선택">
+            <button class="currency-toggle__button" type="button" data-currency="usd">USD</button>
+            <button class="currency-toggle__button" type="button" data-currency="krw">KRW</button>
+          </div>
+          <p class="currency-toggle__meta" data-exchange-note>USD 1 = KRW 1,485.18 (ECB reference rates 2026-03-06 기준)</p>
+        </div>
+    </div>
     <div class="price-summary">
         <div class="price-card price-card--primary">
           <span class="price-label">중앙값</span>
-          <span class="price-value">$497</span>
+          <span class="price-value"><span class="money-value" data-money-usd="497.0" data-money-sign="auto">$497</span></span>
         </div>
         <div class="price-card">
           <span class="price-label">평균</span>
-          <span class="price-value">$512.06</span>
+          <span class="price-value"><span class="money-value" data-money-usd="512.06" data-money-sign="auto">$512.06</span></span>
         </div>
         <div class="price-card">
           <span class="price-label">최저</span>
-          <span class="price-value">$300.77</span>
+          <span class="price-value"><span class="money-value" data-money-usd="300.77" data-money-sign="auto">$300.77</span></span>
         </div>
         <div class="price-card">
           <span class="price-label">최고</span>
-          <span class="price-value">$748.37</span>
+          <span class="price-value"><span class="money-value" data-money-usd="748.37" data-money-sign="auto">$748.37</span></span>
         </div>
         <div class="price-card">
           <span class="price-label">매물 수</span>
@@ -59,7 +70,7 @@
         </div>
         <div class="price-card">
           <span class="price-label">Q1 - Q3</span>
-          <span class="price-value price-value--small">$437.35 - $567.44</span>
+          <span class="price-value price-value--small"><span class="money-range price-value--small"><span class="money-value price-value--small" data-money-usd="437.35" data-money-sign="auto">$437.35</span> - <span class="money-value price-value--small" data-money-usd="567.44" data-money-sign="auto">$567.44</span></span></span>
         </div>
         <div class="price-card">
           <span class="price-label">최근 변화</span>
@@ -67,12 +78,12 @@
         </div>
         <div class="price-card">
           <span class="price-label">변화 금액</span>
-          <span class="price-value">$-3</span>
+          <span class="price-value"><span class="money-value" data-money-usd="-3.0" data-money-sign="always">$-3</span></span>
         </div>
     </div>
     
 
-    <p class="detail-note">시세는 eBay 미국 현재 매물 기준이며, 실제 체결가와는 차이가 있을 수 있습니다. 최근 5일 기준 중앙값 -0.6% ($-3) 변동했습니다.</p>
+    <p class="detail-note">시세는 eBay 미국 현재 매물 기준이며, 실제 체결가와는 차이가 있을 수 있습니다. 최근 5일 기준 중앙값 -0.6% (<span class="money-value" data-money-usd="-3.0" data-money-sign="always">$-3</span>) 변동했습니다.</p>
 
     <section class="chart-section">
       <div class="chart-header">
@@ -108,35 +119,35 @@
           <img class="listing-card__image" src="https://i.ebayimg.com/images/g/T8MAAeSw2KtpqYw7/s-l1600.jpg" alt="Nikon AF-S VR Micro-NIKKOR 105mm f/2.8G IF-ED Lens, Excellent condition" loading="lazy">
           <div class="listing-card__info">
             <div class="listing-card__title">Nikon AF-S VR Micro-NIKKOR 105mm f/2.8G IF-ED Lens, Excellent condition</div>
-            <div class="listing-card__price">$494.50</div>
+            <div class="listing-card__price"><span class="money-value" data-money-usd="494.5" data-money-sign="auto">$494.50</span></div>
           </div>
         </a>
         <a class="listing-card" href="https://www.ebay.com/itm/317935346919?_skw=Nikon+AF-S+Micro+105mm+f%2F2.8G+VR&amp;hash=item4a066c64e7:g:RXUAAeSwfbVpou41" target="_blank" rel="noopener noreferrer nofollow">
           <img class="listing-card__image" src="https://i.ebayimg.com/images/g/RXUAAeSwfbVpou41/s-l1600.jpg" alt="Nikon AF-S VR Micro-Nikkor 105mm f/2.8G Camera Lens From JAPAN[Top MINT]" loading="lazy">
           <div class="listing-card__info">
             <div class="listing-card__title">Nikon AF-S VR Micro-Nikkor 105mm f/2.8G Camera Lens From JAPAN[Top MINT]</div>
-            <div class="listing-card__price">$494.99</div>
+            <div class="listing-card__price"><span class="money-value" data-money-usd="494.99" data-money-sign="auto">$494.99</span></div>
           </div>
         </a>
         <a class="listing-card" href="https://www.ebay.com/itm/406727846311?_skw=Nikon+AF-S+Micro+105mm+f%2F2.8G+VR&amp;hash=item5eb2de69a7:g:fUcAAeSwp45povSN" target="_blank" rel="noopener noreferrer nofollow">
           <img class="listing-card__image" src="https://i.ebayimg.com/images/g/fUcAAeSwp45povSN/s-l1600.jpg" alt="[Top MINT] Nikon AF-S Micro NIKKOR 105mm F/2.8 G ED VR Macro Lens From JAPAN" loading="lazy">
           <div class="listing-card__info">
             <div class="listing-card__title">[Top MINT] Nikon AF-S Micro NIKKOR 105mm F/2.8 G ED VR Macro Lens From JAPAN</div>
-            <div class="listing-card__price">$499</div>
+            <div class="listing-card__price"><span class="money-value" data-money-usd="499.0" data-money-sign="auto">$499</span></div>
           </div>
         </a>
         <a class="listing-card" href="https://www.ebay.com/itm/317923669503?_skw=Nikon+AF-S+Micro+105mm+f%2F2.8G+VR&amp;hash=item4a05ba35ff:g:VzQAAeSw8jlpnxeI" target="_blank" rel="noopener noreferrer nofollow">
           <img class="listing-card__image" src="https://i.ebayimg.com/images/g/VzQAAeSw8jlpnxeI/s-l1600.jpg" alt="⭐️Top MINT⭐️ Nikon AF-S Micro Nikkor 105mm f/2.8 G ED VR Lens From JAPAN" loading="lazy">
           <div class="listing-card__info">
             <div class="listing-card__title">⭐️Top MINT⭐️ Nikon AF-S Micro Nikkor 105mm f/2.8 G ED VR Lens From JAPAN</div>
-            <div class="listing-card__price">$499.99</div>
+            <div class="listing-card__price"><span class="money-value" data-money-usd="499.99" data-money-sign="auto">$499.99</span></div>
           </div>
         </a>
         <a class="listing-card" href="https://www.ebay.com/itm/127589276275?_skw=Nikon+AF-S+Micro+105mm+f%2F2.8G+VR&amp;hash=item1db4e9da73:g:AGcAAeSwcNRpUVgb" target="_blank" rel="noopener noreferrer nofollow">
           <img class="listing-card__image" src="https://i.ebayimg.com/images/g/AGcAAeSwcNRpUVgb/s-l1600.jpg" alt="[MINT] Nikon AF-S VR Micro-NIKKOR 105mm f/2.8G IF-ED Telephoto Lens from Japan" loading="lazy">
           <div class="listing-card__info">
             <div class="listing-card__title">[MINT] Nikon AF-S VR Micro-NIKKOR 105mm f/2.8G IF-ED Telephoto Lens from Japan</div>
-            <div class="listing-card__price">$499.99</div>
+            <div class="listing-card__price"><span class="money-value" data-money-usd="499.99" data-money-sign="auto">$499.99</span></div>
           </div>
         </a>
       </div>
@@ -181,6 +192,7 @@
     </div>
   </footer>
 
+  <script id="exchange-rate-data" type="application/json">{"base": "USD", "quote": "KRW", "rate": 1485.1829, "reference_date": "2026-03-06", "source": "ECB reference rates"}</script>
   <script id="history-data" type="application/json">[{"date": "2026-03-02", "median": null, "mean": null, "min": null, "max": null, "q1": null, "q3": null, "count": 0, "count_filtered": 0}, {"date": "2026-03-03", "median": 500.0, "mean": 517.49, "min": 362.03, "max": 719.99, "q1": 462.44, "q3": 579.5, "count": 101, "count_filtered": 97}, {"date": "2026-03-04", "median": 494.99, "mean": 517.75, "min": 301.03, "max": 778.42, "q1": 432.0, "q3": 571.61, "count": 61, "count_filtered": 61}, {"date": "2026-03-05", "median": 494.99, "mean": 514.87, "min": 300.77, "max": 748.37, "q1": 434.71, "q3": 568.0, "count": 62, "count_filtered": 61}, {"date": "2026-03-06", "median": 494.75, "mean": 515.62, "min": 300.77, "max": 778.42, "q1": 433.74, "q3": 575.22, "count": 66, "count_filtered": 66}, {"date": "2026-03-07", "median": 494.5, "mean": 506.68, "min": 300.77, "max": 748.37, "q1": 433.74, "q3": 566.88, "count": 63, "count_filtered": 62}, {"date": "2026-03-08", "median": 497.0, "mean": 512.06, "min": 300.77, "max": 748.37, "q1": 437.35, "q3": 567.44, "count": 57, "count_filtered": 56}]</script>
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4/dist/chart.umd.min.js"></script>
   <script src="../js/site.js" defer></script>

@@ -36,22 +36,33 @@
   <div class="site-links-wrap"><div class="container"><nav class="site-links" aria-label="사이트 바로가기"><a class="site-link is-active" href="../index.html">시세 목록</a><a class="site-link" href="../resources.html">참고 링크</a></nav></div></div>
 
   <main class="container">
+    <div class="detail-toolbar">
+      
+        <div class="currency-toggle-panel currency-toggle-panel--compact">
+          <span class="currency-toggle-panel__label">표시 통화</span>
+          <div class="currency-toggle" role="group" aria-label="표시 통화 선택">
+            <button class="currency-toggle__button" type="button" data-currency="usd">USD</button>
+            <button class="currency-toggle__button" type="button" data-currency="krw">KRW</button>
+          </div>
+          <p class="currency-toggle__meta" data-exchange-note>USD 1 = KRW 1,485.18 (ECB reference rates 2026-03-06 기준)</p>
+        </div>
+    </div>
     <div class="price-summary">
         <div class="price-card price-card--primary">
           <span class="price-label">중앙값</span>
-          <span class="price-value">$892.61</span>
+          <span class="price-value"><span class="money-value" data-money-usd="892.61" data-money-sign="auto">$892.61</span></span>
         </div>
         <div class="price-card">
           <span class="price-label">평균</span>
-          <span class="price-value">$894.40</span>
+          <span class="price-value"><span class="money-value" data-money-usd="894.4" data-money-sign="auto">$894.40</span></span>
         </div>
         <div class="price-card">
           <span class="price-label">최저</span>
-          <span class="price-value">$791.01</span>
+          <span class="price-value"><span class="money-value" data-money-usd="791.01" data-money-sign="auto">$791.01</span></span>
         </div>
         <div class="price-card">
           <span class="price-label">최고</span>
-          <span class="price-value">$995.88</span>
+          <span class="price-value"><span class="money-value" data-money-usd="995.88" data-money-sign="auto">$995.88</span></span>
         </div>
         <div class="price-card">
           <span class="price-label">매물 수</span>
@@ -59,7 +70,7 @@
         </div>
         <div class="price-card">
           <span class="price-label">Q1 - Q3</span>
-          <span class="price-value price-value--small">$853.52 - $913.43</span>
+          <span class="price-value price-value--small"><span class="money-range price-value--small"><span class="money-value price-value--small" data-money-usd="853.52" data-money-sign="auto">$853.52</span> - <span class="money-value price-value--small" data-money-usd="913.43" data-money-sign="auto">$913.43</span></span></span>
         </div>
         <div class="price-card">
           <span class="price-label">최근 변화</span>
@@ -67,12 +78,12 @@
         </div>
         <div class="price-card">
           <span class="price-label">변화 금액</span>
-          <span class="price-value">+$2.62</span>
+          <span class="price-value"><span class="money-value" data-money-usd="2.6200000000000045" data-money-sign="always">$2.62</span></span>
         </div>
     </div>
     
 
-    <p class="detail-note">시세는 eBay 미국 현재 매물 기준이며, 실제 체결가와는 차이가 있을 수 있습니다. 최근 5일 기준 중앙값 +0.3% (+$2.62) 변동했습니다.</p>
+    <p class="detail-note">시세는 eBay 미국 현재 매물 기준이며, 실제 체결가와는 차이가 있을 수 있습니다. 최근 5일 기준 중앙값 +0.3% (<span class="money-value" data-money-usd="2.6200000000000045" data-money-sign="always">$2.62</span>) 변동했습니다.</p>
 
     <section class="chart-section">
       <div class="chart-header">
@@ -108,35 +119,35 @@
           <img class="listing-card__image" src="https://i.ebayimg.com/images/g/VicAAeSw3ABppVf9/s-l1600.jpg" alt="Nikon Nikkor Z MC 105mm F2.8 VR S Lens" loading="lazy">
           <div class="listing-card__info">
             <div class="listing-card__title">Nikon Nikkor Z MC 105mm F2.8 VR S Lens</div>
-            <div class="listing-card__price">$867.04</div>
+            <div class="listing-card__price"><span class="money-value" data-money-usd="867.04" data-money-sign="auto">$867.04</span></div>
           </div>
         </a>
         <a class="listing-card" href="https://www.ebay.com/itm/177767657964?_skw=Nikkor+Z+MC+105mm+f%2F2.8+VR+S&amp;hash=item2963c731ec:g:w4oAAeSwHyJpY7Kp" target="_blank" rel="noopener noreferrer nofollow">
           <img class="listing-card__image" src="https://i.ebayimg.com/images/g/w4oAAeSwHyJpY7Kp/s-l1600.jpg" alt="Nikon NIKKOR Z MC 105mm F/2.8 VR S Macro Lens Excellent+" loading="lazy">
           <div class="listing-card__info">
             <div class="listing-card__title">Nikon NIKKOR Z MC 105mm F/2.8 VR S Macro Lens Excellent+</div>
-            <div class="listing-card__price">$878</div>
+            <div class="listing-card__price"><span class="money-value" data-money-usd="878.0" data-money-sign="auto">$878</span></div>
           </div>
         </a>
         <a class="listing-card" href="https://www.ebay.com/itm/389481654511?_skw=Nikkor+Z+MC+105mm+f%2F2.8+VR+S&amp;hash=item5aaeea68ef:g:O70AAeSwvQ5pY7Kk" target="_blank" rel="noopener noreferrer nofollow">
           <img class="listing-card__image" src="https://i.ebayimg.com/images/g/O70AAeSwvQ5pY7Kk/s-l1600.jpg" alt="Nikon NIKKOR Z MC 105mm F/2.8 VR S Macro Lens Excellent+" loading="lazy">
           <div class="listing-card__info">
             <div class="listing-card__title">Nikon NIKKOR Z MC 105mm F/2.8 VR S Macro Lens Excellent+</div>
-            <div class="listing-card__price">$879.99</div>
+            <div class="listing-card__price"><span class="money-value" data-money-usd="879.99" data-money-sign="auto">$879.99</span></div>
           </div>
         </a>
         <a class="listing-card" href="https://www.ebay.com/itm/157699039055?_skw=Nikkor+Z+MC+105mm+f%2F2.8+VR+S&amp;hash=item24b7985f4f:g:kdIAAOSw7cZn5kgn" target="_blank" rel="noopener noreferrer nofollow">
           <img class="listing-card__image" src="https://i.ebayimg.com/images/g/kdIAAOSw7cZn5kgn/s-l960.jpg" alt="Near Mint Nikon NIKKOR Z MC 105mm F/2.8 VR S Macro Prime Lens For z Mount #N003" loading="lazy">
           <div class="listing-card__info">
             <div class="listing-card__title">Near Mint Nikon NIKKOR Z MC 105mm F/2.8 VR S Macro Prime Lens For z Mount #N003</div>
-            <div class="listing-card__price">$892.61</div>
+            <div class="listing-card__price"><span class="money-value" data-money-usd="892.61" data-money-sign="auto">$892.61</span></div>
           </div>
         </a>
         <a class="listing-card" href="https://www.ebay.com/itm/157709703973?_skw=Nikkor+Z+MC+105mm+f%2F2.8+VR+S&amp;hash=item24b83b1b25:g:kdIAAOSw7cZn5kgn" target="_blank" rel="noopener noreferrer nofollow">
           <img class="listing-card__image" src="https://i.ebayimg.com/images/g/kdIAAOSw7cZn5kgn/s-l960.jpg" alt="Near Mint Nikon NIKKOR Z MC 105mm F/2.8 VR S Macro Prime Lens For z Mount #N003" loading="lazy">
           <div class="listing-card__info">
             <div class="listing-card__title">Near Mint Nikon NIKKOR Z MC 105mm F/2.8 VR S Macro Prime Lens For z Mount #N003</div>
-            <div class="listing-card__price">$897.24</div>
+            <div class="listing-card__price"><span class="money-value" data-money-usd="897.24" data-money-sign="auto">$897.24</span></div>
           </div>
         </a>
       </div>
@@ -181,6 +192,7 @@
     </div>
   </footer>
 
+  <script id="exchange-rate-data" type="application/json">{"base": "USD", "quote": "KRW", "rate": 1485.1829, "reference_date": "2026-03-06", "source": "ECB reference rates"}</script>
   <script id="history-data" type="application/json">[{"date": "2026-03-02", "median": null, "mean": null, "min": null, "max": null, "q1": null, "q3": null, "count": 0, "count_filtered": 0}, {"date": "2026-03-03", "median": 889.99, "mean": 893.23, "min": 750.0, "max": 1025.88, "q1": 862.78, "q3": 953.99, "count": 16, "count_filtered": 15}, {"date": "2026-03-04", "median": 878.0, "mean": 865.38, "min": 754.68, "max": 995.88, "q1": 835.75, "q3": 902.86, "count": 16, "count_filtered": 15}, {"date": "2026-03-05", "median": 879.0, "mean": 870.55, "min": 754.68, "max": 995.88, "q1": 821.2, "q3": 905.88, "count": 16, "count_filtered": 16}, {"date": "2026-03-06", "median": 879.0, "mean": 867.61, "min": 738.19, "max": 995.88, "q1": 791.01, "q3": 908.78, "count": 18, "count_filtered": 18}, {"date": "2026-03-07", "median": 879.99, "mean": 871.49, "min": 746.59, "max": 995.88, "q1": 821.2, "q3": 909.75, "count": 17, "count_filtered": 17}, {"date": "2026-03-08", "median": 892.61, "mean": 894.4, "min": 791.01, "max": 995.88, "q1": 853.52, "q3": 913.43, "count": 17, "count_filtered": 15}]</script>
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4/dist/chart.umd.min.js"></script>
   <script src="../js/site.js" defer></script>

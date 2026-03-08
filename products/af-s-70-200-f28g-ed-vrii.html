@@ -36,22 +36,33 @@
   <div class="site-links-wrap"><div class="container"><nav class="site-links" aria-label="사이트 바로가기"><a class="site-link is-active" href="../index.html">시세 목록</a><a class="site-link" href="../resources.html">참고 링크</a></nav></div></div>
 
   <main class="container">
+    <div class="detail-toolbar">
+      
+        <div class="currency-toggle-panel currency-toggle-panel--compact">
+          <span class="currency-toggle-panel__label">표시 통화</span>
+          <div class="currency-toggle" role="group" aria-label="표시 통화 선택">
+            <button class="currency-toggle__button" type="button" data-currency="usd">USD</button>
+            <button class="currency-toggle__button" type="button" data-currency="krw">KRW</button>
+          </div>
+          <p class="currency-toggle__meta" data-exchange-note>USD 1 = KRW 1,485.18 (ECB reference rates 2026-03-06 기준)</p>
+        </div>
+    </div>
     <div class="price-summary">
         <div class="price-card price-card--primary">
           <span class="price-label">중앙값</span>
-          <span class="price-value">$919.97</span>
+          <span class="price-value"><span class="money-value" data-money-usd="919.97" data-money-sign="auto">$919.97</span></span>
         </div>
         <div class="price-card">
           <span class="price-label">평균</span>
-          <span class="price-value">$969.85</span>
+          <span class="price-value"><span class="money-value" data-money-usd="969.85" data-money-sign="auto">$969.85</span></span>
         </div>
         <div class="price-card">
           <span class="price-label">최저</span>
-          <span class="price-value">$669.99</span>
+          <span class="price-value"><span class="money-value" data-money-usd="669.99" data-money-sign="auto">$669.99</span></span>
         </div>
         <div class="price-card">
           <span class="price-label">최고</span>
-          <span class="price-value">$1,455.99</span>
+          <span class="price-value"><span class="money-value" data-money-usd="1455.99" data-money-sign="auto">$1,455.99</span></span>
         </div>
         <div class="price-card">
           <span class="price-label">매물 수</span>
@@ -59,7 +70,7 @@
         </div>
         <div class="price-card">
           <span class="price-label">Q1 - Q3</span>
-          <span class="price-value price-value--small">$769.99 - $1,148.68</span>
+          <span class="price-value price-value--small"><span class="money-range price-value--small"><span class="money-value price-value--small" data-money-usd="769.99" data-money-sign="auto">$769.99</span> - <span class="money-value price-value--small" data-money-usd="1148.68" data-money-sign="auto">$1,148.68</span></span></span>
         </div>
         <div class="price-card">
           <span class="price-label">최근 변화</span>
@@ -67,12 +78,12 @@
         </div>
         <div class="price-card">
           <span class="price-label">변화 금액</span>
-          <span class="price-value">$-51.71</span>
+          <span class="price-value"><span class="money-value" data-money-usd="-51.70999999999992" data-money-sign="always">$-51.71</span></span>
         </div>
     </div>
     
 
-    <p class="detail-note">시세는 eBay 미국 현재 매물 기준이며, 실제 체결가와는 차이가 있을 수 있습니다. 최근 5일 기준 중앙값 -5.3% ($-51.71) 변동했습니다.</p>
+    <p class="detail-note">시세는 eBay 미국 현재 매물 기준이며, 실제 체결가와는 차이가 있을 수 있습니다. 최근 5일 기준 중앙값 -5.3% (<span class="money-value" data-money-usd="-51.70999999999992" data-money-sign="always">$-51.71</span>) 변동했습니다.</p>
 
     <section class="chart-section">
       <div class="chart-header">
@@ -108,35 +119,35 @@
           <img class="listing-card__image" src="https://i.ebayimg.com/images/g/nUsAAeSwAvdooB8a/s-l1600.jpg" alt="[N MINT] NIKON AF-S NIKKOR 70-200mm F2.8G ED VR II from japan" loading="lazy">
           <div class="listing-card__info">
             <div class="listing-card__title">[N MINT] NIKON AF-S NIKKOR 70-200mm F2.8G ED VR II from japan</div>
-            <div class="listing-card__price">$895</div>
+            <div class="listing-card__price"><span class="money-value" data-money-usd="895.0" data-money-sign="auto">$895</span></div>
           </div>
         </a>
         <a class="listing-card" href="https://www.ebay.com/itm/404430959075?_skw=Nikon+AF-S+70-200mm+f%2F2.8G+VR+II&amp;hash=item5e29f6b1e3:g:zyEAAOSw0Jdn2jP-" target="_blank" rel="noopener noreferrer nofollow">
           <img class="listing-card__image" src="https://i.ebayimg.com/images/g/zyEAAOSw0Jdn2jP-/s-l1600.jpg" alt="Nikon AF-S NIKKOR 70-200mm f/2.8G ED VR II telephoto zoom lens" loading="lazy">
           <div class="listing-card__info">
             <div class="listing-card__title">Nikon AF-S NIKKOR 70-200mm f/2.8G ED VR II telephoto zoom lens</div>
-            <div class="listing-card__price">$919.97</div>
+            <div class="listing-card__price"><span class="money-value" data-money-usd="919.97" data-money-sign="auto">$919.97</span></div>
           </div>
         </a>
         <a class="listing-card" href="https://www.ebay.com/itm/127686153603?_skw=Nikon+AF-S+70-200mm+f%2F2.8G+VR+II&amp;hash=item1dbab01583:g:gowAAeSw8nxpkeQp" target="_blank" rel="noopener noreferrer nofollow">
           <img class="listing-card__image" src="https://i.ebayimg.com/images/g/gowAAeSw8nxpkeQp/s-l1600.jpg" alt="[MINT] Nikon 70-200mm f/2.8G ED VR II AF-S Nikkor Zoom Lens FROM JAPAN #251022" loading="lazy">
           <div class="listing-card__info">
             <div class="listing-card__title">[MINT] Nikon 70-200mm f/2.8G ED VR II AF-S Nikkor Zoom Lens FROM JAPAN #251022</div>
-            <div class="listing-card__price">$939.99</div>
+            <div class="listing-card__price"><span class="money-value" data-money-usd="939.99" data-money-sign="auto">$939.99</span></div>
           </div>
         </a>
         <a class="listing-card" href="https://www.ebay.com/itm/389684817299?_skw=Nikon+AF-S+70-200mm+f%2F2.8G+VR+II&amp;hash=item5abb066d93:g:cMUAAeSw~pNpmCCK" target="_blank" rel="noopener noreferrer nofollow">
           <img class="listing-card__image" src="https://i.ebayimg.com/images/g/cMUAAeSw~pNpmCCK/s-l1600.jpg" alt="【TOP MINT in BOX】Nikon AF-S NIKKOR 70-200mm f/2.8 G ED VR II Zoom Lens JAPAN" loading="lazy">
           <div class="listing-card__info">
             <div class="listing-card__title">【TOP MINT in BOX】Nikon AF-S NIKKOR 70-200mm f/2.8 G ED VR II Zoom Lens JAPAN</div>
-            <div class="listing-card__price">$939.99</div>
+            <div class="listing-card__price"><span class="money-value" data-money-usd="939.99" data-money-sign="auto">$939.99</span></div>
           </div>
         </a>
         <a class="listing-card" href="https://www.ebay.com/itm/389280034678?_skw=Nikon+AF-S+70-200mm+f%2F2.8G+VR+II&amp;hash=item5aa2e5ef76:g:~1MAAeSw0nZpYArO" target="_blank" rel="noopener noreferrer nofollow">
           <img class="listing-card__image" src="https://i.ebayimg.com/images/g/~1MAAeSw0nZpYArO/s-l1600.jpg" alt="NIKON Telephoto Zoom Lens AF-S 70-200MM F2.8G ED VR II" loading="lazy">
           <div class="listing-card__info">
             <div class="listing-card__title">NIKON Telephoto Zoom Lens AF-S 70-200MM F2.8G ED VR II</div>
-            <div class="listing-card__price">$966.39</div>
+            <div class="listing-card__price"><span class="money-value" data-money-usd="966.39" data-money-sign="auto">$966.39</span></div>
           </div>
         </a>
       </div>
@@ -181,6 +192,7 @@
     </div>
   </footer>
 
+  <script id="exchange-rate-data" type="application/json">{"base": "USD", "quote": "KRW", "rate": 1485.1829, "reference_date": "2026-03-06", "source": "ECB reference rates"}</script>
   <script id="history-data" type="application/json">[{"date": "2026-03-02", "median": null, "mean": null, "min": null, "max": null, "q1": null, "q3": null, "count": 0, "count_filtered": 0}, {"date": "2026-03-03", "median": 971.68, "mean": 1020.73, "min": 649.99, "max": 1515.0, "q1": 864.99, "q3": 1187.27, "count": 79, "count_filtered": 78}, {"date": "2026-03-04", "median": 966.39, "mean": 992.22, "min": 669.99, "max": 1384.69, "q1": 799.99, "q3": 1209.35, "count": 43, "count_filtered": 43}, {"date": "2026-03-05", "median": 939.99, "mean": 984.93, "min": 669.99, "max": 1455.99, "q1": 778.17, "q3": 1209.35, "count": 46, "count_filtered": 46}, {"date": "2026-03-06", "median": 895.0, "mean": 967.02, "min": 669.99, "max": 1384.69, "q1": 757.24, "q3": 1179.01, "count": 45, "count_filtered": 45}, {"date": "2026-03-07", "median": 907.49, "mean": 967.31, "min": 669.99, "max": 1384.69, "q1": 769.08, "q3": 1142.35, "count": 48, "count_filtered": 48}, {"date": "2026-03-08", "median": 919.97, "mean": 969.85, "min": 669.99, "max": 1455.99, "q1": 769.99, "q3": 1148.68, "count": 51, "count_filtered": 51}]</script>
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4/dist/chart.umd.min.js"></script>
   <script src="../js/site.js" defer></script>

@@ -36,22 +36,33 @@
   <div class="site-links-wrap"><div class="container"><nav class="site-links" aria-label="사이트 바로가기"><a class="site-link is-active" href="../index.html">시세 목록</a><a class="site-link" href="../resources.html">참고 링크</a></nav></div></div>
 
   <main class="container">
+    <div class="detail-toolbar">
+      
+        <div class="currency-toggle-panel currency-toggle-panel--compact">
+          <span class="currency-toggle-panel__label">표시 통화</span>
+          <div class="currency-toggle" role="group" aria-label="표시 통화 선택">
+            <button class="currency-toggle__button" type="button" data-currency="usd">USD</button>
+            <button class="currency-toggle__button" type="button" data-currency="krw">KRW</button>
+          </div>
+          <p class="currency-toggle__meta" data-exchange-note>USD 1 = KRW 1,485.18 (ECB reference rates 2026-03-06 기준)</p>
+        </div>
+    </div>
     <div class="price-summary">
         <div class="price-card price-card--primary">
           <span class="price-label">중앙값</span>
-          <span class="price-value">$614.17</span>
+          <span class="price-value"><span class="money-value" data-money-usd="614.17" data-money-sign="auto">$614.17</span></span>
         </div>
         <div class="price-card">
           <span class="price-label">평균</span>
-          <span class="price-value">$651</span>
+          <span class="price-value"><span class="money-value" data-money-usd="651.0" data-money-sign="auto">$651</span></span>
         </div>
         <div class="price-card">
           <span class="price-label">최저</span>
-          <span class="price-value">$586.59</span>
+          <span class="price-value"><span class="money-value" data-money-usd="586.59" data-money-sign="auto">$586.59</span></span>
         </div>
         <div class="price-card">
           <span class="price-label">최고</span>
-          <span class="price-value">$761.40</span>
+          <span class="price-value"><span class="money-value" data-money-usd="761.4" data-money-sign="auto">$761.40</span></span>
         </div>
         <div class="price-card">
           <span class="price-label">매물 수</span>
@@ -59,7 +70,7 @@
         </div>
         <div class="price-card">
           <span class="price-label">Q1 - Q3</span>
-          <span class="price-value price-value--small">$594.24 - $735.40</span>
+          <span class="price-value price-value--small"><span class="money-range price-value--small"><span class="money-value price-value--small" data-money-usd="594.24" data-money-sign="auto">$594.24</span> - <span class="money-value price-value--small" data-money-usd="735.4" data-money-sign="auto">$735.40</span></span></span>
         </div>
         <div class="price-card">
           <span class="price-label">최근 변화</span>
@@ -67,12 +78,12 @@
         </div>
         <div class="price-card">
           <span class="price-label">변화 금액</span>
-          <span class="price-value">$0</span>
+          <span class="price-value"><span class="money-value" data-money-usd="0.0" data-money-sign="always">$0</span></span>
         </div>
     </div>
     
 
-    <p class="detail-note">시세는 eBay 미국 현재 매물 기준이며, 실제 체결가와는 차이가 있을 수 있습니다. 최근 5일 기준 중앙값 0.0% ($0) 변동했습니다.</p>
+    <p class="detail-note">시세는 eBay 미국 현재 매물 기준이며, 실제 체결가와는 차이가 있을 수 있습니다. 최근 5일 기준 중앙값 0.0% (<span class="money-value" data-money-usd="0.0" data-money-sign="always">$0</span>) 변동했습니다.</p>
 
     <section class="chart-section">
       <div class="chart-header">
@@ -108,35 +119,35 @@
           <img class="listing-card__image" src="https://i.ebayimg.com/images/g/1JQAAeSwP2VpJRhe/s-l1200.jpg" alt="Nikon F5 Body B5119" loading="lazy">
           <div class="listing-card__info">
             <div class="listing-card__title">Nikon F5 Body B5119</div>
-            <div class="listing-card__price">$594.24</div>
+            <div class="listing-card__price"><span class="money-value" data-money-usd="594.24" data-money-sign="auto">$594.24</span></div>
           </div>
         </a>
         <a class="listing-card" href="https://www.ebay.com/itm/127374196849?_skw=Nikon+F5+body+-lens+-nikkor+-filter+-hood+-cap&amp;hash=item1da8180071:g:1HUAAeSwCYtoyLO5" target="_blank" rel="noopener noreferrer nofollow">
           <img class="listing-card__image" src="https://i.ebayimg.com/images/g/1HUAAeSwCYtoyLO5/s-l640.jpg" alt="Nikon F5 35mm SLR Film Camera Body EF-TN-JP1446" loading="lazy">
           <div class="listing-card__info">
             <div class="listing-card__title">Nikon F5 35mm SLR Film Camera Body EF-TN-JP1446</div>
-            <div class="listing-card__price">$594.34</div>
+            <div class="listing-card__price"><span class="money-value" data-money-usd="594.34" data-money-sign="auto">$594.34</span></div>
           </div>
         </a>
         <a class="listing-card" href="https://www.ebay.com/itm/127596316853?_skw=Nikon+F5+body+-lens+-nikkor+-filter+-hood+-cap&amp;hash=item1db55548b5:g:KygAAeSwaNlpVfrc" target="_blank" rel="noopener noreferrer nofollow">
           <img class="listing-card__image" src="https://i.ebayimg.com/images/g/KygAAeSwaNlpVfrc/s-l1200.jpg" alt="Nikon F5 Body Y2512-Y11" loading="lazy">
           <div class="listing-card__info">
             <div class="listing-card__title">Nikon F5 Body Y2512-Y11</div>
-            <div class="listing-card__price">$634</div>
+            <div class="listing-card__price"><span class="money-value" data-money-usd="634.0" data-money-sign="auto">$634</span></div>
           </div>
         </a>
         <a class="listing-card" href="https://www.ebay.com/itm/127637811546?_skw=Nikon+F5+body+-lens+-nikkor+-filter+-hood+-cap&amp;hash=item1db7ce715a:g:PTUAAeSwhPRpcYml" target="_blank" rel="noopener noreferrer nofollow">
           <img class="listing-card__image" src="https://i.ebayimg.com/images/g/PTUAAeSwhPRpcYml/s-l640.jpg" alt="Nikon F5 SLR 35mm Film Camera Body with F Mount (EF-TN-JP1746)" loading="lazy">
           <div class="listing-card__info">
             <div class="listing-card__title">Nikon F5 SLR 35mm Film Camera Body with F Mount (EF-TN-JP1746)</div>
-            <div class="listing-card__price">$735.40</div>
+            <div class="listing-card__price"><span class="money-value" data-money-usd="735.4" data-money-sign="auto">$735.40</span></div>
           </div>
         </a>
         <a class="listing-card" href="https://www.ebay.com/itm/127637811541?_skw=Nikon+F5+body+-lens+-nikkor+-filter+-hood+-cap&amp;hash=item1db7ce7155:g:3zwAAeSww7ZpcYoY" target="_blank" rel="noopener noreferrer nofollow">
           <img class="listing-card__image" src="https://i.ebayimg.com/images/g/3zwAAeSww7ZpcYoY/s-l640.jpg" alt="Nikon F5 SLR 35mm Film Camera Body with F Mount (EF-TN-JP1747)" loading="lazy">
           <div class="listing-card__info">
             <div class="listing-card__title">Nikon F5 SLR 35mm Film Camera Body with F Mount (EF-TN-JP1747)</div>
-            <div class="listing-card__price">$761.40</div>
+            <div class="listing-card__price"><span class="money-value" data-money-usd="761.4" data-money-sign="auto">$761.40</span></div>
           </div>
         </a>
       </div>
@@ -173,6 +184,7 @@
     </div>
   </footer>
 
+  <script id="exchange-rate-data" type="application/json">{"base": "USD", "quote": "KRW", "rate": 1485.1829, "reference_date": "2026-03-06", "source": "ECB reference rates"}</script>
   <script id="history-data" type="application/json">[{"date": "2026-03-02", "median": null, "mean": null, "min": null, "max": null, "q1": null, "q3": null, "count": 0, "count_filtered": 0}, {"date": "2026-03-03", "median": 614.17, "mean": 651.0, "min": 586.59, "max": 761.4, "q1": 594.24, "q3": 735.4, "count": 6, "count_filtered": 6}, {"date": "2026-03-04", "median": 614.17, "mean": 651.0, "min": 586.59, "max": 761.4, "q1": 594.24, "q3": 735.4, "count": 6, "count_filtered": 6}, {"date": "2026-03-04", "median": 614.17, "mean": 651.0, "min": 586.59, "max": 761.4, "q1": 594.24, "q3": 735.4, "count": 6, "count_filtered": 6}, {"date": "2026-03-05", "median": 614.17, "mean": 651.0, "min": 586.59, "max": 761.4, "q1": 594.24, "q3": 735.4, "count": 6, "count_filtered": 6}, {"date": "2026-03-06", "median": 614.17, "mean": 651.0, "min": 586.59, "max": 761.4, "q1": 594.24, "q3": 735.4, "count": 6, "count_filtered": 6}, {"date": "2026-03-07", "median": 614.17, "mean": 651.0, "min": 586.59, "max": 761.4, "q1": 594.24, "q3": 735.4, "count": 6, "count_filtered": 6}, {"date": "2026-03-08", "median": 614.17, "mean": 651.0, "min": 586.59, "max": 761.4, "q1": 594.24, "q3": 735.4, "count": 6, "count_filtered": 6}]</script>
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4/dist/chart.umd.min.js"></script>
   <script src="../js/site.js" defer></script>

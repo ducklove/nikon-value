@@ -36,22 +36,33 @@
   <div class="site-links-wrap"><div class="container"><nav class="site-links" aria-label="사이트 바로가기"><a class="site-link is-active" href="../index.html">시세 목록</a><a class="site-link" href="../resources.html">참고 링크</a></nav></div></div>
 
   <main class="container">
+    <div class="detail-toolbar">
+      
+        <div class="currency-toggle-panel currency-toggle-panel--compact">
+          <span class="currency-toggle-panel__label">표시 통화</span>
+          <div class="currency-toggle" role="group" aria-label="표시 통화 선택">
+            <button class="currency-toggle__button" type="button" data-currency="usd">USD</button>
+            <button class="currency-toggle__button" type="button" data-currency="krw">KRW</button>
+          </div>
+          <p class="currency-toggle__meta" data-exchange-note>USD 1 = KRW 1,485.18 (ECB reference rates 2026-03-06 기준)</p>
+        </div>
+    </div>
     <div class="price-summary">
         <div class="price-card price-card--primary">
           <span class="price-label">중앙값</span>
-          <span class="price-value">$713.32</span>
+          <span class="price-value"><span class="money-value" data-money-usd="713.32" data-money-sign="auto">$713.32</span></span>
         </div>
         <div class="price-card">
           <span class="price-label">평균</span>
-          <span class="price-value">$728.02</span>
+          <span class="price-value"><span class="money-value" data-money-usd="728.02" data-money-sign="auto">$728.02</span></span>
         </div>
         <div class="price-card">
           <span class="price-label">최저</span>
-          <span class="price-value">$553.12</span>
+          <span class="price-value"><span class="money-value" data-money-usd="553.12" data-money-sign="auto">$553.12</span></span>
         </div>
         <div class="price-card">
           <span class="price-label">최고</span>
-          <span class="price-value">$914.44</span>
+          <span class="price-value"><span class="money-value" data-money-usd="914.44" data-money-sign="auto">$914.44</span></span>
         </div>
         <div class="price-card">
           <span class="price-label">매물 수</span>
@@ -59,7 +70,7 @@
         </div>
         <div class="price-card">
           <span class="price-label">Q1 - Q3</span>
-          <span class="price-value price-value--small">$657.22 - $792.01</span>
+          <span class="price-value price-value--small"><span class="money-range price-value--small"><span class="money-value price-value--small" data-money-usd="657.22" data-money-sign="auto">$657.22</span> - <span class="money-value price-value--small" data-money-usd="792.01" data-money-sign="auto">$792.01</span></span></span>
         </div>
         <div class="price-card">
           <span class="price-label">최근 변화</span>
@@ -67,12 +78,12 @@
         </div>
         <div class="price-card">
           <span class="price-label">변화 금액</span>
-          <span class="price-value">$-6.68</span>
+          <span class="price-value"><span class="money-value" data-money-usd="-6.67999999999995" data-money-sign="always">$-6.68</span></span>
         </div>
     </div>
     
 
-    <p class="detail-note">시세는 eBay 미국 현재 매물 기준이며, 실제 체결가와는 차이가 있을 수 있습니다. 최근 5일 기준 중앙값 -0.9% ($-6.68) 변동했습니다.</p>
+    <p class="detail-note">시세는 eBay 미국 현재 매물 기준이며, 실제 체결가와는 차이가 있을 수 있습니다. 최근 5일 기준 중앙값 -0.9% (<span class="money-value" data-money-usd="-6.67999999999995" data-money-sign="always">$-6.68</span>) 변동했습니다.</p>
 
     <section class="chart-section">
       <div class="chart-header">
@@ -108,35 +119,35 @@
           <img class="listing-card__image" src="https://i.ebayimg.com/images/g/328AAeSwn0VpZQK3/s-l1600.jpg" alt="Nikon NIKKOR Z 24-200mm f/4-6.3 VR Lens Telephoto Zoom for Z Mount Excellent" loading="lazy">
           <div class="listing-card__info">
             <div class="listing-card__title">Nikon NIKKOR Z 24-200mm f/4-6.3 VR Lens Telephoto Zoom for Z Mount Excellent</div>
-            <div class="listing-card__price">$710</div>
+            <div class="listing-card__price"><span class="money-value" data-money-usd="710.0" data-money-sign="auto">$710</span></div>
           </div>
         </a>
         <a class="listing-card" href="https://www.ebay.com/itm/157718067065?_skw=Nikkor+Z+24-200mm+f%2F4-6.3+VR&amp;hash=item24b8bab779:g:2h8AAOSwf-tn55G1" target="_blank" rel="noopener noreferrer nofollow">
           <img class="listing-card__image" src="https://i.ebayimg.com/images/g/2h8AAOSwf-tn55G1/s-l960.jpg" alt="Near Mint Nikon NIKKOR Z 24-200mm F/4-6.3 VR Zoom Lens For z Mount #N010" loading="lazy">
           <div class="listing-card__info">
             <div class="listing-card__title">Near Mint Nikon NIKKOR Z 24-200mm F/4-6.3 VR Zoom Lens For z Mount #N010</div>
-            <div class="listing-card__price">$711.03</div>
+            <div class="listing-card__price"><span class="money-value" data-money-usd="711.03" data-money-sign="auto">$711.03</span></div>
           </div>
         </a>
         <a class="listing-card" href="https://www.ebay.com/itm/157706915543?_skw=Nikkor+Z+24-200mm+f%2F4-6.3+VR&amp;hash=item24b8108ed7:g:2h8AAOSwf-tn55G1" target="_blank" rel="noopener noreferrer nofollow">
           <img class="listing-card__image" src="https://i.ebayimg.com/images/g/2h8AAOSwf-tn55G1/s-l960.jpg" alt="Near Mint Nikon NIKKOR Z 24-200mm F/4-6.3 VR Zoom Lens For z Mount #N010" loading="lazy">
           <div class="listing-card__info">
             <div class="listing-card__title">Near Mint Nikon NIKKOR Z 24-200mm F/4-6.3 VR Zoom Lens For z Mount #N010</div>
-            <div class="listing-card__price">$715.61</div>
+            <div class="listing-card__price"><span class="money-value" data-money-usd="715.61" data-money-sign="auto">$715.61</span></div>
           </div>
         </a>
         <a class="listing-card" href="https://www.ebay.com/itm/157702556012?_skw=Nikkor+Z+24-200mm+f%2F4-6.3+VR&amp;hash=item24b7ce096c:g:2h8AAOSwf-tn55G1" target="_blank" rel="noopener noreferrer nofollow">
           <img class="listing-card__image" src="https://i.ebayimg.com/images/g/2h8AAOSwf-tn55G1/s-l960.jpg" alt="Near Mint Nikon NIKKOR Z 24-200mm F/4-6.3 VR Zoom Lens For z Mount #N010" loading="lazy">
           <div class="listing-card__info">
             <div class="listing-card__title">Near Mint Nikon NIKKOR Z 24-200mm F/4-6.3 VR Zoom Lens For z Mount #N010</div>
-            <div class="listing-card__price">$724.20</div>
+            <div class="listing-card__price"><span class="money-value" data-money-usd="724.2" data-money-sign="auto">$724.20</span></div>
           </div>
         </a>
         <a class="listing-card" href="https://www.ebay.com/itm/197984940758?_skw=Nikkor+Z+24-200mm+f%2F4-6.3+VR&amp;hash=item2e18d272d6:g:oGIAAeSwPURpUbeE" target="_blank" rel="noopener noreferrer nofollow">
           <img class="listing-card__image" src="https://i.ebayimg.com/images/g/oGIAAeSwPURpUbeE/s-l1600.jpg" alt="Nikon NIKKOR Z 24-200mm f/4-6.3 VR Telephoto Lens- Good Condition!!!" loading="lazy">
           <div class="listing-card__info">
             <div class="listing-card__title">Nikon NIKKOR Z 24-200mm f/4-6.3 VR Telephoto Lens- Good Condition!!!</div>
-            <div class="listing-card__price">$727.33</div>
+            <div class="listing-card__price"><span class="money-value" data-money-usd="727.33" data-money-sign="auto">$727.33</span></div>
           </div>
         </a>
       </div>
@@ -181,6 +192,7 @@
     </div>
   </footer>
 
+  <script id="exchange-rate-data" type="application/json">{"base": "USD", "quote": "KRW", "rate": 1485.1829, "reference_date": "2026-03-06", "source": "ECB reference rates"}</script>
   <script id="history-data" type="application/json">[{"date": "2026-03-02", "median": null, "mean": null, "min": null, "max": null, "q1": null, "q3": null, "count": 0, "count_filtered": 0}, {"date": "2026-03-03", "median": 720.0, "mean": 725.45, "min": 439.99, "max": 988.99, "q1": 624.99, "q3": 850.0, "count": 59, "count_filtered": 59}, {"date": "2026-03-04", "median": 722.99, "mean": 746.76, "min": 553.12, "max": 1029.88, "q1": 667.29, "q3": 826.59, "count": 44, "count_filtered": 44}, {"date": "2026-03-05", "median": 723.75, "mean": 745.18, "min": 553.12, "max": 1031.2, "q1": 667.72, "q3": 826.59, "count": 44, "count_filtered": 44}, {"date": "2026-03-06", "median": 715.58, "mean": 740.78, "min": 553.12, "max": 1031.2, "q1": 666.69, "q3": 817.2, "count": 47, "count_filtered": 47}, {"date": "2026-03-07", "median": 711.31, "mean": 725.62, "min": 553.12, "max": 914.44, "q1": 661.02, "q3": 785.7, "count": 45, "count_filtered": 44}, {"date": "2026-03-08", "median": 713.32, "mean": 728.02, "min": 553.12, "max": 914.44, "q1": 657.22, "q3": 792.01, "count": 43, "count_filtered": 42}]</script>
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4/dist/chart.umd.min.js"></script>
   <script src="../js/site.js" defer></script>

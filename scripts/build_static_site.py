@@ -131,6 +131,57 @@ def format_money(value: Any) -> str:
     return f'${amount:,.2f}'
 
 
+def render_money_span(value: Any, *, extra_class: str = '', sign: str = 'auto') -> str:
+    classes = 'money-value'
+    if extra_class:
+        classes = f'{classes} {extra_class}'
+    if value is None:
+        return f'<span class="{classes}">{escape(format_money(value))}</span>'
+    amount = float(value)
+    return (
+        f'<span class="{classes}" data-money-usd="{escape(str(amount))}"'
+        f' data-money-sign="{escape(sign)}">{escape(format_money(amount))}</span>'
+    )
+
+
+def render_money_range(start: Any, end: Any, *, extra_class: str = '') -> str:
+    classes = 'money-range'
+    if extra_class:
+        classes = f'{classes} {extra_class}'
+    if start is None or end is None:
+        return f'<span class="{classes}">-</span>'
+    return (
+        f'<span class="{classes}">'
+        f'{render_money_span(start, extra_class=extra_class)}'
+        ' - '
+        f'{render_money_span(end, extra_class=extra_class)}'
+        '</span>'
+    )
+
+
+def format_exchange_rate(exchange_rate: dict[str, Any] | None) -> str:
+    if not exchange_rate or exchange_rate.get('rate') is None:
+        return 'KRW 환산용 환율 데이터를 불러오지 못했습니다.'
+    rate = float(exchange_rate['rate'])
+    reference_date = exchange_rate.get('reference_date') or '-'
+    source = exchange_rate.get('source') or '환율 데이터'
+    return f'USD 1 = KRW {rate:,.2f} ({source} {reference_date} 기준)'
+
+
+def build_currency_toggle(exchange_rate: dict[str, Any] | None, *, compact: bool = False) -> str:
+    disabled = '' if exchange_rate and exchange_rate.get('rate') else ' disabled'
+    compact_class = ' currency-toggle-panel--compact' if compact else ''
+    return f"""
+        <div class=\"currency-toggle-panel{compact_class}\">
+          <span class=\"currency-toggle-panel__label\">표시 통화</span>
+          <div class=\"currency-toggle\" role=\"group\" aria-label=\"표시 통화 선택\">
+            <button class=\"currency-toggle__button\" type=\"button\" data-currency=\"usd\">USD</button>
+            <button class=\"currency-toggle__button\" type=\"button\" data-currency=\"krw\"{disabled}>KRW</button>
+          </div>
+          <p class=\"currency-toggle__meta\" data-exchange-note>{escape(format_exchange_rate(exchange_rate))}</p>
+        </div>"""
+
+
 def json_script(data: Any) -> str:
     return json.dumps(data, ensure_ascii=False).replace('</script>', '<\\/script>')
 
@@ -184,6 +235,7 @@ def merge_catalog_with_config(live_catalog: dict[str, Any], config: dict[str, An
 
     return {
         'updated': live_catalog.get('updated', date.today().isoformat()),
+        'exchange_rate': live_catalog.get('exchange_rate'),
         'categories': merged_categories,
     }
 
@@ -358,6 +410,7 @@ def has_catalog_listing_data(product: dict[str, Any]) -> bool:
 
 def build_home_page(catalog: dict[str, Any], base_url: str) -> str:
     updated = catalog['updated']
+    exchange_rate = catalog.get('exchange_rate')
     stale_days = compute_stale_days(updated)
     total_products = sum(
         1
@@ -413,14 +466,14 @@ def build_home_page(catalog: dict[str, Any], base_url: str) -> str:
             if product.get('subcategory') and subcategory_lookup.get(product['subcategory']):
                 category_label = f"{category_label} / {subcategory_lookup[product['subcategory']]}"
             price_html = (
-                f'<div class="product-card__price">{format_money(product.get("median"))}</div>'
+                f'<div class="product-card__price">{render_money_span(product.get("median"))}</div>'
                 if product.get('median') is not None
                 else '<div class="product-card__price product-card__price--na">데이터 없음</div>'
             )
             range_html = ''
             if product.get('q1') is not None and product.get('q3') is not None:
                 range_html = (
-                    f'<div class="product-card__range">Q1-Q3: {format_money(product["q1"])} - {format_money(product["q3"])}</div>'
+                    f'<div class="product-card__range">Q1-Q3: {render_money_range(product["q1"], product["q3"])}</div>'
                 )
             badge_value = product.get('release_year') or (
                 f'{product["focal_length_min"]}mm' if product.get('focal_length_min') else ''
@@ -519,7 +572,7 @@ def build_home_page(catalog: dict[str, Any], base_url: str) -> str:
         <strong>{escape(product['name_ko'])}</strong>
         <div class=\"rare-watch-card__name-en\">{escape(product['name_en'])}</div>
         <div class=\"rare-watch-card__taxonomy\">{escape(item['category_label'])}</div>
-        <div class=\"rare-watch-card__price\">현재 중앙값 {escape(format_money(product.get('median')))}</div>
+        <div class=\"rare-watch-card__price\">현재 중앙값 {render_money_span(product.get('median'))}</div>
         <div class=\"rare-watch-card__hint\">최근 희귀 시세 {escape(product.get('rarity_price_hint') or '공개 표본 부족')}</div>
         <p class=\"rare-watch-card__note\">{escape(product.get('rarity_note') or '개별 상태 확인 필요')}</p>
       </a>"""
@@ -554,7 +607,7 @@ def build_home_page(catalog: dict[str, Any], base_url: str) -> str:
       <div class=\"hero-overlay\">
         <div class=\"container\">
           <h1 class=\"site-title\">니콘 중고 시세 트래커</h1>
-          <p class=\"site-subtitle\">eBay 현재 매물 기준 시세 (배송비 포함 USD)</p>
+          <p class=\"site-subtitle\">eBay 현재 매물 기준 시세 (배송비 포함, USD/KRW 전환 지원)</p>
           <p class=\"site-updated\">최종 업데이트: {escape(updated)}</p>
         </div>
       </div>
@@ -580,17 +633,20 @@ def build_home_page(catalog: dict[str, Any], base_url: str) -> str:
         </div>
       </div>
       <div class=\"toolbar-controls\">
-        <label class=\"visually-hidden\" for=\"search-input\">제품 검색</label>
-        <input class=\"search-input\" id=\"search-input\" type=\"search\" placeholder=\"제품명, 영문명, 카테고리 검색\">
-        <label class=\"visually-hidden\" for=\"sort-select\">정렬</label>
-        <select class=\"sort-select\" id=\"sort-select\">
-          <option value=\"featured\">기본 정렬</option>
-          <option value=\"price-asc\">중앙값 낮은 순</option>
-          <option value=\"price-desc\">중앙값 높은 순</option>
-          <option value=\"count-desc\">매물 많은 순</option>
-          <option value=\"updated-desc\">최신 바디/긴 초점거리 우선</option>
-          <option value=\"name-asc\">이름 순</option>
-        </select>
+        {build_currency_toggle(exchange_rate)}
+        <div class=\"toolbar-controls__row\">
+          <label class=\"visually-hidden\" for=\"search-input\">제품 검색</label>
+          <input class=\"search-input\" id=\"search-input\" type=\"search\" placeholder=\"제품명, 영문명, 카테고리 검색\">
+          <label class=\"visually-hidden\" for=\"sort-select\">정렬</label>
+          <select class=\"sort-select\" id=\"sort-select\">
+            <option value=\"featured\">기본 정렬</option>
+            <option value=\"price-asc\">중앙값 낮은 순</option>
+            <option value=\"price-desc\">중앙값 높은 순</option>
+            <option value=\"count-desc\">매물 많은 순</option>
+            <option value=\"updated-desc\">최신 바디/긴 초점거리 우선</option>
+            <option value=\"name-asc\">이름 순</option>
+          </select>
+        </div>
       </div>
     </section>{stale_banner}
 {shortcut_cards}
@@ -603,6 +659,7 @@ def build_home_page(catalog: dict[str, Any], base_url: str) -> str:
   </main>
 {build_footer()}
 
+  <script id=\"exchange-rate-data\" type=\"application/json\">{json_script(exchange_rate or {})}</script>
   <script src=\"js/site.js\" defer></script>
 </body>
 </html>
@@ -690,6 +747,7 @@ def build_product_page(
     category: dict[str, Any],
     updated: str,
     history: list[dict[str, Any]],
+    exchange_rate: dict[str, Any] | None,
     base_url: str,
 ) -> str:
     description = (
@@ -710,17 +768,17 @@ def build_product_page(
         breadcrumb = f"{breadcrumb} / {subcategory_lookup[product['subcategory']]}"
 
     summary_cards = [
-        ('중앙값', format_money(product.get('median')), 'price-card price-card--primary'),
-        ('평균', format_money(product.get('mean')), 'price-card'),
-        ('최저', format_money(product.get('min')), 'price-card'),
-        ('최고', format_money(product.get('max')), 'price-card'),
-        ('매물 수', str(product.get('count') or 0), 'price-card'),
-        ('Q1 - Q3', f"{format_money(product.get('q1'))} - {format_money(product.get('q3'))}" if product.get('q1') is not None and product.get('q3') is not None else '-', 'price-card'),
-        ('최근 변화', format_change_percent(recent_change), 'price-card'),
-        ('변화 금액', format_change_value(recent_change), 'price-card'),
+        ('중앙값', render_money_span(product.get('median')), 'price-card price-card--primary'),
+        ('평균', render_money_span(product.get('mean')), 'price-card'),
+        ('최저', render_money_span(product.get('min')), 'price-card'),
+        ('최고', render_money_span(product.get('max')), 'price-card'),
+        ('매물 수', escape(str(product.get('count') or 0)), 'price-card'),
+        ('Q1 - Q3', render_money_range(product.get('q1'), product.get('q3'), extra_class='price-value--small'), 'price-card'),
+        ('최근 변화', escape(format_change_percent(recent_change)), 'price-card'),
+        ('변화 금액', render_money_span(recent_change['delta_value'], sign='always') if recent_change else '-', 'price-card'),
     ]
     summary_html = '\n'.join(
-        f"""        <div class=\"{klass}\">\n          <span class=\"price-label\">{escape(label)}</span>\n          <span class=\"price-value{' price-value--small' if 'Q1' in label else ''}\">{escape(value)}</span>\n        </div>"""
+        f"""        <div class=\"{klass}\">\n          <span class=\"price-label\">{escape(label)}</span>\n          <span class=\"price-value{' price-value--small' if 'Q1' in label else ''}\">{value}</span>\n        </div>"""
         for label, value, klass in summary_cards
     )
 
@@ -738,7 +796,7 @@ def build_product_page(
           {image_tag}
           <div class=\"listing-card__info\">
             <div class=\"listing-card__title\">{escape(sample.get('title', ''))}</div>
-            <div class=\"listing-card__price\">{escape(format_money(sample.get('price')))}</div>
+            <div class=\"listing-card__price\">{render_money_span(sample.get('price'))}</div>
           </div>
         </a>"""
         )
@@ -774,7 +832,7 @@ def build_product_page(
     if recent_change:
         movement_note = (
             f"최근 {recent_change['actual_days']}일 기준 중앙값 {format_change_percent(recent_change)} "
-            f"({format_change_value(recent_change)}) 변동했습니다."
+            f"({render_money_span(recent_change['delta_value'], sign='always')}) 변동했습니다."
         )
     rare_note_html = ''
     if product.get('is_rare'):
@@ -799,12 +857,15 @@ def build_product_page(
   {build_site_links('home', '../')}
 
   <main class=\"container\">
+    <div class=\"detail-toolbar\">
+      {build_currency_toggle(exchange_rate, compact=True)}
+    </div>
     <div class=\"price-summary\">
 {summary_html}
     </div>
     {rare_note_html}
 
-    <p class=\"detail-note\">시세는 eBay 미국 현재 매물 기준이며, 실제 체결가와는 차이가 있을 수 있습니다. {escape(movement_note)}</p>
+    <p class=\"detail-note\">시세는 eBay 미국 현재 매물 기준이며, 실제 체결가와는 차이가 있을 수 있습니다. {movement_note}</p>
 
     <section class=\"chart-section\">
       <div class=\"chart-header\">
@@ -845,6 +906,7 @@ def build_product_page(
   </main>
 {build_footer('../')}
 
+  <script id=\"exchange-rate-data\" type=\"application/json\">{json_script(exchange_rate or {})}</script>
   <script id=\"history-data\" type=\"application/json\">{json_script(history)}</script>
   <script src=\"https://cdn.jsdelivr.net/npm/chart.js@4/dist/chart.umd.min.js\"></script>
   <script src=\"../js/site.js\" defer></script>
@@ -1033,7 +1095,14 @@ def main() -> None:
     for category in catalog['categories']:
         for product in category['products']:
             history = histories[product['id']]
-            product_html = build_product_page(product, category, catalog['updated'], history, base_url)
+            product_html = build_product_page(
+                product,
+                category,
+                catalog['updated'],
+                history,
+                catalog.get('exchange_rate'),
+                base_url,
+            )
             (output_dir / 'products' / f"{product['id']}.html").write_text(product_html, encoding='utf-8')
 
     if args.publish_root:

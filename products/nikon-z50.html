@@ -36,22 +36,33 @@
   <div class="site-links-wrap"><div class="container"><nav class="site-links" aria-label="사이트 바로가기"><a class="site-link is-active" href="../index.html">시세 목록</a><a class="site-link" href="../resources.html">참고 링크</a></nav></div></div>
 
   <main class="container">
+    <div class="detail-toolbar">
+      
+        <div class="currency-toggle-panel currency-toggle-panel--compact">
+          <span class="currency-toggle-panel__label">표시 통화</span>
+          <div class="currency-toggle" role="group" aria-label="표시 통화 선택">
+            <button class="currency-toggle__button" type="button" data-currency="usd">USD</button>
+            <button class="currency-toggle__button" type="button" data-currency="krw">KRW</button>
+          </div>
+          <p class="currency-toggle__meta" data-exchange-note>USD 1 = KRW 1,485.18 (ECB reference rates 2026-03-06 기준)</p>
+        </div>
+    </div>
     <div class="price-summary">
         <div class="price-card price-card--primary">
           <span class="price-label">중앙값</span>
-          <span class="price-value">$681.64</span>
+          <span class="price-value"><span class="money-value" data-money-usd="681.64" data-money-sign="auto">$681.64</span></span>
         </div>
         <div class="price-card">
           <span class="price-label">평균</span>
-          <span class="price-value">$675.28</span>
+          <span class="price-value"><span class="money-value" data-money-usd="675.28" data-money-sign="auto">$675.28</span></span>
         </div>
         <div class="price-card">
           <span class="price-label">최저</span>
-          <span class="price-value">$454.10</span>
+          <span class="price-value"><span class="money-value" data-money-usd="454.1" data-money-sign="auto">$454.10</span></span>
         </div>
         <div class="price-card">
           <span class="price-label">최고</span>
-          <span class="price-value">$931.64</span>
+          <span class="price-value"><span class="money-value" data-money-usd="931.64" data-money-sign="auto">$931.64</span></span>
         </div>
         <div class="price-card">
           <span class="price-label">매물 수</span>
@@ -59,7 +70,7 @@
         </div>
         <div class="price-card">
           <span class="price-label">Q1 - Q3</span>
-          <span class="price-value price-value--small">$580 - $782.48</span>
+          <span class="price-value price-value--small"><span class="money-range price-value--small"><span class="money-value price-value--small" data-money-usd="580.0" data-money-sign="auto">$580</span> - <span class="money-value price-value--small" data-money-usd="782.48" data-money-sign="auto">$782.48</span></span></span>
         </div>
         <div class="price-card">
           <span class="price-label">최근 변화</span>
@@ -67,12 +78,12 @@
         </div>
         <div class="price-card">
           <span class="price-label">변화 금액</span>
-          <span class="price-value">+$45.73</span>
+          <span class="price-value"><span class="money-value" data-money-usd="45.73000000000002" data-money-sign="always">$45.73</span></span>
         </div>
     </div>
     
 
-    <p class="detail-note">시세는 eBay 미국 현재 매물 기준이며, 실제 체결가와는 차이가 있을 수 있습니다. 최근 5일 기준 중앙값 +7.2% (+$45.73) 변동했습니다.</p>
+    <p class="detail-note">시세는 eBay 미국 현재 매물 기준이며, 실제 체결가와는 차이가 있을 수 있습니다. 최근 5일 기준 중앙값 +7.2% (<span class="money-value" data-money-usd="45.73000000000002" data-money-sign="always">$45.73</span>) 변동했습니다.</p>
 
     <section class="chart-section">
       <div class="chart-header">
@@ -108,35 +119,35 @@
           <img class="listing-card__image" src="https://i.ebayimg.com/images/g/zAkAAeSwvYxpB~cS/s-l1600.jpg" alt="SALE【Top MINT in Box】Nikon Z50 Mirrorless 4K Digital Camera Body Only JAPAN" loading="lazy">
           <div class="listing-card__info">
             <div class="listing-card__title">SALE【Top MINT in Box】Nikon Z50 Mirrorless 4K Digital Camera Body Only JAPAN</div>
-            <div class="listing-card__price">$648.99</div>
+            <div class="listing-card__price"><span class="money-value" data-money-usd="648.99" data-money-sign="auto">$648.99</span></div>
           </div>
         </a>
         <a class="listing-card" href="https://www.ebay.com/itm/306539481745?_skw=Nikon+Z50+body+-Z50II&amp;hash=item475f2d4a91:g:cFMAAeSwKshpoQvW" target="_blank" rel="noopener noreferrer nofollow">
           <img class="listing-card__image" src="https://i.ebayimg.com/images/g/cFMAAeSwKshpoQvW/s-l1600.jpg" alt="NIKON Z50 mirrorless single-Lens Body 497278" loading="lazy">
           <div class="listing-card__info">
             <div class="listing-card__title">NIKON Z50 mirrorless single-Lens Body 497278</div>
-            <div class="listing-card__price">$674.30</div>
+            <div class="listing-card__price"><span class="money-value" data-money-usd="674.3" data-money-sign="auto">$674.30</span></div>
           </div>
         </a>
         <a class="listing-card" href="https://www.ebay.com/itm/176308104866?_skw=Nikon+Z50+body+-Z50II&amp;hash=item290cc82ea2:g:5YwAAOSwdWFmBO~U" target="_blank" rel="noopener noreferrer nofollow">
           <img class="listing-card__image" src="https://i.ebayimg.com/images/g/5YwAAOSwdWFmBO~U/s-l1600.jpg" alt="NIKON Z50 20.9 Megapixel Mirrorless Digital Camera Body" loading="lazy">
           <div class="listing-card__info">
             <div class="listing-card__title">NIKON Z50 20.9 Megapixel Mirrorless Digital Camera Body</div>
-            <div class="listing-card__price">$688.99</div>
+            <div class="listing-card__price"><span class="money-value" data-money-usd="688.99" data-money-sign="auto">$688.99</span></div>
           </div>
         </a>
         <a class="listing-card" href="https://www.ebay.com/itm/286462539883?_skw=Nikon+Z50+body+-Z50II&amp;hash=item42b27f786b:g:IDkAAeSwFKNn8J2Q" target="_blank" rel="noopener noreferrer nofollow">
           <img class="listing-card__image" src="https://i.ebayimg.com/images/g/IDkAAeSwFKNn8J2Q/s-l1600.jpg" alt="Nikon Z50 20.8MP Mirrorless Digital Camera (Body Only) Black" loading="lazy">
           <div class="listing-card__info">
             <div class="listing-card__title">Nikon Z50 20.8MP Mirrorless Digital Camera (Body Only) Black</div>
-            <div class="listing-card__price">$690.20</div>
+            <div class="listing-card__price"><span class="money-value" data-money-usd="690.2" data-money-sign="auto">$690.20</span></div>
           </div>
         </a>
         <a class="listing-card" href="https://www.ebay.com/itm/317897338053?_skw=Nikon+Z50+body+-Z50II&amp;hash=item4a04286cc5:g:B4AAAeSwzchplnaX" target="_blank" rel="noopener noreferrer nofollow">
           <img class="listing-card__image" src="https://i.ebayimg.com/images/g/B4AAAeSwzchplnaX/s-l1200.jpg" alt="#a2243 Nikon Z50 Body" loading="lazy">
           <div class="listing-card__info">
             <div class="listing-card__title">#a2243 Nikon Z50 Body</div>
-            <div class="listing-card__price">$695.43</div>
+            <div class="listing-card__price"><span class="money-value" data-money-usd="695.43" data-money-sign="auto">$695.43</span></div>
           </div>
         </a>
       </div>
@@ -173,6 +184,7 @@
     </div>
   </footer>
 
+  <script id="exchange-rate-data" type="application/json">{"base": "USD", "quote": "KRW", "rate": 1485.1829, "reference_date": "2026-03-06", "source": "ECB reference rates"}</script>
   <script id="history-data" type="application/json">[{"date": "2026-03-02", "median": null, "mean": null, "min": null, "max": null, "q1": null, "q3": null, "count": 0, "count_filtered": 0}, {"date": "2026-03-03", "median": 635.91, "mean": 644.93, "min": 470.0, "max": 858.9, "q1": 550.0, "q3": 720.0, "count": 63, "count_filtered": 63}, {"date": "2026-03-04", "median": 690.2, "mean": 683.73, "min": 454.1, "max": 931.64, "q1": 580.0, "q3": 783.14, "count": 35, "count_filtered": 35}, {"date": "2026-03-05", "median": 688.99, "mean": 679.99, "min": 454.1, "max": 931.64, "q1": 580.0, "q3": 784.31, "count": 35, "count_filtered": 35}, {"date": "2026-03-06", "median": 688.99, "mean": 679.86, "min": 454.1, "max": 931.64, "q1": 580.0, "q3": 784.31, "count": 35, "count_filtered": 35}, {"date": "2026-03-07", "median": 671.19, "mean": 673.42, "min": 454.1, "max": 931.64, "q1": 580.68, "q3": 760.93, "count": 38, "count_filtered": 38}, {"date": "2026-03-08", "median": 681.64, "mean": 675.28, "min": 454.1, "max": 931.64, "q1": 580.0, "q3": 782.48, "count": 34, "count_filtered": 34}]</script>
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4/dist/chart.umd.min.js"></script>
   <script src="../js/site.js" defer></script>

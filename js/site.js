@@ -1,6 +1,8 @@
 (function () {
   'use strict';
 
+  const CURRENCY_STORAGE_KEY = 'nikon-value-currency';
+
   function readJsonScript(id, fallback) {
     const node = document.getElementById(id);
     if (!node || !node.textContent) return fallback;
@@ -12,10 +14,98 @@
     }
   }
 
-  function formatMoney(value) {
-    return value === null || value === undefined || value === ''
-      ? '-'
-      : `$${Number(value).toLocaleString()}`;
+  function getExchangeRate(exchangeData) {
+    const raw = Number(exchangeData?.rate);
+    return Number.isFinite(raw) && raw > 0 ? raw : null;
+  }
+
+  function normalizeCurrency(value, exchangeData) {
+    if (value === 'krw' && getExchangeRate(exchangeData)) return 'krw';
+    return 'usd';
+  }
+
+  function getInitialCurrency(params, exchangeData) {
+    const requested =
+      params.get('currency') ||
+      window.localStorage.getItem(CURRENCY_STORAGE_KEY) ||
+      'usd';
+    return normalizeCurrency(requested, exchangeData);
+  }
+
+  function saveCurrency(currency) {
+    window.localStorage.setItem(CURRENCY_STORAGE_KEY, currency);
+  }
+
+  function formatMoney(value, options) {
+    const { currency = 'usd', exchangeData = null, signDisplay = 'auto' } = options || {};
+    if (value === null || value === undefined || value === '') return '-';
+
+    const amount = Number(value);
+    if (!Number.isFinite(amount)) return '-';
+
+    let converted = amount;
+    let symbol = '$';
+    let locale = 'en-US';
+    let formatterOptions = {};
+
+    if (currency === 'krw') {
+      const rate = getExchangeRate(exchangeData);
+      if (!rate) return '-';
+      converted = Math.round(amount * rate);
+      symbol = '₩';
+      locale = 'ko-KR';
+    } else if (!Number.isInteger(amount)) {
+      formatterOptions = {
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2,
+      };
+    }
+
+    const absValue = Math.abs(converted);
+    const formatted = `${symbol}${absValue.toLocaleString(locale, formatterOptions)}`;
+    if (converted < 0) return `-${formatted}`;
+    if (signDisplay === 'always' && converted > 0) return `+${formatted}`;
+    return formatted;
+  }
+
+  function buildExchangeNote(exchangeData) {
+    const rate = getExchangeRate(exchangeData);
+    if (!rate) return 'KRW 환산용 환율 데이터를 불러오지 못했습니다.';
+    const source = exchangeData?.source || '환율 데이터';
+    const referenceDate = exchangeData?.reference_date || '-';
+    return `USD 1 = KRW ${rate.toLocaleString('ko-KR', {
+      minimumFractionDigits: 2,
+      maximumFractionDigits: 2,
+    })} (${source} ${referenceDate} 기준)`;
+  }
+
+  function applyMoneyElements(root, currency, exchangeData) {
+    root.querySelectorAll('[data-money-usd]').forEach((node) => {
+      const amount = Number(node.dataset.moneyUsd);
+      const signDisplay = node.dataset.moneySign || 'auto';
+      node.textContent = formatMoney(amount, {
+        currency,
+        exchangeData,
+        signDisplay,
+      });
+    });
+  }
+
+  function syncCurrencyButtons(buttons, currency, exchangeData) {
+    const krwAvailable = Boolean(getExchangeRate(exchangeData));
+    buttons.forEach((button) => {
+      const mode = button.dataset.currency || 'usd';
+      if (mode === 'krw') button.disabled = !krwAvailable;
+      button.classList.toggle('is-active', mode === currency);
+      button.setAttribute('aria-pressed', mode === currency ? 'true' : 'false');
+    });
+  }
+
+  function updateExchangeNotes(root, exchangeData) {
+    const text = buildExchangeNote(exchangeData);
+    root.querySelectorAll('[data-exchange-note]').forEach((node) => {
+      node.textContent = text;
+    });
   }
 
   function initCatalogPage() {
@@ -30,11 +120,14 @@
     const rareWatch = document.getElementById('rare-watch');
     const rareWatchSummary = document.getElementById('rare-watch-summary');
     const rareCards = Array.from(document.querySelectorAll('.rare-watch-card[data-category-id]'));
+    const currencyButtons = Array.from(document.querySelectorAll('.currency-toggle__button[data-currency]'));
+    const exchangeData = readJsonScript('exchange-rate-data', {});
     const params = new URLSearchParams(window.location.search);
 
     let activeCategory = params.get('category') || 'all';
     let searchTerm = params.get('q') || '';
     let sortMode = params.get('sort') || 'featured';
+    let currencyMode = getInitialCurrency(params, exchangeData);
 
     if (searchInput) searchInput.value = searchTerm;
     if (sortSelect) sortSelect.value = sortMode;
@@ -68,6 +161,7 @@
       if (activeCategory && activeCategory !== 'all') next.set('category', activeCategory);
       if (searchTerm) next.set('q', searchTerm);
       if (sortMode && sortMode !== 'featured') next.set('sort', sortMode);
+      if (currencyMode === 'krw') next.set('currency', currencyMode);
       const query = next.toString();
       const target = query ? `?${query}` : window.location.pathname;
       history.replaceState({}, '', target);
@@ -112,6 +206,13 @@
       rareWatchSummary.textContent = `${label}에서 ${visibleRareCards.length.toLocaleString()}개 희귀 매물이 감지되었습니다.`;
     }
 
+    function applyCurrencyState() {
+      applyMoneyElements(document, currencyMode, exchangeData);
+      syncCurrencyButtons(currencyButtons, currencyMode, exchangeData);
+      updateExchangeNotes(document, exchangeData);
+      saveCurrency(currencyMode);
+    }
+
     function applyState() {
       searchTerm = (searchInput?.value || '').trim().toLowerCase();
       sortMode = sortSelect?.value || 'featured';
@@ -129,12 +230,20 @@
       updateTabs();
       updateContext(visibleCards);
       updateRareWatch();
+      applyCurrencyState();
       syncUrl();
     }
 
     tabs.forEach((tab) => {
       tab.addEventListener('click', () => {
         activeCategory = tab.dataset.categoryId || 'all';
+        applyState();
+      });
+    });
+
+    currencyButtons.forEach((button) => {
+      button.addEventListener('click', () => {
+        currencyMode = normalizeCurrency(button.dataset.currency || 'usd', exchangeData);
         applyState();
       });
     });
@@ -147,13 +256,26 @@
 
   function initProductPage() {
     const historyData = readJsonScript('history-data', []);
+    const exchangeData = readJsonScript('exchange-rate-data', {});
     const buttons = Array.from(document.querySelectorAll('.period-btn'));
+    const currencyButtons = Array.from(document.querySelectorAll('.currency-toggle__button[data-currency]'));
     const emptyEl = document.getElementById('chart-empty');
     const canvas = document.getElementById('price-chart');
+    const params = new URLSearchParams(window.location.search);
     let activePeriod = Number(document.body.dataset.defaultPeriod || '180');
+    let activeCurrency = getInitialCurrency(params, exchangeData);
     let chartInstance = null;
 
     if (!canvas || !emptyEl) return;
+
+    function syncUrl() {
+      const next = new URLSearchParams(window.location.search);
+      if (activeCurrency === 'krw') next.set('currency', activeCurrency);
+      else next.delete('currency');
+      const query = next.toString();
+      const target = query ? `${window.location.pathname}?${query}` : window.location.pathname;
+      history.replaceState({}, '', target);
+    }
 
     function getReferenceDate(data) {
       if (!data.length) return new Date();
@@ -248,13 +370,22 @@
                 },
                 label(item) {
                   if (item.datasetIndex === 1) {
-                    return `중앙값: ${formatMoney(item.parsed.y)}`;
+                    return `중앙값: ${formatMoney(item.parsed.y, {
+                      currency: activeCurrency,
+                      exchangeData,
+                    })}`;
                   }
                   return null;
                 },
                 afterBody(items) {
                   const idx = items[0].dataIndex;
-                  return `Q1-Q3: ${formatMoney(q1s[idx])} - ${formatMoney(q3s[idx])}`;
+                  return `Q1-Q3: ${formatMoney(q1s[idx], {
+                    currency: activeCurrency,
+                    exchangeData,
+                  })} - ${formatMoney(q3s[idx], {
+                    currency: activeCurrency,
+                    exchangeData,
+                  })}`;
                 },
               },
               filter(item) {
@@ -271,7 +402,10 @@
               grid: { color: 'rgba(0, 0, 0, 0.06)' },
               ticks: {
                 callback(value) {
-                  return `$${Number(value).toLocaleString()}`;
+                  return formatMoney(Number(value), {
+                    currency: activeCurrency,
+                    exchangeData,
+                  });
                 },
                 font: { size: 11 },
               },
@@ -279,6 +413,15 @@
           },
         },
       });
+    }
+
+    function applyCurrencyState() {
+      applyMoneyElements(document, activeCurrency, exchangeData);
+      syncCurrencyButtons(currencyButtons, activeCurrency, exchangeData);
+      updateExchangeNotes(document, exchangeData);
+      saveCurrency(activeCurrency);
+      syncUrl();
+      renderChart(filterByPeriod(historyData, activePeriod));
     }
 
     function applyPeriod(period) {
@@ -293,6 +436,14 @@
       button.addEventListener('click', () => applyPeriod(button.dataset.period));
     });
 
+    currencyButtons.forEach((button) => {
+      button.addEventListener('click', () => {
+        activeCurrency = normalizeCurrency(button.dataset.currency || 'usd', exchangeData);
+        applyCurrencyState();
+      });
+    });
+
+    applyCurrencyState();
     applyPeriod(activePeriod);
   }
 

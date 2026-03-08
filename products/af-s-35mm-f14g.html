@@ -36,22 +36,33 @@
   <div class="site-links-wrap"><div class="container"><nav class="site-links" aria-label="사이트 바로가기"><a class="site-link is-active" href="../index.html">시세 목록</a><a class="site-link" href="../resources.html">참고 링크</a></nav></div></div>
 
   <main class="container">
+    <div class="detail-toolbar">
+      
+        <div class="currency-toggle-panel currency-toggle-panel--compact">
+          <span class="currency-toggle-panel__label">표시 통화</span>
+          <div class="currency-toggle" role="group" aria-label="표시 통화 선택">
+            <button class="currency-toggle__button" type="button" data-currency="usd">USD</button>
+            <button class="currency-toggle__button" type="button" data-currency="krw">KRW</button>
+          </div>
+          <p class="currency-toggle__meta" data-exchange-note>USD 1 = KRW 1,485.18 (ECB reference rates 2026-03-06 기준)</p>
+        </div>
+    </div>
     <div class="price-summary">
         <div class="price-card price-card--primary">
           <span class="price-label">중앙값</span>
-          <span class="price-value">$856.02</span>
+          <span class="price-value"><span class="money-value" data-money-usd="856.02" data-money-sign="auto">$856.02</span></span>
         </div>
         <div class="price-card">
           <span class="price-label">평균</span>
-          <span class="price-value">$882.12</span>
+          <span class="price-value"><span class="money-value" data-money-usd="882.12" data-money-sign="auto">$882.12</span></span>
         </div>
         <div class="price-card">
           <span class="price-label">최저</span>
-          <span class="price-value">$628.99</span>
+          <span class="price-value"><span class="money-value" data-money-usd="628.99" data-money-sign="auto">$628.99</span></span>
         </div>
         <div class="price-card">
           <span class="price-label">최고</span>
-          <span class="price-value">$1,172.31</span>
+          <span class="price-value"><span class="money-value" data-money-usd="1172.31" data-money-sign="auto">$1,172.31</span></span>
         </div>
         <div class="price-card">
           <span class="price-label">매물 수</span>
@@ -59,7 +70,7 @@
         </div>
         <div class="price-card">
           <span class="price-label">Q1 - Q3</span>
-          <span class="price-value price-value--small">$817.30 - $964.03</span>
+          <span class="price-value price-value--small"><span class="money-range price-value--small"><span class="money-value price-value--small" data-money-usd="817.3" data-money-sign="auto">$817.30</span> - <span class="money-value price-value--small" data-money-usd="964.03" data-money-sign="auto">$964.03</span></span></span>
         </div>
         <div class="price-card">
           <span class="price-label">최근 변화</span>
@@ -67,12 +78,12 @@
         </div>
         <div class="price-card">
           <span class="price-label">변화 금액</span>
-          <span class="price-value">$-9.01</span>
+          <span class="price-value"><span class="money-value" data-money-usd="-9.009999999999991" data-money-sign="always">$-9.01</span></span>
         </div>
     </div>
     
 
-    <p class="detail-note">시세는 eBay 미국 현재 매물 기준이며, 실제 체결가와는 차이가 있을 수 있습니다. 최근 5일 기준 중앙값 -1.0% ($-9.01) 변동했습니다.</p>
+    <p class="detail-note">시세는 eBay 미국 현재 매물 기준이며, 실제 체결가와는 차이가 있을 수 있습니다. 최근 5일 기준 중앙값 -1.0% (<span class="money-value" data-money-usd="-9.009999999999991" data-money-sign="always">$-9.01</span>) 변동했습니다.</p>
 
     <section class="chart-section">
       <div class="chart-header">
@@ -108,35 +119,35 @@
           <img class="listing-card__image" src="https://i.ebayimg.com/images/g/65YAAOSwG75lWjmM/s-l1600.jpg" alt="Nikon NIKKOR AF-S FX 35mm f1.4G N Wide Angle Lens FX Full Frame 6030" loading="lazy">
           <div class="listing-card__info">
             <div class="listing-card__title">Nikon NIKKOR AF-S FX 35mm f1.4G N Wide Angle Lens FX Full Frame 6030</div>
-            <div class="listing-card__price">$844.28</div>
+            <div class="listing-card__price"><span class="money-value" data-money-usd="844.28" data-money-sign="auto">$844.28</span></div>
           </div>
         </a>
         <a class="listing-card" href="https://www.ebay.com/itm/175667897908?_skw=Nikon+AF-S+35mm+f%2F1.4G&amp;hash=item28e69f6634:g:ZS8AAOSwSplhu7TH" target="_blank" rel="noopener noreferrer nofollow">
           <img class="listing-card__image" src="https://i.ebayimg.com/images/g/ZS8AAOSwSplhu7TH/s-l1600.jpg" alt="Nikon 35mm f/1.4G AF-S Lens *EX*" loading="lazy">
           <div class="listing-card__info">
             <div class="listing-card__title">Nikon 35mm f/1.4G AF-S Lens *EX*</div>
-            <div class="listing-card__price">$844.36</div>
+            <div class="listing-card__price"><span class="money-value" data-money-usd="844.36" data-money-sign="auto">$844.36</span></div>
           </div>
         </a>
         <a class="listing-card" href="https://www.ebay.com/itm/156841961777?_skw=Nikon+AF-S+35mm+f%2F1.4G&amp;hash=item2484826931:g:TaYAAOSwU6hn6jSu" target="_blank" rel="noopener noreferrer nofollow">
           <img class="listing-card__image" src="https://i.ebayimg.com/images/g/TaYAAOSwU6hn6jSu/s-l960.jpg" alt="Near Mint Nikon AF-S Nikkor 35mm F/1.4 G Standard Prime Lens For F-Mount #N020" loading="lazy">
           <div class="listing-card__info">
             <div class="listing-card__title">Near Mint Nikon AF-S Nikkor 35mm F/1.4 G Standard Prime Lens For F-Mount #N020</div>
-            <div class="listing-card__price">$856.02</div>
+            <div class="listing-card__price"><span class="money-value" data-money-usd="856.02" data-money-sign="auto">$856.02</span></div>
           </div>
         </a>
         <a class="listing-card" href="https://www.ebay.com/itm/395020821913?_skw=Nikon+AF-S+35mm+f%2F1.4G&amp;hash=item5bf9136599:g:x5gAAOSwHXBlYSbe" target="_blank" rel="noopener noreferrer nofollow">
           <img class="listing-card__image" src="https://i.ebayimg.com/images/g/x5gAAOSwHXBlYSbe/s-l1600.jpg" alt="Nikon AF-S NIKKOR 35mm f/1.4 G N Wide Angle Lens [Near MINT] from JAPAN #2006910" loading="lazy">
           <div class="listing-card__info">
             <div class="listing-card__title">Nikon AF-S NIKKOR 35mm f/1.4 G N Wide Angle Lens [Near MINT] from JAPAN #2006910</div>
-            <div class="listing-card__price">$869.99</div>
+            <div class="listing-card__price"><span class="money-value" data-money-usd="869.99" data-money-sign="auto">$869.99</span></div>
           </div>
         </a>
         <a class="listing-card" href="https://www.ebay.com/itm/225960752534?_skw=Nikon+AF-S+35mm+f%2F1.4G&amp;hash=item349c4f7596:g:Sk8AAOSw4hJjJc8q" target="_blank" rel="noopener noreferrer nofollow">
           <img class="listing-card__image" src="https://i.ebayimg.com/images/g/Sk8AAOSw4hJjJc8q/s-l1600.jpg" alt="Nikon Nikkor AFS AF-S 35mm f1.4 G Lens 244171" loading="lazy">
           <div class="listing-card__info">
             <div class="listing-card__title">Nikon Nikkor AFS AF-S 35mm f1.4 G Lens 244171</div>
-            <div class="listing-card__price">$877.44</div>
+            <div class="listing-card__price"><span class="money-value" data-money-usd="877.44" data-money-sign="auto">$877.44</span></div>
           </div>
         </a>
       </div>
@@ -181,6 +192,7 @@
     </div>
   </footer>
 
+  <script id="exchange-rate-data" type="application/json">{"base": "USD", "quote": "KRW", "rate": 1485.1829, "reference_date": "2026-03-06", "source": "ECB reference rates"}</script>
   <script id="history-data" type="application/json">[{"date": "2026-03-02", "median": null, "mean": null, "min": null, "max": null, "q1": null, "q3": null, "count": 0, "count_filtered": 0}, {"date": "2026-03-03", "median": 865.03, "mean": 860.41, "min": 509.99, "max": 1278.0, "q1": 752.5, "q3": 993.51, "count": 49, "count_filtered": 47}, {"date": "2026-03-04", "median": 871.7, "mean": 878.53, "min": 696.05, "max": 1053.21, "q1": 830.03, "q3": 923.88, "count": 38, "count_filtered": 32}, {"date": "2026-03-05", "median": 871.7, "mean": 883.79, "min": 649.99, "max": 1093.41, "q1": 830.03, "q3": 963.15, "count": 35, "count_filtered": 31}, {"date": "2026-03-06", "median": 863.0, "mean": 883.68, "min": 628.99, "max": 1172.31, "q1": 823.66, "q3": 963.59, "count": 32, "count_filtered": 30}, {"date": "2026-03-07", "median": 863.0, "mean": 883.6, "min": 628.99, "max": 1172.31, "q1": 823.66, "q3": 963.59, "count": 32, "count_filtered": 30}, {"date": "2026-03-08", "median": 856.02, "mean": 882.12, "min": 628.99, "max": 1172.31, "q1": 817.3, "q3": 964.03, "count": 31, "count_filtered": 29}]</script>
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4/dist/chart.umd.min.js"></script>
   <script src="../js/site.js" defer></script>

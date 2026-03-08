@@ -36,22 +36,33 @@
   <div class="site-links-wrap"><div class="container"><nav class="site-links" aria-label="사이트 바로가기"><a class="site-link is-active" href="../index.html">시세 목록</a><a class="site-link" href="../resources.html">참고 링크</a></nav></div></div>
 
   <main class="container">
+    <div class="detail-toolbar">
+      
+        <div class="currency-toggle-panel currency-toggle-panel--compact">
+          <span class="currency-toggle-panel__label">표시 통화</span>
+          <div class="currency-toggle" role="group" aria-label="표시 통화 선택">
+            <button class="currency-toggle__button" type="button" data-currency="usd">USD</button>
+            <button class="currency-toggle__button" type="button" data-currency="krw">KRW</button>
+          </div>
+          <p class="currency-toggle__meta" data-exchange-note>USD 1 = KRW 1,485.18 (ECB reference rates 2026-03-06 기준)</p>
+        </div>
+    </div>
     <div class="price-summary">
         <div class="price-card price-card--primary">
           <span class="price-label">중앙값</span>
-          <span class="price-value">$389.69</span>
+          <span class="price-value"><span class="money-value" data-money-usd="389.69" data-money-sign="auto">$389.69</span></span>
         </div>
         <div class="price-card">
           <span class="price-label">평균</span>
-          <span class="price-value">$365.16</span>
+          <span class="price-value"><span class="money-value" data-money-usd="365.16" data-money-sign="auto">$365.16</span></span>
         </div>
         <div class="price-card">
           <span class="price-label">최저</span>
-          <span class="price-value">$276.99</span>
+          <span class="price-value"><span class="money-value" data-money-usd="276.99" data-money-sign="auto">$276.99</span></span>
         </div>
         <div class="price-card">
           <span class="price-label">최고</span>
-          <span class="price-value">$428.80</span>
+          <span class="price-value"><span class="money-value" data-money-usd="428.8" data-money-sign="auto">$428.80</span></span>
         </div>
         <div class="price-card">
           <span class="price-label">매물 수</span>
@@ -59,7 +70,7 @@
         </div>
         <div class="price-card">
           <span class="price-label">Q1 - Q3</span>
-          <span class="price-value price-value--small">$276.99 - $428.80</span>
+          <span class="price-value price-value--small"><span class="money-range price-value--small"><span class="money-value price-value--small" data-money-usd="276.99" data-money-sign="auto">$276.99</span> - <span class="money-value price-value--small" data-money-usd="428.8" data-money-sign="auto">$428.80</span></span></span>
         </div>
         <div class="price-card">
           <span class="price-label">최근 변화</span>
@@ -67,12 +78,12 @@
         </div>
         <div class="price-card">
           <span class="price-label">변화 금액</span>
-          <span class="price-value">$-13.19</span>
+          <span class="price-value"><span class="money-value" data-money-usd="-13.189999999999998" data-money-sign="always">$-13.19</span></span>
         </div>
     </div>
     
 
-    <p class="detail-note">시세는 eBay 미국 현재 매물 기준이며, 실제 체결가와는 차이가 있을 수 있습니다. 최근 5일 기준 중앙값 -3.3% ($-13.19) 변동했습니다.</p>
+    <p class="detail-note">시세는 eBay 미국 현재 매물 기준이며, 실제 체결가와는 차이가 있을 수 있습니다. 최근 5일 기준 중앙값 -3.3% (<span class="money-value" data-money-usd="-13.189999999999998" data-money-sign="always">$-13.19</span>) 변동했습니다.</p>
 
     <section class="chart-section">
       <div class="chart-header">
@@ -108,21 +119,21 @@
           <img class="listing-card__image" src="https://i.ebayimg.com/images/g/ElEAAeSwU2NpTzAy/s-l1600.jpg" alt="Nikon FE2 Black 35mm SLR Film Camera Body [Near MINT w/Strap] From Japan" loading="lazy">
           <div class="listing-card__info">
             <div class="listing-card__title">Nikon FE2 Black 35mm SLR Film Camera Body [Near MINT w/Strap] From Japan</div>
-            <div class="listing-card__price">$276.99</div>
+            <div class="listing-card__price"><span class="money-value" data-money-usd="276.99" data-money-sign="auto">$276.99</span></div>
           </div>
         </a>
         <a class="listing-card" href="https://www.ebay.com/itm/127411237983?_skw=Nikon+FE2+body+-lens+-nikkor+-filter+-hood+-cap&amp;hash=item1daa4d345f:g:GzEAAeSwdCdo4Fi8" target="_blank" rel="noopener noreferrer nofollow">
           <img class="listing-card__image" src="https://i.ebayimg.com/images/g/GzEAAeSwdCdo4Fi8/s-l1200.jpg" alt="Nikon FE2 Body with Exposure Meter and Full Shutter Speed OKR215" loading="lazy">
           <div class="listing-card__info">
             <div class="listing-card__title">Nikon FE2 Body with Exposure Meter and Full Shutter Speed OKR215</div>
-            <div class="listing-card__price">$389.69</div>
+            <div class="listing-card__price"><span class="money-value" data-money-usd="389.69" data-money-sign="auto">$389.69</span></div>
           </div>
         </a>
         <a class="listing-card" href="https://www.ebay.com/itm/127456798692?_skw=Nikon+FE2+body+-lens+-nikkor+-filter+-hood+-cap&amp;hash=item1dad0467e4:g:u4sAAeSwl7NpAFnr" target="_blank" rel="noopener noreferrer nofollow">
           <img class="listing-card__image" src="https://i.ebayimg.com/images/g/u4sAAeSwl7NpAFnr/s-l1200.jpg" alt="Nikon FE2 Body Exposure Meter, All Shutter Speeds OK, 14571" loading="lazy">
           <div class="listing-card__info">
             <div class="listing-card__title">Nikon FE2 Body Exposure Meter, All Shutter Speeds OK, 14571</div>
-            <div class="listing-card__price">$428.80</div>
+            <div class="listing-card__price"><span class="money-value" data-money-usd="428.8" data-money-sign="auto">$428.80</span></div>
           </div>
         </a>
       </div>
@@ -159,6 +170,7 @@
     </div>
   </footer>
 
+  <script id="exchange-rate-data" type="application/json">{"base": "USD", "quote": "KRW", "rate": 1485.1829, "reference_date": "2026-03-06", "source": "ECB reference rates"}</script>
   <script id="history-data" type="application/json">[{"date": "2026-03-02", "median": null, "mean": null, "min": null, "max": null, "q1": null, "q3": null, "count": 0, "count_filtered": 0}, {"date": "2026-03-03", "median": 402.88, "mean": 377.88, "min": 276.99, "max": 428.8, "q1": 333.34, "q3": 422.43, "count": 4, "count_filtered": 4}, {"date": "2026-03-04", "median": 402.88, "mean": 377.88, "min": 276.99, "max": 428.8, "q1": 333.34, "q3": 422.43, "count": 4, "count_filtered": 4}, {"date": "2026-03-04", "median": 402.88, "mean": 377.88, "min": 276.99, "max": 428.8, "q1": 333.34, "q3": 422.43, "count": 4, "count_filtered": 4}, {"date": "2026-03-05", "median": 402.88, "mean": 377.88, "min": 276.99, "max": 428.8, "q1": 333.34, "q3": 422.43, "count": 4, "count_filtered": 4}, {"date": "2026-03-06", "median": 402.88, "mean": 377.88, "min": 276.99, "max": 428.8, "q1": 333.34, "q3": 422.43, "count": 4, "count_filtered": 4}, {"date": "2026-03-07", "median": 402.88, "mean": 377.88, "min": 276.99, "max": 428.8, "q1": 333.34, "q3": 422.43, "count": 4, "count_filtered": 4}, {"date": "2026-03-08", "median": 389.69, "mean": 365.16, "min": 276.99, "max": 428.8, "q1": 276.99, "q3": 428.8, "count": 3, "count_filtered": 3}]</script>
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4/dist/chart.umd.min.js"></script>
   <script src="../js/site.js" defer></script>

@@ -36,22 +36,33 @@
   <div class="site-links-wrap"><div class="container"><nav class="site-links" aria-label="사이트 바로가기"><a class="site-link is-active" href="../index.html">시세 목록</a><a class="site-link" href="../resources.html">참고 링크</a></nav></div></div>
 
   <main class="container">
+    <div class="detail-toolbar">
+      
+        <div class="currency-toggle-panel currency-toggle-panel--compact">
+          <span class="currency-toggle-panel__label">표시 통화</span>
+          <div class="currency-toggle" role="group" aria-label="표시 통화 선택">
+            <button class="currency-toggle__button" type="button" data-currency="usd">USD</button>
+            <button class="currency-toggle__button" type="button" data-currency="krw">KRW</button>
+          </div>
+          <p class="currency-toggle__meta" data-exchange-note>USD 1 = KRW 1,485.18 (ECB reference rates 2026-03-06 기준)</p>
+        </div>
+    </div>
     <div class="price-summary">
         <div class="price-card price-card--primary">
           <span class="price-label">중앙값</span>
-          <span class="price-value">$209.45</span>
+          <span class="price-value"><span class="money-value" data-money-usd="209.45" data-money-sign="auto">$209.45</span></span>
         </div>
         <div class="price-card">
           <span class="price-label">평균</span>
-          <span class="price-value">$222.59</span>
+          <span class="price-value"><span class="money-value" data-money-usd="222.59" data-money-sign="auto">$222.59</span></span>
         </div>
         <div class="price-card">
           <span class="price-label">최저</span>
-          <span class="price-value">$105</span>
+          <span class="price-value"><span class="money-value" data-money-usd="105.0" data-money-sign="auto">$105</span></span>
         </div>
         <div class="price-card">
           <span class="price-label">최고</span>
-          <span class="price-value">$393.11</span>
+          <span class="price-value"><span class="money-value" data-money-usd="393.11" data-money-sign="auto">$393.11</span></span>
         </div>
         <div class="price-card">
           <span class="price-label">매물 수</span>
@@ -59,7 +70,7 @@
         </div>
         <div class="price-card">
           <span class="price-label">Q1 - Q3</span>
-          <span class="price-value price-value--small">$182.17 - $266.99</span>
+          <span class="price-value price-value--small"><span class="money-range price-value--small"><span class="money-value price-value--small" data-money-usd="182.17" data-money-sign="auto">$182.17</span> - <span class="money-value price-value--small" data-money-usd="266.99" data-money-sign="auto">$266.99</span></span></span>
         </div>
         <div class="price-card">
           <span class="price-label">최근 변화</span>
@@ -67,12 +78,12 @@
         </div>
         <div class="price-card">
           <span class="price-label">변화 금액</span>
-          <span class="price-value">+$9.81</span>
+          <span class="price-value"><span class="money-value" data-money-usd="9.810000000000002" data-money-sign="always">$9.81</span></span>
         </div>
     </div>
     
 
-    <p class="detail-note">시세는 eBay 미국 현재 매물 기준이며, 실제 체결가와는 차이가 있을 수 있습니다. 최근 5일 기준 중앙값 +4.9% (+$9.81) 변동했습니다.</p>
+    <p class="detail-note">시세는 eBay 미국 현재 매물 기준이며, 실제 체결가와는 차이가 있을 수 있습니다. 최근 5일 기준 중앙값 +4.9% (<span class="money-value" data-money-usd="9.810000000000002" data-money-sign="always">$9.81</span>) 변동했습니다.</p>
 
     <section class="chart-section">
       <div class="chart-header">
@@ -108,35 +119,35 @@
           <img class="listing-card__image" src="https://i.ebayimg.com/images/g/D40AAOSwIxpoF3nO/s-l1200.jpg" alt="[Near Mint] Nikon Ai-s Nikkor 50mm f/1.4 MF Standard Prime Lens From JAPAN" loading="lazy">
           <div class="listing-card__info">
             <div class="listing-card__title">[Near Mint] Nikon Ai-s Nikkor 50mm f/1.4 MF Standard Prime Lens From JAPAN</div>
-            <div class="listing-card__price">$211</div>
+            <div class="listing-card__price"><span class="money-value" data-money-usd="211.0" data-money-sign="auto">$211</span></div>
           </div>
         </a>
         <a class="listing-card" href="https://www.ebay.com/itm/358263897953?_skw=Nikon+AIS+50mm+f%2F1.4&amp;hash=item536a313f61:g:imAAAeSwea1pcil4" target="_blank" rel="noopener noreferrer nofollow">
           <img class="listing-card__image" src="https://i.ebayimg.com/images/g/imAAAeSwea1pcil4/s-l1600.jpg" alt="EXCELLENT Nikon Ai-S NIKKOR 50mm F/1.4 Prime Lens" loading="lazy">
           <div class="listing-card__info">
             <div class="listing-card__title">EXCELLENT Nikon Ai-S NIKKOR 50mm F/1.4 Prime Lens</div>
-            <div class="listing-card__price">$211.24</div>
+            <div class="listing-card__price"><span class="money-value" data-money-usd="211.24" data-money-sign="auto">$211.24</span></div>
           </div>
         </a>
         <a class="listing-card" href="https://www.ebay.com/itm/147146544497?_skw=Nikon+AIS+50mm+f%2F1.4&amp;hash=item22429e1571:g:MiEAAOSw0gBk5hD9" target="_blank" rel="noopener noreferrer nofollow">
           <img class="listing-card__image" src="https://i.ebayimg.com/images/g/MiEAAOSw0gBk5hD9/s-l1200.jpg" alt="[Near Mint ] Nikon Ai-s Nikkor 50mm f1.4 MF Standard Prime Lens F mount #5836779" loading="lazy">
           <div class="listing-card__info">
             <div class="listing-card__title">[Near Mint ] Nikon Ai-s Nikkor 50mm f1.4 MF Standard Prime Lens F mount #5836779</div>
-            <div class="listing-card__price">$211.99</div>
+            <div class="listing-card__price"><span class="money-value" data-money-usd="211.99" data-money-sign="auto">$211.99</span></div>
           </div>
         </a>
         <a class="listing-card" href="https://www.ebay.com/itm/286062133146?_skw=Nikon+AIS+50mm+f%2F1.4&amp;hash=item429aa1bf9a:g:afkAAOSwtclm5wSW" target="_blank" rel="noopener noreferrer nofollow">
           <img class="listing-card__image" src="https://i.ebayimg.com/images/g/afkAAOSwtclm5wSW/s-l1600.jpg" alt="【Near MINT】Nikon Ai-s Ais Nikkor 50mm F/1.4 MF Standard Lens From Japan# -32" loading="lazy">
           <div class="listing-card__info">
             <div class="listing-card__title">【Near MINT】Nikon Ai-s Ais Nikkor 50mm F/1.4 MF Standard Lens From Japan# -32</div>
-            <div class="listing-card__price">$212.99</div>
+            <div class="listing-card__price"><span class="money-value" data-money-usd="212.99" data-money-sign="auto">$212.99</span></div>
           </div>
         </a>
         <a class="listing-card" href="https://www.ebay.com/itm/357589311141?_skw=Nikon+AIS+50mm+f%2F1.4&amp;hash=item5341fbdea5:g:eJQAAeSwzJ9oh4If" target="_blank" rel="noopener noreferrer nofollow">
           <img class="listing-card__image" src="https://i.ebayimg.com/images/g/eJQAAeSwzJ9oh4If/s-l1600.jpg" alt="[MINT] Nikon NIKKOR 50mm f/1.4 Ai-s AIS MF Prime Lens  Nikon F mount  Japan #064" loading="lazy">
           <div class="listing-card__info">
             <div class="listing-card__title">[MINT] Nikon NIKKOR 50mm f/1.4 Ai-s AIS MF Prime Lens  Nikon F mount  Japan #064</div>
-            <div class="listing-card__price">$213.99</div>
+            <div class="listing-card__price"><span class="money-value" data-money-usd="213.99" data-money-sign="auto">$213.99</span></div>
           </div>
         </a>
       </div>
@@ -181,6 +192,7 @@
     </div>
   </footer>
 
+  <script id="exchange-rate-data" type="application/json">{"base": "USD", "quote": "KRW", "rate": 1485.1829, "reference_date": "2026-03-06", "source": "ECB reference rates"}</script>
   <script id="history-data" type="application/json">[{"date": "2026-03-02", "median": null, "mean": null, "min": null, "max": null, "q1": null, "q3": null, "count": 0, "count_filtered": 0}, {"date": "2026-03-03", "median": 199.64, "mean": 212.13, "min": 84.0, "max": 430.5, "q1": 153.0, "q3": 264.99, "count": 1324, "count_filtered": 1296}, {"date": "2026-03-04", "median": 179.93, "mean": 189.93, "min": 82.8, "max": 369.18, "q1": 142.0, "q3": 232.98, "count": 1375, "count_filtered": 1339}, {"date": "2026-03-05", "median": 178.81, "mean": 187.92, "min": 82.15, "max": 365.99, "q1": 141.0, "q3": 231.1, "count": 1368, "count_filtered": 1327}, {"date": "2026-03-06", "median": 179.99, "mean": 189.78, "min": 82.15, "max": 369.18, "q1": 142.24, "q3": 233.26, "count": 1317, "count_filtered": 1280}, {"date": "2026-03-07", "median": 209.94, "mean": 222.98, "min": 105.0, "max": 393.11, "q1": 182.17, "q3": 267.4, "count": 418, "count_filtered": 404}, {"date": "2026-03-08", "median": 209.45, "mean": 222.59, "min": 105.0, "max": 393.11, "q1": 182.17, "q3": 266.99, "count": 418, "count_filtered": 404}]</script>
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4/dist/chart.umd.min.js"></script>
   <script src="../js/site.js" defer></script>

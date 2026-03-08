@@ -36,22 +36,33 @@
   <div class="site-links-wrap"><div class="container"><nav class="site-links" aria-label="사이트 바로가기"><a class="site-link is-active" href="../index.html">시세 목록</a><a class="site-link" href="../resources.html">참고 링크</a></nav></div></div>
 
   <main class="container">
+    <div class="detail-toolbar">
+      
+        <div class="currency-toggle-panel currency-toggle-panel--compact">
+          <span class="currency-toggle-panel__label">표시 통화</span>
+          <div class="currency-toggle" role="group" aria-label="표시 통화 선택">
+            <button class="currency-toggle__button" type="button" data-currency="usd">USD</button>
+            <button class="currency-toggle__button" type="button" data-currency="krw">KRW</button>
+          </div>
+          <p class="currency-toggle__meta" data-exchange-note>USD 1 = KRW 1,485.18 (ECB reference rates 2026-03-06 기준)</p>
+        </div>
+    </div>
     <div class="price-summary">
         <div class="price-card price-card--primary">
           <span class="price-label">중앙값</span>
-          <span class="price-value">$170.75</span>
+          <span class="price-value"><span class="money-value" data-money-usd="170.75" data-money-sign="auto">$170.75</span></span>
         </div>
         <div class="price-card">
           <span class="price-label">평균</span>
-          <span class="price-value">$163.70</span>
+          <span class="price-value"><span class="money-value" data-money-usd="163.7" data-money-sign="auto">$163.70</span></span>
         </div>
         <div class="price-card">
           <span class="price-label">최저</span>
-          <span class="price-value">$118.82</span>
+          <span class="price-value"><span class="money-value" data-money-usd="118.82" data-money-sign="auto">$118.82</span></span>
         </div>
         <div class="price-card">
           <span class="price-label">최고</span>
-          <span class="price-value">$192.85</span>
+          <span class="price-value"><span class="money-value" data-money-usd="192.85" data-money-sign="auto">$192.85</span></span>
         </div>
         <div class="price-card">
           <span class="price-label">매물 수</span>
@@ -59,7 +70,7 @@
         </div>
         <div class="price-card">
           <span class="price-label">Q1 - Q3</span>
-          <span class="price-value price-value--small">$139.99 - $185.99</span>
+          <span class="price-value price-value--small"><span class="money-range price-value--small"><span class="money-value price-value--small" data-money-usd="139.99" data-money-sign="auto">$139.99</span> - <span class="money-value price-value--small" data-money-usd="185.99" data-money-sign="auto">$185.99</span></span></span>
         </div>
         <div class="price-card">
           <span class="price-label">최근 변화</span>
@@ -67,12 +78,12 @@
         </div>
         <div class="price-card">
           <span class="price-label">변화 금액</span>
-          <span class="price-value">$-13.02</span>
+          <span class="price-value"><span class="money-value" data-money-usd="-13.02000000000001" data-money-sign="always">$-13.02</span></span>
         </div>
     </div>
     
 
-    <p class="detail-note">시세는 eBay 미국 현재 매물 기준이며, 실제 체결가와는 차이가 있을 수 있습니다. 최근 5일 기준 중앙값 -7.1% ($-13.02) 변동했습니다.</p>
+    <p class="detail-note">시세는 eBay 미국 현재 매물 기준이며, 실제 체결가와는 차이가 있을 수 있습니다. 최근 5일 기준 중앙값 -7.1% (<span class="money-value" data-money-usd="-13.02000000000001" data-money-sign="always">$-13.02</span>) 변동했습니다.</p>
 
     <section class="chart-section">
       <div class="chart-header">
@@ -108,35 +119,35 @@
           <img class="listing-card__image" src="https://i.ebayimg.com/images/g/WUIAAeSwcvVpH8YA/s-l960.jpg" alt="【 Excellent +4 】 Nikon Nippon Kogaku NIKKOR-P Auto 105mm 10.5cm f/2.5 from Japan" loading="lazy">
           <div class="listing-card__info">
             <div class="listing-card__title">【 Excellent +4 】 Nikon Nippon Kogaku NIKKOR-P Auto 105mm 10.5cm f/2.5 from Japan</div>
-            <div class="listing-card__price">$149</div>
+            <div class="listing-card__price"><span class="money-value" data-money-usd="149.0" data-money-sign="auto">$149</span></div>
           </div>
         </a>
         <a class="listing-card" href="https://www.ebay.com/itm/226721234722?_skw=Nikkor+Auto+105mm+f%2F2.5+-AI+-AIS&amp;hash=item34c9a37f22:g:dbUAAOSwBstoC85Y" target="_blank" rel="noopener noreferrer nofollow">
           <img class="listing-card__image" src="https://i.ebayimg.com/images/g/dbUAAOSwBstoC85Y/s-l1600.jpg" alt="Nikon Nikkor-P Auto 105mm f/2.5 " loading="lazy">
           <div class="listing-card__info">
             <div class="listing-card__title">Nikon Nikkor-P Auto 105mm f/2.5 </div>
-            <div class="listing-card__price">$163.40</div>
+            <div class="listing-card__price"><span class="money-value" data-money-usd="163.4" data-money-sign="auto">$163.40</span></div>
           </div>
         </a>
         <a class="listing-card" href="https://www.ebay.com/itm/157723738155?_skw=Nikkor+Auto+105mm+f%2F2.5+-AI+-AIS&amp;hash=item24b911402b:g:sTEAAeSwpvJpp3po" target="_blank" rel="noopener noreferrer nofollow">
           <img class="listing-card__image" src="https://i.ebayimg.com/images/g/sTEAAeSwpvJpp3po/s-l640.jpg" alt="Condition Nikon Nikkor P Auto 105mm F2.5 Prime Lens MF single focus lens Z6494" loading="lazy">
           <div class="listing-card__info">
             <div class="listing-card__title">Condition Nikon Nikkor P Auto 105mm F2.5 Prime Lens MF single focus lens Z6494</div>
-            <div class="listing-card__price">$170.75</div>
+            <div class="listing-card__price"><span class="money-value" data-money-usd="170.75" data-money-sign="auto">$170.75</span></div>
           </div>
         </a>
         <a class="listing-card" href="https://www.ebay.com/itm/406669722381?_skw=Nikkor+Auto+105mm+f%2F2.5+-AI+-AIS&amp;hash=item5eaf67830d:g:KswAAeSwYPRpg92W" target="_blank" rel="noopener noreferrer nofollow">
           <img class="listing-card__image" src="https://i.ebayimg.com/images/g/KswAAeSwYPRpg92W/s-l1600.jpg" alt="PAT. PEND. Tested! [Exc+5] Nikon Nikkor P Auto 10.5cm 105mm f/2.5 Lens JAPAN" loading="lazy">
           <div class="listing-card__info">
             <div class="listing-card__title">PAT. PEND. Tested! [Exc+5] Nikon Nikkor P Auto 10.5cm 105mm f/2.5 Lens JAPAN</div>
-            <div class="listing-card__price">$178.99</div>
+            <div class="listing-card__price"><span class="money-value" data-money-usd="178.99" data-money-sign="auto">$178.99</span></div>
           </div>
         </a>
         <a class="listing-card" href="https://www.ebay.com/itm/358230967930?_skw=Nikkor+Auto+105mm+f%2F2.5+-AI+-AIS&amp;hash=item53683ac67a:g:kK0AAeSw~vRplbHv" target="_blank" rel="noopener noreferrer nofollow">
           <img class="listing-card__image" src="https://i.ebayimg.com/images/g/kK0AAeSw~vRplbHv/s-l640.jpg" alt="Nikon Nikkor-P Auto 105Mm F2.5 Single Focus Lens Mf Z6494" loading="lazy">
           <div class="listing-card__info">
             <div class="listing-card__title">Nikon Nikkor-P Auto 105Mm F2.5 Single Focus Lens Mf Z6494</div>
-            <div class="listing-card__price">$183.75</div>
+            <div class="listing-card__price"><span class="money-value" data-money-usd="183.75" data-money-sign="auto">$183.75</span></div>
           </div>
         </a>
       </div>
@@ -181,6 +192,7 @@
     </div>
   </footer>
 
+  <script id="exchange-rate-data" type="application/json">{"base": "USD", "quote": "KRW", "rate": 1485.1829, "reference_date": "2026-03-06", "source": "ECB reference rates"}</script>
   <script id="history-data" type="application/json">[{"date": "2026-03-03", "median": 183.77, "mean": 180.76, "min": 118.82, "max": 249.86, "q1": 161.25, "q3": 199.83, "count": 29, "count_filtered": 29}, {"date": "2026-03-04", "median": 183.76, "mean": 180.43, "min": 118.82, "max": 249.86, "q1": 162.48, "q3": 198.88, "count": 30, "count_filtered": 30}, {"date": "2026-03-04", "median": 178.99, "mean": 169.9, "min": 118.82, "max": 200.88, "q1": 149.0, "q3": 187.16, "count": 15, "count_filtered": 15}, {"date": "2026-03-05", "median": 178.99, "mean": 168.29, "min": 118.82, "max": 200.88, "q1": 144.5, "q3": 186.67, "count": 13, "count_filtered": 13}, {"date": "2026-03-06", "median": 174.87, "mean": 165.57, "min": 118.82, "max": 192.85, "q1": 144.5, "q3": 186.09, "count": 12, "count_filtered": 12}, {"date": "2026-03-07", "median": 170.75, "mean": 163.7, "min": 118.82, "max": 192.85, "q1": 139.99, "q3": 185.99, "count": 11, "count_filtered": 11}, {"date": "2026-03-08", "median": 170.75, "mean": 163.7, "min": 118.82, "max": 192.85, "q1": 139.99, "q3": 185.99, "count": 11, "count_filtered": 11}]</script>
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4/dist/chart.umd.min.js"></script>
   <script src="../js/site.js" defer></script>

@@ -36,22 +36,33 @@
   <div class="site-links-wrap"><div class="container"><nav class="site-links" aria-label="사이트 바로가기"><a class="site-link is-active" href="../index.html">시세 목록</a><a class="site-link" href="../resources.html">참고 링크</a></nav></div></div>
 
   <main class="container">
+    <div class="detail-toolbar">
+      
+        <div class="currency-toggle-panel currency-toggle-panel--compact">
+          <span class="currency-toggle-panel__label">표시 통화</span>
+          <div class="currency-toggle" role="group" aria-label="표시 통화 선택">
+            <button class="currency-toggle__button" type="button" data-currency="usd">USD</button>
+            <button class="currency-toggle__button" type="button" data-currency="krw">KRW</button>
+          </div>
+          <p class="currency-toggle__meta" data-exchange-note>USD 1 = KRW 1,485.18 (ECB reference rates 2026-03-06 기준)</p>
+        </div>
+    </div>
     <div class="price-summary">
         <div class="price-card price-card--primary">
           <span class="price-label">중앙값</span>
-          <span class="price-value">$202.40</span>
+          <span class="price-value"><span class="money-value" data-money-usd="202.4" data-money-sign="auto">$202.40</span></span>
         </div>
         <div class="price-card">
           <span class="price-label">평균</span>
-          <span class="price-value">$218.36</span>
+          <span class="price-value"><span class="money-value" data-money-usd="218.36" data-money-sign="auto">$218.36</span></span>
         </div>
         <div class="price-card">
           <span class="price-label">최저</span>
-          <span class="price-value">$119.51</span>
+          <span class="price-value"><span class="money-value" data-money-usd="119.51" data-money-sign="auto">$119.51</span></span>
         </div>
         <div class="price-card">
           <span class="price-label">최고</span>
-          <span class="price-value">$361.78</span>
+          <span class="price-value"><span class="money-value" data-money-usd="361.78" data-money-sign="auto">$361.78</span></span>
         </div>
         <div class="price-card">
           <span class="price-label">매물 수</span>
@@ -59,7 +70,7 @@
         </div>
         <div class="price-card">
           <span class="price-label">Q1 - Q3</span>
-          <span class="price-value price-value--small">$172.37 - $259.90</span>
+          <span class="price-value price-value--small"><span class="money-range price-value--small"><span class="money-value price-value--small" data-money-usd="172.37" data-money-sign="auto">$172.37</span> - <span class="money-value price-value--small" data-money-usd="259.9" data-money-sign="auto">$259.90</span></span></span>
         </div>
         <div class="price-card">
           <span class="price-label">최근 변화</span>
@@ -67,12 +78,12 @@
         </div>
         <div class="price-card">
           <span class="price-label">변화 금액</span>
-          <span class="price-value">+$11.73</span>
+          <span class="price-value"><span class="money-value" data-money-usd="11.730000000000018" data-money-sign="always">$11.73</span></span>
         </div>
     </div>
     
 
-    <p class="detail-note">시세는 eBay 미국 현재 매물 기준이며, 실제 체결가와는 차이가 있을 수 있습니다. 최근 5일 기준 중앙값 +6.2% (+$11.73) 변동했습니다.</p>
+    <p class="detail-note">시세는 eBay 미국 현재 매물 기준이며, 실제 체결가와는 차이가 있을 수 있습니다. 최근 5일 기준 중앙값 +6.2% (<span class="money-value" data-money-usd="11.730000000000018" data-money-sign="always">$11.73</span>) 변동했습니다.</p>
 
     <section class="chart-section">
       <div class="chart-header">
@@ -108,35 +119,35 @@
           <img class="listing-card__image" src="https://i.ebayimg.com/images/g/1~0AAeSwpvJppqrM/s-l1200.jpg" alt="#4999 Nikon Ai-S Nikkor 24mm F2.8 prime lens" loading="lazy">
           <div class="listing-card__info">
             <div class="listing-card__title">#4999 Nikon Ai-S Nikkor 24mm F2.8 prime lens</div>
-            <div class="listing-card__price">$200.88</div>
+            <div class="listing-card__price"><span class="money-value" data-money-usd="200.88" data-money-sign="auto">$200.88</span></div>
           </div>
         </a>
         <a class="listing-card" href="https://www.ebay.com/itm/364988695917?_skw=Nikon+AIS+24mm+f%2F2.8&amp;hash=item54fb05856d:g:JCIAAeSwDahpOhjK" target="_blank" rel="noopener noreferrer nofollow">
           <img class="listing-card__image" src="https://i.ebayimg.com/images/g/JCIAAeSwDahpOhjK/s-l1600.jpg" alt="[Mint] Nikon Ai-S NIKKOR 24mm f/2.8 Ais Wide Angle MF Lens w/Filter From Japan" loading="lazy">
           <div class="listing-card__info">
             <div class="listing-card__title">[Mint] Nikon Ai-S NIKKOR 24mm f/2.8 Ais Wide Angle MF Lens w/Filter From Japan</div>
-            <div class="listing-card__price">$201.99</div>
+            <div class="listing-card__price"><span class="money-value" data-money-usd="201.99" data-money-sign="auto">$201.99</span></div>
           </div>
         </a>
         <a class="listing-card" href="https://www.ebay.com/itm/146443500174?_skw=Nikon+AIS+24mm+f%2F2.8&amp;hash=item2218b67a8e:g:~KcAAOSwropn0OSO" target="_blank" rel="noopener noreferrer nofollow">
           <img class="listing-card__image" src="https://i.ebayimg.com/images/g/~KcAAOSwropn0OSO/s-l960.jpg" alt="Nikon Nikkor 24mm F/2.8 Ais Lens #57477 A5" loading="lazy">
           <div class="listing-card__info">
             <div class="listing-card__title">Nikon Nikkor 24mm F/2.8 Ais Lens #57477 A5</div>
-            <div class="listing-card__price">$202.40</div>
+            <div class="listing-card__price"><span class="money-value" data-money-usd="202.4" data-money-sign="auto">$202.40</span></div>
           </div>
         </a>
         <a class="listing-card" href="https://www.ebay.com/itm/389690685346?_skw=Nikon+AIS+24mm+f%2F2.8&amp;hash=item5abb5ff7a2:g:rckAAOSwzB1jvBiQ" target="_blank" rel="noopener noreferrer nofollow">
           <img class="listing-card__image" src="https://i.ebayimg.com/images/g/rckAAOSwzB1jvBiQ/s-l1600.jpg" alt="🚀🎁《Near MINT》Nikon Ai-S AIS NIKKOR 24mm F/2.8 MF Wide Angle Lens From JAPAN✈✈✈" loading="lazy">
           <div class="listing-card__info">
             <div class="listing-card__title">🚀🎁《Near MINT》Nikon Ai-S AIS NIKKOR 24mm F/2.8 MF Wide Angle Lens From JAPAN✈✈✈</div>
-            <div class="listing-card__price">$203.64</div>
+            <div class="listing-card__price"><span class="money-value" data-money-usd="203.64" data-money-sign="auto">$203.64</span></div>
           </div>
         </a>
         <a class="listing-card" href="https://www.ebay.com/itm/136587937261?_skw=Nikon+AIS+24mm+f%2F2.8&amp;hash=item1fcd4685ed:g:80UAAOSw4dhn3t4j" target="_blank" rel="noopener noreferrer nofollow">
           <img class="listing-card__image" src="https://i.ebayimg.com/images/g/80UAAOSw4dhn3t4j/s-l1600.jpg" alt="[MINT] Nikon Ai-s Nikkor 24mm f/2.8 MF Wide Lens for Nikon F from Japan #N3792" loading="lazy">
           <div class="listing-card__info">
             <div class="listing-card__title">[MINT] Nikon Ai-s Nikkor 24mm f/2.8 MF Wide Lens for Nikon F from Japan #N3792</div>
-            <div class="listing-card__price">$204.90</div>
+            <div class="listing-card__price"><span class="money-value" data-money-usd="204.9" data-money-sign="auto">$204.90</span></div>
           </div>
         </a>
       </div>
@@ -181,6 +192,7 @@
     </div>
   </footer>
 
+  <script id="exchange-rate-data" type="application/json">{"base": "USD", "quote": "KRW", "rate": 1485.1829, "reference_date": "2026-03-06", "source": "ECB reference rates"}</script>
   <script id="history-data" type="application/json">[{"date": "2026-03-03", "median": 190.67, "mean": 199.16, "min": 82.99, "max": 360.49, "q1": 155.99, "q3": 238.12, "count": 578, "count_filtered": 561}, {"date": "2026-03-04", "median": 199.99, "mean": 213.67, "min": 119.51, "max": 361.78, "q1": 169.99, "q3": 252.69, "count": 342, "count_filtered": 340}, {"date": "2026-03-05", "median": 199.99, "mean": 212.67, "min": 102.0, "max": 361.78, "q1": 169.98, "q3": 252.49, "count": 377, "count_filtered": 375}, {"date": "2026-03-06", "median": 205.12, "mean": 220.22, "min": 119.51, "max": 362.2, "q1": 174.99, "q3": 258.53, "count": 247, "count_filtered": 246}, {"date": "2026-03-07", "median": 201.99, "mean": 217.41, "min": 119.51, "max": 361.78, "q1": 171.9, "q3": 257.26, "count": 215, "count_filtered": 215}, {"date": "2026-03-08", "median": 202.4, "mean": 218.36, "min": 119.51, "max": 361.78, "q1": 172.37, "q3": 259.9, "count": 215, "count_filtered": 215}]</script>
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4/dist/chart.umd.min.js"></script>
   <script src="../js/site.js" defer></script>
