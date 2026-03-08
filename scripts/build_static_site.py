@@ -331,11 +331,25 @@ def format_change_value(change: dict[str, Any] | None) -> str:
     return f'{sign}{format_money(value)}'
 
 
+def has_catalog_listing_data(product: dict[str, Any]) -> bool:
+    return (product.get('count') or 0) > 0
+
+
 def build_home_page(catalog: dict[str, Any], base_url: str) -> str:
     updated = catalog['updated']
     stale_days = compute_stale_days(updated)
-    total_products = sum(len(category['products']) for category in catalog['categories'])
-    total_listings = sum((product.get('count') or 0) for category in catalog['categories'] for product in category['products'])
+    total_products = sum(
+        1
+        for category in catalog['categories']
+        for product in category['products']
+        if has_catalog_listing_data(product)
+    )
+    total_listings = sum(
+        (product.get('count') or 0)
+        for category in catalog['categories']
+        for product in category['products']
+        if has_catalog_listing_data(product)
+    )
     total_categories = len(catalog['categories'])
     rare_live_products = []
     stale_banner = ''
@@ -361,6 +375,8 @@ def build_home_page(catalog: dict[str, Any], base_url: str) -> str:
             for item in category.get('subcategories', [])
         }
         for product in sort_products(category['products'], category['id']):
+            if not has_catalog_listing_data(product):
+                continue
             feature_order += 1
             thumb = ''
             samples = product.get('samples') or []
