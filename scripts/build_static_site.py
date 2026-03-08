@@ -13,9 +13,12 @@ from html import escape
 from pathlib import Path
 from typing import Any
 
+import yaml
+
 PROJECT_ROOT = Path(__file__).resolve().parent.parent
 DATA_DIR = PROJECT_ROOT / 'data'
 CATALOG_PATH = DATA_DIR / 'catalog.json'
+CONFIG_PATH = PROJECT_ROOT / 'config' / 'products.yaml'
 STYLE_PATH = PROJECT_ROOT / 'css' / 'style.css'
 SITE_JS_PATH = PROJECT_ROOT / 'js' / 'site.js'
 HERO_JPG = PROJECT_ROOT / 'mynikons.jpg'
@@ -47,6 +50,10 @@ def parse_args() -> argparse.Namespace:
 
 def load_catalog() -> dict[str, Any]:
     return json.loads(CATALOG_PATH.read_text(encoding='utf-8'))
+
+
+def load_catalog_config() -> dict[str, Any]:
+    return yaml.safe_load(CONFIG_PATH.read_text(encoding='utf-8'))
 
 
 def load_history(product_id: str) -> list[dict[str, Any]]:
@@ -126,6 +133,59 @@ def format_money(value: Any) -> str:
 
 def json_script(data: Any) -> str:
     return json.dumps(data, ensure_ascii=False).replace('</script>', '<\\/script>')
+
+
+def merge_catalog_with_config(live_catalog: dict[str, Any], config: dict[str, Any]) -> dict[str, Any]:
+    metric_defaults = {
+        'median': None,
+        'mean': None,
+        'min': None,
+        'max': None,
+        'q1': None,
+        'q3': None,
+        'count': 0,
+        'count_filtered': 0,
+        'samples': [],
+    }
+    live_categories = {category['id']: category for category in live_catalog.get('categories', [])}
+    merged_categories = []
+
+    for config_category in config.get('categories', []):
+        live_category = live_categories.get(config_category['id'], {})
+        live_products = {
+            product['id']: product
+            for product in live_category.get('products', [])
+        }
+        merged_products = []
+
+        for config_product in config_category.get('products', []):
+            live_product = live_products.get(config_product['id'], {})
+            merged_product = dict(metric_defaults)
+            merged_product.update(live_product)
+            merged_product.update(
+                {
+                    key: value
+                    for key, value in config_product.items()
+                    if key not in {'query', 'category_id', 'search_category_id', 'min_price', 'max_price'}
+                }
+            )
+            merged_product['samples'] = live_product.get('samples', [])
+            merged_products.append(merged_product)
+
+        merged_categories.append(
+            {
+                'id': config_category['id'],
+                'name_ko': config_category['name_ko'],
+                'name_en': config_category['name_en'],
+                'subcategories': config_category.get('subcategories', []),
+                'products': merged_products,
+            }
+        )
+
+    return {
+        'updated': live_catalog.get('updated', date.today().isoformat()),
+        'categories': merged_categories,
+    }
 
 
 def ga_snippet() -> str:
@@ -277,6 +337,7 @@ def build_home_page(catalog: dict[str, Any], base_url: str) -> str:
     total_products = sum(len(category['products']) for category in catalog['categories'])
     total_listings = sum((product.get('count') or 0) for category in catalog['categories'] for product in category['products'])
     total_categories = len(catalog['categories'])
+    rare_live_products = []
     stale_banner = ''
     if stale_days >= 2:
         stale_banner = f"""
@@ -288,6 +349,7 @@ def build_home_page(catalog: dict[str, Any], base_url: str) -> str:
     tabs = ['<button class="category-tab active" type="button" data-category-id="all">전체</button>']
     feature_order = 0
     cards = []
+    rare_watch_cards = []
     image_url = f'{base_url}/assets/mynikons-1600.webp' if base_url else 'assets/mynikons-1600.webp'
 
     for category in catalog['categories']:
@@ -326,11 +388,13 @@ def build_home_page(catalog: dict[str, Any], base_url: str) -> str:
             badge_value = product.get('release_year') or (
                 f'{product["focal_length_min"]}mm' if product.get('focal_length_min') else ''
             )
-            badge_html = (
-                f'<span class="product-card__badge">{escape(str(badge_value))}</span>'
-                if badge_value
-                else ''
-            )
+            badges = []
+            if badge_value:
+                badges.append(f'<span class="product-card__badge">{escape(str(badge_value))}</span>')
+            if product.get('is_rare'):
+                rarity_label = f"희귀 {product.get('rarity_tier') or ''}".strip()
+                badges.append(f'<span class="product-card__badge product-card__badge--rare">{escape(rarity_label)}</span>')
+            badge_html = f'<div class="product-card__badges">{"".join(badges)}</div>' if badges else ''
             priority_value = product.get('release_year') or product.get('focal_length_min') or 0
             search_index = ' '.join(
                 filter(
@@ -342,9 +406,18 @@ def build_home_page(catalog: dict[str, Any], base_url: str) -> str:
                         category['name_ko'],
                         category['name_en'],
                         subcategory_lookup.get(product.get('subcategory') or '', ''),
+                        product.get('rarity_tier', ''),
+                        product.get('rarity_note', ''),
                     ],
                 )
             ).lower()
+            if product.get('is_rare') and (product.get('count') or 0) > 0:
+                rare_live_products.append(
+                    {
+                        'product': product,
+                        'category_label': category_label,
+                    }
+                )
             cards.append(
                 f"""
       <a class=\"product-card\" href=\"products/{escape(product['id'])}.html\"
@@ -386,6 +459,46 @@ def build_home_page(catalog: dict[str, Any], base_url: str) -> str:
     }
     extra_meta = f"  <script type=\"application/ld+json\">{json_script(schema)}</script>\n"
     shortcut_cards = ""
+    rare_live_products.sort(
+        key=lambda item: (
+            -(item['product'].get('rarity_sort') or 0),
+            -(item['product'].get('median') or 0),
+            item['product'].get('count') or 0,
+            item['product']['name_ko'],
+        )
+    )
+    for item in rare_live_products:
+        product = item['product']
+        rare_watch_cards.append(
+            f"""
+      <a class=\"rare-watch-card\" href=\"products/{escape(product['id'])}.html\">
+        <div class=\"rare-watch-card__top\">
+          <span class=\"rare-watch-card__tier\">{escape(product.get('rarity_tier') or '희귀')}</span>
+          <span class=\"rare-watch-card__count\">현재 매물 {escape(str(product.get('count') or 0))}개</span>
+        </div>
+        <strong>{escape(product['name_ko'])}</strong>
+        <div class=\"rare-watch-card__name-en\">{escape(product['name_en'])}</div>
+        <div class=\"rare-watch-card__taxonomy\">{escape(item['category_label'])}</div>
+        <div class=\"rare-watch-card__price\">현재 중앙값 {escape(format_money(product.get('median')))}</div>
+        <div class=\"rare-watch-card__hint\">최근 희귀 시세 {escape(product.get('rarity_price_hint') or '공개 표본 부족')}</div>
+        <p class=\"rare-watch-card__note\">{escape(product.get('rarity_note') or '개별 상태 확인 필요')}</p>
+      </a>"""
+        )
+    rare_watch_html = ''
+    if rare_watch_cards:
+        rare_watch_html = f"""
+    <section class=\"rare-watch\" aria-labelledby=\"rare-watch-title\">
+      <div class=\"rare-watch__header\">
+        <div>
+          <span class=\"section-kicker\">Rare listing watch</span>
+          <h2 id=\"rare-watch-title\" class=\"section-heading\">희귀 매물 감지</h2>
+        </div>
+        <p class=\"rare-watch__summary\">현재 {len(rare_watch_cards)}개 모델에서 희귀 매물이 감지되었습니다.</p>
+      </div>
+      <div class=\"rare-watch-grid\">
+{''.join(rare_watch_cards)}
+      </div>
+    </section>"""
 
     return f"""<!DOCTYPE html>
 <html lang=\"ko\">
@@ -440,6 +553,7 @@ def build_home_page(catalog: dict[str, Any], base_url: str) -> str:
       </div>
     </section>{stale_banner}
 {shortcut_cards}
+{rare_watch_html}
 
     <div id=\"product-grid\" class=\"product-grid\">
 {''.join(cards)}
@@ -612,12 +726,21 @@ def build_product_page(
         f'<span class="meta-pill">업데이트 {escape(updated)}</span>',
         f'<span class="meta-pill">매물 {escape(str(product.get("count") or 0))}개</span>',
     ]
+    if product.get('is_rare'):
+        meta_pills.append(f'<span class="meta-pill">희귀 등급 {escape(product.get("rarity_tier") or "-")}</span>')
     reference_cards = build_product_reference_cards(product, category)
     movement_note = '최근 변화 데이터를 아직 만들기 어렵습니다.'
     if recent_change:
         movement_note = (
             f"최근 {recent_change['actual_days']}일 기준 중앙값 {format_change_percent(recent_change)} "
             f"({format_change_value(recent_change)}) 변동했습니다."
+        )
+    rare_note_html = ''
+    if product.get('is_rare'):
+        rare_note_html = (
+            f'<div class="rare-detail-note"><strong>희귀 모델 {escape(product.get("rarity_tier") or "-")}</strong>'
+            f'<span>최근 희귀 시세 {escape(product.get("rarity_price_hint") or "공개 표본 부족")}. '
+            f'{escape(product.get("rarity_note") or "개별 상태와 구성품에 따라 편차가 큽니다.")}</span></div>'
         )
 
     return f"""<!DOCTYPE html>
@@ -638,6 +761,7 @@ def build_product_page(
     <div class=\"price-summary\">
 {summary_html}
     </div>
+    {rare_note_html}
 
     <p class=\"detail-note\">시세는 eBay 미국 현재 매물 기준이며, 실제 체결가와는 차이가 있을 수 있습니다. {escape(movement_note)}</p>
 
@@ -845,7 +969,7 @@ def main() -> None:
     args = parse_args()
     output_dir = Path(args.output).resolve()
     base_url = detect_base_url(args.base_url)
-    catalog = load_catalog()
+    catalog = merge_catalog_with_config(load_catalog(), load_catalog_config())
     histories = {
         product['id']: load_history(product['id'])
         for category in catalog['categories']

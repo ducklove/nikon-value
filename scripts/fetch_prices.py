@@ -520,6 +520,16 @@ def build_base_product_entry(product: dict) -> dict:
         entry["release_year"] = product["release_year"]
     if "focal_length_min" in product:
         entry["focal_length_min"] = product["focal_length_min"]
+    if "is_rare" in product:
+        entry["is_rare"] = product["is_rare"]
+    if "rarity_tier" in product:
+        entry["rarity_tier"] = product["rarity_tier"]
+    if "rarity_sort" in product:
+        entry["rarity_sort"] = product["rarity_sort"]
+    if "rarity_price_hint" in product:
+        entry["rarity_price_hint"] = product["rarity_price_hint"]
+    if "rarity_note" in product:
+        entry["rarity_note"] = product["rarity_note"]
     return entry
 
 

@@ -337,6 +337,46 @@ categories:
     category_id: '3323'
     min_price: 150
     max_price: 800
+  - id: nikon-f-high-speed
+    name_ko: Nikon F High Speed
+    name_en: Nikon F High Speed
+    subcategory: flagship
+    query: Nikon F High Speed camera -manual -brochure -poster -strap -case -finder
+    category_id: '3323'
+    min_price: 5000
+    max_price: 30000
+    is_rare: true
+    rarity_tier: S
+    rarity_sort: 40
+    rarity_price_hint: 공개 표본 부족
+    rarity_note: 특수형, 개체차 큼
+  - id: nasa-spec-nikon-f
+    name_ko: NASA spec Nikon F
+    name_en: NASA spec Nikon F
+    subcategory: flagship
+    query: Nikon F NASA camera -manual -brochure -poster -strap -case -finder
+    category_id: '3323'
+    min_price: 8000
+    max_price: 50000
+    is_rare: true
+    rarity_tier: S+
+    rarity_sort: 50
+    rarity_price_hint: 공개 표본 부족
+    rarity_note: 사실상 별도 시장
+  - id: nikon-f3h
+    name_ko: 니콘 F3H
+    name_en: Nikon F3H
+    release_year: 1998
+    subcategory: flagship
+    query: Nikon F3H camera -F3HP -manual -brochure -strap -case -finder
+    category_id: '3323'
+    min_price: 2500
+    max_price: 10000
+    is_rare: true
+    rarity_tier: S
+    rarity_sort: 40
+    rarity_price_hint: 3,500–5,500+
+    rarity_note: 세트/박스에 민감
   - id: nikon-fm3a
     name_ko: 니콘 FM3A
     name_en: Nikon FM3A
@@ -492,6 +532,20 @@ categories:
     category_id: '3323'
     min_price: 200
     max_price: 5000
+  - id: nikon-s3-2000-limited
+    name_ko: 니콘 S3 2000 Limited
+    name_en: Nikon S3 2000 Limited
+    release_year: 2000
+    subcategory: rangefinder
+    query: Nikon S3 2000 limited -lens -manual -brochure -case -strap
+    category_id: '3323'
+    min_price: 1200
+    max_price: 5000
+    is_rare: true
+    rarity_tier: A
+    rarity_sort: 30
+    rarity_price_hint: 1,500–3,500
+    rarity_note: 박스 여부 중요
   - id: nikon-s4
     name_ko: 니콘 S4
     name_en: Nikon S4
@@ -510,6 +564,33 @@ categories:
     category_id: '3323'
     min_price: 500
     max_price: 15000
+  - id: nikon-sp-2005-limited
+    name_ko: 니콘 SP 2005 Limited
+    name_en: Nikon SP 2005 Limited
+    release_year: 2005
+    subcategory: rangefinder
+    query: Nikon SP 2005 limited -lens -manual -brochure -case -strap
+    category_id: '3323'
+    min_price: 3500
+    max_price: 12000
+    is_rare: true
+    rarity_tier: A
+    rarity_sort: 30
+    rarity_price_hint: 4,400–9,000
+    rarity_note: 시리얼/박스 따라 급등
+  - id: nikon-f2a-25th-anniversary
+    name_ko: 니콘 F2A 25th Anniversary
+    name_en: Nikon F2A 25th Anniversary
+    subcategory: flagship
+    query: Nikon F2A 25th Anniversary -manual -brochure -case -strap -finder
+    category_id: '3323'
+    min_price: 350
+    max_price: 1500
+    is_rare: true
+    rarity_tier: B
+    rarity_sort: 20
+    rarity_price_hint: 500–900
+    rarity_note: 희귀 기념판
 - id: z-mount-lenses
   name_ko: Z마운트 렌즈
   name_en: Z-Mount Lenses
@@ -834,6 +915,10 @@ categories:
     name_ko: Series E
     name_en: Series E
     sort_order: 4
+  - id: special
+    name_ko: 특수 렌즈
+    name_en: Special
+    sort_order: 5
   products:
   - id: nikkor-auto-50mm-f14
     name_ko: Nikkor Auto 50mm f/1.4
@@ -1141,6 +1226,11 @@ categories:
     category_id: '78997'
     min_price: 2000
     max_price: 6000
+    is_rare: true
+    rarity_tier: B
+    rarity_sort: 20
+    rarity_price_hint: 3,200–3,500+
+    rarity_note: 상징성 최고, 출현은 간헐적
   - id: ai-s-85mm-f14
     name_ko: AI-S 85mm f/1.4
     name_en: Nikon AI-S 85mm f/1.4
@@ -1204,6 +1294,90 @@ categories:
     category_id: '78997'
     min_price: 80
     max_price: 400
+  - id: fisheye-nikkor-6mm-f28
+    name_ko: Fisheye-Nikkor 6mm f/2.8
+    name_en: Nikon Fisheye-Nikkor 6mm f/2.8
+    focal_length_min: 6
+    subcategory: special
+    query: Nikon Fisheye Nikkor 6mm f/2.8 -hood -caps -box -manual
+    category_id: '78997'
+    min_price: 60000
+    max_price: 180000
+    is_rare: true
+    rarity_tier: S+
+    rarity_sort: 50
+    rarity_price_hint: 100,000–130,000+
+    rarity_note: 박물관급
+  - id: op-fisheye-10mm-f56
+    name_ko: OP Fisheye 10mm f/5.6
+    name_en: Nikon OP Fisheye 10mm f/5.6
+    focal_length_min: 10
+    subcategory: special
+    query: Nikon OP Fisheye 10mm f/5.6 -manual -brochure -case -caps
+    category_id: '78997'
+    min_price: 1200
+    max_price: 5000
+    is_rare: true
+    rarity_tier: A
+    rarity_sort: 30
+    rarity_price_hint: 1,900–4,000
+    rarity_note: 호가 폭 큼
+  - id: nikkor-13mm-f56
+    name_ko: Nikkor 13mm f/5.6
+    name_en: Nikon Nikkor 13mm f/5.6
+    focal_length_min: 13
+    subcategory: special
+    query: Nikon Nikkor 13mm f/5.6 -hood -caps -case -manual
+    category_id: '78997'
+    min_price: 30000
+    max_price: 70000
+    is_rare: true
+    rarity_tier: S+
+    rarity_sort: 50
+    rarity_price_hint: 45,000–55,000
+    rarity_note: 2023년 5만 달러 낙찰 공개
+  - id: uv-nikkor-105mm-f45
+    name_ko: UV-Nikkor 105mm f/4.5
+    name_en: Nikon UV-Nikkor 105mm f/4.5
+    focal_length_min: 105
+    subcategory: special
+    query: Nikon UV Nikkor 105mm f/4.5 -manual -brochure -case
+    category_id: '78997'
+    min_price: 2000
+    max_price: 8000
+    is_rare: true
+    rarity_tier: A
+    rarity_sort: 30
+    rarity_price_hint: 3,000–5,300
+    rarity_note: 특수 목적 렌즈
+  - id: reflex-nikkor-2000mm-f11
+    name_ko: Reflex-Nikkor 2000mm f/11
+    name_en: Nikon Reflex-Nikkor 2000mm f/11
+    focal_length_min: 2000
+    subcategory: special
+    query: Nikon Reflex Nikkor 2000mm f/11 -manual -brochure -case
+    category_id: '78997'
+    min_price: 10000
+    max_price: 40000
+    is_rare: true
+    rarity_tier: S
+    rarity_sort: 40
+    rarity_price_hint: 20,000–25,000+
+    rarity_note: 공개 매물 기준
+  - id: zoom-nikkor-1200-1700mm
+    name_ko: Zoom-Nikkor 1200-1700mm
+    name_en: Nikon Zoom-Nikkor 1200-1700mm
+    focal_length_min: 1200
+    subcategory: special
+    query: Nikon Zoom Nikkor 1200-1700mm -manual -brochure -case
+    category_id: '78997'
+    min_price: 50000
+    max_price: 200000
+    is_rare: true
+    rarity_tier: S+
+    rarity_sort: 50
+    rarity_price_hint: 공개 표본 부족
+    rarity_note: 초고가 특수 렌즈
   - id: series-e-28mm-f28
     name_ko: Series E 28mm f/2.8
     name_en: Nikon Series E 28mm f/2.8
