@@ -203,7 +203,7 @@ def build_hero_manual_hotspots() -> str:
         ('Zf', 'https://onlinemanual.nikonimglib.com/zf/ko/', 'left: 19.5%; top: 23%; width: 12%; height: 14%;'),
         ('F3', 'https://cdn-10.nikon-cdn.com/pdf/manuals/archive/F3.pdf', 'left: 48%; top: 31%; width: 10%; height: 14%;'),
         ('Nikkormat', 'https://www.cameramanuals.org/nikon_pdf/nikkormat_ftn.pdf', 'left: 62.5%; top: 18%; width: 11%; height: 12%;'),
-        ('FM2', 'https://cdn-10.nikon-cdn.com/pdf/manuals/archive/FM2.pdf', 'left: 77%; top: 47%; width: 9%; height: 12%;'),
+        ('FM2', 'https://cdn-10.nikon-cdn.com/pdf/manuals/archive/FM2.pdf', 'left: 88.5%; top: 26%; width: 10%; height: 14%;'),
     ]
     links = []
     for label, href, position in hotspots:
