@@ -198,6 +198,29 @@ def ga_snippet() -> str:
   </script>"""
 
 
+def build_hero_manual_hotspots() -> str:
+    hotspots = [
+        ('Nikkormat', 'https://www.cameramanuals.org/nikon_pdf/nikkormat_ftn.pdf', 'left: 18%; top: 47%;'),
+        ('FM2', 'https://cdn-10.nikon-cdn.com/pdf/manuals/archive/FM2.pdf', 'left: 39%; top: 44%;'),
+        ('F3', 'https://cdn-10.nikon-cdn.com/pdf/manuals/archive/F3.pdf', 'left: 57%; top: 43%;'),
+        ('Zf', 'https://onlinemanual.nikonimglib.com/zf/ko/', 'left: 77%; top: 47%;'),
+    ]
+    links = []
+    for label, href, position in hotspots:
+        links.append(
+            f'<a class="hero-hotspot" href="{escape(href)}" target="_blank" rel="noopener noreferrer" style="{position}">'
+            f'<span class="hero-hotspot__dot" aria-hidden="true"></span>'
+            f'<span class="hero-hotspot__label">{escape(label)} manual</span>'
+            '</a>'
+        )
+    return (
+        '<div class="hero-hotspots" aria-label="히어로 이미지 카메라 메뉴얼 바로가기">'
+        f'{"".join(links)}'
+        '<p class="hero-hotspots__hint">이미지 속 카메라를 누르면 메뉴얼이 열립니다.</p>'
+        '</div>'
+    )
+
+
 def head_block(*, title: str, description: str, canonical: str, image_url: str, extra_meta: str = '') -> str:
     canonical_tag = f'  <link rel="canonical" href="{escape(canonical)}">\n' if canonical else ''
     og_url = f'  <meta property="og:url" content="{escape(canonical)}">\n' if canonical else ''
@@ -529,6 +552,7 @@ def build_home_page(catalog: dict[str, Any], base_url: str) -> str:
         <source type=\"image/webp\" srcset=\"assets/mynikons-800.webp 800w, assets/mynikons-1600.webp 1600w\" sizes=\"100vw\">
         <img src=\"mynikons.jpg\" alt=\"Nikon camera collection\" class=\"hero-image\" width=\"1600\" height=\"900\" fetchpriority=\"high\" loading=\"eager\" decoding=\"async\">
       </picture>
+      {build_hero_manual_hotspots()}
       <div class=\"hero-overlay\">
         <div class=\"container\">
           <h1 class=\"site-title\">니콘 중고 시세 트래커</h1>
@@ -879,6 +903,7 @@ def build_resources_page(base_url: str) -> str:
         <source type=\"image/webp\" srcset=\"assets/mynikons-800.webp 800w, assets/mynikons-1600.webp 1600w\" sizes=\"100vw\">
         <img src=\"mynikons.jpg\" alt=\"Nikon camera collection\" class=\"hero-image\" width=\"1600\" height=\"900\" fetchpriority=\"high\" loading=\"eager\" decoding=\"async\">
       </picture>
+      {build_hero_manual_hotspots()}
       <div class=\"hero-overlay\">
         <div class=\"container\">
           <h1 class=\"site-title\">참고 사이트 링크</h1>
