@@ -415,6 +415,7 @@ def build_home_page(catalog: dict[str, Any], base_url: str) -> str:
                 rare_live_products.append(
                     {
                         'product': product,
+                        'category_id': category['id'],
                         'category_label': category_label,
                     }
                 )
@@ -471,7 +472,9 @@ def build_home_page(catalog: dict[str, Any], base_url: str) -> str:
         product = item['product']
         rare_watch_cards.append(
             f"""
-      <a class=\"rare-watch-card\" href=\"products/{escape(product['id'])}.html\">
+      <a class=\"rare-watch-card\" href=\"products/{escape(product['id'])}.html\"
+         data-category-id=\"{escape(item['category_id'])}\"
+         data-search=\"{escape(' '.join(filter(None, [product['id'], product['name_ko'], product['name_en'], item['category_label'], product.get('rarity_tier', ''), product.get('rarity_note', '')])).lower())}\">
         <div class=\"rare-watch-card__top\">
           <span class=\"rare-watch-card__tier\">{escape(product.get('rarity_tier') or '희귀')}</span>
           <span class=\"rare-watch-card__count\">현재 매물 {escape(str(product.get('count') or 0))}개</span>
@@ -487,13 +490,13 @@ def build_home_page(catalog: dict[str, Any], base_url: str) -> str:
     rare_watch_html = ''
     if rare_watch_cards:
         rare_watch_html = f"""
-    <section class=\"rare-watch\" aria-labelledby=\"rare-watch-title\">
+    <section id=\"rare-watch\" class=\"rare-watch\" aria-labelledby=\"rare-watch-title\">
       <div class=\"rare-watch__header\">
         <div>
           <span class=\"section-kicker\">Rare listing watch</span>
           <h2 id=\"rare-watch-title\" class=\"section-heading\">희귀 매물 감지</h2>
         </div>
-        <p class=\"rare-watch__summary\">현재 {len(rare_watch_cards)}개 모델에서 희귀 매물이 감지되었습니다.</p>
+        <p id=\"rare-watch-summary\" class=\"rare-watch__summary\">현재 {len(rare_watch_cards)}개 모델에서 희귀 매물이 감지되었습니다.</p>
       </div>
       <div class=\"rare-watch-grid\">
 {''.join(rare_watch_cards)}

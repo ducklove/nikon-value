@@ -27,6 +27,9 @@
     const visibleCount = document.getElementById('visible-count');
     const contextLabel = document.getElementById('catalog-context');
     const emptyState = document.getElementById('catalog-empty');
+    const rareWatch = document.getElementById('rare-watch');
+    const rareWatchSummary = document.getElementById('rare-watch-summary');
+    const rareCards = Array.from(document.querySelectorAll('.rare-watch-card[data-category-id]'));
     const params = new URLSearchParams(window.location.search);
 
     let activeCategory = params.get('category') || 'all';
@@ -86,6 +89,29 @@
       if (allTab) allTab.classList.toggle('active', activeCategory === 'all');
     }
 
+    function updateRareWatch() {
+      if (!rareWatch) return;
+
+      const visibleRareCards = rareCards.filter((card) => {
+        const inCategory = activeCategory === 'all' || card.dataset.categoryId === activeCategory;
+        const inSearch = !searchTerm || (card.dataset.search || '').includes(searchTerm);
+        card.hidden = !(inCategory && inSearch);
+        return !card.hidden;
+      });
+
+      rareWatch.hidden = visibleRareCards.length === 0;
+      if (!rareWatchSummary) return;
+
+      if (activeCategory === 'all') {
+        rareWatchSummary.textContent = `현재 ${visibleRareCards.length.toLocaleString()}개 모델에서 희귀 매물이 감지되었습니다.`;
+        return;
+      }
+
+      const activeTab = tabs.find((tab) => tab.dataset.categoryId === activeCategory);
+      const label = activeTab ? activeTab.textContent.trim() : '현재 분류';
+      rareWatchSummary.textContent = `${label}에서 ${visibleRareCards.length.toLocaleString()}개 희귀 매물이 감지되었습니다.`;
+    }
+
     function applyState() {
       searchTerm = (searchInput?.value || '').trim().toLowerCase();
       sortMode = sortSelect?.value || 'featured';
@@ -102,6 +128,7 @@
 
       updateTabs();
       updateContext(visibleCards);
+      updateRareWatch();
       syncUrl();
     }
 
