@@ -146,6 +146,18 @@
       priceHtml = '<div class="product-card__price product-card__price--na">데이터 없음</div>';
     }
 
+    var trendHtml = '';
+    if (d.delta_pct != null) {
+      var isUp = d.delta_pct > 0;
+      var isDown = d.delta_pct < 0;
+      var arrow = isUp ? '&#9650;' : (isDown ? '&#9660;' : '&#8212;');
+      var trendClass = 'product-card__trend';
+      if (isUp) trendClass += ' product-card__trend--up';
+      else if (isDown) trendClass += ' product-card__trend--down';
+      var pctText = (isUp ? '+' : '') + d.delta_pct.toFixed(1) + '%';
+      trendHtml = '<span class="' + trendClass + '">' + arrow + ' ' + pctText + '</span>';
+    }
+
     var rangeHtml = '';
     if (d.q1 != null && d.q3 != null) {
       rangeHtml = '<div class="product-card__range">Q1-Q3: <span class="money-range">' +
@@ -164,6 +176,7 @@
         '<div class="product-card__name-en">' + escapeHtml(d.name_en) + '</div>' +
         '<div class="product-card__taxonomy">' + escapeHtml(d.category_label) + '</div>' +
         priceHtml +
+        trendHtml +
         '<div class="product-card__meta"><span>현재 매물 ' + (d.count || 0) + '개</span></div>' +
         rangeHtml +
       '</div>';
@@ -196,6 +209,9 @@
     var rareWatchGrid = document.getElementById('rare-watch-grid');
     var rareWatch = document.getElementById('rare-watch');
     var rareWatchSummary = document.getElementById('rare-watch-summary');
+
+    // Clear skeleton placeholders
+    grid.innerHTML = '';
 
     // Render product cards from JSON data
     var cards = cardsData.map(function (d) {
@@ -356,6 +372,19 @@
 
     searchInput?.addEventListener('input', applyState);
     sortSelect?.addEventListener('change', applyState);
+
+    var categoryNav = document.querySelector('.category-nav');
+    var categoryContainer = document.querySelector('.category-nav__container');
+    if (categoryNav && categoryContainer) {
+      function checkScrollEnd() {
+        var atEnd = categoryNav.scrollLeft + categoryNav.clientWidth >= categoryNav.scrollWidth - 4;
+        var hasOverflow = categoryNav.scrollWidth > categoryNav.clientWidth;
+        categoryContainer.classList.toggle('is-scrolled-end', atEnd || !hasOverflow);
+      }
+      categoryNav.addEventListener('scroll', checkScrollEnd, { passive: true });
+      window.addEventListener('resize', checkScrollEnd);
+      checkScrollEnd();
+    }
 
     applyState();
   }

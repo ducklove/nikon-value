@@ -412,7 +412,7 @@ def has_catalog_listing_data(product: dict[str, Any]) -> bool:
     return (product.get('count') or 0) > 0
 
 
-def build_home_page(catalog: dict[str, Any], base_url: str) -> str:
+def build_home_page(catalog: dict[str, Any], base_url: str, histories: dict[str, list[dict[str, Any]]] | None = None) -> str:
     updated = catalog['updated']
     exchange_rate = catalog.get('exchange_rate')
     stale_days = compute_stale_days(updated)
@@ -498,7 +498,13 @@ def build_home_page(catalog: dict[str, Any], base_url: str) -> str:
                 'rarity_sort': product.get('rarity_sort'),
                 'rarity_price_hint': product.get('rarity_price_hint'),
                 'rarity_note': product.get('rarity_note'),
+                'delta_pct': None,
             })
+            if histories:
+                history = histories.get(product['id'], [])
+                change = compute_price_change(history, 30)
+                if change:
+                    cards_data[-1]['delta_pct'] = round(change['delta_pct'], 1)
 
     description = (
         f'eBay 미국 현재 매물 기준으로 니콘 카메라와 렌즈 {total_products}개 모델의 중고 시세를 추적합니다. '
@@ -537,7 +543,7 @@ def build_home_page(catalog: dict[str, Any], base_url: str) -> str:
   {build_site_links('home')}
 
   <nav class=\"category-nav\" aria-label=\"카테고리 필터\">
-    <div class=\"container\">
+    <div class=\"container category-nav__container\">
       <div class=\"category-tabs\">{''.join(tabs)}</div>
     </div>
   </nav>
@@ -582,7 +588,7 @@ def build_home_page(catalog: dict[str, Any], base_url: str) -> str:
       <div id=\"rare-watch-grid\" class=\"rare-watch-grid\"></div>
     </section>
 
-    <div id=\"product-grid\" class=\"product-grid\"></div>
+    <div id=\"product-grid\" class=\"product-grid\">{''.join(['<div class="product-card product-card--skeleton" aria-hidden="true"><div class="product-card__thumb-placeholder skeleton-pulse"></div><div class="product-card__body"><div class="skeleton-line skeleton-line--title"></div><div class="skeleton-line skeleton-line--subtitle"></div><div class="skeleton-line skeleton-line--price"></div><div class="skeleton-line skeleton-line--meta"></div></div></div>'] * 8)}</div>
     <p id=\"catalog-empty\" class=\"empty-state-inline\" hidden>조건에 맞는 제품이 없습니다.</p>
   </main>
 {build_footer()}
@@ -1012,7 +1018,7 @@ def main() -> None:
     clean_output(output_dir)
     copy_assets(output_dir)
 
-    (output_dir / 'index.html').write_text(build_home_page(catalog, base_url), encoding='utf-8')
+    (output_dir / 'index.html').write_text(build_home_page(catalog, base_url, histories), encoding='utf-8')
     (output_dir / 'resources.html').write_text(build_resources_page(base_url), encoding='utf-8')
     (output_dir / '404.html').write_text(build_404_page(base_url), encoding='utf-8')
     (output_dir / 'robots.txt').write_text(build_robots(base_url), encoding='utf-8')
