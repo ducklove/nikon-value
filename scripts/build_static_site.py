@@ -429,7 +429,6 @@ def build_home_page(catalog: dict[str, Any], base_url: str) -> str:
         if has_catalog_listing_data(product)
     )
     total_categories = len(catalog['categories'])
-    rare_live_products = []
     stale_banner = ''
     if stale_days >= 2:
         stale_banner = f"""
@@ -440,8 +439,7 @@ def build_home_page(catalog: dict[str, Any], base_url: str) -> str:
 
     tabs = ['<button class="category-tab active" type="button" data-category-id="all">전체</button>']
     feature_order = 0
-    cards = []
-    rare_watch_cards = []
+    cards_data = []
     image_url = f'{base_url}/assets/mynikons-1600.webp' if base_url else 'assets/mynikons-1600.webp'
 
     for category in catalog['categories']:
@@ -456,39 +454,14 @@ def build_home_page(catalog: dict[str, Any], base_url: str) -> str:
             if not has_catalog_listing_data(product):
                 continue
             feature_order += 1
-            thumb = ''
             samples = product.get('samples') or []
-            if samples and samples[0].get('image'):
-                thumb = (
-                    f'<img class="product-card__thumb" src="{escape(samples[0]["image"])}" '
-                    f'alt="{escape(product["name_en"])}" loading="lazy">'
-                )
-            else:
-                thumb = '<div class="product-card__thumb-placeholder" aria-hidden="true">Nikon</div>'
-
+            thumb = samples[0]['image'] if samples and samples[0].get('image') else None
             category_label = category['name_ko']
             if product.get('subcategory') and subcategory_lookup.get(product['subcategory']):
                 category_label = f"{category_label} / {subcategory_lookup[product['subcategory']]}"
-            price_html = (
-                f'<div class="product-card__price">{render_money_span(product.get("median"))}</div>'
-                if product.get('median') is not None
-                else '<div class="product-card__price product-card__price--na">데이터 없음</div>'
-            )
-            range_html = ''
-            if product.get('q1') is not None and product.get('q3') is not None:
-                range_html = (
-                    f'<div class="product-card__range">Q1-Q3: {render_money_range(product["q1"], product["q3"])}</div>'
-                )
             badge_value = product.get('release_year') or (
                 f'{product["focal_length_min"]}mm' if product.get('focal_length_min') else ''
             )
-            badges = []
-            if badge_value:
-                badges.append(f'<span class="product-card__badge">{escape(str(badge_value))}</span>')
-            if product.get('is_rare'):
-                rarity_label = f"희귀 {product.get('rarity_tier') or ''}".strip()
-                badges.append(f'<span class="product-card__badge product-card__badge--rare">{escape(rarity_label)}</span>')
-            badge_html = f'<div class="product-card__badges">{"".join(badges)}</div>' if badges else ''
             priority_value = product.get('release_year') or product.get('focal_length_min') or 0
             search_index = ' '.join(
                 filter(
@@ -505,40 +478,27 @@ def build_home_page(catalog: dict[str, Any], base_url: str) -> str:
                     ],
                 )
             ).lower()
-            if product.get('is_rare') and (product.get('count') or 0) > 0:
-                rare_live_products.append(
-                    {
-                        'product': product,
-                        'category_id': category['id'],
-                        'category_label': category_label,
-                    }
-                )
-            cards.append(
-                f"""
-      <a class=\"product-card\" href=\"products/{escape(product['id'])}.html\"
-         data-product-id=\"{escape(product['id'])}\"
-         data-category-id=\"{escape(category['id'])}\"
-         data-search=\"{escape(search_index)}\"
-         data-name-ko=\"{escape(product['name_ko'])}\"
-         data-median=\"{'' if product.get('median') is None else escape(str(product['median']))}\"
-         data-count=\"{escape(str(product.get('count') or 0))}\"
-         data-release-year=\"{escape(str(product.get('release_year') or 0))}\"
-         data-priority=\"{escape(str(priority_value))}\"
-         data-feature-order=\"{feature_order}\">
-        {thumb}
-        <div class=\"product-card__body\">
-          <div class=\"product-card__header\">
-            <div class=\"product-card__name\">{escape(product['name_ko'])}</div>
-            {badge_html}
-          </div>
-          <div class=\"product-card__name-en\">{escape(product['name_en'])}</div>
-          <div class=\"product-card__taxonomy\">{escape(category_label)}</div>
-          {price_html}
-          <div class=\"product-card__meta\"><span>현재 매물 {escape(str(product.get('count') or 0))}개</span></div>
-          {range_html}
-        </div>
-      </a>"""
-            )
+            cards_data.append({
+                'id': product['id'],
+                'name_ko': product['name_ko'],
+                'name_en': product['name_en'],
+                'category_id': category['id'],
+                'category_label': category_label,
+                'search': search_index,
+                'median': product.get('median'),
+                'q1': product.get('q1'),
+                'q3': product.get('q3'),
+                'count': product.get('count') or 0,
+                'thumb': thumb,
+                'feature_order': feature_order,
+                'priority': priority_value,
+                'badge': str(badge_value) if badge_value else None,
+                'is_rare': bool(product.get('is_rare')),
+                'rarity_tier': product.get('rarity_tier'),
+                'rarity_sort': product.get('rarity_sort'),
+                'rarity_price_hint': product.get('rarity_price_hint'),
+                'rarity_note': product.get('rarity_note'),
+            })
 
     description = (
         f'eBay 미국 현재 매물 기준으로 니콘 카메라와 렌즈 {total_products}개 모델의 중고 시세를 추적합니다. '
@@ -553,49 +513,6 @@ def build_home_page(catalog: dict[str, Any], base_url: str) -> str:
         'dateModified': updated,
     }
     extra_meta = f"  <script type=\"application/ld+json\">{json_script(schema)}</script>\n"
-    shortcut_cards = ""
-    rare_live_products.sort(
-        key=lambda item: (
-            -(item['product'].get('rarity_sort') or 0),
-            -(item['product'].get('median') or 0),
-            item['product'].get('count') or 0,
-            item['product']['name_ko'],
-        )
-    )
-    for item in rare_live_products:
-        product = item['product']
-        rare_watch_cards.append(
-            f"""
-      <a class=\"rare-watch-card\" href=\"products/{escape(product['id'])}.html\"
-         data-category-id=\"{escape(item['category_id'])}\"
-         data-search=\"{escape(' '.join(filter(None, [product['id'], product['name_ko'], product['name_en'], item['category_label'], product.get('rarity_tier', ''), product.get('rarity_note', '')])).lower())}\">
-        <div class=\"rare-watch-card__top\">
-          <span class=\"rare-watch-card__tier\">{escape(product.get('rarity_tier') or '희귀')}</span>
-          <span class=\"rare-watch-card__count\">현재 매물 {escape(str(product.get('count') or 0))}개</span>
-        </div>
-        <strong>{escape(product['name_ko'])}</strong>
-        <div class=\"rare-watch-card__name-en\">{escape(product['name_en'])}</div>
-        <div class=\"rare-watch-card__taxonomy\">{escape(item['category_label'])}</div>
-        <div class=\"rare-watch-card__price\">현재 중앙값 {render_money_span(product.get('median'))}</div>
-        <div class=\"rare-watch-card__hint\">최근 희귀 시세 {escape(product.get('rarity_price_hint') or '공개 표본 부족')}</div>
-        <p class=\"rare-watch-card__note\">{escape(product.get('rarity_note') or '개별 상태 확인 필요')}</p>
-      </a>"""
-        )
-    rare_watch_html = ''
-    if rare_watch_cards:
-        rare_watch_html = f"""
-    <section id=\"rare-watch\" class=\"rare-watch\" aria-labelledby=\"rare-watch-title\">
-      <div class=\"rare-watch__header\">
-        <div>
-          <span class=\"section-kicker\">Rare listing watch</span>
-          <h2 id=\"rare-watch-title\" class=\"section-heading\">희귀 매물 감지</h2>
-        </div>
-        <p id=\"rare-watch-summary\" class=\"rare-watch__summary\">현재 {len(rare_watch_cards)}개 모델에서 희귀 매물이 감지되었습니다.</p>
-      </div>
-      <div class=\"rare-watch-grid\">
-{''.join(rare_watch_cards)}
-      </div>
-    </section>"""
 
     return f"""<!DOCTYPE html>
 <html lang=\"ko\">
@@ -653,17 +570,25 @@ def build_home_page(catalog: dict[str, Any], base_url: str) -> str:
         </div>
       </div>
     </section>{stale_banner}
-{shortcut_cards}
-{rare_watch_html}
 
-    <div id=\"product-grid\" class=\"product-grid\">
-{''.join(cards)}
-    </div>
+    <section id=\"rare-watch\" class=\"rare-watch\" aria-labelledby=\"rare-watch-title\" hidden>
+      <div class=\"rare-watch__header\">
+        <div>
+          <span class=\"section-kicker\">Rare listing watch</span>
+          <h2 id=\"rare-watch-title\" class=\"section-heading\">희귀 매물 감지</h2>
+        </div>
+        <p id=\"rare-watch-summary\" class=\"rare-watch__summary\"></p>
+      </div>
+      <div id=\"rare-watch-grid\" class=\"rare-watch-grid\"></div>
+    </section>
+
+    <div id=\"product-grid\" class=\"product-grid\"></div>
     <p id=\"catalog-empty\" class=\"empty-state-inline\" hidden>조건에 맞는 제품이 없습니다.</p>
   </main>
 {build_footer()}
 
   <script id=\"exchange-rate-data\" type=\"application/json\">{json_script(exchange_rate or {})}</script>
+  <script id=\"cards-data\" type=\"application/json\">{json_script(cards_data)}</script>
   <script src=\"js/site.js\" defer></script>
 </body>
 </html>

@@ -31,7 +31,13 @@ EBAY_AUTH_URL_SANDBOX = "https://api.sandbox.ebay.com/identity/v1/oauth2/token"
 EBAY_BROWSE_URL_PROD = "https://api.ebay.com/buy/browse/v1/item_summary/search"
 EBAY_BROWSE_URL_SANDBOX = "https://api.sandbox.ebay.com/buy/browse/v1/item_summary/search"
 
-GEMINI_API_URL = "https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite-preview:generateContent"
+GEMINI_DEFAULT_MODEL = "gemini-3.1-flash-lite-preview"
+
+
+def _gemini_api_url() -> str:
+    """환경변수 GEMINI_MODEL로 모델을 지정할 수 있습니다."""
+    model = os.environ.get("GEMINI_MODEL", GEMINI_DEFAULT_MODEL)
+    return f"https://generativelanguage.googleapis.com/v1beta/models/{model}:generateContent"
 ECB_EXCHANGE_RATES_URL = "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-daily.xml"
 
 MAX_DAILY_SNAPSHOTS = 400
@@ -168,7 +174,7 @@ def filter_items_with_llm(
 
     try:
         resp = requests.post(
-            GEMINI_API_URL,
+            _gemini_api_url(),
             params={"key": gemini_key},
             headers={"Content-Type": "application/json"},
             json={
@@ -193,7 +199,10 @@ def filter_items_with_llm(
         filtered = [items[i] for i in valid_indices]
 
         if not filtered:
-            log.warning("  LLM filtered all items, keeping heuristic-filtered set")
+            if len(items) <= 5:
+                log.info("  LLM filtered all %d items — accepting (small set)", len(items))
+                return []
+            log.warning("  LLM filtered all %d items — suspicious, keeping heuristic-filtered set", len(items))
             return items
 
         return filtered
@@ -587,6 +596,22 @@ def load_env_file(path: Path):
     log.info("Loaded credentials from %s", path)
 
 
+def _recover_exchange_rate_from_daily() -> dict | None:
+    """가장 최근 일별 스냅샷에서 환율 정보를 복구합니다."""
+    daily_dir = DATA_DIR / "daily"
+    if not daily_dir.exists():
+        return None
+    for f in sorted(daily_dir.glob("*.json"), reverse=True)[:5]:
+        try:
+            data = json.loads(f.read_text(encoding="utf-8"))
+            rate = data.get("exchange_rate")
+            if rate and rate.get("rate"):
+                return rate
+        except Exception:
+            continue
+    return None
+
+
 def fetch_usd_krw_exchange_rate() -> dict[str, object]:
     """ECB 일일 기준환율에서 USD/KRW 환산값을 가져옵니다."""
     resp = requests.get(ECB_EXCHANGE_RATES_URL, timeout=30)
@@ -676,7 +701,14 @@ def main():
         if exchange_rate:
             log.warning("Exchange rate refresh failed (%s), keeping existing rate", exc)
         else:
-            log.warning("Exchange rate refresh failed (%s), KRW conversion will be unavailable", exc)
+            exchange_rate = _recover_exchange_rate_from_daily()
+            if exchange_rate:
+                log.warning(
+                    "Exchange rate refresh failed (%s), recovered from daily snapshot (%.2f)",
+                    exc, exchange_rate["rate"],
+                )
+            else:
+                log.warning("Exchange rate refresh failed (%s), KRW conversion will be unavailable", exc)
 
     catalog_output = {
         "updated": today,
@@ -775,8 +807,8 @@ def main():
                     stats["median"],
                 )
 
-            except requests.exceptions.HTTPError as e:
-                log.error("  → HTTP error for %s: %s", pid, e)
+            except requests.exceptions.RequestException as e:
+                log.error("  → Request error for %s: %s", pid, e)
                 error_entry = build_base_product_entry(product)
                 error_entry.update({
                     "median": None,

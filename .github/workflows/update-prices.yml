@@ -11,6 +11,7 @@ concurrency:
 
 permissions:
   contents: write
+  issues: write
 
 jobs:
   fetch-prices:
@@ -48,3 +49,14 @@ jobs:
             git commit -m "📊 Update price data $(date -u +%Y-%m-%d)"
             git push || (git pull --rebase -X ours && git push) || echo "Push skipped due to conflict"
           fi
+
+      - name: Report failure
+        if: failure()
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh issue create \
+            --title "⚠️ Price update failed $(date -u +%Y-%m-%d)" \
+            --body "The daily price update workflow failed. Check the [workflow run](https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}) for details." \
+            --label "automated" \
+            || echo "Could not create issue (label may not exist)"

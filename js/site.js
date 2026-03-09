@@ -108,18 +108,124 @@
     });
   }
 
+  function escapeHtml(str) {
+    if (str === null || str === undefined) return '';
+    return String(str).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+  }
+
+  function createProductCard(d) {
+    var a = document.createElement('a');
+    a.className = 'product-card';
+    a.href = 'products/' + d.id + '.html';
+    a.dataset.productId = d.id;
+    a.dataset.categoryId = d.category_id;
+    a.dataset.search = d.search;
+    a.dataset.nameKo = d.name_ko;
+    a.dataset.median = d.median != null ? String(d.median) : '';
+    a.dataset.count = String(d.count || 0);
+    a.dataset.releaseYear = String(d.release_year || 0);
+    a.dataset.priority = String(d.priority || 0);
+    a.dataset.featureOrder = String(d.feature_order);
+
+    var thumb = d.thumb
+      ? '<img class="product-card__thumb" src="' + escapeHtml(d.thumb) + '" alt="' + escapeHtml(d.name_en) + '" loading="lazy">'
+      : '<div class="product-card__thumb-placeholder" aria-hidden="true">Nikon</div>';
+
+    var badges = '';
+    if (d.badge) badges += '<span class="product-card__badge">' + escapeHtml(d.badge) + '</span>';
+    if (d.is_rare) {
+      var rl = ('희귀 ' + (d.rarity_tier || '')).trim();
+      badges += '<span class="product-card__badge product-card__badge--rare">' + escapeHtml(rl) + '</span>';
+    }
+    var badgeHtml = badges ? '<div class="product-card__badges">' + badges + '</div>' : '';
+
+    var priceHtml;
+    if (d.median != null) {
+      priceHtml = '<div class="product-card__price"><span class="money-value" data-money-usd="' + d.median + '" data-money-sign="auto">' + formatMoney(d.median) + '</span></div>';
+    } else {
+      priceHtml = '<div class="product-card__price product-card__price--na">데이터 없음</div>';
+    }
+
+    var rangeHtml = '';
+    if (d.q1 != null && d.q3 != null) {
+      rangeHtml = '<div class="product-card__range">Q1-Q3: <span class="money-range">' +
+        '<span class="money-value" data-money-usd="' + d.q1 + '" data-money-sign="auto">' + formatMoney(d.q1) + '</span>' +
+        ' - ' +
+        '<span class="money-value" data-money-usd="' + d.q3 + '" data-money-sign="auto">' + formatMoney(d.q3) + '</span>' +
+        '</span></div>';
+    }
+
+    a.innerHTML = thumb +
+      '<div class="product-card__body">' +
+        '<div class="product-card__header">' +
+          '<div class="product-card__name">' + escapeHtml(d.name_ko) + '</div>' +
+          badgeHtml +
+        '</div>' +
+        '<div class="product-card__name-en">' + escapeHtml(d.name_en) + '</div>' +
+        '<div class="product-card__taxonomy">' + escapeHtml(d.category_label) + '</div>' +
+        priceHtml +
+        '<div class="product-card__meta"><span>현재 매물 ' + (d.count || 0) + '개</span></div>' +
+        rangeHtml +
+      '</div>';
+    return a;
+  }
+
+  function createRareWatchCard(d) {
+    var a = document.createElement('a');
+    a.className = 'rare-watch-card';
+    a.href = 'products/' + d.id + '.html';
+    a.dataset.categoryId = d.category_id;
+    a.dataset.search = d.search;
+    a.innerHTML =
+      '<div class="rare-watch-card__top">' +
+        '<span class="rare-watch-card__tier">' + escapeHtml(d.rarity_tier || '희귀') + '</span>' +
+        '<span class="rare-watch-card__count">현재 매물 ' + (d.count || 0) + '개</span>' +
+      '</div>' +
+      '<strong>' + escapeHtml(d.name_ko) + '</strong>' +
+      '<div class="rare-watch-card__name-en">' + escapeHtml(d.name_en) + '</div>' +
+      '<div class="rare-watch-card__taxonomy">' + escapeHtml(d.category_label) + '</div>' +
+      '<div class="rare-watch-card__price">현재 중앙값 <span class="money-value" data-money-usd="' + (d.median != null ? d.median : '') + '" data-money-sign="auto">' + formatMoney(d.median) + '</span></div>' +
+      '<div class="rare-watch-card__hint">최근 희귀 시세 ' + escapeHtml(d.rarity_price_hint || '공개 표본 부족') + '</div>' +
+      '<p class="rare-watch-card__note">' + escapeHtml(d.rarity_note || '개별 상태 확인 필요') + '</p>';
+    return a;
+  }
+
   function initCatalogPage() {
-    const grid = document.getElementById('product-grid');
-    const cards = Array.from(grid.querySelectorAll('.product-card[data-product-id]'));
+    var grid = document.getElementById('product-grid');
+    var cardsData = readJsonScript('cards-data', []);
+    var rareWatchGrid = document.getElementById('rare-watch-grid');
+    var rareWatch = document.getElementById('rare-watch');
+    var rareWatchSummary = document.getElementById('rare-watch-summary');
+
+    // Render product cards from JSON data
+    var cards = cardsData.map(function (d) {
+      var el = createProductCard(d);
+      grid.appendChild(el);
+      return el;
+    });
+
+    // Render rare watch cards
+    var rareCardsData = cardsData
+      .filter(function (c) { return c.is_rare && c.count > 0; })
+      .sort(function (a, b) {
+        return (-(a.rarity_sort || 0) + (b.rarity_sort || 0)) ||
+               (-(a.median || 0) + (b.median || 0)) ||
+               ((a.count || 0) - (b.count || 0)) ||
+               (a.name_ko || '').localeCompare(b.name_ko || '', 'ko');
+      });
+    var rareCards = rareCardsData.map(function (d) {
+      var el = createRareWatchCard(d);
+      if (rareWatchGrid) rareWatchGrid.appendChild(el);
+      return el;
+    });
+    if (rareWatch && rareCards.length > 0) rareWatch.hidden = false;
+
     const tabs = Array.from(document.querySelectorAll('.category-tab[data-category-id]'));
     const searchInput = document.getElementById('search-input');
     const sortSelect = document.getElementById('sort-select');
     const visibleCount = document.getElementById('visible-count');
     const contextLabel = document.getElementById('catalog-context');
     const emptyState = document.getElementById('catalog-empty');
-    const rareWatch = document.getElementById('rare-watch');
-    const rareWatchSummary = document.getElementById('rare-watch-summary');
-    const rareCards = Array.from(document.querySelectorAll('.rare-watch-card[data-category-id]'));
     const currencyButtons = Array.from(document.querySelectorAll('.currency-toggle__button[data-currency]'));
     const exchangeData = readJsonScript('exchange-rate-data', {});
     const params = new URLSearchParams(window.location.search);
