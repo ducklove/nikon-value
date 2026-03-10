@@ -1,0 +1,42 @@
+{
+ "date": "2026-03-10",
+ "products": {
+  "nikkor-auto-55mm-f12-s": {
+   "median": 240.7,
+   "mean": 260.18,
+   "min": 215.97,
+   "max": 343.32,
+   "q1": 218.97,
+   "q3": 301.38,
+   "count": 4,
+   "count_filtered": 4
+  },
+  "nikkor-auto-55mm-f12-sc": {
+   "median": 350.04,
+   "mean": 350.21,
+   "min": 209.9,
+   "max": 489.99,
+   "q1": 298.95,
+   "q3": 401.89,
+   "count": 8,
+   "count_filtered": 8
+  },
+  "nikkor-55mm-f12-ai": {
+   "median": 289.99,
+   "mean": 300.5,
+   "min": 229.99,
+   "max": 384.99,
+   "q1": 269.61,
+   "q3": 332.15,
+   "count": 29,
+   "count_filtered": 29
+  }
+ },
+ "exchange_rate": {
+  "base": "USD",
+  "quote": "KRW",
+  "rate": 1470.1228,
+  "reference_date": "2026-03-10",
+  "source": "ECB reference rates"
+ }
+}

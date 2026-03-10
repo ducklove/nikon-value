@@ -942,6 +942,24 @@ categories:
     category_id: '78997'
     min_price: 30
     max_price: 250
+  - id: nikkor-auto-55mm-f12-s
+    name_ko: Nikkor-S Auto 55mm f/1.2
+    name_en: Nikkor-S Auto 55mm f/1.2
+    focal_length_min: 55
+    subcategory: pre-ai
+    query: Nikon Nikkor-S Auto 55mm f/1.2 -S.C -SC -AI -AIS -AI-S
+    category_id: '78997'
+    min_price: 120
+    max_price: 900
+  - id: nikkor-auto-55mm-f12-sc
+    name_ko: Nikkor-S.C Auto 55mm f/1.2
+    name_en: Nikkor-S.C Auto 55mm f/1.2
+    focal_length_min: 55
+    subcategory: pre-ai
+    query: Nikon Nikkor-S.C Auto 55mm f/1.2 -AI -AIS -AI-S
+    category_id: '78997'
+    min_price: 120
+    max_price: 900
   - id: nikkor-auto-50mm-f2
     name_ko: Nikkor-H Auto 50mm f/2
     name_en: Nikkor-H Auto 50mm f/2
@@ -1032,6 +1050,15 @@ categories:
     category_id: '78997'
     min_price: 50
     max_price: 300
+  - id: nikkor-55mm-f12-ai
+    name_ko: Nikkor 55mm f/1.2 AI
+    name_en: Nikkor 55mm f/1.2 AI
+    focal_length_min: 55
+    subcategory: ai
+    query: Nikon Nikkor 55mm f/1.2 AI -AIS -AI-S -Auto
+    category_id: '78997'
+    min_price: 180
+    max_price: 1200
   - id: nikkor-50mm-f18-ai
     name_ko: Nikkor 50mm f/1.8 AI
     name_en: Nikkor 50mm f/1.8 AI
