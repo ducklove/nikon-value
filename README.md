@@ -40,6 +40,17 @@ python3 scripts/admin_server.py --port 8080
 
 브라우저에서 `http://127.0.0.1:8080/admin.html`로 접속한다.
 
+현재 admin 기본 흐름:
+
+- `저장`
+  - `config/products.yaml` 백업 후 저장
+- `카테고리 수집` 또는 제품 행의 `시세 수집`
+  - `scripts/fetch_prices.py --only ...` 실행
+- `사이트 빌드`
+  - `scripts/build_static_site.py --output dist --publish-root` 실행
+- `Git Push`
+  - 카탈로그, 데이터, 루트 공개 파일을 함께 커밋/푸시
+
 ## 메모
 
 - 현재 GitHub Pages는 저장소 `master` 브랜치 루트의 정적 파일을 직접 서빙한다.
