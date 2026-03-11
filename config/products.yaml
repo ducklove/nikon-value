@@ -1607,27 +1607,86 @@ categories:
   name_ko: 클래식 악세사리
   name_en: Classic Accessories
   subcategories:
+  - id: motor-drive
+    name_ko: 모터드라이브
+    name_en: Motor Drive
+    sort_order: 1
   - id: teleconverter
     name_ko: 텔레컨버터
     name_en: Teleconverter
-    sort_order: 1
+    sort_order: 2
   - id: flash
     name_ko: 플래시
     name_en: Flash
-    sort_order: 2
+    sort_order: 3
   - id: databack
     name_ko: 데이터백
     name_en: Data Back
-    sort_order: 3
+    sort_order: 4
   - id: finder
     name_ko: 뷰파인더
     name_en: Viewfinder
-    sort_order: 4
+    sort_order: 5
   - id: screen
     name_ko: 포커싱 스크린
     name_en: Focusing Screen
-    sort_order: 5
+    sort_order: 6
   products:
+  - id: nikon-md-2
+    name_ko: Nikon MD-2
+    name_en: Nikon MD-2 Motor Drive
+    release_year: 1971
+    subcategory: motor-drive
+    product_type: accessory
+    query: Nikon MD-2 motor drive
+    category_id: '625'
+    search_category_id: null
+    min_price: 80
+    max_price: 500
+  - id: nikon-md-4
+    name_ko: Nikon MD-4
+    name_en: Nikon MD-4 Motor Drive
+    release_year: 1980
+    subcategory: motor-drive
+    product_type: accessory
+    query: Nikon MD-4 motor drive
+    category_id: '625'
+    search_category_id: null
+    min_price: 60
+    max_price: 350
+  - id: nikon-md-11
+    name_ko: Nikon MD-11
+    name_en: Nikon MD-11 Motor Drive
+    release_year: 1978
+    subcategory: motor-drive
+    product_type: accessory
+    query: Nikon MD-11 motor drive
+    category_id: '625'
+    search_category_id: null
+    min_price: 20
+    max_price: 180
+  - id: nikon-md-12
+    name_ko: Nikon MD-12
+    name_en: Nikon MD-12 Motor Drive
+    release_year: 1979
+    subcategory: motor-drive
+    product_type: accessory
+    query: Nikon MD-12 motor drive
+    category_id: '625'
+    search_category_id: null
+    min_price: 30
+    max_price: 220
+  - id: nikon-md-15
+    name_ko: Nikon MD-15
+    name_en: Nikon MD-15 Motor Drive
+    release_year: 1983
+    subcategory: motor-drive
+    product_type: accessory
+    query: Nikon MD-15 motor drive
+    category_id: '625'
+    search_category_id: null
+    min_price: 40
+    max_price: 260
   - id: nikon-tc-14b
     name_ko: Nikon TC-14B
     name_en: Nikon TC-14B Teleconverter
@@ -1756,6 +1815,17 @@ categories:
     subcategory: finder
     product_type: accessory
     query: Nikon DW-4 waist level finder
+    category_id: '625'
+    search_category_id: null
+    min_price: 80
+    max_price: 600
+  - id: nikon-dw-2
+    name_ko: Nikon DW-2
+    name_en: Nikon DW-2 Focusing Finder
+    release_year: 1971
+    subcategory: finder
+    product_type: accessory
+    query: Nikon DW-2 finder
     category_id: '625'
     search_category_id: null
     min_price: 80

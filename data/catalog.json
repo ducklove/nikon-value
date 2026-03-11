@@ -7825,37 +7825,312 @@
    "name_en": "Classic Accessories",
    "subcategories": [
     {
+     "id": "motor-drive",
+     "name_ko": "모터드라이브",
+     "name_en": "Motor Drive",
+     "sort_order": 1
+    },
+    {
      "id": "teleconverter",
      "name_ko": "텔레컨버터",
      "name_en": "Teleconverter",
-     "sort_order": 1
+     "sort_order": 2
     },
     {
      "id": "flash",
      "name_ko": "플래시",
      "name_en": "Flash",
-     "sort_order": 2
+     "sort_order": 3
     },
     {
      "id": "databack",
      "name_ko": "데이터백",
      "name_en": "Data Back",
-     "sort_order": 3
+     "sort_order": 4
     },
     {
      "id": "finder",
      "name_ko": "뷰파인더",
      "name_en": "Viewfinder",
-     "sort_order": 4
+     "sort_order": 5
     },
     {
      "id": "screen",
      "name_ko": "포커싱 스크린",
      "name_en": "Focusing Screen",
-     "sort_order": 5
+     "sort_order": 6
     }
    ],
    "products": [
+    {
+     "id": "nikon-md-2",
+     "name_ko": "Nikon MD-2",
+     "name_en": "Nikon MD-2 Motor Drive",
+     "subcategory": "motor-drive",
+     "release_year": 1971,
+     "median": 182.88,
+     "mean": 184.55,
+     "min": 177.59,
+     "max": 193.18,
+     "q1": 177.59,
+     "q3": 193.18,
+     "count": 3,
+     "count_filtered": 3,
+     "samples": [
+      {
+       "title": "Nikon MD-2 Motor Drive for F2 Film Camera Z12",
+       "price": 177.59,
+       "currency": "USD",
+       "condition": "Used",
+       "image": "https://i.ebayimg.com/images/g/owwAAOSwKy9nPNKf/s-l1600.jpg",
+       "url": "https://www.ebay.com/itm/176693039358?_skw=Nikon+MD-2+motor+drive&hash=item2923b9d0fe:g:owwAAOSwKy9nPNKf"
+      },
+      {
+       "title": "Nikon MD-2 Motor Drive Winder for F2 F2AS F2A F2S F2SB F2T MD2  Working EXC",
+       "price": 182.88,
+       "currency": "USD",
+       "condition": "Used",
+       "image": "https://i.ebayimg.com/images/g/Jl8AAOSwGzRk0XDm/s-l1600.jpg",
+       "url": "https://www.ebay.com/itm/296047752582?_skw=Nikon+MD-2+motor+drive&hash=item44edd23586:g:Jl8AAOSwGzRk0XDm"
+      },
+      {
+       "title": "Nikon MD-2 Motor Drive Winder for F2 F2AS F2A F2S F2SB F2T MD2 w box palindrome",
+       "price": 193.18,
+       "currency": "USD",
+       "condition": "Used",
+       "image": "https://i.ebayimg.com/images/g/Wm4AAeSw9nlpgQgP/s-l1600.jpg",
+       "url": "https://www.ebay.com/itm/306746212599?_skw=Nikon+MD-2+motor+drive&hash=item476b7fc0f7:g:Wm4AAeSw9nlpgQgP"
+      }
+     ]
+    },
+    {
+     "id": "nikon-md-4",
+     "name_ko": "Nikon MD-4",
+     "name_en": "Nikon MD-4 Motor Drive",
+     "subcategory": "motor-drive",
+     "release_year": 1980,
+     "median": 119.93,
+     "mean": 127.42,
+     "min": 63.43,
+     "max": 215.77,
+     "q1": 99.98,
+     "q3": 155.53,
+     "count": 138,
+     "count_filtered": 135,
+     "samples": [
+      {
+       "title": "[Near MINT] Nikon MD-4 Motor Drive Winder For Nikon F3 Film Camera From JAPAN",
+       "price": 125.6,
+       "currency": "USD",
+       "condition": "Used",
+       "image": "https://i.ebayimg.com/images/g/aMsAAeSw1blpJlmC/s-l960.jpg",
+       "url": "https://www.ebay.com/itm/157730282687?_skw=Nikon+MD-4+motor+drive&hash=item24b9751cbf:g:aMsAAeSw1blpJlmC"
+      },
+      {
+       "title": "* Nikon MD-4 Motor Drive For F3  - Japan ",
+       "price": 125.77,
+       "currency": "USD",
+       "condition": "Used",
+       "image": "https://i.ebayimg.com/images/g/qUoAAOSw~uJbNT1q/s-l1600.jpg",
+       "url": "https://www.ebay.com/itm/335949228041?_skw=Nikon+MD-4+motor+drive&hash=item4e38226809:g:qUoAAOSw~uJbNT1q"
+      },
+      {
+       "title": "Nikon MD-4 Motordrive Motor Drive for Nikon F3 Cameras [EXC]",
+       "price": 126.09,
+       "currency": "USD",
+       "condition": "Used",
+       "image": "https://i.ebayimg.com/images/g/ehYAAeSwlAFpqyzS/s-l1200.jpg",
+       "url": "https://www.ebay.com/itm/236672686642?_skw=Nikon+MD-4+motor+drive&hash=item371aca9a32:g:ehYAAeSwlAFpqyzS"
+      },
+      {
+       "title": "[TOP MINT] Nikon MD-4 Motor Drive Winder For F3 T Titan Film Camera   JAPAN",
+       "price": 128.0,
+       "currency": "USD",
+       "condition": "Used",
+       "image": "https://i.ebayimg.com/images/g/vTcAAOSwCkFnlXR3/s-l1600.jpg",
+       "url": "https://www.ebay.com/itm/389066508537?_skw=Nikon+MD-4+motor+drive&hash=item5a962bc8f9:g:vTcAAOSwCkFnlXR3"
+      },
+      {
+       "title": "Nikon MD4 Motor Drive for F3, F3HP, F3T, F3P Cameras",
+       "price": 128.41,
+       "currency": "USD",
+       "condition": "Used",
+       "image": "https://i.ebayimg.com/images/g/MAIAAOSw3Opl51Hn/s-l1600.jpg",
+       "url": "https://www.ebay.com/itm/326735998569?_skw=Nikon+MD-4+motor+drive&hash=item4c12fbae69:g:MAIAAOSw3Opl51Hn"
+      }
+     ]
+    },
+    {
+     "id": "nikon-md-11",
+     "name_ko": "Nikon MD-11",
+     "name_en": "Nikon MD-11 Motor Drive",
+     "subcategory": "motor-drive",
+     "release_year": 1978,
+     "median": 89.41,
+     "mean": 91.35,
+     "min": 42.0,
+     "max": 152.09,
+     "q1": 71.44,
+     "q3": 115.63,
+     "count": 40,
+     "count_filtered": 40,
+     "samples": [
+      {
+       "title": "Nikon MD-11 Motor Drive Winder For FE FM 35mm Film SLR Cameras",
+       "price": 85.28,
+       "currency": "USD",
+       "condition": "Used",
+       "image": "https://i.ebayimg.com/images/g/8DcAAeSwhcxotGQS/s-l1600.jpg",
+       "url": "https://www.ebay.com/itm/187532594222?_skw=Nikon+MD-11+motor+drive&hash=item2ba9d04c2e:g:8DcAAeSwhcxotGQS"
+      },
+      {
+       "title": "Nikon MD-11 Motor Drive for Nikon FE FM FE2 FM2 FA 35mm Film SLR Cameras ",
+       "price": 87.79,
+       "currency": "USD",
+       "condition": "Used",
+       "image": "https://i.ebayimg.com/images/g/-N4AAOSw3VxjzM-~/s-l1600.jpg",
+       "url": "https://www.ebay.com/itm/175667918818?_skw=Nikon+MD-11+motor+drive&hash=item28e69fb7e2:g:-N4AAOSw3VxjzM-~"
+      },
+      {
+       "title": "Nikon MD-11 Motordrive for Nikon FM/FE Cameras [EXC]",
+       "price": 91.03,
+       "currency": "USD",
+       "condition": "Used",
+       "image": "https://i.ebayimg.com/images/g/rT4AAeSwa5ppRZpJ/s-l1200.jpg",
+       "url": "https://www.ebay.com/itm/376789676454?_skw=Nikon+MD-11+motor+drive&hash=item57ba6a31a6:g:rT4AAeSwa5ppRZpJ"
+      },
+      {
+       "title": "Nikon MD-11 Motordrive for FE FE-2 FM FM-2 FA Cameras [EXC-]",
+       "price": 91.03,
+       "currency": "USD",
+       "condition": "Used",
+       "image": "https://i.ebayimg.com/images/g/RpcAAOSwA3toOJMM/s-l1600.jpg",
+       "url": "https://www.ebay.com/itm/376290450855?_skw=Nikon+MD-11+motor+drive&hash=item579ca89da7:g:RpcAAOSwA3toOJMM"
+      },
+      {
+       "title": "Nikon MD-11 Motordrive for Nikon FM/FE Cameras [EXC]",
+       "price": 91.03,
+       "currency": "USD",
+       "condition": "Used",
+       "image": "https://i.ebayimg.com/images/g/mecAAeSwwLNouiL5/s-l1600.jpg",
+       "url": "https://www.ebay.com/itm/297588990203?_skw=Nikon+MD-11+motor+drive&hash=item4549afa0fb:g:mecAAeSwwLNouiL5"
+      }
+     ]
+    },
+    {
+     "id": "nikon-md-12",
+     "name_ko": "Nikon MD-12",
+     "name_en": "Nikon MD-12 Motor Drive",
+     "subcategory": "motor-drive",
+     "release_year": 1979,
+     "median": 84.99,
+     "mean": 88.79,
+     "min": 65.99,
+     "max": 130.66,
+     "q1": 79.32,
+     "q3": 103.25,
+     "count": 89,
+     "count_filtered": 81,
+     "samples": [
+      {
+       "title": "[N MINT] Nikon MD-12 Motor Drive For Nikon 35mm SLR FA FM FM2 FE FE2 FM3A JAPAN",
+       "price": 87.0,
+       "currency": "USD",
+       "condition": "Used",
+       "image": "https://i.ebayimg.com/images/g/sAwAAOSw6G9m3W5P/s-l1600.jpg",
+       "url": "https://www.ebay.com/itm/358106552215?_skw=Nikon+MD-12+motor+drive&hash=item5360d05797:g:sAwAAOSw6G9m3W5P"
+      },
+      {
+       "title": "Nikon MD-12 Motordrive Winder for Nikon FM & FE Cameras [Tested]",
+       "price": 87.0,
+       "currency": "USD",
+       "condition": "Used",
+       "image": "https://i.ebayimg.com/images/g/GesAAeSw71NplBPq/s-l1600.jpg",
+       "url": "https://www.ebay.com/itm/137050658473?_skw=Nikon+MD-12+motor+drive&hash=item1fe8db16a9:g:GesAAeSw71NplBPq"
+      },
+      {
+       "title": "Nikon MD-12 Motor Drive for FA, FE, FM, FM2 Good Condition/ Tested & Works/ READ",
+       "price": 87.17,
+       "currency": "USD",
+       "condition": "Used",
+       "image": "https://i.ebayimg.com/images/g/e8AAAOSwA1FkzW4X/s-l1600.jpg",
+       "url": "https://www.ebay.com/itm/277012369845?_skw=Nikon+MD-12+motor+drive&hash=item407f3951b5:g:e8AAAOSwA1FkzW4X"
+      },
+      {
+       "title": "Nikon MD-12 Film Camera Motor Drive for FA FE and FM Series",
+       "price": 88.78,
+       "currency": "USD",
+       "condition": "Used",
+       "image": "https://i.ebayimg.com/images/g/6aoAAOSw4tpkVwYa/s-l1600.jpg",
+       "url": "https://www.ebay.com/itm/175716113339?_skw=Nikon+MD-12+motor+drive&hash=item28e97f1bbb:g:6aoAAOSw4tpkVwYa"
+      },
+      {
+       "title": "Nikon MD-12 Motor Drive for FE, FE2, FM, FM2, FM2N. Tested / Working. (refB)",
+       "price": 89.54,
+       "currency": "USD",
+       "condition": "Used",
+       "image": "https://i.ebayimg.com/images/g/u4wAAeSwR0JoraWs/s-l1600.jpg",
+       "url": "https://www.ebay.com/itm/157412047493?_skw=Nikon+MD-12+motor+drive&hash=item24a67d3a85:g:u4wAAeSwR0JoraWs"
+      }
+     ]
+    },
+    {
+     "id": "nikon-md-15",
+     "name_ko": "Nikon MD-15",
+     "name_en": "Nikon MD-15 Motor Drive",
+     "subcategory": "motor-drive",
+     "release_year": 1983,
+     "median": 110.76,
+     "mean": 107.01,
+     "min": 59.99,
+     "max": 136.83,
+     "q1": 79.99,
+     "q3": 132.15,
+     "count": 5,
+     "count_filtered": 5,
+     "samples": [
+      {
+       "title": "[Exc+5] Tested! Nikon MD-15 Motor Drive Winder For Nikon FA From JAPAN",
+       "price": 59.99,
+       "currency": "USD",
+       "condition": "Used",
+       "image": "https://i.ebayimg.com/images/g/9DcAAeSwJ~dpZ1zr/s-l1600.jpg",
+       "url": "https://www.ebay.com/itm/406595838373?_skw=Nikon+MD-15+motor+drive&hash=item5eab0021a5:g:9DcAAeSwJ~dpZ1zr"
+      },
+      {
+       "title": "Operation tested [Near MINT] Nikon MD-15 Motor Drive Winder For FA From JAPAN",
+       "price": 99.99,
+       "currency": "USD",
+       "condition": "Used",
+       "image": "https://i.ebayimg.com/images/g/IN0AAeSwZWRpnrRp/s-l1600.jpg",
+       "url": "https://www.ebay.com/itm/406720564079?_skw=Nikon+MD-15+motor+drive&hash=item5eb26f4b6f:g:IN0AAeSwZWRpnrRp"
+      },
+      {
+       "title": "USED Nikon MD-15 motor drive",
+       "price": 110.76,
+       "currency": "USD",
+       "condition": "Used",
+       "image": "https://i.ebayimg.com/images/g/ofMAAeSwxE5nrEdl/s-l225.jpg",
+       "url": "https://www.ebay.com/itm/235954858305?_skw=Nikon+MD-15+motor+drive&hash=item36f0016941:g:ofMAAeSwxE5nrEdl"
+      },
+      {
+       "title": "Tested Nikon MD-15 Motor Drive Winder for Nikon FA SLR  Film Camera",
+       "price": 136.83,
+       "currency": "USD",
+       "condition": "Used",
+       "image": "https://i.ebayimg.com/images/g/8rsAAeSw39dpigZQ/s-l1600.jpg",
+       "url": "https://www.ebay.com/itm/317860165463?_skw=Nikon+MD-15+motor+drive&hash=item4a01f13757:g:8rsAAeSw39dpigZQ"
+      },
+      {
+       "title": "NIKON MD-15 Motor Drive - FA ",
+       "price": 127.46,
+       "currency": "USD",
+       "condition": "Used",
+       "image": "https://i.ebayimg.com/images/g/yP0AAOSwqLtjDla1/s-l1600.jpg",
+       "url": "https://www.ebay.com/itm/314126001174?_skw=Nikon+MD-15+motor+drive&hash=item49235e6416:g:yP0AAOSwqLtjDla1"
+      }
+     ]
+    },
     {
      "id": "nikon-tc-14b",
      "name_ko": "Nikon TC-14B",
@@ -8505,6 +8780,63 @@
        "condition": "Used",
        "image": "https://i.ebayimg.com/images/g/uBYAAOSwaQpfQ-V2/s-l1600.jpg",
        "url": "https://www.ebay.com/itm/235811284498?_skw=Nikon+DW-4+waist+level+finder&hash=item36e772a612:g:uBYAAOSwaQpfQ-V2"
+      }
+     ]
+    },
+    {
+     "id": "nikon-dw-2",
+     "name_ko": "Nikon DW-2",
+     "name_en": "Nikon DW-2 Focusing Finder",
+     "subcategory": "finder",
+     "release_year": 1971,
+     "median": 156.3,
+     "mean": 164.35,
+     "min": 93.85,
+     "max": 266.65,
+     "q1": 127.34,
+     "q3": 208.35,
+     "count": 13,
+     "count_filtered": 13,
+     "samples": [
+      {
+       "title": "Nikon DW-2 6x High-Magnification Focusing Finder for F2",
+       "price": 129.98,
+       "currency": "USD",
+       "condition": "Used",
+       "image": "https://i.ebayimg.com/images/g/oRUAAeSwLedpmANt/s-l1600.jpg",
+       "url": "https://www.ebay.com/itm/177877438430?_skw=Nikon+DW-2+finder&hash=item296a524fde:g:oRUAAeSwLedpmANt"
+      },
+      {
+       "title": "*Nikon DW-2 6x Finder w/ Rubber Eyecup*Take a Look* F F2",
+       "price": 133.49,
+       "currency": "USD",
+       "condition": "Used",
+       "image": "https://i.ebayimg.com/images/g/fiQAAeSwwm9pYYnL/s-l1600.jpg",
+       "url": "https://www.ebay.com/itm/187934206246?_skw=Nikon+DW-2+finder&hash=item2bc1c06926:g:fiQAAeSwwm9pYYnL"
+      },
+      {
+       "title": "Nikon DW-2 Waist Level View Finder From JAPAN",
+       "price": 156.3,
+       "currency": "USD",
+       "condition": "Used",
+       "image": "https://i.ebayimg.com/images/g/UUIAAOSwrd1jIjBg/s-l1600.jpg",
+       "url": "https://www.ebay.com/itm/225163635062?_skw=Nikon+DW-2+finder&hash=item346ccc6976:g:UUIAAOSwrd1jIjBg"
+      },
+      {
+       "title": "Nikon DW-2 6x Finder for Nikon F2",
+       "price": 180.0,
+       "currency": "USD",
+       "condition": "Used",
+       "image": "https://i.ebayimg.com/images/g/WMYAAOSwpINZazph/s-l1200.jpg",
+       "url": "https://www.ebay.com/itm/376841314244?_skw=Nikon+DW-2+finder&hash=item57bd7e1fc4:g:WMYAAOSwpINZazph"
+      },
+      {
+       "title": "Nikon magnifier viewfinder with 6x magnification DW-2 for Nikon F2. Focusing finder.",
+       "price": 185.76,
+       "currency": "USD",
+       "condition": "Usato",
+       "image": "https://i.ebayimg.com/images/g/xkkAAOSwZrxfWmbg/s-l960.jpg",
+       "url": "https://www.ebay.com/itm/334508593911?_skw=Nikon+DW-2+finder&hash=item4de24412f7:g:xkkAAOSwZrxfWmbg"
       }
      ]
     },
