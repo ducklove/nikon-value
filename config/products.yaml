@@ -1603,3 +1603,182 @@ categories:
     category_id: '78997'
     min_price: 20
     max_price: 150
+- id: classic-accessories
+  name_ko: 클래식 악세사리
+  name_en: Classic Accessories
+  subcategories:
+  - id: teleconverter
+    name_ko: 텔레컨버터
+    name_en: Teleconverter
+    sort_order: 1
+  - id: flash
+    name_ko: 플래시
+    name_en: Flash
+    sort_order: 2
+  - id: databack
+    name_ko: 데이터백
+    name_en: Data Back
+    sort_order: 3
+  - id: finder
+    name_ko: 뷰파인더
+    name_en: Viewfinder
+    sort_order: 4
+  - id: screen
+    name_ko: 포커싱 스크린
+    name_en: Focusing Screen
+    sort_order: 5
+  products:
+  - id: nikon-tc-14b
+    name_ko: Nikon TC-14B
+    name_en: Nikon TC-14B Teleconverter
+    release_year: 1974
+    subcategory: teleconverter
+    product_type: accessory
+    query: Nikon TC-14B teleconverter
+    category_id: '625'
+    search_category_id: null
+    min_price: 50
+    max_price: 400
+  - id: nikon-tc-201
+    name_ko: Nikon TC-201
+    name_en: Nikon TC-201 Teleconverter
+    release_year: 1977
+    subcategory: teleconverter
+    product_type: accessory
+    query: Nikon TC-201 teleconverter
+    category_id: '625'
+    search_category_id: null
+    min_price: 40
+    max_price: 300
+  - id: nikon-tc-16a
+    name_ko: Nikon TC-16A
+    name_en: Nikon TC-16A AF Teleconverter
+    release_year: 1985
+    subcategory: teleconverter
+    product_type: accessory
+    query: Nikon TC-16A teleconverter
+    category_id: '625'
+    search_category_id: null
+    min_price: 60
+    max_price: 500
+  - id: nikon-sb-12
+    name_ko: Nikon SB-12
+    name_en: Nikon Speedlight SB-12
+    release_year: 1980
+    subcategory: flash
+    product_type: accessory
+    query: Nikon Speedlight SB-12 flash
+    category_id: '625'
+    search_category_id: null
+    min_price: 30
+    max_price: 220
+  - id: nikon-sb-24
+    name_ko: Nikon SB-24
+    name_en: Nikon Speedlight SB-24
+    release_year: 1988
+    subcategory: flash
+    product_type: accessory
+    query: Nikon Speedlight SB-24 flash
+    category_id: '625'
+    search_category_id: null
+    min_price: 20
+    max_price: 180
+  - id: nikon-sb-25
+    name_ko: Nikon SB-25
+    name_en: Nikon Speedlight SB-25
+    release_year: 1992
+    subcategory: flash
+    product_type: accessory
+    query: Nikon Speedlight SB-25 flash
+    category_id: '625'
+    search_category_id: null
+    min_price: 30
+    max_price: 220
+  - id: nikon-mf-12
+    name_ko: Nikon MF-12
+    name_en: Nikon MF-12 Data Back
+    release_year: 1981
+    subcategory: databack
+    product_type: accessory
+    query: Nikon MF-12 data back
+    category_id: '625'
+    search_category_id: null
+    min_price: 30
+    max_price: 250
+  - id: nikon-mf-14
+    name_ko: Nikon MF-14
+    name_en: Nikon MF-14 Data Back
+    release_year: 1981
+    subcategory: databack
+    product_type: accessory
+    query: Nikon MF-14 data back
+    category_id: '625'
+    search_category_id: null
+    min_price: 60
+    max_price: 400
+  - id: nikon-mf-23
+    name_ko: Nikon MF-23
+    name_en: Nikon MF-23 Data Back
+    release_year: 1988
+    subcategory: databack
+    product_type: accessory
+    query: Nikon MF-23 data back
+    category_id: '625'
+    search_category_id: null
+    min_price: 50
+    max_price: 400
+  - id: nikon-dw-3
+    name_ko: Nikon DW-3
+    name_en: Nikon DW-3 Waist-Level Finder
+    release_year: 1980
+    subcategory: finder
+    product_type: accessory
+    query: Nikon DW-3 waist level finder
+    category_id: '625'
+    search_category_id: null
+    min_price: 80
+    max_price: 600
+  - id: nikon-da-2
+    name_ko: Nikon DA-2
+    name_en: Nikon DA-2 Action Finder
+    release_year: 1980
+    subcategory: finder
+    product_type: accessory
+    query: Nikon DA-2 action finder
+    category_id: '625'
+    search_category_id: null
+    min_price: 80
+    max_price: 700
+  - id: nikon-dw-4
+    name_ko: Nikon DW-4
+    name_en: Nikon DW-4 Waist-Level Finder
+    release_year: 1980
+    subcategory: finder
+    product_type: accessory
+    query: Nikon DW-4 waist level finder
+    category_id: '625'
+    search_category_id: null
+    min_price: 80
+    max_price: 600
+  - id: nikon-f3-screen-e
+    name_ko: Nikon F3 Type E
+    name_en: Nikon F3 Type E Focusing Screen
+    release_year: 1980
+    subcategory: screen
+    product_type: accessory
+    query: Nikon F3 type E focusing screen
+    category_id: '625'
+    search_category_id: null
+    min_price: 40
+    max_price: 250
+  - id: nikon-f3-screen-k
+    name_ko: Nikon F3 Type K
+    name_en: Nikon F3 Type K Focusing Screen
+    release_year: 1980
+    subcategory: screen
+    product_type: accessory
+    query: Nikon Type K focusing screen for F3
+    category_id: '625'
+    search_category_id: null
+    min_price: 30
+    max_price: 200
