@@ -680,6 +680,15 @@ categories:
     name_en: Macro
     sort_order: 3
   products:
+  - id: nikkor-z-14-30-f4-s
+    name_ko: Z 14-30mm f/4 S
+    name_en: NIKKOR Z 14-30mm f/4 S
+    focal_length_min: 14
+    subcategory: zoom
+    query: NIKKOR Z 14-30mm f/4 S
+    category_id: '78997'
+    min_price: 500
+    max_price: 1400
   - id: nikkor-z-24-70-f28-s
     name_ko: Z 24-70mm f/2.8 S
     name_en: NIKKOR Z 24-70mm f/2.8 S
@@ -689,6 +698,15 @@ categories:
     category_id: '78997'
     min_price: 1200
     max_price: 2500
+  - id: nikkor-z-24-70-f4-s
+    name_ko: Z 24-70mm f/4 S
+    name_en: NIKKOR Z 24-70mm f/4 S
+    focal_length_min: 24
+    subcategory: zoom
+    query: NIKKOR Z 24-70mm f/4 S
+    category_id: '78997'
+    min_price: 250
+    max_price: 800
   - id: nikkor-z-70-200-f28-vr-s
     name_ko: Z 70-200mm f/2.8 VR S
     name_en: NIKKOR Z 70-200mm f/2.8 VR S
@@ -707,6 +725,15 @@ categories:
     category_id: '78997'
     min_price: 1200
     max_price: 2500
+  - id: nikkor-z-17-28-f28
+    name_ko: Z 17-28mm f/2.8
+    name_en: NIKKOR Z 17-28mm f/2.8
+    focal_length_min: 17
+    subcategory: zoom
+    query: NIKKOR Z 17-28mm f/2.8
+    category_id: '78997'
+    min_price: 500
+    max_price: 1200
   - id: nikkor-z-24-120-f4-s
     name_ko: Z 24-120mm f/4 S
     name_en: NIKKOR Z 24-120mm f/4 S
@@ -716,6 +743,15 @@ categories:
     category_id: '78997'
     min_price: 600
     max_price: 1300
+  - id: nikkor-z-24-50-f4-63
+    name_ko: Z 24-50mm f/4-6.3
+    name_en: NIKKOR Z 24-50mm f/4-6.3
+    focal_length_min: 24
+    subcategory: zoom
+    query: NIKKOR Z 24-50mm f/4-6.3
+    category_id: '78997'
+    min_price: 120
+    max_price: 500
   - id: nikkor-z-100-400-f45-56-vr-s
     name_ko: Z 100-400mm f/4.5-5.6 VR S
     name_en: NIKKOR Z 100-400mm f/4.5-5.6 VR S
@@ -725,6 +761,15 @@ categories:
     category_id: '78997'
     min_price: 1500
     max_price: 2800
+  - id: nikkor-z-180-600-f56-63-vr
+    name_ko: Z 180-600mm f/5.6-6.3 VR
+    name_en: NIKKOR Z 180-600mm f/5.6-6.3 VR
+    focal_length_min: 180
+    subcategory: zoom
+    query: Nikon Z 180-600
+    category_id: '78997'
+    min_price: 1200
+    max_price: 2500
   - id: nikkor-z-24-200-f4-63-vr
     name_ko: Z 24-200mm f/4-6.3 VR
     name_en: NIKKOR Z 24-200mm f/4-6.3 VR
@@ -734,6 +779,15 @@ categories:
     category_id: '78997'
     min_price: 400
     max_price: 1000
+  - id: nikkor-z-28-400-f4-8-vr
+    name_ko: Z 28-400mm f/4-8 VR
+    name_en: NIKKOR Z 28-400mm f/4-8 VR
+    focal_length_min: 28
+    subcategory: zoom
+    query: NIKKOR Z 28-400mm f/4-8 VR
+    category_id: '78997'
+    min_price: 900
+    max_price: 1800
   - id: nikkor-z-28-75-f28
     name_ko: Z 28-75mm f/2.8
     name_en: NIKKOR Z 28-75mm f/2.8
@@ -743,6 +797,51 @@ categories:
     category_id: '78997'
     min_price: 400
     max_price: 1000
+  - id: nikkor-z-70-180-f28
+    name_ko: Z 70-180mm f/2.8
+    name_en: NIKKOR Z 70-180mm f/2.8
+    focal_length_min: 70
+    subcategory: zoom
+    query: NIKKOR Z 70-180mm f/2.8
+    category_id: '78997'
+    min_price: 700
+    max_price: 1500
+  - id: nikkor-z-20mm-f18-s
+    name_ko: Z 20mm f/1.8 S
+    name_en: NIKKOR Z 20mm f/1.8 S
+    focal_length_min: 20
+    subcategory: prime
+    query: NIKKOR Z 20mm f/1.8 S
+    category_id: '78997'
+    min_price: 500
+    max_price: 1400
+  - id: nikkor-z-24mm-f18-s
+    name_ko: Z 24mm f/1.8 S
+    name_en: NIKKOR Z 24mm f/1.8 S
+    focal_length_min: 24
+    subcategory: prime
+    query: NIKKOR Z 24mm f/1.8 S
+    category_id: '78997'
+    min_price: 500
+    max_price: 1400
+  - id: nikkor-z-28mm-f28
+    name_ko: Z 28mm f/2.8
+    name_en: NIKKOR Z 28mm f/2.8
+    focal_length_min: 28
+    subcategory: prime
+    query: NIKKOR Z 28mm f/2.8
+    category_id: '78997'
+    min_price: 100
+    max_price: 500
+  - id: nikkor-z-40mm-f2
+    name_ko: Z 40mm f/2
+    name_en: NIKKOR Z 40mm f/2
+    focal_length_min: 40
+    subcategory: prime
+    query: NIKKOR Z 40mm f/2
+    category_id: '78997'
+    min_price: 150
+    max_price: 500
   - id: nikkor-z-50mm-f12-s
     name_ko: Z 50mm f/1.2 S
     name_en: NIKKOR Z 50mm f/1.2 S
@@ -752,6 +851,15 @@ categories:
     category_id: '78997'
     min_price: 1200
     max_price: 2500
+  - id: nikkor-z-50mm-f14
+    name_ko: Z 50mm f/1.4
+    name_en: NIKKOR Z 50mm f/1.4
+    focal_length_min: 50
+    subcategory: prime
+    query: NIKKOR Z 50mm f/1.4
+    category_id: '78997'
+    min_price: 300
+    max_price: 800
   - id: nikkor-z-85mm-f12-s
     name_ko: Z 85mm f/1.2 S
     name_en: NIKKOR Z 85mm f/1.2 S
@@ -761,6 +869,15 @@ categories:
     category_id: '78997'
     min_price: 1800
     max_price: 3500
+  - id: nikkor-z-85mm-f18-s
+    name_ko: Z 85mm f/1.8 S
+    name_en: NIKKOR Z 85mm f/1.8 S
+    focal_length_min: 85
+    subcategory: prime
+    query: NIKKOR Z 85mm f/1.8 S
+    category_id: '78997'
+    min_price: 400
+    max_price: 1200
   - id: nikkor-z-50mm-f18-s
     name_ko: Z 50mm f/1.8 S
     name_en: NIKKOR Z 50mm f/1.8 S
@@ -770,6 +887,15 @@ categories:
     category_id: '78997'
     min_price: 250
     max_price: 700
+  - id: nikkor-z-35mm-f18-s
+    name_ko: Z 35mm f/1.8 S
+    name_en: NIKKOR Z 35mm f/1.8 S
+    focal_length_min: 35
+    subcategory: prime
+    query: NIKKOR Z 35mm f/1.8 S
+    category_id: '78997'
+    min_price: 300
+    max_price: 1000
   - id: nikkor-z-35mm-f14
     name_ko: Z 35mm f/1.4
     name_en: NIKKOR Z 35mm f/1.4
@@ -797,6 +923,15 @@ categories:
     category_id: '78997'
     min_price: 200
     max_price: 600
+  - id: nikkor-z-400mm-f28-tc-vr-s
+    name_ko: Z 400mm f/2.8 TC VR S
+    name_en: NIKKOR Z 400mm f/2.8 TC VR S
+    focal_length_min: 400
+    subcategory: prime
+    query: Nikon Z 400mm f/2.8 TC
+    category_id: '78997'
+    min_price: 8000
+    max_price: 18000
   - id: nikkor-z-400mm-f45-vr-s
     name_ko: Z 400mm f/4.5 VR S
     name_en: NIKKOR Z 400mm f/4.5 VR S
@@ -806,6 +941,42 @@ categories:
     category_id: '78997'
     min_price: 2000
     max_price: 4000
+  - id: nikkor-z-600mm-f4-tc-vr-s
+    name_ko: Z 600mm f/4 TC VR S
+    name_en: NIKKOR Z 600mm f/4 TC VR S
+    focal_length_min: 600
+    subcategory: prime
+    query: Nikon Z 600mm f/4 TC
+    category_id: '78997'
+    min_price: 9000
+    max_price: 18000
+  - id: nikkor-z-600mm-f63-vr-s
+    name_ko: Z 600mm f/6.3 VR S
+    name_en: NIKKOR Z 600mm f/6.3 VR S
+    focal_length_min: 600
+    subcategory: prime
+    query: Nikon Z 600mm f/6.3
+    category_id: '78997'
+    min_price: 3000
+    max_price: 7000
+  - id: nikkor-z-800mm-f63-vr-s
+    name_ko: Z 800mm f/6.3 VR S
+    name_en: NIKKOR Z 800mm f/6.3 VR S
+    focal_length_min: 800
+    subcategory: prime
+    query: Nikon Z 800mm f/6.3
+    category_id: '78997'
+    min_price: 3500
+    max_price: 8000
+  - id: nikkor-z-mc-50mm-f28
+    name_ko: Z MC 50mm f/2.8
+    name_en: NIKKOR Z MC 50mm f/2.8
+    focal_length_min: 50
+    subcategory: macro
+    query: NIKKOR Z MC 50mm f/2.8
+    category_id: '78997'
+    min_price: 250
+    max_price: 700
   - id: nikkor-z-mc-105mm-f28-vr-s
     name_ko: Z MC 105mm f/2.8 VR S
     name_en: NIKKOR Z MC 105mm f/2.8 VR S
