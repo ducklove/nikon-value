@@ -1860,13 +1860,93 @@
    "q3": 104.49,
    "count": 8,
    "count_filtered": 7
+  },
+  "nikkor-400mm-f35-if-ed": {
+   "median": 749.0,
+   "mean": 749.0,
+   "min": 749.0,
+   "max": 749.0,
+   "q1": 749.0,
+   "q3": 749.0,
+   "count": 1,
+   "count_filtered": 1
+  },
+  "ai-s-300mm-f28-ed": {
+   "median": 669.99,
+   "mean": 710.91,
+   "min": 403.58,
+   "max": 1116.99,
+   "q1": 595.62,
+   "q3": 819.49,
+   "count": 34,
+   "count_filtered": 33
+  },
+  "ai-s-400mm-f28-ed": {
+   "median": 1584.99,
+   "mean": 1584.99,
+   "min": 1469.99,
+   "max": 1699.99,
+   "q1": 1469.99,
+   "q3": 1699.99,
+   "count": 2,
+   "count_filtered": 2
+  },
+  "ai-s-600mm-f56-ed": {
+   "median": 844.99,
+   "mean": 818.19,
+   "min": 539.99,
+   "max": 999.99,
+   "q1": 752.85,
+   "q3": 964.94,
+   "count": 9,
+   "count_filtered": 8
+  },
+  "ai-s-800mm-f56-ed": {
+   "median": 1397.49,
+   "mean": 1397.49,
+   "min": 1349.99,
+   "max": 1444.99,
+   "q1": 1349.99,
+   "q3": 1444.99,
+   "count": 2,
+   "count_filtered": 2
+  },
+  "ai-p-500mm-f4-ed": {
+   "median": 739.99,
+   "mean": 829.84,
+   "min": 656.4,
+   "max": 1080.7,
+   "q1": 656.4,
+   "q3": 1080.7,
+   "count": 6,
+   "count_filtered": 5
+  },
+  "reflex-nikkor-500mm-f8": {
+   "median": 222.86,
+   "mean": 239.61,
+   "min": 119.99,
+   "max": 474.04,
+   "q1": 182.99,
+   "q3": 299.85,
+   "count": 206,
+   "count_filtered": 193
+  },
+  "reflex-nikkor-1000mm-f11": {
+   "median": 462.49,
+   "mean": 482.31,
+   "min": 309.99,
+   "max": 689.99,
+   "q1": 449.44,
+   "q3": 575.19,
+   "count": 17,
+   "count_filtered": 16
   }
  },
  "exchange_rate": {
   "base": "USD",
   "quote": "KRW",
-  "rate": 1470.1228,
-  "reference_date": "2026-03-10",
+  "rate": 1477.1091,
+  "reference_date": "2026-03-11",
   "source": "ECB reference rates"
  }
 }

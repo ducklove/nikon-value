@@ -1226,6 +1226,15 @@ categories:
     category_id: '78997'
     min_price: 30
     max_price: 220
+  - id: nikkor-400mm-f35-if-ed
+    name_ko: Nikkor 400mm f/3.5 IF-ED AI
+    name_en: Nikon Nikkor 400mm f/3.5 IF-ED AI
+    focal_length_min: 400
+    subcategory: ai
+    query: Nikon Nikkor 400mm f/3.5 ED IF manual focus
+    category_id: '78997'
+    min_price: 300
+    max_price: 2500
   - id: ai-s-50mm-f12
     name_ko: Nikkor 50mm f/1.2 AI-S
     name_en: Nikon Nikkor 50mm f/1.2 AI-S
@@ -1438,6 +1447,42 @@ categories:
     category_id: '78997'
     min_price: 80
     max_price: 400
+  - id: ai-s-300mm-f28-ed
+    name_ko: Nikkor 300mm f/2.8 ED AI-S
+    name_en: Nikon Nikkor 300mm f/2.8 ED AI-S
+    focal_length_min: 300
+    subcategory: ais
+    query: Nikon Ai-S Nikkor 300mm f/2.8 ED
+    category_id: '78997'
+    min_price: 250
+    max_price: 2500
+  - id: ai-s-400mm-f28-ed
+    name_ko: Nikkor 400mm f/2.8 IF-ED AI-S
+    name_en: Nikon Nikkor 400mm f/2.8 IF-ED AI-S
+    focal_length_min: 400
+    subcategory: ais
+    query: Nikon Ai-s Nikkor 400mm f/2.8 ED IF
+    category_id: '78997'
+    min_price: 1200
+    max_price: 12000
+  - id: ai-s-600mm-f56-ed
+    name_ko: Nikkor 600mm f/5.6 IF-ED AI-S
+    name_en: Nikon Nikkor 600mm f/5.6 IF-ED AI-S
+    focal_length_min: 600
+    subcategory: ais
+    query: Nikon Ai-s Nikkor 600mm f/5.6 ED IF
+    category_id: '78997'
+    min_price: 300
+    max_price: 3000
+  - id: ai-s-800mm-f56-ed
+    name_ko: Nikkor 800mm f/5.6 IF-ED AI-S
+    name_en: Nikon Nikkor 800mm f/5.6 IF-ED AI-S
+    focal_length_min: 800
+    subcategory: ais
+    query: Nikon Ai-s Nikkor 800mm f/5.6 ED IF
+    category_id: '78997'
+    min_price: 1000
+    max_price: 8000
   - id: fisheye-nikkor-6mm-f28
     name_ko: Fisheye-Nikkor 6mm f/2.8
     name_en: Nikon Fisheye-Nikkor 6mm f/2.8
@@ -1522,6 +1567,33 @@ categories:
     rarity_sort: 50
     rarity_price_hint: 공개 표본 부족
     rarity_note: 초고가 특수 렌즈
+  - id: ai-p-500mm-f4-ed
+    name_ko: Nikkor 500mm f/4 P ED-IF
+    name_en: Nikon Nikkor 500mm f/4 P ED-IF
+    focal_length_min: 500
+    subcategory: special
+    query: Nikon Nikkor 500mm f/4 P ED IF
+    category_id: '78997'
+    min_price: 400
+    max_price: 4000
+  - id: reflex-nikkor-500mm-f8
+    name_ko: Reflex-Nikkor 500mm f/8
+    name_en: Nikon Reflex-Nikkor 500mm f/8
+    focal_length_min: 500
+    subcategory: special
+    query: Nikon Reflex Nikkor 500mm f/8
+    category_id: '78997'
+    min_price: 100
+    max_price: 1200
+  - id: reflex-nikkor-1000mm-f11
+    name_ko: Reflex-Nikkor 1000mm f/11
+    name_en: Nikon Reflex-Nikkor 1000mm f/11
+    focal_length_min: 1000
+    subcategory: special
+    query: Nikon Reflex Nikkor 1000mm f/11
+    category_id: '78997'
+    min_price: 300
+    max_price: 4000
   - id: ai-nikkor-45mm-f28p
     name_ko: AI Nikkor 45mm f/2.8P
     name_en: Nikon AI Nikkor 45mm f/2.8P
