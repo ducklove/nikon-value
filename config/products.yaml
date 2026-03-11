@@ -283,6 +283,15 @@ categories:
     category_id: '3323'
     min_price: 100
     max_price: 800
+  - id: nikon-f4
+    name_ko: 니콘 F4
+    name_en: Nikon F4
+    release_year: 1988
+    subcategory: flagship
+    query: Nikon F4 body -lens -nikkor -filter -hood -cap
+    category_id: '3323'
+    min_price: 80
+    max_price: 700
   - id: nikon-f3hp
     name_ko: 니콘 F3HP
     name_en: Nikon F3HP
@@ -399,6 +408,26 @@ categories:
     category_id: '3323'
     min_price: 300
     max_price: 1500
+  - id: nikon-f100
+    name_ko: 니콘 F100
+    name_en: Nikon F100
+    release_year: 1999
+    subcategory: midrange
+    query: Nikon F100 film camera body
+    category_id: '3323'
+    search_category_id: null
+    min_price: 120
+    max_price: 700
+  - id: nikon-f90x
+    name_ko: 니콘 F90X
+    name_en: Nikon F90X
+    release_year: 1992
+    subcategory: midrange
+    query: Nikon F90X film camera body
+    category_id: '3323'
+    search_category_id: null
+    min_price: 40
+    max_price: 300
   - id: nikon-fm2
     name_ko: 니콘 FM2
     name_en: Nikon FM2
@@ -435,6 +464,16 @@ categories:
     category_id: '3323'
     min_price: 30
     max_price: 300
+  - id: nikon-el2
+    name_ko: 니콘 EL2
+    name_en: Nikon EL2
+    release_year: 1977
+    subcategory: midrange
+    query: Nikkormat EL2 camera body
+    category_id: '3323'
+    search_category_id: null
+    min_price: 30
+    max_price: 220
   - id: nikon-fm
     name_ko: 니콘 FM
     name_en: Nikon FM
@@ -489,6 +528,16 @@ categories:
     category_id: '3323'
     min_price: 20
     max_price: 150
+  - id: nikon-f80
+    name_ko: 니콘 F80
+    name_en: Nikon F80
+    release_year: 2000
+    subcategory: entry
+    query: Nikon F80 body
+    category_id: '3323'
+    search_category_id: null
+    min_price: 30
+    max_price: 250
   - id: nikon-28ti
     name_ko: 니콘 28Ti
     name_en: Nikon 28Ti
@@ -518,6 +567,16 @@ categories:
     category_id: '3323'
     min_price: 15
     max_price: 300
+  - id: nikkormat-ft3
+    name_ko: 니코마트 FT3
+    name_en: Nikkormat FT3
+    release_year: 1977
+    subcategory: midrange
+    query: Nikkormat FT3 body
+    category_id: '3323'
+    search_category_id: null
+    min_price: 30
+    max_price: 250
   - id: nikon-s
     name_ko: 니콘 S
     name_en: Nikon S
@@ -1041,6 +1100,15 @@ categories:
     category_id: '78997'
     min_price: 30
     max_price: 300
+  - id: gn-auto-nikkor-45mm-f28
+    name_ko: GN Auto-Nikkor 45mm f/2.8
+    name_en: Nikon GN Auto-Nikkor 45mm f/2.8
+    focal_length_min: 45
+    subcategory: pre-ai
+    query: Nikon GN Auto Nikkor 45mm f/2.8
+    category_id: '78997'
+    min_price: 80
+    max_price: 500
   - id: nikkor-50mm-f14-ai
     name_ko: Nikkor 50mm f/1.4 AI
     name_en: Nikon Nikkor 50mm f/1.4 AI
@@ -1068,6 +1136,24 @@ categories:
     category_id: '78997'
     min_price: 30
     max_price: 200
+  - id: nikkor-50mm-f2-ai
+    name_ko: Nikkor 50mm f/2 AI
+    name_en: Nikon Nikkor 50mm f/2 AI
+    focal_length_min: 50
+    subcategory: ai
+    query: Nikon Nikkor 50mm f/2 AI -AIS -AI-S -Auto
+    category_id: '78997'
+    min_price: 25
+    max_price: 180
+  - id: nikkor-28mm-f35-ai
+    name_ko: Nikkor 28mm f/3.5 AI
+    name_en: Nikon Nikkor 28mm f/3.5 AI
+    focal_length_min: 28
+    subcategory: ai
+    query: Nikon Nikkor 28mm f/3.5 AI -AIS -AI-S -Auto
+    category_id: '78997'
+    min_price: 25
+    max_price: 180
   - id: nikkor-28mm-f28-ai
     name_ko: Nikkor 28mm f/2.8 AI
     name_en: Nikon Nikkor 28mm f/2.8 AI
@@ -1131,6 +1217,15 @@ categories:
     category_id: '78997'
     min_price: 80
     max_price: 400
+  - id: nikkor-200mm-f4-ai
+    name_ko: Nikkor 200mm f/4 AI
+    name_en: Nikon Nikkor 200mm f/4 AI
+    focal_length_min: 200
+    subcategory: ai
+    query: Nikon Nikkor 200mm f/4 AI -AIS -AI-S -Auto -Micro
+    category_id: '78997'
+    min_price: 30
+    max_price: 220
   - id: ai-s-50mm-f12
     name_ko: Nikkor 50mm f/1.2 AI-S
     name_en: Nikon Nikkor 50mm f/1.2 AI-S
@@ -1316,6 +1411,15 @@ categories:
     category_id: '78997'
     min_price: 200
     max_price: 800
+  - id: ai-s-135mm-f35
+    name_ko: Nikkor 135mm f/3.5 AI-S
+    name_en: Nikon Nikkor 135mm f/3.5 AI-S
+    focal_length_min: 135
+    subcategory: ais
+    query: Nikon AIS 135mm f/3.5 -f/2.8 -Auto
+    category_id: '78997'
+    min_price: 30
+    max_price: 200
   - id: ai-s-200mm-f4
     name_ko: Nikkor 200mm f/4 AI-S
     name_en: Nikon Nikkor 200mm f/4 AI-S
@@ -1418,6 +1522,51 @@ categories:
     rarity_sort: 50
     rarity_price_hint: 공개 표본 부족
     rarity_note: 초고가 특수 렌즈
+  - id: ai-nikkor-45mm-f28p
+    name_ko: AI Nikkor 45mm f/2.8P
+    name_en: Nikon AI Nikkor 45mm f/2.8P
+    focal_length_min: 45
+    subcategory: special
+    query: Nikon AI Nikkor 45mm f/2.8P
+    category_id: '78997'
+    min_price: 250
+    max_price: 900
+  - id: pc-nikkor-35mm-f28
+    name_ko: PC-Nikkor 35mm f/2.8
+    name_en: Nikon PC-Nikkor 35mm f/2.8
+    focal_length_min: 35
+    subcategory: special
+    query: Nikon PC-Nikkor 35mm f/2.8 -PC-E -shift
+    category_id: '78997'
+    min_price: 100
+    max_price: 500
+  - id: pc-nikkor-28mm-f35
+    name_ko: PC-Nikkor 28mm f/3.5
+    name_en: Nikon PC-Nikkor 28mm f/3.5
+    focal_length_min: 28
+    subcategory: special
+    query: Nikon PC-Nikkor 28mm f/3.5 -PC-E -f/4
+    category_id: '78997'
+    min_price: 150
+    max_price: 800
+  - id: medical-nikkor-120mm-f4-if
+    name_ko: Medical-Nikkor 120mm f/4 IF
+    name_en: Nikon Medical-Nikkor 120mm f/4 IF
+    focal_length_min: 120
+    subcategory: special
+    query: Nikon Medical Nikkor 120mm
+    category_id: '78997'
+    min_price: 120
+    max_price: 700
+  - id: medical-nikkor-auto-200mm-f56
+    name_ko: Medical-Nikkor Auto 200mm f/5.6
+    name_en: Nikon Medical-Nikkor Auto 200mm f/5.6
+    focal_length_min: 200
+    subcategory: special
+    query: Nikon Medical-Nikkor Auto 200mm f/5.6 -manual -adapter
+    category_id: '78997'
+    min_price: 200
+    max_price: 1200
   - id: series-e-28mm-f28
     name_ko: Series E 28mm f/2.8
     name_en: Nikon Series E 28mm f/2.8
