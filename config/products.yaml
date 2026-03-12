@@ -860,6 +860,15 @@ categories:
     category_id: '78997'
     min_price: 300
     max_price: 800
+  - id: nikkor-z-58mm-f095-s-noct
+    name_ko: Z 58mm f/0.95 S Noct
+    name_en: NIKKOR Z 58mm f/0.95 S Noct
+    focal_length_min: 58
+    subcategory: prime
+    query: Nikon Noct 58mm f/0.95 Z
+    category_id: '78997'
+    min_price: 4000
+    max_price: 12000
   - id: nikkor-z-85mm-f12-s
     name_ko: Z 85mm f/1.2 S
     name_en: NIKKOR Z 85mm f/1.2 S
@@ -896,6 +905,15 @@ categories:
     category_id: '78997'
     min_price: 300
     max_price: 1000
+  - id: nikkor-z-35mm-f12-s
+    name_ko: Z 35mm f/1.2 S
+    name_en: NIKKOR Z 35mm f/1.2 S
+    focal_length_min: 35
+    subcategory: prime
+    query: NIKKOR Z 35mm f/1.2 S
+    category_id: '78997'
+    min_price: 1800
+    max_price: 4500
   - id: nikkor-z-35mm-f14
     name_ko: Z 35mm f/1.4
     name_en: NIKKOR Z 35mm f/1.4
@@ -2029,6 +2047,61 @@ categories:
     search_category_id: null
     min_price: 50
     max_price: 400
+  - id: nikon-dp-1
+    name_ko: Nikon DP-1
+    name_en: Nikon DP-1 Photomic Finder
+    release_year: 1971
+    subcategory: finder
+    product_type: accessory
+    query: Nikon DP-1 finder
+    category_id: '625'
+    search_category_id: null
+    min_price: 60
+    max_price: 400
+  - id: nikon-dp-2
+    name_ko: Nikon DP-2
+    name_en: Nikon DP-2 Photomic S Finder
+    release_year: 1973
+    subcategory: finder
+    product_type: accessory
+    query: Nikon DP-2 finder
+    category_id: '625'
+    search_category_id: null
+    min_price: 60
+    max_price: 400
+  - id: nikon-dp-3
+    name_ko: Nikon DP-3
+    name_en: Nikon DP-3 Metered Prism Finder
+    release_year: 1976
+    subcategory: finder
+    product_type: accessory
+    query: Nikon DP-3 finder
+    category_id: '625'
+    search_category_id: null
+    min_price: 60
+    max_price: 400
+  - id: nikon-dp-11
+    name_ko: Nikon DP-11
+    name_en: Nikon DP-11 Photomic A Finder
+    release_year: 1977
+    subcategory: finder
+    product_type: accessory
+    query: Nikon DP-11 finder
+    category_id: '625'
+    search_category_id: null
+    min_price: 60
+    max_price: 500
+  - id: nikon-dp-12
+    name_ko: Nikon DP-12
+    name_en: Nikon DP-12 Photomic AS Finder
+    release_year: 1977
+    subcategory: finder
+    product_type: accessory
+    query: Nikon DP-12 finder
+    category_id: '625'
+    search_category_id: null
+    min_price: 80
+    max_price: 600
   - id: nikon-f-eye-level-finder
     name_ko: Nikon F Eye-Level Finder
     name_en: Nikon F Eye-Level Finder
