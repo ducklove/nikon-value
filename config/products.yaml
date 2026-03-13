@@ -679,6 +679,10 @@ categories:
     name_ko: 매크로
     name_en: Macro
     sort_order: 3
+  - id: dx
+    name_ko: DX
+    name_en: DX
+    sort_order: 4
   products:
   - id: nikkor-z-14-30-f4-s
     name_ko: Z 14-30mm f/4 S
@@ -1004,6 +1008,51 @@ categories:
     category_id: '78997'
     min_price: 500
     max_price: 1200
+  - id: nikkor-z-dx-12-28-f35-56-pz-vr
+    name_ko: Z DX 12-28mm f/3.5-5.6 PZ VR
+    name_en: NIKKOR Z DX 12-28mm f/3.5-5.6 PZ VR
+    focal_length_min: 12
+    subcategory: dx
+    query: NIKKOR Z DX 12-28mm f/3.5-5.6 PZ VR
+    category_id: '78997'
+    min_price: 180
+    max_price: 450
+  - id: nikkor-z-dx-16-50-f35-63-vr
+    name_ko: Z DX 16-50mm f/3.5-6.3 VR
+    name_en: NIKKOR Z DX 16-50mm f/3.5-6.3 VR
+    focal_length_min: 16
+    subcategory: dx
+    query: NIKKOR Z DX 16-50mm f/3.5-6.3 VR
+    category_id: '78997'
+    min_price: 90
+    max_price: 280
+  - id: nikkor-z-dx-18-140-f35-63-vr
+    name_ko: Z DX 18-140mm f/3.5-6.3 VR
+    name_en: NIKKOR Z DX 18-140mm f/3.5-6.3 VR
+    focal_length_min: 18
+    subcategory: dx
+    query: NIKKOR Z DX 18-140mm f/3.5-6.3 VR
+    category_id: '78997'
+    min_price: 250
+    max_price: 700
+  - id: nikkor-z-dx-24mm-f17
+    name_ko: Z DX 24mm f/1.7
+    name_en: NIKKOR Z DX 24mm f/1.7
+    focal_length_min: 24
+    subcategory: dx
+    query: NIKKOR Z DX 24mm f/1.7
+    category_id: '78997'
+    min_price: 150
+    max_price: 350
+  - id: nikkor-z-dx-50-250-f45-63-vr
+    name_ko: Z DX 50-250mm f/4.5-6.3 VR
+    name_en: NIKKOR Z DX 50-250mm f/4.5-6.3 VR
+    focal_length_min: 50
+    subcategory: dx
+    query: NIKKOR Z DX 50-250mm f/4.5-6.3 VR
+    category_id: '78997'
+    min_price: 140
+    max_price: 400
 - id: f-mount-lenses
   name_ko: F마운트 렌즈
   name_en: F-Mount Lenses
