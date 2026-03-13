@@ -868,6 +868,11 @@ def build_resources_page(base_url: str) -> str:
             '수동 렌즈 포함 Nikon/Nikkor 렌즈 계보와 세부 변형을 추적하기 좋습니다.',
         ),
         (
+            'MIR Nikon SLR System Guide',
+            'https://www.mir.com.my/rb/photography/companies/nikon/htmls/models/htmls/slrmain8090.htm',
+            '1980-1990년대 니콘 SLR 시스템 구성과 주변기기 호환성을 정리한 아카이브입니다.',
+        ),
+        (
             'Ken Rockwell Nikon Lens Reviews',
             'https://www.kenrockwell.com/nikon/nikkor.htm',
             '렌즈별 실사용 리뷰와 세대별 특징을 빠르게 훑어보기 좋습니다.',
