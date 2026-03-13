@@ -4615,25 +4615,220 @@
    "name_en": "F-Mount Lenses",
    "subcategories": [
     {
-     "id": "zoom",
-     "name_ko": "줌 렌즈",
-     "name_en": "Zoom",
+     "id": "wide-zoom",
+     "name_ko": "광각 줌",
+     "name_en": "Wide Zoom",
      "sort_order": 1
+    },
+    {
+     "id": "standard-zoom",
+     "name_ko": "표준 줌",
+     "name_en": "Standard Zoom",
+     "sort_order": 2
+    },
+    {
+     "id": "tele-zoom",
+     "name_ko": "망원 줌",
+     "name_en": "Tele Zoom",
+     "sort_order": 3
     },
     {
      "id": "prime",
      "name_ko": "단초점 렌즈",
      "name_en": "Prime",
-     "sort_order": 2
+     "sort_order": 4
     },
     {
      "id": "macro",
      "name_ko": "매크로",
      "name_en": "Macro",
-     "sort_order": 3
+     "sort_order": 5
+    },
+    {
+     "id": "dx",
+     "name_ko": "DX",
+     "name_en": "DX",
+     "sort_order": 6
+    },
+    {
+     "id": "pc-e",
+     "name_ko": "PC-E",
+     "name_en": "PC-E",
+     "sort_order": 7
     }
    ],
    "products": [
+    {
+     "id": "af-s-14-24-f28g-ed",
+     "name_ko": "AF-S 14-24mm f/2.8G ED",
+     "name_en": "AF-S NIKKOR 14-24mm f/2.8G ED",
+     "subcategory": "zoom",
+     "focal_length_min": 14,
+     "median": 732.75,
+     "mean": 760.84,
+     "min": 468.99,
+     "max": 1245.0,
+     "q1": 630.45,
+     "q3": 876.65,
+     "count": 168,
+     "count_filtered": 168,
+     "samples": [
+      {
+       "title": "Nikon AF-S NIKKOR 14-24mm f/2.8 G ED \"Near Mint\" 9107 Wide Zoom Lens Japan Made",
+       "price": 730.39,
+       "currency": "USD",
+       "condition": "Used",
+       "image": "https://i.ebayimg.com/images/g/2ZwAAOSwLkVn7Jtn/s-l1600.jpg",
+       "url": "https://www.ebay.com/itm/306215112172?_skw=Nikon+AF-S+14-24mm+f%2F2.8G+ED&hash=item474bd7cdec:g:2ZwAAOSwLkVn7Jtn"
+      },
+      {
+       "title": "Nikon AF-S NIKKOR 14-24mm f/2.8 G ED \"Near Mint\" 0158 Wide Zoom Lens Japan Made",
+       "price": 730.39,
+       "currency": "USD",
+       "condition": "Used",
+       "image": "https://i.ebayimg.com/images/g/yqMAAeSwUclolDGd/s-l1600.jpg",
+       "url": "https://www.ebay.com/itm/306435851427?_skw=Nikon+AF-S+14-24mm+f%2F2.8G+ED&hash=item47590004a3:g:yqMAAeSwUclolDGd"
+      },
+      {
+       "title": "USED Nikon AF-S Nikkor 14-24mm f/2.8 G ED (#532863CM)",
+       "price": 735.11,
+       "currency": "USD",
+       "condition": "Used",
+       "image": "https://i.ebayimg.com/images/g/pLEAAeSwqCdpYKkU/s-l1600.jpg",
+       "url": "https://www.ebay.com/itm/116973365695?_skw=Nikon+AF-S+14-24mm+f%2F2.8G+ED&hash=item1b3c27e9bf:g:pLEAAeSwqCdpYKkU"
+      },
+      {
+       "title": "Nikon AF-S NIKKOR 14-24mm F2.8 G ED Lens Working",
+       "price": 735.42,
+       "currency": "USD",
+       "condition": "Used",
+       "image": "https://i.ebayimg.com/images/g/0uAAAeSwzWNpY5bO/s-l640.jpg",
+       "url": "https://www.ebay.com/itm/168074336341?_skw=Nikon+AF-S+14-24mm+f%2F2.8G+ED&hash=item272202d855:g:0uAAAeSwzWNpY5bO"
+      },
+      {
+       "title": "Nikon AF-S Nikkor 14-24mm f/2.8 G ED N w/Case, Caps",
+       "price": 735.55,
+       "currency": "USD",
+       "condition": "Used",
+       "image": "https://i.ebayimg.com/images/g/AVkAAOSw1b9lgUOM/s-l1600.jpg",
+       "url": "https://www.ebay.com/itm/335176435325?_skw=Nikon+AF-S+14-24mm+f%2F2.8G+ED&hash=item4e0a12867d:g:AVkAAOSw1b9lgUOM"
+      }
+     ]
+    },
+    {
+     "id": "af-s-16-35-f4g-ed-vr",
+     "name_ko": "AF-S 16-35mm f/4G ED VR",
+     "name_en": "AF-S NIKKOR 16-35mm f/4G ED VR",
+     "subcategory": "wide-zoom",
+     "focal_length_min": 16,
+     "median": 447.29,
+     "mean": 462.54,
+     "min": 319.0,
+     "max": 685.42,
+     "q1": 399.99,
+     "q3": 523.53,
+     "count": 108,
+     "count_filtered": 102,
+     "samples": [
+      {
+       "title": "Nikon AF-S Nikkor N VR ED IF 16-35mm f4 G",
+       "price": 450.84,
+       "currency": "USD",
+       "condition": "Used",
+       "image": "https://i.ebayimg.com/images/g/~74AAeSwvSNpnK7r/s-l1600.jpg",
+       "url": "https://www.ebay.com/itm/317916118400?_skw=Nikon+AF-S+16-35mm+f%2F4G+ED+VR&hash=item4a0546fd80:g:~74AAeSwvSNpnK7r"
+      },
+      {
+       "title": "Nikon AF-S NIKKOR 16-35mm f4G VR ED N.MINT Wide Angle Zoom Lens IF SWM SN202835",
+       "price": 457.0,
+       "currency": "USD",
+       "condition": "Used",
+       "image": "https://i.ebayimg.com/images/g/m-QAAeSws3lpnswo/s-l1600.jpg",
+       "url": "https://www.ebay.com/itm/406720739641?_skw=Nikon+AF-S+16-35mm+f%2F4G+ED+VR&hash=item5eb271f939:g:m-QAAeSws3lpnswo"
+      },
+      {
+       "title": "[Near Mint] Nikon AF-S NIKKOR 16-35mm f/4G VR ED IF Nano Lens from Japan By DHL",
+       "price": 458.99,
+       "currency": "USD",
+       "condition": "Used",
+       "image": "https://i.ebayimg.com/images/g/2lEAAOSwxL1nYlM~/s-l1600.jpg",
+       "url": "https://www.ebay.com/itm/396375995519?_skw=Nikon+AF-S+16-35mm+f%2F4G+ED+VR&hash=item5c49d9b47f:g:2lEAAOSwxL1nYlM~"
+      },
+      {
+       "title": "Good Condition Nikon AF S NIKKOR 16 35mm F4 G ED VR Nikon F Mount",
+       "price": 459.1,
+       "currency": "USD",
+       "condition": "Used",
+       "image": "https://i.ebayimg.com/images/g/k2sAAeSwreJph0Lf/s-l1200.jpg",
+       "url": "https://www.ebay.com/itm/168142572844?_skw=Nikon+AF-S+16-35mm+f%2F4G+ED+VR&hash=item2726140d2c:g:k2sAAeSwreJph0Lf"
+      },
+      {
+       "title": "Nikon AF-S NIKKOR 16-35mm F4 G ED VR wide angle zoom F mount lens 341528",
+       "price": 460.94,
+       "currency": "USD",
+       "condition": "Used",
+       "image": "https://i.ebayimg.com/images/g/YjEAAeSwtj1ps4oO/s-l640.jpg",
+       "url": "https://www.ebay.com/itm/306806705222?_skw=Nikon+AF-S+16-35mm+f%2F4G+ED+VR&hash=item476f1acc46:g:YjEAAeSwtj1ps4oO"
+      }
+     ]
+    },
+    {
+     "id": "af-s-17-35-f28d-if-ed",
+     "name_ko": "AF-S 17-35mm f/2.8D IF-ED",
+     "name_en": "AF-S Zoom-NIKKOR 17-35mm f/2.8D IF-ED",
+     "subcategory": "wide-zoom",
+     "focal_length_min": 17,
+     "median": 506.88,
+     "mean": 490.18,
+     "min": 279.99,
+     "max": 849.39,
+     "q1": 315.99,
+     "q3": 597.97,
+     "count": 15,
+     "count_filtered": 15,
+     "samples": [
+      {
+       "title": "Nikon AF-S NIKKOR 17-35mm F2.8D IF-ED Wide Angle Zoom Lens 【NEAR MINT】 Japan #82",
+       "price": 399.99,
+       "currency": "USD",
+       "condition": "Used",
+       "image": "https://i.ebayimg.com/images/g/EPgAAeSwFWZo8Nj0/s-l1600.jpg",
+       "url": "https://www.ebay.com/itm/366208105380?_skw=Nikon+AF-S+17-35mm+f%2F2.8D+IF-ED&hash=item5543b43ba4:g:EPgAAeSwFWZo8Nj0"
+      },
+      {
+       "title": "Nikon Ai AF-S Nikkor 17-35mm F2.8 D IF ED LL1185507",
+       "price": 484.88,
+       "currency": "USD",
+       "condition": "Used",
+       "image": "https://i.ebayimg.com/images/g/h9wAAeSwNDppIwa2/s-l1200.jpg",
+       "url": "https://www.ebay.com/itm/127519034969?_skw=Nikon+AF-S+17-35mm+f%2F2.8D+IF-ED&hash=item1db0ba0e59:g:h9wAAeSwNDppIwa2"
+      },
+      {
+       "title": "Nikon AF-S NIKKOR (E18NK1735D) 17-35mm f/2.8 D SWM IF ED Lens #Z-81676",
+       "price": 506.88,
+       "currency": "USD",
+       "condition": "Used",
+       "image": "https://i.ebayimg.com/images/g/R9gAAeSwAmhpZ-RB/s-l1600.jpg",
+       "url": "https://www.ebay.com/itm/236582134235?_skw=Nikon+AF-S+17-35mm+f%2F2.8D+IF-ED&hash=item371564e1db:g:R9gAAeSwAmhpZ-RB"
+      },
+      {
+       "title": "[ MINT/BOX ] Nikon AF-S ZOOM NIKKOR 17-35mm F2.8D IF ED Lens From JAPAN",
+       "price": 554.99,
+       "currency": "USD",
+       "condition": "Used",
+       "image": "https://i.ebayimg.com/images/g/qpgAAeSwXZlo8F0w/s-l1600.jpg",
+       "url": "https://www.ebay.com/itm/146876209302?_skw=Nikon+AF-S+17-35mm+f%2F2.8D+IF-ED&hash=item2232811896:g:qpgAAeSwXZlo8F0w"
+      },
+      {
+       "title": "Nikon AF-S Nikkor 17-35mm f/2.8 D IF ED Lens F. Nikon F Camera",
+       "price": 589.98,
+       "currency": "USD",
+       "condition": "Used",
+       "image": "https://i.ebayimg.com/images/g/ZIAAAOSwnF9j~Baf/s-l1600.jpg",
+       "url": "https://www.ebay.com/itm/134467144723?_skw=Nikon+AF-S+17-35mm+f%2F2.8D+IF-ED&hash=item1f4eddcc13:g:ZIAAAOSwnF9j~Baf"
+      }
+     ]
+    },
     {
      "id": "af-s-24-70-f28g-ed",
      "name_ko": "AF-S 24-70mm f/2.8G ED",
@@ -4745,6 +4940,250 @@
        "condition": "Used",
        "image": "https://i.ebayimg.com/images/g/soEAAeSwPo5pjsh-/s-l1600.jpg",
        "url": "https://www.ebay.com/itm/336433255854?_skw=Nikon+AF-S+24-70mm+f%2F2.8E+ED+VR&hash=item4e54fc15ae:g:soEAAeSwPo5pjsh-"
+      }
+     ]
+    },
+    {
+     "id": "af-s-24-85-f35-45g-ed-vr",
+     "name_ko": "AF-S 24-85mm f/3.5-4.5G ED VR",
+     "name_en": "AF-S NIKKOR 24-85mm f/3.5-4.5G ED VR",
+     "subcategory": "standard-zoom",
+     "focal_length_min": 24,
+     "median": 258.99,
+     "mean": 266.04,
+     "min": 175.42,
+     "max": 379.99,
+     "q1": 228.99,
+     "q3": 307.56,
+     "count": 41,
+     "count_filtered": 40,
+     "samples": [
+      {
+       "title": "Nikon AF-S NIKKOR 24-85mm f/3.5-4.5G ED VR Lens 55",
+       "price": 258.99,
+       "currency": "USD",
+       "condition": "Used",
+       "image": "https://i.ebayimg.com/images/g/HokAAOSwpVpiEWfv/s-l1600.jpg",
+       "url": "https://www.ebay.com/itm/175551935018?_skw=Nikon+AF-S+24-85mm+f%2F3.5-4.5G+ED+VR&hash=item28dfb5f22a:g:HokAAOSwpVpiEWfv"
+      },
+      {
+       "title": "Nikon AF-S NIKKOR 24-85mm f/3.5-4.5G ED VR Lens",
+       "price": 258.99,
+       "currency": "USD",
+       "condition": "Used",
+       "image": "https://i.ebayimg.com/images/g/xcEAAOSwEmBk7T7V/s-l1600.jpg",
+       "url": "https://www.ebay.com/itm/175878779310?_skw=Nikon+AF-S+24-85mm+f%2F3.5-4.5G+ED+VR&hash=item28f33131ae:g:xcEAAOSwEmBk7T7V"
+      },
+      {
+       "title": "Nikon AF-S 24-85mm f/3.5-4.5G ED VR Lens 2",
+       "price": 258.99,
+       "currency": "USD",
+       "condition": "Used",
+       "image": "https://i.ebayimg.com/images/g/Hw0AAOSwOkVfmlYj/s-l1600.jpg",
+       "url": "https://www.ebay.com/itm/177671562682?_skw=Nikon+AF-S+24-85mm+f%2F3.5-4.5G+ED+VR&hash=item295e0ce5ba:g:Hw0AAOSwOkVfmlYj"
+      },
+      {
+       "title": "NIKON AF S NIKKOR 24 85mm f 3.5 4.5G ED VR Standard Zoom Lens F Mount   Next Da",
+       "price": 259.05,
+       "currency": "USD",
+       "condition": "Used",
+       "image": "https://i.ebayimg.com/images/g/~qIAAeSw0fFps1Yg/s-l640.jpg",
+       "url": "https://www.ebay.com/itm/157747448965?_skw=Nikon+AF-S+24-85mm+f%2F3.5-4.5G+ED+VR&hash=item24ba7b0c85:g:~qIAAeSw0fFps1Yg"
+      },
+      {
+       "title": "condition Nikon AF S NIKKOR 24 85mm F3.5 4.5G ED VR 20260222 3406",
+       "price": 275.34,
+       "currency": "USD",
+       "condition": "Used",
+       "image": "https://i.ebayimg.com/images/g/JEYAAeSw-AJps1WV/s-l1200.jpg",
+       "url": "https://www.ebay.com/itm/157747448474?_skw=Nikon+AF-S+24-85mm+f%2F3.5-4.5G+ED+VR&hash=item24ba7b0a9a:g:JEYAAeSw-AJps1WV"
+      }
+     ]
+    },
+    {
+     "id": "af-s-24-120-f4g-ed-vr",
+     "name_ko": "AF-S 24-120mm f/4G ED VR",
+     "name_en": "AF-S NIKKOR 24-120mm f/4G ED VR",
+     "subcategory": "standard-zoom",
+     "focal_length_min": 24,
+     "median": 434.47,
+     "mean": 447.88,
+     "min": 260.28,
+     "max": 725.86,
+     "q1": 370.0,
+     "q3": 519.92,
+     "count": 237,
+     "count_filtered": 234,
+     "samples": [
+      {
+       "title": "Nikon NIKON AF-S NIKKOR 24-120mm F4 G ED R Working #P755",
+       "price": 435.25,
+       "currency": "USD",
+       "condition": "Used",
+       "image": "https://i.ebayimg.com/images/g/xrMAAeSwSlFpsmjK/s-l1200.jpg",
+       "url": "https://www.ebay.com/itm/277795405074?_skw=Nikon+AF-S+24-120mm+f%2F4G+ED+VR&hash=item40ade57d12:g:xrMAAeSwSlFpsmjK"
+      },
+      {
+       "title": "Nikon standard zoom lens AF-S NIKKOR 24-120mm f/4G ED VR",
+       "price": 435.97,
+       "currency": "USD",
+       "condition": "Used",
+       "image": "https://i.ebayimg.com/images/g/sSsAAeSwQ1JpS8O7/s-l1600.jpg",
+       "url": "https://www.ebay.com/itm/404513292895?_skw=Nikon+AF-S+24-120mm+f%2F4G+ED+VR&hash=item5e2edf025f:g:sSsAAeSwQ1JpS8O7"
+      },
+      {
+       "title": "Nikon Nikkor AF-S 24-120 mm F/4 G ED VR Lens **Very Good** Condition",
+       "price": 436.5,
+       "currency": "USD",
+       "condition": "Used",
+       "image": "https://i.ebayimg.com/images/g/ZvwAAeSwWm5pcwNk/s-l1600.jpg",
+       "url": "https://www.ebay.com/itm/236596419040?_skw=Nikon+AF-S+24-120mm+f%2F4G+ED+VR&hash=item37163ed9e0:g:ZvwAAeSwWm5pcwNk"
+      },
+      {
+       "title": "Nikon AF-S 24-120MM F4 G ED N VR Zoom Lens",
+       "price": 436.69,
+       "currency": "USD",
+       "condition": "Used",
+       "image": "https://i.ebayimg.com/images/g/p18AAeSwgeJpm2mK/s-l1600.jpg",
+       "url": "https://www.ebay.com/itm/257373730512?_skw=Nikon+AF-S+24-120mm+f%2F4G+ED+VR&hash=item3becab76d0:g:p18AAeSwgeJpm2mK"
+      },
+      {
+       "title": "NIKON AF-S NIKKOR 24-120MM 1:4G ED Lens for DSLR Cameras",
+       "price": 437.32,
+       "currency": "USD",
+       "condition": "Used",
+       "image": "https://i.ebayimg.com/images/g/hhMAAeSwR59pXmQD/s-l1600.jpg",
+       "url": "https://www.ebay.com/itm/197894749988?_skw=Nikon+AF-S+24-120mm+f%2F4G+ED+VR&hash=item2e13723f24:g:hhMAAeSwR59pXmQD"
+      }
+     ]
+    },
+    {
+     "id": "af-s-28-70-f28d-ed-if",
+     "name_ko": "AF-S 28-70mm f/2.8D ED-IF",
+     "name_en": "AF-S Zoom-NIKKOR 28-70mm f/2.8D ED-IF",
+     "subcategory": "standard-zoom",
+     "focal_length_min": 28,
+     "median": 439.0,
+     "mean": 451.1,
+     "min": 307.95,
+     "max": 728.0,
+     "q1": 357.51,
+     "q3": 538.46,
+     "count": 47,
+     "count_filtered": 47,
+     "samples": [
+      {
+       "title": "Nikon AF-S Nikkor 28-70mm f/2.8 D ED IF AF SWM Zoom Lens JAPAN",
+       "price": 422.79,
+       "currency": "USD",
+       "condition": "Used",
+       "image": "https://i.ebayimg.com/images/g/h2kAAOSwvhFmzr6q/s-l1200.jpg",
+       "url": "https://www.ebay.com/itm/387326755300?_skw=Nikon+AF-S+28-70mm+f%2F2.8D+ED+IF&hash=item5a2e7941e4:g:h2kAAOSwvhFmzr6q"
+      },
+      {
+       "title": "Nikon AF-S NIKKOR 28-70mm f/2.8 D ED Autofocus IF Lens W/ Leather Case",
+       "price": 438.59,
+       "currency": "USD",
+       "condition": "Used",
+       "image": "https://i.ebayimg.com/images/g/TWoAAeSwRfJpQGy5/s-l1600.jpg",
+       "url": "https://www.ebay.com/itm/296687999100?_skw=Nikon+AF-S+28-70mm+f%2F2.8D+ED+IF&hash=item4513fb987c:g:TWoAAeSwRfJpQGy5"
+      },
+      {
+       "title": "Nikon AF-S ED 28-70mm F2.8 D ED (IF) Black Z5475",
+       "price": 439.0,
+       "currency": "USD",
+       "condition": "Used",
+       "image": "https://i.ebayimg.com/images/g/vIkAAeSwu6Bpoorf/s-l640.jpg",
+       "url": "https://www.ebay.com/itm/127709612133?_skw=Nikon+AF-S+28-70mm+f%2F2.8D+ED+IF&hash=item1dbc160865:g:vIkAAeSwu6Bpoorf"
+      },
+      {
+       "title": "Nikon AF-S 28-70mm F2.8 D ED IF Zoom F Mount Lens From JAPAN",
+       "price": 439.9,
+       "currency": "USD",
+       "condition": "Used",
+       "image": "https://i.ebayimg.com/images/g/oh4AAeSwO7xpPkzX/s-l1200.jpg",
+       "url": "https://www.ebay.com/itm/397416772999?_skw=Nikon+AF-S+28-70mm+f%2F2.8D+ED+IF&hash=item5c87e2b587:g:oh4AAeSwO7xpPkzX"
+      },
+      {
+       "title": "[Near Mint] Nikon ED AF-S NIKKOR 28-70mm f/2.8D IF SWM Lens from Japan #2458",
+       "price": 445.0,
+       "currency": "USD",
+       "condition": "Used",
+       "image": "https://i.ebayimg.com/images/g/Wg8AAOSwlDJnG7So/s-l1600.jpg",
+       "url": "https://www.ebay.com/itm/168087393569?_skw=Nikon+AF-S+28-70mm+f%2F2.8D+ED+IF&hash=item2722ca1521:g:Wg8AAOSwlDJnG7So"
+      }
+     ]
+    },
+    {
+     "id": "af-p-70-300-f45-63e-ed-vr",
+     "name_ko": "AF-P 70-300mm f/4.5-6.3E ED VR",
+     "name_en": "AF-P NIKKOR 70-300mm f/4.5-6.3E ED VR",
+     "subcategory": "zoom",
+     "focal_length_min": 70,
+     "median": null,
+     "mean": null,
+     "min": null,
+     "max": null,
+     "q1": null,
+     "q3": null,
+     "count": 0,
+     "count_filtered": 0,
+     "samples": []
+    },
+    {
+     "id": "af-s-70-300-f45-56g-if-ed-vr",
+     "name_ko": "AF-S 70-300mm f/4.5-5.6G IF-ED VR",
+     "name_en": "AF-S NIKKOR 70-300mm f/4.5-5.6G IF-ED VR",
+     "subcategory": "tele-zoom",
+     "focal_length_min": 70,
+     "median": 281.15,
+     "mean": 298.06,
+     "min": 190.99,
+     "max": 438.0,
+     "q1": 247.0,
+     "q3": 344.69,
+     "count": 26,
+     "count_filtered": 26,
+     "samples": [
+      {
+       "title": "Nikon AF-S VR Zoom-Nikkor 70-300mm F/4.5-5.6G IF-ED #B53",
+       "price": 275.15,
+       "currency": "USD",
+       "condition": "Used",
+       "image": "https://i.ebayimg.com/images/g/K3UAAeSwEcxpRcA1/s-l1600.jpg",
+       "url": "https://www.ebay.com/itm/136865699552?_skw=Nikon+AF-S+70-300mm+f%2F4.5-5.6G+IF-ED+VR&hash=item1fddd4d6e0:g:K3UAAeSwEcxpRcA1"
+      },
+      {
+       "title": "Nikon AF-S VR Zoom-Nikkor 70-300mm f/4.5-5.6G IF-ED Lens",
+       "price": 280.4,
+       "currency": "USD",
+       "condition": "Used",
+       "image": "https://i.ebayimg.com/images/g/Fx4AAeSw7slpaDSA/s-l1600.jpg",
+       "url": "https://www.ebay.com/itm/198008093102?_skw=Nikon+AF-S+70-300mm+f%2F4.5-5.6G+IF-ED+VR&hash=item2e1a33b9ae:g:Fx4AAeSw7slpaDSA"
+      },
+      {
+       "title": "Nikon AF-S VR Zoom-NIKKOR 70-300mm f/4.5-5.6G IF-ED Telephoto Zoom Lens",
+       "price": 281.91,
+       "currency": "USD",
+       "condition": "Used",
+       "image": "https://i.ebayimg.com/images/g/oj8AAeSwGC9pcTmD/s-l1600.jpg",
+       "url": "https://www.ebay.com/itm/147107499683?_skw=Nikon+AF-S+70-300mm+f%2F4.5-5.6G+IF-ED+VR&hash=item22404a4ea3:g:oj8AAeSwGC9pcTmD"
+      },
+      {
+       "title": "USED Nikon AF-S VR Zoom Nikkor 70-300mm f4.5-5.6 G IF-ED Lens Excellent Japan",
+       "price": 295.0,
+       "currency": "USD",
+       "condition": "Used",
+       "image": "https://i.ebayimg.com/images/g/xfUAAeSwpYZpNdhD/s-l1600.jpg",
+       "url": "https://www.ebay.com/itm/157528726996?_skw=Nikon+AF-S+70-300mm+f%2F4.5-5.6G+IF-ED+VR&hash=item24ad719dd4:g:xfUAAeSwpYZpNdhD"
+      },
+      {
+       "title": "Good Condition Nikon AF S VR Zoom Nikkor 70 300mm F4.5 5.6G IF ED Nikon F Mount",
+       "price": 309.22,
+       "currency": "USD",
+       "condition": "Used",
+       "image": "https://i.ebayimg.com/images/g/eoIAAeSwPu1ph0Jk/s-l1200.jpg",
+       "url": "https://www.ebay.com/itm/168142572542?_skw=Nikon+AF-S+70-300mm+f%2F4.5-5.6G+IF-ED+VR&hash=item2726140bfe:g:eoIAAeSwPu1ph0Jk"
       }
      ]
     },
@@ -4863,59 +5302,59 @@
      ]
     },
     {
-     "id": "af-s-14-24-f28g-ed",
-     "name_ko": "AF-S 14-24mm f/2.8G ED",
-     "name_en": "AF-S NIKKOR 14-24mm f/2.8G ED",
-     "subcategory": "zoom",
-     "focal_length_min": 14,
-     "median": 732.75,
-     "mean": 760.84,
-     "min": 468.99,
-     "max": 1245.0,
-     "q1": 630.45,
-     "q3": 876.65,
-     "count": 168,
-     "count_filtered": 168,
+     "id": "af-s-80-400-f45-56g-ed-vr",
+     "name_ko": "AF-S 80-400mm f/4.5-5.6G ED VR",
+     "name_en": "AF-S NIKKOR 80-400mm f/4.5-5.6G ED VR",
+     "subcategory": "tele-zoom",
+     "focal_length_min": 80,
+     "median": 871.9,
+     "mean": 872.15,
+     "min": 702.91,
+     "max": 1018.77,
+     "q1": 799.5,
+     "q3": 953.02,
+     "count": 17,
+     "count_filtered": 16,
      "samples": [
       {
-       "title": "Nikon AF-S NIKKOR 14-24mm f/2.8 G ED \"Near Mint\" 9107 Wide Zoom Lens Japan Made",
-       "price": 730.39,
+       "title": "Nikon AF-S NIKKOR 80-400mm f/4.5-5.6g ED VR 191414",
+       "price": 845.0,
        "currency": "USD",
        "condition": "Used",
-       "image": "https://i.ebayimg.com/images/g/2ZwAAOSwLkVn7Jtn/s-l1600.jpg",
-       "url": "https://www.ebay.com/itm/306215112172?_skw=Nikon+AF-S+14-24mm+f%2F2.8G+ED&hash=item474bd7cdec:g:2ZwAAOSwLkVn7Jtn"
+       "image": "https://i.ebayimg.com/images/g/W40AAeSwXVZps2nm/s-l1200.jpg",
+       "url": "https://www.ebay.com/itm/306818625421?_skw=Nikon+AF-S+80-400mm+f%2F4.5-5.6G+ED+VR&hash=item476fd0af8d:g:W40AAeSwXVZps2nm"
       },
       {
-       "title": "Nikon AF-S NIKKOR 14-24mm f/2.8 G ED \"Near Mint\" 0158 Wide Zoom Lens Japan Made",
-       "price": 730.39,
+       "title": "Nikon AF-S NIKKOR 80-400mm F4.5-5.6 G ED VR Black Lens F-Mount DSLR Exc+++++",
+       "price": 863.8,
        "currency": "USD",
        "condition": "Used",
-       "image": "https://i.ebayimg.com/images/g/yqMAAeSwUclolDGd/s-l1600.jpg",
-       "url": "https://www.ebay.com/itm/306435851427?_skw=Nikon+AF-S+14-24mm+f%2F2.8G+ED&hash=item47590004a3:g:yqMAAeSwUclolDGd"
+       "image": "https://i.ebayimg.com/images/g/V64AAeSwO6xpp-qG/s-l1200.jpg",
+       "url": "https://www.ebay.com/itm/137093244759?_skw=Nikon+AF-S+80-400mm+f%2F4.5-5.6G+ED+VR&hash=item1feb64e757:g:V64AAeSwO6xpp-qG"
       },
       {
-       "title": "USED Nikon AF-S Nikkor 14-24mm f/2.8 G ED (#532863CM)",
-       "price": 735.11,
+       "title": "Nikon AF-S NIKKOR 80-400mm f/4.5-5.6G ED VR Telephoto zoom lens From Japan Fedex",
+       "price": 880.0,
        "currency": "USD",
        "condition": "Used",
-       "image": "https://i.ebayimg.com/images/g/pLEAAeSwqCdpYKkU/s-l1600.jpg",
-       "url": "https://www.ebay.com/itm/116973365695?_skw=Nikon+AF-S+14-24mm+f%2F2.8G+ED&hash=item1b3c27e9bf:g:pLEAAeSwqCdpYKkU"
+       "image": "https://i.ebayimg.com/images/g/aWcAAOSwzUNnhwrD/s-l1600.jpg",
+       "url": "https://www.ebay.com/itm/356468464106?_skw=Nikon+AF-S+80-400mm+f%2F4.5-5.6G+ED+VR&hash=item52ff2d19ea:g:aWcAAOSwzUNnhwrD"
       },
       {
-       "title": "Nikon AF-S NIKKOR 14-24mm F2.8 G ED Lens Working",
-       "price": 735.42,
+       "title": "Nikon telephoto zoom lens AF-S NIKKOR 80-400mm f/4.5-5.6G ED VR",
+       "price": 912.97,
        "currency": "USD",
        "condition": "Used",
-       "image": "https://i.ebayimg.com/images/g/0uAAAeSwzWNpY5bO/s-l640.jpg",
-       "url": "https://www.ebay.com/itm/168074336341?_skw=Nikon+AF-S+14-24mm+f%2F2.8G+ED&hash=item272202d855:g:0uAAAeSwzWNpY5bO"
+       "image": "https://i.ebayimg.com/images/g/UToAAOSw8Thl5nR4/s-l1600.jpg",
+       "url": "https://www.ebay.com/itm/404842681093?_skw=Nikon+AF-S+80-400mm+f%2F4.5-5.6G+ED+VR&hash=item5e42811305:g:UToAAOSw8Thl5nR4"
       },
       {
-       "title": "Nikon AF-S Nikkor 14-24mm f/2.8 G ED N w/Case, Caps",
-       "price": 735.55,
+       "title": "Nikon telephoto zoom lens AF-S NIKKOR 80-400mm f/4.5-5.6G ED VR",
+       "price": 912.97,
        "currency": "USD",
        "condition": "Used",
-       "image": "https://i.ebayimg.com/images/g/AVkAAOSw1b9lgUOM/s-l1600.jpg",
-       "url": "https://www.ebay.com/itm/335176435325?_skw=Nikon+AF-S+14-24mm+f%2F2.8G+ED&hash=item4e0a12867d:g:AVkAAOSw1b9lgUOM"
+       "image": "https://i.ebayimg.com/images/g/rtgAAOSwBJFoUcTs/s-l1600.jpg",
+       "url": "https://www.ebay.com/itm/404430962927?_skw=Nikon+AF-S+80-400mm+f%2F4.5-5.6G+ED+VR&hash=item5e29f6c0ef:g:rtgAAOSwBJFoUcTs"
       }
      ]
     },
@@ -4977,11 +5416,125 @@
      ]
     },
     {
-     "id": "af-p-70-300-f45-63e-ed-vr",
-     "name_ko": "AF-P 70-300mm f/4.5-6.3E ED VR",
-     "name_en": "AF-P NIKKOR 70-300mm f/4.5-6.3E ED VR",
-     "subcategory": "zoom",
-     "focal_length_min": 70,
+     "id": "af-nikkor-20mm-f28d",
+     "name_ko": "AF 20mm f/2.8D",
+     "name_en": "AF NIKKOR 20mm f/2.8D",
+     "subcategory": "prime",
+     "focal_length_min": 20,
+     "median": 219.5,
+     "mean": 229.95,
+     "min": 158.71,
+     "max": 369.94,
+     "q1": 189.79,
+     "q3": 261.93,
+     "count": 62,
+     "count_filtered": 62,
+     "samples": [
+      {
+       "title": "[NEAR MINT] Nikon AF Nikkor 20mm F2.8 D Wide Angle Lens F Mount from Japan",
+       "price": 219.0,
+       "currency": "USD",
+       "condition": "Used",
+       "image": "https://i.ebayimg.com/images/g/esoAAeSwSXBoaNEO/s-l1200.jpg",
+       "url": "https://www.ebay.com/itm/405432386018?_skw=Nikon+AF+Nikkor+20mm+f%2F2.8D&hash=item5e65a741e2:g:esoAAeSwSXBoaNEO"
+      },
+      {
+       "title": "Nikon Single Focus Lens Ai AF Nikkor 20mm f/2.8D Full size compatible",
+       "price": 219.09,
+       "currency": "USD",
+       "condition": "Used",
+       "image": "https://i.ebayimg.com/images/g/oNMAAOSwRftlNvBr/s-l960.jpg",
+       "url": "https://www.ebay.com/itm/404568553309?_skw=Nikon+AF+Nikkor+20mm+f%2F2.8D&hash=item5e322a375d:g:oNMAAOSwRftlNvBr"
+      },
+      {
+       "title": "[TOP MINT] Nikon AF Nikkor 20mm f2.8 D Wide Angle Lens From JAPAN 169",
+       "price": 219.9,
+       "currency": "USD",
+       "condition": "Used",
+       "image": "https://i.ebayimg.com/images/g/Bf8AAOSwNFNoEEPc/s-l1600.jpg",
+       "url": "https://www.ebay.com/itm/116967456873?_skw=Nikon+AF+Nikkor+20mm+f%2F2.8D&hash=item1b3bcdc069:g:Bf8AAOSwNFNoEEPc"
+      },
+      {
+       "title": "Nikon AF NIKKOR 20mm f2.8 D Lens",
+       "price": 223.04,
+       "currency": "USD",
+       "condition": "Used",
+       "image": "https://i.ebayimg.com/images/g/EOcAAeSwgfppUk33/s-l1600.jpg",
+       "url": "https://www.ebay.com/itm/257282846210?_skw=Nikon+AF+Nikkor+20mm+f%2F2.8D&hash=item3be740ae02:g:EOcAAeSwgfppUk33"
+      },
+      {
+       "title": "Nikon AF NIKKOR 20mm f/2.8D Wide-angle Lens US360256",
+       "price": 230.44,
+       "currency": "USD",
+       "condition": "Used",
+       "image": "https://i.ebayimg.com/images/g/NaEAAOSwd6ljn-5W/s-l1600.jpg",
+       "url": "https://www.ebay.com/itm/175667587438?_skw=Nikon+AF+Nikkor+20mm+f%2F2.8D&hash=item28e69aa96e:g:NaEAAOSwd6ljn-5W"
+      }
+     ]
+    },
+    {
+     "id": "af-s-24mm-f14g-ed",
+     "name_ko": "AF-S 24mm f/1.4G ED",
+     "name_en": "AF-S NIKKOR 24mm f/1.4G ED",
+     "subcategory": "prime",
+     "focal_length_min": 24,
+     "median": 880.4,
+     "mean": 899.78,
+     "min": 701.0,
+     "max": 1293.99,
+     "q1": 795.91,
+     "q3": 1006.54,
+     "count": 19,
+     "count_filtered": 18,
+     "samples": [
+      {
+       "title": "Excellent Nikon AF-S NIKKOR 24mm F1.4G ED [Lens]",
+       "price": 869.96,
+       "currency": "USD",
+       "condition": "Used",
+       "image": "https://i.ebayimg.com/images/g/e7IAAeSwhqJpoUQa/s-l960.jpg",
+       "url": "https://www.ebay.com/itm/317929771769?_skw=Nikon+AF-S+24mm+f%2F1.4G+ED&hash=item4a061752f9:g:e7IAAeSwhqJpoUQa"
+      },
+      {
+       "title": "Nikon AF-S FX NIKKOR 24mm f/1.4G ED Wide-Angle Prime Lens *EX*606472",
+       "price": 879.4,
+       "currency": "USD",
+       "condition": "Used",
+       "image": "https://i.ebayimg.com/images/g/IE8AAOSw3b5kWBa~/s-l1600.jpg",
+       "url": "https://www.ebay.com/itm/175717019543?_skw=Nikon+AF-S+24mm+f%2F1.4G+ED&hash=item28e98cef97:g:IE8AAOSw3b5kWBa~"
+      },
+      {
+       "title": "Nikon AF-S FX NIKKOR 24mm f/1.4G ED Wide-Angle Prime Lens *Mint*",
+       "price": 881.4,
+       "currency": "USD",
+       "condition": "Used",
+       "image": "https://i.ebayimg.com/images/g/q4MAAOSws~phGEl5/s-l1600.jpg",
+       "url": "https://www.ebay.com/itm/175667913933?_skw=Nikon+AF-S+24mm+f%2F1.4G+ED&hash=item28e69fa4cd:g:q4MAAOSws~phGEl5"
+      },
+      {
+       "title": "Nikon AF-S 24mm F1.4 G ED　【007951】",
+       "price": 885.11,
+       "currency": "USD",
+       "condition": "Used",
+       "image": "https://i.ebayimg.com/images/g/wf8AAeSwscxpsmff/s-l1200.jpg",
+       "url": "https://www.ebay.com/itm/277795403592?_skw=Nikon+AF-S+24mm+f%2F1.4G+ED&hash=item40ade57748:g:wf8AAeSwscxpsmff"
+      },
+      {
+       "title": "Excellent Nikon AF-S NIKKOR 24mm F1.4G ED [Lens]",
+       "price": 940.25,
+       "currency": "USD",
+       "condition": "Used",
+       "image": "https://i.ebayimg.com/images/g/e7IAAeSwhqJpoUQa/s-l960.jpg",
+       "url": "https://www.ebay.com/itm/277783671426?_skw=Nikon+AF-S+24mm+f%2F1.4G+ED&hash=item40ad327282:g:e7IAAeSwhqJpoUQa"
+      }
+     ]
+    },
+    {
+     "id": "af-nikkor-28mm-f14d-ed",
+     "name_ko": "AF 28mm f/1.4D ED",
+     "name_en": "AF NIKKOR 28mm f/1.4D ED",
+     "subcategory": "prime",
+     "focal_length_min": 28,
      "median": null,
      "mean": null,
      "min": null,
@@ -4993,173 +5546,344 @@
      "samples": []
     },
     {
-     "id": "af-s-58mm-f14g",
-     "name_ko": "AF-S 58mm f/1.4G",
-     "name_en": "AF-S NIKKOR 58mm f/1.4G",
+     "id": "af-s-28mm-f14e-ed",
+     "name_ko": "AF-S 28mm f/1.4E ED",
+     "name_en": "AF-S NIKKOR 28mm f/1.4E ED",
      "subcategory": "prime",
-     "focal_length_min": 58,
-     "median": 1193.27,
-     "mean": 1184.99,
-     "min": 889.99,
-     "max": 1574.0,
-     "q1": 1072.14,
-     "q3": 1294.22,
-     "count": 40,
-     "count_filtered": 40,
+     "focal_length_min": 28,
+     "median": 1643.18,
+     "mean": 1630.33,
+     "min": 1529.41,
+     "max": 1714.3,
+     "q1": 1529.41,
+     "q3": 1657.87,
+     "count": 7,
+     "count_filtered": 6,
      "samples": [
       {
-       "title": "Nikon AF-S NIKKOR 58mm F1.4G [ Lens | ]",
-       "price": 1193.27,
+       "title": "Nikon AF-S NIKKOR 28mm F1.4E ED [ Lens | ]",
+       "price": 1529.41,
        "currency": "USD",
        "condition": "Used",
-       "image": "https://i.ebayimg.com/images/g/0ToAAeSwobZplY20/s-l960.jpg",
-       "url": "https://www.ebay.com/itm/277735765877?_skw=Nikon+AF-S+58mm+f%2F1.4G&hash=item40aa577775:g:0ToAAeSwobZplY20"
+       "image": "https://i.ebayimg.com/images/g/xiIAAeSw3oFplZJ9/s-l960.jpg",
+       "url": "https://www.ebay.com/itm/317894472649?_skw=Nikon+AF-S+28mm+f%2F1.4E+ED&hash=item4a03fcb3c9:g:xiIAAeSw3oFplZJ9"
       },
       {
-       "title": "Nikon AF-S NIKKOR 58mm F1.4G [ Lens | ]",
-       "price": 1193.27,
+       "title": "Nikon AF-S 28mm F1.4 E ED, working, refund aailable /2572",
+       "price": 1594.03,
        "currency": "USD",
        "condition": "Used",
-       "image": "https://i.ebayimg.com/images/g/ybUAAeSwws5plY1w/s-l960.jpg",
-       "url": "https://www.ebay.com/itm/317894432936?_skw=Nikon+AF-S+58mm+f%2F1.4G&hash=item4a03fc18a8:g:ybUAAeSwws5plY1w"
+       "image": "https://i.ebayimg.com/images/g/fLkAAeSwnCdpsmea/s-l1200.jpg",
+       "url": "https://www.ebay.com/itm/317989862825?_skw=Nikon+AF-S+28mm+f%2F1.4E+ED&hash=item4a09ac3da9:g:fLkAAeSwnCdpsmea"
       },
       {
-       "title": "Nikon AF-S NIKKOR 58mm F1.4G [ Lens | ]",
-       "price": 1193.27,
+       "title": "Nikon AF-S NIKKOR 28mm f/1.4E ED Prime Lens Used JP",
+       "price": 1633.4,
        "currency": "USD",
        "condition": "Used",
-       "image": "https://i.ebayimg.com/images/g/sKcAAeSw9QdplY0F/s-l960.jpg",
-       "url": "https://www.ebay.com/itm/358230492316?_skw=Nikon+AF-S+58mm+f%2F1.4G&hash=item536833849c:g:sKcAAeSw9QdplY0F"
+       "image": "https://i.ebayimg.com/images/g/NWcAAeSwQxlpQ-gT/s-l960.jpg",
+       "url": "https://www.ebay.com/itm/197776349357?_skw=Nikon+AF-S+28mm+f%2F1.4E+ED&hash=item2e0c6398ad:g:NWcAAeSwQxlpQ-gT"
       },
       {
-       "title": "Nikon AF-S NIKKOR 58mm F1.4G [ Lens | ]",
-       "price": 1193.27,
+       "title": "Nikon AF-S NIKKOR 28mm f/1.4E ED Wide Angle Prime Lens from Japan C0310",
+       "price": 1657.87,
        "currency": "USD",
        "condition": "Used",
-       "image": "https://i.ebayimg.com/images/g/3jAAAeSwm2ZplY0B/s-l960.jpg",
-       "url": "https://www.ebay.com/itm/358230492338?_skw=Nikon+AF-S+58mm+f%2F1.4G&hash=item53683384b2:g:3jAAAeSwm2ZplY0B"
+       "image": "https://i.ebayimg.com/images/g/NIwAAeSwj4Fpr8lk/s-l1200.jpg",
+       "url": "https://www.ebay.com/itm/287192328808?_skw=Nikon+AF-S+28mm+f%2F1.4E+ED&hash=item42ddff2a68:g:NIwAAeSwj4Fpr8lk"
       },
       {
-       "title": "Nikon AF-S NIKKOR 58mm f/1.4G Prime Lens Fast Portrait Lens from Japan C0306",
-       "price": 1231.77,
+       "title": "Nikon AF-S NIKKOR 28mm F1.4E ED [ Lens ]",
+       "price": 1652.97,
        "currency": "USD",
        "condition": "Used",
-       "image": "https://i.ebayimg.com/images/g/5C8AAeSwsO1pqkrv/s-l1200.jpg",
-       "url": "https://www.ebay.com/itm/287182766017?_skw=Nikon+AF-S+58mm+f%2F1.4G&hash=item42dd6d3fc1:g:5C8AAeSwsO1pqkrv"
+       "image": "https://i.ebayimg.com/images/g/xiIAAeSw3oFplZJ9/s-l960.jpg",
+       "url": "https://www.ebay.com/itm/317967439313?_skw=Nikon+AF-S+28mm+f%2F1.4E+ED&hash=item4a085615d1:g:xiIAAeSw3oFplZJ9"
       }
      ]
     },
     {
-     "id": "af-s-105mm-f14e-ed",
-     "name_ko": "AF-S 105mm f/1.4E ED",
-     "name_en": "AF-S NIKKOR 105mm f/1.4E ED",
+     "id": "af-nikkor-35mm-f2d",
+     "name_ko": "AF 35mm f/2D",
+     "name_en": "AF NIKKOR 35mm f/2D",
      "subcategory": "prime",
-     "focal_length_min": 105,
-     "median": 1239.38,
-     "mean": 1407.29,
-     "min": 1081.0,
-     "max": 2104.13,
-     "q1": 1146.62,
-     "q3": 1643.64,
-     "count": 12,
-     "count_filtered": 12,
+     "focal_length_min": 35,
+     "median": 269.99,
+     "mean": 281.72,
+     "min": 206.83,
+     "max": 393.12,
+     "q1": 232.02,
+     "q3": 321.32,
+     "count": 46,
+     "count_filtered": 46,
      "samples": [
       {
-       "title": "【Exc++】 Nikon AF-S NIKKOR 105mm F1.4E ED DSLR Lenses From JP R4276-2R7",
-       "price": 1170.0,
+       "title": "Nikon AF NIKKOR 35mm F2 D #K673-2",
+       "price": 267.57,
        "currency": "USD",
        "condition": "Used",
-       "image": "https://i.ebayimg.com/images/g/mjIAAeSwJllplmFo/s-l1200.jpg",
-       "url": "https://www.ebay.com/itm/336441559995?_skw=Nikon+AF-S+105mm+f%2F1.4E+ED&hash=item4e557acbbb:g:mjIAAeSwJllplmFo"
+       "image": "https://i.ebayimg.com/images/g/0zgAAeSw6Mhpsmit/s-l640.jpg",
+       "url": "https://www.ebay.com/itm/317989877916?_skw=Nikon+AF+Nikkor+35mm+f%2F2D&hash=item4a09ac789c:g:0zgAAeSw6Mhpsmit"
       },
       {
-       "title": "Nikon Nikkor AF-S 105mm f1.4 E N ED Lens AFS *Light Dust*",
-       "price": 1195.34,
+       "title": "[Top Mint] Nikon AF Nikkor 35mm f/2 D Wide Angle Prime Lens From Japan",
+       "price": 269.99,
        "currency": "USD",
        "condition": "Used",
-       "image": "https://i.ebayimg.com/images/g/oPAAAeSwREFppSCP/s-l1600.jpg",
-       "url": "https://www.ebay.com/itm/397666141644?_skw=Nikon+AF-S+105mm+f%2F1.4E+ED&hash=item5c96bfc5cc:g:oPAAAeSwREFppSCP"
+       "image": "https://i.ebayimg.com/images/g/H-QAAeSwuZppW8Cn/s-l1600.jpg",
+       "url": "https://www.ebay.com/itm/397465609665?_skw=Nikon+AF+Nikkor+35mm+f%2F2D&hash=item5c8acbe5c1:g:H-QAAeSwuZppW8Cn"
       },
       {
-       "title": "Nikon AF-S NIKKOR 105mm f/1.4E ED Lens Prime PRO",
-       "price": 1283.41,
+       "title": "[ Near MINT ] Nikon AF Nikkor 35mm f/2 D Wide Angle Prime AF Lens From Japan",
+       "price": 269.99,
        "currency": "USD",
        "condition": "Used",
-       "image": "https://i.ebayimg.com/images/g/rGkAAeSwfP9pduRD/s-l1600.jpg",
-       "url": "https://www.ebay.com/itm/286367374810?_skw=Nikon+AF-S+105mm+f%2F1.4E+ED&hash=item42acd35dda:g:rGkAAeSwfP9pduRD"
+       "image": "https://i.ebayimg.com/images/g/TuYAAeSwHCdpYYsC/s-l1600.jpg",
+       "url": "https://www.ebay.com/itm/397480707808?_skw=Nikon+AF+Nikkor+35mm+f%2F2D&hash=item5c8bb246e0:g:TuYAAeSwHCdpYYsC"
       },
       {
-       "title": "Nikon AF-S NIKKOR 105mm f/1.4E ED Lens",
-       "price": 1297.1,
+       "title": "Good Nikon NIKON AF NIKKOR 35mm F2 D #4182@e RO3596",
+       "price": 271.95,
        "currency": "USD",
        "condition": "Used",
-       "image": "https://i.ebayimg.com/images/g/6Q0AAeSwhSppLiUh/s-l1600.jpg",
-       "url": "https://www.ebay.com/itm/167977594545?_skw=Nikon+AF-S+105mm+f%2F1.4E+ED&hash=item271c3eaeb1:g:6Q0AAeSwhSppLiUh"
+       "image": "https://i.ebayimg.com/images/g/4LkAAeSw2MtpsmmP/s-l1200.jpg",
+       "url": "https://www.ebay.com/itm/317989877903?_skw=Nikon+AF+Nikkor+35mm+f%2F2D&hash=item4a09ac788f:g:4LkAAeSw2MtpsmmP"
       },
       {
-       "title": "Nikon AF-S NIKKOR 105mm f/1.4E ED single focal length lens for full size",
-       "price": 1350.97,
+       "title": "Nikon AF Nikkor 35mm f/2 D Wide Angle Prime Lens F Mount [Near Mint] From Japan",
+       "price": 279.99,
        "currency": "USD",
        "condition": "Used",
-       "image": "https://i.ebayimg.com/images/g/6ioAAOSw-~Rk0283/s-l1200.jpg",
-       "url": "https://www.ebay.com/itm/404429973226?_skw=Nikon+AF-S+105mm+f%2F1.4E+ED&hash=item5e29e7a6ea:g:6ioAAOSw-~Rk0283"
+       "image": "https://i.ebayimg.com/images/g/vtoAAeSwd6FprTvi/s-l1600.jpg",
+       "url": "https://www.ebay.com/itm/177937415054?_skw=Nikon+AF+Nikkor+35mm+f%2F2D&hash=item296de57b8e:g:vtoAAeSwd6FprTvi"
       }
      ]
     },
     {
-     "id": "af-s-85mm-f14g",
-     "name_ko": "AF-S 85mm f/1.4G",
-     "name_en": "AF-S NIKKOR 85mm f/1.4G",
+     "id": "af-s-35mm-f18g-ed",
+     "name_ko": "AF-S 35mm f/1.8G ED",
+     "name_en": "AF-S NIKKOR 35mm f/1.8G ED",
      "subcategory": "prime",
-     "focal_length_min": 85,
-     "median": 939.83,
-     "mean": 1009.52,
-     "min": 730.65,
-     "max": 1473.9,
-     "q1": 839.99,
-     "q3": 1108.56,
-     "count": 31,
-     "count_filtered": 31,
+     "focal_length_min": 35,
+     "median": 373.9,
+     "mean": 391.96,
+     "min": 290.83,
+     "max": 505.27,
+     "q1": 349.99,
+     "q3": 437.99,
+     "count": 18,
+     "count_filtered": 18,
      "samples": [
       {
-       "title": "NIKON AF-S NIKKOR 85mm f/1.4G for Nikon F mount -EXC- 3533",
-       "price": 932.72,
+       "title": "Nikon AF-S NIKKOR 35mm f/1.8G ED Lens Working",
+       "price": 364.9,
        "currency": "USD",
        "condition": "Used",
-       "image": "https://i.ebayimg.com/images/g/0uwAAeSwEXNpoIG3/s-l1600.jpg",
-       "url": "https://www.ebay.com/itm/257380579032?_skw=Nikon+AF-S+85mm+f%2F1.4G&hash=item3bed13f6d8:g:0uwAAeSwEXNpoIG3"
+       "image": "https://i.ebayimg.com/images/g/r1MAAeSwDJFpS1B9/s-l1200.jpg",
+       "url": "https://www.ebay.com/itm/168112081104?_skw=Nikon+AF-S+35mm+f%2F1.8G+ED&hash=item272442c8d0:g:r1MAAeSwDJFpS1B9"
       },
       {
-       "title": "#5118 Nikon AF-S 85mm f/1.4G King of Portrait Single Focus Lens Good Working",
-       "price": 937.68,
+       "title": "Nikon AF-S NIKKOR 35mm F1.8 G ED Black Lens F-mount FX format DSLR Compact",
+       "price": 367.8,
        "currency": "USD",
        "condition": "Used",
-       "image": "https://i.ebayimg.com/images/g/gZkAAeSwVaZpsmgZ/s-l1200.jpg",
-       "url": "https://www.ebay.com/itm/358317652620?_skw=Nikon+AF-S+85mm+f%2F1.4G&hash=item536d657a8c:g:gZkAAeSwVaZpsmgZ"
+       "image": "https://i.ebayimg.com/images/g/Jq8AAeSwrUhppVM6/s-l1600.jpg",
+       "url": "https://www.ebay.com/itm/137086533431?_skw=Nikon+AF-S+35mm+f%2F1.8G+ED&hash=item1feafe7f37:g:Jq8AAeSwrUhppVM6"
       },
       {
-       "title": "Nikon NIKKOR AF-S 85mm f/1.4G Lens ",
-       "price": 939.83,
+       "title": "【Exc++】 Nikon AF-S NIKKOR 35mm F1.8G ED DSLR Lenses From JP B4878-2O1A",
+       "price": 380.0,
        "currency": "USD",
        "condition": "Used",
-       "image": "https://i.ebayimg.com/images/g/M4oAAeSwCwVo0IEn/s-l1600.jpg",
-       "url": "https://www.ebay.com/itm/317266159303?_skw=Nikon+AF-S+85mm+f%2F1.4G&hash=item49de8966c7:g:M4oAAeSwCwVo0IEn"
+       "image": "https://i.ebayimg.com/images/g/3hgAAeSwVZdpqngQ/s-l1200.jpg",
+       "url": "https://www.ebay.com/itm/227244299296?_skw=Nikon+AF-S+35mm+f%2F1.8G+ED&hash=item34e8d0d420:g:3hgAAeSwVZdpqngQ"
       },
       {
-       "title": "Nikon AF-S NIKKOR 85mm F1.4G [ Lens | ]",
-       "price": 958.79,
+       "title": "[Near Mint] Nikon NIKKOR AF-S 35mm F/1.8G ED full size compatible Japan 10631",
+       "price": 401.22,
        "currency": "USD",
        "condition": "Used",
-       "image": "https://i.ebayimg.com/images/g/l5UAAeSwNTtpoURq/s-l960.jpg",
-       "url": "https://www.ebay.com/itm/317929793471?_skw=Nikon+AF-S+85mm+f%2F1.4G&hash=item4a0617a7bf:g:l5UAAeSwNTtpoURq"
+       "image": "https://i.ebayimg.com/images/g/OFIAAOSwAaFlfF9Q/s-l1600.jpg",
+       "url": "https://www.ebay.com/itm/305315519633?_skw=Nikon+AF-S+35mm+f%2F1.8G+ED&hash=item4716391c91:g:OFIAAOSwAaFlfF9Q"
       },
       {
-       "title": "NIKON AF-S NIKKOR 85MM F1.4G Lens Excellent Condition",
-       "price": 966.39,
+       "title": "AF S 35mm F1.8G ED",
+       "price": 408.57,
        "currency": "USD",
        "condition": "Used",
-       "image": "https://i.ebayimg.com/images/g/7WQAAeSwUyFpXiA0/s-l1600.jpg",
-       "url": "https://www.ebay.com/itm/187772202588?_skw=Nikon+AF-S+85mm+f%2F1.4G&hash=item2bb8186e5c:g:7WQAAeSwUyFpXiA0"
+       "image": "https://i.ebayimg.com/images/g/9kwAAeSwbKFph0Kl/s-l1200.jpg",
+       "url": "https://www.ebay.com/itm/168142572898?_skw=Nikon+AF-S+35mm+f%2F1.8G+ED&hash=item2726140d62:g:9kwAAeSwbKFph0Kl"
+      }
+     ]
+    },
+    {
+     "id": "af-s-35mm-f14g",
+     "name_ko": "AF-S 35mm f/1.4G",
+     "name_en": "AF-S NIKKOR 35mm f/1.4G",
+     "subcategory": "prime",
+     "focal_length_min": 35,
+     "median": 868.5,
+     "mean": 884.7,
+     "min": 696.37,
+     "max": 1051.36,
+     "q1": 830.03,
+     "q3": 920.15,
+     "count": 30,
+     "count_filtered": 26,
+     "samples": [
+      {
+       "title": "Nikon 35mm f/1.4G AF-S Lens *EX*",
+       "price": 844.36,
+       "currency": "USD",
+       "condition": "Used",
+       "image": "https://i.ebayimg.com/images/g/ZS8AAOSwSplhu7TH/s-l1600.jpg",
+       "url": "https://www.ebay.com/itm/175667897908?_skw=Nikon+AF-S+35mm+f%2F1.4G&hash=item28e69f6634:g:ZS8AAOSwSplhu7TH"
+      },
+      {
+       "title": "Near Mint Nikon AF-S Nikkor 35mm F/1.4 G Standard Prime Lens For F-Mount #N020",
+       "price": 856.02,
+       "currency": "USD",
+       "condition": "Used",
+       "image": "https://i.ebayimg.com/images/g/TaYAAOSwU6hn6jSu/s-l960.jpg",
+       "url": "https://www.ebay.com/itm/156841961777?_skw=Nikon+AF-S+35mm+f%2F1.4G&hash=item2484826931:g:TaYAAOSwU6hn6jSu"
+      },
+      {
+       "title": "Nikon AF-S NIKKOR 35mm F1.4 G Black Lens F-mount FX format DSLR Nano Crystal",
+       "price": 867.0,
+       "currency": "USD",
+       "condition": "Used",
+       "image": "https://i.ebayimg.com/images/g/mpQAAeSwi~Jprmyq/s-l1200.jpg",
+       "url": "https://www.ebay.com/itm/137086507435?_skw=Nikon+AF-S+35mm+f%2F1.4G&hash=item1feafe19ab:g:mpQAAeSwi~Jprmyq"
+      },
+      {
+       "title": "Nikon AF-S NIKKOR 35mm f/1.4 G N Wide Angle Lens [Near MINT] from JAPAN #2006910",
+       "price": 869.99,
+       "currency": "USD",
+       "condition": "Used",
+       "image": "https://i.ebayimg.com/images/g/x5gAAOSwHXBlYSbe/s-l1600.jpg",
+       "url": "https://www.ebay.com/itm/395020821913?_skw=Nikon+AF-S+35mm+f%2F1.4G&hash=item5bf9136599:g:x5gAAOSwHXBlYSbe"
+      },
+      {
+       "title": "Nikon Nikkor AF-S 35mm F/1.4 G Lens W/ Box and paperwork",
+       "price": 872.44,
+       "currency": "USD",
+       "condition": "Used",
+       "image": "https://i.ebayimg.com/images/g/k3sAAOSwZPxkJMKX/s-l1600.jpg",
+       "url": "https://www.ebay.com/itm/304863756342?_skw=Nikon+AF-S+35mm+f%2F1.4G&hash=item46fb4bc036:g:k3sAAOSwZPxkJMKX"
+      }
+     ]
+    },
+    {
+     "id": "af-nikkor-50mm-f18d",
+     "name_ko": "AF 50mm f/1.8D",
+     "name_en": "AF NIKKOR 50mm f/1.8D",
+     "subcategory": "prime",
+     "focal_length_min": 50,
+     "median": 124.89,
+     "mean": 127.82,
+     "min": 93.14,
+     "max": 179.9,
+     "q1": 112.08,
+     "q3": 140.85,
+     "count": 70,
+     "count_filtered": 69,
+     "samples": [
+      {
+       "title": "Nikon AF NIKKOR 50mm f/1.8D Prime Lens 3534866",
+       "price": 124.5,
+       "currency": "USD",
+       "condition": "Used",
+       "image": "https://i.ebayimg.com/images/g/3p8AAOSwMXdh9PJ7/s-l1600.jpg",
+       "url": "https://www.ebay.com/itm/175668438249?_skw=Nikon+AF+Nikkor+50mm+f%2F1.8D&hash=item28e6a7a4e9:g:3p8AAOSwMXdh9PJ7"
+      },
+      {
+       "title": "NIKON AF NIKKOR 50MM F1.8 D Prime Lens Excellent Condition",
+       "price": 124.89,
+       "currency": "USD",
+       "condition": "Used",
+       "image": "https://i.ebayimg.com/images/g/LlcAAeSwrBhpXtf-/s-l1600.jpg",
+       "url": "https://www.ebay.com/itm/187772213171?_skw=Nikon+AF+Nikkor+50mm+f%2F1.8D&hash=item2bb81897b3:g:LlcAAeSwrBhpXtf-"
+      },
+      {
+       "title": "Nikon AF Nikkor 50mm f/1.8D Prime Lens (Black) Tested",
+       "price": 125.36,
+       "currency": "USD",
+       "condition": "Used",
+       "image": "https://i.ebayimg.com/images/g/NhMAAOSwoPFljNes/s-l1600.jpg",
+       "url": "https://www.ebay.com/itm/197050801667?_skw=Nikon+AF+Nikkor+50mm+f%2F1.8D&hash=item2de1249e03:g:NhMAAOSwoPFljNes"
+      },
+      {
+       "title": "Nikon AF NIKKOR 50mm F1.8 D Excellent Condition",
+       "price": 126.88,
+       "currency": "USD",
+       "condition": "Used",
+       "image": "https://i.ebayimg.com/images/g/U5QAAOSwFn9oLTbF/s-l960.jpg",
+       "url": "https://www.ebay.com/itm/127124827753?_skw=Nikon+AF+Nikkor+50mm+f%2F1.8D&hash=item1d993aee69:g:U5QAAOSwFn9oLTbF"
+      },
+      {
+       "title": "Nikon AF NIKKOR 50mm F/1.8D Lens - F Mount",
+       "price": 127.11,
+       "currency": "USD",
+       "condition": "Used",
+       "image": "https://i.ebayimg.com/images/g/mSQAAOSwMtJn3HKp/s-l1600.jpg",
+       "url": "https://www.ebay.com/itm/135639359710?_skw=Nikon+AF+Nikkor+50mm+f%2F1.8D&hash=item1f94bc60de:g:mSQAAOSwMtJn3HKp"
+      }
+     ]
+    },
+    {
+     "id": "af-s-50mm-f18g",
+     "name_ko": "AF-S 50mm f/1.8G",
+     "name_en": "AF-S NIKKOR 50mm f/1.8G",
+     "subcategory": "prime",
+     "focal_length_min": 50,
+     "median": 197.58,
+     "mean": 195.89,
+     "min": 141.43,
+     "max": 260.89,
+     "q1": 176.0,
+     "q3": 210.04,
+     "count": 118,
+     "count_filtered": 115,
+     "samples": [
+      {
+       "title": "Nikon AF-S NIKKOR 50mm f/1.8G SNUS6095724",
+       "price": 197.58,
+       "currency": "USD",
+       "condition": "Used",
+       "image": "https://i.ebayimg.com/images/g/1koAAOSwYBRg7LiX/s-l1600.jpg",
+       "url": "https://www.ebay.com/itm/175667926566?_skw=Nikon+AF-S+50mm+f%2F1.8G&hash=item28e69fd626:g:1koAAOSwYBRg7LiX"
+      },
+      {
+       "title": "[MINT] Nikon AF-S Nikkor 50mm F/1.8 G SWM Aspherical Lens From Japan #1911",
+       "price": 197.9,
+       "currency": "USD",
+       "condition": "Used",
+       "image": "https://i.ebayimg.com/images/g/bCQAAOSwEPplJLf0/s-l1600.jpg",
+       "url": "https://www.ebay.com/itm/397690996234?_skw=Nikon+AF-S+50mm+f%2F1.8G&hash=item5c983b060a:g:bCQAAOSwEPplJLf0"
+      },
+      {
+       "title": "[Top Mint] Nikon AF-S NIKKOR 50mm F/1.8 G Prime Lens Special Edition JAPAN SO121",
+       "price": 198.0,
+       "currency": "USD",
+       "condition": "Used",
+       "image": "https://i.ebayimg.com/images/g/-C8AAOSwapdnY2q-/s-l1600.jpg",
+       "url": "https://www.ebay.com/itm/335736862068?_skw=Nikon+AF-S+50mm+f%2F1.8G&hash=item4e2b79f574:g:-C8AAOSwapdnY2q-"
+      },
+      {
+       "title": "Nikon AF-S Nikkor 50mm f/1.8G Lens 5718 *EX*",
+       "price": 198.99,
+       "currency": "USD",
+       "condition": "Used",
+       "image": "https://i.ebayimg.com/images/g/M5YAAOSwx6xkuzPx/s-l1600.jpg",
+       "url": "https://www.ebay.com/itm/175829656099?_skw=Nikon+AF-S+50mm+f%2F1.8G&hash=item28f043a223:g:M5YAAOSwx6xkuzPx"
+      },
+      {
+       "title": "Nikon AF-S Nikkor 50mm f/1.8G Lens",
+       "price": 198.99,
+       "currency": "USD",
+       "condition": "Used",
+       "image": "https://i.ebayimg.com/images/g/ApkAAOSwAoRi7sAL/s-l1600.jpg",
+       "url": "https://www.ebay.com/itm/175668120924?_skw=Nikon+AF-S+50mm+f%2F1.8G&hash=item28e6a2cd5c:g:ApkAAOSwAoRi7sAL"
       }
      ]
     },
@@ -5221,59 +5945,344 @@
      ]
     },
     {
-     "id": "af-s-35mm-f14g",
-     "name_ko": "AF-S 35mm f/1.4G",
-     "name_en": "AF-S NIKKOR 35mm f/1.4G",
+     "id": "af-s-58mm-f14g",
+     "name_ko": "AF-S 58mm f/1.4G",
+     "name_en": "AF-S NIKKOR 58mm f/1.4G",
      "subcategory": "prime",
-     "focal_length_min": 35,
-     "median": 868.5,
-     "mean": 884.7,
-     "min": 696.37,
-     "max": 1051.36,
-     "q1": 830.03,
-     "q3": 920.15,
-     "count": 30,
-     "count_filtered": 26,
+     "focal_length_min": 58,
+     "median": 1193.27,
+     "mean": 1184.99,
+     "min": 889.99,
+     "max": 1574.0,
+     "q1": 1072.14,
+     "q3": 1294.22,
+     "count": 40,
+     "count_filtered": 40,
      "samples": [
       {
-       "title": "Nikon 35mm f/1.4G AF-S Lens *EX*",
-       "price": 844.36,
+       "title": "Nikon AF-S NIKKOR 58mm F1.4G [ Lens | ]",
+       "price": 1193.27,
        "currency": "USD",
        "condition": "Used",
-       "image": "https://i.ebayimg.com/images/g/ZS8AAOSwSplhu7TH/s-l1600.jpg",
-       "url": "https://www.ebay.com/itm/175667897908?_skw=Nikon+AF-S+35mm+f%2F1.4G&hash=item28e69f6634:g:ZS8AAOSwSplhu7TH"
+       "image": "https://i.ebayimg.com/images/g/0ToAAeSwobZplY20/s-l960.jpg",
+       "url": "https://www.ebay.com/itm/277735765877?_skw=Nikon+AF-S+58mm+f%2F1.4G&hash=item40aa577775:g:0ToAAeSwobZplY20"
       },
       {
-       "title": "Near Mint Nikon AF-S Nikkor 35mm F/1.4 G Standard Prime Lens For F-Mount #N020",
-       "price": 856.02,
+       "title": "Nikon AF-S NIKKOR 58mm F1.4G [ Lens | ]",
+       "price": 1193.27,
        "currency": "USD",
        "condition": "Used",
-       "image": "https://i.ebayimg.com/images/g/TaYAAOSwU6hn6jSu/s-l960.jpg",
-       "url": "https://www.ebay.com/itm/156841961777?_skw=Nikon+AF-S+35mm+f%2F1.4G&hash=item2484826931:g:TaYAAOSwU6hn6jSu"
+       "image": "https://i.ebayimg.com/images/g/ybUAAeSwws5plY1w/s-l960.jpg",
+       "url": "https://www.ebay.com/itm/317894432936?_skw=Nikon+AF-S+58mm+f%2F1.4G&hash=item4a03fc18a8:g:ybUAAeSwws5plY1w"
       },
       {
-       "title": "Nikon AF-S NIKKOR 35mm F1.4 G Black Lens F-mount FX format DSLR Nano Crystal",
-       "price": 867.0,
+       "title": "Nikon AF-S NIKKOR 58mm F1.4G [ Lens | ]",
+       "price": 1193.27,
        "currency": "USD",
        "condition": "Used",
-       "image": "https://i.ebayimg.com/images/g/mpQAAeSwi~Jprmyq/s-l1200.jpg",
-       "url": "https://www.ebay.com/itm/137086507435?_skw=Nikon+AF-S+35mm+f%2F1.4G&hash=item1feafe19ab:g:mpQAAeSwi~Jprmyq"
+       "image": "https://i.ebayimg.com/images/g/sKcAAeSw9QdplY0F/s-l960.jpg",
+       "url": "https://www.ebay.com/itm/358230492316?_skw=Nikon+AF-S+58mm+f%2F1.4G&hash=item536833849c:g:sKcAAeSw9QdplY0F"
       },
       {
-       "title": "Nikon AF-S NIKKOR 35mm f/1.4 G N Wide Angle Lens [Near MINT] from JAPAN #2006910",
-       "price": 869.99,
+       "title": "Nikon AF-S NIKKOR 58mm F1.4G [ Lens | ]",
+       "price": 1193.27,
        "currency": "USD",
        "condition": "Used",
-       "image": "https://i.ebayimg.com/images/g/x5gAAOSwHXBlYSbe/s-l1600.jpg",
-       "url": "https://www.ebay.com/itm/395020821913?_skw=Nikon+AF-S+35mm+f%2F1.4G&hash=item5bf9136599:g:x5gAAOSwHXBlYSbe"
+       "image": "https://i.ebayimg.com/images/g/3jAAAeSwm2ZplY0B/s-l960.jpg",
+       "url": "https://www.ebay.com/itm/358230492338?_skw=Nikon+AF-S+58mm+f%2F1.4G&hash=item53683384b2:g:3jAAAeSwm2ZplY0B"
       },
       {
-       "title": "Nikon Nikkor AF-S 35mm F/1.4 G Lens W/ Box and paperwork",
-       "price": 872.44,
+       "title": "Nikon AF-S NIKKOR 58mm f/1.4G Prime Lens Fast Portrait Lens from Japan C0306",
+       "price": 1231.77,
        "currency": "USD",
        "condition": "Used",
-       "image": "https://i.ebayimg.com/images/g/k3sAAOSwZPxkJMKX/s-l1600.jpg",
-       "url": "https://www.ebay.com/itm/304863756342?_skw=Nikon+AF-S+35mm+f%2F1.4G&hash=item46fb4bc036:g:k3sAAOSwZPxkJMKX"
+       "image": "https://i.ebayimg.com/images/g/5C8AAeSwsO1pqkrv/s-l1200.jpg",
+       "url": "https://www.ebay.com/itm/287182766017?_skw=Nikon+AF-S+58mm+f%2F1.4G&hash=item42dd6d3fc1:g:5C8AAeSwsO1pqkrv"
+      }
+     ]
+    },
+    {
+     "id": "af-s-85mm-f18g",
+     "name_ko": "AF-S 85mm f/1.8G",
+     "name_en": "AF-S NIKKOR 85mm f/1.8G",
+     "subcategory": "prime",
+     "focal_length_min": 85,
+     "median": 360.87,
+     "mean": 378.31,
+     "min": 270.0,
+     "max": 529.03,
+     "q1": 339.76,
+     "q3": 421.47,
+     "count": 43,
+     "count_filtered": 42,
+     "samples": [
+      {
+       "title": "Nikon AF S NIKKOR 85mm f 1.8G Full Frame Compatible Prime Lens R5347",
+       "price": 360.71,
+       "currency": "USD",
+       "condition": "Used",
+       "image": "https://i.ebayimg.com/images/g/GAkAAeSw20xps1Yg/s-l640.jpg",
+       "url": "https://www.ebay.com/itm/157747448636?_skw=Nikon+AF-S+85mm+f%2F1.8G&hash=item24ba7b0b3c:g:GAkAAeSw20xps1Yg"
+      },
+      {
+       "title": "Nikon AF-S Nikkor 85mm f/1.8g lens",
+       "price": 360.76,
+       "currency": "USD",
+       "condition": "Used",
+       "image": "https://i.ebayimg.com/images/g/mQcAAOSwjtdkC2iv/s-l1600.jpg",
+       "url": "https://www.ebay.com/itm/295565007872?_skw=Nikon+AF-S+85mm+f%2F1.8G&hash=item44d10c1c00:g:mQcAAOSwjtdkC2iv"
+      },
+      {
+       "title": "Nikon AF-S NIKKOR 85mm f/1.8G Telephoto Prime Lens F Mount",
+       "price": 360.97,
+       "currency": "USD",
+       "condition": "Used",
+       "image": "https://i.ebayimg.com/images/g/IfUAAeSwiqxpmNTs/s-l500.jpg",
+       "url": "https://www.ebay.com/itm/406711163106?_skw=Nikon+AF-S+85mm+f%2F1.8G&hash=item5eb1dfd8e2:g:IfUAAeSwiqxpmNTs"
+      },
+      {
+       "title": "[TOP MINT in Box] Nikon AF-S Nikkor 85mm f/1.8 G SWM Portrait Lens US Duty Incl",
+       "price": 367.99,
+       "currency": "USD",
+       "condition": "Used",
+       "image": "https://i.ebayimg.com/images/g/B7QAAeSw835osbIt/s-l1600.jpg",
+       "url": "https://www.ebay.com/itm/397005846460?_skw=Nikon+AF-S+85mm+f%2F1.8G&hash=item5c6f6477bc:g:B7QAAeSw835osbIt"
+      },
+      {
+       "title": "Nikon AF-S NIKKOR 85mm f/1.8G Lens",
+       "price": 373.0,
+       "currency": "USD",
+       "condition": "Used",
+       "image": "https://i.ebayimg.com/images/g/rZkAAeSwfWxpdKWk/s-l1200.jpg",
+       "url": "https://www.ebay.com/itm/317796956362?_skw=Nikon+AF-S+85mm+f%2F1.8G&hash=item49fe2cb8ca:g:rZkAAeSwfWxpdKWk"
+      }
+     ]
+    },
+    {
+     "id": "af-s-85mm-f14g",
+     "name_ko": "AF-S 85mm f/1.4G",
+     "name_en": "AF-S NIKKOR 85mm f/1.4G",
+     "subcategory": "prime",
+     "focal_length_min": 85,
+     "median": 939.83,
+     "mean": 1009.52,
+     "min": 730.65,
+     "max": 1473.9,
+     "q1": 839.99,
+     "q3": 1108.56,
+     "count": 31,
+     "count_filtered": 31,
+     "samples": [
+      {
+       "title": "NIKON AF-S NIKKOR 85mm f/1.4G for Nikon F mount -EXC- 3533",
+       "price": 932.72,
+       "currency": "USD",
+       "condition": "Used",
+       "image": "https://i.ebayimg.com/images/g/0uwAAeSwEXNpoIG3/s-l1600.jpg",
+       "url": "https://www.ebay.com/itm/257380579032?_skw=Nikon+AF-S+85mm+f%2F1.4G&hash=item3bed13f6d8:g:0uwAAeSwEXNpoIG3"
+      },
+      {
+       "title": "#5118 Nikon AF-S 85mm f/1.4G King of Portrait Single Focus Lens Good Working",
+       "price": 937.68,
+       "currency": "USD",
+       "condition": "Used",
+       "image": "https://i.ebayimg.com/images/g/gZkAAeSwVaZpsmgZ/s-l1200.jpg",
+       "url": "https://www.ebay.com/itm/358317652620?_skw=Nikon+AF-S+85mm+f%2F1.4G&hash=item536d657a8c:g:gZkAAeSwVaZpsmgZ"
+      },
+      {
+       "title": "Nikon NIKKOR AF-S 85mm f/1.4G Lens ",
+       "price": 939.83,
+       "currency": "USD",
+       "condition": "Used",
+       "image": "https://i.ebayimg.com/images/g/M4oAAeSwCwVo0IEn/s-l1600.jpg",
+       "url": "https://www.ebay.com/itm/317266159303?_skw=Nikon+AF-S+85mm+f%2F1.4G&hash=item49de8966c7:g:M4oAAeSwCwVo0IEn"
+      },
+      {
+       "title": "Nikon AF-S NIKKOR 85mm F1.4G [ Lens | ]",
+       "price": 958.79,
+       "currency": "USD",
+       "condition": "Used",
+       "image": "https://i.ebayimg.com/images/g/l5UAAeSwNTtpoURq/s-l960.jpg",
+       "url": "https://www.ebay.com/itm/317929793471?_skw=Nikon+AF-S+85mm+f%2F1.4G&hash=item4a0617a7bf:g:l5UAAeSwNTtpoURq"
+      },
+      {
+       "title": "NIKON AF-S NIKKOR 85MM F1.4G Lens Excellent Condition",
+       "price": 966.39,
+       "currency": "USD",
+       "condition": "Used",
+       "image": "https://i.ebayimg.com/images/g/7WQAAeSwUyFpXiA0/s-l1600.jpg",
+       "url": "https://www.ebay.com/itm/187772202588?_skw=Nikon+AF-S+85mm+f%2F1.4G&hash=item2bb8186e5c:g:7WQAAeSwUyFpXiA0"
+      }
+     ]
+    },
+    {
+     "id": "af-dc-nikkor-105mm-f2d",
+     "name_ko": "DC 105mm f/2D",
+     "name_en": "DC-NIKKOR 105mm f/2D",
+     "subcategory": "prime",
+     "focal_length_min": 105,
+     "median": 614.96,
+     "mean": 664.08,
+     "min": 505.96,
+     "max": 982.67,
+     "q1": 549.99,
+     "q3": 730.97,
+     "count": 23,
+     "count_filtered": 23,
+     "samples": [
+      {
+       "title": "Nikon AF DC Nikkor 105mm f/2 D Telephoto Lens from JAPAN [Near Mint w/cap]",
+       "price": 569.99,
+       "currency": "USD",
+       "condition": "Used",
+       "image": "https://i.ebayimg.com/images/g/kr0AAeSwc51pguxx/s-l1600.jpg",
+       "url": "https://www.ebay.com/itm/376930812807?_skw=Nikon+DC+Nikkor+105mm+f%2F2D&hash=item57c2d3c387:g:kr0AAeSwc51pguxx"
+      },
+      {
+       "title": "[Almost Unused] Nikon AF DC NIKKOR 105mm f2 D Telephoto F Mount Lens From JAPAN",
+       "price": 599.99,
+       "currency": "USD",
+       "condition": "Used",
+       "image": "https://i.ebayimg.com/images/g/JkUAAeSwkI1ple62/s-l1600.jpg",
+       "url": "https://www.ebay.com/itm/336441095519?_skw=Nikon+DC+Nikkor+105mm+f%2F2D&hash=item4e5573b55f:g:JkUAAeSwkI1ple62"
+      },
+      {
+       "title": "Nikon AF DC Nikkor 105mm F/2 D Defocus Image Control Lens - F Mount",
+       "price": 614.96,
+       "currency": "USD",
+       "condition": "Used",
+       "image": "https://i.ebayimg.com/images/g/hrkAAeSwAZNprzgu/s-l1600.jpg",
+       "url": "https://www.ebay.com/itm/188138933194?_skw=Nikon+DC+Nikkor+105mm+f%2F2D&hash=item2bcdf44bca:g:hrkAAeSwAZNprzgu"
+      },
+      {
+       "title": "Full Tested\"Excellent \"Nikon AF DC NIKKOR 105mm f2 D  Lens For F Mount  #5964",
+       "price": 634.0,
+       "currency": "USD",
+       "condition": "Used",
+       "image": "https://i.ebayimg.com/images/g/gBoAAeSwJaZpaFxM/s-l1600.jpg",
+       "url": "https://www.ebay.com/itm/198029283809?_skw=Nikon+DC+Nikkor+105mm+f%2F2D&hash=item2e1b7711e1:g:gBoAAeSwJaZpaFxM"
+      },
+      {
+       "title": "Nikon AF DC-Nikkor 105mm f2D",
+       "price": 644.84,
+       "currency": "USD",
+       "condition": "Used",
+       "image": "https://i.ebayimg.com/images/g/AjcAAeSwaNlpSzCM/s-l1600.jpg",
+       "url": "https://www.ebay.com/itm/317665689017?_skw=Nikon+DC+Nikkor+105mm+f%2F2D&hash=item49f659bdb9:g:AjcAAeSwaNlpSzCM"
+      }
+     ]
+    },
+    {
+     "id": "af-s-105mm-f14e-ed",
+     "name_ko": "AF-S 105mm f/1.4E ED",
+     "name_en": "AF-S NIKKOR 105mm f/1.4E ED",
+     "subcategory": "prime",
+     "focal_length_min": 105,
+     "median": 1239.38,
+     "mean": 1407.29,
+     "min": 1081.0,
+     "max": 2104.13,
+     "q1": 1146.62,
+     "q3": 1643.64,
+     "count": 12,
+     "count_filtered": 12,
+     "samples": [
+      {
+       "title": "【Exc++】 Nikon AF-S NIKKOR 105mm F1.4E ED DSLR Lenses From JP R4276-2R7",
+       "price": 1170.0,
+       "currency": "USD",
+       "condition": "Used",
+       "image": "https://i.ebayimg.com/images/g/mjIAAeSwJllplmFo/s-l1200.jpg",
+       "url": "https://www.ebay.com/itm/336441559995?_skw=Nikon+AF-S+105mm+f%2F1.4E+ED&hash=item4e557acbbb:g:mjIAAeSwJllplmFo"
+      },
+      {
+       "title": "Nikon Nikkor AF-S 105mm f1.4 E N ED Lens AFS *Light Dust*",
+       "price": 1195.34,
+       "currency": "USD",
+       "condition": "Used",
+       "image": "https://i.ebayimg.com/images/g/oPAAAeSwREFppSCP/s-l1600.jpg",
+       "url": "https://www.ebay.com/itm/397666141644?_skw=Nikon+AF-S+105mm+f%2F1.4E+ED&hash=item5c96bfc5cc:g:oPAAAeSwREFppSCP"
+      },
+      {
+       "title": "Nikon AF-S NIKKOR 105mm f/1.4E ED Lens Prime PRO",
+       "price": 1283.41,
+       "currency": "USD",
+       "condition": "Used",
+       "image": "https://i.ebayimg.com/images/g/rGkAAeSwfP9pduRD/s-l1600.jpg",
+       "url": "https://www.ebay.com/itm/286367374810?_skw=Nikon+AF-S+105mm+f%2F1.4E+ED&hash=item42acd35dda:g:rGkAAeSwfP9pduRD"
+      },
+      {
+       "title": "Nikon AF-S NIKKOR 105mm f/1.4E ED Lens",
+       "price": 1297.1,
+       "currency": "USD",
+       "condition": "Used",
+       "image": "https://i.ebayimg.com/images/g/6Q0AAeSwhSppLiUh/s-l1600.jpg",
+       "url": "https://www.ebay.com/itm/167977594545?_skw=Nikon+AF-S+105mm+f%2F1.4E+ED&hash=item271c3eaeb1:g:6Q0AAeSwhSppLiUh"
+      },
+      {
+       "title": "Nikon AF-S NIKKOR 105mm f/1.4E ED single focal length lens for full size",
+       "price": 1350.97,
+       "currency": "USD",
+       "condition": "Used",
+       "image": "https://i.ebayimg.com/images/g/6ioAAOSw-~Rk0283/s-l1200.jpg",
+       "url": "https://www.ebay.com/itm/404429973226?_skw=Nikon+AF-S+105mm+f%2F1.4E+ED&hash=item5e29e7a6ea:g:6ioAAOSw-~Rk0283"
+      }
+     ]
+    },
+    {
+     "id": "af-dc-nikkor-135mm-f2d",
+     "name_ko": "DC 135mm f/2D",
+     "name_en": "DC-NIKKOR 135mm f/2D",
+     "subcategory": "prime",
+     "focal_length_min": 135,
+     "median": 603.64,
+     "mean": 636.1,
+     "min": 479.98,
+     "max": 927.06,
+     "q1": 540.74,
+     "q3": 711.99,
+     "count": 54,
+     "count_filtered": 54,
+     "samples": [
+      {
+       "title": "Nikon AF DC Nikkor 135mm f/2 D Telephoto Portrait Lens Japan [Near Mint] #0227",
+       "price": 599.99,
+       "currency": "USD",
+       "condition": "Used",
+       "image": "https://i.ebayimg.com/images/g/6N4AAeSwyndprCQt/s-l1600.jpg",
+       "url": "https://www.ebay.com/itm/157732459983?_skw=Nikon+DC+Nikkor+135mm+f%2F2D&hash=item24b99655cf:g:6N4AAeSwyndprCQt"
+      },
+      {
+       "title": "[ MINT +++] Nikon AF DC Nikkor 135mm f/2 D Defocus Image Control Lens From JAPAN",
+       "price": 599.99,
+       "currency": "USD",
+       "condition": "Used",
+       "image": "https://i.ebayimg.com/images/g/A9cAAeSwpvJpr1fu/s-l1600.jpg",
+       "url": "https://www.ebay.com/itm/358307413869?_skw=Nikon+DC+Nikkor+135mm+f%2F2D&hash=item536cc93f6d:g:A9cAAeSwpvJpr1fu"
+      },
+      {
+       "title": "Nikon AF DC-Nikkor 135mm F2 D Lens US Model",
+       "price": 607.29,
+       "currency": "USD",
+       "condition": "Used",
+       "image": "https://i.ebayimg.com/images/g/LysAAeSwKGxpeXkA/s-l1600.jpg",
+       "url": "https://www.ebay.com/itm/147121621262?_skw=Nikon+DC+Nikkor+135mm+f%2F2D&hash=item224121c90e:g:LysAAeSwKGxpeXkA"
+      },
+      {
+       "title": "Condition Nikon AF DC NIKKOR 135mm F2 D 2603013",
+       "price": 617.53,
+       "currency": "USD",
+       "condition": "Used",
+       "image": "https://i.ebayimg.com/images/g/y70AAeSwBhJpp3pm/s-l1200.jpg",
+       "url": "https://www.ebay.com/itm/157723738187?_skw=Nikon+DC+Nikkor+135mm+f%2F2D&hash=item24b911404b:g:y70AAeSwBhJpp3pm"
+      },
+      {
+       "title": "【Exc+】Nikon Ai AF DC-Nikkor 135mm f/2D From Japan A10118-2O1D",
+       "price": 620.0,
+       "currency": "USD",
+       "condition": "Used",
+       "image": "https://i.ebayimg.com/images/g/pWMAAeSwnfdpNRCY/s-l1200.jpg",
+       "url": "https://www.ebay.com/itm/336324019229?_skw=Nikon+DC+Nikkor+135mm+f%2F2D&hash=item4e4e79441d:g:pWMAAeSwnfdpNRCY"
       }
      ]
     },
@@ -5376,6 +6385,177 @@
      ]
     },
     {
+     "id": "af-micro-60mm-f28d",
+     "name_ko": "AF Micro 60mm f/2.8D",
+     "name_en": "AF Micro-NIKKOR 60mm f/2.8D",
+     "subcategory": "macro",
+     "focal_length_min": 60,
+     "median": 198.99,
+     "mean": 209.84,
+     "min": 134.99,
+     "max": 322.37,
+     "q1": 175.52,
+     "q3": 239.27,
+     "count": 152,
+     "count_filtered": 151,
+     "samples": [
+      {
+       "title": "Nikon AF Micro-Nikkor 60mm F/2.8D Macro Lens 26",
+       "price": 198.99,
+       "currency": "USD",
+       "condition": "Used",
+       "image": "https://i.ebayimg.com/images/g/NPwAAOSw0NhoQR~6/s-l1600.jpg",
+       "url": "https://www.ebay.com/itm/177157303946?_skw=Nikon+AF+Micro+60mm+f%2F2.8D&hash=item293f65ee8a:g:NPwAAOSw0NhoQR~6"
+      },
+      {
+       "title": "TESTED!![Exc+5 in BOX]  Nikon AF Micro Nikkor 60mm f/2.8 D Macro Lens from Japan",
+       "price": 198.99,
+       "currency": "USD",
+       "condition": "Used",
+       "image": "https://i.ebayimg.com/images/g/3LEAAeSwBWZpZPzC/s-l1600.jpg",
+       "url": "https://www.ebay.com/itm/406588306570?_skw=Nikon+AF+Micro+60mm+f%2F2.8D&hash=item5eaa8d348a:g:3LEAAeSwBWZpZPzC"
+      },
+      {
+       "title": "Nikon AF MICRO NIKKOR 60mm F2.8D Lens Near Mint!",
+       "price": 199.99,
+       "currency": "USD",
+       "condition": "Used",
+       "image": "https://i.ebayimg.com/images/g/X-sAAOSwx~pnbXpU/s-l960.jpg",
+       "url": "https://www.ebay.com/itm/296905297261?_skw=Nikon+AF+Micro+60mm+f%2F2.8D&hash=item4520ef4d6d:g:X-sAAOSwx~pnbXpU"
+      },
+      {
+       "title": "▶︎[MINT] Nikon AF Micro Nikkor 60mm f/2.8 D Macro Lens  From JAPAN",
+       "price": 199.99,
+       "currency": "USD",
+       "condition": "Used",
+       "image": "https://i.ebayimg.com/images/g/dlgAAeSwxbxpqDm3/s-l1600.jpg",
+       "url": "https://www.ebay.com/itm/177921093527?_skw=Nikon+AF+Micro+60mm+f%2F2.8D&hash=item296cec6f97:g:dlgAAeSwxbxpqDm3"
+      },
+      {
+       "title": "Nikon Lens: AF Micro Nikkor 60mm f/2.8 D Macro, Made In Japan.",
+       "price": 203.86,
+       "currency": "USD",
+       "condition": "Used",
+       "image": "https://i.ebayimg.com/images/g/3GkAAeSw1CJn7q~I/s-l1600.jpg",
+       "url": "https://www.ebay.com/itm/236036470666?_skw=Nikon+AF+Micro+60mm+f%2F2.8D&hash=item36f4deb78a:g:3GkAAeSw1CJn7q~I"
+      }
+     ]
+    },
+    {
+     "id": "af-s-micro-60mm-f28g-ed",
+     "name_ko": "AF-S Micro 60mm f/2.8G ED",
+     "name_en": "AF-S Micro NIKKOR 60mm f/2.8G ED",
+     "subcategory": "macro",
+     "focal_length_min": 60,
+     "median": 397.0,
+     "mean": 410.33,
+     "min": 317.56,
+     "max": 529.19,
+     "q1": 375.0,
+     "q3": 450.33,
+     "count": 20,
+     "count_filtered": 20,
+     "samples": [
+      {
+       "title": "NIKON AF-S MICRO 60MM F2.8G ED Lens Macro Photography",
+       "price": 392.65,
+       "currency": "USD",
+       "condition": "Used",
+       "image": "https://i.ebayimg.com/images/g/nWsAAeSwjT9pXsIq/s-l1600.jpg",
+       "url": "https://www.ebay.com/itm/197894755920?_skw=Nikon+AF-S+Micro+60mm+f%2F2.8G+ED&hash=item2e13725650:g:nWsAAeSwjT9pXsIq"
+      },
+      {
+       "title": "[MINT w/ Case] Nikon AF-S Nikkor 60mm f2.8 G ED N IF Micro Wide Angle Lens JAPAN",
+       "price": 394.99,
+       "currency": "USD",
+       "condition": "Used",
+       "image": "https://i.ebayimg.com/images/g/CxEAAeSwni9ppaN1/s-l1600.jpg",
+       "url": "https://www.ebay.com/itm/397667439786?_skw=Nikon+AF-S+Micro+60mm+f%2F2.8G+ED&hash=item5c96d394aa:g:CxEAAeSwni9ppaN1"
+      },
+      {
+       "title": "Nikon AF-S NIKKOR 60mm f/2.8G ED Micro Wide Angle Lens [Top Mint] #2566",
+       "price": 399.0,
+       "currency": "USD",
+       "condition": "Used",
+       "image": "https://i.ebayimg.com/images/g/sIAAAeSw5bNpowp-/s-l1600.jpg",
+       "url": "https://www.ebay.com/itm/317935698446?_skw=Nikon+AF-S+Micro+60mm+f%2F2.8G+ED&hash=item4a0671c20e:g:sIAAAeSw5bNpowp-"
+      },
+      {
+       "title": "【Mint】Nikon AF-S Nikkor 60mm f/2.8 G ED IF Micro Wide Angle Lens",
+       "price": 399.98,
+       "currency": "USD",
+       "condition": "Used",
+       "image": "https://i.ebayimg.com/images/g/AOwAAOSwmMBnqYZP/s-l1600.jpg",
+       "url": "https://www.ebay.com/itm/235951723902?_skw=Nikon+AF-S+Micro+60mm+f%2F2.8G+ED&hash=item36efd1957e:g:AOwAAOSwmMBnqYZP"
+      },
+      {
+       "title": "Nikon  AF-S Micro 60mm f2.8 G ED N IF Nikkor F Mount Lens SUPER MINT! Tested",
+       "price": 428.0,
+       "currency": "USD",
+       "condition": "Used",
+       "image": "https://i.ebayimg.com/images/g/IucAAeSw-y9pb74z/s-l1200.jpg",
+       "url": "https://www.ebay.com/itm/236590647424?_skw=Nikon+AF-S+Micro+60mm+f%2F2.8G+ED&hash=item3715e6c880:g:IucAAeSw-y9pb74z"
+      }
+     ]
+    },
+    {
+     "id": "af-micro-105mm-f28d",
+     "name_ko": "AF Micro 105mm f/2.8D",
+     "name_en": "AF Micro-NIKKOR 105mm f/2.8D",
+     "subcategory": "macro",
+     "focal_length_min": 105,
+     "median": 239.54,
+     "mean": 254.75,
+     "min": 184.34,
+     "max": 398.99,
+     "q1": 213.43,
+     "q3": 296.33,
+     "count": 110,
+     "count_filtered": 108,
+     "samples": [
+      {
+       "title": "Nikon Ai AF Micro Nikkor 105mm F2.8D [ Lens | ]",
+       "price": 239.54,
+       "currency": "USD",
+       "condition": "Used",
+       "image": "https://i.ebayimg.com/images/g/z18AAeSwqd9pr1I3/s-l960.jpg",
+       "url": "https://www.ebay.com/itm/317977987056?_skw=Nikon+AF+Micro+105mm+f%2F2.8D&hash=item4a08f707f0:g:z18AAeSwqd9pr1I3"
+      },
+      {
+       "title": "Nikon Ai AF Micro Nikkor 105mm F2.8D [ Lens | ]",
+       "price": 239.54,
+       "currency": "USD",
+       "condition": "Used",
+       "image": "https://i.ebayimg.com/images/g/0n0AAeSwC1Vpr1I1/s-l960.jpg",
+       "url": "https://www.ebay.com/itm/277788469786?_skw=Nikon+AF+Micro+105mm+f%2F2.8D&hash=item40ad7baa1a:g:0n0AAeSwC1Vpr1I1"
+      },
+      {
+       "title": "Excellent+++++ Nikon 105mm f/2.8D AF Micro Nikkor Lens from Japan",
+       "price": 239.99,
+       "currency": "USD",
+       "condition": "Used",
+       "image": "https://i.ebayimg.com/images/g/FgMAAOSwtzFnRG4V/s-l1600.jpg",
+       "url": "https://www.ebay.com/itm/187019114789?_skw=Nikon+AF+Micro+105mm+f%2F2.8D&hash=item2b8b353925:g:FgMAAOSwtzFnRG4V"
+      },
+      {
+       "title": "Nikon AF MICRO NIKKOR 105mm f2.8 D 1288w",
+       "price": 244.0,
+       "currency": "USD",
+       "condition": "Used",
+       "image": "https://i.ebayimg.com/images/g/Px4AAeSw1mxplxlq/s-l1200.jpg",
+       "url": "https://www.ebay.com/itm/127693473892?_skw=Nikon+AF+Micro+105mm+f%2F2.8D&hash=item1dbb1fc864:g:Px4AAeSw1mxplxlq"
+      },
+      {
+       "title": "Nikon Micro Nikkor 105mm f2.8D 105mm f2.8 D Macro Lens DSLR Free US Shipping",
+       "price": 245.0,
+       "currency": "USD",
+       "condition": "Used",
+       "image": "https://i.ebayimg.com/images/g/PvEAAeSwE51prFUd/s-l1600.jpg",
+       "url": "https://www.ebay.com/itm/317968015179?_skw=Nikon+AF+Micro+105mm+f%2F2.8D&hash=item4a085edf4b:g:PvEAAeSwE51prFUd"
+      }
+     ]
+    },
+    {
      "id": "af-s-micro-105mm-f28g-ed-vr",
      "name_ko": "AF-S Micro 105mm f/2.8G ED VR",
      "name_en": "AF-S Micro NIKKOR 105mm f/2.8G IF-ED VR",
@@ -5429,6 +6609,512 @@
        "condition": "Used",
        "image": "https://i.ebayimg.com/images/g/RXUAAeSwfbVpou41/s-l1600.jpg",
        "url": "https://www.ebay.com/itm/317935346919?_skw=Nikon+AF-S+Micro+105mm+f%2F2.8G+VR&hash=item4a066c64e7:g:RXUAAeSwfbVpou41"
+      }
+     ]
+    },
+    {
+     "id": "af-p-dx-10-20-f45-56g-vr",
+     "name_ko": "AF-P DX 10-20mm f/4.5-5.6G VR",
+     "name_en": "AF-P DX NIKKOR 10-20mm f/4.5-5.6G VR",
+     "subcategory": "dx",
+     "focal_length_min": 10,
+     "median": 261.72,
+     "mean": 265.18,
+     "min": 170.57,
+     "max": 387.61,
+     "q1": 229.0,
+     "q3": 295.34,
+     "count": 31,
+     "count_filtered": 31,
+     "samples": [
+      {
+       "title": "Nikon AF-P DX NIKKOR 10-20mm f/4.5-5.6G VR Lens Black from Japan #734",
+       "price": 249.99,
+       "currency": "USD",
+       "condition": "Used",
+       "image": "https://i.ebayimg.com/images/g/mh0AAOSwXzNnwwZg/s-l1600.jpg",
+       "url": "https://www.ebay.com/itm/389670400828?_skw=Nikon+AF-P+DX+10-20mm+f%2F4.5-5.6G+VR&hash=item5aba2a733c:g:mh0AAOSwXzNnwwZg"
+      },
+      {
+       "title": "Nikon AF-P DX Ultra Wide Angle NIKKOR 10-20mm f/4.5-5.6G VR Lens*EX*",
+       "price": 260.34,
+       "currency": "USD",
+       "condition": "Used",
+       "image": "https://i.ebayimg.com/images/g/8jsAAOSwXhpkREf9/s-l1600.jpg",
+       "url": "https://www.ebay.com/itm/175698921686?_skw=Nikon+AF-P+DX+10-20mm+f%2F4.5-5.6G+VR&hash=item28e878c8d6:g:8jsAAOSwXhpkREf9"
+      },
+      {
+       "title": "Excellent Condition Nikon AF P DX NIKKOR 10 20mm f 4.5 5.6G VR CA01 R3732 2R3A",
+       "price": 261.72,
+       "currency": "USD",
+       "condition": "Used",
+       "image": "https://i.ebayimg.com/images/g/wVMAAeSwB6dph0Jq/s-l1200.jpg",
+       "url": "https://www.ebay.com/itm/168142572932?_skw=Nikon+AF-P+DX+10-20mm+f%2F4.5-5.6G+VR&hash=item2726140d84:g:wVMAAeSwB6dph0Jq"
+      },
+      {
+       "title": "Nikon AF-P DX NIKKOR 10-20mm F4.5-5.6G VR F Mount 394423",
+       "price": 274.7,
+       "currency": "USD",
+       "condition": "Used",
+       "image": "https://i.ebayimg.com/images/g/Cm8AAeSwQ-tps8bY/s-l1200.jpg",
+       "url": "https://www.ebay.com/itm/306812918735?_skw=Nikon+AF-P+DX+10-20mm+f%2F4.5-5.6G+VR&hash=item476f799bcf:g:Cm8AAeSwQ-tps8bY"
+      },
+      {
+       "title": "Excellent Condition Nikon AF P DX NIKKOR 10 20mm F4.5 5.6G VR Nikon F Mount",
+       "price": 275.82,
+       "currency": "USD",
+       "condition": "Used",
+       "image": "https://i.ebayimg.com/images/g/YugAAeSwV2dph0Iq/s-l1200.jpg",
+       "url": "https://www.ebay.com/itm/168142572694?_skw=Nikon+AF-P+DX+10-20mm+f%2F4.5-5.6G+VR&hash=item2726140c96:g:YugAAeSwV2dph0Iq"
+      }
+     ]
+    },
+    {
+     "id": "af-s-dx-12-24-f4g-if-ed",
+     "name_ko": "AF-S DX 12-24mm f/4G IF-ED",
+     "name_en": "AF-S DX Zoom-NIKKOR 12-24mm f/4G IF-ED",
+     "subcategory": "dx",
+     "focal_length_min": 12,
+     "median": 248.29,
+     "mean": 246.54,
+     "min": 150.99,
+     "max": 335.92,
+     "q1": 218.71,
+     "q3": 269.73,
+     "count": 41,
+     "count_filtered": 38,
+     "samples": [
+      {
+       "title": "Nikon AF-S DX Zoom-Nikkor 12-24mm F4G IF-ED [ Lens | ]",
+       "price": 248.29,
+       "currency": "USD",
+       "condition": "Used",
+       "image": "https://i.ebayimg.com/images/g/xXgAAeSwZAFpr1M9/s-l960.jpg",
+       "url": "https://www.ebay.com/itm/358307335421?_skw=Nikon+AF-S+DX+12-24mm+f%2F4G+IF-ED&hash=item536cc80cfd:g:xXgAAeSwZAFpr1M9"
+      },
+      {
+       "title": "Nikon AF-S DX Zoom-Nikkor 12-24mm F4G IF-ED [ Lens | ]",
+       "price": 248.29,
+       "currency": "USD",
+       "condition": "Used",
+       "image": "https://i.ebayimg.com/images/g/QgAAAeSwVZdpr1OD/s-l960.jpg",
+       "url": "https://www.ebay.com/itm/358307335429?_skw=Nikon+AF-S+DX+12-24mm+f%2F4G+IF-ED&hash=item536cc80d05:g:QgAAAeSwVZdpr1OD"
+      },
+      {
+       "title": "Nikon AF-S DX Zoom-Nikkor 12-24mm F4G IF-ED [ Lens | ]",
+       "price": 250.38,
+       "currency": "USD",
+       "condition": "Used",
+       "image": "https://i.ebayimg.com/images/g/RP0AAeSwrilplX-z/s-l960.jpg",
+       "url": "https://www.ebay.com/itm/206077805440?_skw=Nikon+AF-S+DX+12-24mm+f%2F4G+IF-ED&hash=item2ffb31c380:g:RP0AAeSwrilplX-z"
+      },
+      {
+       "title": "Nikon AF-S DX Zoom-Nikkor 12-24mm F4G IF-ED [ Lens | ]",
+       "price": 250.38,
+       "currency": "USD",
+       "condition": "Used",
+       "image": "https://i.ebayimg.com/images/g/VBwAAeSwoN5plYAo/s-l960.jpg",
+       "url": "https://www.ebay.com/itm/206077805441?_skw=Nikon+AF-S+DX+12-24mm+f%2F4G+IF-ED&hash=item2ffb31c381:g:VBwAAeSwoN5plYAo"
+      },
+      {
+       "title": "Nikon AF-S DX NIKKOR 12-24mm f/4 G IF-ED \"Near Mint\" 0342 Zoom Lens",
+       "price": 255.19,
+       "currency": "USD",
+       "condition": "Used",
+       "image": "https://i.ebayimg.com/images/g/sMkAAeSwHe5ozN~Y/s-l1600.jpg",
+       "url": "https://www.ebay.com/itm/306505952529?_skw=Nikon+AF-S+DX+12-24mm+f%2F4G+IF-ED&hash=item475d2dad11:g:sMkAAeSwHe5ozN~Y"
+      }
+     ]
+    },
+    {
+     "id": "af-s-dx-16-80-f28-4e-ed-vr",
+     "name_ko": "AF-S DX 16-80mm f/2.8-4E ED VR",
+     "name_en": "AF-S DX NIKKOR 16-80mm f/2.8-4E ED VR",
+     "subcategory": "dx",
+     "focal_length_min": 16,
+     "median": 520.0,
+     "mean": 543.87,
+     "min": 404.5,
+     "max": 686.72,
+     "q1": 465.5,
+     "q3": 666.67,
+     "count": 15,
+     "count_filtered": 15,
+     "samples": [
+      {
+       "title": "[Mint] NIKON AF-S VR DX NIKKOR ED 16-80mm f/2.8-4E SWM IF ASPH. Lens",
+       "price": 495.77,
+       "currency": "USD",
+       "condition": "Used",
+       "image": "https://i.ebayimg.com/images/g/LJcAAOSwRX1j2zlH/s-l1200.jpg",
+       "url": "https://www.ebay.com/itm/374491931342?_skw=Nikon+AF-S+DX+16-80mm+f%2F2.8-4E+ED+VR&hash=item57317562ce:g:LJcAAOSwRX1j2zlH"
+      },
+      {
+       "title": "【Exc+】 Nikon AF-S DX NIKKOR 16-80mm F2.8-4E ED VR DSLR Camera Lenses B4318-3W1D",
+       "price": 500.0,
+       "currency": "USD",
+       "condition": "Used",
+       "image": "https://i.ebayimg.com/images/g/04kAAeSwj6Npdq-1/s-l1200.jpg",
+       "url": "https://www.ebay.com/itm/336406271161?_skw=Nikon+AF-S+DX+16-80mm+f%2F2.8-4E+ED+VR&hash=item4e536054b9:g:04kAAeSwj6Npdq-1"
+      },
+      {
+       "title": "【Exc++】 Nikon AF-S DX NIKKOR 16-80mm F2.8-4E ED VR DSLR Lenses B4881-2M7A",
+       "price": 520.0,
+       "currency": "USD",
+       "condition": "Used",
+       "image": "https://i.ebayimg.com/images/g/mt0AAeSw6IJpqnjy/s-l1200.jpg",
+       "url": "https://www.ebay.com/itm/336465956789?_skw=Nikon+AF-S+DX+16-80mm+f%2F2.8-4E+ED+VR&hash=item4e56ef0fb5:g:mt0AAeSw6IJpqnjy"
+      },
+      {
+       "title": "Nikon standard zoom lens AF-S DX NIKKOR 16-80mm f/2.8-4E ED VR",
+       "price": 521.97,
+       "currency": "USD",
+       "condition": "Used",
+       "image": "https://i.ebayimg.com/images/g/kpcAAOSwHoZmT8FN/s-l1600.jpg",
+       "url": "https://www.ebay.com/itm/404986331475?_skw=Nikon+AF-S+DX+16-80mm+f%2F2.8-4E+ED+VR&hash=item5e4b110153:g:kpcAAOSwHoZmT8FN"
+      },
+      {
+       "title": "Used Nikon AF S DX NIKKOR 16 80mm f 2.8 4 E ED VR",
+       "price": 578.72,
+       "currency": "USD",
+       "condition": "Used",
+       "image": "https://i.ebayimg.com/images/g/ejMAAeSwIY9pp3n0/s-l960.jpg",
+       "url": "https://www.ebay.com/itm/157723738368?_skw=Nikon+AF-S+DX+16-80mm+f%2F2.8-4E+ED+VR&hash=item24b9114100:g:ejMAAeSwIY9pp3n0"
+      }
+     ]
+    },
+    {
+     "id": "af-s-dx-17-55-f28g-if-ed",
+     "name_ko": "AF-S DX 17-55mm f/2.8G IF-ED",
+     "name_en": "AF-S DX Zoom-NIKKOR 17-55mm f/2.8G IF-ED",
+     "subcategory": "dx",
+     "focal_length_min": 17,
+     "median": 381.03,
+     "mean": 384.36,
+     "min": 267.86,
+     "max": 554.83,
+     "q1": 329.49,
+     "q3": 443.97,
+     "count": 32,
+     "count_filtered": 30,
+     "samples": [
+      {
+       "title": "[Top MINT]  Nikon AF-S DX NIKKOR 17-55mm f2.8 G IF-ED Wide Angle Lens From JAPAN",
+       "price": 374.99,
+       "currency": "USD",
+       "condition": "Used",
+       "image": "https://i.ebayimg.com/images/g/BEcAAeSw87ZpUOxc/s-l1600.jpg",
+       "url": "https://www.ebay.com/itm/376812409308?_skw=Nikon+AF-S+DX+17-55mm+f%2F2.8G+IF-ED&hash=item57bbc511dc:g:BEcAAeSw87ZpUOxc"
+      },
+      {
+       "title": "Nikon AF-S DX Zoom-Nikkor 17-55mm f/2.8G IF-ED Working",
+       "price": 387.08,
+       "currency": "USD",
+       "condition": "Used",
+       "image": "https://i.ebayimg.com/images/g/tVAAAeSwDI1phdEK/s-l1200.jpg",
+       "url": "https://www.ebay.com/itm/168139615296?_skw=Nikon+AF-S+DX+17-55mm+f%2F2.8G+IF-ED&hash=item2725e6ec40:g:tVAAAeSwDI1phdEK"
+      },
+      {
+       "title": "Nikon AF-S DX Zoom-Nikkor 17-55mm f/2.8G IF-ED Lens US424276",
+       "price": 395.78,
+       "currency": "USD",
+       "condition": "Used",
+       "image": "https://i.ebayimg.com/images/g/iUoAAOSwu6VfXn9v/s-l1600.jpg",
+       "url": "https://www.ebay.com/itm/175668200796?_skw=Nikon+AF-S+DX+17-55mm+f%2F2.8G+IF-ED&hash=item28e6a4055c:g:iUoAAOSwu6VfXn9v"
+      },
+      {
+       "title": "Fair condition Nikon AF S DX Zoom Nikkor 17 55mm f 2.8G IF ED Nikon F mount",
+       "price": 399.15,
+       "currency": "USD",
+       "condition": "Used",
+       "image": "https://i.ebayimg.com/images/g/oDwAAeSwGjBph0LZ/s-l1200.jpg",
+       "url": "https://www.ebay.com/itm/168142572492?_skw=Nikon+AF-S+DX+17-55mm+f%2F2.8G+IF-ED&hash=item2726140bcc:g:oDwAAeSwGjBph0LZ"
+      },
+      {
+       "title": "Nikon AF-S DX Zoom-Nikkor 17-55mm F/2.8G IF-ED (B70-1755-842C)",
+       "price": 403.47,
+       "currency": "USD",
+       "condition": "Used",
+       "image": "https://i.ebayimg.com/images/g/IRcAAeSwWklpl~mS/s-l1600.jpg",
+       "url": "https://www.ebay.com/itm/287152983867?_skw=Nikon+AF-S+DX+17-55mm+f%2F2.8G+IF-ED&hash=item42dba6cf3b:g:IRcAAeSwWklpl~mS"
+      }
+     ]
+    },
+    {
+     "id": "af-p-dx-18-55-f35-56g-vr",
+     "name_ko": "AF-P DX 18-55mm f/3.5-5.6G VR",
+     "name_en": "AF-P DX NIKKOR 18-55mm f/3.5-5.6G VR",
+     "subcategory": "dx",
+     "focal_length_min": 18,
+     "median": 115.86,
+     "mean": 118.68,
+     "min": 60.0,
+     "max": 172.91,
+     "q1": 102.76,
+     "q3": 133.41,
+     "count": 53,
+     "count_filtered": 52,
+     "samples": [
+      {
+       "title": "Nikon DX AF-P Nikkor 18-55mm f/3.5-5.6 G VR Zoom Kit F-Mount Lens",
+       "price": 114.9,
+       "currency": "USD",
+       "condition": "Used",
+       "image": "https://i.ebayimg.com/images/g/ZxQAAeSw-PppdhB8/s-l1200.jpg",
+       "url": "https://www.ebay.com/itm/397542819103?_skw=Nikon+AF-P+DX+18-55mm+f%2F3.5-5.6G+VR&hash=item5c8f66051f:g:ZxQAAeSw-PppdhB8"
+      },
+      {
+       "title": "Nikon AF-P 18-55mm f/3.5-5.6G DX VR NIKKOR Zoom Lens Tested And Works",
+       "price": 115.38,
+       "currency": "USD",
+       "condition": "Used",
+       "image": "https://i.ebayimg.com/images/g/k3gAAeSwYFlpQMSY/s-l1600.jpg",
+       "url": "https://www.ebay.com/itm/326914716161?_skw=Nikon+AF-P+DX+18-55mm+f%2F3.5-5.6G+VR&hash=item4c1da2b201:g:k3gAAeSwYFlpQMSY"
+      },
+      {
+       "title": "Nikon AF-P DX NIKKOR 18-55mm f/3.5-5.6G VR Lens",
+       "price": 115.63,
+       "currency": "USD",
+       "condition": "Used",
+       "image": "https://i.ebayimg.com/images/g/6rQAAeSwV6lpbpjC/s-l1200.jpg",
+       "url": "https://www.ebay.com/itm/358133394107?_skw=Nikon+AF-P+DX+18-55mm+f%2F3.5-5.6G+VR&hash=item536269eabb:g:6rQAAeSwV6lpbpjC"
+      },
+      {
+       "title": "Nikon DX AF-P Nikkor 18-55mm f/3.5-5.6 G VR Zoom Kit F-Mount Lens",
+       "price": 116.09,
+       "currency": "USD",
+       "condition": "Used",
+       "image": "https://i.ebayimg.com/images/g/J2gAAeSwjXlpAUqG/s-l960.jpg",
+       "url": "https://www.ebay.com/itm/306679106311?_skw=Nikon+AF-P+DX+18-55mm+f%2F3.5-5.6G+VR&hash=item47677fcb07:g:J2gAAeSwjXlpAUqG"
+      },
+      {
+       "title": "Nikon AF-P DX VR Nikkor 18-55mm f/3.5-5.6G VR Zoom Lens",
+       "price": 117.38,
+       "currency": "USD",
+       "condition": "Used",
+       "image": "https://i.ebayimg.com/images/g/CdcAAeSwOglphSLU/s-l1600.jpg",
+       "url": "https://www.ebay.com/itm/206051606714?_skw=Nikon+AF-P+DX+18-55mm+f%2F3.5-5.6G+VR&hash=item2ff9a200ba:g:CdcAAeSwOglphSLU"
+      }
+     ]
+    },
+    {
+     "id": "af-s-dx-18-140-f35-56g-ed-vr",
+     "name_ko": "AF-S DX 18-140mm f/3.5-5.6G ED VR",
+     "name_en": "AF-S DX NIKKOR 18-140mm f/3.5-5.6G ED VR",
+     "subcategory": "dx",
+     "focal_length_min": 18,
+     "median": 218.78,
+     "mean": 230.47,
+     "min": 169.99,
+     "max": 336.46,
+     "q1": 199.99,
+     "q3": 261.2,
+     "count": 62,
+     "count_filtered": 61,
+     "samples": [
+      {
+       "title": "Nikon Af-S Dx Nikkor 18-140Mm F/3.5-5.6G Ed Vr Operation Confirmed",
+       "price": 217.83,
+       "currency": "USD",
+       "condition": "Used",
+       "image": "https://i.ebayimg.com/images/g/x7EAAeSwi3ppsCnT/s-l1600.jpg",
+       "url": "https://www.ebay.com/itm/358310008447?_skw=Nikon+AF-S+DX+18-140mm+f%2F3.5-5.6G+ED+VR&hash=item536cf0d67f:g:x7EAAeSwi3ppsCnT"
+      },
+      {
+       "title": "AB (Good condition) Nikon AF S DX NIKKOR 18 140mm F3.5 5.6G ED VR Initial defect",
+       "price": 218.78,
+       "currency": "USD",
+       "condition": "Used",
+       "image": "https://i.ebayimg.com/images/g/5C4AAeSwf6xps1W8/s-l1200.jpg",
+       "url": "https://www.ebay.com/itm/157747448357?_skw=Nikon+AF-S+DX+18-140mm+f%2F3.5-5.6G+ED+VR&hash=item24ba7b0a25:g:5C4AAeSwf6xps1W8"
+      },
+      {
+       "title": "Works Perfectly【Mint】 Nikon AF-S DX NIKKOR 18-140mm F3.5-5.6G  ED VR Lens JAPAN",
+       "price": 219.98,
+       "currency": "USD",
+       "condition": "Used",
+       "image": "https://i.ebayimg.com/images/g/4j4AAOSwp-doNSW6/s-l1600.jpg",
+       "url": "https://www.ebay.com/itm/236306633008?_skw=Nikon+AF-S+DX+18-140mm+f%2F3.5-5.6G+ED+VR&hash=item3704f91130:g:4j4AAOSwp-doNSW6"
+      },
+      {
+       "title": "Nikon Nikkor AF-S 18-140mm f3.5-5.6 G ED VR DX Lens AFS Vintage VGUC Camera",
+       "price": 220.97,
+       "currency": "USD",
+       "condition": "Used",
+       "image": "https://i.ebayimg.com/images/g/plkAAeSwC9ppM0at/s-l1600.jpg",
+       "url": "https://www.ebay.com/itm/236510898016?_skw=Nikon+AF-S+DX+18-140mm+f%2F3.5-5.6G+ED+VR&hash=item371125e760:g:plkAAeSwC9ppM0at"
+      },
+      {
+       "title": "[NEAR MINT] Nikon AF-S DX NIKKOR 18-140mm f/3.5-5.6G ED VR Lens From JAPAN",
+       "price": 221.99,
+       "currency": "USD",
+       "condition": "Used",
+       "image": "https://i.ebayimg.com/images/g/E5wAAeSw58JpMME9/s-l1600.jpg",
+       "url": "https://www.ebay.com/itm/357980088664?_skw=Nikon+AF-S+DX+18-140mm+f%2F3.5-5.6G+ED+VR&hash=item535946a958:g:E5wAAeSw58JpMME9"
+      }
+     ]
+    },
+    {
+     "id": "af-s-dx-35mm-f18g",
+     "name_ko": "AF-S DX 35mm f/1.8G",
+     "name_en": "AF-S DX NIKKOR 35mm f/1.8G",
+     "subcategory": "dx",
+     "focal_length_min": 35,
+     "median": 159.99,
+     "mean": 158.34,
+     "min": 114.99,
+     "max": 220.93,
+     "q1": 139.0,
+     "q3": 173.7,
+     "count": 112,
+     "count_filtered": 110,
+     "samples": [
+      {
+       "title": "[Almost Unused] Nikon AF-S DX NIKKOR 35mm f/1.8 G Wide Angle Lens From JAPAN",
+       "price": 159.99,
+       "currency": "USD",
+       "condition": "Used",
+       "image": "https://i.ebayimg.com/images/g/pqYAAeSwTBJpR1AK/s-l1600.jpg",
+       "url": "https://www.ebay.com/itm/236538225221?_skw=Nikon+AF-S+DX+35mm+f%2F1.8G&hash=item3712c6e245:g:pqYAAeSwTBJpR1AK"
+      },
+      {
+       "title": "\"NEAR MINT\" Nikon AF-S DX NIKKOR 35mm F1.8G Lens for F Mount From Japan #1621",
+       "price": 159.99,
+       "currency": "USD",
+       "condition": "Used",
+       "image": "https://i.ebayimg.com/images/g/dDUAAeSwmG1poB9a/s-l1200.jpg",
+       "url": "https://www.ebay.com/itm/236656442941?_skw=Nikon+AF-S+DX+35mm+f%2F1.8G&hash=item3719d2be3d:g:dDUAAeSwmG1poB9a"
+      },
+      {
+       "title": "Nikon  [Almost Unused+++]Nikon AF-S Nikkor 35mm f/1.8G DX Lens G Lens From JAPAN",
+       "price": 159.99,
+       "currency": "USD",
+       "condition": "Used",
+       "image": "https://i.ebayimg.com/images/g/ZVQAAeSwKnlpqWx-/s-l1600.jpg",
+       "url": "https://www.ebay.com/itm/389702343340?_skw=Nikon+AF-S+DX+35mm+f%2F1.8G&hash=item5abc11daac:g:ZVQAAeSwKnlpqWx-"
+      },
+      {
+       "title": "[Top MINT w/Box] Nikon NIKKOR AF-S DX 35mm f/1.8G Standard Prime Lens From Japan",
+       "price": 159.99,
+       "currency": "USD",
+       "condition": "Used",
+       "image": "https://i.ebayimg.com/images/g/kXEAAeSwNiFpjeCo/s-l1600.jpg",
+       "url": "https://www.ebay.com/itm/188052507863?_skw=Nikon+AF-S+DX+35mm+f%2F1.8G&hash=item2bc8cd8cd7:g:kXEAAeSwNiFpjeCo"
+      },
+      {
+       "title": "Nikon Nikkor 35mm F/1.8G AF-S DX F-Mount Lens",
+       "price": 160.0,
+       "currency": "USD",
+       "condition": "Used",
+       "image": "https://i.ebayimg.com/images/g/ycgAAeSwdP5pdKPB/s-l1600.jpg",
+       "url": "https://www.ebay.com/itm/317796942844?_skw=Nikon+AF-S+DX+35mm+f%2F1.8G&hash=item49fe2c83fc:g:ycgAAeSwdP5pdKPB"
+      }
+     ]
+    },
+    {
+     "id": "pc-e-nikkor-24mm-f35d-ed",
+     "name_ko": "PC-E 24mm f/3.5D ED",
+     "name_en": "PC-E NIKKOR 24mm f/3.5D ED",
+     "subcategory": "pc-e",
+     "focal_length_min": 24,
+     "median": 1124.97,
+     "mean": 1124.97,
+     "min": 1031.03,
+     "max": 1218.9,
+     "q1": 1031.03,
+     "q3": 1218.9,
+     "count": 2,
+     "count_filtered": 2,
+     "samples": [
+      {
+       "title": "Nikon PC lens PC-E NIKKOR 24mm f/3.5D ED Nano, Tilt & Shift lens",
+       "price": 1031.03,
+       "currency": "USD",
+       "condition": "Used",
+       "image": "https://i.ebayimg.com/images/g/FugAAeSwo~lpsdws/s-l640.jpg",
+       "url": "https://www.ebay.com/itm/298111919912?_skw=Nikon+PC-E+24mm+f%2F3.5D+ED&hash=item4568dae728:g:FugAAeSwo~lpsdws"
+      },
+      {
+       "title": "Nikon PC lens PC-E NIKKOR 24mm f/3.5D ED 520634",
+       "price": 1218.9,
+       "currency": "USD",
+       "condition": "Used",
+       "image": "https://i.ebayimg.com/images/g/IBgAAeSw~dxps4XR/s-l1600.jpg",
+       "url": "https://www.ebay.com/itm/306735014964?_skw=Nikon+PC-E+24mm+f%2F3.5D+ED&hash=item476ad4e434:g:IBgAAeSw~dxps4XR"
+      }
+     ]
+    },
+    {
+     "id": "pc-e-micro-nikkor-45mm-f28d-ed",
+     "name_ko": "PC-E Micro 45mm f/2.8D ED",
+     "name_en": "PC-E Micro NIKKOR 45mm f/2.8D ED",
+     "subcategory": "pc-e",
+     "focal_length_min": 45,
+     "median": 1000.85,
+     "mean": 1000.85,
+     "min": 935.45,
+     "max": 1066.25,
+     "q1": 935.45,
+     "q3": 1066.25,
+     "count": 2,
+     "count_filtered": 2,
+     "samples": [
+      {
+       "title": "NIKON PC-E Micro NIKKOR 45mm f/2.8D ED with Arca Swiss Collar, MINT-",
+       "price": 935.45,
+       "currency": "USD",
+       "condition": "Used",
+       "image": "https://i.ebayimg.com/images/g/EIgAAeSwmMtpPNBf/s-l1600.jpg",
+       "url": "https://www.ebay.com/itm/257399805731?_skw=Nikon+PC-E+Micro+45mm+f%2F2.8D+ED&hash=item3bee395723:g:EIgAAeSwmMtpPNBf"
+      },
+      {
+       "title": "Nikon Micro Nikkor 45mm 45 f/2.8 f2.8 f/2.8D PC-E D N ED Tilt-Shift Lens - SHARP",
+       "price": 1066.25,
+       "currency": "USD",
+       "condition": "Used",
+       "image": "https://i.ebayimg.com/images/g/yAoAAeSwxlhpAQoS/s-l1600.jpg",
+       "url": "https://www.ebay.com/itm/336257481618?_skw=Nikon+PC-E+Micro+45mm+f%2F2.8D+ED&hash=item4e4a81fb92:g:yAoAAeSwxlhpAQoS"
+      }
+     ]
+    },
+    {
+     "id": "pc-e-micro-nikkor-85mm-f28d",
+     "name_ko": "PC-E Micro 85mm f/2.8D",
+     "name_en": "PC-E Micro NIKKOR 85mm f/2.8D",
+     "subcategory": "pc-e",
+     "focal_length_min": 85,
+     "median": 1229.06,
+     "mean": 1243.03,
+     "min": 1113.36,
+     "max": 1386.67,
+     "q1": 1113.36,
+     "q3": 1386.67,
+     "count": 3,
+     "count_filtered": 3,
+     "samples": [
+      {
+       "title": "Nikon PC Micro Lens PC-E Micro NIKKOR 85mm f/2.8D, compatible with full-frame",
+       "price": 1113.36,
+       "currency": "USD",
+       "condition": "Used",
+       "image": "https://i.ebayimg.com/images/g/cvoAAeSwNtxpmcyZ/s-l500.jpg",
+       "url": "https://www.ebay.com/itm/206084839362?_skw=Nikon+PC-E+Micro+85mm+f%2F2.8D&hash=item2ffb9d17c2:g:cvoAAeSwNtxpmcyZ"
+      },
+      {
+       "title": "Nikon PC Micro Lens PC-E Micro NIKKOR 85mm f/2.8D Full Size (B80-85-112C)",
+       "price": 1229.06,
+       "currency": "USD",
+       "condition": "Used",
+       "image": "https://i.ebayimg.com/images/g/AEMAAeSwBf9prkLw/s-l1600.jpg",
+       "url": "https://www.ebay.com/itm/287189853160?_skw=Nikon+PC-E+Micro+85mm+f%2F2.8D&hash=item42ddd963e8:g:AEMAAeSwBf9prkLw"
+      },
+      {
+       "title": "Nikon PC Micro Lens PC-E Micro NIKKOR 85mm f/2.8D full size compatible",
+       "price": 1386.67,
+       "currency": "USD",
+       "condition": "Used",
+       "image": "https://i.ebayimg.com/images/g/AbYAAOSwB45k9OKb/s-l640.jpg",
+       "url": "https://www.ebay.com/itm/404473036461?_skw=Nikon+PC-E+Micro+85mm+f%2F2.8D&hash=item5e2c78bead:g:AbYAAOSwB45k9OKb"
       }
      ]
     }

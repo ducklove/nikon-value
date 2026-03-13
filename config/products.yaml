@@ -1008,24 +1008,67 @@ categories:
   name_ko: F마운트 렌즈
   name_en: F-Mount Lenses
   subcategories:
-  - id: zoom
-    name_ko: 줌 렌즈
-    name_en: Zoom
+  - id: wide-zoom
+    name_ko: 광각 줌
+    name_en: Wide Zoom
     sort_order: 1
+  - id: standard-zoom
+    name_ko: 표준 줌
+    name_en: Standard Zoom
+    sort_order: 2
+  - id: tele-zoom
+    name_ko: 망원 줌
+    name_en: Tele Zoom
+    sort_order: 3
   - id: prime
     name_ko: 단초점 렌즈
     name_en: Prime
-    sort_order: 2
+    sort_order: 4
   - id: macro
     name_ko: 매크로
     name_en: Macro
-    sort_order: 3
+    sort_order: 5
+  - id: dx
+    name_ko: DX
+    name_en: DX
+    sort_order: 6
+  - id: pc-e
+    name_ko: PC-E
+    name_en: PC-E
+    sort_order: 7
   products:
+  - id: af-s-14-24-f28g-ed
+    name_ko: AF-S 14-24mm f/2.8G ED
+    name_en: AF-S NIKKOR 14-24mm f/2.8G ED
+    focal_length_min: 14
+    subcategory: wide-zoom
+    query: Nikon AF-S 14-24mm f/2.8G ED
+    category_id: '78997'
+    min_price: 400
+    max_price: 1200
+  - id: af-s-16-35-f4g-ed-vr
+    name_ko: AF-S 16-35mm f/4G ED VR
+    name_en: AF-S NIKKOR 16-35mm f/4G ED VR
+    focal_length_min: 16
+    subcategory: wide-zoom
+    query: Nikon AF-S 16-35mm f/4G ED VR
+    category_id: '78997'
+    min_price: 250
+    max_price: 850
+  - id: af-s-17-35-f28d-if-ed
+    name_ko: AF-S 17-35mm f/2.8D IF-ED
+    name_en: AF-S Zoom-NIKKOR 17-35mm f/2.8D IF-ED
+    focal_length_min: 17
+    subcategory: wide-zoom
+    query: Nikon AF-S 17-35mm f/2.8D IF-ED
+    category_id: '78997'
+    min_price: 250
+    max_price: 900
   - id: af-s-24-70-f28g-ed
     name_ko: AF-S 24-70mm f/2.8G ED
     name_en: AF-S NIKKOR 24-70mm f/2.8G ED
     focal_length_min: 24
-    subcategory: zoom
+    subcategory: standard-zoom
     query: Nikon AF-S 24-70mm f/2.8G ED
     category_id: '78997'
     min_price: 500
@@ -1034,16 +1077,61 @@ categories:
     name_ko: AF-S 24-70mm f/2.8E ED VR
     name_en: AF-S NIKKOR 24-70mm f/2.8E ED VR
     focal_length_min: 24
-    subcategory: zoom
+    subcategory: standard-zoom
     query: Nikon AF-S 24-70mm f/2.8E ED VR
     category_id: '78997'
     min_price: 800
     max_price: 2000
+  - id: af-s-24-85-f35-45g-ed-vr
+    name_ko: AF-S 24-85mm f/3.5-4.5G ED VR
+    name_en: AF-S NIKKOR 24-85mm f/3.5-4.5G ED VR
+    focal_length_min: 24
+    subcategory: standard-zoom
+    query: Nikon AF-S 24-85mm f/3.5-4.5G ED VR
+    category_id: '78997'
+    min_price: 150
+    max_price: 450
+  - id: af-s-24-120-f4g-ed-vr
+    name_ko: AF-S 24-120mm f/4G ED VR
+    name_en: AF-S NIKKOR 24-120mm f/4G ED VR
+    focal_length_min: 24
+    subcategory: standard-zoom
+    query: Nikon AF-S 24-120mm f/4G ED VR
+    category_id: '78997'
+    min_price: 250
+    max_price: 700
+  - id: af-s-28-70-f28d-ed-if
+    name_ko: AF-S 28-70mm f/2.8D ED-IF
+    name_en: AF-S Zoom-NIKKOR 28-70mm f/2.8D ED-IF
+    focal_length_min: 28
+    subcategory: standard-zoom
+    query: Nikon AF-S 28-70mm f/2.8D ED IF
+    category_id: '78997'
+    min_price: 250
+    max_price: 800
+  - id: af-p-70-300-f45-63e-ed-vr
+    name_ko: AF-P 70-300mm f/4.5-6.3E ED VR
+    name_en: AF-P NIKKOR 70-300mm f/4.5-6.3E ED VR
+    focal_length_min: 70
+    subcategory: tele-zoom
+    query: Nikon AF-P 70-300mm f/4.5-6.3E ED VR
+    category_id: '78997'
+    min_price: 200
+    max_price: 700
+  - id: af-s-70-300-f45-56g-if-ed-vr
+    name_ko: AF-S 70-300mm f/4.5-5.6G IF-ED VR
+    name_en: AF-S NIKKOR 70-300mm f/4.5-5.6G IF-ED VR
+    focal_length_min: 70
+    subcategory: tele-zoom
+    query: Nikon AF-S 70-300mm f/4.5-5.6G IF-ED VR
+    category_id: '78997'
+    min_price: 120
+    max_price: 450
   - id: af-s-70-200-f28g-ed-vrii
     name_ko: AF-S 70-200mm f/2.8G ED VR II
     name_en: AF-S NIKKOR 70-200mm f/2.8G ED VR II
     focal_length_min: 70
-    subcategory: zoom
+    subcategory: tele-zoom
     query: Nikon AF-S 70-200mm f/2.8G VR II
     category_id: '78997'
     min_price: 600
@@ -1052,73 +1140,82 @@ categories:
     name_ko: AF-S 70-200mm f/2.8E FL ED VR
     name_en: AF-S NIKKOR 70-200mm f/2.8E FL ED VR
     focal_length_min: 70
-    subcategory: zoom
+    subcategory: tele-zoom
     query: Nikon AF-S 70-200mm f/2.8E FL ED VR
     category_id: '78997'
     min_price: 1000
     max_price: 2200
-  - id: af-s-14-24-f28g-ed
-    name_ko: AF-S 14-24mm f/2.8G ED
-    name_en: AF-S NIKKOR 14-24mm f/2.8G ED
-    focal_length_min: 14
-    subcategory: zoom
-    query: Nikon AF-S 14-24mm f/2.8G ED
+  - id: af-s-80-400-f45-56g-ed-vr
+    name_ko: AF-S 80-400mm f/4.5-5.6G ED VR
+    name_en: AF-S NIKKOR 80-400mm f/4.5-5.6G ED VR
+    focal_length_min: 80
+    subcategory: tele-zoom
+    query: Nikon AF-S 80-400mm f/4.5-5.6G ED VR
     category_id: '78997'
-    min_price: 400
-    max_price: 1200
+    min_price: 700
+    max_price: 1800
   - id: af-s-200-500-f56e-ed-vr
     name_ko: AF-S 200-500mm f/5.6E ED VR
     name_en: AF-S NIKKOR 200-500mm f/5.6E ED VR
     focal_length_min: 200
-    subcategory: zoom
+    subcategory: tele-zoom
     query: Nikon AF-S 200-500mm f/5.6E ED VR
     category_id: '78997'
     min_price: 500
     max_price: 1500
-  - id: af-p-70-300-f45-63e-ed-vr
-    name_ko: AF-P 70-300mm f/4.5-6.3E ED VR
-    name_en: AF-P NIKKOR 70-300mm f/4.5-6.3E ED VR
-    focal_length_min: 70
-    subcategory: zoom
-    query: Nikon AF-P 70-300mm f/4.5-6.3E ED VR
-    category_id: '78997'
-    min_price: 200
-    max_price: 700
-  - id: af-s-58mm-f14g
-    name_ko: AF-S 58mm f/1.4G
-    name_en: AF-S NIKKOR 58mm f/1.4G
-    focal_length_min: 58
+  - id: af-nikkor-20mm-f28d
+    name_ko: AF 20mm f/2.8D
+    name_en: AF NIKKOR 20mm f/2.8D
+    focal_length_min: 20
     subcategory: prime
-    query: Nikon AF-S 58mm f/1.4G
+    query: Nikon AF Nikkor 20mm f/2.8D
     category_id: '78997'
-    min_price: 800
-    max_price: 2000
-  - id: af-s-105mm-f14e-ed
-    name_ko: AF-S 105mm f/1.4E ED
-    name_en: AF-S NIKKOR 105mm f/1.4E ED
-    focal_length_min: 105
+    min_price: 120
+    max_price: 350
+  - id: af-s-24mm-f14g-ed
+    name_ko: AF-S 24mm f/1.4G ED
+    name_en: AF-S NIKKOR 24mm f/1.4G ED
+    focal_length_min: 24
     subcategory: prime
-    query: Nikon AF-S 105mm f/1.4E ED
+    query: Nikon AF-S 24mm f/1.4G ED
     category_id: '78997'
-    min_price: 1000
-    max_price: 2500
-  - id: af-s-85mm-f14g
-    name_ko: AF-S 85mm f/1.4G
-    name_en: AF-S NIKKOR 85mm f/1.4G
-    focal_length_min: 85
+    min_price: 700
+    max_price: 1600
+  - id: af-nikkor-28mm-f14d-ed
+    name_ko: AF 28mm f/1.4D ED
+    name_en: AF NIKKOR 28mm f/1.4D ED
+    focal_length_min: 28
     subcategory: prime
-    query: Nikon AF-S 85mm f/1.4G
+    query: Nikon AF Nikkor 28mm f/1.4D ED
     category_id: '78997'
-    min_price: 500
-    max_price: 1500
-  - id: af-s-50mm-f14g
-    name_ko: AF-S 50mm f/1.4G
-    name_en: AF-S NIKKOR 50mm f/1.4G
-    focal_length_min: 50
+    min_price: 1200
+    max_price: 4500
+  - id: af-s-28mm-f14e-ed
+    name_ko: AF-S 28mm f/1.4E ED
+    name_en: AF-S NIKKOR 28mm f/1.4E ED
+    focal_length_min: 28
     subcategory: prime
-    query: Nikon AF-S 50mm f/1.4G
+    query: Nikon AF-S 28mm f/1.4E ED
     category_id: '78997'
-    min_price: 150
+    min_price: 900
+    max_price: 2200
+  - id: af-nikkor-35mm-f2d
+    name_ko: AF 35mm f/2D
+    name_en: AF NIKKOR 35mm f/2D
+    focal_length_min: 35
+    subcategory: prime
+    query: Nikon AF Nikkor 35mm f/2D
+    category_id: '78997'
+    min_price: 120
+    max_price: 350
+  - id: af-s-35mm-f18g-ed
+    name_ko: AF-S 35mm f/1.8G ED
+    name_en: AF-S NIKKOR 35mm f/1.8G ED
+    focal_length_min: 35
+    subcategory: prime
+    query: Nikon AF-S 35mm f/1.8G ED
+    category_id: '78997'
+    min_price: 250
     max_price: 500
   - id: af-s-35mm-f14g
     name_ko: AF-S 35mm f/1.4G
@@ -1129,6 +1226,87 @@ categories:
     category_id: '78997'
     min_price: 500
     max_price: 1500
+  - id: af-nikkor-50mm-f18d
+    name_ko: AF 50mm f/1.8D
+    name_en: AF NIKKOR 50mm f/1.8D
+    focal_length_min: 50
+    subcategory: prime
+    query: Nikon AF Nikkor 50mm f/1.8D
+    category_id: '78997'
+    min_price: 40
+    max_price: 150
+  - id: af-s-50mm-f18g
+    name_ko: AF-S 50mm f/1.8G
+    name_en: AF-S NIKKOR 50mm f/1.8G
+    focal_length_min: 50
+    subcategory: prime
+    query: Nikon AF-S 50mm f/1.8G
+    category_id: '78997'
+    min_price: 80
+    max_price: 220
+  - id: af-s-50mm-f14g
+    name_ko: AF-S 50mm f/1.4G
+    name_en: AF-S NIKKOR 50mm f/1.4G
+    focal_length_min: 50
+    subcategory: prime
+    query: Nikon AF-S 50mm f/1.4G
+    category_id: '78997'
+    min_price: 150
+    max_price: 500
+  - id: af-s-58mm-f14g
+    name_ko: AF-S 58mm f/1.4G
+    name_en: AF-S NIKKOR 58mm f/1.4G
+    focal_length_min: 58
+    subcategory: prime
+    query: Nikon AF-S 58mm f/1.4G
+    category_id: '78997'
+    min_price: 800
+    max_price: 2000
+  - id: af-s-85mm-f18g
+    name_ko: AF-S 85mm f/1.8G
+    name_en: AF-S NIKKOR 85mm f/1.8G
+    focal_length_min: 85
+    subcategory: prime
+    query: Nikon AF-S 85mm f/1.8G
+    category_id: '78997'
+    min_price: 250
+    max_price: 500
+  - id: af-s-85mm-f14g
+    name_ko: AF-S 85mm f/1.4G
+    name_en: AF-S NIKKOR 85mm f/1.4G
+    focal_length_min: 85
+    subcategory: prime
+    query: Nikon AF-S 85mm f/1.4G
+    category_id: '78997'
+    min_price: 500
+    max_price: 1500
+  - id: af-dc-nikkor-105mm-f2d
+    name_ko: DC 105mm f/2D
+    name_en: DC-NIKKOR 105mm f/2D
+    focal_length_min: 105
+    subcategory: prime
+    query: Nikon DC Nikkor 105mm f/2D
+    category_id: '78997'
+    min_price: 300
+    max_price: 900
+  - id: af-s-105mm-f14e-ed
+    name_ko: AF-S 105mm f/1.4E ED
+    name_en: AF-S NIKKOR 105mm f/1.4E ED
+    focal_length_min: 105
+    subcategory: prime
+    query: Nikon AF-S 105mm f/1.4E ED
+    category_id: '78997'
+    min_price: 1000
+    max_price: 2500
+  - id: af-dc-nikkor-135mm-f2d
+    name_ko: DC 135mm f/2D
+    name_en: DC-NIKKOR 135mm f/2D
+    focal_length_min: 135
+    subcategory: prime
+    query: Nikon DC Nikkor 135mm f/2D
+    category_id: '78997'
+    min_price: 400
+    max_price: 1200
   - id: af-s-300mm-f4e-pf-ed-vr
     name_ko: AF-S 300mm f/4E PF ED VR
     name_en: AF-S NIKKOR 300mm f/4E PF ED VR
@@ -1147,6 +1325,33 @@ categories:
     category_id: '78997'
     min_price: 2000
     max_price: 4000
+  - id: af-micro-60mm-f28d
+    name_ko: AF Micro 60mm f/2.8D
+    name_en: AF Micro-NIKKOR 60mm f/2.8D
+    focal_length_min: 60
+    subcategory: macro
+    query: Nikon AF Micro 60mm f/2.8D
+    category_id: '78997'
+    min_price: 120
+    max_price: 300
+  - id: af-s-micro-60mm-f28g-ed
+    name_ko: AF-S Micro 60mm f/2.8G ED
+    name_en: AF-S Micro NIKKOR 60mm f/2.8G ED
+    focal_length_min: 60
+    subcategory: macro
+    query: Nikon AF-S Micro 60mm f/2.8G ED
+    category_id: '78997'
+    min_price: 200
+    max_price: 500
+  - id: af-micro-105mm-f28d
+    name_ko: AF Micro 105mm f/2.8D
+    name_en: AF Micro-NIKKOR 105mm f/2.8D
+    focal_length_min: 105
+    subcategory: macro
+    query: Nikon AF Micro 105mm f/2.8D
+    category_id: '78997'
+    min_price: 180
+    max_price: 500
   - id: af-s-micro-105mm-f28g-ed-vr
     name_ko: AF-S Micro 105mm f/2.8G ED VR
     name_en: AF-S Micro NIKKOR 105mm f/2.8G IF-ED VR
@@ -1156,6 +1361,96 @@ categories:
     category_id: '78997'
     min_price: 200
     max_price: 700
+  - id: af-p-dx-10-20-f45-56g-vr
+    name_ko: AF-P DX 10-20mm f/4.5-5.6G VR
+    name_en: AF-P DX NIKKOR 10-20mm f/4.5-5.6G VR
+    focal_length_min: 10
+    subcategory: dx
+    query: Nikon AF-P DX 10-20mm f/4.5-5.6G VR
+    category_id: '78997'
+    min_price: 120
+    max_price: 350
+  - id: af-s-dx-12-24-f4g-if-ed
+    name_ko: AF-S DX 12-24mm f/4G IF-ED
+    name_en: AF-S DX Zoom-NIKKOR 12-24mm f/4G IF-ED
+    focal_length_min: 12
+    subcategory: dx
+    query: Nikon AF-S DX 12-24mm f/4G IF-ED
+    category_id: '78997'
+    min_price: 150
+    max_price: 450
+  - id: af-s-dx-16-80-f28-4e-ed-vr
+    name_ko: AF-S DX 16-80mm f/2.8-4E ED VR
+    name_en: AF-S DX NIKKOR 16-80mm f/2.8-4E ED VR
+    focal_length_min: 16
+    subcategory: dx
+    query: Nikon AF-S DX 16-80mm f/2.8-4E ED VR
+    category_id: '78997'
+    min_price: 300
+    max_price: 700
+  - id: af-s-dx-17-55-f28g-if-ed
+    name_ko: AF-S DX 17-55mm f/2.8G IF-ED
+    name_en: AF-S DX Zoom-NIKKOR 17-55mm f/2.8G IF-ED
+    focal_length_min: 17
+    subcategory: dx
+    query: Nikon AF-S DX 17-55mm f/2.8G IF-ED
+    category_id: '78997'
+    min_price: 250
+    max_price: 700
+  - id: af-p-dx-18-55-f35-56g-vr
+    name_ko: AF-P DX 18-55mm f/3.5-5.6G VR
+    name_en: AF-P DX NIKKOR 18-55mm f/3.5-5.6G VR
+    focal_length_min: 18
+    subcategory: dx
+    query: Nikon AF-P DX 18-55mm f/3.5-5.6G VR
+    category_id: '78997'
+    min_price: 50
+    max_price: 150
+  - id: af-s-dx-18-140-f35-56g-ed-vr
+    name_ko: AF-S DX 18-140mm f/3.5-5.6G ED VR
+    name_en: AF-S DX NIKKOR 18-140mm f/3.5-5.6G ED VR
+    focal_length_min: 18
+    subcategory: dx
+    query: Nikon AF-S DX 18-140mm f/3.5-5.6G ED VR
+    category_id: '78997'
+    min_price: 120
+    max_price: 350
+  - id: af-s-dx-35mm-f18g
+    name_ko: AF-S DX 35mm f/1.8G
+    name_en: AF-S DX NIKKOR 35mm f/1.8G
+    focal_length_min: 35
+    subcategory: dx
+    query: Nikon AF-S DX 35mm f/1.8G
+    category_id: '78997'
+    min_price: 80
+    max_price: 180
+  - id: pc-e-nikkor-24mm-f35d-ed
+    name_ko: PC-E 24mm f/3.5D ED
+    name_en: PC-E NIKKOR 24mm f/3.5D ED
+    focal_length_min: 24
+    subcategory: pc-e
+    query: Nikon PC-E 24mm f/3.5D ED
+    category_id: '78997'
+    min_price: 600
+    max_price: 1400
+  - id: pc-e-micro-nikkor-45mm-f28d-ed
+    name_ko: PC-E Micro 45mm f/2.8D ED
+    name_en: PC-E Micro NIKKOR 45mm f/2.8D ED
+    focal_length_min: 45
+    subcategory: pc-e
+    query: Nikon PC-E Micro 45mm f/2.8D ED
+    category_id: '78997'
+    min_price: 500
+    max_price: 1400
+  - id: pc-e-micro-nikkor-85mm-f28d
+    name_ko: PC-E Micro 85mm f/2.8D
+    name_en: PC-E Micro NIKKOR 85mm f/2.8D
+    focal_length_min: 85
+    subcategory: pc-e
+    query: Nikon PC-E Micro 85mm f/2.8D
+    category_id: '78997'
+    min_price: 700
+    max_price: 1800
 - id: classic-lenses
   name_ko: 클래식 렌즈
   name_en: Classic Lenses
