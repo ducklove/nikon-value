@@ -584,6 +584,7 @@ categories:
     subcategory: rangefinder
     query: Nikon I rangefinder -Nikon 1 J -Nikon 1 V -Nikon 1 S -lens -nikkor -filter -hood -cap
     category_id: '3323'
+    search_category_id: '15230'
     min_price: 1000
     max_price: 8000
   - id: nikon-m
@@ -593,6 +594,7 @@ categories:
     subcategory: rangefinder
     query: Nikon M rangefinder -MD -FM -lens -nikkor -filter -hood -cap
     category_id: '3323'
+    search_category_id: '15230'
     min_price: 800
     max_price: 6000
   - id: nikon-s
@@ -602,6 +604,7 @@ categories:
     subcategory: rangefinder
     query: Nikon S rangefinder -S2 -S3 -S4 -SP -lens -nikkor -filter -hood -cap
     category_id: '3323'
+    search_category_id: '15230'
     min_price: 100
     max_price: 3000
   - id: nikon-s2
@@ -611,6 +614,7 @@ categories:
     subcategory: rangefinder
     query: Nikon S2 rangefinder -S3 -S4 -SP -lens -nikkor -filter -hood -cap
     category_id: '3323'
+    search_category_id: '15230'
     min_price: 100
     max_price: 3000
   - id: nikon-s3
@@ -620,6 +624,7 @@ categories:
     subcategory: rangefinder
     query: Nikon S3 rangefinder -S4 -SP -lens -nikkor -filter -hood -cap
     category_id: '3323'
+    search_category_id: '15230'
     min_price: 200
     max_price: 5000
   - id: nikon-s3-2000-limited
@@ -629,6 +634,7 @@ categories:
     subcategory: rangefinder
     query: Nikon S3 2000 limited -lens -manual -brochure -case -strap
     category_id: '3323'
+    search_category_id: '15230'
     min_price: 1200
     max_price: 5000
     is_rare: true
@@ -643,6 +649,7 @@ categories:
     subcategory: rangefinder
     query: Nikon S4 rangefinder -lens -nikkor -filter -hood -cap
     category_id: '3323'
+    search_category_id: '15230'
     min_price: 100
     max_price: 3000
   - id: nikon-sp
@@ -652,6 +659,7 @@ categories:
     subcategory: rangefinder
     query: Nikon SP rangefinder -lens -nikkor -filter -hood -cap
     category_id: '3323'
+    search_category_id: '15230'
     min_price: 500
     max_price: 15000
   - id: nikon-sp-2005-limited
@@ -661,6 +669,7 @@ categories:
     subcategory: rangefinder
     query: Nikon SP 2005 limited -lens -manual -brochure -case -strap
     category_id: '3323'
+    search_category_id: '15230'
     min_price: 3500
     max_price: 12000
     is_rare: true
