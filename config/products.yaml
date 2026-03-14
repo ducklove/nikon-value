@@ -577,6 +577,24 @@ categories:
     search_category_id: null
     min_price: 30
     max_price: 250
+  - id: nikon-1
+    name_ko: 니콘 1
+    name_en: Nikon I
+    release_year: 1948
+    subcategory: rangefinder
+    query: Nikon I rangefinder -Nikon 1 J -Nikon 1 V -Nikon 1 S -lens -nikkor -filter -hood -cap
+    category_id: '3323'
+    min_price: 1000
+    max_price: 8000
+  - id: nikon-m
+    name_ko: 니콘 M
+    name_en: Nikon M
+    release_year: 1949
+    subcategory: rangefinder
+    query: Nikon M rangefinder -MD -FM -lens -nikkor -filter -hood -cap
+    category_id: '3323'
+    min_price: 800
+    max_price: 6000
   - id: nikon-s
     name_ko: 니콘 S
     name_en: Nikon S
