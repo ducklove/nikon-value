@@ -141,18 +141,18 @@ FILM_VISUAL_INDEX = [
     },
     {
         'title': 'Film Atlas 05',
-        'subtitle': '1993-1999',
+        'subtitle': '1994-1999',
         'image': 'assets/Nikon-camera-history2-1993-1999.jpg',
-        'alt': 'Nikon film camera history board 1993 to 1999',
-        'rows': 5,
+        'alt': 'Nikon film camera history board 1994 to 1999',
+        'rows': 4,
         'cols': 5,
         'hotspots': [
-            ('nikon-f90x', 1, 0),
-            ('nikon-28ti', 1, 3),
-            ('nikon-fm10', 3, 0),
-            ('nikon-fe10', 3, 3),
-            ('nikon-f5', 3, 4),
-            ('nikon-f100', 4, 3),
+            ('nikon-f90x', 0, 0),
+            ('nikon-28ti', 0, 3),
+            ('nikon-fm10', 2, 0),
+            ('nikon-fe10', 2, 3),
+            ('nikon-f5', 2, 4),
+            ('nikon-f100', 3, 3),
         ],
     },
     {
@@ -504,7 +504,6 @@ def build_film_visual_index(catalog: dict[str, Any]) -> str:
 
     for board in FILM_VISUAL_INDEX:
         hotspots = []
-        chips = []
         for product_id, row, col in board['hotspots']:
             product = product_lookup.get(product_id)
             if not product:
@@ -517,9 +516,6 @@ def build_film_visual_index(catalog: dict[str, Any]) -> str:
                 f' style="{film_hotspot_style(row, col, rows=board["rows"], cols=board["cols"])}">'
                 f'<span class="visually-hidden">{escape(label)}</span>'
                 '</a>'
-            )
-            chips.append(
-                f'<a class="film-atlas__chip" href="products/{escape(product_id)}.html">{escape(label)}</a>'
             )
 
         if not hotspots:
@@ -538,7 +534,6 @@ def build_film_visual_index(catalog: dict[str, Any]) -> str:
             <img src="{escape(board["image"])}" alt="{escape(board["alt"])}" class="film-atlas__image" loading="lazy">
             <div class="film-atlas__hotspots">{''.join(hotspots)}</div>
           </div>
-          <div class="film-atlas__chips">{''.join(chips)}</div>
         </article>"""
         )
 
