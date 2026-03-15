@@ -242,6 +242,7 @@
     const visibleCount = document.getElementById('visible-count');
     const contextLabel = document.getElementById('catalog-context');
     const emptyState = document.getElementById('catalog-empty');
+    const filmAtlas = document.getElementById('film-atlas');
     const currencyButtons = Array.from(document.querySelectorAll('.currency-toggle__button[data-currency]'));
     const exchangeData = readJsonScript('exchange-rate-data', {});
     const params = new URLSearchParams(window.location.search);
@@ -328,6 +329,11 @@
       rareWatchSummary.textContent = `${label}에서 ${visibleRareCards.length.toLocaleString()}개 희귀 매물이 감지되었습니다.`;
     }
 
+    function updateFilmAtlas() {
+      if (!filmAtlas) return;
+      filmAtlas.hidden = activeCategory !== 'film-cameras';
+    }
+
     function applyCurrencyState() {
       applyMoneyElements(document, currencyMode, exchangeData);
       syncCurrencyButtons(currencyButtons, currencyMode, exchangeData);
@@ -352,6 +358,7 @@
       updateTabs();
       updateContext(visibleCards);
       updateRareWatch();
+      updateFilmAtlas();
       applyCurrencyState();
       syncUrl();
     }

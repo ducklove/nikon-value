@@ -25,7 +25,11 @@ HERO_JPG = PROJECT_ROOT / 'mynikons.jpg'
 HERO_WEBP_800 = PROJECT_ROOT / 'assets' / 'mynikons-800.webp'
 HERO_WEBP_1600 = PROJECT_ROOT / 'assets' / 'mynikons-1600.webp'
 FILM_HISTORY_JPG_1 = PROJECT_ROOT / 'assets' / 'Nikon-camera-history1.jpg'
-FILM_HISTORY_JPG_2 = PROJECT_ROOT / 'assets' / 'Nikon-camera-history2.jpg'
+FILM_HISTORY_JPG_2A = PROJECT_ROOT / 'assets' / 'Nikon-camera-history2-1971-1982.jpg'
+FILM_HISTORY_JPG_2B = PROJECT_ROOT / 'assets' / 'Nikon-camera-history2-1983-1988.jpg'
+FILM_HISTORY_JPG_2C = PROJECT_ROOT / 'assets' / 'Nikon-camera-history2-1988-1993.jpg'
+FILM_HISTORY_JPG_2D = PROJECT_ROOT / 'assets' / 'Nikon-camera-history2-1993-1999.jpg'
+FILM_HISTORY_JPG_2E = PROJECT_ROOT / 'assets' / 'Nikon-camera-history2-1999-2005.jpg'
 EBAY_LOGO = PROJECT_ROOT / 'assets' / 'ebay-logo.svg'
 DEFAULT_OUTPUT = PROJECT_ROOT / 'dist'
 BODY_CATEGORIES = {'z-mount-bodies', 'f-mount-dslr', 'film-cameras'}
@@ -40,12 +44,18 @@ ROOT_FILES_TO_PUBLISH = [
     '.nojekyll',
 ]
 LEGACY_ROOT_FILES_TO_REMOVE = ['board.html']
+RARITY_FIELDS = (
+    'is_rare',
+    'rarity_tier',
+    'rarity_sort',
+    'rarity_price_hint',
+    'rarity_note',
+)
 
 FILM_VISUAL_INDEX = [
     {
         'title': 'Film Atlas 01',
         'subtitle': '1948-1971',
-        'description': '초기 레인지파인더, Nikon F 파생형, Nikkorex, Nikonos 초기를 빠르게 훑을 수 있는 보드입니다.',
         'image': 'assets/Nikon-camera-history1.jpg',
         'alt': 'Nikon film camera history board part 1',
         'rows': 5,
@@ -80,49 +90,86 @@ FILM_VISUAL_INDEX = [
     },
     {
         'title': 'Film Atlas 02',
-        'subtitle': '1972-2005',
-        'description': '후기 필름 바디와 일부 DSLR 전환기 보드입니다. 현재는 등록된 대표 모델 위주로만 링크되어 있습니다.',
-        'image': 'assets/Nikon-camera-history2.jpg',
-        'alt': 'Nikon film camera history board part 2',
-        'rows': 24,
+        'subtitle': '1971-1982',
+        'image': 'assets/Nikon-camera-history2-1971-1982.jpg',
+        'alt': 'Nikon film camera history board 1971 to 1982',
+        'rows': 5,
         'cols': 5,
         'hotspots': [
             ('nikkormat-el', 0, 1),
             ('nikonos-iii', 0, 4),
-            ('nikkormat-ft3', 1, 0),
-            ('nikon-fm', 1, 1),
-            ('nikon-f2a-25th-anniversary', 1, 2),
-            ('nikon-el2', 2, 0),
-            ('nikon-fe', 2, 2),
-            ('nikon-em', 2, 3),
-            ('nikon-f3', 2, 4),
-            ('nikonos-iva', 3, 0),
-            ('nikon-fg', 3, 1),
-            ('nikon-fm2', 3, 2),
-            ('nikon-f3hp', 3, 3),
-            ('nikon-f3t', 3, 4),
-            ('nikon-f3af', 4, 0),
-            ('nikon-f3-limited', 4, 2),
-            ('nikon-fa', 5, 0),
-            ('nikon-fe2', 5, 1),
-            ('nikon-fg20', 6, 0),
-            ('nikonos-v', 6, 3),
-            ('nikon-f4', 9, 0),
-            ('nikon-f90x', 15, 0),
-            ('nikon-28ti', 15, 3),
-            ('nikon-fm10', 17, 0),
-            ('nikon-fe10', 17, 3),
-            ('nikon-f5', 17, 4),
-            ('nikon-f100', 18, 3),
-            ('nikon-f80', 19, 4),
-            ('nikon-s3-2000-limited', 20, 2),
-            ('nikon-fm3a', 21, 1),
-            ('nikon-f6', 23, 3),
+            ('nikkormat-ft3', 2, 0),
+            ('nikon-fm', 2, 1),
+            ('nikon-f2a-25th-anniversary', 2, 2),
+            ('nikon-el2', 3, 0),
+            ('nikon-f-high-speed', 3, 1),
+            ('nikon-fe', 3, 2),
+            ('nikon-em', 3, 3),
+            ('nikon-f3', 3, 4),
+            ('nikonos-iva', 4, 0),
+            ('nikon-fg', 4, 1),
+            ('nikon-fm2', 4, 2),
+            ('nikon-f3hp', 4, 3),
+            ('nikon-f3t', 4, 4),
+        ],
+    },
+    {
+        'title': 'Film Atlas 03',
+        'subtitle': '1983-1988',
+        'image': 'assets/Nikon-camera-history2-1983-1988.jpg',
+        'alt': 'Nikon film camera history board 1983 to 1988',
+        'rows': 5,
+        'cols': 5,
+        'hotspots': [
+            ('nikon-f3af', 0, 0),
+            ('nikon-f3-limited', 0, 2),
+            ('nikon-fa', 1, 0),
+            ('nikon-fe2', 1, 1),
+            ('nikon-fg20', 2, 0),
+            ('nikonos-v', 2, 3),
+            ('nikon-f4', 4, 0),
+        ],
+    },
+    {
+        'title': 'Film Atlas 04',
+        'subtitle': '1988-1993',
+        'image': 'assets/Nikon-camera-history2-1988-1993.jpg',
+        'alt': 'Nikon film camera history board 1988 to 1993',
+        'rows': 5,
+        'cols': 5,
+        'hotspots': [],
+    },
+    {
+        'title': 'Film Atlas 05',
+        'subtitle': '1993-1999',
+        'image': 'assets/Nikon-camera-history2-1993-1999.jpg',
+        'alt': 'Nikon film camera history board 1993 to 1999',
+        'rows': 5,
+        'cols': 5,
+        'hotspots': [
+            ('nikon-f90x', 1, 0),
+            ('nikon-28ti', 1, 3),
+            ('nikon-fm10', 3, 0),
+            ('nikon-fe10', 3, 3),
+            ('nikon-f5', 3, 4),
+            ('nikon-f100', 4, 3),
+        ],
+    },
+    {
+        'title': 'Film Atlas 06',
+        'subtitle': '1999-2005',
+        'image': 'assets/Nikon-camera-history2-1999-2005.jpg',
+        'alt': 'Nikon film camera history board 1999 to 2005',
+        'rows': 4,
+        'cols': 5,
+        'hotspots': [
+            ('nikon-f80', 0, 4),
+            ('nikon-s3-2000-limited', 1, 2),
+            ('nikon-fm3a', 2, 1),
+            ('nikon-f6', 3, 3),
         ],
     },
 ]
-
-
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser()
     parser.add_argument('--output', default=str(DEFAULT_OUTPUT))
@@ -307,6 +354,9 @@ def merge_catalog_with_config(live_catalog: dict[str, Any], config: dict[str, An
                     if key not in {'query', 'category_id', 'search_category_id', 'min_price', 'max_price'}
                 }
             )
+            for field in RARITY_FIELDS:
+                if field not in config_product:
+                    merged_product.pop(field, None)
             merged_product['samples'] = live_product.get('samples', [])
             merged_products.append(merged_product)
 
@@ -462,7 +512,7 @@ def build_film_visual_index(catalog: dict[str, Any]) -> str:
             label = product['name_ko']
             hotspots.append(
                 f'<a class="film-atlas__hotspot" href="products/{escape(product_id)}.html"'
-                f' aria-label="{escape(label)} 상세 페이지 열기"'
+                f' aria-label="{escape(label)} details"'
                 f' title="{escape(label)}"'
                 f' style="{film_hotspot_style(row, col, rows=board["rows"], cols=board["cols"])}">'
                 f'<span class="visually-hidden">{escape(label)}</span>'
@@ -472,37 +522,38 @@ def build_film_visual_index(catalog: dict[str, Any]) -> str:
                 f'<a class="film-atlas__chip" href="products/{escape(product_id)}.html">{escape(label)}</a>'
             )
 
+        if not hotspots:
+            continue
+
         boards.append(
             f"""
-        <article class=\"film-atlas__board\">
-          <div class=\"film-atlas__board-copy\">
+        <article class="film-atlas__board">
+          <div class="film-atlas__board-copy">
             <div>
-              <span class=\"section-kicker\">{escape(board["title"])}</span>
-              <h3 class=\"film-atlas__board-title\">{escape(board["subtitle"])}</h3>
+              <span class="section-kicker">{escape(board["title"])}</span>
+              <h3 class="film-atlas__board-title">{escape(board["subtitle"])}</h3>
             </div>
-            <p class=\"film-atlas__board-note\">{escape(board["description"])}</p>
           </div>
-          <div class=\"film-atlas__image-wrap\">
-            <img src=\"{escape(board["image"])}\" alt=\"{escape(board["alt"])}\" class=\"film-atlas__image\" loading=\"lazy\">
-            <div class=\"film-atlas__hotspots\">{''.join(hotspots)}</div>
+          <div class="film-atlas__image-wrap">
+            <img src="{escape(board["image"])}" alt="{escape(board["alt"])}" class="film-atlas__image" loading="lazy">
+            <div class="film-atlas__hotspots">{''.join(hotspots)}</div>
           </div>
-          <div class=\"film-atlas__chips\">{''.join(chips)}</div>
+          <div class="film-atlas__chips">{''.join(chips)}</div>
         </article>"""
         )
 
     return f"""
-    <section class=\"film-atlas\" aria-labelledby=\"film-atlas-title\">
-      <details class=\"film-atlas__details\">
-        <summary class=\"film-atlas__summary\">
+    <section id="film-atlas" class="film-atlas" aria-labelledby="film-atlas-title" hidden>
+      <details class="film-atlas__details">
+        <summary class="film-atlas__summary">
           <span>
-            <span class=\"section-kicker\">Film visual index</span>
-            <strong id=\"film-atlas-title\">이미지로 찾는 필름 바디 인덱스</strong>
+            <span class="section-kicker">Film visual index</span>
+            <strong id="film-atlas-title">Find Film Cameras by Image</strong>
           </span>
-          <span class=\"film-atlas__summary-note\">이미지의 활성 영역을 누르면 제품 페이지로 이동</span>
+          <span class="film-atlas__summary-note">Click a camera to open its product page.</span>
         </summary>
-        <div class=\"film-atlas__content\">
-          <p class=\"detail-note detail-note--normal\">기존 카드형 목록은 그대로 두고, 필름 카메라만 빠르게 훑을 수 있는 비주얼 인덱스를 추가했습니다. 1차 보드는 거의 전체를, 2차 보드는 현재 등록된 대표 모델부터 순차적으로 연결합니다.</p>
-          <div class=\"film-atlas__boards\">
+        <div class="film-atlas__content">
+          <div class="film-atlas__boards">
             {''.join(boards)}
           </div>
         </div>
@@ -1154,7 +1205,11 @@ def copy_assets(output_dir: Path) -> None:
     shutil.copy2(HERO_WEBP_800, output_dir / 'assets' / 'mynikons-800.webp')
     shutil.copy2(HERO_WEBP_1600, output_dir / 'assets' / 'mynikons-1600.webp')
     shutil.copy2(FILM_HISTORY_JPG_1, output_dir / 'assets' / 'Nikon-camera-history1.jpg')
-    shutil.copy2(FILM_HISTORY_JPG_2, output_dir / 'assets' / 'Nikon-camera-history2.jpg')
+    shutil.copy2(FILM_HISTORY_JPG_2A, output_dir / 'assets' / 'Nikon-camera-history2-1971-1982.jpg')
+    shutil.copy2(FILM_HISTORY_JPG_2B, output_dir / 'assets' / 'Nikon-camera-history2-1983-1988.jpg')
+    shutil.copy2(FILM_HISTORY_JPG_2C, output_dir / 'assets' / 'Nikon-camera-history2-1988-1993.jpg')
+    shutil.copy2(FILM_HISTORY_JPG_2D, output_dir / 'assets' / 'Nikon-camera-history2-1993-1999.jpg')
+    shutil.copy2(FILM_HISTORY_JPG_2E, output_dir / 'assets' / 'Nikon-camera-history2-1999-2005.jpg')
     shutil.copy2(HERO_JPG, output_dir / 'mynikons.jpg')
     (output_dir / '.nojekyll').write_text('', encoding='utf-8')
 
