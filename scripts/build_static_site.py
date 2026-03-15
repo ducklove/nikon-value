@@ -25,11 +25,7 @@ HERO_JPG = PROJECT_ROOT / 'mynikons.jpg'
 HERO_WEBP_800 = PROJECT_ROOT / 'assets' / 'mynikons-800.webp'
 HERO_WEBP_1600 = PROJECT_ROOT / 'assets' / 'mynikons-1600.webp'
 FILM_HISTORY_JPG_1 = PROJECT_ROOT / 'assets' / 'Nikon-camera-history1.jpg'
-FILM_HISTORY_JPG_2A = PROJECT_ROOT / 'assets' / 'Nikon-camera-history2-1971-1982.jpg'
-FILM_HISTORY_JPG_2B = PROJECT_ROOT / 'assets' / 'Nikon-camera-history2-1983-1988.jpg'
-FILM_HISTORY_JPG_2C = PROJECT_ROOT / 'assets' / 'Nikon-camera-history2-1988-1993.jpg'
-FILM_HISTORY_JPG_2D = PROJECT_ROOT / 'assets' / 'Nikon-camera-history2-1993-1999.jpg'
-FILM_HISTORY_JPG_2E = PROJECT_ROOT / 'assets' / 'Nikon-camera-history2-1999-2005.jpg'
+FILM_HISTORY_JPG_2 = PROJECT_ROOT / 'assets' / 'Nikon-camera-history2.jpg'
 EBAY_LOGO = PROJECT_ROOT / 'assets' / 'ebay-logo.svg'
 DEFAULT_OUTPUT = PROJECT_ROOT / 'dist'
 BODY_CATEGORIES = {'z-mount-bodies', 'f-mount-dslr', 'film-cameras'}
@@ -54,8 +50,6 @@ RARITY_FIELDS = (
 
 FILM_VISUAL_INDEX = [
     {
-        'title': 'Film Atlas 01',
-        'subtitle': '1948-1971',
         'image': 'assets/Nikon-camera-history1.jpg',
         'alt': 'Nikon film camera history board part 1',
         'rows': 5,
@@ -89,12 +83,15 @@ FILM_VISUAL_INDEX = [
         ],
     },
     {
-        'title': 'Film Atlas 02',
-        'subtitle': '1971-1982',
-        'image': 'assets/Nikon-camera-history2-1971-1982.jpg',
-        'alt': 'Nikon film camera history board 1971 to 1982',
-        'rows': 5,
+        'image': 'assets/Nikon-camera-history2.jpg',
+        'alt': 'Nikon film camera history board part 2',
+        'rows': 24,
         'cols': 5,
+        'image_height': 2772,
+        'row_bounds': [
+            0, 104, 208, 345, 485, 600, 723, 832, 953, 1031, 1131, 1250,
+            1356, 1472, 1647, 1755, 1873, 1940, 2064, 2192, 2284, 2407, 2544, 2647, 2772,
+        ],
         'hotspots': [
             ('nikkormat-el', 0, 1),
             ('nikonos-iii', 0, 4),
@@ -111,62 +108,25 @@ FILM_VISUAL_INDEX = [
             ('nikon-fm2', 4, 2),
             ('nikon-f3hp', 4, 3),
             ('nikon-f3t', 4, 4),
-        ],
-    },
-    {
-        'title': 'Film Atlas 03',
-        'subtitle': '1983-1988',
-        'image': 'assets/Nikon-camera-history2-1983-1988.jpg',
-        'alt': 'Nikon film camera history board 1983 to 1988',
-        'rows': 5,
-        'cols': 5,
-        'hotspots': [
-            ('nikon-f3af', 0, 0),
-            ('nikon-f3-limited', 0, 2),
-            ('nikon-fa', 1, 0),
-            ('nikon-fe2', 1, 1),
-            ('nikon-fg20', 2, 0),
-            ('nikonos-v', 2, 3),
-            ('nikon-f4', 4, 0),
-        ],
-    },
-    {
-        'title': 'Film Atlas 04',
-        'subtitle': '1988-1993',
-        'image': 'assets/Nikon-camera-history2-1988-1993.jpg',
-        'alt': 'Nikon film camera history board 1988 to 1993',
-        'rows': 5,
-        'cols': 5,
-        'hotspots': [],
-    },
-    {
-        'title': 'Film Atlas 05',
-        'subtitle': '1994-1999',
-        'image': 'assets/Nikon-camera-history2-1993-1999.jpg',
-        'alt': 'Nikon film camera history board 1994 to 1999',
-        'rows': 4,
-        'cols': 5,
-        'hotspots': [
-            ('nikon-f90x', 0, 0),
-            ('nikon-28ti', 0, 3),
-            ('nikon-fm10', 2, 0),
-            ('nikon-fe10', 2, 3),
-            ('nikon-f5', 2, 4),
-            ('nikon-f100', 3, 3),
-        ],
-    },
-    {
-        'title': 'Film Atlas 06',
-        'subtitle': '1999-2005',
-        'image': 'assets/Nikon-camera-history2-1999-2005.jpg',
-        'alt': 'Nikon film camera history board 1999 to 2005',
-        'rows': 4,
-        'cols': 5,
-        'hotspots': [
-            ('nikon-f80', 0, 4),
-            ('nikon-s3-2000-limited', 1, 2),
-            ('nikon-fm3a', 2, 1),
-            ('nikon-f6', 3, 3),
+            ('nikon-f3af', 5, 0),
+            ('nikon-f3-limited', 5, 2),
+            ('nikon-fa', 6, 0),
+            ('nikon-fe2', 6, 1),
+            ('nikon-fg20', 7, 0),
+            ('nikonos-v', 7, 3),
+            ('nikon-f4', 10, 0),
+            ('nikonos-rs', 13, 1),
+            ('nikon-35ti', 15, 2),
+            ('nikon-f90x', 16, 0),
+            ('nikon-28ti', 16, 3),
+            ('nikon-fm10', 18, 0),
+            ('nikon-fe10', 18, 3),
+            ('nikon-f5', 18, 4),
+            ('nikon-f100', 19, 3),
+            ('nikon-f80', 20, 4),
+            ('nikon-s3-2000-limited', 21, 2),
+            ('nikon-fm3a', 22, 1),
+            ('nikon-f6', 23, 3),
         ],
     },
 ]
@@ -481,13 +441,33 @@ def build_footer(asset_prefix: str = '') -> str:
   </footer>"""
 
 
-def film_hotspot_style(row: int, col: int, *, rows: int, cols: int, inset_x: float = 1.1, inset_y: float = 1.1) -> str:
+def film_hotspot_style(
+    row: int,
+    col: int,
+    *,
+    rows: int,
+    cols: int,
+    inset_x: float = 1.1,
+    inset_y: float = 1.1,
+    row_bounds: list[int] | None = None,
+    image_height: int | None = None,
+) -> str:
     cell_width = 100 / cols
-    cell_height = 100 / rows
     left = (col * cell_width) + inset_x
-    top = (row * cell_height) + inset_y
     width = cell_width - (inset_x * 2)
-    height = cell_height - (inset_y * 2)
+
+    if row_bounds and image_height:
+        top_px = row_bounds[row]
+        bottom_px = row_bounds[row + 1]
+        band_height = ((bottom_px - top_px) / image_height) * 100
+        band_inset_y = min(inset_y, max(band_height * 0.12, 0.2))
+        top = (top_px / image_height) * 100 + band_inset_y
+        height = max(band_height - (band_inset_y * 2), 1.4)
+    else:
+        cell_height = 100 / rows
+        top = (row * cell_height) + inset_y
+        height = cell_height - (inset_y * 2)
+
     return f'left: {left:.3f}%; top: {top:.3f}%; width: {width:.3f}%; height: {height:.3f}%;'
 
 
@@ -513,23 +493,14 @@ def build_film_visual_index(catalog: dict[str, Any]) -> str:
                 f'<a class="film-atlas__hotspot" href="products/{escape(product_id)}.html"'
                 f' aria-label="{escape(label)} details"'
                 f' title="{escape(label)}"'
-                f' style="{film_hotspot_style(row, col, rows=board["rows"], cols=board["cols"])}">'
+                f' style="{film_hotspot_style(row, col, rows=board["rows"], cols=board["cols"], row_bounds=board.get("row_bounds"), image_height=board.get("image_height"))}">'
                 f'<span class="visually-hidden">{escape(label)}</span>'
                 '</a>'
             )
 
-        if not hotspots:
-            continue
-
         boards.append(
             f"""
         <article class="film-atlas__board">
-          <div class="film-atlas__board-copy">
-            <div>
-              <span class="section-kicker">{escape(board["title"])}</span>
-              <h3 class="film-atlas__board-title">{escape(board["subtitle"])}</h3>
-            </div>
-          </div>
           <div class="film-atlas__image-wrap">
             <img src="{escape(board["image"])}" alt="{escape(board["alt"])}" class="film-atlas__image" loading="lazy">
             <div class="film-atlas__hotspots">{''.join(hotspots)}</div>
@@ -538,21 +509,10 @@ def build_film_visual_index(catalog: dict[str, Any]) -> str:
         )
 
     return f"""
-    <section id="film-atlas" class="film-atlas" aria-labelledby="film-atlas-title" hidden>
-      <details class="film-atlas__details">
-        <summary class="film-atlas__summary">
-          <span>
-            <span class="section-kicker">Film visual index</span>
-            <strong id="film-atlas-title">Find Film Cameras by Image</strong>
-          </span>
-          <span class="film-atlas__summary-note">Click a camera to open its product page.</span>
-        </summary>
-        <div class="film-atlas__content">
-          <div class="film-atlas__boards">
-            {''.join(boards)}
-          </div>
-        </div>
-      </details>
+    <section id="film-atlas" class="film-atlas" aria-label="Film camera visual index" hidden>
+      <div class="film-atlas__boards">
+        {''.join(boards)}
+      </div>
     </section>"""
 
 
@@ -1200,11 +1160,7 @@ def copy_assets(output_dir: Path) -> None:
     shutil.copy2(HERO_WEBP_800, output_dir / 'assets' / 'mynikons-800.webp')
     shutil.copy2(HERO_WEBP_1600, output_dir / 'assets' / 'mynikons-1600.webp')
     shutil.copy2(FILM_HISTORY_JPG_1, output_dir / 'assets' / 'Nikon-camera-history1.jpg')
-    shutil.copy2(FILM_HISTORY_JPG_2A, output_dir / 'assets' / 'Nikon-camera-history2-1971-1982.jpg')
-    shutil.copy2(FILM_HISTORY_JPG_2B, output_dir / 'assets' / 'Nikon-camera-history2-1983-1988.jpg')
-    shutil.copy2(FILM_HISTORY_JPG_2C, output_dir / 'assets' / 'Nikon-camera-history2-1988-1993.jpg')
-    shutil.copy2(FILM_HISTORY_JPG_2D, output_dir / 'assets' / 'Nikon-camera-history2-1993-1999.jpg')
-    shutil.copy2(FILM_HISTORY_JPG_2E, output_dir / 'assets' / 'Nikon-camera-history2-1999-2005.jpg')
+    shutil.copy2(FILM_HISTORY_JPG_2, output_dir / 'assets' / 'Nikon-camera-history2.jpg')
     shutil.copy2(HERO_JPG, output_dir / 'mynikons.jpg')
     (output_dir / '.nojekyll').write_text('', encoding='utf-8')
 
