@@ -264,6 +264,10 @@ categories:
     name_ko: 프리미엄 컴팩트
     name_en: Premium Compact
     sort_order: 5
+  - id: underwater
+    name_ko: 수중 카메라
+    name_en: Underwater
+    sort_order: 6
   products:
   - id: nikon-f6
     name_ko: 니콘 F6
@@ -558,6 +562,196 @@ categories:
     search_category_id: null
     min_price: 250
     max_price: 1800
+  - id: nikonos-v
+    name_ko: 니코노스 V
+    name_en: Nikonos V
+    release_year: 1984
+    subcategory: underwater
+    query: Nikonos V camera -lens -nikkor -filter -hood -cap
+    category_id: '3323'
+    search_category_id: '15230'
+    min_price: 150
+    max_price: 1000
+  - id: nikonos-iva
+    name_ko: 니코노스 IV-A
+    name_en: Nikonos IV-A
+    release_year: 1980
+    subcategory: underwater
+    query: Nikonos IV-A camera -lens -nikkor -filter -hood -cap
+    category_id: '3323'
+    search_category_id: '15230'
+    min_price: 120
+    max_price: 900
+  - id: nikkormat-el
+    name_ko: 니코마트 EL
+    name_en: Nikkormat EL
+    release_year: 1972
+    subcategory: midrange
+    query: Nikkormat EL camera body -EL2 -lens -nikkor -filter -hood -cap
+    category_id: '3323'
+    search_category_id: '15230'
+    min_price: 30
+    max_price: 220
+  - id: nikonos-iii
+    name_ko: 니코노스 III
+    name_en: Nikonos III
+    release_year: 1975
+    subcategory: underwater
+    query: Nikonos III camera -lens -nikkor -filter -hood -cap
+    category_id: '3323'
+    search_category_id: '15230'
+    min_price: 100
+    max_price: 800
+  - id: nikonos-ii
+    name_ko: 니코노스 II
+    name_en: Nikonos II
+    release_year: 1968
+    subcategory: underwater
+    query: Nikonos II camera -lens -nikkor -filter -hood -cap
+    category_id: '3323'
+    search_category_id: '15230'
+    min_price: 100
+    max_price: 800
+  - id: nikkormat-ftn
+    name_ko: 니코마트 FTn
+    name_en: Nikkormat FTn
+    release_year: 1967
+    subcategory: midrange
+    query: Nikkormat FTN body -lens -nikkor -filter -hood -cap
+    category_id: '3323'
+    search_category_id: '15230'
+    min_price: 40
+    max_price: 350
+  - id: nikon-f-photomic-tn
+    name_ko: 니콘 F Photomic Tn
+    name_en: Nikon F Photomic Tn
+    release_year: 1967
+    subcategory: flagship
+    query: Nikon F Photomic Tn body -lens -nikkor -filter -hood -cap -NASA
+    category_id: '3323'
+    search_category_id: '15230'
+    min_price: 200
+    max_price: 1500
+  - id: nikkormat-ft
+    name_ko: 니코마트 FT
+    name_en: Nikkormat FT
+    release_year: 1965
+    subcategory: midrange
+    query: Nikkormat FT body -FT2 -FT3 -FTN -lens -nikkor -filter -hood -cap
+    category_id: '3323'
+    search_category_id: '15230'
+    min_price: 40
+    max_price: 350
+  - id: nikon-f-photomic-t
+    name_ko: 니콘 F Photomic T
+    name_en: Nikon F Photomic T
+    release_year: 1965
+    subcategory: flagship
+    query: Nikon F Photomic T body -F2 -lens -nikkor -filter -hood -cap
+    category_id: '3323'
+    search_category_id: '15230'
+    min_price: 150
+    max_price: 1200
+  - id: nikkormat-fs
+    name_ko: 니코마트 FS
+    name_en: Nikkormat FS
+    release_year: 1965
+    subcategory: midrange
+    query: Nikkormat FS body -lens -nikkor -filter -hood -cap
+    category_id: '3323'
+    search_category_id: '15230'
+    min_price: 60
+    max_price: 500
+  - id: nikkorex-auto-35
+    name_ko: Nikkorex AUTO 35
+    name_en: Nikkorex AUTO 35
+    release_year: 1964
+    subcategory: premium-compact
+    query: Nikkorex Auto 35 camera -manual -case -strap
+    category_id: '3323'
+    search_category_id: '15230'
+    min_price: 40
+    max_price: 250
+  - id: nikonos-i
+    name_ko: 니코노스 I
+    name_en: Nikonos I
+    release_year: 1963
+    subcategory: underwater
+    query: Nikonos I camera -lens -nikkor -filter -hood -cap
+    category_id: '3323'
+    search_category_id: '15230'
+    min_price: 80
+    max_price: 700
+  - id: nikkorex-zoom-35
+    name_ko: Nikkorex Zoom 35
+    name_en: Nikkorex Zoom 35
+    release_year: 1963
+    subcategory: premium-compact
+    query: Nikkorex Zoom 35 camera -manual -case -strap
+    category_id: '3323'
+    search_category_id: '15230'
+    min_price: 40
+    max_price: 300
+  - id: nikon-f-photomic
+    name_ko: 니콘 F Photomic
+    name_en: Nikon F Photomic
+    release_year: 1962
+    subcategory: flagship
+    query: Nikon F Photomic body -F2 -lens -nikkor -filter -hood -cap
+    category_id: '3323'
+    search_category_id: '15230'
+    min_price: 120
+    max_price: 1000
+  - id: nikkorex-35ii
+    name_ko: Nikkorex 35 II
+    name_en: Nikkorex 35 II
+    release_year: 1962
+    subcategory: premium-compact
+    query: Nikkorex 35 II camera -manual -case -strap
+    category_id: '3323'
+    search_category_id: '15230'
+    min_price: 40
+    max_price: 300
+  - id: nikkorex-f
+    name_ko: Nikkorex F
+    name_en: Nikkorex F
+    release_year: 1962
+    subcategory: entry
+    query: Nikkorex F body -lens -nikkor -filter -hood -cap
+    category_id: '3323'
+    search_category_id: '15230'
+    min_price: 50
+    max_price: 400
+  - id: nikon-fisheye-camera
+    name_ko: 니콘 Fisheye Camera
+    name_en: Nikon Fisheye Camera
+    release_year: 1960
+    subcategory: flagship
+    query: Nikon Fisheye Camera -manual -brochure -poster -lens -nikkor
+    category_id: '3323'
+    search_category_id: '15230'
+    min_price: 3000
+    max_price: 40000
+  - id: nikon-s3m
+    name_ko: 니콘 S3M
+    name_en: Nikon S3M
+    release_year: 1960
+    subcategory: rangefinder
+    query: Nikon S3M rangefinder -lens -nikkor -filter -hood -cap
+    category_id: '3323'
+    search_category_id: '15230'
+    min_price: 1500
+    max_price: 12000
+  - id: nikkorex-35
+    name_ko: Nikkorex 35
+    name_en: Nikkorex 35
+    release_year: 1960
+    subcategory: premium-compact
+    query: Nikkorex 35 camera -manual -case -strap
+    category_id: '3323'
+    search_category_id: '15230'
+    min_price: 30
+    max_price: 250
   - id: nikkormat
     name_ko: 니코마트
     name_en: Nikkormat

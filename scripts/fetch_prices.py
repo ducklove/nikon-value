@@ -225,7 +225,7 @@ def filter_items_with_llm(
         if not filtered:
             if len(items) <= 5:
                 log.info("  LLM filtered all %d items — accepting (small set)", len(items))
-                return []
+                return items
             log.warning("  LLM filtered all %d items — suspicious, keeping heuristic-filtered set", len(items))
             return items
 
