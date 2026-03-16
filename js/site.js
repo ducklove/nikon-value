@@ -113,6 +113,28 @@
     return String(str).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
   }
 
+  function initHeroEasterEgg() {
+    const toggles = Array.from(document.querySelectorAll('[data-hero-easter-egg="negative"]'));
+    if (!toggles.length) return;
+
+    toggles.forEach((toggle) => {
+      const banner = toggle.closest('.hero-banner');
+      if (!banner) return;
+
+      function syncPressedState() {
+        const isActive = banner.classList.contains('hero-banner--negative');
+        toggle.setAttribute('aria-pressed', isActive ? 'true' : 'false');
+      }
+
+      toggle.addEventListener('click', () => {
+        banner.classList.toggle('hero-banner--negative');
+        syncPressedState();
+      });
+
+      syncPressedState();
+    });
+  }
+
   function createProductCard(d) {
     var a = document.createElement('a');
     a.className = 'product-card';
@@ -632,6 +654,8 @@
     applyCurrencyState();
     applyPeriod(activePeriod);
   }
+
+  initHeroEasterEgg();
 
   const pageType = document.body.dataset.page;
   if (pageType === 'catalog') {

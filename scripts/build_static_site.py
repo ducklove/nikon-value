@@ -352,13 +352,22 @@ def ga_snippet() -> str:
 
 def build_hero_manual_hotspots() -> str:
     hotspots = [
-        ('Zf', 'https://onlinemanual.nikonimglib.com/zf/ko/', 'left: 19.5%; top: 23%; width: 12%; height: 14%;'),
+        ('Zf', 'left: 19.5%; top: 23%; width: 12%; height: 14%;'),
         ('F3', 'https://cdn-10.nikon-cdn.com/pdf/manuals/archive/F3.pdf', 'left: 48%; top: 31%; width: 10%; height: 14%;'),
         ('Nikkormat', 'https://www.cameramanuals.org/nikon_pdf/nikkormat_ftn.pdf', 'left: 62.5%; top: 18%; width: 11%; height: 12%;'),
         ('FM2', 'https://cdn-10.nikon-cdn.com/pdf/manuals/archive/FM2.pdf', 'left: 87.5%; top: 40%; width: 10%; height: 14%;'),
     ]
     links = []
-    for label, href, position in hotspots:
+    zf_label, zf_position = hotspots[0]
+    links.append(
+        f'<button class="hero-hotspot hero-hotspot--easter-egg" type="button" '
+        f'data-hero-easter-egg="negative" aria-pressed="false" '
+        f'aria-label="Toggle negative hero image" title="{escape(zf_label)} negative mode" '
+        f'style="{zf_position}">'
+        '<span class="visually-hidden">Toggle negative hero image</span>'
+        '</button>'
+    )
+    for label, href, position in hotspots[1:]:
         links.append(
             f'<a class="hero-hotspot" href="{escape(href)}" target="_blank" rel="noopener noreferrer" style="{position}">'
             f'<span class="visually-hidden">{escape(label)} manual</span>'

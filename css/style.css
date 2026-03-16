@@ -105,12 +105,35 @@ select:focus-visible {
   pointer-events: auto;
   border-radius: 10px;
   background: transparent;
+  border: 0;
+  padding: 0;
+  cursor: pointer;
+  appearance: none;
 }
 
 .hero-hotspot:focus-visible {
   outline: 2px solid rgba(255, 210, 0, 0.9);
   outline-offset: 2px;
   background: rgba(255, 210, 0, 0.14);
+}
+
+.hero-image {
+  transition: filter 360ms ease, transform 360ms ease;
+  transform-origin: center center;
+}
+
+.hero-hotspot--easter-egg {
+  transition: box-shadow 220ms ease, background-color 220ms ease;
+}
+
+.hero-hotspot--easter-egg[aria-pressed="true"] {
+  background: rgba(255, 255, 255, 0.08);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.55);
+}
+
+.hero-banner--negative .hero-image {
+  filter: invert(1) hue-rotate(180deg) saturate(0.92) contrast(1.08);
+  transform: scale(1.02);
 }
 
 .hero-overlay {
