@@ -10,7 +10,7 @@ from slowapi import _rate_limit_exceeded_handler
 from slowapi.errors import RateLimitExceeded
 
 from server import catalog
-from server.api import health
+from server.api import favorites, health, users
 from server.config import DB_PATH, FRONTEND_URL
 from server.database import close_db, init_db
 
@@ -45,3 +45,5 @@ app.add_middleware(
 app.add_exception_handler(RateLimitExceeded, _rate_limit_exceeded_handler)
 
 app.include_router(health.router)
+app.include_router(users.router)
+app.include_router(favorites.router)
