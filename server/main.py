@@ -12,7 +12,7 @@ from slowapi.errors import RateLimitExceeded
 from server import catalog
 from server.api import favorites, health, users
 from server.auth import routes as auth_routes
-from server.config import DB_PATH, FRONTEND_URL
+from server.config import DB_PATH, FRONTEND_ORIGIN
 from server.database import close_db, init_db
 from server.rate_limit import limiter
 
@@ -39,7 +39,7 @@ app.state.limiter = limiter
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=[FRONTEND_URL],
+    allow_origins=[FRONTEND_ORIGIN],
     allow_credentials=False,
     allow_methods=["GET", "PUT", "DELETE", "OPTIONS"],
     allow_headers=["Authorization"],

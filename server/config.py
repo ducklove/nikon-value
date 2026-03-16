@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import os
 from pathlib import Path
+from urllib.parse import urlsplit
 
 from dotenv import load_dotenv
 
@@ -25,6 +26,12 @@ KAKAO_CLIENT_SECRET = _env("KAKAO_CLIENT_SECRET")
 
 API_BASE_URL = _env("API_BASE_URL", "https://cantabile.tplinkdns.com:3380")
 FRONTEND_URL = _env("FRONTEND_URL", "https://ducklove.github.io/nikon-value")
+_frontend = urlsplit(FRONTEND_URL)
+FRONTEND_ORIGIN = (
+    f"{_frontend.scheme}://{_frontend.netloc}"
+    if _frontend.scheme and _frontend.netloc
+    else FRONTEND_URL
+)
 CATALOG_URL = _env(
     "CATALOG_URL",
     "https://ducklove.github.io/nikon-value/data/catalog.json",
