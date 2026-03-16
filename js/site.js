@@ -113,6 +113,13 @@
     return String(str).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
   }
 
+  function formatRarePriceHint(value) {
+    if (value === null || value === undefined || value === '') return '공개 표본 부족';
+    const text = String(value).trim();
+    if (!text || text.includes('$')) return text;
+    return /^[0-9,+.\-\u2013\s]+$/.test(text) ? text + '$' : text;
+  }
+
   function initHeroEasterEgg() {
     const toggles = Array.from(document.querySelectorAll('[data-hero-easter-egg="negative"]'));
     if (!toggles.length) return;
@@ -220,7 +227,7 @@
       '<div class="rare-watch-card__name-en">' + escapeHtml(d.name_en) + '</div>' +
       '<div class="rare-watch-card__taxonomy">' + escapeHtml(d.category_label) + '</div>' +
       '<div class="rare-watch-card__price">현재 중앙값 <span class="money-value" data-money-usd="' + (d.median != null ? d.median : '') + '" data-money-sign="auto">' + formatMoney(d.median) + '</span></div>' +
-      '<div class="rare-watch-card__hint">최근 희귀 시세 ' + escapeHtml(d.rarity_price_hint || '공개 표본 부족') + '</div>' +
+      '<div class="rare-watch-card__hint">최근 희귀 시세 ' + escapeHtml(formatRarePriceHint(d.rarity_price_hint)) + '</div>' +
       '<p class="rare-watch-card__note">' + escapeHtml(d.rarity_note || '개별 상태 확인 필요') + '</p>';
     return a;
   }
