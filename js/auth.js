@@ -66,10 +66,21 @@
   function addFavorite(pid) { return apiFetch('/api/favorites/' + encodeURIComponent(pid), { method: 'PUT' }); }
   function removeFavorite(pid) { return apiFetch('/api/favorites/' + encodeURIComponent(pid), { method: 'DELETE' }); }
 
+  function refreshCatalog() {
+    if (window.nikonValueCatalog && typeof window.nikonValueCatalog.refresh === 'function') {
+      window.nikonValueCatalog.refresh();
+    }
+  }
+
   // --- State ---
   var currentUser = null;
   var favoriteSet = new Set();
   var cardsReady = false;
+
+  window.nikonValueAuth = window.nikonValueAuth || {};
+  window.nikonValueAuth.isFavorite = function (productId) {
+    return favoriteSet.has(productId);
+  };
 
   // --- UI: Auth area ---
   function renderLoggedIn(user) {
@@ -118,7 +129,9 @@
       }
     }
     // Hide favorite buttons
+    updateAllFavoriteButtons();
     showFavoriteButtons(false);
+    refreshCatalog();
   }
 
   // --- UI: Favorite buttons on cards ---
@@ -167,6 +180,7 @@
       addFavorite(pid);
     }
     updateAllFavoriteButtons();
+    refreshCatalog();
   }
 
   function handleLogout() {
@@ -247,7 +261,6 @@
   // --- Init ---
   function init() {
     checkHashToken();
-    setupFavoritesTab();
     observeGrid();
 
     var token = getToken();
@@ -262,10 +275,9 @@
       renderLoggedIn(user);
       return fetchFavorites();
     }).then(function (favs) {
-      if (favs && favs.length) {
-        favoriteSet = new Set(favs);
-        updateAllFavoriteButtons();
-      }
+      favoriteSet = new Set(favs || []);
+      updateAllFavoriteButtons();
+      refreshCatalog();
     });
   }
 

@@ -284,6 +284,20 @@
       }
     }
 
+    function isFavoritesCategory() {
+      return activeCategory === 'favorites';
+    }
+
+    // Favorites live in auth state, so the catalog asks auth whether a card belongs here.
+    function matchesActiveCategory(card) {
+      if (activeCategory === 'all') return true;
+      if (!isFavoritesCategory()) return card.dataset.categoryId === activeCategory;
+
+      const authApi = window.nikonValueAuth;
+      if (!authApi || typeof authApi.isFavorite !== 'function') return false;
+      return authApi.isFavorite(card.dataset.productId || '');
+    }
+
     function syncUrl() {
       const next = new URLSearchParams();
       if (activeCategory && activeCategory !== 'all') next.set('category', activeCategory);
@@ -313,9 +327,13 @@
 
     function updateRareWatch() {
       if (!rareWatch) return;
+      if (isFavoritesCategory()) {
+        rareWatch.hidden = true;
+        return;
+      }
 
       const visibleRareCards = rareCards.filter((card) => {
-        const inCategory = activeCategory === 'all' || card.dataset.categoryId === activeCategory;
+        const inCategory = card.dataset.categoryId === activeCategory || activeCategory === 'all';
         const inSearch = !searchTerm || (card.dataset.search || '').includes(searchTerm);
         card.hidden = !(inCategory && inSearch);
         return !card.hidden;
@@ -364,7 +382,7 @@
       sortMode = sortSelect?.value || 'featured';
 
       const visibleCards = cards.filter((card) => {
-        const inCategory = activeCategory === 'all' || card.dataset.categoryId === activeCategory;
+        const inCategory = matchesActiveCategory(card);
         const inSearch = !searchTerm || (card.dataset.search || '').includes(searchTerm);
         card.hidden = !(inCategory && inSearch);
         return !card.hidden;
@@ -382,6 +400,12 @@
       applyCurrencyState();
       syncUrl();
     }
+
+    window.nikonValueCatalog = {
+      refresh() {
+        applyState();
+      },
+    };
 
     tabs.forEach((tab) => {
       tab.addEventListener('click', () => {
