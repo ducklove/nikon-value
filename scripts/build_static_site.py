@@ -565,9 +565,6 @@ def _build_lens_atlas_section(category: dict[str, Any], summary: str) -> str:
     cat_id = category['id']
     return f"""
     <section id="lens-atlas-{escape(cat_id)}" class="lens-atlas" data-category-id="{escape(cat_id)}" aria-label="{escape(summary)}" hidden>
-      <div class="lens-atlas__hero">
-        <img src="assets/nikon-lens-lineup.jpg" alt="Nikkor lens lineup" class="lens-atlas__hero-image" loading="lazy" decoding="async">
-      </div>
       <details class="film-atlas__details">
         <summary class="film-atlas__summary">{escape(summary)}</summary>
         <div class="lens-atlas__grid">
@@ -763,11 +760,12 @@ def build_home_page(catalog: dict[str, Any], base_url: str, histories: dict[str,
 {head_block(title='니콘 중고 시세 트래커', description=description, canonical=canonical, image_url=image_url, extra_meta=extra_meta)}
 <body data-page=\"catalog\">
   <header class=\"site-header\">
-    <div class=\"hero-banner\">
-      <picture>
+    <div class=\"hero-banner\" id=\"hero-banner\">
+      <picture class=\"hero-picture\" id=\"hero-picture-default\">
         <source type=\"image/webp\" srcset=\"assets/mynikons-800.webp 800w, assets/mynikons-1600.webp 1600w\" sizes=\"100vw\">
         <img src=\"mynikons.jpg\" alt=\"Nikon camera collection\" class=\"hero-image\" width=\"1600\" height=\"900\" fetchpriority=\"high\" loading=\"eager\" decoding=\"async\">
       </picture>
+      <img src=\"assets/nikon-lens-lineup.jpg\" alt=\"Nikkor lens lineup\" class=\"hero-image hero-image--lens\" id=\"hero-image-lens\" width=\"1123\" height=\"405\" loading=\"eager\" decoding=\"async\" hidden>
       {build_hero_manual_hotspots()}
       <div class=\"hero-overlay\">
         <div class=\"container\">

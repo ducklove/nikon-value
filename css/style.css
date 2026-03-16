@@ -87,6 +87,10 @@ select:focus-visible {
   display: block;
 }
 
+.hero-image--lens {
+  object-position: center center;
+}
+
 .hero-hotspots {
   position: absolute;
   inset: 0;
@@ -651,18 +655,6 @@ select:focus-visible {
 /* === Lens Atlas === */
 .lens-atlas {
   margin-top: 20px;
-}
-
-.lens-atlas__hero {
-  border-radius: var(--radius);
-  overflow: hidden;
-  margin-bottom: 12px;
-}
-
-.lens-atlas__hero-image {
-  display: block;
-  width: 100%;
-  height: auto;
 }
 
 .lens-atlas__grid {

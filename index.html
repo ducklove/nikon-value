@@ -26,11 +26,12 @@
 </head>
 <body data-page="catalog">
   <header class="site-header">
-    <div class="hero-banner">
-      <picture>
+    <div class="hero-banner" id="hero-banner">
+      <picture class="hero-picture" id="hero-picture-default">
         <source type="image/webp" srcset="assets/mynikons-800.webp 800w, assets/mynikons-1600.webp 1600w" sizes="100vw">
         <img src="mynikons.jpg" alt="Nikon camera collection" class="hero-image" width="1600" height="900" fetchpriority="high" loading="eager" decoding="async">
       </picture>
+      <img src="assets/nikon-lens-lineup.jpg" alt="Nikkor lens lineup" class="hero-image hero-image--lens" id="hero-image-lens" width="1123" height="405" loading="eager" decoding="async" hidden>
       <div class="hero-hotspots" aria-label="히어로 이미지 카메라 메뉴얼 바로가기"><a class="hero-hotspot" href="https://onlinemanual.nikonimglib.com/zf/ko/" target="_blank" rel="noopener noreferrer" style="left: 19.5%; top: 23%; width: 12%; height: 14%;"><span class="visually-hidden">Zf manual</span></a><a class="hero-hotspot" href="https://cdn-10.nikon-cdn.com/pdf/manuals/archive/F3.pdf" target="_blank" rel="noopener noreferrer" style="left: 48%; top: 31%; width: 10%; height: 14%;"><span class="visually-hidden">F3 manual</span></a><a class="hero-hotspot" href="https://www.cameramanuals.org/nikon_pdf/nikkormat_ftn.pdf" target="_blank" rel="noopener noreferrer" style="left: 62.5%; top: 18%; width: 11%; height: 12%;"><span class="visually-hidden">Nikkormat manual</span></a><a class="hero-hotspot" href="https://cdn-10.nikon-cdn.com/pdf/manuals/archive/FM2.pdf" target="_blank" rel="noopener noreferrer" style="left: 87.5%; top: 40%; width: 10%; height: 14%;"><span class="visually-hidden">FM2 manual</span></a></div>
       <div class="hero-overlay">
         <div class="container">
@@ -118,9 +119,6 @@
     </section>
     
     <section id="lens-atlas-z-mount-lenses" class="lens-atlas" data-category-id="z-mount-lenses" aria-label="Z마운트 렌즈 라인업 (화각 순)" hidden>
-      <div class="lens-atlas__hero">
-        <img src="assets/nikon-lens-lineup.jpg" alt="Nikkor lens lineup" class="lens-atlas__hero-image" loading="lazy" decoding="async">
-      </div>
       <details class="film-atlas__details">
         <summary class="film-atlas__summary">Z마운트 렌즈 라인업 (화각 순)</summary>
         <div class="lens-atlas__grid">
@@ -129,9 +127,6 @@
       </details>
     </section>
     <section id="lens-atlas-f-mount-lenses" class="lens-atlas" data-category-id="f-mount-lenses" aria-label="F마운트 렌즈 라인업 (화각 순)" hidden>
-      <div class="lens-atlas__hero">
-        <img src="assets/nikon-lens-lineup.jpg" alt="Nikkor lens lineup" class="lens-atlas__hero-image" loading="lazy" decoding="async">
-      </div>
       <details class="film-atlas__details">
         <summary class="film-atlas__summary">F마운트 렌즈 라인업 (화각 순)</summary>
         <div class="lens-atlas__grid">
@@ -140,9 +135,6 @@
       </details>
     </section>
     <section id="lens-atlas-classic-lenses" class="lens-atlas" data-category-id="classic-lenses" aria-label="클래식 렌즈 라인업 (화각 순)" hidden>
-      <div class="lens-atlas__hero">
-        <img src="assets/nikon-lens-lineup.jpg" alt="Nikkor lens lineup" class="lens-atlas__hero-image" loading="lazy" decoding="async">
-      </div>
       <details class="film-atlas__details">
         <summary class="film-atlas__summary">클래식 렌즈 라인업 (화각 순)</summary>
         <div class="lens-atlas__grid">

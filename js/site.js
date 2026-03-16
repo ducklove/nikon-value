@@ -244,6 +244,10 @@
     const emptyState = document.getElementById('catalog-empty');
     const filmAtlas = document.getElementById('film-atlas');
     const lensAtlases = Array.from(document.querySelectorAll('.lens-atlas[data-category-id]'));
+    const heroPictureDefault = document.getElementById('hero-picture-default');
+    const heroImageLens = document.getElementById('hero-image-lens');
+    const heroHotspots = document.querySelector('.hero-hotspots');
+    const lensCategories = new Set(['z-mount-lenses', 'f-mount-lenses', 'classic-lenses']);
     const currencyButtons = Array.from(document.querySelectorAll('.currency-toggle__button[data-currency]'));
     const exchangeData = readJsonScript('exchange-rate-data', {});
     const params = new URLSearchParams(window.location.search);
@@ -341,6 +345,13 @@
       });
     }
 
+    function updateHeroImage() {
+      const showLens = lensCategories.has(activeCategory);
+      if (heroPictureDefault) heroPictureDefault.hidden = showLens;
+      if (heroImageLens) heroImageLens.hidden = !showLens;
+      if (heroHotspots) heroHotspots.hidden = showLens;
+    }
+
     function applyCurrencyState() {
       applyMoneyElements(document, currencyMode, exchangeData);
       syncCurrencyButtons(currencyButtons, currencyMode, exchangeData);
@@ -367,6 +378,7 @@
       updateRareWatch();
       updateFilmAtlas();
       updateLensAtlas();
+      updateHeroImage();
       applyCurrencyState();
       syncUrl();
     }
