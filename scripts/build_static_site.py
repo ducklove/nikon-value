@@ -521,16 +521,16 @@ def build_film_visual_index(catalog: dict[str, Any]) -> str:
     </section>"""
 
 
-def build_lens_visual_index(catalog: dict[str, Any]) -> str:
-    lens_category = next(
-        (c for c in catalog['categories'] if c['id'] == 'classic-lenses'),
-        None,
-    )
-    if not lens_category:
-        return ''
+LENS_ATLAS_CATEGORIES = {
+    'z-mount-lenses': 'Z마운트 렌즈 라인업 (화각 순)',
+    'f-mount-lenses': 'F마운트 렌즈 라인업 (화각 순)',
+    'classic-lenses': '클래식 렌즈 라인업 (화각 순)',
+}
 
+
+def _build_lens_atlas_section(category: dict[str, Any], summary: str) -> str:
     products = sorted(
-        lens_category['products'],
+        category['products'],
         key=lambda p: (p.get('focal_length_min') or 9999, p.get('name_ko', '')),
     )
 
@@ -552,7 +552,7 @@ def build_lens_visual_index(catalog: dict[str, Any]) -> str:
                 f' class="lens-atlas__thumb" loading="lazy" decoding="async">'
             )
         else:
-            img_tag = f'<span class="lens-atlas__placeholder" aria-hidden="true">Nikon</span>'
+            img_tag = '<span class="lens-atlas__placeholder" aria-hidden="true">Nikon</span>'
 
         cells.append(
             f'<a class="lens-atlas__cell" href="products/{escape(pid)}.html"'
@@ -562,15 +562,25 @@ def build_lens_visual_index(catalog: dict[str, Any]) -> str:
             f'</a>'
         )
 
+    cat_id = category['id']
     return f"""
-    <section id="lens-atlas" class="lens-atlas" aria-label="Classic lens visual index" hidden>
+    <section id="lens-atlas-{escape(cat_id)}" class="lens-atlas" data-category-id="{escape(cat_id)}" aria-label="{escape(summary)}" hidden>
       <details class="film-atlas__details">
-        <summary class="film-atlas__summary">클래식 렌즈 라인업 (화각 순)</summary>
+        <summary class="film-atlas__summary">{escape(summary)}</summary>
         <div class="lens-atlas__grid">
           {''.join(cells)}
         </div>
       </details>
     </section>"""
+
+
+def build_lens_visual_index(catalog: dict[str, Any]) -> str:
+    sections = []
+    for category in catalog['categories']:
+        summary = LENS_ATLAS_CATEGORIES.get(category['id'])
+        if summary:
+            sections.append(_build_lens_atlas_section(category, summary))
+    return ''.join(sections)
 
 
 def compute_stale_days(updated: str) -> int:

@@ -243,7 +243,7 @@
     const contextLabel = document.getElementById('catalog-context');
     const emptyState = document.getElementById('catalog-empty');
     const filmAtlas = document.getElementById('film-atlas');
-    const lensAtlas = document.getElementById('lens-atlas');
+    const lensAtlases = Array.from(document.querySelectorAll('.lens-atlas[data-category-id]'));
     const currencyButtons = Array.from(document.querySelectorAll('.currency-toggle__button[data-currency]'));
     const exchangeData = readJsonScript('exchange-rate-data', {});
     const params = new URLSearchParams(window.location.search);
@@ -336,8 +336,9 @@
     }
 
     function updateLensAtlas() {
-      if (!lensAtlas) return;
-      lensAtlas.hidden = activeCategory !== 'classic-lenses';
+      lensAtlases.forEach((el) => {
+        el.hidden = el.dataset.categoryId !== activeCategory;
+      });
     }
 
     function applyCurrencyState() {
