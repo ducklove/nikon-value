@@ -77,7 +77,7 @@
     favoriteSet.clear();
     var area = document.getElementById('auth-area');
     if (!area) return;
-    var returnTo = encodeURIComponent(window.location.pathname);
+    var returnTo = encodeURIComponent(window.location.pathname.replace(/\/index\.html$/, '/'));
     area.innerHTML =
       '<div class="auth-login-dropdown">' +
         '<button class="auth-btn auth-btn--login" id="login-toggle">로그인</button>' +
