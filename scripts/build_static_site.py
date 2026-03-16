@@ -779,6 +779,7 @@ def build_home_page(catalog: dict[str, Any], base_url: str, histories: dict[str,
       </div>
     </div>
   </header>
+  <div class=\"auth-bar\"><div class=\"container\"><div id=\"auth-area\" class=\"auth-area\"></div></div></div>
   {build_site_links('home')}
 
   <nav class=\"category-nav\" aria-label=\"카테고리 필터\">
@@ -799,7 +800,6 @@ def build_home_page(catalog: dict[str, Any], base_url: str, histories: dict[str,
         </div>
       </div>
       <div class=\"toolbar-controls\">
-        <div id=\"auth-area\" class=\"auth-area\"></div>
         {build_currency_toggle(exchange_rate)}
         <div class=\"toolbar-controls__row\">
           <label class=\"visually-hidden\" for=\"search-input\">제품 검색</label>

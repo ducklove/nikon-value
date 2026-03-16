@@ -1414,12 +1414,20 @@ select:focus-visible {
   }
 }
 
-/* ── Auth area ── */
+/* ── Auth bar (below hero) ── */
+.auth-bar {
+  background: var(--color-surface, #fff);
+  border-bottom: 1px solid var(--color-border, #e0e0e0);
+  padding: 0.4rem 0;
+}
+.auth-bar .container {
+  display: flex;
+  justify-content: flex-end;
+}
 .auth-area {
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  margin-left: auto;
   white-space: nowrap;
 }
 .auth-user-name {
