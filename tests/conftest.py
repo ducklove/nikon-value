@@ -24,8 +24,11 @@ async def db():
 @pytest_asyncio.fixture
 async def client():
     """AsyncClient wrapping FastAPI app. lifespan handles DB init/close."""
+    from asgi_lifespan import LifespanManager
+
     from server.main import app
 
-    transport = ASGITransport(app=app)
-    async with AsyncClient(transport=transport, base_url="http://test") as c:
-        yield c
+    async with LifespanManager(app) as manager:
+        transport = ASGITransport(app=manager.app)
+        async with AsyncClient(transport=transport, base_url="http://test") as c:
+            yield c
