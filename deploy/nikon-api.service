@@ -1,0 +1,19 @@
+[Unit]
+Description=Nikon Value API Server
+After=network.target
+
+[Service]
+Type=simple
+User=cantabile
+WorkingDirectory=/home/cantabile/Works/nikon_value
+ExecStart=/home/cantabile/Works/nikon_value/.venv/bin/python -m uvicorn server.main:app \
+    --host 0.0.0.0 \
+    --port 3380 \
+    --ssl-certfile /etc/letsencrypt/live/cantabile.tplinkdns.com/fullchain.pem \
+    --ssl-keyfile /etc/letsencrypt/live/cantabile.tplinkdns.com/privkey.pem
+Restart=on-failure
+RestartSec=5
+Environment=PYTHONUNBUFFERED=1
+
+[Install]
+WantedBy=multi-user.target
