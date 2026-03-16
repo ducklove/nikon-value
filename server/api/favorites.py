@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from fastapi import APIRouter, Depends, HTTPException, status
+from fastapi import APIRouter, Depends, HTTPException, Request, status
 from fastapi.responses import JSONResponse
 
 from server import catalog
@@ -8,12 +8,14 @@ from server.auth.jwt import get_current_user
 from server.config import FAVORITES_MAX
 from server.database import get_db
 from server.models import ErrorResponse, FavoritesResponse
+from server.rate_limit import limiter
 
 router = APIRouter(prefix="/api")
 
 
 @router.get("/favorites", response_model=FavoritesResponse, responses={401: {"model": ErrorResponse}})
-async def get_favorites(user: dict = Depends(get_current_user)):
+@limiter.limit("60/minute")
+async def get_favorites(request: Request, user: dict = Depends(get_current_user)):
     async with get_db() as db:
         cursor = await db.execute(
             "SELECT product_id FROM favorites WHERE user_id = ? ORDER BY added_at",
@@ -24,7 +26,8 @@ async def get_favorites(user: dict = Depends(get_current_user)):
 
 
 @router.put("/favorites/{product_id}", responses={401: {"model": ErrorResponse}, 422: {"model": ErrorResponse}})
-async def add_favorite(product_id: str, user: dict = Depends(get_current_user)):
+@limiter.limit("60/minute")
+async def add_favorite(product_id: str, request: Request, user: dict = Depends(get_current_user)):
     if catalog.is_loaded() and catalog.product_count() > 0 and not catalog.is_valid_product(product_id):
         return JSONResponse(
             status_code=status.HTTP_404_NOT_FOUND,
@@ -59,7 +62,8 @@ async def add_favorite(product_id: str, user: dict = Depends(get_current_user)):
 
 
 @router.delete("/favorites/{product_id}", responses={401: {"model": ErrorResponse}})
-async def remove_favorite(product_id: str, user: dict = Depends(get_current_user)):
+@limiter.limit("60/minute")
+async def remove_favorite(product_id: str, request: Request, user: dict = Depends(get_current_user)):
     async with get_db() as db:
         await db.execute(
             "DELETE FROM favorites WHERE user_id = ? AND product_id = ?",

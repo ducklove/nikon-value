@@ -1,16 +1,18 @@
 from __future__ import annotations
 
-from fastapi import APIRouter, Depends, HTTPException, status
+from fastapi import APIRouter, Depends, HTTPException, Request, status
 
 from server.auth.jwt import get_current_user
 from server.database import get_db
 from server.models import ErrorResponse, UserResponse
+from server.rate_limit import limiter
 
 router = APIRouter(prefix="/api")
 
 
 @router.get("/me", response_model=UserResponse, responses={401: {"model": ErrorResponse}})
-async def get_me(user: dict = Depends(get_current_user)):
+@limiter.limit("60/minute")
+async def get_me(request: Request, user: dict = Depends(get_current_user)):
     async with get_db() as db:
         cursor = await db.execute(
             "SELECT id, provider, name, email FROM users WHERE id = ?",
@@ -26,7 +28,8 @@ async def get_me(user: dict = Depends(get_current_user)):
 
 
 @router.delete("/me", responses={401: {"model": ErrorResponse}})
-async def delete_me(user: dict = Depends(get_current_user)):
+@limiter.limit("60/minute")
+async def delete_me(request: Request, user: dict = Depends(get_current_user)):
     async with get_db() as db:
         result = await db.execute("DELETE FROM users WHERE id = ?", (user["sub"],))
         await db.commit()
