@@ -352,8 +352,8 @@ def ga_snippet() -> str:
 
 def build_hero_manual_hotspots() -> str:
     zf_manual_href = 'https://onlinemanual.nikonimglib.com/zf/ko/'
-    zf_manual_position = 'left: 20.4%; top: 17.2%; width: 6%; height: 5.5%;'
-    zf_easter_position = 'left: 18.2%; top: 27.8%; width: 5.5%; height: 6.5%;'
+    zf_manual_position = 'left: 19.592%; top: 33.537%; width: 8.306%; height: 11.874%;'
+    zf_easter_position = 'left: 11.530%; top: 41.399%; width: 6.254%; height: 11.553%;'
     hotspots = [
         ('F3', 'https://cdn-10.nikon-cdn.com/pdf/manuals/archive/F3.pdf', 'left: 48%; top: 31%; width: 10%; height: 14%;'),
         ('Nikkormat', 'https://www.cameramanuals.org/nikon_pdf/nikkormat_ftn.pdf', 'left: 62.5%; top: 18%; width: 11%; height: 12%;'),
