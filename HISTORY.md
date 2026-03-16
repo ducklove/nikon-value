@@ -1,5 +1,18 @@
 # History
 
+## 1.4 - 2026-03-16
+
+### Added
+
+- Added lens visual index grids for all three lens categories (Z-mount 41, F-mount 46, Classic 72), using eBay listing thumbnails sorted by focal length.
+- Added Nikkor lens lineup hero banner image that swaps in when any lens category tab is active; camera collection hero and manual hotspots are hidden during lens view.
+
+### Changed
+
+- Film camera visual index boards are now wrapped in a single foldable `<details>` element (default collapsed).
+- Film camera history board images are capped at native 550px width and centered, preventing blurry upscaling.
+- Recalibrated image 2 hotspot row boundaries via pixel analysis (24 → 25 rows), fixing 83–122 px downward drift that misaligned hotspots from row 14 onward (35Ti, F90X, FM3A, F6 etc.).
+
 ## 1.3 - 2026-03-16
 
 ### Added
