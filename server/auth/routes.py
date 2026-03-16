@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import logging
+from urllib.parse import urlsplit
 
 from fastapi import APIRouter, HTTPException, Request, status
 from fastapi.responses import RedirectResponse
@@ -14,6 +15,34 @@ from server.rate_limit import limiter
 
 logger = logging.getLogger(__name__)
 router = APIRouter(prefix="/auth")
+FRONTEND_BASE_URL = FRONTEND_URL.rstrip("/")
+FRONTEND_BASE_PATH = urlsplit(FRONTEND_BASE_URL).path.rstrip("/")
+
+
+def normalize_return_to(return_to: str) -> str:
+    candidate = (return_to or "/").strip()
+    parsed = urlsplit(candidate)
+
+    # Only allow same-site path navigation; reject absolute URLs.
+    if parsed.scheme or parsed.netloc:
+        return "/"
+
+    path = parsed.path or "/"
+    if not path.startswith("/"):
+        path = "/" + path.lstrip("/")
+
+    if FRONTEND_BASE_PATH:
+        if path == FRONTEND_BASE_PATH:
+            path = "/"
+        elif path.startswith(FRONTEND_BASE_PATH + "/"):
+            path = path[len(FRONTEND_BASE_PATH):] or "/"
+
+    query = f"?{parsed.query}" if parsed.query else ""
+    return f"{path}{query}"
+
+
+def build_frontend_redirect_url(return_to: str, jwt_token: str) -> str:
+    return f"{FRONTEND_BASE_URL}{normalize_return_to(return_to)}#token={jwt_token}"
 
 
 @router.get("/{provider}")
@@ -22,7 +51,7 @@ async def oauth_start(provider: str, request: Request):
     if provider not in PROVIDERS:
         raise HTTPException(status_code=404, detail="Unknown provider")
 
-    return_to = request.query_params.get("return_to", "/")
+    return_to = normalize_return_to(request.query_params.get("return_to", "/"))
     state = create_state(return_to=return_to)
 
     cfg = PROVIDERS[provider]
@@ -86,6 +115,8 @@ async def oauth_callback(provider: str, request: Request, code: str = "", state:
         user_id = (await cursor.fetchone())["id"]
 
     jwt_token = create_token(user_id=user_id, provider=provider)
-    return_to = state_data.get("return_to", "/")
-    redirect_url = f"{FRONTEND_URL}{return_to}#token={jwt_token}"
+    redirect_url = build_frontend_redirect_url(
+        state_data.get("return_to", "/"),
+        jwt_token,
+    )
     return RedirectResponse(redirect_url)

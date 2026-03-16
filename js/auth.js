@@ -9,6 +9,24 @@
   function setToken(token) { localStorage.setItem(TOKEN_KEY, token); }
   function clearToken() { localStorage.removeItem(TOKEN_KEY); }
 
+  function getReturnToPath() {
+    var path = window.location.pathname.replace(/\/index\.html$/, '/');
+    var homeLink = document.querySelector('.site-link[href$="index.html"]');
+    if (!homeLink) return path;
+    try {
+      var siteRoot = new URL(homeLink.getAttribute('href'), window.location.href)
+        .pathname
+        .replace(/\/index\.html$/, '');
+      if (siteRoot && path.indexOf(siteRoot + '/') === 0) {
+        return path.slice(siteRoot.length) || '/';
+      }
+      if (siteRoot && path === siteRoot) return '/';
+    } catch (e) {
+      console.warn('Failed to resolve site root:', e.message);
+    }
+    return path;
+  }
+
   function checkHashToken() {
     var hash = window.location.hash;
     var match = hash.match(/^#token=(.+)$/);
@@ -77,7 +95,7 @@
     favoriteSet.clear();
     var area = document.getElementById('auth-area');
     if (!area) return;
-    var returnTo = encodeURIComponent(window.location.pathname.replace(/\/index\.html$/, '/'));
+    var returnTo = encodeURIComponent(getReturnToPath());
     area.innerHTML =
       '<div class="auth-login-dropdown">' +
         '<button class="auth-btn auth-btn--login" id="login-toggle">로그인</button>' +
