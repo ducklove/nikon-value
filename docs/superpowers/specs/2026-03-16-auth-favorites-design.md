@@ -67,9 +67,10 @@
 ### CSRF 방지 (OAuth state 파라미터)
 
 - OAuth 시작 시(`GET /auth/google`) 서버가 랜덤 `state` 값을 생성
-- `state`는 HMAC 서명된 타임스탬프로 구성: `HMAC(timestamp + random_nonce, secret)`
+- `state`는 HMAC 서명된 타임스탬프 + 복귀 URL로 구성: `HMAC(timestamp + nonce + return_to, secret)`
 - 콜백에서 `state` 서명 검증 + 타임스탬프 만료(5분) 확인
 - 서버 세션 없이 stateless하게 CSRF를 방지 (서명 검증만으로 충분)
+- `return_to`를 포함하여 로그인 후 원래 보던 페이지(예: 제품 상세)로 복귀
 
 ### JWT 저장 방식 트레이드오프
 
@@ -77,8 +78,8 @@ JWT를 `localStorage`에 저장한다. 이 결정의 트레이드오프:
 
 - **XSS 위험**: localStorage는 JS로 접근 가능하므로 XSS 시 토큰 탈취 가능
 - **HttpOnly 쿠키 불가 이유**: GitHub Pages(`ducklove.github.io`)와 API 서버(`cantabile.tplinkdns.com`)가 다른 도메인이므로, 서드파티 쿠키 차단 정책(Chrome Privacy Sandbox, Safari ITP)에 의해 크로스 도메인 쿠키가 동작하지 않을 수 있음
-- **수용 가능한 이유**: 관심 목록만 관리하는 비민감 서비스이며, 금전 거래나 개인 민감정보를 다루지 않음. CDN 스크립트(Chart.js)는 integrity 속성으로 무결성 검증
-- **완화 조치**: Content-Security-Policy 헤더로 인라인 스크립트 제한, 외부 스크립트 화이트리스트 적용
+- **수용 가능한 이유**: 관심 목록만 관리하는 비민감 서비스이며, 금전 거래나 개인 민감정보를 다루지 않음
+- **완화 조치**: CDN 스크립트(Chart.js 등)에 SRI integrity 속성 추가 (build_static_site.py에서 생성 시 포함), Content-Security-Policy 헤더로 외부 스크립트 화이트리스트 적용
 
 ## 데이터베이스 스키마 (SQLite)
 
@@ -121,14 +122,14 @@ Base URL: `https://cantabile.tplinkdns.com:3380`
 
 | 메서드 | 경로 | 설명 | 인증 |
 |--------|------|------|------|
-| GET | `/health` | 헬스체크 (DB 연결 상태 포함) | 불필요 |
+| GET | `/health` | 헬스체크 (아래 응답 형식 참조) | 불필요 |
 
 ### 사용자
 
 | 메서드 | 경로 | 설명 | 인증 |
 |--------|------|------|------|
 | GET | `/api/me` | 현재 로그인 사용자 정보 | JWT 필요 |
-| DELETE | `/api/me` | 회원 탈퇴 (계정 + 관심 목록 삭제) | JWT 필요 |
+| DELETE | `/api/me` | 회원 탈퇴 (OAuth 토큰 철회 + 계정 + 관심 목록 삭제) | JWT 필요 |
 
 ### 관심 목록
 
@@ -141,6 +142,15 @@ Base URL: `https://cantabile.tplinkdns.com:3380`
 ### 응답 예시
 
 ```json
+// GET /health
+{
+  "status": "healthy",
+  "db": "ok",
+  "catalog_loaded": true,
+  "catalog_products": 257,
+  "uptime_seconds": 86400
+}
+
 // GET /api/me
 {
   "id": 1,
@@ -217,7 +227,7 @@ Base URL: `https://cantabile.tplinkdns.com:3380`
 |-----------|-----------|------|
 | 401 | `unauthorized` | JWT 없음/만료/유효하지 않음 |
 | 404 | `not_found` | 존재하지 않는 product_id |
-| 409 | `already_exists` | 이미 관심 목록에 있는 제품 |
+| 200 | (성공) | PUT 멱등성: 이미 존재하면 그대로 200 반환 |
 | 422 | `limit_exceeded` | 관심 목록 50개 초과 |
 | 429 | `rate_limited` | 요청 횟수 초과 |
 
