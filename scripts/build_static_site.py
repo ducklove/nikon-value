@@ -21,6 +21,7 @@ CATALOG_PATH = DATA_DIR / 'catalog.json'
 CONFIG_PATH = PROJECT_ROOT / 'config' / 'products.yaml'
 STYLE_PATH = PROJECT_ROOT / 'css' / 'style.css'
 SITE_JS_PATH = PROJECT_ROOT / 'js' / 'site.js'
+AUTH_JS_PATH = PROJECT_ROOT / 'js' / 'auth.js'
 HERO_JPG = PROJECT_ROOT / 'mynikons.jpg'
 HERO_WEBP_800 = PROJECT_ROOT / 'assets' / 'mynikons-800.webp'
 HERO_WEBP_1600 = PROJECT_ROOT / 'assets' / 'mynikons-1600.webp'
@@ -772,6 +773,7 @@ def build_home_page(catalog: dict[str, Any], base_url: str, histories: dict[str,
           <h1 class=\"site-title\">니콘 중고 시세 트래커</h1>
           <p class=\"site-subtitle\">eBay 현재 매물 기준 시세 (배송비 포함)</p>
           <p class=\"site-updated\">최종 업데이트: {escape(updated)}{escape(format_exchange_rate_inline(exchange_rate))}</p>
+          <div id=\"auth-area\"></div>
         </div>
       </div>
     </div>
@@ -835,6 +837,7 @@ def build_home_page(catalog: dict[str, Any], base_url: str, histories: dict[str,
   <script id=\"exchange-rate-data\" type=\"application/json\">{json_script(exchange_rate or {})}</script>
   <script id=\"cards-data\" type=\"application/json\">{json_script(cards_data)}</script>
   <script src=\"js/site.js\" defer></script>
+  <script src=\"js/auth.js\" defer></script>
 </body>
 </html>
 """
@@ -1084,6 +1087,7 @@ def build_product_page(
   <script id=\"history-data\" type=\"application/json\">{json_script(history)}</script>
   <script src=\"https://cdn.jsdelivr.net/npm/chart.js@4/dist/chart.umd.min.js\"></script>
   <script src=\"../js/site.js\" defer></script>
+  <script src=\"../js/auth.js\" defer></script>
 </body>
 </html>
 """
@@ -1167,6 +1171,7 @@ def build_resources_page(base_url: str) -> str:
 
 {build_footer()}
   <script src=\"js/site.js\" defer></script>
+  <script src=\"js/auth.js\" defer></script>
 </body>
 </html>
 """
@@ -1225,6 +1230,7 @@ def copy_assets(output_dir: Path) -> None:
 
     shutil.copy2(STYLE_PATH, output_dir / 'css' / 'style.css')
     shutil.copy2(SITE_JS_PATH, output_dir / 'js' / 'site.js')
+    shutil.copy2(AUTH_JS_PATH, output_dir / 'js' / 'auth.js')
     shutil.copy2(EBAY_LOGO, output_dir / 'assets' / 'ebay-logo.svg')
     shutil.copy2(HERO_WEBP_800, output_dir / 'assets' / 'mynikons-800.webp')
     shutil.copy2(HERO_WEBP_1600, output_dir / 'assets' / 'mynikons-1600.webp')
