@@ -422,10 +422,11 @@ def build_site_links(active: str, prefix: str = '') -> str:
         items.append(f'<a class="{class_name}" href="{escape(href)}">{escape(label)}</a>')
     return (
         '<div class="site-links-wrap">'
-        '<div class="container">'
+        '<div class="container site-links-container">'
         '<nav class="site-links" aria-label="사이트 바로가기">'
         f'{"".join(items)}'
         '</nav>'
+        '<div id="auth-area" class="auth-area"></div>'
         '</div>'
         '</div>'
     )
@@ -779,7 +780,6 @@ def build_home_page(catalog: dict[str, Any], base_url: str, histories: dict[str,
       </div>
     </div>
   </header>
-  <div class=\"auth-bar\"><div class=\"container\"><div id=\"auth-area\" class=\"auth-area\"></div></div></div>
   {build_site_links('home')}
 
   <nav class=\"category-nav\" aria-label=\"카테고리 필터\">
