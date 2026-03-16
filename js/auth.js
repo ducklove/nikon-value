@@ -83,8 +83,6 @@
         '<button class="auth-btn auth-btn--login" id="login-toggle">로그인</button>' +
         '<div class="auth-dropdown-menu" id="login-menu" hidden>' +
           '<a href="' + API_BASE + '/auth/google?return_to=' + returnTo + '" class="auth-dropdown-item auth-dropdown-item--google">Google 계정으로 로그인</a>' +
-          '<a href="' + API_BASE + '/auth/naver?return_to=' + returnTo + '" class="auth-dropdown-item auth-dropdown-item--naver">네이버로 로그인</a>' +
-          '<a href="' + API_BASE + '/auth/kakao?return_to=' + returnTo + '" class="auth-dropdown-item auth-dropdown-item--kakao">카카오로 로그인</a>' +
         '</div>' +
       '</div>';
     document.getElementById('login-toggle').addEventListener('click', function (e) {
