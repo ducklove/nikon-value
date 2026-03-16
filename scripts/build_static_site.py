@@ -649,6 +649,11 @@ def has_catalog_listing_data(product: dict[str, Any]) -> bool:
     return (product.get('count') or 0) > 0
 
 
+def should_show_home_catalog_product(category_id: str, product: dict[str, Any]) -> bool:
+    # Show the full DSLR lineup even before the first scrape so coverage is visible.
+    return category_id == 'f-mount-dslr' or has_catalog_listing_data(product)
+
+
 def build_home_page(catalog: dict[str, Any], base_url: str, histories: dict[str, list[dict[str, Any]]] | None = None) -> str:
     updated = catalog['updated']
     exchange_rate = catalog.get('exchange_rate')
@@ -657,7 +662,7 @@ def build_home_page(catalog: dict[str, Any], base_url: str, histories: dict[str,
         1
         for category in catalog['categories']
         for product in category['products']
-        if has_catalog_listing_data(product)
+        if should_show_home_catalog_product(category['id'], product)
     )
     total_listings = sum(
         (product.get('count') or 0)
@@ -688,7 +693,7 @@ def build_home_page(catalog: dict[str, Any], base_url: str, histories: dict[str,
             for item in category.get('subcategories', [])
         }
         for product in sort_products(category['products'], category['id']):
-            if not has_catalog_listing_data(product):
+            if not should_show_home_catalog_product(category['id'], product):
                 continue
             feature_order += 1
             samples = product.get('samples') or []

@@ -159,33 +159,6 @@ categories:
     category_id: '31388'
     min_price: 3000
     max_price: 7000
-  - id: nikon-d5
-    name_ko: 니콘 D5
-    name_en: Nikon D5
-    release_year: 2016
-    subcategory: flagship
-    query: Nikon D5 body
-    category_id: '31388'
-    min_price: 1500
-    max_price: 4500
-  - id: nikon-d850
-    name_ko: 니콘 D850
-    name_en: Nikon D850
-    release_year: 2017
-    subcategory: midrange
-    query: Nikon D850 body
-    category_id: '31388'
-    min_price: 1000
-    max_price: 2500
-  - id: nikon-d810
-    name_ko: 니콘 D810
-    name_en: Nikon D810
-    release_year: 2014
-    subcategory: midrange
-    query: Nikon D810 body -D800 -D800E
-    category_id: '31388'
-    min_price: 500
-    max_price: 1500
   - id: nikon-d780
     name_ko: 니콘 D780
     name_en: Nikon D780
@@ -195,51 +168,474 @@ categories:
     category_id: '31388'
     min_price: 1000
     max_price: 2500
-  - id: nikon-d750
-    name_ko: 니콘 D750
-    name_en: Nikon D750
-    release_year: 2014
-    subcategory: midrange
-    query: Nikon D750 body
+  - id: nikon-d3500
+    name_ko: 니콘 D3500
+    name_en: Nikon D3500
+    release_year: 2018
+    subcategory: entry
+    query: Nikon D3500 body
     category_id: '31388'
-    min_price: 400
-    max_price: 1200
-  - id: nikon-d700
-    name_ko: 니콘 D700
-    name_en: Nikon D700
-    release_year: 2008
+    min_price: 250
+    max_price: 900
+  - id: nikon-d850
+    name_ko: 니콘 D850
+    name_en: Nikon D850
+    release_year: 2017
     subcategory: midrange
-    query: Nikon D700 body
+    query: Nikon D850 body
     category_id: '31388'
-    min_price: 200
+    min_price: 1000
+    max_price: 2500
+  - id: nikon-d7500
+    name_ko: 니콘 D7500
+    name_en: Nikon D7500
+    release_year: 2017
+    subcategory: midrange
+    query: Nikon D7500 body
+    category_id: '31388'
+    min_price: 300
+    max_price: 1000
+  - id: nikon-d5600
+    name_ko: 니콘 D5600
+    name_en: Nikon D5600
+    release_year: 2016
+    subcategory: entry
+    query: Nikon D5600 body
+    category_id: '31388'
+    min_price: 300
     max_price: 900
   - id: nikon-d500
     name_ko: 니콘 D500
     name_en: Nikon D500
     release_year: 2016
-    subcategory: entry
-    query: Nikon D500 body -lens -nikkor
+    subcategory: flagship
+    query: Nikon D500 body -D5000 -lens -nikkor
     category_id: '31388'
     min_price: 500
     max_price: 1500
-  - id: nikon-d7500
-    name_ko: 니콘 D7500
-    name_en: Nikon D7500
-    release_year: 2017
-    subcategory: entry
-    query: Nikon D7500 body
+  - id: nikon-d5
+    name_ko: 니콘 D5
+    name_en: Nikon D5
+    release_year: 2016
+    subcategory: flagship
+    query: Nikon D5 body
     category_id: '31388'
-    min_price: 300
-    max_price: 1000
+    min_price: 1500
+    max_price: 4500
+  - id: nikon-d3400
+    name_ko: 니콘 D3400
+    name_en: Nikon D3400
+    release_year: 2016
+    subcategory: entry
+    query: Nikon D3400 body
+    category_id: '31388'
+    min_price: 180
+    max_price: 700
   - id: nikon-d7200
     name_ko: 니콘 D7200
     name_en: Nikon D7200
     release_year: 2015
-    subcategory: entry
+    subcategory: midrange
     query: Nikon D7200 body
     category_id: '31388'
     min_price: 200
     max_price: 800
+  - id: nikon-d810a
+    name_ko: 니콘 D810A
+    name_en: Nikon D810A
+    release_year: 2015
+    subcategory: midrange
+    query: Nikon D810A body
+    category_id: '31388'
+    min_price: 1000
+    max_price: 3500
+  - id: nikon-d5500
+    name_ko: 니콘 D5500
+    name_en: Nikon D5500
+    release_year: 2015
+    subcategory: entry
+    query: Nikon D5500 body
+    category_id: '31388'
+    min_price: 250
+    max_price: 800
+  - id: nikon-d810
+    name_ko: 니콘 D810
+    name_en: Nikon D810
+    release_year: 2014
+    subcategory: midrange
+    query: Nikon D810 body -D810A -D800 -D800E
+    category_id: '31388'
+    min_price: 500
+    max_price: 1500
+  - id: nikon-d750
+    name_ko: 니콘 D750
+    name_en: Nikon D750
+    release_year: 2014
+    subcategory: midrange
+    query: Nikon D750 body -D7500
+    category_id: '31388'
+    min_price: 400
+    max_price: 1200
+  - id: nikon-d4s
+    name_ko: 니콘 D4S
+    name_en: Nikon D4S
+    release_year: 2014
+    subcategory: flagship
+    query: Nikon D4S body
+    category_id: '31388'
+    min_price: 1200
+    max_price: 3500
+  - id: nikon-d3300
+    name_ko: 니콘 D3300
+    name_en: Nikon D3300
+    release_year: 2014
+    subcategory: entry
+    query: Nikon D3300 body
+    category_id: '31388'
+    min_price: 150
+    max_price: 600
+  - id: nikon-df
+    name_ko: 니콘 Df
+    name_en: Nikon Df
+    release_year: 2013
+    subcategory: midrange
+    query: Nikon Df body -Zf -Df-M1 -mirrorless
+    category_id: '31388'
+    min_price: 700
+    max_price: 2200
+  - id: nikon-d5300
+    name_ko: 니콘 D5300
+    name_en: Nikon D5300
+    release_year: 2013
+    subcategory: entry
+    query: Nikon D5300 body
+    category_id: '31388'
+    min_price: 180
+    max_price: 700
+  - id: nikon-d610
+    name_ko: 니콘 D610
+    name_en: Nikon D610
+    release_year: 2013
+    subcategory: midrange
+    query: Nikon D610 body
+    category_id: '31388'
+    min_price: 350
+    max_price: 1000
+  - id: nikon-d7100
+    name_ko: 니콘 D7100
+    name_en: Nikon D7100
+    release_year: 2013
+    subcategory: midrange
+    query: Nikon D7100 body
+    category_id: '31388'
+    min_price: 180
+    max_price: 700
+  - id: nikon-d5200
+    name_ko: 니콘 D5200
+    name_en: Nikon D5200
+    release_year: 2012
+    subcategory: entry
+    query: Nikon D5200 body
+    category_id: '31388'
+    min_price: 150
+    max_price: 600
+  - id: nikon-d600
+    name_ko: 니콘 D600
+    name_en: Nikon D600
+    release_year: 2012
+    subcategory: midrange
+    query: Nikon D600 body -D610
+    category_id: '31388'
+    min_price: 250
+    max_price: 900
+  - id: nikon-d3200
+    name_ko: 니콘 D3200
+    name_en: Nikon D3200
+    release_year: 2012
+    subcategory: entry
+    query: Nikon D3200 body
+    category_id: '31388'
+    min_price: 120
+    max_price: 500
+  - id: nikon-d800
+    name_ko: 니콘 D800
+    name_en: Nikon D800
+    release_year: 2012
+    subcategory: midrange
+    query: Nikon D800 body -D800E
+    category_id: '31388'
+    min_price: 400
+    max_price: 1200
+  - id: nikon-d800e
+    name_ko: 니콘 D800E
+    name_en: Nikon D800E
+    release_year: 2012
+    subcategory: midrange
+    query: Nikon D800E body
+    category_id: '31388'
+    min_price: 500
+    max_price: 1400
+  - id: nikon-d4
+    name_ko: 니콘 D4
+    name_en: Nikon D4
+    release_year: 2012
+    subcategory: flagship
+    query: Nikon D4 body -D4S
+    category_id: '31388'
+    min_price: 800
+    max_price: 2500
+  - id: nikon-d5100
+    name_ko: 니콘 D5100
+    name_en: Nikon D5100
+    release_year: 2011
+    subcategory: entry
+    query: Nikon D5100 body
+    category_id: '31388'
+    min_price: 120
+    max_price: 500
+  - id: nikon-d3100
+    name_ko: 니콘 D3100
+    name_en: Nikon D3100
+    release_year: 2010
+    subcategory: entry
+    query: Nikon D3100 body
+    category_id: '31388'
+    min_price: 100
+    max_price: 450
+  - id: nikon-d7000
+    name_ko: 니콘 D7000
+    name_en: Nikon D7000
+    release_year: 2010
+    subcategory: midrange
+    query: Nikon D7000 body -D700
+    category_id: '31388'
+    min_price: 120
+    max_price: 500
+  - id: nikon-d5000
+    name_ko: 니콘 D5000
+    name_en: Nikon D5000
+    release_year: 2009
+    subcategory: entry
+    query: Nikon D5000 body -D500
+    category_id: '31388'
+    min_price: 100
+    max_price: 450
+  - id: nikon-d3s
+    name_ko: 니콘 D3S
+    name_en: Nikon D3S
+    release_year: 2009
+    subcategory: flagship
+    query: Nikon D3S body
+    category_id: '31388'
+    min_price: 700
+    max_price: 2200
+  - id: nikon-d300s
+    name_ko: 니콘 D300S
+    name_en: Nikon D300S
+    release_year: 2009
+    subcategory: midrange
+    query: Nikon D300S body -D3000
+    category_id: '31388'
+    min_price: 150
+    max_price: 700
+  - id: nikon-d3000
+    name_ko: 니콘 D3000
+    name_en: Nikon D3000
+    release_year: 2009
+    subcategory: entry
+    query: Nikon D3000 body
+    category_id: '31388'
+    min_price: 80
+    max_price: 400
+  - id: nikon-d90
+    name_ko: 니콘 D90
+    name_en: Nikon D90
+    release_year: 2008
+    subcategory: midrange
+    query: Nikon D90 body
+    category_id: '31388'
+    min_price: 80
+    max_price: 500
+  - id: nikon-d700
+    name_ko: 니콘 D700
+    name_en: Nikon D700
+    release_year: 2008
+    subcategory: midrange
+    query: Nikon D700 body -D7000
+    category_id: '31388'
+    min_price: 200
+    max_price: 900
+  - id: nikon-d3x
+    name_ko: 니콘 D3X
+    name_en: Nikon D3X
+    release_year: 2008
+    subcategory: flagship
+    query: Nikon D3X body
+    category_id: '31388'
+    min_price: 1000
+    max_price: 3000
+  - id: nikon-d60
+    name_ko: 니콘 D60
+    name_en: Nikon D60
+    release_year: 2008
+    subcategory: entry
+    query: Nikon D60 body
+    category_id: '31388'
+    min_price: 60
+    max_price: 400
+  - id: nikon-d300
+    name_ko: 니콘 D300
+    name_en: Nikon D300
+    release_year: 2007
+    subcategory: midrange
+    query: Nikon D300 body -D300S -D3000
+    category_id: '31388'
+    min_price: 80
+    max_price: 500
+  - id: nikon-d3
+    name_ko: 니콘 D3
+    name_en: Nikon D3
+    release_year: 2007
+    subcategory: flagship
+    query: Nikon D3 body -D3S -D3X
+    category_id: '31388'
+    min_price: 400
+    max_price: 1500
+  - id: nikon-d40x
+    name_ko: 니콘 D40X
+    name_en: Nikon D40X
+    release_year: 2007
+    subcategory: entry
+    query: Nikon D40X body
+    category_id: '31388'
+    min_price: 60
+    max_price: 350
+  - id: nikon-d80
+    name_ko: 니콘 D80
+    name_en: Nikon D80
+    release_year: 2006
+    subcategory: midrange
+    query: Nikon D80 body
+    category_id: '31388'
+    min_price: 70
+    max_price: 400
+  - id: nikon-d40
+    name_ko: 니콘 D40
+    name_en: Nikon D40
+    release_year: 2006
+    subcategory: entry
+    query: Nikon D40 body -D40X
+    category_id: '31388'
+    min_price: 40
+    max_price: 300
+  - id: nikon-d2xs
+    name_ko: 니콘 D2Xs
+    name_en: Nikon D2Xs
+    release_year: 2006
+    subcategory: flagship
+    query: Nikon D2Xs body
+    category_id: '31388'
+    min_price: 150
+    max_price: 700
+  - id: nikon-d200
+    name_ko: 니콘 D200
+    name_en: Nikon D200
+    release_year: 2005
+    subcategory: midrange
+    query: Nikon D200 body
+    category_id: '31388'
+    min_price: 80
+    max_price: 500
+  - id: nikon-d50
+    name_ko: 니콘 D50
+    name_en: Nikon D50
+    release_year: 2005
+    subcategory: entry
+    query: Nikon D50 body
+    category_id: '31388'
+    min_price: 50
+    max_price: 300
+  - id: nikon-d70s
+    name_ko: 니콘 D70s
+    name_en: Nikon D70S
+    release_year: 2005
+    subcategory: midrange
+    query: Nikon D70S body
+    category_id: '31388'
+    min_price: 50
+    max_price: 350
+  - id: nikon-d2hs
+    name_ko: 니콘 D2Hs
+    name_en: Nikon D2Hs
+    release_year: 2005
+    subcategory: flagship
+    query: Nikon D2Hs body
+    category_id: '31388'
+    min_price: 100
+    max_price: 500
+  - id: nikon-d70
+    name_ko: 니콘 D70
+    name_en: Nikon D70
+    release_year: 2004
+    subcategory: midrange
+    query: Nikon D70 body -D70S
+    category_id: '31388'
+    min_price: 50
+    max_price: 350
+  - id: nikon-d2x
+    name_ko: 니콘 D2X
+    name_en: Nikon D2X
+    release_year: 2004
+    subcategory: flagship
+    query: Nikon D2X body -D2Xs
+    category_id: '31388'
+    min_price: 100
+    max_price: 700
+  - id: nikon-d2h
+    name_ko: 니콘 D2H
+    name_en: Nikon D2H
+    release_year: 2003
+    subcategory: flagship
+    query: Nikon D2H body -D2Hs
+    category_id: '31388'
+    min_price: 80
+    max_price: 500
+  - id: nikon-d100
+    name_ko: 니콘 D100
+    name_en: Nikon D100
+    release_year: 2002
+    subcategory: midrange
+    query: Nikon D100 DSLR body -F100
+    category_id: '31388'
+    min_price: 50
+    max_price: 400
+  - id: nikon-d1x
+    name_ko: 니콘 D1X
+    name_en: Nikon D1X
+    release_year: 2001
+    subcategory: flagship
+    query: Nikon D1X body
+    category_id: '31388'
+    min_price: 80
+    max_price: 600
+  - id: nikon-d1h
+    name_ko: 니콘 D1H
+    name_en: Nikon D1H
+    release_year: 2001
+    subcategory: flagship
+    query: Nikon D1H body
+    category_id: '31388'
+    min_price: 80
+    max_price: 500
+  - id: nikon-d1
+    name_ko: 니콘 D1
+    name_en: Nikon D1
+    release_year: 1999
+    subcategory: flagship
+    query: Nikon D1 body -D1H -D1X
+    category_id: '31388'
+    min_price: 80
+    max_price: 500
 - id: film-cameras
   name_ko: 필름 카메라
   name_en: Film Cameras
