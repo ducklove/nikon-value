@@ -52,6 +52,7 @@ FILM_VISUAL_INDEX = [
     {
         'image': 'assets/Nikon-camera-history1.jpg',
         'alt': 'Nikon film camera history board part 1',
+        'summary': '레인지파인더 & 초기 SLR (1948~1971)',
         'rows': 5,
         'cols': 5,
         'hotspots': [
@@ -85,12 +86,13 @@ FILM_VISUAL_INDEX = [
     {
         'image': 'assets/Nikon-camera-history2.jpg',
         'alt': 'Nikon film camera history board part 2',
-        'rows': 24,
+        'summary': 'SLR 전성기 & 초기 DSLR (1971~2005)',
+        'rows': 25,
         'cols': 5,
         'image_height': 2772,
         'row_bounds': [
-            0, 104, 208, 345, 485, 600, 723, 832, 953, 1031, 1131, 1250,
-            1356, 1472, 1647, 1755, 1873, 1940, 2064, 2192, 2284, 2407, 2544, 2647, 2772,
+            0, 104, 217, 357, 504, 609, 745, 860, 956, 1052, 1152, 1253,
+            1351, 1465, 1574, 1672, 1774, 1874, 1959, 2070, 2194, 2308, 2425, 2547, 2667, 2772,
         ],
         'hotspots': [
             ('nikkormat-el', 0, 1),
@@ -498,14 +500,18 @@ def build_film_visual_index(catalog: dict[str, Any]) -> str:
                 '</a>'
             )
 
+        summary = board.get('summary', board['alt'])
         boards.append(
             f"""
-        <article class="film-atlas__board">
-          <div class="film-atlas__image-wrap">
-            <img src="{escape(board["image"])}" alt="{escape(board["alt"])}" class="film-atlas__image" loading="lazy">
-            <div class="film-atlas__hotspots">{''.join(hotspots)}</div>
-          </div>
-        </article>"""
+        <details class="film-atlas__details" open>
+          <summary class="film-atlas__summary">{escape(summary)}</summary>
+          <article class="film-atlas__board">
+            <div class="film-atlas__image-wrap">
+              <img src="{escape(board["image"])}" alt="{escape(board["alt"])}" class="film-atlas__image" loading="lazy">
+              <div class="film-atlas__hotspots">{''.join(hotspots)}</div>
+            </div>
+          </article>
+        </details>"""
         )
 
     return f"""
