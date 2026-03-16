@@ -742,6 +742,8 @@ def build_home_page(catalog: dict[str, Any], base_url: str, histories: dict[str,
                 if change:
                     cards_data[-1]['delta_pct'] = round(change['delta_pct'], 1)
 
+    tabs.append('<button class="category-tab" type="button" data-category-id="favorites" id="favorites-tab" hidden>관심 목록</button>')
+
     description = (
         f'eBay 미국 현재 매물 기준으로 니콘 카메라와 렌즈 {total_products}개 모델의 중고 시세를 추적합니다. '
         f'마지막 업데이트 {updated}.'
@@ -773,7 +775,6 @@ def build_home_page(catalog: dict[str, Any], base_url: str, histories: dict[str,
           <h1 class=\"site-title\">니콘 중고 시세 트래커</h1>
           <p class=\"site-subtitle\">eBay 현재 매물 기준 시세 (배송비 포함)</p>
           <p class=\"site-updated\">최종 업데이트: {escape(updated)}{escape(format_exchange_rate_inline(exchange_rate))}</p>
-          <div id=\"auth-area\"></div>
         </div>
       </div>
     </div>
@@ -798,6 +799,7 @@ def build_home_page(catalog: dict[str, Any], base_url: str, histories: dict[str,
         </div>
       </div>
       <div class=\"toolbar-controls\">
+        <div id=\"auth-area\" class=\"auth-area\"></div>
         {build_currency_toggle(exchange_rate)}
         <div class=\"toolbar-controls__row\">
           <label class=\"visually-hidden\" for=\"search-input\">제품 검색</label>

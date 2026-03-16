@@ -38,7 +38,6 @@
           <h1 class="site-title">니콘 중고 시세 트래커</h1>
           <p class="site-subtitle">eBay 현재 매물 기준 시세 (배송비 포함)</p>
           <p class="site-updated">최종 업데이트: 2026-03-16 (USD/KRW = 1,491.70)</p>
-          <div id="auth-area"></div>
         </div>
       </div>
     </div>
@@ -47,7 +46,7 @@
 
   <nav class="category-nav" aria-label="카테고리 필터">
     <div class="container category-nav__container">
-      <div class="category-tabs"><button class="category-tab active" type="button" data-category-id="all">전체</button><button class="category-tab" type="button" data-category-id="z-mount-bodies">Z마운트 바디</button><button class="category-tab" type="button" data-category-id="f-mount-dslr">F마운트 DSLR</button><button class="category-tab" type="button" data-category-id="film-cameras">필름 카메라</button><button class="category-tab" type="button" data-category-id="z-mount-lenses">Z마운트 렌즈</button><button class="category-tab" type="button" data-category-id="f-mount-lenses">F마운트 렌즈</button><button class="category-tab" type="button" data-category-id="classic-lenses">클래식 렌즈</button><button class="category-tab" type="button" data-category-id="classic-accessories">클래식 악세사리</button></div>
+      <div class="category-tabs"><button class="category-tab active" type="button" data-category-id="all">전체</button><button class="category-tab" type="button" data-category-id="z-mount-bodies">Z마운트 바디</button><button class="category-tab" type="button" data-category-id="f-mount-dslr">F마운트 DSLR</button><button class="category-tab" type="button" data-category-id="film-cameras">필름 카메라</button><button class="category-tab" type="button" data-category-id="z-mount-lenses">Z마운트 렌즈</button><button class="category-tab" type="button" data-category-id="f-mount-lenses">F마운트 렌즈</button><button class="category-tab" type="button" data-category-id="classic-lenses">클래식 렌즈</button><button class="category-tab" type="button" data-category-id="classic-accessories">클래식 악세사리</button><button class="category-tab" type="button" data-category-id="favorites" id="favorites-tab" hidden>관심 목록</button></div>
     </div>
   </nav>
 
@@ -63,6 +62,7 @@
         </div>
       </div>
       <div class="toolbar-controls">
+        <div id="auth-area" class="auth-area"></div>
         
         <div class="currency-toggle-panel">
           <div class="currency-toggle" role="group" aria-label="표시 통화 선택">
