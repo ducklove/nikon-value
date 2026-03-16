@@ -1,7 +1,7 @@
 (function () {
   'use strict';
 
-  var API_BASE = 'https://cantabile.tplinkdns.com:3380';
+  var API_BASE = 'https://cantabile.tplinkdns.com';
   var TOKEN_KEY = 'nikon-value-token';
 
   // --- Token management ---
