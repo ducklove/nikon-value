@@ -565,6 +565,9 @@ def _build_lens_atlas_section(category: dict[str, Any], summary: str) -> str:
     cat_id = category['id']
     return f"""
     <section id="lens-atlas-{escape(cat_id)}" class="lens-atlas" data-category-id="{escape(cat_id)}" aria-label="{escape(summary)}" hidden>
+      <div class="lens-atlas__hero">
+        <img src="assets/nikon-lens-lineup.jpg" alt="Nikkor lens lineup" class="lens-atlas__hero-image" loading="lazy" decoding="async">
+      </div>
       <details class="film-atlas__details">
         <summary class="film-atlas__summary">{escape(summary)}</summary>
         <div class="lens-atlas__grid">

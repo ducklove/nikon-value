@@ -653,6 +653,18 @@ select:focus-visible {
   margin-top: 20px;
 }
 
+.lens-atlas__hero {
+  border-radius: var(--radius);
+  overflow: hidden;
+  margin-bottom: 12px;
+}
+
+.lens-atlas__hero-image {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
 .lens-atlas__grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
