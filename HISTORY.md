@@ -1,5 +1,36 @@
 # History
 
+## 2.0 - 2026-03-16
+
+### Added
+
+- Google OAuth 인증 시스템: 구글 계정으로 로그인/가입 지원.
+- 사용자별 관심 목록(즐겨찾기) 기능: 제품 카드의 하트 버튼으로 추가/제거, 최대 50개 제한.
+- 관심 목록 탭: 카테고리 탭에 "관심 목록" 탭 추가, 로그인 시에만 노출.
+- FastAPI 기반 API 서버 (`server/`): OAuth 인증, 사용자 관리, 관심 목록 CRUD, 헬스체크 엔드포인트.
+- SQLite 데이터베이스: 사용자 계정 및 관심 목록 저장 (라즈베리파이 로컬).
+- JWT 토큰 기반 세션 관리 (7일 만료, localStorage).
+- HMAC 서명 기반 OAuth state로 CSRF 방지.
+- Rate limiting: 인증 5req/min, API 60req/min (slowapi).
+- Caddy 리버스 프록시: 443 포트에서 SSL 처리, uvicorn은 localhost:3380.
+- systemd 서비스 (`nikon-api.service`): 부팅 시 자동 시작, 장애 시 자동 재시작.
+- certbot deploy hook: SSL 인증서 갱신 시 서비스 자동 재시작.
+- catalog.json 캐싱: GitHub Pages에서 1시간 주기로 갱신, 282개 제품 ID 기반 입력 검증.
+- `js/auth.js`: 프론트엔드 인증 연동, MutationObserver로 동적 카드 생성 후 하트 버튼 주입.
+- 회원 탈퇴 기능 (`DELETE /api/me`): 계정 + 관심 목록 cascade 삭제.
+
+### Changed
+
+- `scripts/build_static_site.py`: auth.js 스크립트 태그 주입, auth-area div 및 관심 목록 탭 생성.
+- `css/style.css`: 로그인 UI, 드롭다운 메뉴, 하트 버튼, 관심 목록 탭 스타일 추가.
+- 사이트 링크 바에 로그인 영역 통합 (시세 목록 | 참고 링크 ... 로그인).
+
+### Architecture
+
+- GitHub Pages (정적 사이트) + Raspberry Pi API 서버 (FastAPI) 이원 구조.
+- 기존 데이터 파이프라인 (GitHub Actions → fetch_prices.py → build_static_site.py) 변경 없이 유지.
+- API 서버 다운 시에도 기존 시세 조회 기능 정상 동작 (graceful degradation).
+
 ## 1.4 - 2026-03-16
 
 ### Added
