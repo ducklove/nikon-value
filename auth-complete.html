@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login Redirect</title>
+  <style>
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: grid;
+      place-items: center;
+      font-family: "Noto Sans KR", system-ui, sans-serif;
+      background: #f6f7f9;
+      color: #1d1d1f;
+    }
+
+    .panel {
+      padding: 24px 28px;
+      border: 1px solid #e5e7eb;
+      border-radius: 16px;
+      background: #fff;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
+      text-align: center;
+    }
+
+    p {
+      margin: 0;
+      font-size: 15px;
+    }
+  </style>
+</head>
+<body>
+  <div class="panel">
+    <p id="message">Finishing sign-in...</p>
+  </div>
+  <script>
+    (function () {
+      var TOKEN_KEY = 'nikon-value-token';
+      var params = new URLSearchParams(window.location.hash.slice(1));
+      var token = params.get('token');
+      var returnTo = params.get('return_to') || '/';
+      var basePath = window.location.pathname
+        .replace(/\/auth-complete\.html$/, '')
+        .replace(/\/$/, '');
+      var normalizedReturnTo = returnTo.startsWith('/') ? returnTo : '/' + returnTo;
+      var target = (basePath || '') + normalizedReturnTo;
+      var message = document.getElementById('message');
+
+      if (!token) {
+        message.textContent = 'Token not found. Please try signing in again.';
+        return;
+      }
+
+      try {
+        window.localStorage.setItem(TOKEN_KEY, token);
+      } catch (error) {
+        message.textContent = 'Browser storage is unavailable. Please try again.';
+        return;
+      }
+
+      window.location.replace(target);
+    })();
+  </script>
+</body>
+</html>

@@ -20,5 +20,5 @@ def test_normalize_return_to_rejects_external_urls():
 def test_build_frontend_redirect_url_avoids_duplicate_repo_path():
     assert (
         build_frontend_redirect_url("/nikon-value/products/nikon-zf.html", "abc123")
-        == "https://ducklove.github.io/nikon-value/products/nikon-zf.html#token=abc123"
+        == "https://ducklove.github.io/nikon-value/auth-complete.html#token=abc123&return_to=/products/nikon-zf.html"
     )

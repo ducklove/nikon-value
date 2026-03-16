@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 import logging
-from urllib.parse import urlsplit
+from urllib.parse import quote, urlsplit
 
 from fastapi import APIRouter, HTTPException, Request, status
 from fastapi.responses import RedirectResponse
@@ -42,7 +42,12 @@ def normalize_return_to(return_to: str) -> str:
 
 
 def build_frontend_redirect_url(return_to: str, jwt_token: str) -> str:
-    return f"{FRONTEND_BASE_URL}{normalize_return_to(return_to)}#token={jwt_token}"
+    normalized = normalize_return_to(return_to)
+    encoded_return_to = quote(normalized, safe="/?=&")
+    return (
+        f"{FRONTEND_BASE_URL}/auth-complete.html"
+        f"#token={jwt_token}&return_to={encoded_return_to}"
+    )
 
 
 @router.get("/{provider}")
