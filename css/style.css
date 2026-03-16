@@ -621,11 +621,14 @@ select:focus-visible {
 .film-atlas__image-wrap {
   position: relative;
   overflow: hidden;
+  max-width: 550px;
+  margin: 0 auto;
 }
 
 .film-atlas__image {
   display: block;
   width: 100%;
+  max-width: 550px;
   height: auto;
 }
 

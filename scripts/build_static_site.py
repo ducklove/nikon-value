@@ -500,25 +500,24 @@ def build_film_visual_index(catalog: dict[str, Any]) -> str:
                 '</a>'
             )
 
-        summary = board.get('summary', board['alt'])
         boards.append(
             f"""
-        <details class="film-atlas__details" open>
-          <summary class="film-atlas__summary">{escape(summary)}</summary>
           <article class="film-atlas__board">
             <div class="film-atlas__image-wrap">
-              <img src="{escape(board["image"])}" alt="{escape(board["alt"])}" class="film-atlas__image" loading="lazy">
+              <img src="{escape(board["image"])}" alt="{escape(board["alt"])}" class="film-atlas__image" loading="lazy" width="{board.get('image_width', 550)}">
               <div class="film-atlas__hotspots">{''.join(hotspots)}</div>
             </div>
-          </article>
-        </details>"""
+          </article>"""
         )
 
     return f"""
     <section id="film-atlas" class="film-atlas" aria-label="Film camera visual index" hidden>
-      <div class="film-atlas__boards">
-        {''.join(boards)}
-      </div>
+      <details class="film-atlas__details">
+        <summary class="film-atlas__summary">니콘 카메라 히스토리 (1948~2005)</summary>
+        <div class="film-atlas__boards">
+          {''.join(boards)}
+        </div>
+      </details>
     </section>"""
 
 
