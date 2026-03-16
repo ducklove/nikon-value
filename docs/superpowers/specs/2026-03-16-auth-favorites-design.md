@@ -64,6 +64,22 @@
 - 네이버/카카오도 동일한 흐름, 엔드포인트만 `/auth/naver`, `/auth/kakao`로 분리
 - 같은 사람이 다른 OAuth 제공자로 로그인하면 별도 계정으로 처리 (계정 연동은 향후 과제)
 
+### CSRF 방지 (OAuth state 파라미터)
+
+- OAuth 시작 시(`GET /auth/google`) 서버가 랜덤 `state` 값을 생성
+- `state`는 HMAC 서명된 타임스탬프로 구성: `HMAC(timestamp + random_nonce, secret)`
+- 콜백에서 `state` 서명 검증 + 타임스탬프 만료(5분) 확인
+- 서버 세션 없이 stateless하게 CSRF를 방지 (서명 검증만으로 충분)
+
+### JWT 저장 방식 트레이드오프
+
+JWT를 `localStorage`에 저장한다. 이 결정의 트레이드오프:
+
+- **XSS 위험**: localStorage는 JS로 접근 가능하므로 XSS 시 토큰 탈취 가능
+- **HttpOnly 쿠키 불가 이유**: GitHub Pages(`ducklove.github.io`)와 API 서버(`cantabile.tplinkdns.com`)가 다른 도메인이므로, 서드파티 쿠키 차단 정책(Chrome Privacy Sandbox, Safari ITP)에 의해 크로스 도메인 쿠키가 동작하지 않을 수 있음
+- **수용 가능한 이유**: 관심 목록만 관리하는 비민감 서비스이며, 금전 거래나 개인 민감정보를 다루지 않음. CDN 스크립트(Chart.js)는 integrity 속성으로 무결성 검증
+- **완화 조치**: Content-Security-Policy 헤더로 인라인 스크립트 제한, 외부 스크립트 화이트리스트 적용
+
 ## 데이터베이스 스키마 (SQLite)
 
 ```sql
@@ -101,18 +117,25 @@ Base URL: `https://cantabile.tplinkdns.com:3380`
 | GET | `/auth/kakao` | 카카오 OAuth 시작 |
 | GET | `/auth/kakao/callback` | 카카오 콜백 |
 
+### 유틸리티
+
+| 메서드 | 경로 | 설명 | 인증 |
+|--------|------|------|------|
+| GET | `/health` | 헬스체크 (DB 연결 상태 포함) | 불필요 |
+
 ### 사용자
 
 | 메서드 | 경로 | 설명 | 인증 |
 |--------|------|------|------|
 | GET | `/api/me` | 현재 로그인 사용자 정보 | JWT 필요 |
+| DELETE | `/api/me` | 회원 탈퇴 (계정 + 관심 목록 삭제) | JWT 필요 |
 
 ### 관심 목록
 
 | 메서드 | 경로 | 설명 | 인증 |
 |--------|------|------|------|
 | GET | `/api/favorites` | 내 관심 목록 (product_id 배열) | JWT 필요 |
-| PUT | `/api/favorites/{product_id}` | 관심 목록에 추가 | JWT 필요 |
+| PUT | `/api/favorites/{product_id}` | 관심 목록에 추가 (최대 50개) | JWT 필요 |
 | DELETE | `/api/favorites/{product_id}` | 관심 목록에서 제거 | JWT 필요 |
 
 ### 응답 예시
@@ -171,8 +194,53 @@ Base URL: `https://cantabile.tplinkdns.com:3380`
 - **JWT 만료**: 7일, 갱신 엔드포인트 없이 만료 시 재로그인
 - **OAuth 시크릿**: 환경 변수 또는 `.env` 파일, git에 커밋 안 함
 - **SQLite**: 서버 로컬 파일, 외부 접근 불가
-- **Rate limiting**: 인증 엔드포인트에 기본적인 속도 제한
+- **Rate limiting**:
+  - 인증 엔드포인트: IP당 5req/min (sliding window)
+  - API 엔드포인트: IP당 60req/min
+  - slowapi 라이브러리 사용 (FastAPI 호환)
 - **입력 검증**: `product_id`는 catalog에 존재하는 ID만 허용
+- **관심 목록 상한**: 사용자당 최대 50개
+- **Content-Security-Policy**: 외부 스크립트 화이트리스트 적용
+
+### 에러 응답 형식
+
+모든 에러는 다음 형식으로 통일:
+
+```json
+{
+  "error": "error_code",
+  "message": "사람이 읽을 수 있는 설명"
+}
+```
+
+| HTTP 상태 | error 코드 | 상황 |
+|-----------|-----------|------|
+| 401 | `unauthorized` | JWT 없음/만료/유효하지 않음 |
+| 404 | `not_found` | 존재하지 않는 product_id |
+| 409 | `already_exists` | 이미 관심 목록에 있는 제품 |
+| 422 | `limit_exceeded` | 관심 목록 50개 초과 |
+| 429 | `rate_limited` | 요청 횟수 초과 |
+
+## 운영
+
+### HTTPS 인증서 관리
+
+- certbot의 systemd timer로 자동 갱신 (기존 설정 활용)
+- 갱신 후 uvicorn 재시작: certbot `--deploy-hook`으로 `systemctl restart nikon-api` 실행
+
+### 서비스 관리
+
+- systemd unit 파일(`nikon-api.service`)로 등록
+- `Restart=on-failure`로 자동 재시작
+- 라즈베리파이 부팅 시 자동 시작 (`WantedBy=multi-user.target`)
+
+### catalog.json 캐싱
+
+- 서버 시작 시 GitHub Pages URL(`https://ducklove.github.io/nikon-value/data/catalog.json`)에서 로드
+- 1시간마다 백그라운드 갱신 (asyncio task)
+- 갱신 실패 시 기존 캐시 유지, 에러 로그 기록
+- `product_id` 검증은 캐시된 catalog의 ID 목록 기준
+- 캐시 로드 전 API 요청: 502 반환 (서버 준비 중)
 
 ## 기술 스택
 
@@ -185,6 +253,16 @@ Base URL: `https://cantabile.tplinkdns.com:3380`
 | 데이터베이스 | SQLite + aiosqlite | 파일 기반, RPi에 적합, 비동기 지원 |
 | 환경 변수 | python-dotenv | .env 파일 로드 |
 
+## OAuth 제공자별 사전 확인 사항
+
+각 제공자 앱 등록 시 콜백 URL `https://cantabile.tplinkdns.com:3380/auth/{provider}/callback` 등록 가능 여부를 구현 전에 검증해야 한다:
+
+- **Google**: 비표준 포트 콜백 URL 허용 여부
+- **Naver**: DDNS 도메인 콜백 URL 등록 가능 여부
+- **Kakao**: 동일
+
+만약 특정 제공자가 비표준 포트를 허용하지 않으면, 443 포트에서 리버스 프록시(Caddy 등)를 통해 3380으로 포워딩하는 대안을 적용한다.
+
 ## 범위 외 (향후 과제)
 
 - OAuth 계정 연동 (동일 사용자가 다른 제공자로 로그인 시 연결)
@@ -192,3 +270,5 @@ Base URL: `https://cantabile.tplinkdns.com:3380`
 - 관심 제품 메모 기능
 - 제품 데이터 DB 이전 (파이프라인 라즈베리파이 이전 시)
 - UI 정제 (로그인 버튼, 관심 목록 디자인)
+- JWT refresh token / sliding expiration
+- DB 마이그레이션 도구 (기능 확장 시)
