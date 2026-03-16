@@ -243,6 +243,7 @@
     const contextLabel = document.getElementById('catalog-context');
     const emptyState = document.getElementById('catalog-empty');
     const filmAtlas = document.getElementById('film-atlas');
+    const lensAtlas = document.getElementById('lens-atlas');
     const currencyButtons = Array.from(document.querySelectorAll('.currency-toggle__button[data-currency]'));
     const exchangeData = readJsonScript('exchange-rate-data', {});
     const params = new URLSearchParams(window.location.search);
@@ -334,6 +335,11 @@
       filmAtlas.hidden = activeCategory !== 'film-cameras';
     }
 
+    function updateLensAtlas() {
+      if (!lensAtlas) return;
+      lensAtlas.hidden = activeCategory !== 'classic-lenses';
+    }
+
     function applyCurrencyState() {
       applyMoneyElements(document, currencyMode, exchangeData);
       syncCurrencyButtons(currencyButtons, currencyMode, exchangeData);
@@ -359,6 +365,7 @@
       updateContext(visibleCards);
       updateRareWatch();
       updateFilmAtlas();
+      updateLensAtlas();
       applyCurrencyState();
       syncUrl();
     }

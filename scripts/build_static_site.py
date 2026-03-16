@@ -521,6 +521,58 @@ def build_film_visual_index(catalog: dict[str, Any]) -> str:
     </section>"""
 
 
+def build_lens_visual_index(catalog: dict[str, Any]) -> str:
+    lens_category = next(
+        (c for c in catalog['categories'] if c['id'] == 'classic-lenses'),
+        None,
+    )
+    if not lens_category:
+        return ''
+
+    products = sorted(
+        lens_category['products'],
+        key=lambda p: (p.get('focal_length_min') or 9999, p.get('name_ko', '')),
+    )
+
+    cells = []
+    for p in products:
+        pid = p['id']
+        label = p['name_ko']
+        samples = p.get('samples') or []
+        image_url = ''
+        if samples:
+            raw = samples[0].get('image', '')
+            if raw:
+                import re as _re
+                image_url = _re.sub(r's-l\d+', 's-l225', raw)
+
+        if image_url:
+            img_tag = (
+                f'<img src="{escape(image_url)}" alt="{escape(label)}"'
+                f' class="lens-atlas__thumb" loading="lazy" decoding="async">'
+            )
+        else:
+            img_tag = f'<span class="lens-atlas__placeholder" aria-hidden="true">Nikon</span>'
+
+        cells.append(
+            f'<a class="lens-atlas__cell" href="products/{escape(pid)}.html"'
+            f' title="{escape(label)}">'
+            f'{img_tag}'
+            f'<span class="lens-atlas__label">{escape(label)}</span>'
+            f'</a>'
+        )
+
+    return f"""
+    <section id="lens-atlas" class="lens-atlas" aria-label="Classic lens visual index" hidden>
+      <details class="film-atlas__details">
+        <summary class="film-atlas__summary">클래식 렌즈 라인업 (화각 순)</summary>
+        <div class="lens-atlas__grid">
+          {''.join(cells)}
+        </div>
+      </details>
+    </section>"""
+
+
 def compute_stale_days(updated: str) -> int:
     updated_date = date.fromisoformat(updated)
     return (datetime.now().date() - updated_date).days
@@ -762,6 +814,7 @@ def build_home_page(catalog: dict[str, Any], base_url: str, histories: dict[str,
     </section>
 
     {build_film_visual_index(catalog)}
+    {build_lens_visual_index(catalog)}
 
     <div id=\"product-grid\" class=\"product-grid\">{''.join(['<div class="product-card product-card--skeleton" aria-hidden="true"><div class="product-card__thumb-placeholder skeleton-pulse"></div><div class="product-card__body"><div class="skeleton-line skeleton-line--title"></div><div class="skeleton-line skeleton-line--subtitle"></div><div class="skeleton-line skeleton-line--price"></div><div class="skeleton-line skeleton-line--meta"></div></div></div>'] * 8)}</div>
     <p id=\"catalog-empty\" class=\"empty-state-inline\" hidden>조건에 맞는 제품이 없습니다.</p>

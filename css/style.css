@@ -648,6 +648,64 @@ select:focus-visible {
   outline: none;
 }
 
+/* === Lens Atlas === */
+.lens-atlas {
+  margin-top: 20px;
+}
+
+.lens-atlas__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
+  gap: 8px;
+  padding: 12px;
+}
+
+.lens-atlas__cell {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-decoration: none;
+  color: inherit;
+  border-radius: 6px;
+  padding: 6px;
+  transition: background 0.15s;
+}
+
+.lens-atlas__cell:hover {
+  background: var(--color-hover, rgba(0, 0, 0, 0.04));
+}
+
+.lens-atlas__thumb {
+  width: 100%;
+  aspect-ratio: 1;
+  object-fit: contain;
+  border-radius: 4px;
+  background: #f8f8f8;
+}
+
+.lens-atlas__placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  aspect-ratio: 1;
+  border-radius: 4px;
+  background: #eee;
+  color: #aaa;
+  font-size: 0.7rem;
+  font-weight: 600;
+}
+
+.lens-atlas__label {
+  display: block;
+  margin-top: 4px;
+  font-size: 0.65rem;
+  line-height: 1.3;
+  text-align: center;
+  word-break: keep-all;
+  color: var(--color-text-secondary, #555);
+}
+
 /* === Product Grid === */
 .product-grid {
   display: grid;
