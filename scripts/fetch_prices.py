@@ -242,6 +242,15 @@ def normalize_title(title: str) -> str:
     return f" {text} "
 
 
+def matches_product_exclude_patterns(normalized_title: str, product: dict) -> bool:
+    """Product-specific title fragments that should always exclude a listing."""
+    patterns = product.get("exclude_title_patterns") or []
+    for pattern in patterns:
+        if pattern and normalize_title(str(pattern)) in normalized_title:
+            return True
+    return False
+
+
 def get_title_variant_group(product: dict) -> str | None:
     """제품 ID를 바탕으로 수동 렌즈 세대 그룹을 판별합니다."""
     pid = product.get("id", "")
@@ -300,6 +309,8 @@ def is_obvious_non_match(title: str, product: dict) -> bool:
         ]
 
     if any(pattern in normalized for pattern in exclude_patterns):
+        return True
+    if matches_product_exclude_patterns(normalized, product):
         return True
     if LENS_HOOD_RE.search(normalized):
         return True

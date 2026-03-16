@@ -346,7 +346,11 @@ categories:
     name_en: Nikon F3AF
     release_year: 1983
     subcategory: flagship
-    query: Nikon F3AF -lens -nikkor -filter -hood -cap
+    query: Nikon F3AF body -lens -nikkor -filter -hood -cap
+    exclude_title_patterns:
+    - ai-s
+    - 80mm
+    - 200mm
     category_id: '3323'
     min_price: 150
     max_price: 800
