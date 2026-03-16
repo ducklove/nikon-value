@@ -636,6 +636,39 @@ categories:
     category_id: '31388'
     min_price: 80
     max_price: 500
+  - id: nikon-e3-e3s
+    name_ko: 니콘 E3/E3S
+    name_en: Nikon E3/E3S
+    release_year: 1998
+    subcategory: flagship
+    query: Nikon E3 E3S DSLR body -D3 -Series E -lens -nikkor
+    exclude_title_patterns:
+    - series e
+    category_id: '31388'
+    min_price: 500
+    max_price: 2500
+  - id: nikon-e2n-e2ns
+    name_ko: 니콘 E2N/E2NS
+    name_en: Nikon E2N/E2NS
+    release_year: 1996
+    subcategory: flagship
+    query: Nikon E2N E2NS DSLR body -Series E -lens -nikkor
+    exclude_title_patterns:
+    - series e
+    category_id: '31388'
+    min_price: 400
+    max_price: 2200
+  - id: nikon-e2-e2s
+    name_ko: 니콘 E2/E2S
+    name_en: Nikon E2/E2S
+    release_year: 1995
+    subcategory: flagship
+    query: Nikon E2 E2S DSLR body -Series E -lens -nikkor
+    exclude_title_patterns:
+    - series e
+    category_id: '31388'
+    min_price: 300
+    max_price: 2000
 - id: film-cameras
   name_ko: 필름 카메라
   name_en: Film Cameras
