@@ -354,6 +354,8 @@ def build_hero_manual_hotspots() -> str:
     zf_manual_href = 'https://onlinemanual.nikonimglib.com/zf/ko/'
     zf_manual_position = 'left: 19.592%; top: 33.537%; width: 8.306%; height: 11.874%;'
     zf_easter_position = 'left: 11.530%; top: 41.399%; width: 6.254%; height: 11.553%;'
+    f3_badge_href = 'https://ducklove.github.io/everything-about-nikon/f3'
+    f3_badge_position = 'left: 39.281%; top: 43.967%; width: 5.081%; height: 9.628%; z-index: 2;'
     hotspots = [
         ('F3', 'https://cdn-10.nikon-cdn.com/pdf/manuals/archive/F3.pdf', 'left: 48%; top: 31%; width: 10%; height: 14%;'),
         ('Nikkormat', 'https://www.cameramanuals.org/nikon_pdf/nikkormat_ftn.pdf', 'left: 62.5%; top: 18%; width: 11%; height: 12%;'),
@@ -373,6 +375,12 @@ def build_hero_manual_hotspots() -> str:
         f'style="{zf_easter_position}">'
         '<span class="visually-hidden">Toggle negative hero image</span>'
         '</button>'
+    )
+    links.append(
+        f'<a class="hero-hotspot" href="{escape(f3_badge_href)}" target="_blank" rel="noopener noreferrer" '
+        f'style="{f3_badge_position}">'
+        '<span class="visually-hidden">F3 article</span>'
+        '</a>'
     )
     for label, href, position in hotspots:
         links.append(
