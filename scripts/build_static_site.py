@@ -110,7 +110,7 @@ FILM_VISUAL_INDEX = [
             ('nikon-fg', 4, 1),
             ('nikon-fm2', 4, 2),
             ('nikon-f3hp', 4, 3),
-            ('nikon-f3t', 4, 4),
+            ('nikon-f3t-black', 4, 4),
             ('nikon-f3af', 5, 0),
             ('nikon-f3-limited', 5, 2),
             ('nikon-fa', 6, 0),
