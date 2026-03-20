@@ -88,24 +88,15 @@ categories:
     category_id: '31388'
     min_price: 500
     max_price: 1300
-  - id: nikon-zf-black
-    name_ko: 니콘 Zf 블랙
-    name_en: Nikon Zf Black
+  - id: nikon-zf
+    name_ko: 니콘 Zf
+    name_en: Nikon Zf
     release_year: 2023
     subcategory: midrange
-    query: Nikon Zf black body -premium -exterior -indigo -bordeaux -sunset -sepia -moss -stone -blue -red -orange -brown -green
+    query: Nikon Zf body
     category_id: '31388'
     min_price: 1200
     max_price: 2500
-  - id: nikon-zf-silver
-    name_ko: 니콘 Zf 실버
-    name_en: Nikon Zf Silver
-    release_year: 2023
-    subcategory: midrange
-    query: Nikon Zf body -black -premium -exterior -indigo -bordeaux -sunset -sepia -moss -stone -blue -red -orange -brown -green
-    category_id: '31388'
-    min_price: 1200
-    max_price: 2600
   - id: nikon-zfc
     name_ko: 니콘 Zfc
     name_en: Nikon Zfc
@@ -739,61 +730,25 @@ categories:
     name_en: Nikon F3HP
     release_year: 1982
     subcategory: flagship
-    query: Nikon F3HP body -F3/T -F3P -Limited -lens -nikkor -filter -hood -cap
+    query: Nikon F3HP body -lens -nikkor -filter -hood -cap
     category_id: '3323'
     min_price: 150
     max_price: 800
-  - id: nikon-f3t-black
-    name_ko: 니콘 F3/T 블랙
-    name_en: Nikon F3/T Black
-    release_year: 1984
-    subcategory: flagship
-    query: Nikon F3/T black body -lens -nikkor -filter -hood -cap
-    category_id: '3323'
-    min_price: 300
-    max_price: 2500
-  - id: nikon-f3p
-    name_ko: 니콘 F3P
-    name_en: Nikon F3P
-    release_year: 1983
-    subcategory: flagship
-    query: Nikon F3P body -lens -nikkor -filter -hood -cap
-    category_id: '3323'
-    min_price: 800
-    max_price: 4000
   - id: nikon-f3
     name_ko: 니콘 F3
     name_en: Nikon F3
     release_year: 1980
     subcategory: flagship
-    query: Nikon F3 body -F3HP -F3/T -F3P -Limited -lens -nikkor -filter -hood -cap
+    query: Nikon F3 body -F3HP -F3/T -lens -nikkor -filter -hood -cap
     category_id: '3323'
     min_price: 100
     max_price: 600
-  - id: nikon-f3t-champagne
-    name_ko: 니콘 F3/T 샴페인
-    name_en: Nikon F3/T Champagne
-    release_year: 1982
-    subcategory: flagship
-    query: Nikon F3/T titan body -black -lens -nikkor -filter -hood -cap
-    category_id: '3323'
-    min_price: 250
-    max_price: 2500
-  - id: nikon-f2t
-    name_ko: 니콘 F2/T
-    name_en: Nikon F2/T
-    release_year: 1976
-    subcategory: flagship
-    query: Nikon F2/T body -lens -nikkor -filter -hood -cap
-    category_id: '3323'
-    min_price: 300
-    max_price: 2500
   - id: nikon-f2
     name_ko: 니콘 F2
     name_en: Nikon F2
     release_year: 1971
     subcategory: flagship
-    query: Nikon F2 body -F2/T -Titan -titanium -lens -nikkor -filter -hood -cap
+    query: Nikon F2 body -lens -nikkor -filter -hood -cap
     category_id: '3323'
     min_price: 100
     max_price: 1000
@@ -805,6 +760,15 @@ categories:
     query: Nikon F body -F2 -F3 -F4 -F5 -F6 -FA -FE -FM -FG -EM -lens -nikkor -filter -hood -cap
     category_id: '3323'
     min_price: 80
+    max_price: 1500
+  - id: nikon-f3t
+    name_ko: 니콘 F3/T
+    name_en: Nikon F3/T
+    release_year: 1982
+    subcategory: flagship
+    query: Nikon F3/T body -lens -nikkor -filter -hood -cap
+    category_id: '3323'
+    min_price: 200
     max_price: 1500
   - id: nikon-f3af
     name_ko: 니콘 F3AF
@@ -820,11 +784,10 @@ categories:
     min_price: 150
     max_price: 800
   - id: nikon-f3-limited
-    name_ko: 니콘 F3 Limited
+    name_ko: Nikon F3 Limited
     name_en: Nikon F3 Limited
-    release_year: 1993
     subcategory: flagship
-    query: Nikon F3 Limited camera -manual -brochure -strap -case -finder
+    query: Nikon F3 Limited Ando Camera -manual -brochure -strap -case -finder
     category_id: '3323'
     min_price: 1500
     max_price: 7000
