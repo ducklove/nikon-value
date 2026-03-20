@@ -355,8 +355,8 @@ def build_hero_manual_hotspots() -> str:
     zf_manual_position = 'left: 19.592%; top: 33.537%; width: 8.306%; height: 11.874%;'
     zf_easter_position = 'left: 11.530%; top: 41.399%; width: 6.254%; height: 11.553%;'
     manual_links = [
-        ('F3 page', 'https://ducklove.github.io/everything-about-nikon/f3/', 'left: 38.5%; top: 46%; width: 5%; height: 8%;'),
-        ('F3 Nikon manual', 'https://cdn-10.nikon-cdn.com/pdf/manuals/archive/F3.pdf', 'left: 47.5%; top: 24%; width: 10%; height: 14%;'),
+        ('F3 page', 'https://ducklove.github.io/everything-about-nikon/f3/', 'left: 38.5%; top: 52%; width: 3%; height: 5%;'),
+        ('F3 Nikon manual', 'https://cdn-10.nikon-cdn.com/pdf/manuals/archive/F3.pdf', 'left: 47.5%; top: 33%; width: 8%; height: 10%;'),
         ('Nikkormat manual', 'https://www.cameramanuals.org/nikon_pdf/nikkormat_ftn.pdf', 'left: 62.5%; top: 18%; width: 11%; height: 12%;'),
         ('FM2 manual', 'https://cdn-10.nikon-cdn.com/pdf/manuals/archive/FM2.pdf', 'left: 87.5%; top: 40%; width: 10%; height: 14%;'),
     ]
