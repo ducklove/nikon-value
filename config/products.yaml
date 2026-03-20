@@ -734,21 +734,39 @@ categories:
     category_id: '3323'
     min_price: 150
     max_price: 800
+  - id: nikon-f3p
+    name_ko: 니콘 F3P
+    name_en: Nikon F3P
+    release_year: 1983
+    subcategory: flagship
+    query: Nikon F3P body -lens -nikkor -filter -hood -cap
+    category_id: '3323'
+    min_price: 800
+    max_price: 4000
   - id: nikon-f3
     name_ko: 니콘 F3
     name_en: Nikon F3
     release_year: 1980
     subcategory: flagship
-    query: Nikon F3 body -F3HP -F3/T -lens -nikkor -filter -hood -cap
+    query: Nikon F3 body -F3HP -F3/T -F3P -lens -nikkor -filter -hood -cap
     category_id: '3323'
     min_price: 100
     max_price: 600
+  - id: nikon-f2t
+    name_ko: 니콘 F2/T
+    name_en: Nikon F2/T
+    release_year: 1976
+    subcategory: flagship
+    query: Nikon F2/T body -lens -nikkor -filter -hood -cap
+    category_id: '3323'
+    min_price: 300
+    max_price: 2500
   - id: nikon-f2
     name_ko: 니콘 F2
     name_en: Nikon F2
     release_year: 1971
     subcategory: flagship
-    query: Nikon F2 body -lens -nikkor -filter -hood -cap
+    query: Nikon F2 body -F2/T -lens -nikkor -filter -hood -cap
     category_id: '3323'
     min_price: 100
     max_price: 1000

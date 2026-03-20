@@ -354,12 +354,11 @@ def build_hero_manual_hotspots() -> str:
     zf_manual_href = 'https://onlinemanual.nikonimglib.com/zf/ko/'
     zf_manual_position = 'left: 19.592%; top: 33.537%; width: 8.306%; height: 11.874%;'
     zf_easter_position = 'left: 11.530%; top: 41.399%; width: 6.254%; height: 11.553%;'
-    f3_badge_href = 'https://ducklove.github.io/everything-about-nikon/f3'
-    f3_badge_position = 'left: 39.281%; top: 43.967%; width: 5.081%; height: 9.628%; z-index: 2;'
-    hotspots = [
-        ('F3', 'https://cdn-10.nikon-cdn.com/pdf/manuals/archive/F3.pdf', 'left: 48%; top: 31%; width: 10%; height: 14%;'),
-        ('Nikkormat', 'https://www.cameramanuals.org/nikon_pdf/nikkormat_ftn.pdf', 'left: 62.5%; top: 18%; width: 11%; height: 12%;'),
-        ('FM2', 'https://cdn-10.nikon-cdn.com/pdf/manuals/archive/FM2.pdf', 'left: 87.5%; top: 40%; width: 10%; height: 14%;'),
+    manual_links = [
+        ('F3 page', 'https://ducklove.github.io/everything-about-nikon/f3/', 'left: 38.5%; top: 46%; width: 5%; height: 8%;'),
+        ('F3 Nikon manual', 'https://cdn-10.nikon-cdn.com/pdf/manuals/archive/F3.pdf', 'left: 47.5%; top: 24%; width: 10%; height: 14%;'),
+        ('Nikkormat manual', 'https://www.cameramanuals.org/nikon_pdf/nikkormat_ftn.pdf', 'left: 62.5%; top: 18%; width: 11%; height: 12%;'),
+        ('FM2 manual', 'https://cdn-10.nikon-cdn.com/pdf/manuals/archive/FM2.pdf', 'left: 87.5%; top: 40%; width: 10%; height: 14%;'),
     ]
     links = []
     links.append(
@@ -376,16 +375,10 @@ def build_hero_manual_hotspots() -> str:
         '<span class="visually-hidden">Toggle negative hero image</span>'
         '</button>'
     )
-    links.append(
-        f'<a class="hero-hotspot" href="{escape(f3_badge_href)}" target="_blank" rel="noopener noreferrer" '
-        f'style="{f3_badge_position}">'
-        '<span class="visually-hidden">F3 article</span>'
-        '</a>'
-    )
-    for label, href, position in hotspots:
+    for label, href, position in manual_links:
         links.append(
             f'<a class="hero-hotspot" href="{escape(href)}" target="_blank" rel="noopener noreferrer" style="{position}">'
-            f'<span class="visually-hidden">{escape(label)} manual</span>'
+            f'<span class="visually-hidden">{escape(label)}</span>'
             '</a>'
         )
     return (
