@@ -4,6 +4,7 @@
 import argparse
 import json
 import logging
+import math
 import os
 import re
 import statistics
@@ -42,6 +43,11 @@ ECB_EXCHANGE_RATES_URL = "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-da
 
 MAX_DAILY_SNAPSHOTS = 400
 MAX_PRODUCT_HISTORY = 365
+ADAPTIVE_MAX_PRICE_STEPS = (
+    (1.5, 200),
+    (2.0, 800),
+)
+ADAPTIVE_MAX_PRICE_TRIGGER_RATIO = 0.98
 
 COMMON_EXCLUDE_PATTERNS = [
     " for parts",
@@ -453,6 +459,113 @@ def extract_price(item: dict) -> float | None:
     return round(total, 2)
 
 
+def collect_prices(items: list[dict]) -> list[float]:
+    """Extract comparable listing prices from eBay items."""
+    prices = []
+    for item in items:
+        price = extract_price(item)
+        if price is not None:
+            prices.append(price)
+    return prices
+
+
+def round_price_bound(value: float) -> int:
+    """Round adaptive search bounds to predictable price increments."""
+    if value >= 20000:
+        step = 1000
+    elif value >= 10000:
+        step = 500
+    elif value >= 2000:
+        step = 100
+    elif value >= 500:
+        step = 50
+    else:
+        step = 25
+    return int(math.ceil(value / step) * step)
+
+
+def should_expand_max_price(prices: list[float], current_max_price: float) -> bool:
+    """Retry with a higher max when the current price window looks clipped."""
+    if not prices:
+        return True
+    return max(prices) >= current_max_price * ADAPTIVE_MAX_PRICE_TRIGGER_RATIO
+
+
+def search_items_for_product(
+    token: str,
+    browse_url: str,
+    product: dict,
+) -> tuple[list[dict], float]:
+    """Search a product and retry with higher max prices when needed."""
+    category_id = product.get("search_category_id", product["category_id"])
+    min_price = float(product["min_price"])
+    base_max_price = float(product["max_price"])
+
+    best_items = filter_items_with_rules(
+        search_items(
+            token,
+            browse_url,
+            product["query"],
+            category_id,
+            min_price,
+            base_max_price,
+        ),
+        product,
+    )
+    best_prices = collect_prices(best_items)
+    best_max_price = base_max_price
+    trial_max_price = base_max_price
+
+    for multiplier, min_delta in ADAPTIVE_MAX_PRICE_STEPS:
+        if not should_expand_max_price(best_prices, trial_max_price):
+            break
+
+        candidate_max_price = round_price_bound(
+            max(base_max_price * multiplier, trial_max_price + min_delta)
+        )
+        if candidate_max_price <= trial_max_price:
+            continue
+
+        candidate_items = filter_items_with_rules(
+            search_items(
+                token,
+                browse_url,
+                product["query"],
+                category_id,
+                min_price,
+                candidate_max_price,
+            ),
+            product,
+        )
+        candidate_prices = collect_prices(candidate_items)
+
+        has_more_items = len(candidate_items) > len(best_items)
+        has_higher_prices = (
+            bool(candidate_prices)
+            and (not best_prices or max(candidate_prices) > max(best_prices))
+        )
+
+        if has_more_items or has_higher_prices:
+            previous_count = len(best_items)
+            previous_max = max(best_prices) if best_prices else None
+            best_items = candidate_items
+            best_prices = candidate_prices
+            best_max_price = candidate_max_price
+            log.info(
+                "  Expanded max price: $%s -> $%s (%d -> %d items, max observed $%s -> $%s)",
+                round(base_max_price, 2),
+                round(candidate_max_price, 2),
+                previous_count,
+                len(candidate_items),
+                previous_max,
+                max(candidate_prices) if candidate_prices else None,
+            )
+
+        trial_max_price = candidate_max_price
+
+    return best_items, best_max_price
+
+
 def compute_stats(prices: list[float]) -> dict:
     """IQR 아웃라이어 제거 후 통계를 계산합니다."""
     if not prices:
@@ -808,15 +921,17 @@ def main():
             )
 
             try:
-                items = search_items(
+                items, effective_max_price = search_items_for_product(
                     token,
                     browse_url,
-                    product["query"],
-                    product.get("search_category_id", product["category_id"]),
-                    product["min_price"],
-                    product["max_price"],
+                    product,
                 )
-                items = filter_items_with_rules(items, product)
+                if effective_max_price != product["max_price"]:
+                    log.info(
+                        "  Using expanded search max: $%s -> $%s",
+                        product["max_price"],
+                        effective_max_price,
+                    )
 
                 if gemini_key and items:
                     pre_count = len(items)
@@ -825,11 +940,7 @@ def main():
                         "  LLM filtered: %d → %d items", pre_count, len(items)
                     )
 
-                prices = []
-                for item in items:
-                    p = extract_price(item)
-                    if p is not None:
-                        prices.append(p)
+                prices = collect_prices(items)
 
                 stats = compute_stats(prices)
                 samples = extract_sample_listings(items)

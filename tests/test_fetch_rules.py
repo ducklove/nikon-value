@@ -1,4 +1,12 @@
-from scripts.fetch_prices import is_obvious_non_match, matches_product_exclude_patterns, normalize_title
+from scripts import fetch_prices
+from scripts.fetch_prices import (
+    is_obvious_non_match,
+    matches_product_exclude_patterns,
+    normalize_title,
+    round_price_bound,
+    search_items_for_product,
+    should_expand_max_price,
+)
 
 
 def test_matches_product_exclude_patterns_uses_normalized_title_fragments():
@@ -26,3 +34,76 @@ def test_is_obvious_non_match_keeps_actual_f3af_body_listing():
     }
 
     assert not is_obvious_non_match("Nikon F3AF body film camera", product)
+
+
+def test_should_expand_max_price_when_window_is_empty_or_clipped():
+    assert should_expand_max_price([], 200)
+    assert should_expand_max_price([199.0], 200)
+    assert not should_expand_max_price([150.0], 200)
+
+
+def test_round_price_bound_uses_reasonable_steps():
+    assert round_price_bound(215) == 225
+    assert round_price_bound(1260) == 1300
+    assert round_price_bound(3650) == 3700
+    assert round_price_bound(12600) == 13000
+
+
+def test_search_items_for_product_retries_with_higher_max_price(monkeypatch):
+    product = {
+        "id": "nikon-fg",
+        "query": "Nikon FG body",
+        "category_id": "3323",
+        "min_price": 20,
+        "max_price": 200,
+    }
+    search_calls = []
+
+    def fake_search_items(token, browse_url, query, category_id, min_price, max_price):
+        search_calls.append(max_price)
+        if max_price <= 200:
+            return []
+        return [
+            {"price": {"value": "215.00", "currency": "USD"}},
+            {"price": {"value": "240.00", "currency": "USD"}},
+        ]
+
+    monkeypatch.setattr(fetch_prices, "search_items", fake_search_items)
+    monkeypatch.setattr(fetch_prices, "filter_items_with_rules", lambda items, product: items)
+
+    items, effective_max_price = search_items_for_product("token", "browse", product)
+
+    assert search_calls == [200.0, 400]
+    assert effective_max_price == 400
+    assert len(items) == 2
+
+
+def test_search_items_for_product_retries_when_results_hit_upper_cap(monkeypatch):
+    product = {
+        "id": "nikon-zf",
+        "query": "Nikon Zf body",
+        "category_id": "31388",
+        "min_price": 1200,
+        "max_price": 2500,
+    }
+    search_calls = []
+
+    def fake_search_items(token, browse_url, query, category_id, min_price, max_price):
+        search_calls.append(max_price)
+        if max_price <= 2500:
+            return [
+                {"price": {"value": "2499.00", "currency": "USD"}},
+            ]
+        return [
+            {"price": {"value": "2499.00", "currency": "USD"}},
+            {"price": {"value": "2899.00", "currency": "USD"}},
+        ]
+
+    monkeypatch.setattr(fetch_prices, "search_items", fake_search_items)
+    monkeypatch.setattr(fetch_prices, "filter_items_with_rules", lambda items, product: items)
+
+    items, effective_max_price = search_items_for_product("token", "browse", product)
+
+    assert search_calls == [2500.0, 3800]
+    assert effective_max_price == 3800
+    assert len(items) == 2
