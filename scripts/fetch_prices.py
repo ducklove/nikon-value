@@ -32,7 +32,7 @@ EBAY_AUTH_URL_SANDBOX = "https://api.sandbox.ebay.com/identity/v1/oauth2/token"
 EBAY_BROWSE_URL_PROD = "https://api.ebay.com/buy/browse/v1/item_summary/search"
 EBAY_BROWSE_URL_SANDBOX = "https://api.sandbox.ebay.com/buy/browse/v1/item_summary/search"
 OPENROUTER_API_URL = "https://openrouter.ai/api/v1/chat/completions"
-OPENROUTER_DEFAULT_MODEL = "minimax/minimax-m2.7"
+OPENROUTER_DEFAULT_MODEL = "openai/gpt-5.4-nano"
 
 
 def _openrouter_model() -> str:
@@ -166,6 +166,8 @@ def extract_openrouter_message_text(data: dict) -> str:
         for item in content:
             if isinstance(item, dict):
                 text = item.get("text")
+                if not text and isinstance(item.get("content"), str):
+                    text = item["content"]
                 if text:
                     parts.append(text)
         joined = "".join(parts).strip()
@@ -243,7 +245,7 @@ def filter_items_with_llm(
         "I need to find listings that are selling exactly this product:\n"
         f"Product: {product['name_en']}\n"
         f"Search query used: {product['query']}\n\n"
-        "Below are eBay listing titles. Return JSON matching this schema:\n"
+        "Below are eBay listing titles. Return ONLY a JSON object in this form:\n"
         "{\"indices\": [0, 2, 4]}\n"
         "Use 0-based indices for listings that ARE actually selling this specific product.\n\n"
         "Exclude:\n"
@@ -270,7 +272,7 @@ def filter_items_with_llm(
                         "role": "system",
                         "content": (
                             "You are a camera gear classifier. "
-                            "Return only JSON that matches the requested schema."
+                            "Return only a JSON object with an indices array."
                         ),
                     },
                     {
@@ -278,30 +280,9 @@ def filter_items_with_llm(
                         "content": prompt,
                     },
                 ],
-                "response_format": {
-                    "type": "json_schema",
-                    "json_schema": {
-                        "name": "matching_listing_indices",
-                        "strict": True,
-                        "schema": {
-                            "type": "object",
-                            "properties": {
-                                "indices": {
-                                    "type": "array",
-                                    "items": {"type": "integer"},
-                                }
-                            },
-                            "required": ["indices"],
-                            "additionalProperties": False,
-                        },
-                    },
-                },
-                "reasoning": {
-                    "max_tokens": 64,
-                    "exclude": True,
-                },
+                "response_format": {"type": "json_object"},
                 "temperature": 0,
-                "max_tokens": 256,
+                "max_tokens": 512,
             },
             timeout=60,
         )

@@ -69,6 +69,19 @@ def test_extract_openrouter_message_text_handles_string_and_part_lists():
             ]
         }
     ) == "{\"indices\": [0]}"
+    assert extract_openrouter_message_text(
+        {
+            "choices": [
+                {
+                    "message": {
+                        "content": [
+                            {"type": "output_text", "content": "{\"indices\": [2]}"},
+                        ]
+                    }
+                }
+            ]
+        }
+    ) == "{\"indices\": [2]}"
 
 
 def test_extract_openrouter_indices_accepts_object_and_legacy_list_payloads():
