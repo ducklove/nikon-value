@@ -31,14 +31,13 @@ EBAY_AUTH_URL_PROD = "https://api.ebay.com/identity/v1/oauth2/token"
 EBAY_AUTH_URL_SANDBOX = "https://api.sandbox.ebay.com/identity/v1/oauth2/token"
 EBAY_BROWSE_URL_PROD = "https://api.ebay.com/buy/browse/v1/item_summary/search"
 EBAY_BROWSE_URL_SANDBOX = "https://api.sandbox.ebay.com/buy/browse/v1/item_summary/search"
+OPENROUTER_API_URL = "https://openrouter.ai/api/v1/chat/completions"
+OPENROUTER_DEFAULT_MODEL = "minimax/minimax-m2.7"
 
-GEMINI_DEFAULT_MODEL = "gemini-3.1-flash-lite-preview"
 
-
-def _gemini_api_url() -> str:
-    """환경변수 GEMINI_MODEL로 모델을 지정할 수 있습니다."""
-    model = os.environ.get("GEMINI_MODEL", GEMINI_DEFAULT_MODEL)
-    return f"https://generativelanguage.googleapis.com/v1beta/models/{model}:generateContent"
+def _openrouter_model() -> str:
+    """환경변수 OPENROUTER_MODEL로 모델을 지정할 수 있습니다."""
+    return os.environ.get("OPENROUTER_MODEL", OPENROUTER_DEFAULT_MODEL)
 ECB_EXCHANGE_RATES_URL = "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-daily.xml"
 
 MAX_DAILY_SNAPSHOTS = 400
@@ -135,9 +134,9 @@ def parse_only_ids(values: list[str]) -> set[str]:
     return result
 
 
-def load_gemini_key() -> str | None:
-    """gemini.key 파일 또는 GEMINI_API_KEY 환경변수에서 API 키를 로드합니다."""
-    key_file = PROJECT_ROOT / "gemini.key"
+def load_text_secret(filename: str, env_name: str) -> str | None:
+    """KEY=VALUE 또는 raw text 형식의 시크릿 파일을 읽습니다."""
+    key_file = PROJECT_ROOT / filename
     if key_file.exists():
         with open(key_file, "r") as f:
             for line in f:
@@ -148,16 +147,68 @@ def load_gemini_key() -> str | None:
                     _, value = line.split("=", 1)
                     return value.strip()
                 return line
-    key = os.environ.get("GEMINI_API_KEY")
-    if key:
-        return key
-    return None
+    return os.environ.get(env_name)
+
+
+def load_openrouter_key() -> str | None:
+    """openrouter.key 파일 또는 OPENROUTER_API_KEY 환경변수에서 API 키를 로드합니다."""
+    return load_text_secret("openrouter.key", "OPENROUTER_API_KEY")
+
+
+def extract_openrouter_message_text(data: dict) -> str:
+    """OpenRouter chat completion payload에서 텍스트 응답을 추출합니다."""
+    content = data["choices"][0]["message"]["content"]
+    if isinstance(content, str):
+        return content
+
+    if isinstance(content, list):
+        parts = []
+        for item in content:
+            if isinstance(item, dict):
+                text = item.get("text")
+                if text:
+                    parts.append(text)
+        joined = "".join(parts).strip()
+        if joined:
+            return joined
+
+    raise ValueError("OpenRouter response did not contain text content")
+
+
+def strip_json_code_fence(text: str) -> str:
+    """Remove optional ```json fenced wrappers around structured output."""
+    stripped = text.strip()
+    if not stripped.startswith("```"):
+        return stripped
+
+    lines = stripped.splitlines()
+    if lines and lines[0].startswith("```"):
+        lines = lines[1:]
+    if lines and lines[-1].startswith("```"):
+        lines = lines[:-1]
+    return "\n".join(lines).strip()
+
+
+def extract_openrouter_indices(data: dict) -> list[int]:
+    """Parse structured JSON indices from an OpenRouter response."""
+    payload = json.loads(strip_json_code_fence(extract_openrouter_message_text(data)))
+    if isinstance(payload, list):
+        indices = payload
+    elif isinstance(payload, dict):
+        indices = payload.get("indices")
+    else:
+        raise ValueError("OpenRouter response JSON must be a list or object")
+
+    if not isinstance(indices, list):
+        raise ValueError("OpenRouter response is missing an indices list")
+
+    return indices
 
 
 def filter_items_with_llm(
-    items: list[dict], product: dict, gemini_key: str
+    items: list[dict], product: dict, openrouter_key: str
 ) -> list[dict]:
-    """Gemini API를 사용하여 리스팅 타이틀이 실제 해당 제품인지 검증합니다."""
+    """OpenRouter API를 사용하여 리스팅 타이틀이 실제 해당 제품인지 검증합니다."""
     if not items:
         return items
 
@@ -192,8 +243,9 @@ def filter_items_with_llm(
         "I need to find listings that are selling exactly this product:\n"
         f"Product: {product['name_en']}\n"
         f"Search query used: {product['query']}\n\n"
-        "Below are eBay listing titles. Return a JSON array of indices "
-        "(0-based) for listings that ARE actually selling this specific product.\n\n"
+        "Below are eBay listing titles. Return JSON matching this schema:\n"
+        "{\"indices\": [0, 2, 4]}\n"
+        "Use 0-based indices for listings that ARE actually selling this specific product.\n\n"
         "Exclude:\n"
         + "\n".join(exclude_lines)
         + "\n"
@@ -204,22 +256,59 @@ def filter_items_with_llm(
 
     try:
         resp = requests.post(
-            _gemini_api_url(),
-            params={"key": gemini_key},
-            headers={"Content-Type": "application/json"},
+            OPENROUTER_API_URL,
+            headers={
+                "Authorization": f"Bearer {openrouter_key}",
+                "Content-Type": "application/json",
+                "HTTP-Referer": "https://ducklove.github.io/nikon-value",
+                "X-Title": "Nikon Value",
+            },
             json={
-                "contents": [{"parts": [{"text": prompt}]}],
-                "generationConfig": {
-                    "responseMimeType": "application/json",
+                "model": _openrouter_model(),
+                "messages": [
+                    {
+                        "role": "system",
+                        "content": (
+                            "You are a camera gear classifier. "
+                            "Return only JSON that matches the requested schema."
+                        ),
+                    },
+                    {
+                        "role": "user",
+                        "content": prompt,
+                    },
+                ],
+                "response_format": {
+                    "type": "json_schema",
+                    "json_schema": {
+                        "name": "matching_listing_indices",
+                        "strict": True,
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "indices": {
+                                    "type": "array",
+                                    "items": {"type": "integer"},
+                                }
+                            },
+                            "required": ["indices"],
+                            "additionalProperties": False,
+                        },
+                    },
                 },
+                "reasoning": {
+                    "max_tokens": 64,
+                    "exclude": True,
+                },
+                "temperature": 0,
+                "max_tokens": 256,
             },
             timeout=60,
         )
         resp.raise_for_status()
         data = resp.json()
 
-        text = data["candidates"][0]["content"]["parts"][0]["text"]
-        indices = json.loads(text)
+        indices = extract_openrouter_indices(data)
 
         if not isinstance(indices, list):
             log.warning("  LLM returned non-list, skipping filter")
@@ -835,11 +924,11 @@ def main():
 
     token = get_access_token(client_id, client_secret, auth_url)
 
-    gemini_key = load_gemini_key()
-    if gemini_key:
-        log.info("Gemini API key loaded, LLM filtering enabled")
+    openrouter_key = load_openrouter_key()
+    if openrouter_key:
+        log.info("OpenRouter API key loaded, LLM filtering enabled (%s)", _openrouter_model())
     else:
-        log.info("No Gemini API key found, LLM filtering disabled")
+        log.info("No OpenRouter API key found, LLM filtering disabled")
 
     today = datetime.now(timezone.utc).strftime("%Y-%m-%d")
     log.info("Fetching prices for %s", today)
@@ -933,9 +1022,9 @@ def main():
                         effective_max_price,
                     )
 
-                if gemini_key and items:
+                if openrouter_key and items:
                     pre_count = len(items)
-                    items = filter_items_with_llm(items, product, gemini_key)
+                    items = filter_items_with_llm(items, product, openrouter_key)
                     log.info(
                         "  LLM filtered: %d → %d items", pre_count, len(items)
                     )

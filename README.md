@@ -5,7 +5,7 @@ eBay 현재 매물을 기준으로 니콘 제품 시세를 추적하는 정적 �
 ## 구조
 
 - `scripts/fetch_prices.py`
-  - eBay API와 Gemini 보조 필터를 사용해 `data/`를 갱신한다.
+  - eBay API와 OpenRouter 보조 필터를 사용해 `data/`를 갱신한다.
 - `scripts/build_static_site.py`
   - `data/`를 읽어 GitHub Pages용 정적 산출물 `dist/`를 만들고, 필요하면 저장소 루트 공개 파일도 갱신한다.
 - `js/site.js`

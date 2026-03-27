@@ -1,11 +1,14 @@
 from scripts import fetch_prices
 from scripts.fetch_prices import (
+    extract_openrouter_indices,
+    extract_openrouter_message_text,
     is_obvious_non_match,
     matches_product_exclude_patterns,
     normalize_title,
     round_price_bound,
     search_items_for_product,
     should_expand_max_price,
+    strip_json_code_fence,
 )
 
 
@@ -47,6 +50,38 @@ def test_round_price_bound_uses_reasonable_steps():
     assert round_price_bound(1260) == 1300
     assert round_price_bound(3650) == 3700
     assert round_price_bound(12600) == 13000
+
+
+def test_extract_openrouter_message_text_handles_string_and_part_lists():
+    assert extract_openrouter_message_text(
+        {"choices": [{"message": {"content": "{\"indices\": [1, 3]}"}}]}
+    ) == "{\"indices\": [1, 3]}"
+    assert extract_openrouter_message_text(
+        {
+            "choices": [
+                {
+                    "message": {
+                        "content": [
+                            {"type": "text", "text": "{\"indices\": [0]}"},
+                        ]
+                    }
+                }
+            ]
+        }
+    ) == "{\"indices\": [0]}"
+
+
+def test_extract_openrouter_indices_accepts_object_and_legacy_list_payloads():
+    assert extract_openrouter_indices(
+        {"choices": [{"message": {"content": "{\"indices\": [1, 3]}"}}]}
+    ) == [1, 3]
+    assert extract_openrouter_indices(
+        {"choices": [{"message": {"content": "[2, 4]"}}]}
+    ) == [2, 4]
+
+
+def test_strip_json_code_fence_handles_markdown_wrappers():
+    assert strip_json_code_fence("```json\n{\"indices\": [0]}\n```") == "{\"indices\": [0]}"
 
 
 def test_search_items_for_product_retries_with_higher_max_price(monkeypatch):
