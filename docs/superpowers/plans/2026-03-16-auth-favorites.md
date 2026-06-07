@@ -4,7 +4,7 @@
 
 **Goal:** Google/Naver/Kakao OAuth 인증 + 사용자별 관심 목록 관리 API 서버를 구축하고 기존 정적 사이트와 연동한다.
 
-**Architecture:** 라즈베리파이에서 FastAPI 서버를 운영하고 (cantabile.tplinkdns.com:3380, HTTPS), GitHub Pages 정적 사이트에서 CORS로 호출한다. SQLite에 사용자/관심 목록을 저장하고, catalog.json을 GitHub Pages에서 캐싱한다.
+**Architecture:** 라즈베리파이에서 FastAPI 서버를 운영하고 (cantabile.tplinkdns.com, HTTPS), GitHub Pages 정적 사이트에서 CORS로 호출한다. SQLite에 사용자/관심 목록을 저장하고, catalog.json을 GitHub Pages에서 캐싱한다.
 
 **Tech Stack:** Python 3.13, FastAPI, uvicorn, Authlib, PyJWT, aiosqlite, slowapi, python-dotenv
 
@@ -48,9 +48,6 @@ tests/
 ├── test_users.py                # /api/me 테스트
 └── test_favorites.py            # 관심 목록 CRUD 테스트
 
-deploy/
-├── nikon-api.service            # systemd unit 파일
-└── certbot-deploy-hook.sh       # certbot 갱신 후 서비스 재시작 스크립트
 ```
 
 ### 수정 파일
@@ -124,13 +121,9 @@ KAKAO_CLIENT_ID=
 KAKAO_CLIENT_SECRET=
 
 # Server
-API_BASE_URL=https://cantabile.tplinkdns.com:3380
+API_BASE_URL=https://cantabile.tplinkdns.com
 FRONTEND_URL=https://ducklove.github.io/nikon-value
 CATALOG_URL=https://ducklove.github.io/nikon-value/data/catalog.json
-
-# SSL
-SSL_CERTFILE=/etc/letsencrypt/live/cantabile.tplinkdns.com/fullchain.pem
-SSL_KEYFILE=/etc/letsencrypt/live/cantabile.tplinkdns.com/privkey.pem
 
 # Database
 DB_PATH=./data/nikon_api.db
@@ -164,15 +157,12 @@ NAVER_CLIENT_SECRET = _env("NAVER_CLIENT_SECRET")
 KAKAO_CLIENT_ID = _env("KAKAO_CLIENT_ID")
 KAKAO_CLIENT_SECRET = _env("KAKAO_CLIENT_SECRET")
 
-API_BASE_URL = _env("API_BASE_URL", "https://cantabile.tplinkdns.com:3380")
+API_BASE_URL = _env("API_BASE_URL", "https://cantabile.tplinkdns.com")
 FRONTEND_URL = _env("FRONTEND_URL", "https://ducklove.github.io/nikon-value")
 CATALOG_URL = _env(
     "CATALOG_URL",
     "https://ducklove.github.io/nikon-value/data/catalog.json",
 )
-
-SSL_CERTFILE = _env("SSL_CERTFILE", "")
-SSL_KEYFILE = _env("SSL_KEYFILE", "")
 
 DB_PATH = _env("DB_PATH", str(Path(__file__).parent / "data" / "nikon_api.db"))
 
@@ -1497,60 +1487,9 @@ git commit -m "feat: add rate limiting to auth (5/min) and API (60/min) endpoint
 
 ## Chunk 6: 배포 설정
 
-### Task 12: systemd 서비스 + certbot 훅
+### Task 12: 운영 환경 배포 설정
 
-**Files:**
-- Create: `deploy/nikon-api.service`
-- Create: `deploy/certbot-deploy-hook.sh`
-
-- [ ] **Step 1: deploy/nikon-api.service 작성**
-
-```ini
-[Unit]
-Description=Nikon Value API Server
-After=network.target
-
-[Service]
-Type=simple
-User=cantabile
-WorkingDirectory=/home/cantabile/Works/nikon_value
-ExecStart=/usr/bin/python3 -m uvicorn server.main:app \
-    --host 0.0.0.0 \
-    --port 3380 \
-    --ssl-certfile /etc/letsencrypt/live/cantabile.tplinkdns.com/fullchain.pem \
-    --ssl-keyfile /etc/letsencrypt/live/cantabile.tplinkdns.com/privkey.pem
-Restart=on-failure
-RestartSec=5
-Environment=PYTHONUNBUFFERED=1
-
-[Install]
-WantedBy=multi-user.target
-```
-
-- [ ] **Step 2: deploy/certbot-deploy-hook.sh 작성**
-
-```bash
-#!/bin/bash
-systemctl restart nikon-api
-```
-
-- [ ] **Step 3: 커밋**
-
-```bash
-chmod +x deploy/certbot-deploy-hook.sh
-git add deploy/
-git commit -m "feat: add systemd service and certbot deploy hook"
-```
-
-- [ ] **Step 4: 서비스 등록 (수동 — 사용자 확인 후)**
-
-```bash
-sudo cp deploy/nikon-api.service /etc/systemd/system/
-sudo systemctl daemon-reload
-sudo systemctl enable nikon-api
-sudo systemctl start nikon-api
-sudo systemctl status nikon-api
-```
+배포 서비스와 인증서 갱신 훅은 저장소에 고정하지 않고 운영 환경에서 별도로 관리한다.
 
 ---
 
@@ -1567,7 +1506,7 @@ sudo systemctl status nikon-api
 (function () {
   'use strict';
 
-  const API_BASE = 'https://cantabile.tplinkdns.com:3380';
+  const API_BASE = 'https://cantabile.tplinkdns.com';
   const TOKEN_KEY = 'nikon-value-token';
 
   // --- Token management ---
@@ -1870,13 +1809,13 @@ python -c "import secrets; print(secrets.token_urlsafe(32))"
 # 위 값을 server/.env의 JWT_SECRET_KEY에 설정
 
 # 서버 시작 (SSL 없이 로컬 테스트)
-python -m uvicorn server.main:app --port 3380 --reload
+python -m uvicorn server.main:app --port 8000 --reload
 ```
 
 - [ ] **Step 3: Health 확인**
 
 ```bash
-curl http://localhost:3380/health
+curl http://localhost:8000/health
 # {"status":"healthy","db":"ok","catalog_loaded":true,...}
 ```
 
@@ -1899,4 +1838,4 @@ git commit -m "chore: finalize auth + favorites implementation"
 
 각 제공자에서 `GOOGLE_CLIENT_ID`, `GOOGLE_CLIENT_SECRET` 등을 발급받아 `server/.env`에 기입.
 
-> 비표준 포트(3380) 콜백 URL 등록이 불가한 경우, Caddy 리버스 프록시로 443 → 3380 포워딩 설정이 필요함. 이 경우 별도 태스크로 추가.
+> OAuth 콜백 URL은 기본 HTTPS URL 기준으로 등록한다. 별도 포트 포워딩은 운영 환경 설정에서 관리한다.

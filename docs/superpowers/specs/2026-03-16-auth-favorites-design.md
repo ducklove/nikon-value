@@ -9,7 +9,7 @@
 ```
 ┌─────────────────────────────┐     ┌──────────────────────────────────┐
 │  GitHub Pages (정적 사이트)   │     │  Raspberry Pi (API 서버)          │
-│  ducklove.github.io          │     │  cantabile.tplinkdns.com:3380    │
+│  ducklove.github.io          │     │  cantabile.tplinkdns.com         │
 │                              │     │                                  │
 │  index.html                  │────▶│  FastAPI + uvicorn               │
 │  products/*.html             │ API │  - OAuth 엔드포인트              │
@@ -105,7 +105,7 @@ CREATE TABLE favorites (
 
 ## API 엔드포인트
 
-Base URL: `https://cantabile.tplinkdns.com:3380`
+Base URL: `https://cantabile.tplinkdns.com`
 
 ### 인증
 
@@ -233,16 +233,9 @@ Base URL: `https://cantabile.tplinkdns.com:3380`
 
 ## 운영
 
-### HTTPS 인증서 관리
+### 배포 관리
 
-- certbot의 systemd timer로 자동 갱신 (기존 설정 활용)
-- 갱신 후 uvicorn 재시작: certbot `--deploy-hook`으로 `systemctl restart nikon-api` 실행
-
-### 서비스 관리
-
-- systemd unit 파일(`nikon-api.service`)로 등록
-- `Restart=on-failure`로 자동 재시작
-- 라즈베리파이 부팅 시 자동 시작 (`WantedBy=multi-user.target`)
+- API 서버 배포와 인증서 갱신은 저장소에 고정하지 않고 운영 환경에서 별도로 관리한다.
 
 ### catalog.json 캐싱
 
@@ -265,13 +258,13 @@ Base URL: `https://cantabile.tplinkdns.com:3380`
 
 ## OAuth 제공자별 사전 확인 사항
 
-각 제공자 앱 등록 시 콜백 URL `https://cantabile.tplinkdns.com:3380/auth/{provider}/callback` 등록 가능 여부를 구현 전에 검증해야 한다:
+각 제공자 앱 등록 시 콜백 URL `https://cantabile.tplinkdns.com/auth/{provider}/callback` 등록 가능 여부를 구현 전에 검증해야 한다:
 
-- **Google**: 비표준 포트 콜백 URL 허용 여부
+- **Google**: HTTPS 콜백 URL 등록 가능 여부
 - **Naver**: DDNS 도메인 콜백 URL 등록 가능 여부
 - **Kakao**: 동일
 
-만약 특정 제공자가 비표준 포트를 허용하지 않으면, 443 포트에서 리버스 프록시(Caddy 등)를 통해 3380으로 포워딩하는 대안을 적용한다.
+OAuth 콜백 URL은 기본 HTTPS URL 기준으로 등록한다. 별도 포트 포워딩은 운영 환경 설정에서 관리한다.
 
 ## 범위 외 (향후 과제)
 

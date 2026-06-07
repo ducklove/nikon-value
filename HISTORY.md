@@ -12,9 +12,7 @@
 - JWT 토큰 기반 세션 관리 (7일 만료, localStorage).
 - HMAC 서명 기반 OAuth state로 CSRF 방지.
 - Rate limiting: 인증 5req/min, API 60req/min (slowapi).
-- Caddy 리버스 프록시: 443 포트에서 SSL 처리, uvicorn은 localhost:3380.
-- systemd 서비스 (`nikon-api.service`): 부팅 시 자동 시작, 장애 시 자동 재시작.
-- certbot deploy hook: SSL 인증서 갱신 시 서비스 자동 재시작.
+- API 서버 배포 구성은 별도 운영 환경에서 관리하도록 정리.
 - catalog.json 캐싱: GitHub Pages에서 1시간 주기로 갱신, 282개 제품 ID 기반 입력 검증.
 - `js/auth.js`: 프론트엔드 인증 연동, MutationObserver로 동적 카드 생성 후 하트 버튼 주입.
 - 회원 탈퇴 기능 (`DELETE /api/me`): 계정 + 관심 목록 cascade 삭제.

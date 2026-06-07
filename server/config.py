@@ -24,7 +24,7 @@ NAVER_CLIENT_SECRET = _env("NAVER_CLIENT_SECRET")
 KAKAO_CLIENT_ID = _env("KAKAO_CLIENT_ID")
 KAKAO_CLIENT_SECRET = _env("KAKAO_CLIENT_SECRET")
 
-API_BASE_URL = _env("API_BASE_URL", "https://cantabile.tplinkdns.com:3380")
+API_BASE_URL = _env("API_BASE_URL", "https://cantabile.tplinkdns.com")
 FRONTEND_URL = _env("FRONTEND_URL", "https://ducklove.github.io/nikon-value")
 _frontend = urlsplit(FRONTEND_URL)
 FRONTEND_ORIGIN = (
@@ -36,9 +36,6 @@ CATALOG_URL = _env(
     "CATALOG_URL",
     "https://ducklove.github.io/nikon-value/data/catalog.json",
 )
-
-SSL_CERTFILE = _env("SSL_CERTFILE", "")
-SSL_KEYFILE = _env("SSL_KEYFILE", "")
 
 DB_PATH = _env("DB_PATH", str(Path(__file__).parent / "data" / "nikon_api.db"))
 
