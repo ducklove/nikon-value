@@ -3,8 +3,8 @@
  "exchange_rate": {
   "base": "USD",
   "quote": "KRW",
-  "rate": 1540.9278,
-  "reference_date": "2026-06-05",
+  "rate": 1527.9549,
+  "reference_date": "2026-06-08",
   "source": "ECB reference rates"
  },
  "categories": [
@@ -39,23 +39,15 @@
      "name_en": "Nikon Z9",
      "subcategory": "flagship",
      "release_year": 2021,
-     "median": 3755.69,
-     "mean": 3838.88,
+     "median": 3757.34,
+     "mean": 3847.26,
      "min": 3088.0,
      "max": 4644.34,
      "q1": 3492.15,
      "q3": 4265.56,
-     "count": 17,
-     "count_filtered": 17,
+     "count": 16,
+     "count_filtered": 16,
      "samples": [
-      {
-       "title": "Nikon Z9 Body 905994",
-       "price": 3704.89,
-       "currency": "USD",
-       "condition": "Used",
-       "image": "https://i.ebayimg.com/images/g/NxoAAeSwBY1qJZL4/s-l640.jpg",
-       "url": "https://www.ebay.com/itm/306988406950?_skw=Nikon+Z9+body&hash=item4779ef58a6:g:NxoAAeSwBY1qJZL4"
-      },
       {
        "title": "Nikon Z9 Body 789966",
        "price": 3714.91,
@@ -87,6 +79,14 @@
        "condition": "Used",
        "image": "https://i.ebayimg.com/images/g/P0QAAeSwOS9qJZNF/s-l640.jpg",
        "url": "https://www.ebay.com/itm/306986503785?_skw=Nikon+Z9+body&hash=item4779d24e69:g:P0QAAeSwOS9qJZNF"
+      },
+      {
+       "title": "Nikon Z9 Body 117209",
+       "price": 4035.06,
+       "currency": "USD",
+       "condition": "Used",
+       "image": "https://i.ebayimg.com/images/g/pK8AAeSw-jpqJZ13/s-l640.jpg",
+       "url": "https://www.ebay.com/itm/306983915467?_skw=Nikon+Z9+body&hash=item4779aacfcb:g:pK8AAeSw-jpqJZ13"
       }
      ]
     },
@@ -210,15 +210,23 @@
      "name_en": "Nikon Z7",
      "subcategory": "midrange",
      "release_year": 2018,
-     "median": 1405.05,
-     "mean": 1410.16,
+     "median": 1392.97,
+     "mean": 1402.38,
      "min": 1167.84,
      "max": 1630.18,
-     "q1": 1305.28,
-     "q3": 1514.28,
-     "count": 26,
-     "count_filtered": 26,
+     "q1": 1302.62,
+     "q3": 1513.31,
+     "count": 25,
+     "count_filtered": 25,
      "samples": [
+      {
+       "title": "Nikon Z7 Full Frame Mirrorless Camera Body Only -VM 8567- BB",
+       "price": 1373.84,
+       "currency": "USD",
+       "condition": "Used",
+       "image": "https://i.ebayimg.com/images/g/YbcAAeSw52VppuEy/s-l1600.jpg",
+       "url": "https://www.ebay.com/itm/137090437480?_skw=Nikon+Z7+body+-Z7II&hash=item1feb3a1168:g:YbcAAeSw52VppuEy"
+      },
       {
        "title": "Nikon Z7 Mirrorless Camera Body Excellent Condition Tested #4273",
        "price": 1386.63,
@@ -236,28 +244,20 @@
        "url": "https://www.ebay.com/itm/306926636851?_skw=Nikon+Z7+body+-Z7II&hash=item477640cf33:g:~lgAAeSweM9p~hzm"
       },
       {
+       "title": "Nikon Z7 Mirrorless Camera Body Excellent Condition Low Wear Tested",
+       "price": 1409.25,
+       "currency": "USD",
+       "condition": "Used",
+       "image": "https://i.ebayimg.com/images/g/A~kAAeSwgglqJsVg/s-l1600.jpg",
+       "url": "https://www.ebay.com/itm/306990060971?_skw=Nikon+Z7+body+-Z7II&hash=item477a0895ab:g:A~kAAeSwgglqJsVg"
+      },
+      {
        "title": "Nikon  Z7 Body 196279",
        "price": 1417.12,
        "currency": "USD",
        "condition": "Used",
        "image": "https://i.ebayimg.com/images/g/AeAAAeSw8b1qJZMx/s-l1600.jpg",
        "url": "https://www.ebay.com/itm/306967067403?_skw=Nikon+Z7+body+-Z7II&hash=item4778a9bb0b:g:AeAAAeSw8b1qJZMx"
-      },
-      {
-       "title": "Nikon Z7 45.7MP Digital Camera (Body Only)",
-       "price": 1425.05,
-       "currency": "USD",
-       "condition": "Used",
-       "image": "https://i.ebayimg.com/images/g/ENUAAOSwjoNhFyMG/s-l1600.jpg",
-       "url": "https://www.ebay.com/itm/255091806943?_skw=Nikon+Z7+body+-Z7II&hash=item3b64a812df:g:ENUAAOSwjoNhFyMG"
-      },
-      {
-       "title": "Nikon  Z7 Body 304572",
-       "price": 1449.01,
-       "currency": "USD",
-       "condition": "Used",
-       "image": "https://i.ebayimg.com/images/g/hwEAAeSwxYdqF6FX/s-l1200.jpg",
-       "url": "https://www.ebay.com/itm/306966942309?_skw=Nikon+Z7+body+-Z7II&hash=item4778a7d265:g:hwEAAeSwxYdqF6FX"
       }
      ]
     },
@@ -381,23 +381,15 @@
      "name_en": "Nikon Z6",
      "subcategory": "midrange",
      "release_year": 2018,
-     "median": 975.13,
-     "mean": 979.97,
+     "median": 986.05,
+     "mean": 984.27,
      "min": 680.0,
      "max": 1369.36,
-     "q1": 855.99,
-     "q3": 1078.45,
-     "count": 53,
-     "count_filtered": 52,
+     "q1": 865.97,
+     "q3": 1083.07,
+     "count": 54,
+     "count_filtered": 53,
      "samples": [
-      {
-       "title": "Nikon Z6 FX 24.5MP Mirrorless Camera Body Shutter Count:12k #Z-15867",
-       "price": 964.22,
-       "currency": "USD",
-       "condition": "Used",
-       "image": "https://i.ebayimg.com/images/g/z5EAAeSwEs9qH0U5/s-l1600.jpg",
-       "url": "https://www.ebay.com/itm/336616395854?_skw=Nikon+Z6+body+-Z6II+-Z6III&hash=item4e5fe6944e:g:z5EAAeSwEs9qH0U5"
-      },
       {
        "title": "Nikon Z6 Body w/ 16076 shots 569108",
        "price": 986.05,
@@ -429,6 +421,14 @@
        "condition": "Used",
        "image": "https://i.ebayimg.com/images/g/1pMAAeSwOwJqJH6Z/s-l1200.jpg",
        "url": "https://www.ebay.com/itm/306986849613?_skw=Nikon+Z6+body+-Z6II+-Z6III&hash=item4779d7954d:g:1pMAAeSwOwJqJH6Z"
+      },
+      {
+       "title": "Nikon Z6 Body 220305",
+       "price": 994.93,
+       "currency": "USD",
+       "condition": "Used",
+       "image": "https://i.ebayimg.com/images/g/K5kAAeSwY0pqJD9O/s-l1200.jpg",
+       "url": "https://www.ebay.com/itm/306986527113?_skw=Nikon+Z6+body+-Z6II+-Z6III&hash=item4779d2a989:g:K5kAAeSwY0pqJD9O"
       }
      ]
     },
@@ -439,10 +439,10 @@
      "subcategory": "entry",
      "release_year": 2020,
      "median": 965.47,
-     "mean": 960.63,
+     "mean": 960.3,
      "min": 663.16,
      "max": 1211.52,
-     "q1": 852.08,
+     "q1": 849.99,
      "q3": 1053.73,
      "count": 59,
      "count_filtered": 59,
@@ -495,15 +495,23 @@
      "name_en": "Nikon Zf",
      "subcategory": "midrange",
      "release_year": 2023,
-     "median": 2175.78,
-     "mean": 2021.58,
+     "median": 2175.52,
+     "mean": 1997.35,
      "min": 1309.0,
      "max": 2927.99,
-     "q1": 1533.99,
+     "q1": 1485.27,
      "q3": 2291.56,
-     "count": 28,
-     "count_filtered": 28,
+     "count": 29,
+     "count_filtered": 29,
      "samples": [
+      {
+       "title": "Nikon ZF Mirrorless Digital Camera Body 24.5MP Full-Frame",
+       "price": 2059.26,
+       "currency": "USD",
+       "condition": "Used",
+       "image": "https://i.ebayimg.com/images/g/f0gAAeSwYi9qJKYA/s-l1600.jpg",
+       "url": "https://www.ebay.com/itm/318419392184?_skw=Nikon+Zf+body&hash=item4a234656b8:g:f0gAAeSwYi9qJKYA"
+      },
       {
        "title": "Nikon Zf Premium Exterior Bordeaux Red Body 913393",
        "price": 2092.26,
@@ -535,14 +543,6 @@
        "condition": "Used",
        "image": "https://i.ebayimg.com/images/g/EI4AAeSwK4VqGOCM/s-l1200.jpg",
        "url": "https://www.ebay.com/itm/278032475356?_skw=Nikon+Zf+body&hash=item40bc06e4dc:g:EI4AAeSwK4VqGOCM"
-      },
-      {
-       "title": "Nikon Zf Mirrorless Camera Body Premium Exterior RED W/BOX",
-       "price": 2199.99,
-       "currency": "USD",
-       "condition": "Used",
-       "image": "https://i.ebayimg.com/images/g/hv4AAeSwcrlprG-B/s-l1600.jpg",
-       "url": "https://www.ebay.com/itm/157168077097?_skw=Nikon+Zf+body&hash=item2497f28929:g:hv4AAeSwcrlprG-B"
       }
      ]
     },
@@ -552,14 +552,14 @@
      "name_en": "Nikon Zfc",
      "subcategory": "entry",
      "release_year": 2021,
-     "median": 806.6,
-     "mean": 829.15,
+     "median": 808.99,
+     "mean": 832.88,
      "min": 679.99,
      "max": 1126.28,
      "q1": 747.59,
      "q3": 910.0,
-     "count": 10,
-     "count_filtered": 10,
+     "count": 11,
+     "count_filtered": 11,
      "samples": [
       {
        "title": "Nikon Zfc Body black w/ 3904 shots 562107",
@@ -594,12 +594,12 @@
        "url": "https://www.ebay.com/itm/318348023822?_skw=Nikon+Zfc+body&hash=item4a1f05580e:g:7QwAAeSw5ZZqEXHG"
       },
       {
-       "title": "[Near MINT] Nikon Z fc Zfc Mirrorless Digital Camera 16-50mm /Shutter Count 364",
-       "price": 910.0,
+       "title": "Nikon Zfc Black Body Excellent Condition Minimal Wear Smooth Operation",
+       "price": 870.22,
        "currency": "USD",
        "condition": "Used",
-       "image": "https://i.ebayimg.com/images/g/C7EAAeSwqBdqEXm~/s-l1600.jpg",
-       "url": "https://www.ebay.com/itm/318348034581?_skw=Nikon+Zfc+body&hash=item4a1f058215:g:C7EAAeSwqBdqEXm~"
+       "image": "https://i.ebayimg.com/images/g/8-cAAeSw~INqJsWm/s-l1600.jpg",
+       "url": "https://www.ebay.com/itm/306990061213?_skw=Nikon+Zfc+body&hash=item477a08969d:g:8-cAAeSw~INqJsWm"
       }
      ]
     },
@@ -666,14 +666,14 @@
      "name_en": "Nikon Z50",
      "subcategory": "entry",
      "release_year": 2019,
-     "median": 698.59,
-     "mean": 677.36,
+     "median": 693.79,
+     "mean": 675.82,
      "min": 370.0,
      "max": 851.22,
-     "q1": 600.39,
-     "q3": 762.64,
-     "count": 49,
-     "count_filtered": 49,
+     "q1": 599.99,
+     "q3": 759.97,
+     "count": 50,
+     "count_filtered": 50,
      "samples": [
       {
        "title": "NIKON Z50 20.9 Megapixel Mirrorless Digital Camera Body",
@@ -723,14 +723,14 @@
      "name_en": "Nikon Z30",
      "subcategory": "entry",
      "release_year": 2022,
-     "median": 641.87,
-     "mean": 660.08,
+     "median": 662.59,
+     "mean": 663.61,
      "min": 565.74,
      "max": 761.02,
      "q1": 613.72,
      "q3": 733.23,
-     "count": 11,
-     "count_filtered": 11,
+     "count": 10,
+     "count_filtered": 10,
      "samples": [
       {
        "title": "Nikon Z 30 20.9MP Mirrorless Digital Camera Body Black+Accessories Excellent",
@@ -739,14 +739,6 @@
        "condition": "Used",
        "image": "https://i.ebayimg.com/images/g/TEMAAeSwOS1qJGZB/s-l1600.jpg",
        "url": "https://www.ebay.com/itm/358650139217?_skw=Nikon+Z30+body&hash=item538136d251:g:TEMAAeSwOS1qJGZB"
-      },
-      {
-       "title": "Nikon Z 30 20.9MP Mirrorless Camera (Body Only)",
-       "price": 624.83,
-       "currency": "USD",
-       "condition": "Used",
-       "image": "https://i.ebayimg.com/images/g/nl4AAeSwLDNqEScg/s-l1600.jpg",
-       "url": "https://www.ebay.com/itm/227354953108?_skw=Nikon+Z30+body&hash=item34ef694594:g:nl4AAeSwLDNqEScg"
       },
       {
        "title": "Nikon Nikon Mirrorless SLR Z30 Body Z Mount APS-C Video Vlog Black",
@@ -771,6 +763,14 @@
        "condition": "Used",
        "image": "https://i.ebayimg.com/images/g/2GoAAeSwszFqJZNk/s-l1600.jpg",
        "url": "https://www.ebay.com/itm/306988409729?_skw=Nikon+Z30+body&hash=item4779ef6381:g:2GoAAeSwszFqJZNk"
+      },
+      {
+       "title": "Nikon Z30 Mirrorless Camera Body APS-C Compact Vlog Ready Used Condition",
+       "price": 733.23,
+       "currency": "USD",
+       "condition": "Used",
+       "image": "https://i.ebayimg.com/images/g/08gAAeSwqJ1qJHxB/s-l1600.jpg",
+       "url": "https://www.ebay.com/itm/306986838245?_skw=Nikon+Z30+body&hash=item4779d768e5:g:08gAAeSwqJ1qJHxB"
       }
      ]
     }
@@ -865,11 +865,11 @@
      "subcategory": "midrange",
      "release_year": 2020,
      "median": 1396.24,
-     "mean": 1427.55,
+     "mean": 1421.99,
      "min": 1048.0,
      "max": 1876.26,
      "q1": 1190.0,
-     "q3": 1641.89,
+     "q3": 1567.46,
      "count": 30,
      "count_filtered": 30,
      "samples": [
@@ -906,12 +906,12 @@
        "url": "https://www.ebay.com/itm/236812275888?_skw=Nikon+D780+body&hash=item37231c90b0:g:lyUAAeSwcLZqICkA"
       },
       {
-       "title": "Nikon D780 24.5MP DSLR Camera Body Shutter Count 71,027",
-       "price": 1567.46,
+       "title": "Nikon D780 DSLR Digital Camera Body Full Frame 24.5MP 4K UHD Black H0608",
+       "price": 1563.74,
        "currency": "USD",
        "condition": "Used",
-       "image": "https://i.ebayimg.com/images/g/l7oAAeSwfN5qIbR-/s-l1200.jpg",
-       "url": "https://www.ebay.com/itm/236857898804?_skw=Nikon+D780+body&hash=item3725d4b734:g:l7oAAeSwfN5qIbR-"
+       "image": "https://i.ebayimg.com/images/g/~aYAAeSw9FFqJh21/s-l960.jpg",
+       "url": "https://www.ebay.com/itm/278065678366?_skw=Nikon+D780+body&hash=item40be01881e:g:~aYAAeSw9FFqJh21"
       }
      ]
     },
@@ -978,31 +978,15 @@
      "name_en": "Nikon D850",
      "subcategory": "midrange",
      "release_year": 2017,
-     "median": 1637.24,
-     "mean": 1712.58,
-     "min": 1346.63,
+     "median": 1658.2,
+     "mean": 1730.29,
+     "min": 1349.99,
      "max": 2439.21,
-     "q1": 1489.99,
+     "q1": 1547.95,
      "q3": 1914.59,
-     "count": 51,
-     "count_filtered": 51,
+     "count": 46,
+     "count_filtered": 46,
      "samples": [
-      {
-       "title": "Nikon D850 DSLR Camera (Body Only, Black) 45.7MP FX-Format, 184930 Shutter Count",
-       "price": 1599.71,
-       "currency": "USD",
-       "condition": "Used",
-       "image": "https://i.ebayimg.com/images/g/nlwAAeSwV5to5pyj/s-l1600.jpg",
-       "url": "https://www.ebay.com/itm/357719511494?_skw=Nikon+D850+body&hash=item5349be91c6:g:nlwAAeSwV5to5pyj"
-      },
-      {
-       "title": "Nikon D850 Digital SLR Camera Body Full Frame FX DSLR 45.7MP Japan JP H0529",
-       "price": 1632.23,
-       "currency": "USD",
-       "condition": "Used",
-       "image": "https://i.ebayimg.com/images/g/C4UAAeSwvHJqGN8q/s-l1200.jpg",
-       "url": "https://www.ebay.com/itm/278032468713?_skw=Nikon+D850+body&hash=item40bc06cae9:g:C4UAAeSwvHJqGN8q"
-      },
       {
        "title": "NIKON Digital SLR Camera D850 Full Frame Body Only",
        "price": 1637.24,
@@ -1026,6 +1010,22 @@
        "condition": "Used",
        "image": "https://i.ebayimg.com/images/g/qFUAAOSwNSlndTwx/s-l1600.jpg",
        "url": "https://www.ebay.com/itm/127054479273?_skw=Nikon+D850+body&hash=item1d95097fa9:g:qFUAAOSwNSlndTwx"
+      },
+      {
+       "title": "[MINT in Box] Nikon D850 45.7MP Full Frame Digital SLR Camera Body From Japan",
+       "price": 1699.99,
+       "currency": "USD",
+       "condition": "Used",
+       "image": "https://i.ebayimg.com/images/g/fygAAeSwaZBp9hQ5/s-l1600.jpg",
+       "url": "https://www.ebay.com/itm/178097874762?_skw=Nikon+D850+body&hash=item297775e74a:g:fygAAeSwaZBp9hQ5"
+      },
+      {
+       "title": "Nikon D850 Body Digital SLR Camera (7957 shots) Digital SLR Camera [Top Mint]",
+       "price": 1705.72,
+       "currency": "USD",
+       "condition": "Used",
+       "image": "https://i.ebayimg.com/images/g/dwUAAeSwhnhpe~9n/s-l1600.jpg",
+       "url": "https://www.ebay.com/itm/398008918365?_skw=Nikon+D850+body&hash=item5cab2e215d:g:dwUAAeSwhnhpe~9n"
       }
      ]
     },
@@ -1035,15 +1035,23 @@
      "name_en": "Nikon D7500",
      "subcategory": "midrange",
      "release_year": 2017,
-     "median": 663.0,
-     "mean": 690.89,
+     "median": 662.57,
+     "mean": 688.7,
      "min": 416.14,
      "max": 1192.99,
      "q1": 539.14,
-     "q3": 818.77,
-     "count": 170,
-     "count_filtered": 165,
+     "q3": 819.65,
+     "count": 169,
+     "count_filtered": 164,
      "samples": [
+      {
+       "title": "Nikon D7500 20.9MP Digital SLR Camera Black Body From Japan Fedex Excellent++",
+       "price": 663.0,
+       "currency": "USD",
+       "condition": "Used",
+       "image": "https://i.ebayimg.com/images/g/fHsAAeSwE-FqHnho/s-l1200.jpg",
+       "url": "https://www.ebay.com/itm/358628344721?_skw=Nikon+D7500+body&hash=item537fea4391:g:fHsAAeSwE-FqHnho"
+      },
       {
        "title": "Nikon D7500 20.9MP DSLR Body (534 shots)[Top Mint] US STOCK",
        "price": 681.15,
@@ -1075,14 +1083,6 @@
        "condition": "Used",
        "image": "https://i.ebayimg.com/images/g/29AAAeSwzKppTUzf/s-l1600.jpg",
        "url": "https://www.ebay.com/itm/358052116699?_skw=Nikon+D7500+body&hash=item535d91b8db:g:29AAAeSwzKppTUzf"
-      },
-      {
-       "title": "Nikon D7500 20.9MP Digital SLR Camera Body #885, Low -18700 Shutter Count",
-       "price": 690.95,
-       "currency": "USD",
-       "condition": "Used",
-       "image": "https://i.ebayimg.com/images/g/0qEAAeSwZLVqEnD3/s-l1600.jpg",
-       "url": "https://www.ebay.com/itm/227356113841?_skw=Nikon+D7500+body&hash=item34ef7afbb1:g:0qEAAeSwZLVqEnD3"
       }
      ]
     },
@@ -1149,14 +1149,14 @@
      "name_en": "Nikon D500",
      "subcategory": "flagship",
      "release_year": 2016,
-     "median": 949.99,
-     "mean": 953.43,
+     "median": 949.5,
+     "mean": 950.25,
      "min": 574.9,
      "max": 1335.99,
-     "q1": 859.54,
-     "q3": 1087.27,
-     "count": 79,
-     "count_filtered": 79,
+     "q1": 858.14,
+     "q3": 1085.45,
+     "count": 80,
+     "count_filtered": 80,
      "samples": [
       {
        "title": "#a2852 Nikon D500 Body",
@@ -1206,14 +1206,14 @@
      "name_en": "Nikon D5",
      "subcategory": "flagship",
      "release_year": 2016,
-     "median": 2205.42,
-     "mean": 2173.03,
-     "min": 1550.0,
+     "median": 2210.85,
+     "mean": 2179.3,
+     "min": 1599.99,
      "max": 3185.04,
      "q1": 1901.11,
      "q3": 2450.89,
-     "count": 54,
-     "count_filtered": 50,
+     "count": 51,
+     "count_filtered": 47,
      "samples": [
       {
        "title": "Nikon  D5 756261",
@@ -1460,13 +1460,13 @@
      "subcategory": "midrange",
      "release_year": 2014,
      "median": 899.5,
-     "mean": 887.5,
+     "mean": 887.22,
      "min": 609.99,
      "max": 1291.99,
-     "q1": 789.99,
-     "q3": 991.58,
-     "count": 71,
-     "count_filtered": 68,
+     "q1": 773.5,
+     "q3": 992.31,
+     "count": 69,
+     "count_filtered": 66,
      "samples": [
       {
        "title": "Nikon D810 Body Digital SLR Full-size Tested Nikon #S020001",
@@ -1516,23 +1516,15 @@
      "name_en": "Nikon D750",
      "subcategory": "midrange",
      "release_year": 2014,
-     "median": 734.82,
-     "mean": 784.18,
+     "median": 744.33,
+     "mean": 788.09,
      "min": 474.99,
-     "max": 1360.99,
-     "q1": 637.31,
-     "q3": 931.87,
-     "count": 156,
+     "max": 1382.99,
+     "q1": 629.99,
+     "q3": 932.75,
+     "count": 155,
      "count_filtered": 151,
      "samples": [
-      {
-       "title": "NIKON D750 Digital SLR Camera Body Only",
-       "price": 744.33,
-       "currency": "USD",
-       "condition": "Used",
-       "image": "https://i.ebayimg.com/images/g/l8EAAeSwhWNpX4Gg/s-l1600.jpg",
-       "url": "https://www.ebay.com/itm/389280030531?_skw=Nikon+D750+body+-D7500&hash=item5aa2e5df43:g:l8EAAeSwhWNpX4Gg"
-      },
       {
        "title": "Nikon D750 Digital SLR Camera Body Shutter Count 16525 Clean Condition Japan",
        "price": 750.54,
@@ -1564,6 +1556,14 @@
        "condition": "Used",
        "image": "https://i.ebayimg.com/images/g/gt0AAeSwwC5qJZQA/s-l1600.jpg",
        "url": "https://www.ebay.com/itm/306895378147?_skw=Nikon+D750+body+-D7500&hash=item477463d6e3:g:gt0AAeSwwC5qJZQA"
+      },
+      {
+       "title": "Nikon D750 24.3 MP Digital SLR Camera - Black (Body Only)",
+       "price": 773.75,
+       "currency": "USD",
+       "condition": "Used",
+       "image": "https://i.ebayimg.com/images/g/HisAAeSwMCZp-mIO/s-l1200.jpg",
+       "url": "https://www.ebay.com/itm/157887568832?_skw=Nikon+D750+body+-D7500&hash=item24c2d51bc0:g:HisAAeSwMCZp-mIO"
       }
      ]
     },
@@ -1631,13 +1631,13 @@
      "subcategory": "entry",
      "release_year": 2014,
      "median": 291.37,
-     "mean": 308.37,
+     "mean": 309.34,
      "min": 159.99,
      "max": 589.98,
-     "q1": 238.26,
-     "q3": 384.41,
-     "count": 109,
-     "count_filtered": 100,
+     "q1": 238.57,
+     "q3": 384.98,
+     "count": 107,
+     "count_filtered": 98,
      "samples": [
       {
        "title": "NIKON Digital SLR Camera D3300 Body Used",
@@ -1688,7 +1688,7 @@
      "subcategory": "midrange",
      "release_year": 2013,
      "median": 1229.72,
-     "mean": 1316.76,
+     "mean": 1314.53,
      "min": 859.99,
      "max": 2125.36,
      "q1": 1017.51,
@@ -1744,23 +1744,15 @@
      "name_en": "Nikon D5300",
      "subcategory": "entry",
      "release_year": 2013,
-     "median": 415.0,
-     "mean": 437.71,
+     "median": 415.04,
+     "mean": 438.05,
      "min": 235.0,
      "max": 798.0,
-     "q1": 348.22,
+     "q1": 351.49,
      "q3": 534.82,
      "count": 276,
      "count_filtered": 263,
      "samples": [
-      {
-       "title": "NIKON DSLR D5300 Used",
-       "price": 416.32,
-       "currency": "USD",
-       "condition": "Used",
-       "image": "https://i.ebayimg.com/images/g/tpAAAeSw8fpqH3DW/s-l1600.jpg",
-       "url": "https://www.ebay.com/itm/318401327205?_skw=Nikon+D5300+body&hash=item4a2232b065:g:tpAAAeSw8fpqH3DW"
-      },
       {
        "title": "MINT Nikon D5300 24.2 MP Digital SLR Camera Black Body Shot 4925 Quick Shipping",
        "price": 418.9,
@@ -1792,6 +1784,14 @@
        "condition": "Used",
        "image": "https://i.ebayimg.com/images/g/j8oAAOSwXQ1kNIhE/s-l1600.jpg",
        "url": "https://www.ebay.com/itm/404240219932?_skw=Nikon+D5300+body&hash=item5e1e983f1c:g:j8oAAOSwXQ1kNIhE"
+      },
+      {
+       "title": "Nikon D5300 24.2 MP Digital SLR Camera - Black (Body Only)",
+       "price": 424.76,
+       "currency": "USD",
+       "condition": "Used",
+       "image": "https://i.ebayimg.com/images/g/IAgAAeSwNBlp6hpV/s-l1600.jpg",
+       "url": "https://www.ebay.com/itm/336548242408?_skw=Nikon+D5300+body&hash=item4e5bd6a3e8:g:IAgAAeSwNBlp6hpV"
       }
      ]
     },
@@ -1801,23 +1801,15 @@
      "name_en": "Nikon D610",
      "subcategory": "midrange",
      "release_year": 2013,
-     "median": 602.45,
-     "mean": 615.18,
+     "median": 605.6,
+     "mean": 622.94,
      "min": 350.47,
-     "max": 1070.3,
-     "q1": 519.99,
-     "q3": 745.47,
-     "count": 95,
-     "count_filtered": 88,
+     "max": 1090.76,
+     "q1": 520.55,
+     "q3": 750.23,
+     "count": 92,
+     "count_filtered": 86,
      "samples": [
-      {
-       "title": "Near Mint Nikon NIKON D610 Body Digital SLR Body #Z7283",
-       "price": 613.45,
-       "currency": "USD",
-       "condition": "Used",
-       "image": "https://i.ebayimg.com/images/g/QJ8AAeSwcSxqG3dY/s-l640.jpg",
-       "url": "https://www.ebay.com/itm/358619267784?_skw=Nikon+D610+body&hash=item537f5fc2c8:g:QJ8AAeSwcSxqG3dY"
-      },
       {
        "title": "Nikon D610 Body Only Under 15000 Shutter Count FX Full Frame Camera",
        "price": 614.54,
@@ -1849,6 +1841,14 @@
        "condition": "Used",
        "image": "https://i.ebayimg.com/images/g/RLYAAeSw645qG3fd/s-l640.jpg",
        "url": "https://www.ebay.com/itm/358619268030?_skw=Nikon+D610+body&hash=item537f5fc3be:g:RLYAAeSw645qG3fd"
+      },
+      {
+       "title": "Nikon D610 [Top-MINT 5,499 clicks] 24.3MP Digital SLR Camera Body Only #2100115",
+       "price": 636.0,
+       "currency": "USD",
+       "condition": "Used",
+       "image": "https://i.ebayimg.com/images/g/oJoAAeSwWm5pdKQH/s-l1600.jpg",
+       "url": "https://www.ebay.com/itm/406938085108?_skw=Nikon+D610+body&hash=item5ebf6666f4:g:oJoAAeSwWm5pdKQH"
       }
      ]
     },
@@ -1859,7 +1859,7 @@
      "subcategory": "midrange",
      "release_year": 2013,
      "median": 410.23,
-     "mean": 430.19,
+     "mean": 430.05,
      "min": 246.43,
      "max": 759.0,
      "q1": 342.28,
@@ -1916,7 +1916,7 @@
      "subcategory": "entry",
      "release_year": 2012,
      "median": 250.0,
-     "mean": 273.93,
+     "mean": 273.87,
      "min": 178.0,
      "max": 469.89,
      "q1": 222.79,
@@ -1972,23 +1972,15 @@
      "name_en": "Nikon D600",
      "subcategory": "midrange",
      "release_year": 2012,
-     "median": 448.76,
-     "mean": 473.88,
+     "median": 449.99,
+     "mean": 476.46,
      "min": 289.99,
      "max": 792.05,
      "q1": 397.37,
-     "q3": 557.76,
+     "q3": 565.74,
      "count": 74,
      "count_filtered": 69,
      "samples": [
-      {
-       "title": "Nikon D600 DSLR Camera 24.3MP Full Frame FX Body Only, Shutter Count 31%",
-       "price": 448.75,
-       "currency": "USD",
-       "condition": "Used",
-       "image": "https://i.ebayimg.com/images/g/sNMAAeSwylhpPB4z/s-l1600.jpg",
-       "url": "https://www.ebay.com/itm/177921168627?_skw=Nikon+D600+body+-D610&hash=item296ced94f3:g:sNMAAeSwylhpPB4z"
-      },
       {
        "title": "Nikon D600 24.3MP Digital SLR Camera Body",
        "price": 452.63,
@@ -2020,6 +2012,14 @@
        "condition": "Used",
        "image": "https://i.ebayimg.com/images/g/E-EAAeSwZM9qJZiB/s-l640.jpg",
        "url": "https://www.ebay.com/itm/306988435359?_skw=Nikon+D600+body+-D610&hash=item4779efc79f:g:E-EAAeSwZM9qJZiB"
+      },
+      {
+       "title": "Nikon D600 [Near MINT] 24.3 MP Digital SLR Camera Body Only FX CMOS #2024705",
+       "price": 477.0,
+       "currency": "USD",
+       "condition": "Used",
+       "image": "https://i.ebayimg.com/images/g/hBsAAOSwxD5lTNRg/s-l1600.jpg",
+       "url": "https://www.ebay.com/itm/406965104747?_skw=Nikon+D600+body+-D610&hash=item5ec102b06b:g:hBsAAOSwxD5lTNRg"
       }
      ]
     },
@@ -2030,7 +2030,7 @@
      "subcategory": "entry",
      "release_year": 2012,
      "median": 239.95,
-     "mean": 243.11,
+     "mean": 243.45,
      "min": 127.4,
      "max": 395.99,
      "q1": 200.0,
@@ -2086,23 +2086,15 @@
      "name_en": "Nikon D800",
      "subcategory": "midrange",
      "release_year": 2012,
-     "median": 621.24,
-     "mean": 654.44,
+     "median": 621.87,
+     "mean": 656.42,
      "min": 419.23,
      "max": 1107.99,
-     "q1": 547.74,
-     "q3": 779.7,
-     "count": 116,
-     "count_filtered": 109,
+     "q1": 546.48,
+     "q3": 779.99,
+     "count": 115,
+     "count_filtered": 108,
      "samples": [
-      {
-       "title": "【Top Mint】Nikon D800 36.3MP FX DSLR Digital SLR Camera Body from Japan #2568",
-       "price": 632.0,
-       "currency": "USD",
-       "condition": "Used",
-       "image": "https://i.ebayimg.com/images/g/nm0AAeSwSxxpuCU8/s-l1600.jpg",
-       "url": "https://www.ebay.com/itm/358338398640?_skw=Nikon+D800+body+-D800E&hash=item536ea209b0:g:nm0AAeSwSxxpuCU8"
-      },
       {
        "title": "Nikon D800 36.3 MP Digital SLR Camera - Black (Body Only)",
        "price": 639.57,
@@ -2134,6 +2126,14 @@
        "condition": "Used",
        "image": "https://i.ebayimg.com/images/g/No8AAeSwAxtp5syI/s-l1600.jpg",
        "url": "https://www.ebay.com/itm/389917011424?_skw=Nikon+D800+body+-D800E&hash=item5ac8dd6de0:g:No8AAeSwAxtp5syI"
+      },
+      {
+       "title": "NIKON D800 Digital SLR Camera Body - Full Frame Excellence",
+       "price": 655.03,
+       "currency": "USD",
+       "condition": "Used",
+       "image": "https://i.ebayimg.com/images/g/5MIAAeSwZAVpX2kJ/s-l1600.jpg",
+       "url": "https://www.ebay.com/itm/389280030105?_skw=Nikon+D800+body+-D800E&hash=item5aa2e5dd99:g:5MIAAeSwZAVpX2kJ"
       }
      ]
     },
@@ -2143,14 +2143,14 @@
      "name_en": "Nikon D800E",
      "subcategory": "midrange",
      "release_year": 2012,
-     "median": 697.63,
-     "mean": 714.19,
+     "median": 698.81,
+     "mean": 716.49,
      "min": 529.99,
      "max": 996.0,
-     "q1": 647.82,
-     "q3": 823.85,
-     "count": 48,
-     "count_filtered": 43,
+     "q1": 649.99,
+     "q3": 828.01,
+     "count": 47,
+     "count_filtered": 42,
      "samples": [
       {
        "title": "SC:974!! [Almost Unused] Nikon D800E 36.3MP Digital Camera Body Only From JAPAN",
@@ -2200,14 +2200,14 @@
      "name_en": "Nikon D4",
      "subcategory": "flagship",
      "release_year": 2012,
-     "median": 1116.36,
-     "mean": 1228.15,
+     "median": 1202.26,
+     "mean": 1249.66,
      "min": 919.97,
      "max": 1892.83,
-     "q1": 1040.61,
-     "q3": 1397.18,
-     "count": 12,
-     "count_filtered": 11,
+     "q1": 1068.22,
+     "q3": 1425.0,
+     "count": 11,
+     "count_filtered": 10,
      "samples": [
       {
        "title": "Nikon D4 16.2MP FX DSLR Camera Body Overhauled Rubber Replaced Full Set MINT",
@@ -2314,15 +2314,23 @@
      "name_en": "Nikon D3100",
      "subcategory": "entry",
      "release_year": 2010,
-     "median": 179.42,
-     "mean": 187.59,
+     "median": 179.75,
+     "mean": 188.64,
      "min": 109.89,
      "max": 347.21,
-     "q1": 137.05,
-     "q3": 235.05,
-     "count": 78,
-     "count_filtered": 74,
+     "q1": 135.44,
+     "q3": 232.73,
+     "count": 77,
+     "count_filtered": 75,
      "samples": [
+      {
+       "title": "Nikon D3100 DSLR Camera Body 946 Shutter Count Excellent Condition",
+       "price": 179.09,
+       "currency": "USD",
+       "condition": "Used",
+       "image": "https://i.ebayimg.com/images/g/PlEAAeSw9fpp8N9E/s-l1200.jpg",
+       "url": "https://www.ebay.com/itm/306906797384?_skw=Nikon+D3100+body&hash=item4775121548:g:PlEAAeSw9fpp8N9E"
+      },
       {
        "title": "Nikon D3100 Digital SLR Camera Body Only -VM 8689 LN-",
        "price": 179.75,
@@ -2330,14 +2338,6 @@
        "condition": "Used",
        "image": "https://i.ebayimg.com/images/g/ypAAAeSwzRxp5MXX/s-l1600.jpg",
        "url": "https://www.ebay.com/itm/127818321756?_skw=Nikon+D3100+body&hash=item1dc290cf5c:g:ypAAAeSwzRxp5MXX"
-      },
-      {
-       "title": "Nikon SLR digital camera single-lens D3100 body Used",
-       "price": 183.66,
-       "currency": "USD",
-       "condition": "Used",
-       "image": "https://i.ebayimg.com/images/g/8bYAAeSw-8pp~0Yz/s-l1200.jpg",
-       "url": "https://www.ebay.com/itm/318275524022?_skw=Nikon+D3100+body&hash=item4a1ab315b6:g:8bYAAeSw-8pp~0Yz"
       },
       {
        "title": "[Exc+5 wz/SD card] Nikon D3100 14.2MP Digital SLR Camera Body Black From Japan",
@@ -2372,11 +2372,11 @@
      "subcategory": "midrange",
      "release_year": 2010,
      "median": 272.0,
-     "mean": 287.38,
+     "mean": 287.07,
      "min": 152.9,
      "max": 501.99,
      "q1": 229.99,
-     "q3": 347.64,
+     "q3": 345.58,
      "count": 164,
      "count_filtered": 159,
      "samples": [
@@ -2428,15 +2428,31 @@
      "name_en": "Nikon D5000",
      "subcategory": "entry",
      "release_year": 2009,
-     "median": 212.44,
-     "mean": 218.05,
+     "median": 207.56,
+     "mean": 211.93,
      "min": 109.0,
-     "max": 372.13,
-     "q1": 178.12,
-     "q3": 259.98,
+     "max": 343.12,
+     "q1": 170.89,
+     "q3": 255.72,
      "count": 62,
      "count_filtered": 58,
      "samples": [
+      {
+       "title": "Nikon D5000 DSLR Camera Body Good Condition 5000 Shutter Count Tested",
+       "price": 207.99,
+       "currency": "USD",
+       "condition": "Used",
+       "image": "https://i.ebayimg.com/images/g/N-UAAeSwOHBqHY6m/s-l1200.jpg",
+       "url": "https://www.ebay.com/itm/206314415352?_skw=Nikon+D5000+body+-D500&hash=item30094c24f8:g:N-UAAeSwOHBqHY6m"
+      },
+      {
+       "title": "Mint SC 726: Nikon D D5000 12.3MP Digital SLR Camera Black Body Only From Japan",
+       "price": 209.9,
+       "currency": "USD",
+       "condition": "Used",
+       "image": "https://i.ebayimg.com/images/g/geoAAOSwp8Zix740/s-l960.jpg",
+       "url": "https://www.ebay.com/itm/384994797746?_skw=Nikon+D5000+body+-D500&hash=item59a37a68b2:g:geoAAOSwp8Zix740"
+      },
       {
        "title": "Nikon D5000 Body Camera Used Excellent Condition Compact Kit",
        "price": 214.99,
@@ -2460,22 +2476,6 @@
        "condition": "Used",
        "image": "https://i.ebayimg.com/images/g/2V8AAOSwjEFmmhka/s-l1600.jpg",
        "url": "https://www.ebay.com/itm/404230207234?_skw=Nikon+D5000+body+-D500&hash=item5e1dff7702:g:2V8AAOSwjEFmmhka"
-      },
-      {
-       "title": "NIKON D5000 DSLR Camera Body",
-       "price": 222.54,
-       "currency": "USD",
-       "condition": "Used",
-       "image": "https://i.ebayimg.com/images/g/b3IAAeSwjBdqGVNf/s-l1600.jpg",
-       "url": "https://www.ebay.com/itm/358613146986?_skw=Nikon+D5000+body+-D500&hash=item537f025d6a:g:b3IAAeSwjBdqGVNf"
-      },
-      {
-       "title": "NIKON D5000 Digital SLR Body",
-       "price": 222.54,
-       "currency": "USD",
-       "condition": "Used",
-       "image": "https://i.ebayimg.com/images/g/bm4AAeSwizRqGVNm/s-l1600.jpg",
-       "url": "https://www.ebay.com/itm/358613147727?_skw=Nikon+D5000+body+-D500&hash=item537f02604f:g:bm4AAeSwizRqGVNm"
       }
      ]
     },
@@ -2600,14 +2600,22 @@
      "subcategory": "entry",
      "release_year": 2009,
      "median": 160.0,
-     "mean": 172.44,
+     "mean": 172.85,
      "min": 88.11,
      "max": 312.99,
      "q1": 128.99,
-     "q3": 208.86,
+     "q3": 206.35,
      "count": 55,
-     "count_filtered": 53,
+     "count_filtered": 55,
      "samples": [
+      {
+       "title": "SC:684 [Top NINT] Nikon D3000 Digital SLR Camera Body Black, from Japan",
+       "price": 155.0,
+       "currency": "USD",
+       "condition": "Used",
+       "image": "https://i.ebayimg.com/images/g/yVEAAeSwGktol0Sd/s-l1600.jpg",
+       "url": "https://www.ebay.com/itm/306465115523?_skw=Nikon+D3000+body&hash=item475abe8d83:g:yVEAAeSwGktol0Sd"
+      },
       {
        "title": "Nikon D3000 DSLR Camera Body Only  -VM 7163 LN-",
        "price": 155.91,
@@ -2633,20 +2641,12 @@
        "url": "https://www.ebay.com/itm/286464424713?_skw=Nikon+D3000+body&hash=item42b29c3b09:g:NHIAAOSwd~dlJz14"
       },
       {
-       "title": "NIKON D3000 Body Digital SLR Camera",
-       "price": 169.32,
+       "title": "Nikon D3000 Body Digital Slr Camera",
+       "price": 166.67,
        "currency": "USD",
        "condition": "Used",
-       "image": "https://i.ebayimg.com/images/g/mHkAAeSwLxhqGVPl/s-l1600.jpg",
-       "url": "https://www.ebay.com/itm/358613148184?_skw=Nikon+D3000+body&hash=item537f026218:g:mHkAAeSwLxhqGVPl"
-      },
-      {
-       "title": "Nikon D3000 10.2MP Digital SLR Camera Body Only with Case",
-       "price": 170.02,
-       "currency": "USD",
-       "condition": "Used",
-       "image": "https://i.ebayimg.com/images/g/2WYAAOSwP1lkj9cP/s-l1600.jpg",
-       "url": "https://www.ebay.com/itm/266304043377?_skw=Nikon+D3000+body&hash=item3e00f53971:g:2WYAAOSwP1lkj9cP"
+       "image": "https://i.ebayimg.com/images/g/zHQAAeSw0k5qBdei/s-l1600.jpg",
+       "url": "https://www.ebay.com/itm/358555617011?_skw=Nikon+D3000+body&hash=item537b9486f3:g:zHQAAeSw0k5qBdei"
       }
      ]
     },
@@ -2656,13 +2656,13 @@
      "name_en": "Nikon D90",
      "subcategory": "midrange",
      "release_year": 2008,
-     "median": 251.61,
-     "mean": 259.41,
+     "median": 251.0,
+     "mean": 256.61,
      "min": 99.99,
-     "max": 519.36,
-     "q1": 190.62,
-     "q3": 326.99,
-     "count": 202,
+     "max": 507.05,
+     "q1": 189.99,
+     "q3": 319.5,
+     "count": 203,
      "count_filtered": 192,
      "samples": [
       {
@@ -2713,23 +2713,15 @@
      "name_en": "Nikon D700",
      "subcategory": "midrange",
      "release_year": 2008,
-     "median": 399.49,
-     "mean": 426.22,
+     "median": 399.99,
+     "mean": 428.78,
      "min": 279.99,
      "max": 727.43,
-     "q1": 350.0,
-     "q3": 512.46,
-     "count": 83,
-     "count_filtered": 78,
+     "q1": 354.99,
+     "q3": 515.44,
+     "count": 84,
+     "count_filtered": 79,
      "samples": [
-      {
-       "title": "【Near MINT w/Strap 】Nikon D700 12.1 MP Digital SLR Camera Body Black From JAPAN",
-       "price": 399.99,
-       "currency": "USD",
-       "condition": "Used",
-       "image": "https://i.ebayimg.com/images/g/VPIAAOSwXIVmLcWK/s-l1600.jpg",
-       "url": "https://www.ebay.com/itm/396261537923?_skw=Nikon+D700+body+-D7000&hash=item5c43073883:g:VPIAAOSwXIVmLcWK"
-      },
       {
        "title": "SC/16,850 [MINT] Nikon D700 12.1 MP Digital SLR Camera Body From JAPAN",
        "price": 399.99,
@@ -2747,12 +2739,12 @@
        "url": "https://www.ebay.com/itm/114686271380?_skw=Nikon+D700+body+-D7000&hash=item1ab3d59f94:g:k0cAAOSwFNZfNOUl"
       },
       {
-       "title": "SC:28997 [TOP MINT] Nikon D700 12.1MP Digital SLR Camera Body Only From Japan",
+       "title": "[TOP MINT] Nikon D700 12.1MP Digital SLR Camera Body Only From Japan",
        "price": 419.99,
        "currency": "USD",
        "condition": "Used",
        "image": "https://i.ebayimg.com/images/g/YPsAAeSwCDZqDBTY/s-l1600.jpg",
-       "url": "https://www.ebay.com/itm/318325923959?_skw=Nikon+D700+body+-D7000&hash=item4a1db42077:g:YPsAAeSwCDZqDBTY"
+       "url": "https://www.ebay.com/itm/318426067951?_skw=Nikon+D700+body+-D7000&hash=item4a23ac33ef:g:YPsAAeSwCDZqDBTY"
       },
       {
        "title": "Nikon D700 12.1 Megapixel Full Frame (FX) DSLR Camera body",
@@ -2761,6 +2753,14 @@
        "condition": "Used",
        "image": "https://i.ebayimg.com/images/g/3jIAAeSwnM1pgMyc/s-l1600.jpg",
        "url": "https://www.ebay.com/itm/287117047188?_skw=Nikon+D700+body+-D7000&hash=item42d9827594:g:3jIAAeSwnM1pgMyc"
+      },
+      {
+       "title": "Nikon D700 12.1 MP Digital SLR Camera - Black (Body Only)",
+       "price": 422.08,
+       "currency": "USD",
+       "condition": "Used",
+       "image": "https://i.ebayimg.com/images/g/Yu4AAeSwFFlqIOz7/s-l1600.jpg",
+       "url": "https://www.ebay.com/itm/227373174859?_skw=Nikon+D700+body+-D7000&hash=item34f07f504b:g:Yu4AAeSwFFlqIOz7"
       }
      ]
     },
@@ -2820,14 +2820,30 @@
      "subcategory": "entry",
      "release_year": 2008,
      "median": 190.72,
-     "mean": 209.3,
+     "mean": 207.81,
      "min": 84.59,
      "max": 473.99,
-     "q1": 137.92,
-     "q3": 276.89,
-     "count": 156,
-     "count_filtered": 150,
+     "q1": 138.0,
+     "q3": 275.51,
+     "count": 154,
+     "count_filtered": 148,
      "samples": [
+      {
+       "title": "Nikon D60 Digital Camera Lightweight Compact Easy Transfer Great Condition",
+       "price": 194.75,
+       "currency": "USD",
+       "condition": "Used",
+       "image": "https://i.ebayimg.com/images/g/XOkAAeSwauxqBgIy/s-l1200.jpg",
+       "url": "https://www.ebay.com/itm/306938830098?_skw=Nikon+D60+body&hash=item4776fadd12:g:XOkAAeSwauxqBgIy"
+      },
+      {
+       "title": "Nikon D60 Digital Camera Lightweight Compact Easy Smartphone Transfer",
+       "price": 196.85,
+       "currency": "USD",
+       "condition": "Used",
+       "image": "https://i.ebayimg.com/images/g/H5wAAeSwhANqBgIA/s-l1200.jpg",
+       "url": "https://www.ebay.com/itm/306938832297?_skw=Nikon+D60+body&hash=item4776fae5a9:g:H5wAAeSwhANqBgIA"
+      },
       {
        "title": "Nikon D60 10.2MP Digital SLR Camera (Body Only) #9266",
        "price": 197.61,
@@ -2851,22 +2867,6 @@
        "condition": "Used",
        "image": "https://i.ebayimg.com/images/g/XnMAAeSw5ZZqBgId/s-l1200.jpg",
        "url": "https://www.ebay.com/itm/306938833360?_skw=Nikon+D60+body&hash=item4776fae9d0:g:XnMAAeSw5ZZqBgId"
-      },
-      {
-       "title": "Nikon D60 Digital SLR Camera -Black ,Function Works Normally，English languege",
-       "price": 201.9,
-       "currency": "USD",
-       "condition": "Used",
-       "image": "https://i.ebayimg.com/images/g/-hUAAeSwr0Np4LXx/s-l1600.jpg",
-       "url": "https://www.ebay.com/itm/365968837788?_skw=Nikon+D60+body&hash=item5535714c9c:g:-hUAAeSwr0Np4LXx"
-      },
-      {
-       "title": "Used Nikon D60 DSLR Body Only",
-       "price": 204.44,
-       "currency": "USD",
-       "condition": "Used",
-       "image": "https://i.ebayimg.com/images/g/0ucAAeSwaO1qICrU/s-l1600.jpg",
-       "url": "https://www.ebay.com/itm/236854609944?_skw=Nikon+D60+body&hash=item3725a28818:g:0ucAAeSwaO1qICrU"
       }
      ]
     },
@@ -2877,13 +2877,13 @@
      "subcategory": "midrange",
      "release_year": 2007,
      "median": 224.56,
-     "mean": 240.41,
+     "mean": 241.1,
      "min": 100.0,
      "max": 453.11,
-     "q1": 183.94,
-     "q3": 294.94,
-     "count": 157,
-     "count_filtered": 151,
+     "q1": 183.99,
+     "q3": 296.5,
+     "count": 155,
+     "count_filtered": 149,
      "samples": [
       {
        "title": ", Works Perfectly, Optics Excellent Nikon D300 Body",
@@ -2933,8 +2933,8 @@
      "name_en": "Nikon D3",
      "subcategory": "flagship",
      "release_year": 2007,
-     "median": 668.22,
-     "mean": 665.61,
+     "median": 649.49,
+     "mean": 664.02,
      "min": 417.8,
      "max": 1126.25,
      "q1": 531.0,
@@ -2942,6 +2942,14 @@
      "count": 36,
      "count_filtered": 33,
      "samples": [
+      {
+       "title": "Nikon D3 DSLR Camera Body F Mount Full Frame 2 Batteries 2 CF Cards From JAPAN",
+       "price": 649.49,
+       "currency": "USD",
+       "condition": "Used",
+       "image": "https://i.ebayimg.com/images/g/bhsAAeSwukVqJXnD/s-l1200.jpg",
+       "url": "https://www.ebay.com/itm/358649860538?_skw=Nikon+D3+body+-D3S+-D3X&hash=item53813291ba:g:bhsAAeSwukVqJXnD"
+      },
       {
        "title": "Nikon D3 Body #1099",
        "price": 668.22,
@@ -2967,14 +2975,6 @@
        "url": "https://www.ebay.com/itm/306970224521?_skw=Nikon+D3+body+-D3S+-D3X&hash=item4778d9e789:g:BP0AAeSwOzVqGbB-"
       },
       {
-       "title": "Nikon D3 DSLR Camera Body F Mount Full Frame 2 Batteries 2 CF Cards From JAPAN",
-       "price": 702.12,
-       "currency": "USD",
-       "condition": "Used",
-       "image": "https://i.ebayimg.com/images/g/bhsAAeSwukVqJXnD/s-l1200.jpg",
-       "url": "https://www.ebay.com/itm/358649860538?_skw=Nikon+D3+body+-D3S+-D3X&hash=item53813291ba:g:bhsAAeSwukVqJXnD"
-      },
-      {
        "title": "Nikon D3 Body #1099",
        "price": 709.25,
        "currency": "USD",
@@ -2990,23 +2990,15 @@
      "name_en": "Nikon D40X",
      "subcategory": "entry",
      "release_year": 2007,
-     "median": 199.73,
-     "mean": 216.83,
+     "median": 200.16,
+     "mean": 216.92,
      "min": 87.59,
      "max": 467.6,
      "q1": 159.47,
      "q3": 284.85,
-     "count": 91,
-     "count_filtered": 84,
+     "count": 90,
+     "count_filtered": 83,
      "samples": [
-      {
-       "title": "Nikon D40X DSLR Camera Body SDHC USB AV 2.5\" LCD Used",
-       "price": 203.99,
-       "currency": "USD",
-       "condition": "Used",
-       "image": "https://i.ebayimg.com/images/g/rcEAAeSwI3ZqBIBK/s-l1600.jpg",
-       "url": "https://www.ebay.com/itm/206271918145?_skw=Nikon+D40X+body&hash=item3006c3b041:g:rcEAAeSwI3ZqBIBK"
-      },
       {
        "title": "Nikon D40X DSLR Camera 10.2MP Digital SLR Used",
        "price": 203.99,
@@ -3038,6 +3030,14 @@
        "condition": "Used",
        "image": "https://i.ebayimg.com/images/g/rY0AAeSwOgJqGVZ4/s-l1600.jpg",
        "url": "https://www.ebay.com/itm/398025231176?_skw=Nikon+D40X+body&hash=item5cac270b48:g:rY0AAeSwOgJqGVZ4"
+      },
+      {
+       "title": "Nikon D40x DSLR Body Used JP",
+       "price": 223.93,
+       "currency": "USD",
+       "condition": "Used",
+       "image": "https://i.ebayimg.com/images/g/090AAeSwaU9pQ9b8/s-l960.jpg",
+       "url": "https://www.ebay.com/itm/389053226334?_skw=Nikon+D40X+body&hash=item5a95611d5e:g:090AAeSwaU9pQ9b8"
       }
      ]
     },
@@ -3105,7 +3105,7 @@
      "subcategory": "entry",
      "release_year": 2006,
      "median": 136.06,
-     "mean": 136.03,
+     "mean": 134.99,
      "min": 52.03,
      "max": 299.89,
      "q1": 92.42,
@@ -3202,31 +3202,15 @@
      "name_en": "Nikon D200",
      "subcategory": "midrange",
      "release_year": 2005,
-     "median": 241.28,
-     "mean": 254.73,
-     "min": 124.8,
+     "median": 242.13,
+     "mean": 260.32,
+     "min": 129.99,
      "max": 486.99,
-     "q1": 194.49,
-     "q3": 325.11,
-     "count": 96,
-     "count_filtered": 88,
+     "q1": 205.05,
+     "q3": 330.22,
+     "count": 93,
+     "count_filtered": 85,
      "samples": [
-      {
-       "title": "Nikon NIKON D200 Body Fully Working #E623",
-       "price": 242.13,
-       "currency": "USD",
-       "condition": "Used",
-       "image": "https://i.ebayimg.com/images/g/TfMAAeSw2k5qHD35/s-l1200.jpg",
-       "url": "https://www.ebay.com/itm/188448308528?_skw=Nikon+D200+body&hash=item2be064fd30:g:TfMAAeSw2k5qHD35"
-      },
-      {
-       "title": "Nikon D200 10.2MP DX Digital SLR Camera 3110154",
-       "price": 242.5,
-       "currency": "USD",
-       "condition": "Used",
-       "image": "https://i.ebayimg.com/images/g/b1wAAOSw-qNi5s8q/s-l1600.jpg",
-       "url": "https://www.ebay.com/itm/175667918848?_skw=Nikon+D200+body&hash=item28e69fb800:g:b1wAAOSw-qNi5s8q"
-      },
       {
        "title": "Nikon D200 10.2MP DX Digital SLR Camera 3188379",
        "price": 244.51,
@@ -3250,6 +3234,22 @@
        "condition": "Used",
        "image": "https://i.ebayimg.com/images/g/YkcAAOSwNUpl9va7/s-l1600.jpg",
        "url": "https://www.ebay.com/itm/358618732237?_skw=Nikon+D200+body&hash=item537f5796cd:g:YkcAAOSwNUpl9va7"
+      },
+      {
+       "title": "Nikon D200 12.1MP Digital SLR Camera Body Shooter Counter 48000",
+       "price": 255.09,
+       "currency": "USD",
+       "condition": "Used",
+       "image": "https://i.ebayimg.com/images/g/V0kAAeSw6wJp8t2h/s-l1600.jpg",
+       "url": "https://www.ebay.com/itm/287302395468?_skw=Nikon+D200+body&hash=item42e48ea64c:g:V0kAAeSw6wJp8t2h"
+      },
+      {
+       "title": "Shutter Count 19825, Nikon D200 Body 8800 SS986 #1587",
+       "price": 255.45,
+       "currency": "USD",
+       "condition": "Used",
+       "image": "https://i.ebayimg.com/images/g/eR0AAeSwqvNqHD61/s-l1200.jpg",
+       "url": "https://www.ebay.com/itm/178180544540?_skw=Nikon+D200+body&hash=item297c63581c:g:eR0AAeSwqvNqHD61"
       }
      ]
     },
@@ -3316,14 +3316,14 @@
      "name_en": "Nikon D70S",
      "subcategory": "midrange",
      "release_year": 2005,
-     "median": 157.99,
-     "mean": 184.58,
+     "median": 158.44,
+     "mean": 185.39,
      "min": 52.03,
      "max": 406.29,
-     "q1": 117.67,
-     "q3": 238.1,
-     "count": 54,
-     "count_filtered": 53,
+     "q1": 116.88,
+     "q3": 249.8,
+     "count": 53,
+     "count_filtered": 52,
      "samples": [
       {
        "title": "(MINT) Nikon D70 Digital SLR Camera (Body Only) #299",
@@ -3398,14 +3398,14 @@
      "name_en": "Nikon D70",
      "subcategory": "midrange",
      "release_year": 2004,
-     "median": 135.98,
-     "mean": 143.25,
+     "median": 132.88,
+     "mean": 138.6,
      "min": 55.0,
-     "max": 307.24,
+     "max": 271.31,
      "q1": 95.56,
-     "q3": 181.46,
+     "q3": 176.89,
      "count": 90,
-     "count_filtered": 88,
+     "count_filtered": 86,
      "samples": [
       {
        "title": "Boxed Nikon D70 DSLR Camera Body Only – 6.1MP – Shutter Count 11648",
@@ -3456,7 +3456,7 @@
      "subcategory": "flagship",
      "release_year": 2004,
      "median": 370.02,
-     "mean": 365.16,
+     "mean": 365.09,
      "min": 204.93,
      "max": 578.95,
      "q1": 288.99,
@@ -4373,13 +4373,13 @@
      "subcategory": "midrange",
      "release_year": 1999,
      "median": 495.34,
-     "mean": 547.96,
+     "mean": 543.28,
      "min": 259.99,
-     "max": 939.98,
-     "q1": 436.8,
+     "max": 920.61,
+     "q1": 443.62,
      "q3": 639.99,
-     "count": 44,
-     "count_filtered": 44,
+     "count": 43,
+     "count_filtered": 42,
      "samples": [
       {
        "title": "Final Late S/N229xxx [Top MINT] Nikon F100 35mm Film Camera Body  From JAPAN",
@@ -4840,14 +4840,14 @@
      "name_en": "Nikon F80",
      "subcategory": "entry",
      "release_year": 2000,
-     "median": 179.99,
-     "mean": 179.28,
+     "median": 179.29,
+     "mean": 179.25,
      "min": 88.0,
      "max": 269.9,
      "q1": 159.99,
      "q3": 209.0,
-     "count": 27,
-     "count_filtered": 25,
+     "count": 26,
+     "count_filtered": 24,
      "samples": [
       {
        "title": "Nikon F80S 35mm SLR Film Camera Body Only Tested Working EX+5 From Japan",
@@ -4874,20 +4874,20 @@
        "url": "https://www.ebay.com/itm/206324046688?_skw=Nikon+F80+body&hash=item3009df1b60:g:LzAAAeSw1PRqIr~f"
       },
       {
-       "title": "Nikon F80 35mm Camera Body Only in Black Boxed with Paperwork - Great Condition",
-       "price": 180.04,
-       "currency": "USD",
-       "condition": "Used",
-       "image": "https://i.ebayimg.com/images/g/Tu4AAeSwnyZqJpvs/s-l1600.jpg",
-       "url": "https://www.ebay.com/itm/800143127838?_skw=Nikon+F80+body&hash=itemba4c3f351e:g:Tu4AAeSwnyZqJpvs"
-      },
-      {
        "title": "No Sticky **MINT w/Strap** Nikon F80D F80 D 35mm SLR Film Camera Body From JAPAN",
        "price": 189.9,
        "currency": "USD",
        "condition": "Used",
        "image": "https://i.ebayimg.com/images/g/YpIAAeSwCbZp9Fqb/s-l1600.jpg",
        "url": "https://www.ebay.com/itm/336562049533?_skw=Nikon+F80+body&hash=item4e5ca951fd:g:YpIAAeSwCbZp9Fqb"
+      },
+      {
+       "title": "No Sticky [ MINT ] Nikon F80D F80 D Black SLR 35mm Film Camera Body From JAPAN",
+       "price": 189.99,
+       "currency": "USD",
+       "condition": "Used",
+       "image": "https://i.ebayimg.com/images/g/56cAAeSwcg9p3Oss/s-l1200.jpg",
+       "url": "https://www.ebay.com/itm/406973220780?_skw=Nikon+F80+body&hash=item5ec17e87ac:g:56cAAeSwcg9p3Oss"
       }
      ]
     },
@@ -5842,14 +5842,14 @@
      "name_en": "Nikkormat",
      "subcategory": "midrange",
      "release_year": 1965,
-     "median": 180.22,
-     "mean": 180.22,
-     "min": 132.5,
+     "median": 132.5,
+     "mean": 137.43,
+     "min": 51.85,
      "max": 227.95,
-     "q1": 132.5,
+     "q1": 51.85,
      "q3": 227.95,
-     "count": 2,
-     "count_filtered": 2,
+     "count": 3,
+     "count_filtered": 3,
      "samples": [
       {
        "title": "Nikkormat FT all black VG condition body",
@@ -5858,6 +5858,14 @@
        "condition": "Used",
        "image": "https://i.ebayimg.com/images/g/SJQAAOSwXz9h5NZD/s-l1600.jpg",
        "url": "https://www.ebay.com/itm/403414588243?_skw=Nikkormat+body+-lens+-filter+-hood+-cap&hash=item5ded621b53:g:SJQAAOSwXz9h5NZD"
+      },
+      {
+       "title": "Nikon Nikkormat FT3 Body (#5255)",
+       "price": 51.85,
+       "currency": "USD",
+       "condition": "Tweedehands",
+       "image": "https://i.ebayimg.com/images/g/TxMAAeSwogtqJsht/s-l1600.jpg",
+       "url": "https://www.ebay.com/itm/137392281706?_skw=Nikkormat+body+-lens+-filter+-hood+-cap&hash=item1ffd37d86a:g:TxMAAeSwogtqJsht"
       },
       {
        "title": "Nikon Nikkormat FT Body (#5205)",
@@ -5875,14 +5883,14 @@
      "name_en": "Nikkormat FT3",
      "subcategory": "midrange",
      "release_year": 1977,
-     "median": 269.62,
-     "mean": 269.62,
-     "min": 269.62,
+     "median": 160.74,
+     "mean": 160.74,
+     "min": 51.85,
      "max": 269.62,
-     "q1": 269.62,
+     "q1": 51.85,
      "q3": 269.62,
-     "count": 1,
-     "count_filtered": 1,
+     "count": 2,
+     "count_filtered": 2,
      "samples": [
       {
        "title": "Nikon Nikkormat FT3 FT 3 FT-3 Body Body SLR Film Camera",
@@ -5891,6 +5899,14 @@
        "condition": "Gebraucht",
        "image": "https://i.ebayimg.com/images/g/m9cAAeSwUg1qCCI9/s-l1600.jpg",
        "url": "https://www.ebay.com/itm/800026017172?_skw=Nikkormat+FT3+body&hash=itemba45443d94:g:m9cAAeSwUg1qCCI9"
+      },
+      {
+       "title": "Nikon Nikkormat FT3 Body (#5255)",
+       "price": 51.85,
+       "currency": "USD",
+       "condition": "Tweedehands",
+       "image": "https://i.ebayimg.com/images/g/TxMAAeSwogtqJsht/s-l1600.jpg",
+       "url": "https://www.ebay.com/itm/137392281706?_skw=Nikkormat+FT3+body&hash=item1ffd37d86a:g:TxMAAeSwogtqJsht"
       }
      ]
     },
@@ -6479,14 +6495,14 @@
      "name_en": "NIKKOR Z 24-70mm f/2.8 S",
      "subcategory": "zoom",
      "focal_length_min": 24,
-     "median": 1771.75,
-     "mean": 1805.59,
+     "median": 1767.06,
+     "mean": 1804.28,
      "min": 1334.19,
      "max": 2276.29,
      "q1": 1664.05,
      "q3": 1943.74,
-     "count": 33,
-     "count_filtered": 33,
+     "count": 32,
+     "count_filtered": 32,
      "samples": [
       {
        "title": "Near Mint Nikon NIKKOR Z 24-70mm F/2.8 S Standard Zoom Lens For Z-Mount #N013",
@@ -6513,20 +6529,20 @@
        "url": "https://www.ebay.com/itm/157968416695?_skw=Nikkor+Z+24-70mm+f%2F2.8+S&hash=item24c7a6bfb7:g:MK4AAOSwzLtn6NXI"
       },
       {
-       "title": "Nikon NIKKOR Z 24-70mm F2.8 S Zoom Lens Near Mint From Japan J0529",
-       "price": 1847.49,
-       "currency": "USD",
-       "condition": "Used",
-       "image": "https://i.ebayimg.com/images/g/~F0AAeSwmhpqGY7K/s-l960.jpg",
-       "url": "https://www.ebay.com/itm/287361192657?_skw=Nikkor+Z+24-70mm+f%2F2.8+S&hash=item42e80fd2d1:g:~F0AAeSwmhpqGY7K"
-      },
-      {
        "title": "Nikon NIKKOR Z 24-70mm F2.8 S Standard Zoom Lens Japan J0529",
        "price": 1847.49,
        "currency": "USD",
        "condition": "Used",
        "image": "https://i.ebayimg.com/images/g/Ew4AAeSwmhpqGZC2/s-l960.jpg",
        "url": "https://www.ebay.com/itm/287361201748?_skw=Nikkor+Z+24-70mm+f%2F2.8+S&hash=item42e80ff654:g:Ew4AAeSwmhpqGZC2"
+      },
+      {
+       "title": "Single-lens reflex lens Nikon Nikkor Z 24-70mm F2.8 S 20040328 Condition [AB]",
+       "price": 1850.86,
+       "currency": "USD",
+       "condition": "Used",
+       "image": "https://i.ebayimg.com/images/g/sl4AAeSwfnRqHmLd/s-l960.jpg",
+       "url": "https://www.ebay.com/itm/206315899715?_skw=Nikkor+Z+24-70mm+f%2F2.8+S&hash=item300962cb43:g:sl4AAeSwfnRqHmLd"
       }
      ]
     },
@@ -6536,15 +6552,23 @@
      "name_en": "NIKKOR Z 24-70mm f/4 S",
      "subcategory": "zoom",
      "focal_length_min": 24,
-     "median": 700.75,
-     "mean": 960.37,
+     "median": 689.67,
+     "mean": 944.21,
      "min": 380.0,
      "max": 2212.81,
-     "q1": 527.7,
-     "q3": 1514.02,
-     "count": 135,
-     "count_filtered": 135,
+     "q1": 527.04,
+     "q3": 1334.19,
+     "count": 134,
+     "count_filtered": 134,
      "samples": [
+      {
+       "title": "Nikon NIKKOR Z 24-70mm F4 S / nikon / Lens / Mirrorless Camera / Nikkor z Mount",
+       "price": 700.75,
+       "currency": "USD",
+       "condition": "Used",
+       "image": "https://i.ebayimg.com/images/g/w1AAAeSwBb1qC3Cz/s-l640.jpg",
+       "url": "https://www.ebay.com/itm/318389951309?_skw=NIKKOR+Z+24-70mm+f%2F4+S&hash=item4a21851b4d:g:w1AAAeSwBb1qC3Cz"
+      },
       {
        "title": "Nikon NIKKOR Z 24-70mm F4 S / nikon / Lens / Mirrorless Camera / Nikkor z Mount",
        "price": 707.51,
@@ -6576,14 +6600,6 @@
        "condition": "Used",
        "image": "https://i.ebayimg.com/images/g/3kAAAeSwZPxqJZQR/s-l1200.jpg",
        "url": "https://www.ebay.com/itm/306949844473?_skw=NIKKOR+Z+24-70mm+f%2F4+S&hash=item4777a2edf9:g:3kAAAeSwZPxqJZQR"
-      },
-      {
-       "title": "Nikon NIKKOR Z 24-70mm f/4 S Z mount 19307",
-       "price": 739.23,
-       "currency": "USD",
-       "condition": "Used",
-       "image": "https://i.ebayimg.com/images/g/4b0AAeSw-QBqJZOL/s-l1200.jpg",
-       "url": "https://www.ebay.com/itm/306940924807?_skw=NIKKOR+Z+24-70mm+f%2F4+S&hash=item47771ad387:g:4b0AAeSw-QBqJZOL"
       }
      ]
     },
@@ -6594,7 +6610,7 @@
      "subcategory": "zoom",
      "focal_length_min": 70,
      "median": 2268.6,
-     "mean": 2202.56,
+     "mean": 2200.5,
      "min": 1649.0,
      "max": 2743.0,
      "q1": 1899.0,
@@ -6764,14 +6780,14 @@
      "name_en": "NIKKOR Z 24-120mm f/4 S",
      "subcategory": "zoom",
      "focal_length_min": 24,
-     "median": 1013.98,
-     "mean": 1017.0,
+     "median": 1017.01,
+     "mean": 1022.47,
      "min": 789.0,
      "max": 1287.34,
-     "q1": 920.0,
-     "q3": 1071.28,
-     "count": 42,
-     "count_filtered": 39,
+     "q1": 930.0,
+     "q3": 1074.13,
+     "count": 41,
+     "count_filtered": 38,
      "samples": [
       {
        "title": "Near Mint Nikon Nikkor Z 24-120mm F/4 S Wide Angle Lens For Mirrorless #20052",
@@ -6822,11 +6838,11 @@
      "subcategory": "zoom",
      "focal_length_min": 24,
      "median": 292.24,
-     "mean": 303.4,
+     "mean": 302.97,
      "min": 153.42,
      "max": 586.99,
      "q1": 206.56,
-     "q3": 368.88,
+     "q3": 363.71,
      "count": 66,
      "count_filtered": 66,
      "samples": [
@@ -7334,15 +7350,23 @@
      "name_en": "NIKKOR Z 28mm f/2.8",
      "subcategory": "prime",
      "focal_length_min": 28,
-     "median": 269.68,
-     "mean": 285.17,
+     "median": 268.06,
+     "mean": 284.02,
      "min": 130.8,
      "max": 442.57,
-     "q1": 239.47,
-     "q3": 322.75,
+     "q1": 234.99,
+     "q3": 318.99,
      "count": 90,
      "count_filtered": 84,
      "samples": [
+      {
+       "title": "NIKON NIKKOR Z 28MM F2.8 SE Wide-Angle Prime Lens",
+       "price": 271.08,
+       "currency": "USD",
+       "condition": "Used",
+       "image": "https://i.ebayimg.com/images/g/iCUAAeSwBWZpX04V/s-l1600.jpg",
+       "url": "https://www.ebay.com/itm/389280029332?_skw=NIKKOR+Z+28mm+f%2F2.8&hash=item5aa2e5da94:g:iCUAAeSwBWZpX04V"
+      },
       {
        "title": "Mint Nikon Nikkor Z 28mm f2.8 SE Prime Wide Angle Retro Style Compact Warranty",
        "price": 271.21,
@@ -7374,14 +7398,6 @@
        "condition": "Used",
        "image": "https://i.ebayimg.com/images/g/~r4AAeSwHVhpvhvM/s-l1600.jpg",
        "url": "https://www.ebay.com/itm/188189954919?_skw=NIKKOR+Z+28mm+f%2F2.8&hash=item2bd0fed367:g:~r4AAeSwHVhpvhvM"
-      },
-      {
-       "title": "Nikon NIKKOR Z 28mm f/2.8 Normal Z Mount 562481",
-       "price": 285.11,
-       "currency": "USD",
-       "condition": "Used",
-       "image": "https://i.ebayimg.com/images/g/z0kAAeSwsnFqJZFL/s-l1200.jpg",
-       "url": "https://www.ebay.com/itm/306940927090?_skw=NIKKOR+Z+28mm+f%2F2.8&hash=item47771adc72:g:z0kAAeSwsnFqJZFL"
       }
      ]
     },
@@ -7392,14 +7408,22 @@
      "subcategory": "prime",
      "focal_length_min": 40,
      "median": 278.18,
-     "mean": 284.62,
+     "mean": 284.92,
      "min": 212.13,
      "max": 410.39,
-     "q1": 260.04,
-     "q3": 324.35,
-     "count": 88,
+     "q1": 258.09,
+     "q3": 325.23,
+     "count": 87,
      "count_filtered": 79,
      "samples": [
+      {
+       "title": "NIKON NIKKOR Z 40MM F2 Single Focus Lens  382955",
+       "price": 281.47,
+       "currency": "USD",
+       "condition": "Used",
+       "image": "https://i.ebayimg.com/images/g/RskAAeSwxORqJZHL/s-l1600.jpg",
+       "url": "https://www.ebay.com/itm/306694501985?_skw=NIKKOR+Z+40mm+f%2F2&hash=item47686ab661:g:RskAAeSwxORqJZHL"
+      },
       {
        "title": "Excellent Condition Nikon NIKKOR Z 40mm f 2 Special Edition Nikon Z Mount",
        "price": 285.03,
@@ -7431,14 +7455,6 @@
        "condition": "Used",
        "image": "https://i.ebayimg.com/images/g/V~0AAOSwMmZlWvYv/s-l960.jpg",
        "url": "https://www.ebay.com/itm/404633553782?_skw=NIKKOR+Z+40mm+f%2F2&hash=item5e360a0b76:g:V~0AAOSwMmZlWvYv"
-      },
-      {
-       "title": "Excellent Condition Nikon NIKKOR Z 40mm f 2 Special Edition Nikon Z Mount",
-       "price": 292.08,
-       "currency": "USD",
-       "condition": "Used",
-       "image": "https://i.ebayimg.com/images/g/JEwAAeSwY41qG6J5/s-l1200.jpg",
-       "url": "https://www.ebay.com/itm/198391533042?_skw=NIKKOR+Z+40mm+f%2F2&hash=item2e310e8df2:g:JEwAAeSwY41qG6J5"
       }
      ]
     },
@@ -7448,23 +7464,15 @@
      "name_en": "NIKKOR Z 50mm f/1.2 S",
      "subcategory": "prime",
      "focal_length_min": 50,
-     "median": 1630.32,
-     "mean": 1699.05,
+     "median": 1632.68,
+     "mean": 1713.34,
      "min": 1200.0,
      "max": 2466.87,
-     "q1": 1499.0,
+     "q1": 1558.3,
      "q3": 2036.73,
-     "count": 15,
-     "count_filtered": 15,
+     "count": 14,
+     "count_filtered": 14,
      "samples": [
-      {
-       "title": "Nikon NIKKOR Z 50mm f/1.2 S Lens ",
-       "price": 1579.72,
-       "currency": "USD",
-       "condition": "Used",
-       "image": "https://i.ebayimg.com/images/g/q24AAeSwsI9oj43W/s-l1600.jpg",
-       "url": "https://www.ebay.com/itm/146749342885?_skw=Nikkor+Z+50mm+f%2F1.2+S&hash=item222af144a5:g:q24AAeSwsI9oj43W"
-      },
       {
        "title": "Nikon NIKKOR Z 50mm F1.2 S Prime Lens",
        "price": 1615.98,
@@ -7496,6 +7504,14 @@
        "condition": "Used",
        "image": "https://i.ebayimg.com/images/g/oPkAAOSwRIRnn2Mk/s-l960.jpg",
        "url": "https://www.ebay.com/itm/157942754096?_skw=Nikkor+Z+50mm+f%2F1.2+S&hash=item24c61f2b30:g:oPkAAOSwRIRnn2Mk"
+      },
+      {
+       "title": "Near Mint Nikon NIKKOR Z 50mm F/1.2 S Prime Lens For Mirrorless z Mount #20055",
+       "price": 1645.28,
+       "currency": "USD",
+       "condition": "Used",
+       "image": "https://i.ebayimg.com/images/g/oPkAAOSwRIRnn2Mk/s-l960.jpg",
+       "url": "https://www.ebay.com/itm/157942505888?_skw=Nikkor+Z+50mm+f%2F1.2+S&hash=item24c61b61a0:g:oPkAAOSwRIRnn2Mk"
       }
      ]
     },
@@ -7578,15 +7594,23 @@
      "name_en": "NIKKOR Z 85mm f/1.2 S",
      "subcategory": "prime",
      "focal_length_min": 85,
-     "median": 2269.29,
-     "mean": 2300.77,
+     "median": 2133.0,
+     "mean": 2257.8,
      "min": 2026.38,
      "max": 2597.16,
-     "q1": 2126.86,
-     "q3": 2515.63,
-     "count": 6,
-     "count_filtered": 6,
+     "q1": 2076.62,
+     "q3": 2501.37,
+     "count": 5,
+     "count_filtered": 5,
      "samples": [
+      {
+       "title": "Nikon NIKKOR Z 85mm F/1.2 S [Top Mint] #7468LC",
+       "price": 2026.38,
+       "currency": "USD",
+       "condition": "Used",
+       "image": "https://i.ebayimg.com/images/g/rjMAAeSw6YZqDoE4/s-l1600.jpg",
+       "url": "https://www.ebay.com/itm/236828373906?_skw=Nikkor+Z+85mm+f%2F1.2+S&hash=item3724123392:g:rjMAAeSw6YZqDoE4"
+      },
       {
        "title": "NIKON NIKKOR Z 85mm f/1.2 S for Nikon Z mount [Exc+++] #A",
        "price": 2126.86,
@@ -7610,14 +7634,6 @@
        "condition": "Used",
        "image": "https://i.ebayimg.com/images/g/cgwAAeSwxlRpZtNV/s-l1600.jpg",
        "url": "https://www.ebay.com/itm/147090953696?_skw=Nikkor+Z+85mm+f%2F1.2+S&hash=item223f4dd5e0:g:cgwAAeSwxlRpZtNV"
-      },
-      {
-       "title": "Nikon NIKKOR Z 85mm f/1.2 S Lens",
-       "price": 2515.63,
-       "currency": "USD",
-       "condition": "Used",
-       "image": "https://i.ebayimg.com/images/g/GxIAAeSwG9lpnwyL/s-l1600.jpg",
-       "url": "https://www.ebay.com/itm/287164273669?_skw=Nikkor+Z+85mm+f%2F1.2+S&hash=item42dc531405:g:GxIAAeSwG9lpnwyL"
       },
       {
        "title": "NIKKOR Z 85mm f/1.2 S Line (MINT, in perfect condition)",
@@ -7749,15 +7765,23 @@
      "name_en": "NIKKOR Z 35mm f/1.8 S",
      "subcategory": "prime",
      "focal_length_min": 35,
-     "median": 687.88,
-     "mean": 705.78,
+     "median": 685.63,
+     "mean": 700.53,
      "min": 571.56,
      "max": 894.72,
-     "q1": 634.5,
+     "q1": 634.0,
      "q3": 776.04,
-     "count": 24,
-     "count_filtered": 24,
+     "count": 25,
+     "count_filtered": 25,
      "samples": [
+      {
+       "title": "Nikon Single Focus Lens NIKKOR Z 35mm f/1.8S Z Mount",
+       "price": 685.63,
+       "currency": "USD",
+       "condition": "Used",
+       "image": "https://i.ebayimg.com/images/g/xaAAAOSwkJllB1dd/s-l1200.jpg",
+       "url": "https://www.ebay.com/itm/404496604553?_skw=NIKKOR+Z+35mm+f%2F1.8+S&hash=item5e2de05d89:g:xaAAAOSwkJllB1dd"
+      },
       {
        "title": "Nikon Single Focus Lens NIKKOR Z 35mm f/1.8S Z Mount",
        "price": 685.63,
@@ -7789,14 +7813,6 @@
        "condition": "Used",
        "image": "https://i.ebayimg.com/images/g/VesAAeSwY6BqI16V/s-l640.jpg",
        "url": "https://www.ebay.com/itm/168434243232?_skw=NIKKOR+Z+35mm+f%2F1.8+S&hash=item27377696a0:g:VesAAeSwY6BqI16V"
-      },
-      {
-       "title": "Nikon NIKKOR Z 35mm f/1.8 S | Nikon Z mount Working",
-       "price": 738.17,
-       "currency": "USD",
-       "condition": "Used",
-       "image": "https://i.ebayimg.com/images/g/TDQAAeSwGUhqI19B/s-l1200.jpg",
-       "url": "https://www.ebay.com/itm/168434247989?_skw=NIKKOR+Z+35mm+f%2F1.8+S&hash=item273776a935:g:TDQAAeSwGUhqI19B"
       }
      ]
     },
@@ -7888,23 +7904,15 @@
      "name_en": "NIKKOR Z 135mm f/1.8 S Plena",
      "subcategory": "prime",
      "focal_length_min": 135,
-     "median": 2327.17,
-     "mean": 2243.83,
+     "median": 2330.53,
+     "mean": 2250.46,
      "min": 1980.0,
      "max": 2524.65,
      "q1": 2053.33,
      "q3": 2348.5,
-     "count": 11,
-     "count_filtered": 11,
+     "count": 10,
+     "count_filtered": 10,
      "samples": [
-      {
-       "title": "MINT+ CONDITION Nikon NIKKOR Z 135mm F/1.8 S Plena (Nikon Z mount) A USA PRODUCT",
-       "price": 2177.49,
-       "currency": "USD",
-       "condition": "Used",
-       "image": "https://i.ebayimg.com/images/g/cfkAAeSwsvBpn4mK/s-l1600.jpg",
-       "url": "https://www.ebay.com/itm/397650094248?_skw=Nikkor+Z+135mm+f%2F1.8+Plena&hash=item5c95cae8a8:g:cfkAAeSwsvBpn4mK"
-      },
       {
        "title": "Near Mint Nikon NIKKOR Z 135mm F/1.8 S Plena Lens For Mirrorless Z Mount #20049",
        "price": 2224.35,
@@ -7936,6 +7944,14 @@
        "condition": "Used",
        "image": "https://i.ebayimg.com/images/g/CuMAAeSw-PRqD60L/s-l1200.jpg",
        "url": "https://www.ebay.com/itm/327171547574?_skw=Nikkor+Z+135mm+f%2F1.8+Plena&hash=item4c2cf1a1b6:g:CuMAAeSw-PRqD60L"
+      },
+      {
+       "title": "Near Mint Nikon NIKKOR Z 135mm F/1.8 S Plena Lens For Mirrorless z Mount #20049",
+       "price": 2327.17,
+       "currency": "USD",
+       "condition": "Used",
+       "image": "https://i.ebayimg.com/images/g/z~EAAOSw8Y1nnLmr/s-l960.jpg",
+       "url": "https://www.ebay.com/itm/157918012280?_skw=Nikkor+Z+135mm+f%2F1.8+Plena&hash=item24c4a5a378:g:z~EAAOSw8Y1nnLmr"
       }
      ]
     },
@@ -8360,15 +8376,23 @@
      "name_en": "NIKKOR Z DX 16-50mm f/3.5-6.3 VR",
      "subcategory": "dx",
      "focal_length_min": 16,
-     "median": 248.45,
-     "mean": 262.84,
+     "median": 248.15,
+     "mean": 258.28,
      "min": 131.89,
-     "max": 499.99,
+     "max": 471.99,
      "q1": 198.99,
-     "q3": 328.0,
+     "q3": 314.05,
      "count": 130,
-     "count_filtered": 128,
+     "count_filtered": 127,
      "samples": [
+      {
+       "title": "Nikon Nikkor Z Dx 16-50Mm F/3.5-6.3 Lens",
+       "price": 248.15,
+       "currency": "USD",
+       "condition": "Used",
+       "image": "https://i.ebayimg.com/images/g/7CUAAeSwCbZqB67h/s-l1600.jpg",
+       "url": "https://www.ebay.com/itm/358560364093?_skw=NIKKOR+Z+DX+16-50mm+f%2F3.5-6.3+VR&hash=item537bdcf63d:g:7CUAAeSwCbZqB67h"
+      },
       {
        "title": "Nikon NIKKOR Z DX 16-50mm f/3.5-6.3 VR Black Z Mount 60949",
        "price": 248.25,
@@ -8400,14 +8424,6 @@
        "condition": "Used",
        "image": "https://i.ebayimg.com/images/g/P6AAAeSwK4JqJZFh/s-l1200.jpg",
        "url": "https://www.ebay.com/itm/306940931122?_skw=NIKKOR+Z+DX+16-50mm+f%2F3.5-6.3+VR&hash=item47771aec32:g:P6AAAeSwK4JqJZFh"
-      },
-      {
-       "title": "Nikon NIKKOR Z DX 16-50mm f/3.5-6.3 VR 919591",
-       "price": 249.71,
-       "currency": "USD",
-       "condition": "Used",
-       "image": "https://i.ebayimg.com/images/g/rwMAAeSwmLpqJZGB/s-l1200.jpg",
-       "url": "https://www.ebay.com/itm/306966935236?_skw=NIKKOR+Z+DX+16-50mm+f%2F3.5-6.3+VR&hash=item4778a7b6c4:g:rwMAAeSwmLpqJZGB"
       }
      ]
     },
@@ -8598,23 +8614,15 @@
      "name_en": "AF-S NIKKOR 14-24mm f/2.8G ED",
      "subcategory": "wide-zoom",
      "focal_length_min": 14,
-     "median": 708.59,
-     "mean": 759.39,
+     "median": 707.29,
+     "mean": 748.01,
      "min": 483.98,
-     "max": 1319.77,
+     "max": 1267.99,
      "q1": 619.99,
-     "q3": 905.0,
-     "count": 151,
-     "count_filtered": 143,
+     "q3": 888.31,
+     "count": 150,
+     "count_filtered": 139,
      "samples": [
-      {
-       "title": "[Near Mint] Nikon AF-S NIKKOR 14-24mm f/2.8G SWM ED IF Nano from Japan #2291",
-       "price": 709.0,
-       "currency": "USD",
-       "condition": "Used",
-       "image": "https://i.ebayimg.com/images/g/0JAAAOSwQP1mDs~F/s-l1600.jpg",
-       "url": "https://www.ebay.com/itm/166693514853?_skw=Nikon+AF-S+14-24mm+f%2F2.8G+ED&hash=item26cfb52e65:g:0JAAAOSwQP1mDs~F"
-      },
       {
        "title": "Nikon AF-S Nikkor 14-24mm f/2.8 G f2.8G ED Looks unused.",
        "price": 720.01,
@@ -8646,6 +8654,14 @@
        "condition": "Used",
        "image": "https://i.ebayimg.com/images/g/XW4AAOSw2EdnNKla/s-l1600.jpg",
        "url": "https://www.ebay.com/itm/168036092205?_skw=Nikon+AF-S+14-24mm+f%2F2.8G+ED&hash=item271fbb492d:g:XW4AAOSw2EdnNKla"
+      },
+      {
+       "title": "Nikon AF-S NIKKOR 14-24mm f/2.8G ED | Nikon F-mount Working",
+       "price": 735.42,
+       "currency": "USD",
+       "condition": "Used",
+       "image": "https://i.ebayimg.com/images/g/zEYAAeSwPKtqDDkq/s-l1200.jpg",
+       "url": "https://www.ebay.com/itm/168385978227?_skw=Nikon+AF-S+14-24mm+f%2F2.8G+ED&hash=item2734961f73:g:zEYAAeSwPKtqDDkq"
       }
      ]
     },
@@ -8656,7 +8672,7 @@
      "subcategory": "wide-zoom",
      "focal_length_min": 16,
      "median": 435.98,
-     "mean": 495.9,
+     "mean": 495.55,
      "min": 299.99,
      "max": 987.33,
      "q1": 384.99,
@@ -8769,15 +8785,23 @@
      "name_en": "AF-S NIKKOR 24-70mm f/2.8G ED",
      "subcategory": "standard-zoom",
      "focal_length_min": 24,
-     "median": 719.67,
-     "mean": 801.8,
+     "median": 718.99,
+     "mean": 800.48,
      "min": 509.99,
      "max": 1582.35,
-     "q1": 602.49,
+     "q1": 600.5,
      "q3": 1004.0,
-     "count": 232,
-     "count_filtered": 220,
+     "count": 233,
+     "count_filtered": 221,
      "samples": [
+      {
+       "title": "Nikon AF-S 24-70mm f/2.8 G ED N IF 280944",
+       "price": 742.22,
+       "currency": "USD",
+       "condition": "Used",
+       "image": "https://i.ebayimg.com/images/g/L0IAAeSwexBqJZRD/s-l1200.jpg",
+       "url": "https://www.ebay.com/itm/306947755161?_skw=Nikon+AF-S+24-70mm+f%2F2.8G+ED&hash=item4777830c99:g:L0IAAeSwexBqJZRD"
+      },
       {
        "title": "NIKON AF-S NIKKOR 24-70mm F2.8G ED Lens",
        "price": 744.33,
@@ -8809,14 +8833,6 @@
        "condition": "Used",
        "image": "https://i.ebayimg.com/images/g/ZQoAAeSwhe1qH0Jz/s-l1200.jpg",
        "url": "https://www.ebay.com/itm/377229234552?_skw=Nikon+AF-S+24-70mm+f%2F2.8G+ED&hash=item57d49d5178:g:ZQoAAeSwhe1qH0Jz"
-      },
-      {
-       "title": "Nikon AF-S NIKKOR 24-70mm F2.8G ED (Nikon F-Mount) [Shinjuku 2] 　 [ C]",
-       "price": 772.0,
-       "currency": "USD",
-       "condition": "Used",
-       "image": "https://i.ebayimg.com/images/g/oo4AAeSwFG1qC3CL/s-l1600.jpg",
-       "url": "https://www.ebay.com/itm/358626143140?_skw=Nikon+AF-S+24-70mm+f%2F2.8G+ED&hash=item537fc8aba4:g:oo4AAeSwFG1qC3CL"
       }
      ]
     },
@@ -8883,15 +8899,23 @@
      "name_en": "AF-S NIKKOR 24-85mm f/3.5-4.5G ED VR",
      "subcategory": "standard-zoom",
      "focal_length_min": 24,
-     "median": 262.49,
-     "mean": 283.96,
+     "median": 259.99,
+     "mean": 283.01,
      "min": 169.4,
      "max": 497.19,
-     "q1": 218.0,
-     "q3": 339.56,
-     "count": 58,
-     "count_filtered": 58,
+     "q1": 217.71,
+     "q3": 350.92,
+     "count": 59,
+     "count_filtered": 59,
      "samples": [
+      {
+       "title": "Nikon AF-S NIKKOR 24-85mm f/3.5-4.5G ED VR Lens 55",
+       "price": 258.99,
+       "currency": "USD",
+       "condition": "Used",
+       "image": "https://i.ebayimg.com/images/g/HokAAOSwpVpiEWfv/s-l1600.jpg",
+       "url": "https://www.ebay.com/itm/175551935018?_skw=Nikon+AF-S+24-85mm+f%2F3.5-4.5G+ED+VR&hash=item28dfb5f22a:g:HokAAOSwpVpiEWfv"
+      },
       {
        "title": "Nikon AF-S NIKKOR 24-85mm f/3.5-4.5G ED VR Lens",
        "price": 258.99,
@@ -8917,20 +8941,12 @@
        "url": "https://www.ebay.com/itm/318347405290?_skw=Nikon+AF-S+24-85mm+f%2F3.5-4.5G+ED+VR&hash=item4a1efbe7ea:g:fcwAAeSwZQpqEU3B"
       },
       {
-       "title": "Nikon AF-S 24-85mm F3.5-4.5G ED VR 733",
-       "price": 276.88,
+       "title": "[TopMint] Nikon AF-S Nikkor 24-85mm f/3.5-4.5 G ED VR IF FX Zoom Lens from Japan",
+       "price": 276.21,
        "currency": "USD",
        "condition": "Used",
-       "image": "https://i.ebayimg.com/images/g/4C4AAeSwERtpkcmH/s-l640.jpg",
-       "url": "https://www.ebay.com/itm/127685988647?_skw=Nikon+AF-S+24-85mm+f%2F3.5-4.5G+ED+VR&hash=item1dbaad9127:g:4C4AAeSwERtpkcmH"
-      },
-      {
-       "title": "Nikon AF-S 24-85mm F3.5-4.5G ED VR 363321",
-       "price": 279.86,
-       "currency": "USD",
-       "condition": "Used",
-       "image": "https://i.ebayimg.com/images/g/07gAAeSwxFJqJZGE/s-l1200.jpg",
-       "url": "https://www.ebay.com/itm/306940923071?_skw=Nikon+AF-S+24-85mm+f%2F3.5-4.5G+ED+VR&hash=item47771accbf:g:07gAAeSwxFJqJZGE"
+       "image": "https://i.ebayimg.com/images/g/2aIAAeSwki9qIXhw/s-l1600.jpg",
+       "url": "https://www.ebay.com/itm/157970732359?_skw=Nikon+AF-S+24-85mm+f%2F3.5-4.5G+ED+VR&hash=item24c7ca1547:g:2aIAAeSwki9qIXhw"
       }
      ]
     },
@@ -8940,23 +8956,15 @@
      "name_en": "AF-S NIKKOR 24-120mm f/4G ED VR",
      "subcategory": "standard-zoom",
      "focal_length_min": 24,
-     "median": 411.99,
-     "mean": 457.16,
+     "median": 414.47,
+     "mean": 459.24,
      "min": 253.05,
      "max": 878.0,
-     "q1": 349.66,
-     "q3": 561.2,
-     "count": 214,
-     "count_filtered": 205,
+     "q1": 349.99,
+     "q3": 562.5,
+     "count": 209,
+     "count_filtered": 200,
      "samples": [
-      {
-       "title": "Near Mint Nikon AF-S NIKKOR 24-120mm F/4 G ED VR Telephoto Zoom Lens #N026",
-       "price": 415.06,
-       "currency": "USD",
-       "condition": "Used",
-       "image": "https://i.ebayimg.com/images/g/aMMAAOSwuOdn7MGr/s-l960.jpg",
-       "url": "https://www.ebay.com/itm/157958731679?_skw=Nikon+AF-S+24-120mm+f%2F4G+ED+VR&hash=item24c712f79f:g:aMMAAOSwuOdn7MGr"
-      },
       {
        "title": "Near Mint Nikon AF-S NIKKOR 24-120mm F/4 G ED VR Telephoto Zoom Lens #N026",
        "price": 415.06,
@@ -8988,6 +8996,14 @@
        "condition": "Used",
        "image": "https://i.ebayimg.com/images/g/aMMAAOSwuOdn7MGr/s-l960.jpg",
        "url": "https://www.ebay.com/itm/157959270418?_skw=Nikon+AF-S+24-120mm+f%2F4G+ED+VR&hash=item24c71b3012:g:aMMAAOSwuOdn7MGr"
+      },
+      {
+       "title": "Near Mint Nikon AF-S NIKKOR 24-120mm F/4 G ED VR Telephoto Zoom Lens #N026",
+       "price": 417.66,
+       "currency": "USD",
+       "condition": "Used",
+       "image": "https://i.ebayimg.com/images/g/aMMAAOSwuOdn7MGr/s-l960.jpg",
+       "url": "https://www.ebay.com/itm/157958347972?_skw=Nikon+AF-S+24-120mm+f%2F4G+ED+VR&hash=item24c70d1cc4:g:aMMAAOSwuOdn7MGr"
       }
      ]
     },
@@ -9071,11 +9087,11 @@
      "subcategory": "tele-zoom",
      "focal_length_min": 70,
      "median": 343.36,
-     "mean": 330.05,
+     "mean": 328.99,
      "min": 195.18,
      "max": 501.07,
      "q1": 272.24,
-     "q3": 369.61,
+     "q3": 366.67,
      "count": 28,
      "count_filtered": 28,
      "samples": [
@@ -9127,15 +9143,23 @@
      "name_en": "AF-S NIKKOR 70-200mm f/2.8G ED VR II",
      "subcategory": "tele-zoom",
      "focal_length_min": 70,
-     "median": 883.06,
-     "mean": 944.4,
+     "median": 871.12,
+     "mean": 938.14,
      "min": 639.99,
      "max": 1370.99,
-     "q1": 778.17,
+     "q1": 760.0,
      "q3": 1094.97,
-     "count": 46,
-     "count_filtered": 46,
+     "count": 47,
+     "count_filtered": 47,
      "samples": [
+      {
+       "title": "AF noise[Top MINT w/Box] Nikon AF-S Zoom 70-200mm f/2.8 G ED VR II Lens JAPAN",
+       "price": 849.99,
+       "currency": "USD",
+       "condition": "Used",
+       "image": "https://i.ebayimg.com/images/g/20gAAeSw3Wpp~Q1W/s-l1600.jpg",
+       "url": "https://www.ebay.com/itm/318267295067?_skw=Nikon+AF-S+70-200mm+f%2F2.8G+VR+II&hash=item4a1a35855b:g:20gAAeSw3Wpp~Q1W"
+      },
       {
        "title": "Nikon AF-S NIKKOR 70-200mm f2.8G ED VR II Lens Working",
        "price": 850.0,
@@ -9167,14 +9191,6 @@
        "condition": "Used",
        "image": "https://i.ebayimg.com/images/g/HukAAeSwnQ5qGOSr/s-l1600.jpg",
        "url": "https://www.ebay.com/itm/358611842714?_skw=Nikon+AF-S+70-200mm+f%2F2.8G+VR+II&hash=item537eee769a:g:HukAAeSwnQ5qGOSr"
-      },
-      {
-       "title": "NIKON Telephoto Zoom Lens AF-S 70-200MM F2.8G ED VR II",
-       "price": 922.91,
-       "currency": "USD",
-       "condition": "Used",
-       "image": "https://i.ebayimg.com/images/g/~1MAAeSw0nZpYArO/s-l1600.jpg",
-       "url": "https://www.ebay.com/itm/389280034678?_skw=Nikon+AF-S+70-200mm+f%2F2.8G+VR+II&hash=item5aa2e5ef76:g:~1MAAeSw0nZpYArO"
       }
      ]
     },
@@ -9184,8 +9200,8 @@
      "name_en": "AF-S NIKKOR 70-200mm f/2.8E FL ED VR",
      "subcategory": "tele-zoom",
      "focal_length_min": 70,
-     "median": 1286.94,
-     "mean": 1443.43,
+     "median": 1330.43,
+     "mean": 1451.19,
      "min": 1060.0,
      "max": 2152.63,
      "q1": 1189.99,
@@ -9194,20 +9210,20 @@
      "count_filtered": 18,
      "samples": [
       {
-       "title": "[Top MINT w/ Case] Nikon AF-S NIKKOR 70-200mm F2.8 E FL ED VR From JAPAN",
-       "price": 1219.99,
-       "currency": "USD",
-       "condition": "Used",
-       "image": "https://i.ebayimg.com/images/g/hPQAAeSwUbhp83E2/s-l1600.jpg",
-       "url": "https://www.ebay.com/itm/406895139647?_skw=Nikon+AF-S+70-200mm+f%2F2.8E+FL+ED+VR&hash=item5ebcd71b3f:g:hPQAAeSwUbhp83E2"
-      },
-      {
        "title": "Nikon AF-S NIKKOR 70-200mm F/2.8E FL ED VR Lens with Box",
        "price": 1243.0,
        "currency": "USD",
        "condition": "Used",
        "image": "https://i.ebayimg.com/images/g/JQgAAeSwUAlqG4oo/s-l1600.jpg",
        "url": "https://www.ebay.com/itm/287364198349?_skw=Nikon+AF-S+70-200mm+f%2F2.8E+FL+ED+VR&hash=item42e83dafcd:g:JQgAAeSwUAlqG4oo"
+      },
+      {
+       "title": "[MINT+++ w/ Box] Nikon AF-S NIKKOR 70-200mm f/2.8E FL ED VR Zoom Lens From JAPAN",
+       "price": 1329.99,
+       "currency": "USD",
+       "condition": "Used",
+       "image": "https://i.ebayimg.com/images/g/K3oAAeSw-jpqJtS6/s-l1600.jpg",
+       "url": "https://www.ebay.com/itm/188483469407?_skw=Nikon+AF-S+70-200mm+f%2F2.8E+FL+ED+VR&hash=item2be27d805f:g:K3oAAeSw-jpqJtS6"
       },
       {
        "title": "Nikon F-Mount 70-200mm F/2.8E FL ED VR AF-S Telephoto Zoom Lens DSLR Nikkor",
@@ -9299,11 +9315,11 @@
      "subcategory": "tele-zoom",
      "focal_length_min": 200,
      "median": 1190.38,
-     "mean": 1217.17,
+     "mean": 1213.02,
      "min": 642.04,
      "max": 1902.73,
      "q1": 1012.2,
-     "q3": 1422.65,
+     "q3": 1409.36,
      "count": 34,
      "count_filtered": 34,
      "samples": [
@@ -9355,15 +9371,23 @@
      "name_en": "AF NIKKOR 20mm f/2.8D",
      "subcategory": "prime",
      "focal_length_min": 20,
-     "median": 212.62,
-     "mean": 221.97,
+     "median": 211.75,
+     "mean": 220.44,
      "min": 130.0,
      "max": 328.0,
-     "q1": 190.5,
-     "q3": 249.33,
-     "count": 64,
-     "count_filtered": 64,
+     "q1": 189.99,
+     "q3": 248.68,
+     "count": 63,
+     "count_filtered": 63,
      "samples": [
+      {
+       "title": "[Top MINT] Nikon AF Nikkor 20mm f/2.8 D Wide Angle Prime Lens For F Mount JAPAN",
+       "price": 209.99,
+       "currency": "USD",
+       "condition": "Used",
+       "image": "https://i.ebayimg.com/images/g/TTsAAeSwHjBqGuN~/s-l1600.jpg",
+       "url": "https://www.ebay.com/itm/366444402214?_skw=Nikon+AF+Nikkor+20mm+f%2F2.8D&hash=item5551c9d626:g:TTsAAeSwHjBqGuN~"
+      },
       {
        "title": "[Top MINT] Nikon AF Nikkor 20mm f/2.8 D Wide Angle Auto Focus Lens From JAPAN",
        "price": 209.99,
@@ -9395,14 +9419,6 @@
        "condition": "Used",
        "image": "https://i.ebayimg.com/images/g/g0MAAeSwhLRp6iVF/s-l1600.jpg",
        "url": "https://www.ebay.com/itm/366364867051?_skw=Nikon+AF+Nikkor+20mm+f%2F2.8D&hash=item554d0c39eb:g:g0MAAeSwhLRp6iVF"
-      },
-      {
-       "title": "Nikon AF NIKKOR 20mm F2.8 D In Box AF Prime Lens from Japan #9741",
-       "price": 215.0,
-       "currency": "USD",
-       "condition": "Used",
-       "image": "https://i.ebayimg.com/images/g/6jMAAeSwLf5pwR77/s-l1600.jpg",
-       "url": "https://www.ebay.com/itm/358365220712?_skw=Nikon+AF+Nikkor+20mm+f%2F2.8D&hash=item53703b4f68:g:6jMAAeSwLf5pwR77"
       }
      ]
     },
@@ -9485,14 +9501,14 @@
      "name_en": "AF-S NIKKOR 28mm f/1.4E ED",
      "subcategory": "prime",
      "focal_length_min": 28,
-     "median": 1144.99,
-     "mean": 1194.96,
+     "median": 1145.0,
+     "mean": 1273.94,
      "min": 1078.05,
-     "max": 1559.89,
+     "max": 1830.76,
      "q1": 1127.77,
-     "q3": 1392.44,
+     "q3": 1429.94,
      "count": 9,
-     "count_filtered": 8,
+     "count_filtered": 9,
      "samples": [
       {
        "title": "Nikon AF-S Nikkor 28mm f/1.4 E ED Lens Nikon F Mount Excellent",
@@ -9528,11 +9544,11 @@
       },
       {
        "title": "[Almost Unused in Box] Nikon AF-S NIKKOR 28mm f/1.4E ED Prime Lens From JAPAN",
-       "price": 1224.99,
+       "price": 1299.99,
        "currency": "USD",
        "condition": "Used",
-       "image": "https://i.ebayimg.com/images/g/4ucAAeSwwgRqDIu0/s-l1600.jpg",
-       "url": "https://www.ebay.com/itm/168386563731?_skw=Nikon+AF-S+28mm+f%2F1.4E+ED&hash=item27349f0e93:g:4ucAAeSwwgRqDIu0"
+       "image": "https://i.ebayimg.com/images/g/qmYAAeSwOVZqJuK1/s-l1600.jpg",
+       "url": "https://www.ebay.com/itm/168441155569?_skw=Nikon+AF-S+28mm+f%2F1.4E+ED&hash=item2737e00ff1:g:qmYAAeSwOVZqJuK1"
       }
      ]
     },
@@ -9599,22 +9615,22 @@
      "name_en": "AF-S NIKKOR 35mm f/1.8G ED",
      "subcategory": "prime",
      "focal_length_min": 35,
-     "median": 401.22,
-     "mean": 407.58,
+     "median": 405.93,
+     "mean": 427.43,
      "min": 302.29,
-     "max": 689.37,
-     "q1": 360.0,
-     "q3": 492.44,
-     "count": 34,
-     "count_filtered": 29,
+     "max": 710.99,
+     "q1": 355.0,
+     "q3": 498.86,
+     "count": 33,
+     "count_filtered": 30,
      "samples": [
       {
-       "title": "MINT!! Nikon AF-S NIKKOR 35mm f/1.8G ED Lens in original box Excellent",
-       "price": 408.69,
+       "title": "[Near Mint] Nikon NIKKOR AF-S 35mm F/1.8G ED full size compatible Japan 10631",
+       "price": 401.22,
        "currency": "USD",
        "condition": "Used",
-       "image": "https://i.ebayimg.com/images/g/yxIAAeSw9LJqISLx/s-l1600.jpg",
-       "url": "https://www.ebay.com/itm/336619284785?_skw=Nikon+AF-S+35mm+f%2F1.8G+ED&hash=item4e6012a931:g:yxIAAeSw9LJqISLx"
+       "image": "https://i.ebayimg.com/images/g/OFIAAOSwAaFlfF9Q/s-l1600.jpg",
+       "url": "https://www.ebay.com/itm/305315519633?_skw=Nikon+AF-S+35mm+f%2F1.8G+ED&hash=item4716391c91:g:OFIAAOSwAaFlfF9Q"
       },
       {
        "title": "Nikon AF-S NIKKOR 35mm f/1.8G ED Lens Used Full-Frame JP",
@@ -9713,15 +9729,23 @@
      "name_en": "AF NIKKOR 50mm f/1.8D",
      "subcategory": "prime",
      "focal_length_min": 50,
-     "median": 129.99,
-     "mean": 134.6,
+     "median": 128.88,
+     "mean": 133.17,
      "min": 71.0,
-     "max": 209.99,
-     "q1": 118.31,
+     "max": 203.62,
+     "q1": 117.47,
      "q3": 157.49,
-     "count": 80,
+     "count": 81,
      "count_filtered": 73,
      "samples": [
+      {
+       "title": "NIKON AF NIKKOR 50mm F1.8 D Lens Used & Tested JAPAN",
+       "price": 129.99,
+       "currency": "USD",
+       "condition": "Used",
+       "image": "https://i.ebayimg.com/images/g/aUIAAOSwNR9oQUAZ/s-l1200.jpg",
+       "url": "https://www.ebay.com/itm/176758175925?_skw=Nikon+AF+Nikkor+50mm+f%2F1.8D&hash=item29279bb8b5:g:aUIAAOSwNR9oQUAZ"
+      },
       {
        "title": "Nikon AF FX NIKKOR 50mm F/1.8D Lens for Nikon DSLR Cameras",
        "price": 130.25,
@@ -9753,14 +9777,6 @@
        "condition": "Used",
        "image": "https://i.ebayimg.com/images/g/TAEAAOSwNopn1cDG/s-l1600.jpg",
        "url": "https://www.ebay.com/itm/365462653350?_skw=Nikon+AF+Nikkor+50mm+f%2F1.8D&hash=item55174589a6:g:TAEAAOSwNopn1cDG"
-      },
-      {
-       "title": "Nikon USA AF FX Nikkor 50mm f/1.8 D Auto/Manual Focus Full Frame D850 D90 ETC.",
-       "price": 135.88,
-       "currency": "USD",
-       "condition": "Used",
-       "image": "https://i.ebayimg.com/images/g/8nMAAeSwYXxps~Hn/s-l1600.jpg",
-       "url": "https://www.ebay.com/itm/267604147899?_skw=Nikon+AF+Nikkor+50mm+f%2F1.8D&hash=item3e4e733ebb:g:8nMAAeSwYXxps~Hn"
       }
      ]
     },
@@ -9770,15 +9786,31 @@
      "name_en": "AF-S NIKKOR 50mm f/1.8G",
      "subcategory": "prime",
      "focal_length_min": 50,
-     "median": 214.38,
-     "mean": 238.3,
+     "median": 211.6,
+     "mean": 235.28,
      "min": 154.98,
-     "max": 424.99,
-     "q1": 189.98,
-     "q3": 285.87,
-     "count": 174,
-     "count_filtered": 169,
+     "max": 406.4,
+     "q1": 189.89,
+     "q3": 279.02,
+     "count": 172,
+     "count_filtered": 166,
      "samples": [
+      {
+       "title": "USED Nikon 50mm F1.8 G AF-S Lens",
+       "price": 214.38,
+       "currency": "USD",
+       "condition": "Used",
+       "image": "https://i.ebayimg.com/images/g/a1QAAeSwVcxqICo~/s-l1600.jpg",
+       "url": "https://www.ebay.com/itm/236765662033?_skw=Nikon+AF-S+50mm+f%2F1.8G&hash=item3720554b51:g:a1QAAeSwVcxqICo~"
+      },
+      {
+       "title": "USED Nikon 50mm F1.8 G AF-S Lens",
+       "price": 214.38,
+       "currency": "USD",
+       "condition": "Used",
+       "image": "https://i.ebayimg.com/images/g/V-4AAeSwMrpqICl0/s-l1600.jpg",
+       "url": "https://www.ebay.com/itm/336546024056?_skw=Nikon+AF-S+50mm+f%2F1.8G&hash=item4e5bb4ca78:g:V-4AAeSwMrpqICl0"
+      },
       {
        "title": "Nikon AF-S NIKKOR 50mm f/1.8G SN3208497",
        "price": 219.09,
@@ -9802,22 +9834,6 @@
        "condition": "Used",
        "image": "https://i.ebayimg.com/images/g/sWYAAeSwPXpqC6hN/s-l1200.jpg",
        "url": "https://www.ebay.com/itm/157922128147?_skw=Nikon+AF-S+50mm+f%2F1.8G&hash=item24c4e47113:g:sWYAAeSwPXpqC6hN"
-      },
-      {
-       "title": "Nikon 50mm f/1.8G AF-S NIKKOR Lens for Nikon Digital SLR Cameras",
-       "price": 223.41,
-       "currency": "USD",
-       "condition": "Used",
-       "image": "https://i.ebayimg.com/images/g/6PoAAOSwOZRk57vN/s-l1600.jpg",
-       "url": "https://www.ebay.com/itm/256194955597?_skw=Nikon+AF-S+50mm+f%2F1.8G&hash=item3ba668c94d:g:6PoAAOSwOZRk57vN"
-      },
-      {
-       "title": "Nikon AF-S NIKKOR 50mm f/1.8G Lens Full Frame Compatible JP",
-       "price": 223.93,
-       "currency": "USD",
-       "condition": "Used",
-       "image": "https://i.ebayimg.com/images/g/K-YAAeSwQIRpQ86I/s-l960.jpg",
-       "url": "https://www.ebay.com/itm/187624129627?_skw=Nikon+AF-S+50mm+f%2F1.8G&hash=item2baf45045b:g:K-YAAeSwQIRpQ86I"
       }
      ]
     },
@@ -9828,11 +9844,11 @@
      "subcategory": "prime",
      "focal_length_min": 50,
      "median": 273.36,
-     "mean": 285.94,
+     "mean": 285.63,
      "min": 199.98,
      "max": 445.99,
      "q1": 239.0,
-     "q3": 325.19,
+     "q3": 323.31,
      "count": 83,
      "count_filtered": 82,
      "samples": [
@@ -10324,23 +10340,15 @@
      "name_en": "AF Micro-NIKKOR 60mm f/2.8D",
      "subcategory": "macro",
      "focal_length_min": 60,
-     "median": 199.49,
-     "mean": 218.04,
+     "median": 199.98,
+     "mean": 218.1,
      "min": 133.99,
      "max": 396.82,
      "q1": 174.99,
      "q3": 267.09,
-     "count": 131,
-     "count_filtered": 128,
+     "count": 130,
+     "count_filtered": 127,
      "samples": [
-      {
-       "title": "TESTED!![Exc+5 in BOX]  Nikon AF Micro Nikkor 60mm f/2.8 D Macro Lens from Japan",
-       "price": 198.99,
-       "currency": "USD",
-       "condition": "Used",
-       "image": "https://i.ebayimg.com/images/g/t4sAAeSwBb1p8hkr/s-l1600.jpg",
-       "url": "https://www.ebay.com/itm/406892914300?_skw=Nikon+AF+Micro+60mm+f%2F2.8D&hash=item5ebcb5267c:g:t4sAAeSwBb1p8hkr"
-      },
       {
        "title": "[ MINT ] Nikon AF Micro NIKKOR 60mm f/2.8 D Nikon F Mount Lens From JAPAN #105",
        "price": 199.98,
@@ -10372,6 +10380,14 @@
        "condition": "Used",
        "image": "https://i.ebayimg.com/images/g/T6cAAeSw26BqJEzN/s-l1600.jpg",
        "url": "https://www.ebay.com/itm/318418214297?_skw=Nikon+AF+Micro+60mm+f%2F2.8D&hash=item4a23345d99:g:T6cAAeSw26BqJEzN"
+      },
+      {
+       "title": "[N MINT+] Nikon AF Micro NIKKOR 60mm f2.8 D Macro Prime Auto Focus Lens From JP",
+       "price": 199.99,
+       "currency": "USD",
+       "condition": "Used",
+       "image": "https://i.ebayimg.com/images/g/Y1YAAeSwHGxqJNuQ/s-l1600.jpg",
+       "url": "https://www.ebay.com/itm/800137080179?_skw=Nikon+AF+Micro+60mm+f%2F2.8D&hash=itemba4be2ed73:g:Y1YAAeSwHGxqJNuQ"
       }
      ]
     },
@@ -10381,15 +10397,23 @@
      "name_en": "AF-S Micro NIKKOR 60mm f/2.8G ED",
      "subcategory": "macro",
      "focal_length_min": 60,
-     "median": 484.18,
-     "mean": 543.76,
+     "median": 484.0,
+     "mean": 543.03,
      "min": 279.99,
      "max": 1071.99,
-     "q1": 393.25,
-     "q3": 674.34,
-     "count": 56,
-     "count_filtered": 56,
+     "q1": 391.83,
+     "q3": 689.38,
+     "count": 55,
+     "count_filtered": 55,
      "samples": [
+      {
+       "title": "[EXCELLENT+] Nikon AF-S Micro Nikkor 60mm f/2.8G ED",
+       "price": 481.99,
+       "currency": "USD",
+       "condition": "Used",
+       "image": "https://i.ebayimg.com/images/g/-QIAAeSwTpVqE8Xe/s-l1600.jpg",
+       "url": "https://www.ebay.com/itm/257524999077?_skw=Nikon+AF-S+Micro+60mm+f%2F2.8G+ED&hash=item3bf5afa3a5:g:-QIAAeSwTpVqE8Xe"
+      },
       {
        "title": "Nikon AF-S Micro NIKKOR 60mm f/2.8G ED [Top-MINT] 1:1 Macro Lens SWM IF ASPH",
        "price": 483.0,
@@ -10421,14 +10445,6 @@
        "condition": "Used",
        "image": "https://i.ebayimg.com/images/g/FlgAAeSwBfhqIWxI/s-l1600.jpg",
        "url": "https://www.ebay.com/itm/157969464565?_skw=Nikon+AF-S+Micro+60mm+f%2F2.8G+ED&hash=item24c7b6bcf5:g:FlgAAeSwBfhqIWxI"
-      },
-      {
-       "title": "Nikon AF-S Micro NIKKOR 60mm f/2.8G ED Macro Lens F Mount",
-       "price": 501.97,
-       "currency": "USD",
-       "condition": "Used",
-       "image": "https://i.ebayimg.com/images/g/TZ8AAOSwZMtm7Mkl/s-l1600.jpg",
-       "url": "https://www.ebay.com/itm/405222976146?_skw=Nikon+AF-S+Micro+60mm+f%2F2.8G+ED&hash=item5e592bea92:g:TZ8AAOSwZMtm7Mkl"
       }
      ]
     },
@@ -10439,7 +10455,7 @@
      "subcategory": "macro",
      "focal_length_min": 105,
      "median": 251.99,
-     "mean": 261.15,
+     "mean": 261.12,
      "min": 184.0,
      "max": 397.99,
      "q1": 225.0,
@@ -10553,7 +10569,7 @@
      "subcategory": "dx",
      "focal_length_min": 10,
      "median": 280.0,
-     "mean": 295.03,
+     "mean": 294.38,
      "min": 190.17,
      "max": 499.99,
      "q1": 233.69,
@@ -10610,13 +10626,13 @@
      "subcategory": "dx",
      "focal_length_min": 12,
      "median": 258.99,
-     "mean": 272.7,
+     "mean": 269.89,
      "min": 166.0,
      "max": 510.4,
-     "q1": 213.99,
-     "q3": 356.07,
-     "count": 35,
-     "count_filtered": 32,
+     "q1": 213.06,
+     "q3": 338.76,
+     "count": 36,
+     "count_filtered": 33,
      "samples": [
       {
        "title": "Nikon AF-S DX Zoom-NIKKOR 12-24mm f/4G IF-ED Lens",
@@ -10666,15 +10682,23 @@
      "name_en": "AF-S DX NIKKOR 16-80mm f/2.8-4E ED VR",
      "subcategory": "dx",
      "focal_length_min": 16,
-     "median": 566.6,
-     "mean": 643.57,
+     "median": 521.99,
+     "mean": 633.97,
      "min": 368.36,
      "max": 995.99,
-     "q1": 492.88,
+     "q1": 488.88,
      "q3": 835.89,
-     "count": 20,
-     "count_filtered": 20,
+     "count": 21,
+     "count_filtered": 21,
      "samples": [
+      {
+       "title": "【Exc+】 Nikon AF-S DX NIKKOR 16-80mm f/2.8-4E ED VR DSLR Lenses B5138-2M7C",
+       "price": 520.0,
+       "currency": "USD",
+       "condition": "Used",
+       "image": "https://i.ebayimg.com/images/g/7hgAAeSwjOxpySRl/s-l1200.jpg",
+       "url": "https://www.ebay.com/itm/227278062483?_skw=Nikon+AF-S+DX+16-80mm+f%2F2.8-4E+ED+VR&hash=item34ead40393:g:7hgAAeSwjOxpySRl"
+      },
       {
        "title": "Nikon standard zoom lens AF-S DX NIKKOR 16-80mm f/2.8-4E ED VR",
        "price": 521.97,
@@ -10693,7 +10717,7 @@
       },
       {
        "title": "Nikon AF-S DX NIKKOR 16-80mm F2.8-4 E ED VR F Mount Zoom Lens F Mount From JAPAN",
-       "price": 611.2,
+       "price": 565.38,
        "currency": "USD",
        "condition": "Used",
        "image": "https://i.ebayimg.com/images/g/2mgAAeSwBKpqJNs~/s-l1200.jpg",
@@ -10706,14 +10730,6 @@
        "condition": "Used",
        "image": "https://i.ebayimg.com/images/g/N~EAAeSwMgVqJZO2/s-l1200.jpg",
        "url": "https://www.ebay.com/itm/306940918909?_skw=Nikon+AF-S+DX+16-80mm+f%2F2.8-4E+ED+VR&hash=item47771abc7d:g:N~EAAeSwMgVqJZO2"
-      },
-      {
-       "title": "Nikon AF-S DX 16-80mm f 2.8-4E ED VR",
-       "price": 734.07,
-       "currency": "USD",
-       "condition": "Used",
-       "image": "https://i.ebayimg.com/images/g/RqoAAeSwTUFqHS-d/s-l1200.jpg",
-       "url": "https://www.ebay.com/itm/298373592757?_skw=Nikon+AF-S+DX+16-80mm+f%2F2.8-4E+ED+VR&hash=item457873b6b5:g:RqoAAeSwTUFqHS-d"
       }
      ]
     },
@@ -10780,23 +10796,15 @@
      "name_en": "AF-P DX NIKKOR 18-55mm f/3.5-5.6G VR",
      "subcategory": "dx",
      "focal_length_min": 18,
-     "median": 116.31,
-     "mean": 122.26,
+     "median": 117.55,
+     "mean": 122.55,
      "min": 64.83,
      "max": 205.0,
-     "q1": 101.91,
+     "q1": 103.14,
      "q3": 145.0,
-     "count": 75,
-     "count_filtered": 71,
+     "count": 74,
+     "count_filtered": 70,
      "samples": [
-      {
-       "title": "Nikon AF-P 18-55mm f/3.5-5.6G DX VR NIKKOR Zoom Lens Tested And Works",
-       "price": 116.31,
-       "currency": "USD",
-       "condition": "Used",
-       "image": "https://i.ebayimg.com/images/g/k3gAAeSwYFlpQMSY/s-l1600.jpg",
-       "url": "https://www.ebay.com/itm/326914716161?_skw=Nikon+AF-P+DX+18-55mm+f%2F3.5-5.6G+VR&hash=item4c1da2b201:g:k3gAAeSwYFlpQMSY"
-      },
       {
        "title": "Nikon AF-P Nikkor DX VR 18-55mm f3.5-5.6G F Mount",
        "price": 118.79,
@@ -10828,6 +10836,14 @@
        "condition": "Used",
        "image": "https://i.ebayimg.com/images/g/Xx4AAeSwSoFqCMrf/s-l1600.jpg",
        "url": "https://www.ebay.com/itm/117198677681?_skw=Nikon+AF-P+DX+18-55mm+f%2F3.5-5.6G+VR&hash=item1b4995e6b1:g:Xx4AAeSwSoFqCMrf"
+      },
+      {
+       "title": "Nikon Nikkor AF-P 18-55mm f3.5-5.6 G DX VR Lens F-Mount",
+       "price": 120.44,
+       "currency": "USD",
+       "condition": "Used",
+       "image": "https://i.ebayimg.com/images/g/LloAAeSwDq5prFUE/s-l1200.jpg",
+       "url": "https://www.ebay.com/itm/366253655344?_skw=Nikon+AF-P+DX+18-55mm+f%2F3.5-5.6G+VR&hash=item55466b4530:g:LloAAeSwDq5prFUE"
       }
      ]
     },
@@ -10838,7 +10854,7 @@
      "subcategory": "dx",
      "focal_length_min": 18,
      "median": 222.59,
-     "mean": 237.24,
+     "mean": 236.92,
      "min": 144.0,
      "max": 399.99,
      "q1": 194.99,
@@ -10894,15 +10910,23 @@
      "name_en": "AF-S DX NIKKOR 35mm f/1.8G",
      "subcategory": "dx",
      "focal_length_min": 35,
-     "median": 186.54,
-     "mean": 204.92,
+     "median": 184.77,
+     "mean": 200.41,
      "min": 118.49,
-     "max": 360.99,
-     "q1": 156.5,
-     "q3": 247.72,
-     "count": 144,
-     "count_filtered": 141,
+     "max": 358.99,
+     "q1": 154.99,
+     "q3": 236.72,
+     "count": 145,
+     "count_filtered": 142,
      "samples": [
+      {
+       "title": "[MINT in Box] Nikon AF-S DX NIKKOR 35mm f/1.8G Lens from Japan #R1",
+       "price": 183.0,
+       "currency": "USD",
+       "condition": "Used",
+       "image": "https://i.ebayimg.com/images/g/fc0AAeSwXfdpKF-b/s-l1600.jpg",
+       "url": "https://www.ebay.com/itm/197903533686?_skw=Nikon+AF-S+DX+35mm+f%2F1.8G&hash=item2e13f84676:g:fc0AAeSwXfdpKF-b"
+      },
       {
        "title": "Nikon AF-S DX NIKKOR 35mm f/1.8G Lens for Digital SLR Camera Japan",
        "price": 186.54,
@@ -10934,14 +10958,6 @@
        "condition": "Used",
        "image": "https://i.ebayimg.com/images/g/xu8AAeSwQUZpX4j-/s-l1600.jpg",
        "url": "https://www.ebay.com/itm/187772241905?_skw=Nikon+AF-S+DX+35mm+f%2F1.8G&hash=item2bb81907f1:g:xu8AAeSwQUZpX4j-"
-      },
-      {
-       "title": "Nikon AF-S Nikkor 35mm f/1.8 G DX ASPH Lens",
-       "price": 194.48,
-       "currency": "USD",
-       "condition": "Used",
-       "image": "https://i.ebayimg.com/images/g/GP8AAeSwYRNqDjhK/s-l1600.jpg",
-       "url": "https://www.ebay.com/itm/117206171517?_skw=Nikon+AF-S+DX+35mm+f%2F1.8G&hash=item1b4a083f7d:g:GP8AAeSwYRNqDjhK"
       }
      ]
     },
@@ -10952,11 +10968,11 @@
      "subcategory": "pc-e",
      "focal_length_min": 24,
      "median": 999.99,
-     "mean": 1015.37,
+     "mean": 973.35,
      "min": 854.95,
-     "max": 1303.15,
+     "max": 1093.05,
      "q1": 866.88,
-     "q3": 1171.54,
+     "q3": 1066.49,
      "count": 5,
      "count_filtered": 5,
      "samples": [
@@ -10994,7 +11010,7 @@
       },
       {
        "title": "Nikon Nikkor PC-E 24mm f3.5 D Ed With original Box (video included)",
-       "price": 1303.15,
+       "price": 1093.05,
        "currency": "USD",
        "condition": "Used",
        "image": "https://i.ebayimg.com/images/g/j8MAAeSwqJ1qJeoV/s-l1600.jpg",
@@ -11137,15 +11153,31 @@
      "name_en": "Nikon Nikkor Auto 50mm f/1.4",
      "subcategory": "pre-ai",
      "focal_length_min": 50,
-     "median": 130.0,
-     "mean": 134.49,
+     "median": 129.99,
+     "mean": 133.85,
      "min": 54.98,
      "max": 240.32,
      "q1": 104.89,
-     "q3": 164.99,
-     "count": 375,
-     "count_filtered": 354,
+     "q3": 163.82,
+     "count": 374,
+     "count_filtered": 353,
      "samples": [
+      {
+       "title": "[MINT] Nikon Nikkor-S.C Auto 50mm f/1.4 non Ai MF Lens From JAPAN",
+       "price": 131.99,
+       "currency": "USD",
+       "condition": "Used",
+       "image": "https://i.ebayimg.com/images/g/jfAAAeSwXZ5pzljG/s-l1600.jpg",
+       "url": "https://www.ebay.com/itm/178015612648?_skw=Nikkor+Auto+50mm+f%2F1.4+-AI-S+-AIS&hash=item29728eaee8:g:jfAAAeSwXZ5pzljG"
+      },
+      {
+       "title": "NIKON NIKKOR-SC Auto 50mm f/1.4 for NIKON non AI LENS *",
+       "price": 132.2,
+       "currency": "USD",
+       "condition": "Used",
+       "image": "https://i.ebayimg.com/images/g/BUoAAOSw4tJegRT0/s-l1600.jpg",
+       "url": "https://www.ebay.com/itm/362958168509?_skw=Nikkor+Auto+50mm+f%2F1.4+-AI-S+-AIS&hash=item5481fe21bd:g:BUoAAOSw4tJegRT0"
+      },
       {
        "title": "VERY GOOD Nikon Ai converted Nikkor S.C Auto 50mm F/1.4 Prime Lens",
        "price": 131.84,
@@ -11169,22 +11201,6 @@
        "condition": "Used",
        "image": "https://i.ebayimg.com/images/g/GbsAAOSw5VVn8-gX/s-l1600.jpg",
        "url": "https://www.ebay.com/itm/286468734030?_skw=Nikkor+Auto+50mm+f%2F1.4+-AI-S+-AIS&hash=item42b2ddfc4e:g:GbsAAOSw5VVn8-gX"
-      },
-      {
-       "title": "Nikon NIKKOR-S Auto 50mm F/1.4 Non-Ai MF SLR Lens (#B173)",
-       "price": 132.96,
-       "currency": "USD",
-       "condition": "Used",
-       "image": "https://i.ebayimg.com/images/g/ubAAAeSwyRpplOz6/s-l1600.jpg",
-       "url": "https://www.ebay.com/itm/147158880941?_skw=Nikkor+Auto+50mm+f%2F1.4+-AI-S+-AIS&hash=item22435a52ad:g:ubAAAeSwyRpplOz6"
-      },
-      {
-       "title": "Nikon Nikkor-S.C Auto 50mm f/1.4 MF Standard Lens Non-AI From Japan #699",
-       "price": 132.99,
-       "currency": "USD",
-       "condition": "Used",
-       "image": "https://i.ebayimg.com/images/g/VogAAeSwSyNqINLv/s-l1600.jpg",
-       "url": "https://www.ebay.com/itm/227375313534?_skw=Nikkor+Auto+50mm+f%2F1.4+-AI-S+-AIS&hash=item34f09ff27e:g:VogAAeSwSyNqINLv"
       }
      ]
     },
@@ -11365,15 +11381,23 @@
      "name_en": "Nikon Nikkor-H Auto 28mm f/3.5",
      "subcategory": "pre-ai",
      "focal_length_min": 28,
-     "median": 105.95,
-     "mean": 109.6,
+     "median": 102.86,
+     "mean": 108.64,
      "min": 71.75,
      "max": 165.6,
-     "q1": 99.16,
-     "q3": 130.21,
+     "q1": 98.88,
+     "q3": 126.87,
      "count": 44,
      "count_filtered": 40,
      "samples": [
+      {
+       "title": "Nikon Nikkor-H Auto 28mm f/3.5 Camera Lens in Case",
+       "price": 102.91,
+       "currency": "USD",
+       "condition": "Used",
+       "image": "https://i.ebayimg.com/images/g/pIUAAOSwHTxkmaBQ/s-l1600.jpg",
+       "url": "https://www.ebay.com/itm/166194868588?_skw=Nikkor+Auto+28mm+f%2F3.5+-AI+-AIS&hash=item26b1fc716c:g:pIUAAOSwHTxkmaBQ"
+      },
       {
        "title": "Nippon Kogaku NIKKOR-H Auto f3.5 28mm (666476) Near MINT from Japan 2075887",
        "price": 108.99,
@@ -11405,14 +11429,6 @@
        "condition": "Used",
        "image": "https://i.ebayimg.com/images/g/n-gAAeSwE01poeG7/s-l1600.jpg",
        "url": "https://www.ebay.com/itm/236658940565?_skw=Nikkor+Auto+28mm+f%2F3.5+-AI+-AIS&hash=item3719f8da95:g:n-gAAeSwE01poeG7"
-      },
-      {
-       "title": "[ MINT ] NIKON NIKKOR-H Auto 28mm F3.5 MF Wide Angle Lens For F Mount From JAPAN",
-       "price": 114.89,
-       "currency": "USD",
-       "condition": "Used",
-       "image": "https://i.ebayimg.com/images/g/AjwAAOSwtYdnzosS/s-l1600.jpg",
-       "url": "https://www.ebay.com/itm/116513728931?_skw=Nikkor+Auto+28mm+f%2F3.5+-AI+-AIS&hash=item1b20c269a3:g:AjwAAOSwtYdnzosS"
       }
      ]
     },
@@ -11536,14 +11552,14 @@
      "name_en": "Nikon Nikkor-Q Auto 135mm f/3.5",
      "subcategory": "pre-ai",
      "focal_length_min": 135,
-     "median": 96.38,
-     "mean": 105.17,
+     "median": 96.35,
+     "mean": 102.12,
      "min": 59.99,
-     "max": 181.55,
+     "max": 173.34,
      "q1": 82.5,
-     "q3": 132.44,
+     "q3": 121.31,
      "count": 40,
-     "count_filtered": 40,
+     "count_filtered": 39,
      "samples": [
       {
        "title": "[N-Mint] Nikon Nippon Kogaku Nikkor-Q Auto 135mm F3.5 Telephoto Lens",
@@ -11578,12 +11594,12 @@
        "url": "https://www.ebay.com/itm/257454697650?_skw=Nikkor+Auto+135mm+f%2F3.5+-AI+-AIS&hash=item3bf17eecb2:g:JOgAAeSw2QVp0T3s"
       },
       {
-       "title": "[Exc+5] Nikon SLR 35mm Camera Lens Nikkor-Q Auto 135mm f/3.5 lens From JAPAN",
-       "price": 99.98,
+       "title": "Maintenance Nikon Nikkor-Q Auto 135Mm F3.5 F Mount",
+       "price": 98.77,
        "currency": "USD",
        "condition": "Used",
-       "image": "https://i.ebayimg.com/images/g/VH8AAOSwZ9NnbpLV/s-l1600.jpg",
-       "url": "https://www.ebay.com/itm/296907002986?_skw=Nikkor+Auto+135mm+f%2F3.5+-AI+-AIS&hash=item452109546a:g:VH8AAOSwZ9NnbpLV"
+       "image": "https://i.ebayimg.com/images/g/NwgAAeSwrclqDamu/s-l1200.jpg",
+       "url": "https://www.ebay.com/itm/358576606409?_skw=Nikkor+Auto+135mm+f%2F3.5+-AI+-AIS&hash=item537cd4ccc9:g:NwgAAeSwrclqDamu"
       }
      ]
     },
@@ -11594,14 +11610,22 @@
      "subcategory": "pre-ai",
      "focal_length_min": 200,
      "median": 97.94,
-     "mean": 115.14,
+     "mean": 117.21,
      "min": 52.6,
-     "max": 208.37,
-     "q1": 80.69,
+     "max": 234.57,
+     "q1": 80.0,
      "q3": 155.0,
-     "count": 44,
+     "count": 43,
      "count_filtered": 41,
      "samples": [
+      {
+       "title": "Nikon Zoom-NIKKOR・C Auto F4.5 80-200mm from Japan Nikon F",
+       "price": 97.94,
+       "currency": "USD",
+       "condition": "Gebraucht",
+       "image": "https://i.ebayimg.com/images/g/VSAAAOSwujpoQbgY/s-l1600.jpg",
+       "url": "https://www.ebay.com/itm/135931457306?_skw=Nikkor+Auto+200mm+f%2F4+-AI+-AIS&hash=item1fa6256f1a:g:VSAAAOSwujpoQbgY"
+      },
       {
        "title": "nikon nikkor-q auto 200mm f4",
        "price": 101.19,
@@ -11633,14 +11657,6 @@
        "condition": "Used",
        "image": "https://i.ebayimg.com/images/g/YrsAAeSwZeRqA-lb/s-l1600.jpg",
        "url": "https://www.ebay.com/itm/298313070758?_skw=Nikkor+Auto+200mm+f%2F4+-AI+-AIS&hash=item4574d838a6:g:YrsAAeSwZeRqA-lb"
-      },
-      {
-       "title": "NIKON NIKKOR-Q Auto NIPPON KOGAKU 200mm f4 Lenz \"Excellent\" From Japan",
-       "price": 128.75,
-       "currency": "USD",
-       "condition": "Used",
-       "image": "https://i.ebayimg.com/images/g/LhEAAOSwt~ZfmFH3/s-l1600.jpg",
-       "url": "https://www.ebay.com/itm/284059280712?_skw=Nikkor+Auto+200mm+f%2F4+-AI+-AIS&hash=item422340a548:g:LhEAAOSwt~ZfmFH3"
       }
      ]
     },
@@ -11651,10 +11667,10 @@
      "subcategory": "pre-ai",
      "focal_length_min": 55,
      "median": 119.95,
-     "mean": 148.61,
+     "mean": 148.14,
      "min": 64.25,
      "max": 309.0,
-     "q1": 99.84,
+     "q1": 99.19,
      "q3": 184.0,
      "count": 33,
      "count_filtered": 33,
@@ -11708,11 +11724,11 @@
      "subcategory": "pre-ai",
      "focal_length_min": 35,
      "median": 174.5,
-     "mean": 170.64,
+     "mean": 162.97,
      "min": 109.08,
-     "max": 255.73,
+     "max": 209.43,
      "q1": 129.99,
-     "q3": 199.98,
+     "q3": 179.02,
      "count": 10,
      "count_filtered": 10,
      "samples": [
@@ -11741,20 +11757,20 @@
        "url": "https://www.ebay.com/itm/176693990501?_skw=Nikkor+Auto+35mm+f%2F2+-AI+-AIS+-f%2F2.8&hash=item2923c85465:g:xUgAAOSwFF5nRbav"
       },
       {
+       "title": "Nikon Nikkor-O Auto 35Mm F2 22045",
+       "price": 179.01,
+       "currency": "USD",
+       "condition": "Used",
+       "image": "https://i.ebayimg.com/images/g/hwIAAeSwEYZqH8y~/s-l1200.jpg",
+       "url": "https://www.ebay.com/itm/358632326738?_skw=Nikkor+Auto+35mm+f%2F2+-AI+-AIS+-f%2F2.8&hash=item5380270652:g:hwIAAeSwEYZqH8y~"
+      },
+      {
        "title": "NIKON NIKKOR 35mm f2 WIDE ANGLE Auto  LENS (162-26)",
        "price": 179.02,
        "currency": "USD",
        "condition": "Used",
        "image": "https://i.ebayimg.com/images/g/Fn4AAeSwvSpqCEPH/s-l1600.jpg",
        "url": "https://www.ebay.com/itm/188388918632?_skw=Nikkor+Auto+35mm+f%2F2+-AI+-AIS+-f%2F2.8&hash=item2bdcdac568:g:Fn4AAeSwvSpqCEPH"
-      },
-      {
-       "title": "Nikon NIKKOR-O Auto 35mm f/2",
-       "price": 199.98,
-       "currency": "USD",
-       "condition": "Used",
-       "image": "https://i.ebayimg.com/images/g/HjYAAeSw16pp2DVt/s-l1600.jpg",
-       "url": "https://www.ebay.com/itm/178036325754?_skw=Nikkor+Auto+35mm+f%2F2+-AI+-AIS+-f%2F2.8&hash=item2973cabd7a:g:HjYAAeSw16pp2DVt"
       }
      ]
     },
@@ -11821,15 +11837,23 @@
      "name_en": "Nikon GN Auto-Nikkor 45mm f/2.8",
      "subcategory": "pre-ai",
      "focal_length_min": 45,
-     "median": 351.9,
-     "mean": 390.52,
+     "median": 348.86,
+     "mean": 389.06,
      "min": 136.5,
      "max": 831.99,
-     "q1": 249.99,
+     "q1": 245.37,
      "q3": 512.5,
      "count": 73,
      "count_filtered": 72,
      "samples": [
+      {
+       "title": "Nikon GN Auto Nikkor 45mm F/2.8 Non-Ai Lens #60486 A4",
+       "price": 327.25,
+       "currency": "USD",
+       "condition": "Used",
+       "image": "https://i.ebayimg.com/images/g/JTAAAeSw2y5otkri/s-l960.jpg",
+       "url": "https://www.ebay.com/itm/146807295692?_skw=Nikon+GN+Auto+Nikkor+45mm+f%2F2.8&hash=item222e658ecc:g:JTAAAeSw2y5otkri"
+      },
       {
        "title": "Nikon GN Auto NIKKOR・C 45mm F2.8 Lens Fully Functional, Clean",
        "price": 337.82,
@@ -11837,14 +11861,6 @@
        "condition": "Used",
        "image": "https://i.ebayimg.com/images/g/bNwAAeSwNlpqIzu2/s-l1200.jpg",
        "url": "https://www.ebay.com/itm/278058052857?_skw=Nikon+GN+Auto+Nikkor+45mm+f%2F2.8&hash=item40bd8d2cf9:g:bNwAAeSwNlpqIzu2"
-      },
-      {
-       "title": "Nikon Gn Auto Nikkor C 45Mm F2.8 Non-Ai Single Focus Lens F Mount Standard Panca",
-       "price": 343.92,
-       "currency": "USD",
-       "condition": "Used",
-       "image": "https://i.ebayimg.com/images/g/RVwAAeSwVcxqH8zX/s-l1600.jpg",
-       "url": "https://www.ebay.com/itm/358632326279?_skw=Nikon+GN+Auto+Nikkor+45mm+f%2F2.8&hash=item5380270487:g:RVwAAeSwVcxqH8zX"
       },
       {
        "title": "Nikon Ai-s Ais Nikkor 45mm f/2.8 P Silver MF Pancake Lens Japan [MINT] #2 Tested",
@@ -11878,15 +11894,31 @@
      "name_en": "Nikon Nikkor 50mm f/1.4 AI",
      "subcategory": "ai",
      "focal_length_min": 50,
-     "median": 169.99,
-     "mean": 182.0,
+     "median": 169.9,
+     "mean": 181.13,
      "min": 79.99,
      "max": 357.43,
      "q1": 144.9,
-     "q3": 230.96,
+     "q3": 230.37,
      "count": 255,
      "count_filtered": 245,
      "samples": [
+      {
+       "title": "\"N.MINT\" NIKON AI NIKKOR 50mm F/1.4 MF MF Camera Lens From JAPAN #786",
+       "price": 169.99,
+       "currency": "USD",
+       "condition": "Used",
+       "image": "https://i.ebayimg.com/images/g/YD8AAOSwbmpoNmYP/s-l1600.jpg",
+       "url": "https://www.ebay.com/itm/236124437192?_skw=Nikon+Nikkor+50mm+f%2F1.4+AI+-AIS+-AI-S+-Auto&hash=item36fa1cfac8:g:YD8AAOSwbmpoNmYP"
+      },
+      {
+       "title": "Nikon Ai Nikkor 50mm f/1.4 Standard Prime Lens F mount [ Near MINT w/Box ] JAPAN",
+       "price": 169.99,
+       "currency": "USD",
+       "condition": "Used",
+       "image": "https://i.ebayimg.com/images/g/o2cAAOSwthFoRYTD/s-l1600.jpg",
+       "url": "https://www.ebay.com/itm/377080227054?_skw=Nikon+Nikkor+50mm+f%2F1.4+AI+-AIS+-AI-S+-Auto&hash=item57cbbba4ee:g:o2cAAOSwthFoRYTD"
+      },
       {
        "title": "Nikon Ai NIKKOR 50mm f/1.4 MF Standard Prime Lens *Near Mint* #5007",
        "price": 169.99,
@@ -11904,28 +11936,12 @@
        "url": "https://www.ebay.com/itm/305593248716?_skw=Nikon+Nikkor+50mm+f%2F1.4+AI+-AIS+-AI-S+-Auto&hash=item4726c6ebcc:g:mLoAAOSwCGJmVRmA"
       },
       {
-       "title": "[Exc+5] Nikon Ai NIKKOR 50mm f/1.4 Standard Prime MF Lens from Japan CL50222",
-       "price": 171.15,
+       "title": "【EXC】 Nikon NIKKOR 50mm F1.4 Ai w/cap FromJapan #mj9347",
+       "price": 170.95,
        "currency": "USD",
        "condition": "Used",
-       "image": "https://i.ebayimg.com/images/g/zc8AAeSw8JhpHtVF/s-l1600.jpg",
-       "url": "https://www.ebay.com/itm/197880073117?_skw=Nikon+Nikkor+50mm+f%2F1.4+AI+-AIS+-AI-S+-Auto&hash=item2e12924b9d:g:zc8AAeSw8JhpHtVF"
-      },
-      {
-       "title": "Nikon Ai Nikkor 50mm F/1.4 Standard Prime MF Lens",
-       "price": 172.58,
-       "currency": "USD",
-       "condition": "Used",
-       "image": "https://i.ebayimg.com/images/g/3aUAAeSwB89qJJ4g/s-l1600.jpg",
-       "url": "https://www.ebay.com/itm/318419284758?_skw=Nikon+Nikkor+50mm+f%2F1.4+AI+-AIS+-AI-S+-Auto&hash=item4a2344b316:g:3aUAAeSwB89qJJ4g"
-      },
-      {
-       "title": "[MINT] Nikon Ai Nikkor 50mm f/1.4 MF Standard Prime Lens from Japan #8110",
-       "price": 173.0,
-       "currency": "USD",
-       "condition": "Used",
-       "image": "https://i.ebayimg.com/images/g/KQ8AAeSwt~9p0uZ8/s-l1600.jpg",
-       "url": "https://www.ebay.com/itm/298386081530?_skw=Nikon+Nikkor+50mm+f%2F1.4+AI+-AIS+-AI-S+-Auto&hash=item45793246fa:g:KQ8AAeSwt~9p0uZ8"
+       "image": "https://i.ebayimg.com/images/g/V5UAAeSwUGBqJtzr/s-l1200.jpg",
+       "url": "https://www.ebay.com/itm/188155114509?_skw=Nikon+Nikkor+50mm+f%2F1.4+AI+-AIS+-AI-S+-Auto&hash=item2bceeb340d:g:V5UAAeSwUGBqJtzr"
       }
      ]
     },
@@ -11992,15 +12008,23 @@
      "name_en": "Nikon Nikkor 50mm f/1.8 AI",
      "subcategory": "ai",
      "focal_length_min": 50,
-     "median": 160.18,
-     "mean": 166.62,
+     "median": 159.99,
+     "mean": 165.94,
      "min": 108.76,
      "max": 259.99,
      "q1": 139.07,
-     "q3": 190.94,
+     "q3": 189.9,
      "count": 62,
      "count_filtered": 59,
      "samples": [
+      {
+       "title": "[TOP MINT] Nikon AI Nikkor 50mm f/1.8 MF Standard Prime Lens F Mount From Japan",
+       "price": 159.99,
+       "currency": "USD",
+       "condition": "Used",
+       "image": "https://i.ebayimg.com/images/g/e-gAAeSwYudqAdc9/s-l1600.jpg",
+       "url": "https://www.ebay.com/itm/327197256361?_skw=Nikon+Nikkor+50mm+f%2F1.8+AI+-AIS+-AI-S+-series+-pancake&hash=item4c2e79eaa9:g:e-gAAeSwYudqAdc9"
+      },
       {
        "title": "Nikon Nikkor Ai 50mm f/1.8 Standard MF 830341",
        "price": 160.18,
@@ -12032,14 +12056,6 @@
        "condition": "Used",
        "image": "https://i.ebayimg.com/images/g/BTAAAeSwlDppGr3E/s-l1600.jpg",
        "url": "https://www.ebay.com/itm/177584505450?_skw=Nikon+Nikkor+50mm+f%2F1.8+AI+-AIS+-AI-S+-series+-pancake&hash=item2958dc826a:g:BTAAAeSwlDppGr3E"
-      },
-      {
-       "title": "Nikon Nikkor 50mm f1.8 Ai Lens",
-       "price": 163.2,
-       "currency": "USD",
-       "condition": "Used",
-       "image": "https://i.ebayimg.com/images/g/HQAAAeSweSZp1usr/s-l1600.jpg",
-       "url": "https://www.ebay.com/itm/147248859687?_skw=Nikon+Nikkor+50mm+f%2F1.8+AI+-AIS+-AI-S+-series+-pancake&hash=item2248b74a27:g:HQAAAeSweSZp1usr"
       }
      ]
     },
@@ -12106,15 +12122,23 @@
      "name_en": "Nikon Nikkor 28mm f/3.5 AI",
      "subcategory": "ai",
      "focal_length_min": 28,
-     "median": 109.99,
+     "median": 109.98,
      "mean": 113.04,
      "min": 70.99,
-     "max": 170.78,
+     "max": 169.99,
      "q1": 99.99,
      "q3": 130.0,
-     "count": 111,
+     "count": 110,
      "count_filtered": 102,
      "samples": [
+      {
+       "title": "Nikon Ai NIKKOR 28mm F3.5 Wide Angle MF Lens Tested From JAPAN Near Mint",
+       "price": 109.99,
+       "currency": "USD",
+       "condition": "Used",
+       "image": "https://i.ebayimg.com/images/g/AJUAAeSwQh9qHjsI/s-l1600.jpg",
+       "url": "https://www.ebay.com/itm/287368633491?_skw=Nikon+Nikkor+28mm+f%2F3.5+AI+-AIS+-AI-S+-Auto&hash=item42e8815c93:g:AJUAAeSwQh9qHjsI"
+      },
       {
        "title": "Nikon Nikkor 28mm f/3.5 AI Focus Wide Angle Lens　EF-1530",
        "price": 110.31,
@@ -12146,14 +12170,6 @@
        "condition": "Used",
        "image": "https://i.ebayimg.com/images/g/EvMAAeSwd2xqCt-7/s-l1200.jpg",
        "url": "https://www.ebay.com/itm/206282363530?_skw=Nikon+Nikkor+28mm+f%2F3.5+AI+-AIS+-AI-S+-Auto&hash=item300763128a:g:EvMAAeSwd2xqCt-7"
-      },
-      {
-       "title": "[Exc+5/ Tested] Nikon Ai NIKKOR 28mm f/3.5 MF Wide Angle Lens From Japan",
-       "price": 111.99,
-       "currency": "USD",
-       "condition": "Used",
-       "image": "https://i.ebayimg.com/images/g/2vQAAOSwoXFn4HXw/s-l1600.jpg",
-       "url": "https://www.ebay.com/itm/365484710334?_skw=Nikon+Nikkor+28mm+f%2F3.5+AI+-AIS+-AI-S+-Auto&hash=item55189619be:g:2vQAAOSwoXFn4HXw"
       }
      ]
     },
@@ -12163,23 +12179,15 @@
      "name_en": "Nikon Nikkor 28mm f/2.8 AI",
      "subcategory": "ai",
      "focal_length_min": 28,
-     "median": 170.5,
-     "mean": 177.02,
+     "median": 173.5,
+     "mean": 177.67,
      "min": 106.78,
      "max": 290.99,
      "q1": 148.52,
      "q3": 208.12,
      "count": 175,
-     "count_filtered": 166,
+     "count_filtered": 167,
      "samples": [
-      {
-       "title": "[Excellent+] Nikon AI NIKKOR 28mm F2.8 MF Wide Angle Lens Japan 10748",
-       "price": 174.24,
-       "currency": "USD",
-       "condition": "Used",
-       "image": "https://i.ebayimg.com/images/g/cpIAAOSw21tm-k6H/s-l1600.jpg",
-       "url": "https://www.ebay.com/itm/305821403084?_skw=Nikon+Nikkor+28mm+f%2F2.8+AI+-AIS+-AI-S+-Auto&hash=item47346047cc:g:cpIAAOSw21tm-k6H"
-      },
       {
        "title": "**Near Mint** Nikon NIKKOR 28mm f/2.8 Ai Wide Angle MF Lens From Japan",
        "price": 174.9,
@@ -12211,6 +12219,14 @@
        "condition": "Used",
        "image": "https://i.ebayimg.com/images/g/2eIAAeSwwatqF6EA/s-l1600.jpg",
        "url": "https://www.ebay.com/itm/298360444467?_skw=Nikon+Nikkor+28mm+f%2F2.8+AI+-AIS+-AI-S+-Auto&hash=item4577ab1633:g:2eIAAeSwwatqF6EA"
+      },
+      {
+       "title": "[MINT] Nikon Ai Nikkor 28mm f/2.8 MF Wide Angle Lens from Japan #8059",
+       "price": 175.0,
+       "currency": "USD",
+       "condition": "Used",
+       "image": "https://i.ebayimg.com/images/g/9D8AAeSwK1Bpo5B1/s-l1600.jpg",
+       "url": "https://www.ebay.com/itm/298076326125?_skw=Nikon+Nikkor+28mm+f%2F2.8+AI+-AIS+-AI-S+-Auto&hash=item4566bbc8ed:g:9D8AAeSwK1Bpo5B1"
       }
      ]
     },
@@ -12220,14 +12236,14 @@
      "name_en": "Nikon Nikkor 35mm f/2 AI",
      "subcategory": "ai",
      "focal_length_min": 35,
-     "median": 212.73,
-     "mean": 229.41,
+     "median": 209.99,
+     "mean": 229.3,
      "min": 109.99,
      "max": 411.31,
      "q1": 176.17,
      "q3": 270.78,
-     "count": 55,
-     "count_filtered": 54,
+     "count": 54,
+     "count_filtered": 53,
      "samples": [
       {
        "title": "[NEAR MINT w/ Box] Nikon Ai Nikkor 35mm f/2 Wide Angle Lens F Mount From JAPAN",
@@ -12277,15 +12293,23 @@
      "name_en": "Nikon Nikkor 85mm f/2 AI",
      "subcategory": "ai",
      "focal_length_min": 85,
-     "median": 223.5,
-     "mean": 235.4,
+     "median": 220.0,
+     "mean": 233.98,
      "min": 145.0,
      "max": 339.0,
-     "q1": 209.99,
+     "q1": 204.98,
      "q3": 269.99,
-     "count": 38,
-     "count_filtered": 38,
+     "count": 39,
+     "count_filtered": 39,
      "samples": [
+      {
+       "title": "[MINT+++] Nikon Ai Nikkor 85mm f/2 MF Lens From JAPAN #250807h",
+       "price": 219.99,
+       "currency": "USD",
+       "condition": "Used",
+       "image": "https://i.ebayimg.com/images/g/Xj8AAeSwshpqHxOA/s-l1600.jpg",
+       "url": "https://www.ebay.com/itm/127899638781?_skw=Nikon+Nikkor+85mm+f%2F2+AI+-AIS+-AI-S&hash=item1dc7699bfd:g:Xj8AAeSwshpqHxOA"
+      },
       {
        "title": "Nikon Ai Nikkor 85mm f/2 MF Portrait Lens *Excellent+5* #5830",
        "price": 219.99,
@@ -12317,14 +12341,6 @@
        "condition": "Used",
        "image": "https://i.ebayimg.com/images/g/rjEAAOSwB6JnEP44/s-l1600.jpg",
        "url": "https://www.ebay.com/itm/405432598425?_skw=Nikon+Nikkor+85mm+f%2F2+AI+-AIS+-AI-S&hash=item5e65aa7f99:g:rjEAAOSwB6JnEP44"
-      },
-      {
-       "title": "【TOP MINT】 Nikon Nikkor Ai 85mm f/2 MF Prime Portrait Lens F Mount from JAPAN",
-       "price": 234.98,
-       "currency": "USD",
-       "condition": "Used",
-       "image": "https://i.ebayimg.com/images/g/7OoAAeSwNylqCbV1/s-l1600.jpg",
-       "url": "https://www.ebay.com/itm/800035361336?_skw=Nikon+Nikkor+85mm+f%2F2+AI+-AIS+-AI-S&hash=itemba45d2d238:g:7OoAAeSwNylqCbV1"
       }
      ]
     },
@@ -12392,7 +12408,7 @@
      "subcategory": "ai",
      "focal_length_min": 135,
      "median": 143.54,
-     "mean": 145.38,
+     "mean": 145.37,
      "min": 68.0,
      "max": 236.62,
      "q1": 126.72,
@@ -12433,12 +12449,12 @@
        "url": "https://www.ebay.com/itm/197672489971?_skw=Nikon+Nikkor+135mm+f%2F2.8+AI+-AIS+-AI-S&hash=item2e0632d3f3:g:-aQAAOSwH95nOuvK"
       },
       {
-       "title": "Mint Nikon Ai Nikkor 135mm f2.8 MF Telephoto Lens JAPAN 909548",
-       "price": 146.71,
+       "title": "Nikon NIKKOR AI 135mm f/2.8 MF Telephoto Lens F Mount Old Lens Japan Serviced",
+       "price": 145.54,
        "currency": "USD",
        "condition": "Used",
-       "image": "https://i.ebayimg.com/images/g/fZoAAOSwTSZn~KA5/s-l1600.jpg",
-       "url": "https://www.ebay.com/itm/277033388788?_skw=Nikon+Nikkor+135mm+f%2F2.8+AI+-AIS+-AI-S&hash=item40807a0af4:g:fZoAAOSwTSZn~KA5"
+       "image": "https://i.ebayimg.com/images/g/S8wAAeSwDe5p2kzX/s-l1200.jpg",
+       "url": "https://www.ebay.com/itm/377244894758?_skw=Nikon+Nikkor+135mm+f%2F2.8+AI+-AIS+-AI-S&hash=item57d58c4626:g:S8wAAeSwDe5p2kzX"
       }
      ]
     },
@@ -12448,14 +12464,14 @@
      "name_en": "Nikon Nikkor 24mm f/2.8 AI",
      "subcategory": "ai",
      "focal_length_min": 24,
-     "median": 168.47,
-     "mean": 170.1,
+     "median": 164.9,
+     "mean": 168.53,
      "min": 84.99,
-     "max": 287.0,
+     "max": 254.4,
      "q1": 139.99,
-     "q3": 198.88,
+     "q3": 197.0,
      "count": 102,
-     "count_filtered": 100,
+     "count_filtered": 99,
      "samples": [
       {
        "title": "[ NEAR MINT w/Lens Cap ] Nikon Ai Nikkor 24mm f/2.8 MF Wide Lens From JAPAN",
@@ -12531,13 +12547,13 @@
      "subcategory": "ai",
      "focal_length_min": 200,
      "median": 119.99,
-     "mean": 129.34,
+     "mean": 128.48,
      "min": 51.99,
-     "max": 253.79,
+     "max": 253.47,
      "q1": 96.72,
-     "q3": 159.81,
-     "count": 208,
-     "count_filtered": 206,
+     "q3": 159.48,
+     "count": 207,
+     "count_filtered": 204,
      "samples": [
       {
        "title": "[Top MINT] Nikon Ai Nikkor 200mm f/4 MF Lens From JAPAN #1103",
@@ -12613,14 +12629,22 @@
      "subcategory": "ais",
      "focal_length_min": 50,
      "median": 439.99,
-     "mean": 472.79,
+     "mean": 469.42,
      "min": 216.14,
-     "max": 836.65,
+     "max": 829.99,
      "q1": 370.0,
-     "q3": 559.28,
-     "count": 257,
+     "q3": 556.25,
+     "count": 258,
      "count_filtered": 250,
      "samples": [
+      {
+       "title": "[MINT] Nikon NIKKOR 50mm f/1.2 AI-S MF Standard Lens Nikon F Mount From JAPAN",
+       "price": 439.99,
+       "currency": "USD",
+       "condition": "Used",
+       "image": "https://i.ebayimg.com/images/g/V8EAAeSw9w5pwoP8/s-l1600.jpg",
+       "url": "https://www.ebay.com/itm/377059165551?_skw=Nikon+AIS+50mm+f%2F1.2&hash=item57ca7a456f:g:V8EAAeSw9w5pwoP8"
+      },
       {
        "title": "SIC 387xx [TOP MINT] Nikon Ai-S Nikkor 50mm F1.2 Standard Lens SLR MF From Japan",
        "price": 439.99,
@@ -12652,14 +12676,6 @@
        "condition": "Used",
        "image": "https://i.ebayimg.com/images/g/kzsAAeSwmH9p6sgC/s-l1600.jpg",
        "url": "https://www.ebay.com/itm/188468109023?_skw=Nikon+AIS+50mm+f%2F1.2&hash=item2be1931edf:g:kzsAAeSwmH9p6sgC"
-      },
-      {
-       "title": "SIC 38xxx [MINT++] Nikon Ai-S Nikkor 50mm f/1.2 Standard Lens MF SLR From JAPAN",
-       "price": 449.99,
-       "currency": "USD",
-       "condition": "Used",
-       "image": "https://i.ebayimg.com/images/g/6UAAAeSwATdqFESj/s-l960.jpg",
-       "url": "https://www.ebay.com/itm/318358378174?_skw=Nikon+AIS+50mm+f%2F1.2&hash=item4a1fa356be:g:6UAAAeSwATdqFESj"
       }
      ]
     },
@@ -12669,15 +12685,23 @@
      "name_en": "Nikon Nikkor 50mm f/1.4 AI-S",
      "subcategory": "ais",
      "focal_length_min": 50,
-     "median": 214.99,
-     "mean": 229.3,
+     "median": 215.3,
+     "mean": 228.69,
      "min": 106.0,
      "max": 413.99,
      "q1": 186.99,
-     "q3": 280.31,
-     "count": 448,
-     "count_filtered": 425,
+     "q3": 279.99,
+     "count": 450,
+     "count_filtered": 428,
      "samples": [
+      {
+       "title": "US Duty Free [MINT-] Nikon Ai-S Nikkor 50mm f/1.4 MF Lens F Mount From JAPAN 267",
+       "price": 220.0,
+       "currency": "USD",
+       "condition": "Used",
+       "image": "https://i.ebayimg.com/images/g/D30AAeSw8j9pM7~h/s-l1600.jpg",
+       "url": "https://www.ebay.com/itm/406454563171?_skw=Nikon+AIS+50mm+f%2F1.4&hash=item5ea2947163:g:D30AAeSw8j9pM7~h"
+      },
       {
        "title": "【Near Mint】Nikon Ai-s Nikkor 50mm f/1.4 Lens #2848759",
        "price": 221.47,
@@ -12709,14 +12733,6 @@
        "condition": "Used",
        "image": "https://i.ebayimg.com/images/g/5bQAAeSweGNqBnll/s-l1600.jpg",
        "url": "https://www.ebay.com/itm/198386817877?_skw=Nikon+AIS+50mm+f%2F1.4&hash=item2e30c69b55:g:5bQAAeSweGNqBnll"
-      },
-      {
-       "title": "US Stock Nikon NIKKOR AIS Ai-s 50mm F/1.4 MF Standard Lens #4403",
-       "price": 224.98,
-       "currency": "USD",
-       "condition": "Used",
-       "image": "https://i.ebayimg.com/images/g/dV8AAeSwOcNplxdP/s-l1200.jpg",
-       "url": "https://www.ebay.com/itm/406976507172?_skw=Nikon+AIS+50mm+f%2F1.4&hash=item5ec1b0ad24:g:dV8AAeSwOcNplxdP"
       }
      ]
     },
@@ -12727,7 +12743,7 @@
      "subcategory": "ais",
      "focal_length_min": 35,
      "median": 586.99,
-     "mean": 621.4,
+     "mean": 620.98,
      "min": 226.0,
      "max": 1124.5,
      "q1": 472.95,
@@ -12784,22 +12800,14 @@
      "subcategory": "ais",
      "focal_length_min": 28,
      "median": 349.99,
-     "mean": 381.69,
+     "mean": 373.73,
      "min": 100.68,
-     "max": 749.0,
-     "q1": 284.5,
-     "q3": 473.56,
+     "max": 713.0,
+     "q1": 291.54,
+     "q3": 469.99,
      "count": 77,
-     "count_filtered": 76,
+     "count_filtered": 75,
      "samples": [
-      {
-       "title": "[MINT+++] Nikon Ai-s Ais Nikkor 28mm f/2.8 MF Wide Angle Lens F Mount From JAPAN",
-       "price": 349.99,
-       "currency": "USD",
-       "condition": "Used",
-       "image": "https://i.ebayimg.com/images/g/3KAAAeSwtVRqHB9s/s-l1600.jpg",
-       "url": "https://www.ebay.com/itm/157957214233?_skw=Nikon+AIS+28mm+f%2F2.8&hash=item24c6fbd019:g:3KAAAeSwtVRqHB9s"
-      },
       {
        "title": "Nikon NIKKOR 28mm F2.8 Ai-S AIS MF Wide Angle Lens From Japan",
        "price": 349.99,
@@ -12815,6 +12823,14 @@
        "condition": "Used",
        "image": "https://i.ebayimg.com/images/g/sucAAeSwwaBqJYU2/s-l1600.jpg",
        "url": "https://www.ebay.com/itm/358649970477?_skw=Nikon+AIS+28mm+f%2F2.8&hash=item5381343f2d:g:sucAAeSwwaBqJYU2"
+      },
+      {
+       "title": "[Top MINT w/cap] Nikon Ai-s Ais Nikkor 28mm f/2.8 MF Wide Angle Lens From JAPAN",
+       "price": 349.99,
+       "currency": "USD",
+       "condition": "Used",
+       "image": "https://i.ebayimg.com/images/g/ovMAAeSwL-BqJr35/s-l1600.jpg",
+       "url": "https://www.ebay.com/itm/287381819596?_skw=Nikon+AIS+28mm+f%2F2.8&hash=item42e94a90cc:g:ovMAAeSwL-BqJr35"
       },
       {
        "title": "[Exc+5] Nikon Ai-s Ais Nikkor 28mm F/2.8 MF Wide Angle Lens From JAPAN",
@@ -12840,13 +12856,13 @@
      "name_en": "Nikon Nikkor 105mm f/2.5 AI-S",
      "subcategory": "ais",
      "focal_length_min": 105,
-     "median": 447.06,
-     "mean": 455.52,
+     "median": 444.76,
+     "mean": 443.7,
      "min": 237.99,
-     "max": 754.62,
-     "q1": 399.98,
-     "q3": 548.0,
-     "count": 31,
+     "max": 679.99,
+     "q1": 399.99,
+     "q3": 524.0,
+     "count": 32,
      "count_filtered": 30,
      "samples": [
       {
@@ -12897,23 +12913,15 @@
      "name_en": "Nikon Nikkor 135mm f/2.8 AI-S",
      "subcategory": "ais",
      "focal_length_min": 135,
-     "median": 199.49,
-     "mean": 195.73,
+     "median": 199.99,
+     "mean": 195.79,
      "min": 96.28,
      "max": 328.02,
-     "q1": 156.5,
-     "q3": 236.49,
-     "count": 136,
-     "count_filtered": 136,
+     "q1": 153.65,
+     "q3": 237.99,
+     "count": 135,
+     "count_filtered": 135,
      "samples": [
-      {
-       "title": "[Near MINT] Nikon Ai-s Nikkor 135mm f/2.8 MF Lens From JAPAN #1021",
-       "price": 196.83,
-       "currency": "USD",
-       "condition": "Used",
-       "image": "https://i.ebayimg.com/images/g/wxwAAeSwSshqHtHW/s-l1600.jpg",
-       "url": "https://www.ebay.com/itm/137380349238?_skw=Nikon+AIS+135mm+f%2F2.8&hash=item1ffc81c536:g:wxwAAeSwSshqHtHW"
-      },
       {
        "title": "Nikon Ai-S Ais Nikkor 135mm f/2.8 MF Telephoto Lens from JAPAN [Near Mint] #0426",
        "price": 198.99,
@@ -12945,6 +12953,14 @@
        "condition": "Used",
        "image": "https://i.ebayimg.com/images/g/LusAAeSwhANqAdsu/s-l1600.jpg",
        "url": "https://www.ebay.com/itm/178125585220?_skw=Nikon+AIS+135mm+f%2F2.8&hash=item29791cbb44:g:LusAAeSwhANqAdsu"
+      },
+      {
+       "title": "[Near MINT] Nikon Ai-S Nikkor 135mm f/2.8 Telephoto MF Camera Lens from JAPAN",
+       "price": 199.99,
+       "currency": "USD",
+       "condition": "Used",
+       "image": "https://i.ebayimg.com/images/g/cm4AAeSwQ-Np2yG9/s-l1600.jpg",
+       "url": "https://www.ebay.com/itm/127805459156?_skw=Nikon+AIS+135mm+f%2F2.8&hash=item1dc1cc8ad4:g:cm4AAeSwQ-Np2yG9"
       }
      ]
     },
@@ -12954,15 +12970,23 @@
      "name_en": "Nikon Nikkor 180mm f/2.8 ED AI-S",
      "subcategory": "ais",
      "focal_length_min": 180,
-     "median": 304.78,
-     "mean": 304.66,
+     "median": 304.77,
+     "mean": 303.12,
      "min": 149.99,
-     "max": 475.99,
+     "max": 464.99,
      "q1": 259.99,
-     "q3": 347.22,
-     "count": 140,
+     "q3": 346.21,
+     "count": 141,
      "count_filtered": 137,
      "samples": [
+      {
+       "title": "Nikon AI S NIKKOR ED 180mm F2.8 AIS [Working]",
+       "price": 304.78,
+       "currency": "USD",
+       "condition": "Used",
+       "image": "https://i.ebayimg.com/images/g/r2kAAeSwDIVqG83u/s-l1200.jpg",
+       "url": "https://www.ebay.com/itm/206311074772?_skw=Nikon+AIS+180mm+f%2F2.8+ED&hash=item3009192bd4:g:r2kAAeSwDIVqG83u"
+      },
       {
        "title": "Nikon Ai-s Nikkor*ED 180mm F2.8 MF Lens Near Mint!",
        "price": 304.99,
@@ -12994,14 +13018,6 @@
        "condition": "Used",
        "image": "https://i.ebayimg.com/images/g/dzsAAeSwN8dqCd4i/s-l1200.jpg",
        "url": "https://www.ebay.com/itm/188393009472?_skw=Nikon+AIS+180mm+f%2F2.8+ED&hash=item2bdd193140:g:dzsAAeSwN8dqCd4i"
-      },
-      {
-       "title": "[ OPT MINT ] Nikon Ai-s Nikkor ED 180mm f2.8 Telephoto Lens F mount From JAPAN",
-       "price": 307.99,
-       "currency": "USD",
-       "condition": "Used",
-       "image": "https://i.ebayimg.com/images/g/IZwAAeSw6whp02kh/s-l1600.jpg",
-       "url": "https://www.ebay.com/itm/358584990627?_skw=Nikon+AIS+180mm+f%2F2.8+ED&hash=item537d54bba3:g:IZwAAeSw6whp02kh"
       }
      ]
     },
@@ -13012,13 +13028,13 @@
      "subcategory": "ais",
      "focal_length_min": 55,
      "median": 189.99,
-     "mean": 197.54,
+     "mean": 196.39,
      "min": 93.5,
-     "max": 352.47,
+     "max": 342.99,
      "q1": 162.98,
-     "q3": 239.99,
+     "q3": 237.99,
      "count": 251,
-     "count_filtered": 239,
+     "count_filtered": 238,
      "samples": [
       {
        "title": "[Excellent] Nikon Ai-s Ais Micro NIKKOR 55mm f/2.8 MF Macro Lens From JAPAN F/S",
@@ -13068,15 +13084,23 @@
      "name_en": "Nikon Nikkor 20mm f/2.8 AI-S",
      "subcategory": "ais",
      "focal_length_min": 20,
-     "median": 330.99,
-     "mean": 340.03,
+     "median": 330.49,
+     "mean": 340.07,
      "min": 150.31,
      "max": 548.0,
      "q1": 281.51,
      "q3": 389.99,
-     "count": 70,
-     "count_filtered": 67,
+     "count": 71,
+     "count_filtered": 68,
      "samples": [
+      {
+       "title": "[MINT] Nikon Nikkor Ai-s Ais 20mm f/2.8 Wide Angle Lens From JAPAN #818",
+       "price": 329.99,
+       "currency": "USD",
+       "condition": "Used",
+       "image": "https://i.ebayimg.com/images/g/U8QAAeSw7N9qJtqa/s-l1600.jpg",
+       "url": "https://www.ebay.com/itm/178204208608?_skw=Nikon+AIS+20mm+f%2F2.8&hash=item297dcc6de0:g:U8QAAeSw7N9qJtqa"
+      },
       {
        "title": "Nikon Ai-s SIC NIKKOR 20mm f/2.8 MF \"Excellent+++\" From Japan #263583",
        "price": 330.99,
@@ -13108,14 +13132,6 @@
        "condition": "Used",
        "image": "https://i.ebayimg.com/images/g/6NgAAOSwFTdoLk-A/s-l1600.jpg",
        "url": "https://www.ebay.com/itm/405886087484?_skw=Nikon+AIS+20mm+f%2F2.8&hash=item5e80b2313c:g:6NgAAOSwFTdoLk-A"
-      },
-      {
-       "title": "Nikon Nikkor Ai-s Ais 20mm f/2.8 Wide Angle MF Lens [Exc From JAPAN #2443410",
-       "price": 332.64,
-       "currency": "USD",
-       "condition": "Used",
-       "image": "https://i.ebayimg.com/images/g/6NgAAOSwFTdoLk-A/s-l1600.jpg",
-       "url": "https://www.ebay.com/itm/406959570791?_skw=Nikon+AIS+20mm+f%2F2.8&hash=item5ec0ae3f67:g:6NgAAOSwFTdoLk-A"
       }
      ]
     },
@@ -13125,15 +13141,23 @@
      "name_en": "Nikon Nikkor 24mm f/2 AI-S",
      "subcategory": "ais",
      "focal_length_min": 24,
-     "median": 292.99,
-     "mean": 310.94,
+     "median": 291.98,
+     "mean": 308.95,
      "min": 199.99,
      "max": 499.0,
-     "q1": 262.71,
-     "q3": 361.3,
-     "count": 58,
-     "count_filtered": 56,
+     "q1": 260.98,
+     "q3": 361.24,
+     "count": 57,
+     "count_filtered": 55,
      "samples": [
+      {
+       "title": "SIC 240xxx [MINT] Nikon Ai-s Ais Nikkor 24mm f/2 Wide Angle Prime Lens JAPAN",
+       "price": 284.99,
+       "currency": "USD",
+       "condition": "Used",
+       "image": "https://i.ebayimg.com/images/g/RkkAAeSwgPZp1eCz/s-l1600.jpg",
+       "url": "https://www.ebay.com/itm/406838735699?_skw=Nikon+AIS+24mm+f%2F2+-f%2F2.8&hash=item5eb97a7353:g:RkkAAeSwgPZp1eCz"
+      },
       {
        "title": "Nikon Ai-s Ais NIKKOR 24mm f2 MF Wide Angle Lens [EXC++++] #2622",
        "price": 291.98,
@@ -13165,14 +13189,6 @@
        "condition": "Used",
        "image": "https://i.ebayimg.com/images/g/RdsAAeSwSgppQLIi/s-l960.jpg",
        "url": "https://www.ebay.com/itm/168006619046?_skw=Nikon+AIS+24mm+f%2F2+-f%2F2.8&hash=item271df98fa6:g:RdsAAeSwSgppQLIi"
-      },
-      {
-       "title": "Nikon Ai-s Ais Nikkor 24mm f/2 Wide Angle Lens SIC Coated from Japan Near Mint",
-       "price": 309.0,
-       "currency": "USD",
-       "condition": "Used",
-       "image": "https://i.ebayimg.com/images/g/IzIAAeSwy3xpukFw/s-l1600.jpg",
-       "url": "https://www.ebay.com/itm/397729433392?_skw=Nikon+AIS+24mm+f%2F2+-f%2F2.8&hash=item5c9a858730:g:IzIAAeSwy3xpukFw"
       }
      ]
     },
@@ -13182,15 +13198,23 @@
      "name_en": "Nikon Nikkor 24mm f/2.8 AI-S",
      "subcategory": "ais",
      "focal_length_min": 24,
-     "median": 213.99,
-     "mean": 227.08,
+     "median": 213.49,
+     "mean": 225.53,
      "min": 99.99,
      "max": 407.8,
      "q1": 174.5,
-     "q3": 273.46,
+     "q3": 270.0,
      "count": 237,
      "count_filtered": 236,
      "samples": [
+      {
+       "title": "Excellent condition Nikon AIS NIKKOR 24mm F2.8 Nikon s renowned wide angle prime",
+       "price": 212.05,
+       "currency": "USD",
+       "condition": "Used",
+       "image": "https://i.ebayimg.com/images/g/r6oAAeSwsrNqGq5n/s-l1200.jpg",
+       "url": "https://www.ebay.com/itm/198389886985?_skw=Nikon+AIS+24mm+f%2F2.8&hash=item2e30f57009:g:r6oAAeSwsrNqGq5n"
+      },
       {
        "title": "[ MINT ] Nikon Ai-s Nikkor 24mm F2.8 MF Wide Angle Prime Lens From JAPAN #762815",
        "price": 213.0,
@@ -13222,14 +13246,6 @@
        "condition": "Used",
        "image": "https://i.ebayimg.com/images/g/XH4AAOSwPNVn4-eJ/s-l1600.jpg",
        "url": "https://www.ebay.com/itm/236285881609?_skw=Nikon+AIS+24mm+f%2F2.8&hash=item3703bc6d09:g:XH4AAOSwPNVn4-eJ"
-      },
-      {
-       "title": "Nikon Ai-S Nikkor 24mm f/2.8 [Near MINT] AIS MF Wide Lens From Japan #2601190024",
-       "price": 215.0,
-       "currency": "USD",
-       "condition": "Used",
-       "image": "https://i.ebayimg.com/images/g/HhgAAeSwW9Vpc0su/s-l1600.jpg",
-       "url": "https://www.ebay.com/itm/406630096972?_skw=Nikon+AIS+24mm+f%2F2.8&hash=item5ead0ae04c:g:HhgAAeSwW9Vpc0su"
       }
      ]
     },
@@ -13239,13 +13255,13 @@
      "name_en": "Nikon Nikkor 28mm f/2 AI-S",
      "subcategory": "ais",
      "focal_length_min": 28,
-     "median": 324.99,
-     "mean": 327.68,
+     "median": 334.99,
+     "mean": 347.75,
      "min": 148.63,
-     "max": 469.99,
-     "q1": 279.99,
-     "q3": 399.99,
-     "count": 18,
+     "max": 584.9,
+     "q1": 289.99,
+     "q3": 409.65,
+     "count": 17,
      "count_filtered": 16,
      "samples": [
       {
@@ -13296,12 +13312,12 @@
      "name_en": "Nikon Nikkor 35mm f/2 AI-S",
      "subcategory": "ais",
      "focal_length_min": 35,
-     "median": 289.99,
-     "mean": 295.25,
+     "median": 292.49,
+     "mean": 294.96,
      "min": 194.5,
-     "max": 402.08,
+     "max": 374.47,
      "q1": 259.99,
-     "q3": 343.52,
+     "q3": 340.52,
      "count": 37,
      "count_filtered": 34,
      "samples": [
@@ -13312,14 +13328,6 @@
        "condition": "Used",
        "image": "https://i.ebayimg.com/images/g/pjgAAeSw0GVqIjva/s-l1600.jpg",
        "url": "https://www.ebay.com/itm/298386006124?_skw=Nikon+AIS+35mm+f%2F2+-f%2F2.8+-f%2F1.4&hash=item457931206c:g:pjgAAeSw0GVqIjva"
-      },
-      {
-       "title": "[MINT] Nikon Ai-s Nikkor 35mm f/2 Lens ais 2 MF Wide From JAPAN",
-       "price": 289.99,
-       "currency": "USD",
-       "condition": "Used",
-       "image": "https://i.ebayimg.com/images/g/kakAAeSwfN5qJi0U/s-l1600.jpg",
-       "url": "https://www.ebay.com/itm/298394874487?_skw=Nikon+AIS+35mm+f%2F2+-f%2F2.8+-f%2F1.4&hash=item4579b87277:g:kakAAeSwfN5qJi0U"
       },
       {
        "title": "[Top MINT]  Nikon Ai-s Ais NIKKOR 35mm f/2 MF Wide Angle Lens F Mount From JAPAN",
@@ -13344,6 +13352,14 @@
        "condition": "Used",
        "image": "https://i.ebayimg.com/images/g/iGwAAeSw~DZqHEAu/s-l1600.jpg",
        "url": "https://www.ebay.com/itm/398010838120?_skw=Nikon+AIS+35mm+f%2F2+-f%2F2.8+-f%2F1.4&hash=item5cab4b6c68:g:iGwAAeSw~DZqHEAu"
+      },
+      {
+       "title": "[MINT] Nikon Ai-s Ais Nikkor 35mm f/2 MF Wide Angle Lens F Mount From JAPAN",
+       "price": 304.99,
+       "currency": "USD",
+       "condition": "Used",
+       "image": "https://i.ebayimg.com/images/g/lF4AAeSwbGpqG84V/s-l1600.jpg",
+       "url": "https://www.ebay.com/itm/406963320823?_skw=Nikon+AIS+35mm+f%2F2+-f%2F2.8+-f%2F1.4&hash=item5ec0e777f7:g:lF4AAeSwbGpqG84V"
       }
      ]
     },
@@ -13353,23 +13369,15 @@
      "name_en": "Nikon Nikkor 50mm f/1.8 AI-S",
      "subcategory": "ais",
      "focal_length_min": 50,
-     "median": 189.99,
-     "mean": 199.17,
+     "median": 190.0,
+     "mean": 199.51,
      "min": 107.78,
      "max": 309.99,
-     "q1": 167.99,
+     "q1": 169.0,
      "q3": 229.99,
      "count": 147,
      "count_filtered": 145,
      "samples": [
-      {
-       "title": "[Near MINT] Nikon Nikkor Ai-S AIS 50mm f/1.8 Pancake Prime Lens From JAPAN #6171",
-       "price": 189.99,
-       "currency": "USD",
-       "condition": "Used",
-       "image": "https://i.ebayimg.com/images/g/NJcAAeSwTU1ouaI-/s-l1600.jpg",
-       "url": "https://www.ebay.com/itm/357569230015?_skw=Nikon+AIS+50mm+f%2F1.8+-series&hash=item5340c974bf:g:NJcAAeSwTU1ouaI-"
-      },
       {
        "title": "[MINT] Nikon Ai-s AIS  Nikkor 50mm f/1.8 Pancake Prime Standard Lens From JAPAN",
        "price": 189.99,
@@ -13401,6 +13409,14 @@
        "condition": "Used",
        "image": "https://i.ebayimg.com/images/g/UtIAAeSwCMRqI4ga/s-l1600.jpg",
        "url": "https://www.ebay.com/itm/366458661549?_skw=Nikon+AIS+50mm+f%2F1.8+-series&hash=item5552a36aad:g:UtIAAeSwCMRqI4ga"
+      },
+      {
+       "title": "US Duty Paid Nikon Nikkor 50mm f/1.8 Ai-S AIS MF Lens Pancake Near Mint Japan",
+       "price": 195.0,
+       "currency": "USD",
+       "condition": "Used",
+       "image": "https://i.ebayimg.com/images/g/MXcAAeSwJZJqHBlg/s-l1200.jpg",
+       "url": "https://www.ebay.com/itm/188482988095?_skw=Nikon+AIS+50mm+f%2F1.8+-series&hash=item2be276283f:g:MXcAAeSwJZJqHBlg"
       }
      ]
     },
@@ -13473,7 +13489,7 @@
      "subcategory": "ais",
      "focal_length_min": 85,
      "median": 549.99,
-     "mean": 599.1,
+     "mean": 599.0,
      "min": 299.11,
      "max": 949.9,
      "q1": 499.99,
@@ -13482,20 +13498,20 @@
      "count_filtered": 108,
      "samples": [
       {
+       "title": "[Almost Unused] Nikon Ai-s Ais Nikkor 85mm f/1.4 MF Portrait Lens From JAPAN",
+       "price": 549.99,
+       "currency": "USD",
+       "condition": "Used",
+       "image": "https://i.ebayimg.com/images/g/38sAAeSwfqVp5OP0/s-l1600.jpg",
+       "url": "https://www.ebay.com/itm/406870106139?_skw=Nikon+AIS+85mm+f%2F1.4&hash=item5ebb59201b:g:38sAAeSwfqVp5OP0"
+      },
+      {
        "title": "Rare Case [Almost Unused] Nikon Ai-s NIKKOR 85mm F1.4 Portrait MF Lens JAPAN",
        "price": 549.99,
        "currency": "USD",
        "condition": "Used",
        "image": "https://i.ebayimg.com/images/g/UKQAAeSw0Glpx~mq/s-l1600.jpg",
        "url": "https://www.ebay.com/itm/366310950181?_skw=Nikon+AIS+85mm+f%2F1.4&hash=item5549d58525:g:UKQAAeSw0Glpx~mq"
-      },
-      {
-       "title": "▶️[Near MINT++] Nikon Ai-s Ais Nikkor 85mm f/1.4 MF Lens w/ Metal Cap From JAPAN",
-       "price": 549.99,
-       "currency": "USD",
-       "condition": "Used",
-       "image": "https://i.ebayimg.com/images/g/VEQAAeSwx1tpgsqN/s-l1600.jpg",
-       "url": "https://www.ebay.com/itm/206314086609?_skw=Nikon+AIS+85mm+f%2F1.4&hash=item30094720d1:g:VEQAAeSwx1tpgsqN"
       },
       {
        "title": "[MINT] Nikon AI-S Ais NIKKOR 85mm F1.4 Portrait MF Lens F  From JAPAN",
@@ -13587,7 +13603,7 @@
      "subcategory": "ais",
      "focal_length_min": 105,
      "median": 459.99,
-     "mean": 481.8,
+     "mean": 481.66,
      "min": 293.66,
      "max": 788.91,
      "q1": 404.99,
@@ -13643,14 +13659,14 @@
      "name_en": "Nikon Micro-Nikkor 105mm f/2.8 AI-S",
      "subcategory": "ais",
      "focal_length_min": 105,
-     "median": 204.99,
-     "mean": 213.65,
+     "median": 206.63,
+     "mean": 214.18,
      "min": 131.38,
      "max": 365.08,
-     "q1": 175.49,
-     "q3": 256.87,
-     "count": 108,
-     "count_filtered": 101,
+     "q1": 175.99,
+     "q3": 257.6,
+     "count": 107,
+     "count_filtered": 100,
      "samples": [
       {
        "title": "Optically clear Excellent condition Nikon Ai s Micro NIKKOR 105mm F2.8 1 1 Macro",
@@ -13758,11 +13774,11 @@
      "subcategory": "ais",
      "focal_length_min": 135,
      "median": 106.43,
-     "mean": 104.91,
+     "mean": 101.63,
      "min": 56.42,
-     "max": 169.31,
+     "max": 150.81,
      "q1": 81.99,
-     "q3": 122.0,
+     "q3": 118.52,
      "count": 31,
      "count_filtered": 31,
      "samples": [
@@ -13871,8 +13887,8 @@
      "name_en": "Nikon Nikkor 300mm f/4.5 ED AI-S",
      "subcategory": "ais",
      "focal_length_min": 300,
-     "median": 193.87,
-     "mean": 209.17,
+     "median": 191.87,
+     "mean": 209.01,
      "min": 105.0,
      "max": 427.0,
      "q1": 149.99,
@@ -13881,12 +13897,12 @@
      "count_filtered": 120,
      "samples": [
       {
-       "title": "Nikon Ai-S Nikkor 300mm f/4.5 MF Telephoto Prime Lens w/Cap [N/Mint] from Japan",
-       "price": 194.68,
+       "title": "Nikon Nikkor Ai-s 300mm f/4.5 Lens (AIS Mount).",
+       "price": 193.05,
        "currency": "USD",
        "condition": "Used",
-       "image": "https://i.ebayimg.com/images/g/EfkAAeSwd2xqAK5o/s-l1600.jpg",
-       "url": "https://www.ebay.com/itm/157902969368?_skw=Nikon+AIS+300mm+f%2F4.5&hash=item24c3c01a18:g:EfkAAeSwd2xqAK5o"
+       "image": "https://i.ebayimg.com/images/g/rYMAAeSwA95pB7aq/s-l1600.jpg",
+       "url": "https://www.ebay.com/itm/267456981749?_skw=Nikon+AIS+300mm+f%2F4.5&hash=item3e45adaaf5:g:rYMAAeSwA95pB7aq"
       },
       {
        "title": "Nikon Ai-S Nikkor*ED 300mm F4.5 MF Telephot Lens Near Mint!",
@@ -14342,14 +14358,14 @@
      "name_en": "Nikon Reflex-Nikkor 500mm f/8",
      "subcategory": "special",
      "focal_length_min": 500,
-     "median": 239.99,
-     "mean": 262.88,
+     "median": 240.0,
+     "mean": 262.68,
      "min": 114.45,
      "max": 500.0,
-     "q1": 192.65,
-     "q3": 318.75,
-     "count": 192,
-     "count_filtered": 187,
+     "q1": 192.32,
+     "q3": 316.17,
+     "count": 191,
+     "count_filtered": 186,
      "samples": [
       {
        "title": "NIKON NIKKOR REFLEX 500MM F/8 MIRROR CAMERA LENS NIPPON KOGAKU TELEPHOTO JAPAN",
@@ -14514,11 +14530,11 @@
      "subcategory": "special",
      "focal_length_min": 35,
      "median": 331.94,
-     "mean": 335.52,
+     "mean": 331.18,
      "min": 169.99,
-     "max": 564.37,
+     "max": 537.54,
      "q1": 256.42,
-     "q3": 407.99,
+     "q3": 395.06,
      "count": 39,
      "count_filtered": 39,
      "samples": [
@@ -14815,23 +14831,15 @@
      "name_en": "Nikon Series E 50mm f/1.8",
      "subcategory": "series-e",
      "focal_length_min": 50,
-     "median": 118.66,
-     "mean": 118.32,
+     "median": 120.16,
+     "mean": 118.78,
      "min": 90.31,
      "max": 166.4,
-     "q1": 105.95,
-     "q3": 132.28,
-     "count": 59,
-     "count_filtered": 54,
+     "q1": 107.01,
+     "q3": 132.99,
+     "count": 57,
+     "count_filtered": 52,
      "samples": [
-      {
-       "title": "--THE ELEGANCE-- Nikon Nikkor AI-S 50mm f1.8 Series E Pancake, TESTED [N. Mint]",
-       "price": 117.48,
-       "currency": "USD",
-       "condition": "Used",
-       "image": "https://i.ebayimg.com/images/g/CH0AAeSwtmpqEo6w/s-l1600.jpg",
-       "url": "https://www.ebay.com/itm/306958644682?_skw=Nikon+Series+E+50mm+f%2F1.8&hash=item47782935ca:g:CH0AAeSwtmpqEo6w"
-      },
       {
        "title": "Nikon Series E 50mm 1:1.8 Compact Pancake Camera Lens Made in Japan",
        "price": 119.84,
@@ -14863,6 +14871,14 @@
        "condition": "Used",
        "image": "https://i.ebayimg.com/images/g/NQIAAOSwBuFjzjuM/s-l1600.jpg",
        "url": "https://www.ebay.com/itm/175583858885?_skw=Nikon+Series+E+50mm+f%2F1.8&hash=item28e19d10c5:g:NQIAAOSwBuFjzjuM"
+      },
+      {
+       "title": "Nikon AI-S 50mm f1.8 Series E Lens AIS #083",
+       "price": 121.64,
+       "currency": "USD",
+       "condition": "Used",
+       "image": "https://i.ebayimg.com/images/g/l30AAeSw7cNqIx0~/s-l1600.jpg",
+       "url": "https://www.ebay.com/itm/147354101517?_skw=Nikon+Series+E+50mm+f%2F1.8&hash=item224efd270d:g:l30AAeSw7cNqIx0~"
       }
      ]
     },
@@ -15031,15 +15047,31 @@
      "name_en": "Nikon MD-4 Motor Drive",
      "subcategory": "motor-drive",
      "release_year": 1980,
-     "median": 145.0,
-     "mean": 228.54,
+     "median": 144.0,
+     "mean": 224.52,
      "min": 61.25,
-     "max": 777.99,
-     "q1": 107.61,
-     "q3": 394.44,
-     "count": 197,
-     "count_filtered": 189,
+     "max": 732.99,
+     "q1": 107.74,
+     "q3": 379.19,
+     "count": 198,
+     "count_filtered": 190,
      "samples": [
+      {
+       "title": "Nikon Motor Drive MD-4 \"Near Mint\" 7083 for F3, F3T, F3AF Japan Made",
+       "price": 149.99,
+       "currency": "USD",
+       "condition": "Used",
+       "image": "https://i.ebayimg.com/images/g/LSIAAeSwMFZolDUt/s-l1600.jpg",
+       "url": "https://www.ebay.com/itm/306435860928?_skw=Nikon+MD-4+motor+drive&hash=item47590029c0:g:LSIAAeSwMFZolDUt"
+      },
+      {
+       "title": "[EXC+] Nikon MD-4 Motor Drive for F3",
+       "price": 150.0,
+       "currency": "USD",
+       "condition": "Used",
+       "image": "https://i.ebayimg.com/images/g/cvsAAeSwur5p2JWp/s-l1600.jpg",
+       "url": "https://www.ebay.com/itm/178036946904?_skw=Nikon+MD-4+motor+drive&hash=item2973d437d8:g:cvsAAeSwur5p2JWp"
+      },
       {
        "title": "[MINT] Nikon MF-6B Camera Back For F3 F3P HP Motor Drive MD-4 From JAPAN",
        "price": 150.9,
@@ -15063,22 +15095,6 @@
        "condition": "Used",
        "image": "https://i.ebayimg.com/images/g/eFsAAOSwlqtgcbLJ/s-l1200.jpg",
        "url": "https://www.ebay.com/itm/294114055446?_skw=Nikon+MD-4+motor+drive&hash=item447a905516:g:eFsAAOSwlqtgcbLJ"
-      },
-      {
-       "title": "✮ Nikon MD-4 Motor Drive | For Nikon F3 SLR | [TESTED & WORKING] | High Speed ✅",
-       "price": 155.54,
-       "currency": "USD",
-       "condition": "Gebraucht",
-       "image": "https://i.ebayimg.com/images/g/-54AAeSw9GFpiKc2/s-l1600.jpg",
-       "url": "https://www.ebay.com/itm/168241748812?_skw=Nikon+MD-4+motor+drive&hash=item272bfd5b4c:g:-54AAeSw9GFpiKc2"
-      },
-      {
-       "title": "Nikon MD-4 Motor Drive for NIkon F3 Camera. u18407",
-       "price": 157.55,
-       "currency": "USD",
-       "condition": "Used",
-       "image": "https://i.ebayimg.com/images/g/r6gAAeSwcW5otXmR/s-l1600.jpg",
-       "url": "https://www.ebay.com/itm/297580940484?_skw=Nikon+MD-4+motor+drive&hash=item454934ccc4:g:r6gAAeSwcW5otXmR"
       }
      ]
     },
@@ -15145,23 +15161,15 @@
      "name_en": "Nikon MD-12 Motor Drive",
      "subcategory": "motor-drive",
      "release_year": 1979,
-     "median": 87.66,
-     "mean": 98.79,
+     "median": 87.85,
+     "mean": 98.8,
      "min": 49.9,
      "max": 206.19,
      "q1": 80.0,
-     "q3": 135.04,
-     "count": 141,
-     "count_filtered": 121,
+     "q3": 135.0,
+     "count": 142,
+     "count_filtered": 122,
      "samples": [
-      {
-       "title": "[MINT] Nikon MD-12 Motor drive For FM FM2 FM3 FE FE2 FA From JAPAN",
-       "price": 89.99,
-       "currency": "USD",
-       "condition": "Used",
-       "image": "https://i.ebayimg.com/images/g/zI4AAOSw1OVlmf1n/s-l1600.jpg",
-       "url": "https://www.ebay.com/itm/178176800427?_skw=Nikon+MD-12+motor+drive&hash=item297c2a36ab:g:zI4AAOSw1OVlmf1n"
-      },
       {
        "title": "Nikon MD-12 Motor Drive for FA, FE, FM, FM2 #141 (B17-MD12-884)",
        "price": 91.12,
@@ -15193,6 +15201,14 @@
        "condition": "Gebraucht",
        "image": "https://i.ebayimg.com/images/g/1CMAAeSws5Ro-hwD/s-l1200.jpg",
        "url": "https://www.ebay.com/itm/136644801075?_skw=Nikon+MD-12+motor+drive&hash=item1fd0aa3233:g:1CMAAeSws5Ro-hwD"
+      },
+      {
+       "title": "Nikon MD-12 Motor Drive , nikon sb-16 speedlight flash",
+       "price": 95.92,
+       "currency": "USD",
+       "condition": "Used",
+       "image": "https://i.ebayimg.com/images/g/FnoAAeSwc6Voc7yC/s-l1600.jpg",
+       "url": "https://www.ebay.com/itm/177262560961?_skw=Nikon+MD-12+motor+drive&hash=item2945ac06c1:g:FnoAAeSwc6Voc7yC"
       }
      ]
     },
@@ -15202,14 +15218,14 @@
      "name_en": "Nikon MD-15 Motor Drive",
      "subcategory": "motor-drive",
      "release_year": 1983,
-     "median": 126.07,
-     "mean": 244.27,
+     "median": 126.74,
+     "mean": 235.94,
      "min": 86.93,
      "max": 661.77,
      "q1": 111.42,
      "q3": 368.24,
-     "count": 12,
-     "count_filtered": 12,
+     "count": 13,
+     "count_filtered": 13,
      "samples": [
       {
        "title": "Nikon MD-15 Motor Drive Motor Drive Winder",
@@ -15228,6 +15244,14 @@
        "url": "https://www.ebay.com/itm/227105972712?_skw=Nikon+MD-15+motor+drive&hash=item34e09221e8:g:~EUAAeSwCmlpKNBE"
       },
       {
+       "title": "Tested Nikon MD-15 Motor Drive Winder for Nikon FA SLR  Film Camera",
+       "price": 135.97,
+       "currency": "USD",
+       "condition": "Used",
+       "image": "https://i.ebayimg.com/images/g/8rsAAeSw39dpigZQ/s-l1600.jpg",
+       "url": "https://www.ebay.com/itm/800143596171?_skw=Nikon+MD-15+motor+drive&hash=itemba4c465a8b:g:8rsAAeSw39dpigZQ"
+      },
+      {
        "title": "*RARE* NIKON JAPAN DEMO FA + 35-70mm DEMO + MD-15 MOTOR DRIVE, ALL WORKING!",
        "price": 271.75,
        "currency": "USD",
@@ -15242,14 +15266,6 @@
        "condition": "Used",
        "image": "https://i.ebayimg.com/images/g/8NYAAeSw3htpzJkQ/s-l1600.jpg",
        "url": "https://www.ebay.com/itm/298181145509?_skw=Nikon+MD-15+motor+drive&hash=item456cfb33a5:g:8NYAAeSw3htpzJkQ"
-      },
-      {
-       "title": "Nikon FA Black SLR 35mm Film Camera w/ MD-15 Motor Drive",
-       "price": 448.47,
-       "currency": "USD",
-       "condition": "Used",
-       "image": "https://i.ebayimg.com/images/g/XawAAeSwxYdp-9tI/s-l1200.jpg",
-       "url": "https://www.ebay.com/itm/178111803969?_skw=Nikon+MD-15+motor+drive&hash=item29784a7241:g:XawAAeSwxYdp-9tI"
       }
      ]
     },
@@ -15259,14 +15275,14 @@
      "name_en": "Nikon TC-14B Teleconverter",
      "subcategory": "teleconverter",
      "release_year": 1974,
-     "median": 142.4,
-     "mean": 171.21,
+     "median": 151.99,
+     "mean": 178.67,
      "min": 56.54,
      "max": 335.0,
-     "q1": 120.25,
-     "q3": 226.44,
-     "count": 8,
-     "count_filtered": 8,
+     "q1": 121.5,
+     "q3": 290.0,
+     "count": 7,
+     "count_filtered": 7,
      "samples": [
       {
        "title": "Nikon TC-14B 1.4X Teleconverter for lenses over 135mm + zoom over 200mm",
@@ -15373,15 +15389,31 @@
      "name_en": "Nikon TC-301 Teleconverter",
      "subcategory": "teleconverter",
      "release_year": 1982,
-     "median": 127.49,
-     "mean": 136.8,
+     "median": 123.75,
+     "mean": 134.63,
      "min": 63.88,
      "max": 263.78,
-     "q1": 103.45,
-     "q3": 183.05,
-     "count": 45,
-     "count_filtered": 41,
+     "q1": 99.99,
+     "q3": 180.1,
+     "count": 47,
+     "count_filtered": 43,
      "samples": [
+      {
+       "title": "Nikon Teleconverter TC-301 2x for Nikon F Mount Ai Ai-s \"Excellent\" From Japan",
+       "price": 123.75,
+       "currency": "USD",
+       "condition": "Used",
+       "image": "https://i.ebayimg.com/images/g/EkQAAOSwuoZhq6M9/s-l1600.jpg",
+       "url": "https://www.ebay.com/itm/284555203449?_skw=Nikon+TC-301+teleconverter&hash=item4240cfd379:g:EkQAAOSwuoZhq6M9"
+      },
+      {
+       "title": "Nikon Teleconverter TC-301 2X for Nikon F mount From JAPAN #492",
+       "price": 125.81,
+       "currency": "USD",
+       "condition": "Used",
+       "image": "https://i.ebayimg.com/images/g/tNIAAeSwPeFqA81a/s-l1600.jpg",
+       "url": "https://www.ebay.com/itm/168371400327?_skw=Nikon+TC-301+teleconverter&hash=item2733b7ae87:g:tNIAAeSwPeFqA81a"
+      },
       {
        "title": "Nikon Teleconverter TC-301 2X Lens for Nikon AI, AIS MF Lens",
        "price": 127.49,
@@ -15405,22 +15437,6 @@
        "condition": "Used",
        "image": "https://i.ebayimg.com/images/g/cyIAAOSwdrhbwLSe/s-l1600.jpg",
        "url": "https://www.ebay.com/itm/224095653072?_skw=Nikon+TC-301+teleconverter&hash=item342d244cd0:g:cyIAAOSwdrhbwLSe"
-      },
-      {
-       "title": "USED Nikon TC-301 Teleconverter 2x for Nikon F Mount",
-       "price": 131.25,
-       "currency": "USD",
-       "condition": "Used",
-       "image": "https://i.ebayimg.com/images/g/XcgAAeSwEs9qICnE/s-l1600.jpg",
-       "url": "https://www.ebay.com/itm/236719024502?_skw=Nikon+TC-301+teleconverter&hash=item371d8da976:g:XcgAAeSwEs9qICnE"
-      },
-      {
-       "title": "Used Nikon TC-301 2x Teleconverter",
-       "price": 131.25,
-       "currency": "USD",
-       "condition": "Used",
-       "image": "https://i.ebayimg.com/images/g/E3kAAeSww~FqICj2/s-l1200.jpg",
-       "url": "https://www.ebay.com/itm/336504930760?_skw=Nikon+TC-301+teleconverter&hash=item4e5941c1c8:g:E3kAAeSww~FqICj2"
       }
      ]
     },
@@ -15430,14 +15446,14 @@
      "name_en": "Nikon TC-16A AF Teleconverter",
      "subcategory": "teleconverter",
      "release_year": 1985,
-     "median": 127.42,
-     "mean": 134.97,
+     "median": 128.0,
+     "mean": 136.55,
      "min": 69.98,
      "max": 252.32,
      "q1": 102.41,
      "q3": 164.1,
      "count": 65,
-     "count_filtered": 62,
+     "count_filtered": 63,
      "samples": [
       {
        "title": "Nikon AF Teleconverter TC-16A 1.6x Nikon AF TC With Tamron 60-300mm Bbar MC Lens",
@@ -15544,14 +15560,14 @@
      "name_en": "Nikon Speedlight SB-24",
      "subcategory": "flash",
      "release_year": 1988,
-     "median": 67.56,
-     "mean": 70.36,
+     "median": 67.58,
+     "mean": 71.04,
      "min": 23.99,
-     "max": 117.52,
-     "q1": 57.82,
-     "q3": 82.38,
-     "count": 150,
-     "count_filtered": 143,
+     "max": 121.89,
+     "q1": 57.84,
+     "q3": 84.63,
+     "count": 149,
+     "count_filtered": 142,
      "samples": [
       {
        "title": "[Tested with Nikon FE2] Nikon Speedlight SB-24 Shoe Mount Flash From JAPAN",
@@ -16071,8 +16087,8 @@
      "min": 89.99,
      "max": 449.99,
      "q1": 167.59,
-     "q3": 282.49,
-     "count": 96,
+     "q3": 287.49,
+     "count": 97,
      "count_filtered": 91,
      "samples": [
       {
@@ -16123,23 +16139,15 @@
      "name_en": "Nikon DE-1 Eye-Level Finder",
      "subcategory": "finder",
      "release_year": 1971,
-     "median": 294.0,
-     "mean": 318.55,
+     "median": 294.99,
+     "mean": 323.4,
      "min": 159.9,
      "max": 639.99,
-     "q1": 233.5,
-     "q3": 427.49,
-     "count": 37,
-     "count_filtered": 34,
+     "q1": 237.0,
+     "q3": 434.99,
+     "count": 38,
+     "count_filtered": 35,
      "samples": [
-      {
-       "title": "Nikon F2 Eye Level Finder DE-1 Silver Chrome SLR Camera Prism From Japan Cap",
-       "price": 293.0,
-       "currency": "USD",
-       "condition": "Used",
-       "image": "https://i.ebayimg.com/images/g/M1oAAeSw72lqGnl8/s-l1200.jpg",
-       "url": "https://www.ebay.com/itm/198389593138?_skw=Nikon+DE-1+eye+level+finder&hash=item2e30f0f432:g:M1oAAeSw72lqGnl8"
-      },
       {
        "title": "Nikon DE-1 Eye Level Prism Finder BLACK For F2 from JAPAN [Exc++] #851107A",
        "price": 294.99,
@@ -16171,6 +16179,14 @@
        "condition": "Used",
        "image": "https://i.ebayimg.com/images/g/85YAAeSwKuRqF672/s-l1600.jpg",
        "url": "https://www.ebay.com/itm/236842105151?_skw=Nikon+DE-1+eye+level+finder&hash=item3724e3b93f:g:85YAAeSwKuRqF672"
+      },
+      {
+       "title": "[A UNUSED] Nikon DE-1 Silver Eye Level Prism View Finder for Nikon F2 from JAPAN",
+       "price": 339.98,
+       "currency": "USD",
+       "condition": "Used",
+       "image": "https://i.ebayimg.com/images/g/Z8AAAeSw26hp4JA5/s-l1600.jpg",
+       "url": "https://www.ebay.com/itm/800134412104?_skw=Nikon+DE-1+eye+level+finder&hash=itemba4bba3748:g:Z8AAAeSw26hp4JA5"
       }
      ]
     },
@@ -16295,13 +16311,13 @@
      "subcategory": "finder",
      "release_year": 1980,
      "median": 329.99,
-     "mean": 342.26,
+     "mean": 343.1,
      "min": 279.99,
      "max": 443.99,
-     "q1": 319.0,
-     "q3": 369.99,
-     "count": 35,
-     "count_filtered": 31,
+     "q1": 319.5,
+     "q3": 374.94,
+     "count": 33,
+     "count_filtered": 29,
      "samples": [
       {
        "title": "Nikon DW-3 Waist-Level Finder for Nikon F3 for camera used item from japan",
@@ -16677,14 +16693,14 @@
      "name_en": "Nikon F2 Type E Focusing Screen",
      "subcategory": "screen",
      "release_year": 1971,
-     "median": 78.49,
-     "mean": 81.89,
-     "min": 63.37,
+     "median": 78.99,
+     "mean": 85.59,
+     "min": 69.99,
      "max": 112.0,
-     "q1": 69.99,
-     "q3": 88.99,
-     "count": 6,
-     "count_filtered": 6,
+     "q1": 73.99,
+     "q3": 100.5,
+     "count": 5,
+     "count_filtered": 5,
      "samples": [
       {
        "title": "Focusing Screen Grid Matte Type E For Nikon F & F2 SLR Cameras from Japan",
@@ -16848,14 +16864,14 @@
      "name_en": "Nikon F3 Type B Focusing Screen",
      "subcategory": "screen",
      "release_year": 1980,
-     "median": 85.6,
-     "mean": 87.6,
+     "median": 88.94,
+     "mean": 91.31,
      "min": 51.98,
-     "max": 154.99,
+     "max": 162.39,
      "q1": 68.54,
-     "q3": 104.9,
-     "count": 34,
-     "count_filtered": 31,
+     "q3": 107.0,
+     "count": 35,
+     "count_filtered": 33,
      "samples": [
       {
        "title": "Nikon F3 Focusing Screen Type J #B135",
@@ -17019,22 +17035,22 @@
      "name_en": "Nikon F3 Type K Focusing Screen",
      "subcategory": "screen",
      "release_year": 1980,
-     "median": 105.49,
-     "mean": 110.99,
+     "median": 103.98,
+     "mean": 110.7,
      "min": 69.99,
      "max": 176.42,
-     "q1": 89.99,
+     "q1": 91.99,
      "q3": 128.0,
-     "count": 39,
-     "count_filtered": 38,
+     "count": 40,
+     "count_filtered": 39,
      "samples": [
       {
-       "title": "[MINT w/Box] Nikon Focusing Screen Type K Red Dot Split For F3 F3HP F3T JAPAN",
+       "title": "[MINT in Box] Nikon F3 Focusing Screen Type K Red Dot Case for F3 From JAPAN",
        "price": 99.99,
        "currency": "USD",
        "condition": "Used",
-       "image": "https://i.ebayimg.com/images/g/y~oAAeSwwSZp5yx-/s-l1600.jpg",
-       "url": "https://www.ebay.com/itm/366452156018?_skw=Nikon+Type+K+focusing+screen+for+F3&hash=item5552402672:g:y~oAAeSwwSZp5yx-"
+       "image": "https://i.ebayimg.com/images/g/hpEAAeSwCYVqJsbh/s-l1600.jpg",
+       "url": "https://www.ebay.com/itm/377244676988?_skw=Nikon+Type+K+focusing+screen+for+F3&hash=item57d588f37c:g:hpEAAeSwCYVqJsbh"
       },
       {
        "title": "Nikon Focusing Screen Type K for F3",
