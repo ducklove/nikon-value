@@ -162,6 +162,7 @@
 
     var badges = '';
     if (d.badge) badges += '<span class="product-card__badge">' + escapeHtml(d.badge) + '</span>';
+    if (d.at_low) badges += '<span class="product-card__badge product-card__badge--low">1년 최저</span>';
     if (d.is_rare) {
       var rl = ('희귀 ' + (d.rarity_tier || '')).trim();
       badges += '<span class="product-card__badge product-card__badge--rare">' + escapeHtml(rl) + '</span>';
@@ -491,12 +492,14 @@
     const exchangeData = readJsonScript('exchange-rate-data', {});
     const buttons = Array.from(document.querySelectorAll('.period-btn'));
     const currencyButtons = Array.from(document.querySelectorAll('.currency-toggle__button[data-currency]'));
+    const maToggle = document.querySelector('.ma-toggle');
     const emptyEl = document.getElementById('chart-empty');
     const canvas = document.getElementById('price-chart');
     const params = new URLSearchParams(window.location.search);
     let activePeriod = Number(document.body.dataset.defaultPeriod || '180');
     let activeCurrency = getInitialCurrency(params, exchangeData);
     let chartInstance = null;
+    let maEnabled = false;
 
     if (!canvas || !emptyEl) return;
 
@@ -531,6 +534,26 @@
       }
     }
 
+    function movingAverage(data, windowDays) {
+      // 날짜 기준 윈도우 평균: 수집 공백이 있어도 달력상 최근 windowDays일만 묶는다.
+      return data.map((entry, idx) => {
+        const end = new Date(entry.date + 'T00:00:00Z');
+        const start = new Date(end);
+        start.setUTCDate(start.getUTCDate() - (windowDays - 1));
+        const startStr = start.toISOString().split('T')[0];
+        let sum = 0;
+        let count = 0;
+        for (let i = idx; i >= 0; i -= 1) {
+          if (data[i].date < startStr) break;
+          if (data[i].median != null) {
+            sum += data[i].median;
+            count += 1;
+          }
+        }
+        return count ? Math.round((sum / count) * 100) / 100 : null;
+      });
+    }
+
     function renderChart(data) {
       if (typeof window.Chart === 'undefined') {
         setEmpty('차트 라이브러리를 불러오지 못했습니다.');
@@ -551,40 +574,56 @@
 
       if (chartInstance) chartInstance.destroy();
 
+      const datasets = [
+        {
+          label: 'Q3',
+          data: q3s,
+          borderColor: 'transparent',
+          backgroundColor: 'rgba(29, 29, 31, 0.08)',
+          fill: '+1',
+          pointRadius: 0,
+          tension: 0.28,
+        },
+        {
+          label: '중앙값',
+          data: medians,
+          borderColor: '#1d1d1f',
+          backgroundColor: 'rgba(29, 29, 31, 0.12)',
+          borderWidth: 2,
+          pointRadius: data.length < 60 ? 3 : 0,
+          pointHoverRadius: 5,
+          tension: 0.28,
+        },
+        {
+          label: 'Q1',
+          data: q1s,
+          borderColor: 'transparent',
+          backgroundColor: 'rgba(29, 29, 31, 0.08)',
+          fill: '-1',
+          pointRadius: 0,
+          tension: 0.28,
+        },
+      ];
+      if (maEnabled) {
+        // 툴팁 필터가 datasetIndex 1(중앙값)만 보므로 항상 뒤에 덧붙인다.
+        datasets.push({
+          label: '7일 이동평균',
+          data: movingAverage(data, 7),
+          borderColor: '#c08400',
+          borderDash: [6, 4],
+          borderWidth: 2,
+          backgroundColor: 'transparent',
+          fill: false,
+          pointRadius: 0,
+          tension: 0.28,
+        });
+      }
+
       chartInstance = new window.Chart(ctx, {
         type: 'line',
         data: {
           labels,
-          datasets: [
-            {
-              label: 'Q3',
-              data: q3s,
-              borderColor: 'transparent',
-              backgroundColor: 'rgba(29, 29, 31, 0.08)',
-              fill: '+1',
-              pointRadius: 0,
-              tension: 0.28,
-            },
-            {
-              label: '중앙값',
-              data: medians,
-              borderColor: '#1d1d1f',
-              backgroundColor: 'rgba(29, 29, 31, 0.12)',
-              borderWidth: 2,
-              pointRadius: data.length < 60 ? 3 : 0,
-              pointHoverRadius: 5,
-              tension: 0.28,
-            },
-            {
-              label: 'Q1',
-              data: q1s,
-              borderColor: 'transparent',
-              backgroundColor: 'rgba(29, 29, 31, 0.08)',
-              fill: '-1',
-              pointRadius: 0,
-              tension: 0.28,
-            },
-          ],
+          datasets,
         },
         options: {
           responsive: true,
@@ -662,6 +701,15 @@
         button.classList.toggle('active', Number(button.dataset.period) === activePeriod);
       });
       renderChart(filterByPeriod(historyData, activePeriod));
+    }
+
+    if (maToggle) {
+      maToggle.addEventListener('click', () => {
+        maEnabled = !maEnabled;
+        maToggle.classList.toggle('active', maEnabled);
+        maToggle.setAttribute('aria-pressed', String(maEnabled));
+        renderChart(filterByPeriod(historyData, activePeriod));
+      });
     }
 
     buttons.forEach((button) => {

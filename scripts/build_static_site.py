@@ -66,6 +66,7 @@ from nikon_value.sitegen.data import (  # noqa: E402,F401
     compute_price_change,
     compute_stale_days,
     has_catalog_listing_data,
+    is_at_yearly_low,
     is_lens_category,
     load_catalog,
     load_catalog_config,

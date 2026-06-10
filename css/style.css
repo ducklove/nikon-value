@@ -994,6 +994,16 @@ select:focus-visible {
   color: #7a5a00;
 }
 
+.product-card__badge--low {
+  background: #d9f4e4;
+  color: #145c35;
+}
+
+.meta-pill--low {
+  background: #d9f4e4;
+  color: #145c35;
+}
+
 .product-card__name-en {
   font-size: 0.75rem;
   color: var(--color-text-secondary);
@@ -1265,6 +1275,24 @@ select:focus-visible {
   background: var(--color-text);
   color: var(--color-surface);
   border-color: var(--color-text);
+}
+
+.ma-toggle {
+  padding: 6px 12px;
+  border: 1px dashed #c08400;
+  border-radius: 20px;
+  background: none;
+  font-size: 0.8rem;
+  cursor: pointer;
+  color: #8a6400;
+  font-family: var(--font);
+  transition: all 0.2s;
+}
+
+.ma-toggle.active {
+  background: #c08400;
+  border-style: solid;
+  color: #fff;
 }
 
 .chart-container {
