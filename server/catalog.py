@@ -43,7 +43,12 @@ async def load_catalog() -> None:
 async def _refresh_loop() -> None:
     while True:
         await asyncio.sleep(CATALOG_REFRESH_SECONDS)
-        await load_catalog()
+        try:
+            await load_catalog()
+        except Exception:
+            # load_catalog가 네트워크 오류는 자체 처리하지만, 루프 자체는 어떤
+            # 예외에도 죽지 않아야 다음 주기 갱신이 보장된다.
+            logger.exception("Catalog refresh iteration failed")
 
 
 def start_refresh() -> None:
