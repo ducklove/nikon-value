@@ -1,6 +1,8 @@
 from __future__ import annotations
 
-from fastapi import APIRouter, Depends, HTTPException, Request, status
+import re
+
+from fastapi import APIRouter, Depends, Request, status
 from fastapi.responses import JSONResponse
 
 from server import catalog
@@ -11,6 +13,11 @@ from server.models import ErrorResponse, FavoritesResponse
 from server.rate_limit import limiter
 
 router = APIRouter(prefix="/api")
+
+# 카탈로그가 아직 로드되지 않은(fail-open) 상태에서도 임의 문자열이 저장되지
+# 않도록 제품 ID 슬러그 형식을 강제한다. tests/test_product_id_guard.py가
+# config/products.yaml의 전체 ID가 이 패턴에 부합함을 보장한다.
+PRODUCT_ID_RE = re.compile(r"^[a-z0-9][a-z0-9-]{0,99}$")
 
 
 @router.get("/favorites", response_model=FavoritesResponse, responses={401: {"model": ErrorResponse}})
@@ -28,6 +35,12 @@ async def get_favorites(request: Request, user: dict = Depends(get_current_user)
 @router.put("/favorites/{product_id}", responses={401: {"model": ErrorResponse}, 422: {"model": ErrorResponse}})
 @limiter.limit("60/minute")
 async def add_favorite(product_id: str, request: Request, user: dict = Depends(get_current_user)):
+    if not PRODUCT_ID_RE.fullmatch(product_id):
+        return JSONResponse(
+            status_code=status.HTTP_404_NOT_FOUND,
+            content={"error": "not_found", "message": "유효하지 않은 제품 ID 형식입니다"},
+        )
+
     if catalog.is_loaded() and catalog.product_count() > 0 and not catalog.is_valid_product(product_id):
         return JSONResponse(
             status_code=status.HTTP_404_NOT_FOUND,

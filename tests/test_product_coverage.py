@@ -1,6 +1,5 @@
 from scripts.build_static_site import load_catalog_config, should_show_home_catalog_product
 
-
 EXPECTED_F_MOUNT_DSLR_IDS = {
     "nikon-e2-e2s",
     "nikon-e2n-e2ns",

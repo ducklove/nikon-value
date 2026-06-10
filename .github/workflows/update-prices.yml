@@ -45,10 +45,20 @@ jobs:
           git add data/ index.html resources.html 404.html robots.txt sitemap.xml .nojekyll products/
           if git diff --staged --quiet; then
             echo "No data changes to commit"
-          else
-            git commit -m "📊 Update price data $(date -u +%Y-%m-%d)"
-            git push || (git pull --rebase -X ours && git push) || echo "Push skipped due to conflict"
+            exit 0
           fi
+          git commit -m "📊 Update price data $(date -u +%Y-%m-%d)"
+          # 충돌 시 -X ours로 수집 데이터를 조용히 버리는 대신, rebase 실패를
+          # 그대로 실패로 표면화해 아래 이슈 생성 스텝이 발동하게 한다.
+          for attempt in 1 2 3; do
+            if git push; then
+              exit 0
+            fi
+            echo "Push rejected (attempt ${attempt}/3), rebasing onto latest remote..."
+            git pull --rebase
+            sleep $((attempt * 5))
+          done
+          git push
 
       - name: Report failure
         if: failure()

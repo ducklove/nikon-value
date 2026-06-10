@@ -1,3 +1,14 @@
 [tool.pytest.ini_options]
 asyncio_mode = "auto"
 testpaths = ["tests"]
+
+[tool.ruff]
+target-version = "py311"
+line-length = 120
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "B", "UP"]
+ignore = [
+  "E501",  # 빌드 스크립트의 HTML 템플릿 문자열은 줄 길이를 강제하지 않는다
+  "B008",  # FastAPI Depends() 패턴은 기본 인자에서의 함수 호출이 관례다
+]

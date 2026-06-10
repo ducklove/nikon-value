@@ -242,12 +242,14 @@
     // Clear skeleton placeholders
     grid.innerHTML = '';
 
-    // Render product cards from JSON data
+    // Render product cards from JSON data (fragment에 모아 reflow 1회로 삽입)
+    var cardsFragment = document.createDocumentFragment();
     var cards = cardsData.map(function (d) {
       var el = createProductCard(d);
-      grid.appendChild(el);
+      cardsFragment.appendChild(el);
       return el;
     });
+    grid.appendChild(cardsFragment);
 
     // Render rare watch cards
     var rareCardsData = cardsData
@@ -258,11 +260,13 @@
                ((a.count || 0) - (b.count || 0)) ||
                (a.name_ko || '').localeCompare(b.name_ko || '', 'ko');
       });
+    var rareFragment = document.createDocumentFragment();
     var rareCards = rareCardsData.map(function (d) {
       var el = createRareWatchCard(d);
-      if (rareWatchGrid) rareWatchGrid.appendChild(el);
+      rareFragment.appendChild(el);
       return el;
     });
+    if (rareWatchGrid) rareWatchGrid.appendChild(rareFragment);
     if (rareWatch && rareCards.length > 0) rareWatch.hidden = false;
 
     const tabs = Array.from(document.querySelectorAll('.category-tab[data-category-id]'));
@@ -418,7 +422,9 @@
       });
 
       visibleCards.sort(compareCards);
-      visibleCards.forEach((card) => grid.appendChild(card));
+      const orderedCards = document.createDocumentFragment();
+      visibleCards.forEach((card) => orderedCards.appendChild(card));
+      grid.appendChild(orderedCards);
 
       updateTabs();
       updateContext(visibleCards);

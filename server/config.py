@@ -14,8 +14,13 @@ def _env(key: str, default: str = "") -> str:
 
 
 JWT_SECRET_KEY = _env("JWT_SECRET_KEY")
+if len(JWT_SECRET_KEY) < 32:
+    raise RuntimeError(
+        "JWT_SECRET_KEY must be a random secret of at least 32 characters. "
+        'Generate one with: python -c "import secrets; print(secrets.token_urlsafe(48))"'
+    )
 JWT_ALGORITHM = "HS256"
-JWT_EXPIRE_DAYS = 7
+JWT_EXPIRE_DAYS = int(_env("JWT_EXPIRE_DAYS", "7"))
 
 GOOGLE_CLIENT_ID = _env("GOOGLE_CLIENT_ID")
 GOOGLE_CLIENT_SECRET = _env("GOOGLE_CLIENT_SECRET")

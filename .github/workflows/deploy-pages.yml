@@ -1,0 +1,58 @@
+name: Deploy site to GitHub Pages (artifact)
+
+# 빌드 산출물을 저장소에 커밋하지 않고 Pages artifact로 직접 배포하는
+# 워크플로. 산출물 커밋 제거 마이그레이션이 끝날 때까지 수동 트리거 전용.
+#
+# 전환 절차:
+# 1. Settings → Pages → Build and deployment → Source를 "GitHub Actions"로 변경
+# 2. 이 워크플로를 수동 실행해 배포가 정상인지 확인
+# 3. update-prices.yml에서 --publish-root와 루트 산출물(index.html, products/ 등)
+#    커밋을 제거하고 data/만 커밋하게 한 뒤, 이 워크플로를 데이터 갱신 후
+#    자동 트리거(push paths: data/** 등)로 전환
+# 4. 저장소 루트에 커밋돼 있던 산출물 파일들을 삭제
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages-deploy
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install dependencies
+        run: pip install -r scripts/requirements.txt
+
+      - name: Build static site
+        run: python scripts/build_static_site.py --output dist
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: dist
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

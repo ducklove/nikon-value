@@ -50,6 +50,8 @@ PROVIDERS: dict[str, dict] = {
 
 
 def get_oauth_client(provider: str) -> AsyncOAuth2Client:
+    if provider not in PROVIDERS:
+        raise ValueError(f"Unknown OAuth provider: {provider}")
     cfg = PROVIDERS[provider]
     return AsyncOAuth2Client(
         client_id=cfg["client_id"],

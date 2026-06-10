@@ -1,7 +1,9 @@
 (function () {
   'use strict';
 
-  var API_BASE = 'https://cantabile.tplinkdns.com';
+  // 빌드 시 페이지에 주입되는 meta 태그가 있으면 우선 사용한다 (환경별 API 주소).
+  var apiBaseMeta = document.querySelector('meta[name="nikon-api-base"]');
+  var API_BASE = (apiBaseMeta && apiBaseMeta.content) || 'https://cantabile.tplinkdns.com';
   var TOKEN_KEY = 'nikon-value-token';
 
   // --- Token management ---

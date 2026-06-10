@@ -1,4 +1,4 @@
-from scripts import fetch_prices
+from nikon_value import ebay
 from scripts.fetch_prices import (
     extract_openrouter_indices,
     extract_openrouter_message_text,
@@ -116,8 +116,10 @@ def test_search_items_for_product_retries_with_higher_max_price(monkeypatch):
             {"price": {"value": "240.00", "currency": "USD"}},
         ]
 
-    monkeypatch.setattr(fetch_prices, "search_items", fake_search_items)
-    monkeypatch.setattr(fetch_prices, "filter_items_with_rules", lambda items, product: items)
+    # search_items_for_product의 내부 호출은 정의 모듈(nikon_value.ebay)의
+    # 네임스페이스를 거치므로 패치 대상도 그 모듈이어야 한다.
+    monkeypatch.setattr(ebay, "search_items", fake_search_items)
+    monkeypatch.setattr(ebay, "filter_items_with_rules", lambda items, product: items)
 
     items, effective_max_price = search_items_for_product("token", "browse", product)
 
@@ -147,8 +149,8 @@ def test_search_items_for_product_retries_when_results_hit_upper_cap(monkeypatch
             {"price": {"value": "2899.00", "currency": "USD"}},
         ]
 
-    monkeypatch.setattr(fetch_prices, "search_items", fake_search_items)
-    monkeypatch.setattr(fetch_prices, "filter_items_with_rules", lambda items, product: items)
+    monkeypatch.setattr(ebay, "search_items", fake_search_items)
+    monkeypatch.setattr(ebay, "filter_items_with_rules", lambda items, product: items)
 
     items, effective_max_price = search_items_for_product("token", "browse", product)
 

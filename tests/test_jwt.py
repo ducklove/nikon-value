@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import jwt
 import pytest
 
 from server.auth.jwt import create_token, decode_token
@@ -14,10 +15,10 @@ def test_create_and_decode_token():
 
 def test_expired_token():
     token = create_token(user_id=1, provider="naver", expire_days=-1)
-    with pytest.raises(Exception):
+    with pytest.raises(jwt.ExpiredSignatureError):
         decode_token(token)
 
 
 def test_invalid_token():
-    with pytest.raises(Exception):
+    with pytest.raises(jwt.InvalidTokenError):
         decode_token("not.a.valid.token")
