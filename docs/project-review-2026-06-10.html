@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Nikon Value 프로젝트 종합 리뷰 — 구조 · 품질 · 리팩토링 · 향후 방향 (2026-06-10)</title>
+<style>
+  :root {
+    --ink: #1c1f26;
+    --ink-soft: #4a5160;
+    --paper: #f6f7f9;
+    --card: #ffffff;
+    --line: #e3e6ec;
+    --accent: #f5c400;        /* Nikon yellow tone */
+    --accent-dark: #8a6d00;
+    --navy: #161b26;
+    --good: #1a7f4e;
+    --good-bg: #e8f5ee;
+    --warn: #b25e09;
+    --warn-bg: #fdf1e2;
+    --bad: #b3261e;
+    --bad-bg: #fbeae9;
+    --info: #29539b;
+    --info-bg: #e9eff9;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: "Noto Sans KR", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+    color: var(--ink);
+    background: var(--paper);
+    line-height: 1.65;
+    font-size: 15.5px;
+  }
+  .page { max-width: 1020px; margin: 0 auto; padding: 0 24px 80px; }
+  header.report-header {
+    background: var(--navy);
+    color: #fff;
+    border-bottom: 6px solid var(--accent);
+    padding: 44px 24px 36px;
+  }
+  .report-header .inner { max-width: 1020px; margin: 0 auto; }
+  .report-kicker {
+    display: inline-block;
+    background: var(--accent);
+    color: #1c1500;
+    font-weight: 700;
+    font-size: 12.5px;
+    letter-spacing: .08em;
+    padding: 3px 10px;
+    border-radius: 4px;
+    text-transform: uppercase;
+  }
+  h1.report-title { font-size: 30px; margin: 14px 0 6px; line-height: 1.3; }
+  .report-sub { color: #c7ccd8; font-size: 14.5px; margin: 0; }
+  .report-meta { margin-top: 18px; display: flex; flex-wrap: wrap; gap: 8px; }
+  .report-meta span {
+    background: rgba(255,255,255,.08);
+    border: 1px solid rgba(255,255,255,.15);
+    border-radius: 999px;
+    padding: 3px 12px;
+    font-size: 12.5px;
+    color: #dfe3ec;
+  }
+  h2 {
+    font-size: 23px;
+    margin: 56px 0 18px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid var(--ink);
+  }
+  h2 .sec-no { color: var(--accent-dark); margin-right: 8px; }
+  h3 { font-size: 17.5px; margin: 30px 0 10px; }
+  p { margin: 10px 0; }
+  code {
+    font-family: "SF Mono", "JetBrains Mono", Consolas, monospace;
+    font-size: .86em;
+    background: #eef0f4;
+    border: 1px solid var(--line);
+    border-radius: 4px;
+    padding: 1px 5px;
+    word-break: break-all;
+  }
+  pre {
+    background: var(--navy);
+    color: #e8ebf2;
+    border-radius: 8px;
+    padding: 16px 18px;
+    overflow-x: auto;
+    font-size: 13px;
+    line-height: 1.55;
+  }
+  pre code { background: none; border: none; color: inherit; padding: 0; }
+  table { width: 100%; border-collapse: collapse; margin: 14px 0 22px; background: var(--card); font-size: 14px; }
+  th, td { border: 1px solid var(--line); padding: 8px 11px; text-align: left; vertical-align: top; }
+  th { background: #eceef3; font-size: 13px; }
+  tbody tr:nth-child(even) { background: #fafbfc; }
+  .toc {
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-left: 5px solid var(--accent);
+    border-radius: 8px;
+    padding: 18px 26px;
+    margin-top: 32px;
+  }
+  .toc strong { font-size: 15px; }
+  .toc ol { margin: 8px 0 2px; padding-left: 22px; columns: 2; column-gap: 40px; }
+  .toc li { margin: 3px 0; break-inside: avoid; }
+  .toc a { color: var(--ink); text-decoration: none; }
+  .toc a:hover { color: var(--accent-dark); text-decoration: underline; }
+  .stat-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 12px; margin: 20px 0; }
+  .stat {
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    padding: 14px 16px;
+  }
+  .stat b { display: block; font-size: 23px; line-height: 1.2; }
+  .stat span { font-size: 12.5px; color: var(--ink-soft); }
+  .grade-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px; margin: 20px 0; }
+  .grade-card { background: var(--card); border: 1px solid var(--line); border-radius: 8px; padding: 14px 16px; display: flex; gap: 14px; align-items: flex-start; }
+  .grade-badge {
+    flex: none; width: 46px; height: 46px; border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 19px; font-weight: 800; color: #fff;
+  }
+  .g-a { background: var(--good); }
+  .g-b { background: #4d7c2a; }
+  .g-bm { background: #8a8a1f; }
+  .g-c { background: var(--warn); }
+  .grade-card b { display: block; font-size: 14.5px; }
+  .grade-card small { color: var(--ink-soft); font-size: 12.5px; line-height: 1.5; display: block; margin-top: 2px; }
+  .badge {
+    display: inline-block; border-radius: 4px; font-size: 11.5px; font-weight: 700;
+    padding: 1px 8px; vertical-align: middle; white-space: nowrap;
+  }
+  .b-p0 { background: var(--bad-bg); color: var(--bad); border: 1px solid #ecc9c6; }
+  .b-p1 { background: var(--warn-bg); color: var(--warn); border: 1px solid #f0d9b8; }
+  .b-p2 { background: var(--info-bg); color: var(--info); border: 1px solid #c8d6ee; }
+  .b-good { background: var(--good-bg); color: var(--good); border: 1px solid #bfe2cf; }
+  .callout { border-radius: 8px; padding: 14px 18px; margin: 18px 0; border: 1px solid; }
+  .callout.note { background: var(--info-bg); border-color: #c8d6ee; }
+  .callout.warn { background: var(--warn-bg); border-color: #f0d9b8; }
+  .callout.danger { background: var(--bad-bg); border-color: #ecc9c6; }
+  .callout.good { background: var(--good-bg); border-color: #bfe2cf; }
+  .callout b:first-child { display: block; margin-bottom: 4px; }
+  .arch {
+    background: var(--card); border: 1px solid var(--line); border-radius: 10px;
+    padding: 22px; margin: 18px 0; overflow-x: auto;
+  }
+  .arch-row { display: flex; gap: 14px; align-items: stretch; justify-content: center; flex-wrap: wrap; margin: 8px 0; }
+  .arch-box {
+    border: 1.5px solid var(--ink); border-radius: 8px; padding: 10px 14px;
+    min-width: 180px; background: #fff; text-align: center; font-size: 13px;
+  }
+  .arch-box b { display: block; font-size: 13.5px; }
+  .arch-box small { color: var(--ink-soft); font-size: 11.5px; line-height: 1.45; display: block; }
+  .arch-box.hl { border-color: var(--accent-dark); background: #fffbe8; }
+  .arch-box.ext { border-style: dashed; color: var(--ink-soft); }
+  .arch-arrow { text-align: center; color: var(--ink-soft); font-size: 13px; margin: 2px 0; }
+  .phase {
+    background: var(--card); border: 1px solid var(--line); border-radius: 10px;
+    margin: 16px 0; overflow: hidden;
+  }
+  .phase-head {
+    padding: 12px 18px; background: var(--navy); color: #fff;
+    display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; gap: 6px;
+  }
+  .phase-head b { font-size: 15.5px; }
+  .phase-head span { font-size: 12.5px; color: #c7ccd8; }
+  .phase-body { padding: 6px 20px 14px; }
+  .phase-body ul { margin: 8px 0; padding-left: 20px; }
+  .phase-body li { margin: 7px 0; }
+  ul.tight { margin: 8px 0; padding-left: 20px; }
+  ul.tight li { margin: 6px 0; }
+  .file-tree { font-size: 13px; }
+  .muted { color: var(--ink-soft); }
+  .num { text-align: right; font-variant-numeric: tabular-nums; }
+  footer.report-footer {
+    margin-top: 70px; padding-top: 18px; border-top: 1px solid var(--line);
+    color: var(--ink-soft); font-size: 12.5px;
+  }
+  @media (max-width: 720px) {
+    .toc ol { columns: 1; }
+    h1.report-title { font-size: 24px; }
+  }
+  @media print {
+    body { background: #fff; font-size: 11.5pt; }
+    header.report-header { padding: 24px; }
+    .page { max-width: none; padding: 0 8mm; }
+    h2 { page-break-after: avoid; }
+    .phase, .grade-card, .callout, table, .arch { page-break-inside: avoid; }
+  }
+</style>
+</head>
+<body>
+
+<header class="report-header">
+  <div class="inner">
+    <span class="report-kicker">Project Review</span>
+    <h1 class="report-title">Nikon Value 프로젝트 종합 리뷰</h1>
+    <p class="report-sub">코드 구조 분석 · 품질 평가 · 리팩토링 로드맵 · 추가 기능 제언</p>
+    <div class="report-meta">
+      <span>작성일 2026-06-10</span>
+      <span>분석 기준 master @ 32b56e54</span>
+      <span>제품 331개 · 카테고리 7개</span>
+      <span>테스트 38개 전체 통과 확인</span>
+    </div>
+  </div>
+</header>
+
+<div class="page">
+
+<nav class="toc">
+  <strong>목차</strong>
+  <ol>
+    <li><a href="#summary">한눈에 보기 (요약)</a></li>
+    <li><a href="#overview">프로젝트 개요와 아키텍처</a></li>
+    <li><a href="#structure">코드 구조 분석</a></li>
+    <li><a href="#strengths">잘 만들어진 부분</a></li>
+    <li><a href="#issues">핵심 문제점 (우선순위별)</a></li>
+    <li><a href="#refactor">리팩토링 로드맵 (Phase 0~3)</a></li>
+    <li><a href="#features">추가 기능 제언</a></li>
+    <li><a href="#keep">바꾸지 말아야 할 것</a></li>
+    <li><a href="#next">권장 다음 단계 체크리스트</a></li>
+  </ol>
+</nav>
+
+<div class="callout warn">
+  <b>⚠ 문서 취급 주의</b>
+  이 문서에는 보안 약점 위치(파일·라인)가 구체적으로 적혀 있습니다. 현재 GitHub Pages가 <code>master</code> 루트를 그대로
+  서빙하므로, 이 문서를 master에 머지하면 <code>…/docs/project-review-2026-06-10.html</code>로 공개됩니다.
+  머지 전에 보안 항목을 먼저 수정하거나, 문서를 비공개 위치로 옮기는 것을 권장합니다. (페이지에 <code>noindex</code>는 넣어 두었습니다.)
+</div>
+
+<!-- ============================================================ -->
+<h2 id="summary"><span class="sec-no">1.</span>한눈에 보기</h2>
+
+<p>
+Nikon Value는 <strong>eBay 매물 기반 니콘 중고 시세 트래커</strong>입니다. GitHub Actions가 3시간마다 시세를 수집해
+정적 사이트를 재생성하고(GitHub Pages 배포), 별도의 FastAPI 서버(라즈베리파이)가 소셜 로그인과 관심 목록을 담당하는
+이원 구조입니다. <strong>종합 평가는 B− 입니다.</strong> 운영 자동화·데이터 정제 로직·백엔드 보안 기본기는 개인 프로젝트
+수준을 훌쩍 넘지만, ① 빌드 산출물이 소스 저장소에 섞여 커밋되는 구조, ② 1,000줄이 넘는 모놀리식 스크립트 2개,
+③ 파이프라인·프론트엔드 테스트 부재, ④ 인증 토큰 취급 방식이 다음 단계 성장을 막는 4대 부채입니다.
+</p>
+
+<div class="stat-grid">
+  <div class="stat"><b>331</b><span>추적 제품 (7개 카테고리)</span></div>
+  <div class="stat"><b>~3,830줄</b><span>Python (파이프라인 2,704 + 서버 561 + 테스트 561)</span></div>
+  <div class="stat"><b>~2,480줄</b><span>JS/CSS (site 673 · auth 289 · style 1,522)</span></div>
+  <div class="stat"><b>38개 통과</b><span>pytest 0.92초 — 단, 서버 위주</span></div>
+  <div class="stat"><b>12 MB</b><span>data/ (daily 101일 + 제품별 히스토리 331개)</span></div>
+  <div class="stat"><b>48 / 50</b><span>최근 커밋 중 자동 데이터 커밋 비율</span></div>
+</div>
+
+<h3>영역별 등급</h3>
+<div class="grade-grid">
+  <div class="grade-card"><div class="grade-badge g-b">B+</div><div><b>아키텍처 설계</b><small>정적 사이트 + 자동 파이프라인 + 보조 API 분리는 비용·안정성 면에서 탁월. API 다운 시에도 시세 조회가 동작하는 graceful degradation.</small></div></div>
+  <div class="grade-card"><div class="grade-badge g-b">B</div><div><b>데이터 파이프라인</b><small>규칙 → LLM → IQR 3중 필터, 적응형 가격 상한, 환율 3단계 폴백 등 정제 로직이 영리함. 다만 모놀리식이고 테스트가 없음.</small></div></div>
+  <div class="grade-card"><div class="grade-badge g-b">B</div><div><b>백엔드 API</b><small>전 쿼리 파라미터화, HMAC state, rate limit, async 일관성. JWT 시크릿 무검증과 토큰 전달 방식이 감점 요인.</small></div></div>
+  <div class="grade-card"><div class="grade-badge g-c">C+</div><div><b>프론트엔드</b><small>무프레임워크 경량 접근 자체는 적절. escapeHtml 3중 정의, admin 인라인 JS 627줄, 전역 상태, 하드코딩 URL이 문제.</small></div></div>
+  <div class="grade-card"><div class="grade-badge g-c">C</div><div><b>테스트</b><small>서버 38개는 잘 짜였으나 fetch/build 파이프라인(2,700줄)과 JS(1,600줄)는 사실상 0%. CI에서 테스트를 돌리지 않음.</small></div></div>
+  <div class="grade-card"><div class="grade-badge g-c">C+</div><div><b>보안</b><small>SQL 인젝션·CSRF 방어, admin 3중 잠금은 양호. JWT 시크릿 빈 값 허용, localStorage 토큰, fail-open 검증이 약점.</small></div></div>
+  <div class="grade-card"><div class="grade-badge g-c">C+</div><div><b>운영 / CI</b><small>3시간 자동 수집 + 실패 시 이슈 자동 생성은 모범적. 그러나 테스트 CI 부재, 충돌 시 데이터 유실 가능한 push 로직.</small></div></div>
+  <div class="grade-card"><div class="grade-badge g-bm">B−</div><div><b>문서화</b><small>README·HISTORY가 실제와 일치하고 충실. 아키텍처 다이어그램, 서버 배포·운영 문서는 없음.</small></div></div>
+</div>
+
+<!-- ============================================================ -->
+<h2 id="overview"><span class="sec-no">2.</span>프로젝트 개요와 아키텍처</h2>
+
+<p>시스템은 세 개의 독립적인 축으로 구성됩니다. 핵심 설계 철학은 <em>"시세 조회는 어떤 서버도 살아있지 않아도 동작해야 한다"</em>이며, 실제로 그렇게 구현되어 있습니다.</p>
+
+<div class="arch">
+  <div class="arch-row">
+    <div class="arch-box ext"><b>eBay Browse API</b><small>미국 중고 매물 (FIXED_PRICE)</small></div>
+    <div class="arch-box ext"><b>OpenRouter LLM</b><small>GPT-5.4 nano 매물 분류</small></div>
+    <div class="arch-box ext"><b>ECB 환율</b><small>USD→KRW 일일 기준환율</small></div>
+  </div>
+  <div class="arch-arrow">↓ ①  GitHub Actions — 3시간마다 (update-prices.yml)</div>
+  <div class="arch-row">
+    <div class="arch-box hl"><b>scripts/fetch_prices.py</b><small>1,073줄 · 검색→규칙필터→LLM필터→IQR 통계 → data/*.json 갱신</small></div>
+    <div class="arch-box hl"><b>scripts/build_static_site.py</b><small>1,324줄 · catalog+YAML 머지 → HTML 334장 생성 → 루트 publish</small></div>
+  </div>
+  <div class="arch-arrow">↓ 자동 커밋 &amp; 푸시 (master 루트)</div>
+  <div class="arch-row">
+    <div class="arch-box"><b>GitHub Pages (정적)</b><small>index.html · products/331장 · js/site.js · js/auth.js · css</small></div>
+  </div>
+  <div class="arch-arrow">↕ ②  fetch (JWT Bearer) — 로그인·관심목록만</div>
+  <div class="arch-row">
+    <div class="arch-box"><b>FastAPI 서버 (라즈베리파이)</b><small>OAuth(Google/Naver/Kakao) · JWT 7일 · SQLite · slowapi · catalog.json 1시간 캐시 검증</small></div>
+  </div>
+  <div class="arch-arrow">③  로컬 전용 운영 도구 (별도 축)</div>
+  <div class="arch-row">
+    <div class="arch-box"><b>admin_server.py + admin.html</b><small>127.0.0.1 전용 · 카탈로그 YAML 편집 → 수집/빌드/git push 실행</small></div>
+  </div>
+</div>
+
+<h3>데이터 흐름 요약</h3>
+<ul class="tight">
+  <li><strong>소스 오브 트루스</strong>: <code>config/products.yaml</code>(3,335줄) — 제품 331개의 검색 쿼리, eBay 카테고리, 가격 범위, 희귀 등급을 사람이 관리.</li>
+  <li><strong>수집 산출물</strong>: <code>data/catalog.json</code>(652KB, 최신 스냅샷+샘플 매물), <code>data/daily/*.json</code>(일별, 최근 400일 롤링), <code>data/products/*.json</code>(제품별 365일 히스토리).</li>
+  <li><strong>사이트 산출물</strong>: 홈 카드 데이터는 <code>index.html</code> 안에 JSON으로 인라인(260KB), 제품 페이지는 히스토리 JSON 인라인 + Chart.js CDN.</li>
+  <li><strong>인증 흐름</strong>: 정적 페이지 → API 서버 OAuth 시작 → 콜백에서 JWT 발급 → <code>auth-complete.html#token=…</code> URL fragment로 복귀 → localStorage 저장.</li>
+</ul>
+
+<!-- ============================================================ -->
+<h2 id="structure"><span class="sec-no">3.</span>코드 구조 분석</h2>
+
+<table>
+  <thead><tr><th>경로</th><th class="num">줄수</th><th>역할</th><th>평가</th></tr></thead>
+  <tbody>
+    <tr><td><code>scripts/fetch_prices.py</code></td><td class="num">1,073</td><td>eBay 수집 + 규칙/LLM 필터 + IQR 통계 + 환율 + 히스토리 저장</td><td>로직 품질은 높으나 API 클라이언트·필터·통계·저장이 한 파일. 책임 5개 혼재</td></tr>
+    <tr><td><code>scripts/build_static_site.py</code></td><td class="num">1,324</td><td>카탈로그 머지 → HTML 334장 생성(f-string) → 루트 publish</td><td>HTML을 f-string으로 조립. 템플릿-로직 미분리, <code>head_block</code> 2벌 중복, 핫스팟 좌표 84줄 하드코딩</td></tr>
+    <tr><td><code>scripts/admin_server.py</code></td><td class="num">307</td><td>로컬 어드민 HTTP 서버 (YAML 저장·수집·빌드·git push)</td><td>local-only + 토큰 + same-origin 3중 잠금 — 규모 대비 적절하고 안전</td></tr>
+    <tr><td><code>server/</code> (13파일)</td><td class="num">561</td><td>FastAPI: OAuth 3사, JWT, 관심목록 CRUD, SQLite, rate limit</td><td>모듈 분리 양호(auth/·api/), 전 쿼리 파라미터화. 시크릿 검증 부재가 옥에 티</td></tr>
+    <tr><td><code>tests/</code> (11파일)</td><td class="num">561</td><td>서버 단위/통합 + fetch 규칙 필터 + 제품 커버리지 테스트</td><td>38개 통과 (0.92초). 단 빌드·수집 파이프라인 본체는 미커버</td></tr>
+    <tr><td><code>js/site.js</code></td><td class="num">673</td><td>카드 렌더·검색·정렬·통화 토글·Chart.js 차트</td><td>페이지 타입별 init 분리는 깔끔. innerHTML 조립 + 전역 <code>window.nikonValue*</code></td></tr>
+    <tr><td><code>js/auth.js</code></td><td class="num">289</td><td>로그인 UI·관심목록 하트 버튼(MutationObserver 주입)</td><td>API URL 하드코딩, localStorage 토큰, site.js와 유틸 중복</td></tr>
+    <tr><td><code>css/style.css</code></td><td class="num">1,522</td><td>전체 사이트 스타일 (반응형 3단계)</td><td>단일 파일로 관리 가능한 한계선. 섹션 주석은 있음</td></tr>
+    <tr><td><code>admin.html</code></td><td class="num">948</td><td>어드민 UI (인라인 CSS 134줄 + 인라인 JS 627줄)</td><td>사실상 세 번째 JS 앱이 HTML 안에 존재. 공용 유틸과 단절</td></tr>
+    <tr><td><code>config/products.yaml</code></td><td class="num">3,335</td><td>제품 카탈로그 정의 (사람이 편집하는 소스)</td><td>구조 일관적, admin UI로 백업 후 저장 — 적절</td></tr>
+    <tr><td><code>index.html</code> · <code>products/</code> 331장</td><td class="num">—</td><td><strong>커밋된 빌드 산출물</strong> (Pages가 직접 서빙)</td><td>소스와 산출물 혼재 — 구조적 부채의 진원지</td></tr>
+    <tr><td><code>.github/workflows/update-prices.yml</code></td><td class="num">63</td><td>3시간 주기 수집→빌드→커밋→푸시, 실패 시 이슈 생성</td><td>이슈 자동 생성은 모범적. 충돌 처리 로직은 위험 (5절 P0-4)</td></tr>
+  </tbody>
+</table>
+
+<h3>의존성 현황</h3>
+<ul class="tight">
+  <li><strong>파이프라인</strong>: <code>requests</code>, <code>PyYAML</code> 단 2개 — 의도적 경량화, 좋은 선택.</li>
+  <li><strong>서버</strong>: FastAPI·uvicorn·authlib·httpx·PyJWT·aiosqlite·slowapi·python-dotenv (모두 하한 핀 <code>&gt;=</code> — 락파일 없음).</li>
+  <li><strong>프론트</strong>: 프레임워크 없음 + Chart.js 4 CDN + Google Fonts. 빌드 도구 없음.</li>
+  <li><strong>개발 도구</strong>: 린터·포매터·타입체커·pre-commit <strong>전무</strong>. <code>pyproject.toml</code>에는 pytest 설정만 존재.</li>
+</ul>
+
+<!-- ============================================================ -->
+<h2 id="strengths"><span class="sec-no">4.</span>잘 만들어진 부분</h2>
+
+<p>리팩토링 시 깨뜨리지 말아야 할 자산이기도 합니다.</p>
+
+<h3>4.1 데이터 정제 — 이 프로젝트의 핵심 경쟁력</h3>
+<ul class="tight">
+  <li><span class="badge b-good">우수</span> <strong>3중 필터 파이프라인</strong>: 38개 제외 패턴 + 렌즈 후드 정규식 + 수동렌즈 세대(AI/AI-S/Series E) 충돌 감지(규칙) → LLM 타이틀 분류 → IQR 아웃라이어 제거. 특히 LLM이 전부 걸러내면 휴리스틱 결과를 유지하는 폴백(<code>fetch_prices.py:301-306</code>)은 LLM 오판에 대한 좋은 방어.</li>
+  <li><span class="badge b-good">우수</span> <strong>적응형 가격 탐색</strong>(<code>fetch_prices.py:557-636</code>): 검색 결과가 상한에 붙어 있으면(98% 트리거) 상한을 1.5×/2.0×로 넓혀 재검색 — 시세 급등 제품을 놓치지 않는 장치.</li>
+  <li><span class="badge b-good">우수</span> <strong>환율 3단계 폴백</strong>: ECB 실패 → 기존 catalog.json 값 유지 → 최근 daily 스냅샷에서 복구(<code>fetch_prices.py:823-836</code>).</li>
+</ul>
+
+<h3>4.2 백엔드 기본기</h3>
+<ul class="tight">
+  <li>모든 SQL이 파라미터화되어 있고(인젝션 불가), FK CASCADE + WAL 모드 활성화(<code>server/database.py</code>).</li>
+  <li>OAuth state를 HMAC-SHA256 서명 + 5분 만료로 처리(<code>server/auth/oauth.py</code>) — CSRF·리플레이 방어.</li>
+  <li>rate limit(인증 5/min, API 60/min), CORS 단일 오리진 화이트리스트, 관심목록은 카탈로그 ID 대조 검증.</li>
+  <li>admin 서버는 local-only + 세션 토큰 + same-origin 3중 확인(<code>admin_server.py:42-91</code>).</li>
+</ul>
+
+<h3>4.3 운영·SEO·UX 디테일</h3>
+<ul class="tight">
+  <li>수집 실패 시 GitHub 이슈 자동 생성, 데이터가 2일 이상 오래되면 사이트에 stale 배너 노출.</li>
+  <li>JSON-LD(Product/AggregateOffer), canonical, OG 태그, sitemap 331건, <code>&lt;noscript&gt;</code> 히스토리 테이블까지 — 정적 사이트 SEO 모범.</li>
+  <li>WebP srcset, skeleton UI, aria 레이블, 통화 토글(USD/KRW)의 null-safe 처리.</li>
+</ul>
+
+<!-- ============================================================ -->
+<h2 id="issues"><span class="sec-no">5.</span>핵심 문제점 (우선순위별)</h2>
+
+<p>모든 항목은 실제 코드를 열어 검증했습니다. <span class="badge b-p0">P0</span> 보안·데이터 무결성 / <span class="badge b-p1">P1</span> 구조 부채 / <span class="badge b-p2">P2</span> 개선 권장.</p>
+
+<h3>P0 — 즉시 조치</h3>
+<table>
+  <thead><tr><th style="width:34%">문제</th><th>위치</th><th>내용과 영향</th></tr></thead>
+  <tbody>
+    <tr>
+      <td><span class="badge b-p0">P0-1</span> <strong>CI에서 테스트를 안 돌린다</strong></td>
+      <td><code>.github/workflows/</code></td>
+      <td>워크플로는 <code>update-prices.yml</code> 하나뿐. 잘 짜인 테스트 38개가 로컬에서만 의미를 가짐. 리팩토링을 시작하면 회귀를 잡아줄 안전망이 0이므로 <strong>모든 작업 중 1순위</strong>.</td>
+    </tr>
+    <tr>
+      <td><span class="badge b-p0">P0-2</span> <strong>JWT 시크릿 무검증</strong></td>
+      <td><code>server/config.py:16</code></td>
+      <td><code>JWT_SECRET_KEY = _env("JWT_SECRET_KEY")</code> — .env 누락 시 빈 문자열로 서버가 그대로 기동하고, 모든 토큰이 빈 키로 서명됨(누구나 위조 가능). 시작 시 길이 검증 1줄이면 차단됨.</td>
+    </tr>
+    <tr>
+      <td><span class="badge b-p0">P0-3</span> <strong>토큰 전달·보관 방식</strong></td>
+      <td><code>server/auth/routes.py</code> · <code>js/auth.js:8-10</code></td>
+      <td>JWT가 URL fragment(<code>#token=…</code>)로 전달되고 localStorage에 7일간 보관. XSS 발생 시 토큰 탈취로 직결. 현재 외부 스크립트가 GA·Chart.js뿐이라 실위험은 중간이지만, 기능이 늘수록 위험이 커지는 구조.</td>
+    </tr>
+    <tr>
+      <td><span class="badge b-p0">P0-4</span> <strong>충돌 시 조용한 데이터 유실</strong></td>
+      <td><code>update-prices.yml:50</code></td>
+      <td><code>git push || (git pull --rebase -X ours &amp;&amp; git push) || echo "Push skipped…"</code> — rebase에서 <code>-X ours</code>는 충돌 시 <em>원격</em>을 우선하므로 방금 수집한 데이터가 버려질 수 있고, 마지막 <code>|| echo</code>가 실패를 삼켜 워크플로는 성공으로 표시됨. 실패 이슈 생성 스텝도 발동하지 않음.</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3>P1 — 구조 부채 (리팩토링 본체)</h3>
+<table>
+  <thead><tr><th style="width:34%">문제</th><th>위치</th><th>내용과 영향</th></tr></thead>
+  <tbody>
+    <tr>
+      <td><span class="badge b-p1">P1-1</span> <strong>빌드 산출물이 소스 저장소에 커밋</strong></td>
+      <td>루트 <code>index.html</code>, <code>products/</code> 331장, <code>sitemap.xml</code> …</td>
+      <td>3시간마다 산출물 커밋 → 최근 커밋 50개 중 48개가 자동 데이터 커밋. 사람의 변경이 묻히고, diff 리뷰가 불가능하며, 저장소가 계속 비대해짐(.git 12MB+). 소스/산출물 분리가 모든 구조 개선의 전제.</td>
+    </tr>
+    <tr>
+      <td><span class="badge b-p1">P1-2</span> <strong>모놀리식 스크립트 2개</strong></td>
+      <td><code>fetch_prices.py</code>(1,073) · <code>build_static_site.py</code>(1,324)</td>
+      <td>fetch는 API 클라이언트·필터·통계·저장이, build는 데이터 머지·HTML 템플릿·파일 배치가 한 파일. HTML을 f-string으로 조립해 수동 escape가 41곳 — 템플릿 엔진(Jinja2)이 정확히 해결하는 문제. <code>head_block</code>/<code>head_block_product</code>는 CSS 경로만 다른 복붙(<code>build:391-428</code>).</td>
+    </tr>
+    <tr>
+      <td><span class="badge b-p1">P1-3</span> <strong>프론트 코드 3원화</strong></td>
+      <td><code>site.js</code> · <code>auth.js</code> · <code>admin.html</code> 인라인 627줄</td>
+      <td><code>escapeHtml</code>이 3곳에 각각 정의(<code>site.js:111</code>, <code>auth.js:223</code>, <code>admin.html:887</code>). admin은 모듈화·반응형·공용 스타일 전부 단절. 전역 <code>window.nikonValueAuth/Catalog</code>로 스크립트 간 암묵 결합.</td>
+    </tr>
+    <tr>
+      <td><span class="badge b-p1">P1-4</span> <strong>하드코딩 산재</strong></td>
+      <td>여러 파일</td>
+      <td>API 서버 주소(<code>auth.js:4</code>), GA 측정 ID(<code>build:33</code>), 필름 보드 핫스팟 좌표 84줄(<code>build:52-135</code>), eBay 카테고리 매직값 <code>{"31388","3323"}</code>(<code>fetch:374</code>), 어필리에이트 헤더가 placeholder 그대로 전송 중(<code>fetch:455</code> — <code>&lt;ePNCampaignId&gt;</code>).</td>
+    </tr>
+    <tr>
+      <td><span class="badge b-p1">P1-5</span> <strong>파이프라인 테스트 공백</strong></td>
+      <td><code>tests/</code></td>
+      <td>핵심 수익 로직인 <code>compute_stats</code>(IQR), 적응형 가격 탐색, <code>merge_catalog_with_config</code>, 가격 변화 계산이 모두 미커버. 빌드 결과물 골든 테스트도 없어 build 스크립트 수정이 곧 도박. JS 테스트 0건.</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3>P2 — 개선 권장</h3>
+<table>
+  <thead><tr><th style="width:34%">문제</th><th>위치</th><th>내용</th></tr></thead>
+  <tbody>
+    <tr><td><span class="badge b-p2">P2-1</span> fail-open 카탈로그 검증</td><td><code>server/api/favorites.py:31</code></td><td>카탈로그 로드 실패 시 <code>is_loaded()</code>가 False → 검증 전체가 건너뛰어져 임의 문자열 ID도 저장됨. 가용성 우선의 의도적 선택으로 보이나, 최소한 길이·문자셋 검증과 주석 문서화 필요.</td></tr>
+    <tr><td><span class="badge b-p2">P2-2</span> 429 무한 재시도</td><td><code>fetch_prices.py:488-491</code></td><td>고정 5초 대기 + 재시도 한도 없음. eBay가 장시간 제한하면 워크플로가 6시간 타임아웃까지 공회전. 지수 백오프 + 최대 횟수 필요.</td></tr>
+    <tr><td><span class="badge b-p2">P2-3</span> 홈 데이터 인라인 임베드</td><td><code>index.html</code> (260KB)</td><td>카드 JSON이 HTML에 인라인이라 매 갱신마다 전체 재다운로드. 별도 JSON 분리 시 HTML은 캐싱되고 데이터만 갱신 가능. (단점: 첫 페인트 시 fetch 1회 추가 — 트레이드오프 검토)</td></tr>
+    <tr><td><span class="badge b-p2">P2-4</span> 프론트 성능 디테일</td><td><code>site.js</code> · 제품 페이지</td><td>Chart.js를 모든 제품 페이지에서 동기 로드(~70KB), 카드 재배치 시 카드별 <code>appendChild</code>(DocumentFragment 미사용), 정렬 시 reflow 다발.</td></tr>
+    <tr><td><span class="badge b-p2">P2-5</span> 도구 부재</td><td>저장소 전체</td><td>ruff·mypy·eslint·prettier·pre-commit·의존성 락파일 없음. 혼자 개발이라도 LLM 협업 시대에는 린터가 곧 리뷰어.</td></tr>
+    <tr><td><span class="badge b-p2">P2-6</span> 소소한 스멜</td><td>여러 파일</td><td>함수 안 <code>import re as _re</code>(<code>build:566</code>), <code>JWT_EXPIRE_DAYS</code> 상수 고정(<code>config.py:18</code>), 에러 응답 포맷 비일관(<code>{"error"}</code> vs <code>{"ok"}</code> vs plain text), 카탈로그 refresh 루프 예외 시 태스크 사망 가능(<code>catalog.py:44-47</code>).</td></tr>
+    <tr><td><span class="badge b-p2">P2-7</span> SQLite·단일 서버 한계</td><td><code>server/</code></td><td>현재 규모(개인+소수 사용자)에는 충분. 다만 알림 등 쓰기 증가 기능 추가 전에 백업 자동화부터 마련 권장.</td></tr>
+  </tbody>
+</table>
+
+<!-- ============================================================ -->
+<h2 id="refactor"><span class="sec-no">6.</span>리팩토링 로드맵</h2>
+
+<p>
+원칙: <strong>"안전망 먼저, 구조는 그다음, 기능은 마지막"</strong>. 각 Phase는 독립적으로 머지 가능한 작은 PR들로 쪼개는 것을 전제로 합니다.
+기존 동작(특히 데이터 포맷과 URL 구조)은 전 단계에서 유지합니다 — 331개 제품 페이지 URL은 SEO 자산입니다.
+</p>
+
+<div class="phase">
+  <div class="phase-head"><b>Phase 0 — 안전망 구축</b><span>즉시 시작 · 약 1주 · 리팩토링의 전제조건</span></div>
+  <div class="phase-body">
+    <ul>
+      <li><strong>ci.yml 신설</strong>: push/PR 시 <code>pytest</code> + <code>ruff check</code> 실행. 기존 38개 테스트가 즉시 회귀 방어선이 됨. <em>(P0-1)</em></li>
+      <li><strong>JWT 시크릿 검증</strong>: <code>config.py</code>에서 32자 미만이면 기동 거부. 테스트 환경은 conftest에서 주입. <em>(P0-2)</em></li>
+      <li><strong>워크플로 push 견고화</strong>: <code>-X ours</code> 제거 → 충돌 시 <code>git pull --rebase</code> 후 재빌드하거나, 실패를 그대로 실패로 표면화해 기존 이슈 생성 스텝이 발동하게. 마지막 <code>|| echo</code> 삭제. <em>(P0-4)</em></li>
+      <li><strong>API_BASE 주입화</strong>: build 스크립트가 이미 <code>auth.js</code>를 복사하므로, 복사 시점에 플레이스홀더를 환경변수로 치환 (1~2줄 수정). <em>(P1-4 일부)</em></li>
+      <li><strong>ruff + eslint + pre-commit 도입</strong>, <code>requirements</code>에 락파일(<code>pip-tools</code> 또는 <code>uv</code>) 추가. <em>(P2-5)</em></li>
+      <li>429 지수 백오프 + 최대 재시도 5회. <em>(P2-2)</em></li>
+    </ul>
+  </div>
+</div>
+
+<div class="phase">
+  <div class="phase-head"><b>Phase 1 — 구조 분리</b><span>2~3주 · 이번 리팩토링의 본체</span></div>
+  <div class="phase-body">
+    <ul>
+      <li><strong>① 산출물/소스 분리</strong> <em>(P1-1, 최우선)</em>: GitHub Pages를 <code>actions/upload-pages-artifact</code> + <code>deploy-pages</code> 방식으로 전환.
+        루트의 <code>index.html</code>·<code>products/</code>·<code>sitemap.xml</code> 등 산출물 커밋을 전부 제거하고 <code>data/</code>만 커밋(시세 이력은 git이 곧 백업이므로 유지 가치 있음).
+        → 자동 커밋이 "데이터 1파일 변경"으로 줄고, 사람 커밋이 다시 보이게 됨. admin의 publish-root 흐름도 단순해짐.</li>
+      <li><strong>② 파이프라인 패키지화</strong> <em>(P1-2)</em>: <code>scripts/</code> 2,400줄을 아래처럼 분리(동작 동일, 이동 위주):
+<pre><code>nikon_value/
+  ebay.py        # 토큰·검색·페이지네이션·재시도 (fetch:424-636)
+  filters.py     # 규칙 필터 + 세대 판별 + LLM 필터 (fetch:51-421)
+  stats.py       # IQR 통계·가격 변화 계산 (fetch:639-688, build:610-662)
+  storage.py     # catalog/daily/history JSON I/O (fetch:718-836)
+  sitegen/       # 빌드: 머지·페이지 빌더·sitemap (build 전체)
+scripts/fetch_prices.py      # 얇은 CLI 래퍼로 유지
+scripts/build_static_site.py # 〃</code></pre></li>
+      <li><strong>③ Jinja2 템플릿 도입</strong> <em>(P1-2)</em>: <code>templates/base.html</code>(head/GA/푸터 공통화 — head_block 중복 소멸), <code>home.html</code>, <code>product.html</code>, <code>resources.html</code>. 자동 escape로 수동 <code>escape()</code> 41곳 제거. 필름 핫스팟 좌표는 <code>config/film_atlas.yaml</code>로 이전.</li>
+      <li><strong>④ 프론트 통합</strong> <em>(P1-3)</em>: <code>js/utils.js</code>(escapeHtml·formatMoney 공용화), admin.html → <code>admin/index.html + admin.js + admin.css</code> 분리, 전역 객체를 단일 네임스페이스로 정리.</li>
+    </ul>
+  </div>
+</div>
+
+<div class="phase">
+  <div class="phase-head"><b>Phase 2 — 품질 보강</b><span>3~4주 · 병행 가능</span></div>
+  <div class="phase-body">
+    <ul>
+      <li><strong>파이프라인 테스트</strong>: <code>compute_stats</code>(IQR 경계값), 적응형 탐색(모킹), <code>merge_catalog_with_config</code>, 가격 변화 계산 단위 테스트 + 고정 입력 → 고정 HTML <strong>골든 파일 테스트</strong>(빌드 리팩토링의 안전판). <em>(P1-5)</em></li>
+      <li><strong>E2E 스모크</strong>: Playwright로 "홈 로드 → 검색 → 카테고리 탭 → 제품 페이지 차트 렌더" 1개 시나리오만이라도.</li>
+      <li><strong>인증 개선</strong> <em>(P0-3 후속)</em>: GitHub Pages(github.io)와 API 서버가 다른 도메인이라 HttpOnly 쿠키는 서드파티 쿠키 제약에 걸림 — 현실적 대안은
+        (a) <code>auth-complete.html</code>에서 fragment 즉시 소거(현재 여부 확인), (b) 토큰 수명 7일→1일 + 자동 재발급, (c) 장기적으로 API를 같은 사이트의 커스텀 도메인 하위로 통합.</li>
+      <li><strong>성능</strong>: Chart.js <code>defer</code>+조건부 로드, DocumentFragment 일괄 삽입, 카드 데이터 외부 JSON 분리 검토. <em>(P2-3·4)</em></li>
+      <li>에러 응답 포맷 통일(<code>{"error","message"}</code>), fail-open 검증에 포맷 가드 추가. <em>(P2-1·6)</em></li>
+    </ul>
+  </div>
+</div>
+
+<div class="phase">
+  <div class="phase-head"><b>Phase 3 — 데이터 기반 확장</b><span>구조 안정 후 · 신규 기능과 연계</span></div>
+  <div class="phase-body">
+    <ul>
+      <li>일별/제품별 JSON 482개를 <strong>DuckDB 단일 파일</strong>(또는 SQLite)로 통합 — "최근 30일 하락률 상위" 같은 분석 쿼리가 한 줄이 되고, 알림 기능의 기반이 됨. JSON은 빌드 산출물로 강등.</li>
+      <li>서버 DB 백업 자동화(라즈베리파이 → 오브젝트 스토리지), 모니터링(uptime 체크) 정비.</li>
+      <li>아래 7절의 신규 기능 착수.</li>
+    </ul>
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<h2 id="features"><span class="sec-no">7.</span>추가 기능 제언</h2>
+
+<p>기준: <strong>이미 가진 자산(3시간 파이프라인 · 로그인+관심목록 · 시계열 데이터)과의 시너지</strong>가 큰 것부터. 효과/난이도는 상대 평가입니다.</p>
+
+<table>
+  <thead><tr><th></th><th>기능</th><th>효과</th><th>난이도</th><th>설명</th></tr></thead>
+  <tbody>
+    <tr><td>⭐</td><td><strong>A. 딜 레이더</strong></td><td>높음</td><td>낮음</td><td>수집 시 이미 매물별 가격을 보유. "중앙값 대비 −20% 이하" 매물에 뱃지 + 홈에 '오늘의 딜' 섹션. 기존 rare-watch 인프라 재활용으로 며칠 안에 가능. 사이트의 핵심 가치("싸게 사기")에 직결.</td></tr>
+    <tr><td>⭐</td><td><strong>B. 가격 하락 알림</strong></td><td>높음</td><td>중간</td><td>관심목록 제품이 설정가 이하로 내려가면 이메일 알림. 로그인+관심목록+주기 파이프라인이 전부 준비되어 있어 시너지 최대 — 파이프라인 끝에 알림 잡 추가 + 서버에 알림 설정 API. <em>재방문을 만드는 기능.</em></td></tr>
+    <tr><td>⭐</td><td><strong>C. 내 장비 가치 대시보드</strong></td><td>높음</td><td>중간</td><td>관심목록을 '보유 장비'로 확장해 합산 가치 추이 차트 제공("내 니콘들 오늘 시세"). 프로젝트의 출발점(mynikons.jpg)과 정체성이 일치하며 로그인 유인이 생김.</td></tr>
+    <tr><td></td><td>D. 통계 고도화</td><td>중간</td><td>낮음</td><td>차트에 7일 이동평균 토글, '역대 최저가' 뱃지, 매물 수 추이 보조축. 데이터는 이미 다 있음.</td></tr>
+    <tr><td></td><td>E. 제품 비교</td><td>중간</td><td>중간</td><td>2~4개 제품 히스토리 차트 오버레이 (Z6II vs Z7 등 구매 갈등 해소 페이지). URL 파라미터 기반이면 정적 구조 유지 가능.</td></tr>
+    <tr><td></td><td>F. 상태(컨디션)별 시세</td><td>중간</td><td>중간</td><td>이미 LLM이 타이틀을 읽고 있으므로 등급(민트/양호/하자) 추출만 추가하면 "상태별 중앙값" 제공 가능 — 중고 시세의 실질 변별력 상승.</td></tr>
+    <tr><td></td><td>G. 월간 시세 리포트</td><td>중간</td><td>낮음</td><td>Actions로 월 1회 '상승/하락 TOP 10' 페이지 자동 발행(+RSS). SEO·재방문에 기여.</td></tr>
+    <tr><td></td><td>H. 판매 체결가 추적</td><td>높음</td><td>높음</td><td>현재는 호가 기반. eBay Marketplace Insights API(승인 필요)로 실제 체결가를 보완하면 데이터 신뢰도가 한 차원 상승. 승인 가능성 조사부터.</td></tr>
+    <tr><td></td><td>I. 일본 시장 소스</td><td>높음</td><td>높음</td><td>클래식 니콘 물량의 중심은 일본(야후옥션 등). 소스 추가 시 가치가 크지만 API/크롤링 정책 검토와 필터 재설계가 필요 — Phase 3 이후 과제.</td></tr>
+    <tr><td></td><td>J. 작은 개선들</td><td>낮음</td><td>낮음</td><td>다크모드, PWA(홈 화면 추가), 공개 데이터 API 문서화(<code>catalog.json</code>은 이미 공개 — 문서만 쓰면 됨), 영어판(i18n)은 수요 확인 후.</td></tr>
+  </tbody>
+</table>
+
+<div class="callout note">
+  <b>권장 순서</b>
+  Phase 0~1 완료 → <strong>A 딜 레이더</strong>(빠른 성과) → <strong>B 가격 알림</strong>(Phase 3의 DuckDB와 연계) → <strong>C 장비 대시보드</strong>.
+  H·I는 데이터 소스 확장이라 별도 트랙으로 사전 조사만 먼저.
+</div>
+
+<!-- ============================================================ -->
+<h2 id="keep"><span class="sec-no">8.</span>바꾸지 말아야 할 것 — 과잉 리팩토링 경계</h2>
+
+<ul class="tight">
+  <li><strong>무프레임워크 프론트엔드 유지</strong>: JS 총 1.6k줄 규모에 React/Vite 도입은 빌드 복잡도만 키움. 유틸 통합과 모듈 분리로 충분.</li>
+  <li><strong>정적 사이트 + GitHub Pages 유지</strong>: 무료·무장애·CDN 내장. SSR/호스팅 이전은 해결할 문제가 없음.</li>
+  <li><strong>SQLite 유지</strong>: 현 트래픽에서 PostgreSQL 전환은 운영 부담만 증가. 백업 자동화가 먼저.</li>
+  <li><strong>YAML 카탈로그 유지</strong>: 사람이 읽고 고치는 소스로 적합하며 admin UI와 백업 체계도 이미 있음.</li>
+  <li><strong>requests 기반 동기 파이프라인 유지</strong>: 배치 작업에 async 전환은 복잡도 대비 이득 없음. eBay rate limit이 병목이지 동시성이 아님.</li>
+</ul>
+
+<!-- ============================================================ -->
+<h2 id="next"><span class="sec-no">9.</span>권장 다음 단계 체크리스트</h2>
+
+<table>
+  <thead><tr><th style="width:8%">순서</th><th>작업</th><th style="width:18%">규모</th><th style="width:22%">해소 항목</th></tr></thead>
+  <tbody>
+    <tr><td>1</td><td>ci.yml 추가 (pytest + ruff) 및 브랜치 보호 설정</td><td>반나절</td><td>P0-1, P2-5</td></tr>
+    <tr><td>2</td><td>JWT 시크릿 기동 검증 + update-prices.yml push 로직 수정</td><td>반나절</td><td>P0-2, P0-4</td></tr>
+    <tr><td>3</td><td>API_BASE 빌드 주입 + 429 백오프 + 어필리에이트 헤더 정리</td><td>1일</td><td>P1-4, P2-2</td></tr>
+    <tr><td>4</td><td>GitHub Pages를 artifact 배포로 전환, 루트 산출물 커밋 제거</td><td>2~3일</td><td>P1-1</td></tr>
+    <tr><td>5</td><td>파이프라인 패키지화 + Jinja2 템플릿 전환 (골든 테스트 동반)</td><td>1~2주</td><td>P1-2, P1-5</td></tr>
+    <tr><td>6</td><td>프론트 utils 통합 + admin 분리</td><td>3~4일</td><td>P1-3</td></tr>
+    <tr><td>7</td><td>인증 개선(fragment 소거·토큰 수명 단축) + 성능 디테일</td><td>1주</td><td>P0-3, P2-3·4</td></tr>
+    <tr><td>8</td><td>딜 레이더 → 가격 알림 → 장비 대시보드 순 기능 개발</td><td>기능별 1~2주</td><td>7절 A·B·C</td></tr>
+  </tbody>
+</table>
+
+<div class="callout good">
+  <b>맺음말</b>
+  이 프로젝트는 "돌아가게 만드는" 단계를 이미 훌륭히 끝냈습니다. 데이터 정제 로직과 운영 자동화는 그대로 자산입니다.
+  이제 필요한 것은 기능 추가가 아니라 <strong>2주간의 구조 정리(Phase 0~1)</strong>이며, 그 토대 위에서 알림·대시보드 같은
+  "재방문을 만드는 기능"이 안전하게 올라갈 수 있습니다.
+</div>
+
+<footer class="report-footer">
+  Nikon Value 프로젝트 리뷰 · 2026-06-10 · 분석 도구: 정적 코드 리뷰 + pytest 실행 검증(38 passed) · 본 문서는 저장소 코드만을 근거로 작성되었습니다.
+</footer>
+
+</div>
+</body>
+</html>
