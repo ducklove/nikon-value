@@ -12,6 +12,7 @@ concurrency:
 permissions:
   contents: write
   issues: write
+  actions: write  # 데이터 커밋 후 deploy-pages.yml 체인 트리거용
 
 jobs:
   fetch-prices:
@@ -36,29 +37,44 @@ jobs:
         run: python scripts/fetch_prices.py
 
       - name: Validate public site build
-        run: python scripts/build_static_site.py --output dist --publish-root
+        run: python scripts/build_static_site.py --output dist
 
       - name: Commit and push data
+        id: commit
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add data/ index.html resources.html 404.html robots.txt sitemap.xml .nojekyll products/
+          git add data/
           if git diff --staged --quiet; then
             echo "No data changes to commit"
+            echo "pushed=false" >> "$GITHUB_OUTPUT"
             exit 0
           fi
           git commit -m "📊 Update price data $(date -u +%Y-%m-%d)"
           # 충돌 시 -X ours로 수집 데이터를 조용히 버리는 대신, rebase 실패를
           # 그대로 실패로 표면화해 아래 이슈 생성 스텝이 발동하게 한다.
+          push_ok=false
           for attempt in 1 2 3; do
             if git push; then
-              exit 0
+              push_ok=true
+              break
             fi
             echo "Push rejected (attempt ${attempt}/3), rebasing onto latest remote..."
             git pull --rebase
             sleep $((attempt * 5))
           done
-          git push
+          if [ "$push_ok" != "true" ]; then
+            git push
+          fi
+          echo "pushed=true" >> "$GITHUB_OUTPUT"
+
+      - name: Trigger Pages deploy
+        if: steps.commit.outputs.pushed == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        # GITHUB_TOKEN 푸시는 push 트리거를 발화시키지 않으므로 명시적으로
+        # 배포 워크플로를 호출한다.
+        run: gh workflow run deploy-pages.yml --ref master
 
       - name: Report failure
         if: failure()

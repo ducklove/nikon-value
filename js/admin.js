@@ -529,7 +529,8 @@ async function buildSite() {
     busyText: '빌드 중...',
     title: '정적 사이트 빌드',
     url: '/api/build-site',
-    body: { publish_root: true },
+    // Pages가 artifact 배포로 전환되어 루트 반영은 더 이상 쓰지 않는다.
+    body: { publish_root: false },
     successToast: '사이트 빌드 완료',
   });
 }

@@ -1,18 +1,20 @@
-name: Deploy site to GitHub Pages (artifact)
+name: Deploy site to GitHub Pages
 
-# 빌드 산출물을 저장소에 커밋하지 않고 Pages artifact로 직접 배포하는
-# 워크플로. 산출물 커밋 제거 마이그레이션이 끝날 때까지 수동 트리거 전용.
+# 빌드 산출물을 저장소에 커밋하지 않고 Pages artifact로 직접 배포한다.
+# (Settings → Pages → Source = "GitHub Actions" 전환 완료)
 #
-# 전환 절차:
-# 1. Settings → Pages → Build and deployment → Source를 "GitHub Actions"로 변경
-# 2. 이 워크플로를 수동 실행해 배포가 정상인지 확인
-# 3. update-prices.yml에서 --publish-root와 루트 산출물(index.html, products/ 등)
-#    커밋을 제거하고 data/만 커밋하게 한 뒤, 이 워크플로를 데이터 갱신 후
-#    자동 트리거(push paths: data/** 등)로 전환
-# 4. 저장소 루트에 커밋돼 있던 산출물 파일들을 삭제
+# 트리거:
+# - master로의 코드 머지(push): 템플릿/JS/CSS 변경을 즉시 배포
+#   (data/만 바뀐 푸시는 제외 — 데이터 갱신은 아래 경로로 배포된다)
+# - update-prices.yml이 데이터 커밋 후 gh workflow run으로 체인 트리거
+# - 수동 실행(workflow_dispatch)
 
 on:
   workflow_dispatch:
+  push:
+    branches: [master]
+    paths-ignore:
+      - 'data/**'
 
 permissions:
   contents: read

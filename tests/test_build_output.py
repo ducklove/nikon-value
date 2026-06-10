@@ -103,3 +103,18 @@ def test_sample_product_page_structure(site_dir: Path, config_product_ids: list[
     history = _script_json(html, 'history-data')
     assert isinstance(history, list)
     assert '<meta name="nikon-api-base"' in html
+
+
+def test_artifact_is_self_contained_for_pages_deploy(site_dir: Path, config_product_ids: list[str]) -> None:
+    """artifact 배포 전환 후 루트 소스로 서빙되던 공개 파일들이 산출물에 포함돼야 한다."""
+    # OAuth 로그인 복귀 페이지
+    assert (site_dir / 'auth-complete.html').exists()
+    # API 서버(제품 검증·가격 알림)가 읽는 catalog.json
+    catalog = json.loads((site_dir / 'data' / 'catalog.json').read_text(encoding='utf-8'))
+    assert catalog.get('categories')
+    # 관심목록 가치 대시보드가 fetch하는 제품 히스토리
+    histories = list((site_dir / 'data' / 'products').glob('*.json'))
+    assert len(histories) >= len(config_product_ids) * 0.9
+    # 로컬 전용 admin은 공개 산출물에 포함되지 않아야 한다
+    assert not (site_dir / 'admin.html').exists()
+    assert not (site_dir / 'js' / 'admin.js').exists()

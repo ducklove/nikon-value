@@ -22,16 +22,11 @@ PROJECT_ROOT = Path(__file__).resolve().parent.parent
 CONFIG_PATH = PROJECT_ROOT / "config" / "products.yaml"
 BACKUP_DIR = PROJECT_ROOT / "config" / "backups"
 LOCAL_HOSTS = {"127.0.0.1", "::1", "::ffff:127.0.0.1"}
+# Pages가 artifact 배포로 전환되어 루트 산출물은 더 이상 커밋하지 않는다.
+# 푸시 후 배포는 master push 또는 update-prices 체인이 처리한다.
 PUBLISH_TARGETS = [
     "config/products.yaml",
     "data",
-    "index.html",
-    "products",
-    "404.html",
-    "resources.html",
-    "robots.txt",
-    "sitemap.xml",
-    ".nojekyll",
 ]
 
 
@@ -233,7 +228,7 @@ class AdminHandler(SimpleHTTPRequestHandler):
             content_length = int(self.headers.get("Content-Length", 0))
             raw = self.rfile.read(content_length)
             data = json.loads(raw) if raw else {}
-            publish_root = data.get("publish_root", True)
+            publish_root = data.get("publish_root", False)
 
             args = [
                 sys.executable,

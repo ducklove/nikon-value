@@ -48,12 +48,6 @@ python3 scripts/build_static_site.py --output dist
 python3 -m http.server 8000 --directory dist
 ```
 
-루트 공개 파일까지 같이 갱신하려면:
-
-```bash
-python3 scripts/build_static_site.py --output dist --publish-root
-```
-
 ## 로컬 관리 UI
 
 ```bash
@@ -69,11 +63,15 @@ python3 scripts/admin_server.py --port 8080
 - `카테고리 수집` 또는 제품 행의 `시세 수집`
   - `scripts/fetch_prices.py --only ...` 실행
 - `사이트 빌드`
-  - `scripts/build_static_site.py --output dist --publish-root` 실행
+  - `scripts/build_static_site.py --output dist` 실행 (로컬 미리보기·검증용)
 - `Git Push`
-  - 카탈로그, 데이터, 루트 공개 파일을 함께 커밋/푸시
+  - 카탈로그와 데이터만 커밋/푸시 — 푸시되면 Pages 배포 워크플로가 사이트를 재배포한다
 
-## 메모
+## 배포
 
-- 현재 GitHub Pages는 저장소 `master` 브랜치 루트의 정적 파일을 직접 서빙한다.
-- `dist/`는 검증 및 로컬 미리보기용 산출물이고, 실제 배포 파일은 루트 `index.html`, `products/`, `404.html` 등이다.
+- GitHub Pages는 **Actions artifact 배포**를 사용한다 (Settings → Pages → Source = GitHub Actions).
+- 배포 경로: ① master로 코드가 머지되면 `deploy-pages.yml`이 자동 실행,
+  ② `update-prices.yml`이 데이터를 커밋하면 같은 워크플로를 체인 트리거,
+  ③ 필요 시 Actions 탭에서 수동 실행.
+- 빌드 산출물(`dist/`)은 저장소에 커밋하지 않는다. `auth-complete.html`과
+  `data/`(catalog.json, products/)는 빌드가 산출물에 포함한다.
