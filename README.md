@@ -38,6 +38,10 @@ ruff check .       # 린트
 pytest -q          # 테스트
 ```
 
+설치는 저장소 루트에서 실행한다 — `server/requirements.txt`가 공통 알림 패키지
+`packages/notifykit/`(텔레그램·카카오톡 채널 어댑터, 다른 프로젝트에서도
+`pip install git+...#subdirectory=packages/notifykit`로 사용 가능)를 상대 경로로 설치한다.
+
 공개 사이트의 API 서버 주소는 빌드 시 `NIKON_API_BASE_URL` 환경변수로 바꿀 수 있다
 (페이지의 `meta[name="nikon-api-base"]`로 주입되고, `js/auth.js`가 이를 읽는다).
 

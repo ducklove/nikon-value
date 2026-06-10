@@ -1,5 +1,22 @@
 # History
 
+## 2.4 - 2026-06-10
+
+### Added
+
+- 공통 알림 패키지 `packages/notifykit/`: 텔레그램(봇 sendMessage)·카카오톡(나에게 보내기)
+  채널 어댑터. 인증·DB에 결합하지 않고 `send(subject, body) -> bool` 인터페이스만 제공하며,
+  카카오 토큰은 `token_provider` 콜백으로 앱이 공급한다. 예외를 던지지 않고 성공 여부만
+  반환해 '발송 성공 시에만 소비' 재시도 규칙과 맞물린다. 다른 프로젝트에서는
+  `pip install git+...#subdirectory=packages/notifykit`로 사용한다.
+- 가격 알림 텔레그램 발송 연동: 사용자별 채널 설정 테이블(`notification_channels`)과
+  채널 API(`GET /api/channels`, `PUT/DELETE /api/channels/telegram`,
+  `POST /api/channels/telegram/test` — 연결 확인용 테스트 발송). 서버에
+  `TELEGRAM_BOT_TOKEN` 설정 후 사용자가 봇에게 말을 걸고 chat_id를 등록하면,
+  대기 중이던 알림이 다음 점검 주기에 발송된다. 회원 탈퇴 시 채널 설정도 삭제(CASCADE).
+  카카오톡 연동은 패키지에 채널이 준비되어 있고, auth의 토큰 영속화(talk_message 스코프)가
+  갖춰지면 활성화한다. 채널 설정 UI는 추후 추가 예정(현재는 API로 등록).
+
 ## 2.3 - 2026-06-10
 
 ### Changed

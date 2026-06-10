@@ -1,9 +1,16 @@
 from __future__ import annotations
 
 import os
+import sys
+from pathlib import Path
 
 import pytest_asyncio
 from httpx import ASGITransport, AsyncClient
+
+# 모노레포 내 공통 패키지를 pip install 없이도 임포트할 수 있게 한다.
+_NOTIFYKIT_DIR = str(Path(__file__).resolve().parent.parent / "packages" / "notifykit")
+if _NOTIFYKIT_DIR not in sys.path:
+    sys.path.insert(0, _NOTIFYKIT_DIR)
 
 os.environ.setdefault("JWT_SECRET_KEY", "test-secret-key-not-for-production")
 os.environ.setdefault("DB_PATH", ":memory:")

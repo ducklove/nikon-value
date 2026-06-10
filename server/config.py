@@ -29,6 +29,9 @@ NAVER_CLIENT_SECRET = _env("NAVER_CLIENT_SECRET")
 KAKAO_CLIENT_ID = _env("KAKAO_CLIENT_ID")
 KAKAO_CLIENT_SECRET = _env("KAKAO_CLIENT_SECRET")
 
+# 알림 채널 — 미설정 시 텔레그램 발송이 비활성화되고 알림은 대기 상태로 남는다.
+TELEGRAM_BOT_TOKEN = _env("TELEGRAM_BOT_TOKEN")
+
 API_BASE_URL = _env("API_BASE_URL", "https://cantabile.tplinkdns.com")
 FRONTEND_URL = _env("FRONTEND_URL", "https://ducklove.github.io/nikon-value")
 _frontend = urlsplit(FRONTEND_URL)

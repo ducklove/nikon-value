@@ -35,6 +35,15 @@ CREATE TABLE IF NOT EXISTS price_alerts (
     updated_at   TEXT DEFAULT (datetime('now')),
     UNIQUE(user_id, product_id)
 );
+
+CREATE TABLE IF NOT EXISTS notification_channels (
+    user_id    INTEGER NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+    channel    TEXT NOT NULL,
+    config     TEXT NOT NULL,  -- 채널별 설정 JSON (telegram: {"chat_id": ...})
+    created_at TEXT DEFAULT (datetime('now')),
+    updated_at TEXT DEFAULT (datetime('now')),
+    PRIMARY KEY (user_id, channel)
+);
 """
 
 

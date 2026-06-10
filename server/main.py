@@ -11,7 +11,7 @@ from slowapi.errors import RateLimitExceeded
 
 from server import catalog
 from server.alerts import check_price_alerts
-from server.api import alerts, favorites, health, users
+from server.api import alerts, channels, favorites, health, users
 from server.auth import routes as auth_routes
 from server.config import DB_PATH, FRONTEND_ORIGIN
 from server.database import close_db, init_db
@@ -45,7 +45,7 @@ app.add_middleware(
     CORSMiddleware,
     allow_origins=[FRONTEND_ORIGIN],
     allow_credentials=False,
-    allow_methods=["GET", "PUT", "DELETE", "OPTIONS"],
+    allow_methods=["GET", "POST", "PUT", "DELETE", "OPTIONS"],
     allow_headers=["Authorization"],
 )
 
@@ -55,4 +55,5 @@ app.include_router(health.router)
 app.include_router(users.router)
 app.include_router(favorites.router)
 app.include_router(alerts.router)
+app.include_router(channels.router)
 app.include_router(auth_routes.router)

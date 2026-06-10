@@ -36,6 +36,20 @@ class AlertsResponse(BaseModel):
     alerts: list[AlertEntry]
 
 
+class TelegramChannelRequest(BaseModel):
+    # 텔레그램 chat_id는 정수(그룹은 음수). 문자열로 받아 형식만 검증한다.
+    chat_id: str = Field(pattern=r"^-?\d{1,20}$")
+
+
+class ChannelEntry(BaseModel):
+    channel: str
+    config: dict
+
+
+class ChannelsResponse(BaseModel):
+    channels: list[ChannelEntry]
+
+
 class ErrorResponse(BaseModel):
     error: str
     message: str
