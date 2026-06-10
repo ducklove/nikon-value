@@ -12,6 +12,7 @@ from datetime import UTC, datetime
 
 import requests
 
+from nikon_value.deals import extract_deal_listings
 from nikon_value.ebay import collect_prices, get_access_token, get_ebay_urls, search_items_for_product
 from nikon_value.env import load_env_file
 from nikon_value.exchange import _recover_exchange_rate_from_daily, fetch_usd_krw_exchange_rate
@@ -204,10 +205,12 @@ def main():
 
                 stats = compute_stats(prices)
                 samples = extract_sample_listings(items)
+                deals = extract_deal_listings(items, stats["median"])
 
                 product_entry = build_base_product_entry(product)
                 product_entry.update(stats)
                 product_entry["samples"] = samples
+                product_entry["deals"] = deals
                 cat_entry["products"].append(product_entry)
 
                 daily_snapshot["products"][pid] = stats
