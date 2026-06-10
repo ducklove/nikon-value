@@ -45,6 +45,14 @@ CATALOG_URL = _env(
 DB_PATH = _env("DB_PATH", str(Path(__file__).parent / "data" / "nikon_api.db"))
 
 FAVORITES_MAX = 50
+ALERTS_MAX = 50
 CATALOG_REFRESH_SECONDS = 3600
 
 OAUTH_STATE_MAX_AGE = 300  # 5 minutes
+
+# 가격 알림 이메일 발송용 SMTP. SMTP_HOST가 비어 있으면 발송 없이 로그만 남긴다.
+SMTP_HOST = _env("SMTP_HOST")
+SMTP_PORT = int(_env("SMTP_PORT", "587"))
+SMTP_USERNAME = _env("SMTP_USERNAME")
+SMTP_PASSWORD = _env("SMTP_PASSWORD")
+SMTP_FROM = _env("SMTP_FROM", SMTP_USERNAME)

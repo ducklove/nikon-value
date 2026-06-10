@@ -35,12 +35,14 @@ from nikon_value.sitegen.build import (  # noqa: E402,F401
     publish_root_site,
 )
 from nikon_value.sitegen.components import (  # noqa: E402,F401
+    DEAL_RADAR_MAX_ITEMS,
     DEFAULT_API_BASE_URL,
     FILM_VISUAL_INDEX,
     GA_MEASUREMENT_ID,
     LENS_ATLAS_CATEGORIES,
     api_base_url,
     build_currency_toggle,
+    build_deal_radar,
     build_film_visual_index,
     build_footer,
     build_hero_manual_hotspots,

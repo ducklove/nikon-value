@@ -43,7 +43,8 @@
     var token = getToken();
     var headers = Object.assign({}, options && options.headers ? options.headers : {});
     if (token) headers['Authorization'] = 'Bearer ' + token;
-    return fetch(API_BASE + path, Object.assign({ headers: headers }, options || {}))
+    // headers를 마지막에 병합해야 호출 측 headers가 Authorization을 덮어쓰지 않는다.
+    return fetch(API_BASE + path, Object.assign({}, options || {}, { headers: headers }))
       .then(function (resp) {
         if (resp.status === 401) { clearToken(); renderLoggedOut(); return null; }
         return resp;
@@ -67,6 +68,23 @@
 
   function addFavorite(pid) { return apiFetch('/api/favorites/' + encodeURIComponent(pid), { method: 'PUT' }); }
   function removeFavorite(pid) { return apiFetch('/api/favorites/' + encodeURIComponent(pid), { method: 'DELETE' }); }
+
+  function fetchAlerts() {
+    return apiFetch('/api/alerts').then(function (r) {
+      if (!r || !r.ok) return null; // null = 서버가 알림 기능을 아직 지원하지 않거나 오류
+      return r.json().then(function (d) { return d.alerts || []; });
+    });
+  }
+
+  function putAlert(pid, price) {
+    return apiFetch('/api/alerts/' + encodeURIComponent(pid), {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ target_price: price })
+    });
+  }
+
+  function deleteAlert(pid) { return apiFetch('/api/alerts/' + encodeURIComponent(pid), { method: 'DELETE' }); }
 
   function refreshCatalog() {
     if (window.nikonValueCatalog && typeof window.nikonValueCatalog.refresh === 'function') {
@@ -134,6 +152,7 @@
     updateAllFavoriteButtons();
     showFavoriteButtons(false);
     refreshCatalog();
+    renderAlertPanelLoggedOut();
   }
 
   // --- UI: Favorite buttons on cards ---
@@ -215,6 +234,192 @@
     });
   }
 
+  // --- UI: Price alert panel (제품 상세 페이지 전용) ---
+  var alertMap = new Map();
+
+  function getProductPageId() {
+    if (document.body.getAttribute('data-page') !== 'product') return null;
+    var match = window.location.pathname.match(/\/products\/([a-z0-9-]+)\.html$/);
+    return match ? match[1] : null;
+  }
+
+  function getPagePrimaryMedian() {
+    var el = document.querySelector('.price-card--primary .money-value[data-money-usd]');
+    if (!el) return null;
+    var value = parseFloat(el.getAttribute('data-money-usd'));
+    return isNaN(value) ? null : value;
+  }
+
+  function ensureAlertPanel() {
+    if (!getProductPageId()) return null;
+    var panel = document.getElementById('price-alert-panel');
+    if (panel) return panel;
+    var summary = document.querySelector('.price-summary');
+    if (!summary) return null;
+    panel = document.createElement('section');
+    panel.id = 'price-alert-panel';
+    panel.className = 'price-alert';
+    panel.setAttribute('aria-label', '가격 알림 설정');
+    summary.insertAdjacentElement('afterend', panel);
+    return panel;
+  }
+
+  function removeAlertPanel() {
+    var panel = document.getElementById('price-alert-panel');
+    if (panel) panel.remove();
+  }
+
+  function setAlertStatus(message, isError) {
+    var status = document.getElementById('price-alert-status');
+    if (!status) return;
+    status.textContent = message || '';
+    status.classList.toggle('price-alert__status--error', !!isError);
+  }
+
+  function buildAlertTitle() {
+    var title = document.createElement('strong');
+    title.className = 'price-alert__title';
+    title.textContent = '가격 알림';
+    return title;
+  }
+
+  function buildAlertNote(text) {
+    var note = document.createElement('p');
+    note.className = 'price-alert__note';
+    note.textContent = text;
+    return note;
+  }
+
+  function renderAlertPanelLoggedOut() {
+    var panel = ensureAlertPanel();
+    if (!panel) return;
+    panel.innerHTML = '';
+    panel.appendChild(buildAlertTitle());
+    panel.appendChild(buildAlertNote('로그인하면 중앙값이 목표가 이하로 내려갈 때 이메일 알림을 받을 수 있습니다.'));
+  }
+
+  function renderAlertPanelLoggedIn(pid) {
+    var panel = ensureAlertPanel();
+    if (!panel) return;
+    panel.innerHTML = '';
+
+    if (currentUser && !currentUser.email) {
+      panel.appendChild(buildAlertTitle());
+      panel.appendChild(buildAlertNote('계정에 이메일 주소가 없어 알림을 받을 수 없습니다.'));
+      return;
+    }
+
+    var existing = alertMap.get(pid) || null;
+
+    var head = document.createElement('div');
+    head.className = 'price-alert__head';
+    head.appendChild(buildAlertTitle());
+    var status = document.createElement('span');
+    status.className = 'price-alert__status';
+    status.id = 'price-alert-status';
+    head.appendChild(status);
+
+    var row = document.createElement('div');
+    row.className = 'price-alert__row';
+    var label = document.createElement('label');
+    label.className = 'visually-hidden';
+    label.setAttribute('for', 'price-alert-input');
+    label.textContent = '목표가 (USD)';
+    var input = document.createElement('input');
+    input.type = 'number';
+    input.id = 'price-alert-input';
+    input.min = '1';
+    input.step = '1';
+    var median = getPagePrimaryMedian();
+    if (existing) {
+      input.value = String(existing.target_price);
+    } else if (median) {
+      input.placeholder = '예: ' + Math.round(median * 0.9);
+    }
+    var save = document.createElement('button');
+    save.type = 'button';
+    save.className = 'price-alert__btn';
+    save.textContent = existing ? '목표가 변경' : '알림 설정';
+    save.addEventListener('click', function () { handleAlertSave(pid); });
+    row.appendChild(label);
+    row.appendChild(input);
+    row.appendChild(save);
+    if (existing) {
+      var remove = document.createElement('button');
+      remove.type = 'button';
+      remove.className = 'price-alert__btn price-alert__btn--ghost';
+      remove.textContent = '해제';
+      remove.addEventListener('click', function () { handleAlertRemove(pid); });
+      row.appendChild(remove);
+    }
+
+    panel.appendChild(head);
+    panel.appendChild(row);
+    panel.appendChild(buildAlertNote(
+      existing
+        ? '중앙값이 USD ' + existing.target_price + ' 이하로 내려가면 이메일로 알림이 발송됩니다.'
+        : '중앙값이 목표가(USD) 이하로 내려가면 이메일로 알려드립니다.'
+    ));
+
+    if (existing && existing.triggered) {
+      setAlertStatus('목표가 도달 알림이 발송된 상태입니다. 가격이 회복되면 다시 활성화됩니다.');
+    }
+  }
+
+  function handleAlertSave(pid) {
+    var input = document.getElementById('price-alert-input');
+    var price = parseFloat(input && input.value);
+    if (!price || price <= 0) {
+      setAlertStatus('올바른 목표가를 입력하세요.', true);
+      return;
+    }
+    putAlert(pid, price).then(function (r) {
+      if (r && r.ok) {
+        alertMap.set(pid, { product_id: pid, target_price: price, triggered: false });
+        renderAlertPanelLoggedIn(pid);
+        setAlertStatus('알림이 설정되었습니다.');
+      } else if (r) {
+        r.json().then(function (d) {
+          setAlertStatus((d && d.message) || '알림 설정에 실패했습니다.', true);
+        }).catch(function () {
+          setAlertStatus('알림 설정에 실패했습니다.', true);
+        });
+      } else {
+        setAlertStatus('API 서버에 연결할 수 없습니다.', true);
+      }
+    });
+  }
+
+  function handleAlertRemove(pid) {
+    deleteAlert(pid).then(function (r) {
+      if (r && r.ok) {
+        alertMap.delete(pid);
+        renderAlertPanelLoggedIn(pid);
+        setAlertStatus('알림이 해제되었습니다.');
+      } else {
+        setAlertStatus('알림 해제에 실패했습니다.', true);
+      }
+    });
+  }
+
+  function initAlertPanel() {
+    var pid = getProductPageId();
+    if (!pid) return;
+    if (!currentUser) {
+      renderAlertPanelLoggedOut();
+      return;
+    }
+    fetchAlerts().then(function (alerts) {
+      if (alerts === null) {
+        // 서버가 아직 알림 API를 지원하지 않으면 패널을 노출하지 않는다.
+        removeAlertPanel();
+        return;
+      }
+      alertMap = new Map(alerts.map(function (a) { return [a.product_id, a]; }));
+      renderAlertPanelLoggedIn(pid);
+    });
+  }
+
   // --- Close dropdown on outside click ---
   document.addEventListener('click', function () {
     var menu = document.getElementById('login-menu');
@@ -280,6 +485,7 @@
       favoriteSet = new Set(favs || []);
       updateAllFavoriteButtons();
       refreshCatalog();
+      initAlertPanel();
     });
   }
 

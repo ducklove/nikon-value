@@ -24,6 +24,17 @@ CREATE TABLE IF NOT EXISTS favorites (
     added_at    TEXT DEFAULT (datetime('now')),
     PRIMARY KEY (user_id, product_id)
 );
+
+CREATE TABLE IF NOT EXISTS price_alerts (
+    id           INTEGER PRIMARY KEY AUTOINCREMENT,
+    user_id      INTEGER NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+    product_id   TEXT NOT NULL,
+    target_price REAL NOT NULL,
+    triggered    INTEGER NOT NULL DEFAULT 0,
+    created_at   TEXT DEFAULT (datetime('now')),
+    updated_at   TEXT DEFAULT (datetime('now')),
+    UNIQUE(user_id, product_id)
+);
 """
 
 

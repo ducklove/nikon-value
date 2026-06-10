@@ -6,8 +6,9 @@ eBay 현재 매물을 기준으로 니콘 제품 시세를 추적하는 정적 �
 
 - `nikon_value/`
   - 수집·빌드 파이프라인 패키지. 수집은 `ebay.py`(API 클라이언트), `filters.py`(규칙 필터),
-    `llm.py`(OpenRouter 보조 필터), `stats.py`(IQR 통계), `exchange.py`(환율), `storage.py`(JSON I/O),
-    `fetch.py`(오케스트레이션), 빌드는 `sitegen/` 하위 모듈로 구성된다.
+    `llm.py`(OpenRouter 보조 필터), `stats.py`(IQR 통계), `deals.py`(딜 매물 추출),
+    `exchange.py`(환율), `storage.py`(JSON I/O), `fetch.py`(오케스트레이션),
+    빌드는 `sitegen/` 하위 모듈로 구성된다.
 - `scripts/fetch_prices.py`
   - 시세 수집 CLI 진입점 (구현은 `nikon_value/`, 기존 임포트 경로 호환 facade).
 - `scripts/build_static_site.py`

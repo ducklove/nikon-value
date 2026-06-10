@@ -276,6 +276,7 @@
     const contextLabel = document.getElementById('catalog-context');
     const emptyState = document.getElementById('catalog-empty');
     const filmAtlas = document.getElementById('film-atlas');
+    const dealRadar = document.getElementById('deal-radar');
     const lensAtlases = Array.from(document.querySelectorAll('.lens-atlas[data-category-id]'));
     const heroPictureDefault = document.getElementById('hero-picture-default');
     const heroImageLens = document.getElementById('hero-image-lens');
@@ -385,6 +386,12 @@
       rareWatchSummary.textContent = `${label}에서 ${visibleRareCards.length.toLocaleString()}개 희귀 매물이 감지되었습니다.`;
     }
 
+    function updateDealRadar() {
+      if (!dealRadar) return;
+      // 딜은 전 카테고리에 걸친 서버 렌더링 섹션이라 전체 탭에서만 보여준다.
+      dealRadar.hidden = !!searchTerm || activeCategory !== 'all';
+    }
+
     function updateFilmAtlas() {
       if (!filmAtlas) return;
       filmAtlas.hidden = activeCategory !== 'film-cameras';
@@ -429,6 +436,7 @@
       updateTabs();
       updateContext(visibleCards);
       updateRareWatch();
+      updateDealRadar();
       updateFilmAtlas();
       updateLensAtlas();
       updateHeroImage();

@@ -63,6 +63,7 @@ def merge_catalog_with_config(live_catalog: dict[str, Any], config: dict[str, An
         'count': 0,
         'count_filtered': 0,
         'samples': [],
+        'deals': [],
     }
     live_categories = {category['id']: category for category in live_catalog.get('categories', [])}
     merged_categories = []
@@ -90,6 +91,7 @@ def merge_catalog_with_config(live_catalog: dict[str, Any], config: dict[str, An
                 if field not in config_product:
                     merged_product.pop(field, None)
             merged_product['samples'] = live_product.get('samples', [])
+            merged_product['deals'] = live_product.get('deals', [])
             merged_products.append(merged_product)
 
         merged_categories.append(
