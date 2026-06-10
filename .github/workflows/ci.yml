@@ -35,6 +35,10 @@ jobs:
       - name: Lint (ruff)
         run: ruff check .
 
+      - name: JS syntax check
+        run: |
+          for f in js/*.js; do node --check "$f"; done
+
       - name: Run tests
         run: pytest -q
 
