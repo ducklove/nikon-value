@@ -291,19 +291,13 @@
     if (!panel) return;
     panel.innerHTML = '';
     panel.appendChild(buildAlertTitle());
-    panel.appendChild(buildAlertNote('로그인하면 중앙값이 목표가 이하로 내려갈 때 이메일 알림을 받을 수 있습니다.'));
+    panel.appendChild(buildAlertNote('로그인하면 제품별 목표가 알림을 설정할 수 있습니다. 알림 채널(텔레그램·카카오톡)은 연동 준비 중입니다.'));
   }
 
   function renderAlertPanelLoggedIn(pid) {
     var panel = ensureAlertPanel();
     if (!panel) return;
     panel.innerHTML = '';
-
-    if (currentUser && !currentUser.email) {
-      panel.appendChild(buildAlertTitle());
-      panel.appendChild(buildAlertNote('계정에 이메일 주소가 없어 알림을 받을 수 없습니다.'));
-      return;
-    }
 
     var existing = alertMap.get(pid) || null;
 
@@ -353,8 +347,8 @@
     panel.appendChild(row);
     panel.appendChild(buildAlertNote(
       existing
-        ? '중앙값이 USD ' + existing.target_price + ' 이하로 내려가면 이메일로 알림이 발송됩니다.'
-        : '중앙값이 목표가(USD) 이하로 내려가면 이메일로 알려드립니다.'
+        ? '목표가 USD ' + existing.target_price + ' 도달 시 알림 대상으로 기록됩니다. 알림 채널(텔레그램·카카오톡)은 연동 준비 중입니다.'
+        : '중앙값이 목표가(USD) 이하로 내려가면 알림 대상으로 기록됩니다. 알림 채널(텔레그램·카카오톡)은 연동 준비 중입니다.'
     ));
 
     if (existing && existing.triggered) {

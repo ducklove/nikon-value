@@ -6,10 +6,10 @@ from server import alerts, catalog
 from server.alerts import check_price_alerts
 
 
-async def _setup_alert(db, *, pid="g-checker", product_id="nikon-z9", target=1000.0, email="user@example.com"):
+async def _setup_alert(db, *, pid="g-checker", product_id="nikon-z9", target=1000.0):
     await db.execute(
-        "INSERT OR IGNORE INTO users (provider, provider_id, name, email) VALUES (?, ?, ?, ?)",
-        ("google", pid, "Checker", email),
+        "INSERT OR IGNORE INTO users (provider, provider_id, name) VALUES (?, ?, ?)",
+        ("google", pid, "Checker"),
     )
     await db.commit()
     cursor = await db.execute("SELECT id FROM users WHERE provider_id = ?", (pid,))
@@ -30,13 +30,14 @@ def _set_catalog(monkeypatch, medians: dict[str, float | None]):
 
 
 def _mock_send(monkeypatch, result=True):
+    """차후 텔레그램/카카오톡 채널이 연결된 상황을 흉내 내는 발송 mock."""
     sent = []
 
-    async def fake_send(to, subject, body):
-        sent.append({"to": to, "subject": subject, "body": body})
+    async def fake_send(user_id, subject, body):
+        sent.append({"user_id": user_id, "subject": subject, "body": body})
         return result
 
-    monkeypatch.setattr(alerts, "send_email", fake_send)
+    monkeypatch.setattr(alerts, "send_price_alert", fake_send)
     return sent
 
 
@@ -60,7 +61,7 @@ async def test_checker_sends_once_and_rearms(db, monkeypatch):
     _set_catalog(monkeypatch, {"nikon-z9": 950.0})
     assert await check_price_alerts() == 1
     assert len(sent) == 1
-    assert sent[0]["to"] == "user@example.com"
+    assert sent[0]["user_id"] == uid
     assert "이름-nikon-z9" in sent[0]["subject"]
     assert "$950.00" in sent[0]["body"]
     assert "nikon-z9.html" in sent[0]["body"]
@@ -112,11 +113,11 @@ async def test_checker_retries_when_send_fails(db, monkeypatch):
 
 
 @pytest.mark.asyncio
-async def test_checker_skips_user_without_email(db, monkeypatch):
-    uid = await _setup_alert(db, pid="g-noemail", email=None)
-    sent = _mock_send(monkeypatch)
+async def test_default_stub_keeps_alert_pending_until_channel_lands(db, monkeypatch):
+    """채널 미연동(현재 기본 상태): 목표가에 도달해도 알림이 소비되지 않고
+    대기 상태로 남아, 차후 텔레그램/카카오톡 연동 시 발송된다."""
+    uid = await _setup_alert(db, pid="g-pending", target=1000.0)
 
     _set_catalog(monkeypatch, {"nikon-z9": 900.0})
     assert await check_price_alerts() == 0
-    assert sent == []
     assert await _triggered_value(db, uid) == 0
