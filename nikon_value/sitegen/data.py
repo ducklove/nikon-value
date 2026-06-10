@@ -52,6 +52,17 @@ def sort_products(products: list[dict[str, Any]], category_id: str) -> list[dict
     return items
 
 
+def is_at_yearly_low(history: list[dict[str, Any]], min_points: int = 30) -> bool:
+    """현재 중앙값이 보유 히스토리(최대 1년) 내 최저인지 판별한다.
+
+    표본이 min_points일 미만이면 '최저' 주장을 하지 않는다.
+    """
+    valid = [entry['median'] for entry in history if entry.get('median') is not None]
+    if len(valid) < min_points:
+        return False
+    return valid[-1] <= min(valid)
+
+
 def merge_catalog_with_config(live_catalog: dict[str, Any], config: dict[str, Any]) -> dict[str, Any]:
     metric_defaults = {
         'median': None,

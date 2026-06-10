@@ -23,6 +23,7 @@ from nikon_value.sitegen.data import (
     compute_price_change,
     compute_stale_days,
     has_catalog_listing_data,
+    is_at_yearly_low,
     should_show_home_catalog_product,
     sort_products,
 )
@@ -123,12 +124,14 @@ def build_home_page(catalog: dict[str, Any], base_url: str, histories: dict[str,
                 'rarity_price_hint': product.get('rarity_price_hint'),
                 'rarity_note': product.get('rarity_note'),
                 'delta_pct': None,
+                'at_low': False,
             })
             if histories:
                 history = histories.get(product['id'], [])
                 change = compute_price_change(history, 30)
                 if change:
                     cards_data[-1]['delta_pct'] = round(change['delta_pct'], 1)
+                cards_data[-1]['at_low'] = is_at_yearly_low(history)
 
     tabs.append('<button class="category-tab" type="button" data-category-id="favorites" id="favorites-tab" hidden>관심 목록</button>')
 
@@ -315,6 +318,8 @@ def build_product_page(
         f'<span class="meta-pill">업데이트 {escape(updated)}</span>',
         f'<span class="meta-pill">매물 {escape(str(product.get("count") or 0))}개</span>',
     ]
+    if is_at_yearly_low(history):
+        meta_pills.append('<span class="meta-pill meta-pill--low">1년 내 최저</span>')
     if product.get('is_rare'):
         meta_pills.append(f'<span class="meta-pill">희귀 등급 {escape(product.get("rarity_tier") or "-")}</span>')
     reference_cards = build_product_reference_cards(product, category)
@@ -367,6 +372,7 @@ def build_product_page(
           <button class=\"period-btn\" type=\"button\" data-period=\"365\">1년</button>
           <button class=\"period-btn\" type=\"button\" data-period=\"0\">전체</button>
         </div>
+        <button class=\"ma-toggle\" type=\"button\" aria-pressed=\"false\" title=\"7일 이동평균선 표시\">7일 평균</button>
       </div>
       <div class=\"chart-container\">
         <canvas id=\"price-chart\"></canvas>
