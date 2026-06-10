@@ -40,6 +40,11 @@
       var params = new URLSearchParams(window.location.hash.slice(1));
       var token = params.get('token');
       var returnTo = params.get('return_to') || '/';
+
+      // 토큰이 주소창과 브라우저 히스토리에 남지 않도록 fragment를 즉시 제거한다.
+      if (window.history && typeof history.replaceState === 'function') {
+        history.replaceState(null, '', window.location.pathname + window.location.search);
+      }
       var basePath = window.location.pathname
         .replace(/\/auth-complete\.html$/, '')
         .replace(/\/$/, '');

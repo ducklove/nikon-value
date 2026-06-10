@@ -722,12 +722,14 @@ def extract_sample_listings(items: list[dict], max_samples: int = 5) -> list[dic
 
     samples = []
     for item, price in priced_items:
+        # thumbnailImages는 키가 없을 수도, 빈 리스트일 수도 있다.
+        thumbnails = item.get("thumbnailImages") or [{}]
         samples.append({
             "title": item.get("title", ""),
             "price": price,
             "currency": item.get("price", {}).get("currency", "USD"),
             "condition": item.get("condition", ""),
-            "image": item.get("thumbnailImages", [{}])[0].get("imageUrl", ""),
+            "image": thumbnails[0].get("imageUrl", ""),
             "url": item.get("itemWebUrl", ""),
         })
     return samples

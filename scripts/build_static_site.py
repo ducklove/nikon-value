@@ -31,6 +31,8 @@ EBAY_LOGO = PROJECT_ROOT / 'assets' / 'ebay-logo.svg'
 DEFAULT_OUTPUT = PROJECT_ROOT / 'dist'
 BODY_CATEGORIES = {'z-mount-bodies', 'f-mount-dslr', 'film-cameras'}
 GA_MEASUREMENT_ID = 'G-823D75RRWJ'
+# js/auth.js가 meta[name="nikon-api-base"]를 읽어 API 서버 주소를 결정한다.
+DEFAULT_API_BASE_URL = 'https://cantabile.tplinkdns.com'
 ROOT_PRODUCTS_DIR = PROJECT_ROOT / 'products'
 ROOT_FILES_TO_PUBLISH = [
     'index.html',
@@ -340,6 +342,10 @@ def merge_catalog_with_config(live_catalog: dict[str, Any], config: dict[str, An
     }
 
 
+def api_base_url() -> str:
+    return os.environ.get('NIKON_API_BASE_URL', DEFAULT_API_BASE_URL).rstrip('/')
+
+
 def ga_snippet() -> str:
     return f"""  <script async src=\"https://www.googletagmanager.com/gtag/js?id={GA_MEASUREMENT_ID}\"></script>
   <script>
@@ -394,6 +400,7 @@ def head_block(*, title: str, description: str, canonical: str, image_url: str, 
     return f"""<head>
   <meta charset=\"UTF-8\">
   <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">
+  <meta name=\"nikon-api-base\" content=\"{escape(api_base_url())}\">
   <title>{escape(title)}</title>
   <meta name=\"description\" content=\"{escape(description)}\">
   <meta property=\"og:type\" content=\"website\">
@@ -414,6 +421,7 @@ def head_block_product(*, title: str, description: str, canonical: str, image_ur
     return f"""<head>
   <meta charset=\"UTF-8\">
   <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">
+  <meta name=\"nikon-api-base\" content=\"{escape(api_base_url())}\">
   <title>{escape(title)}</title>
   <meta name=\"description\" content=\"{escape(description)}\">
   <meta property=\"og:type\" content=\"article\">
@@ -1109,7 +1117,7 @@ def build_product_page(
 
   <script id=\"exchange-rate-data\" type=\"application/json\">{json_script(exchange_rate or {})}</script>
   <script id=\"history-data\" type=\"application/json\">{json_script(history)}</script>
-  <script src=\"https://cdn.jsdelivr.net/npm/chart.js@4/dist/chart.umd.min.js\"></script>
+  <script src=\"https://cdn.jsdelivr.net/npm/chart.js@4/dist/chart.umd.min.js\" defer></script>
   <script src=\"../js/site.js\" defer></script>
   <script src=\"../js/auth.js\" defer></script>
 </body>
