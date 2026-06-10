@@ -47,6 +47,9 @@ ADAPTIVE_MAX_PRICE_STEPS = (
     (2.0, 800),
 )
 ADAPTIVE_MAX_PRICE_TRIGGER_RATIO = 0.98
+RATE_LIMIT_MAX_RETRIES = 6
+RATE_LIMIT_BASE_WAIT_SECONDS = 5
+RATE_LIMIT_MAX_WAIT_SECONDS = 160
 
 COMMON_EXCLUDE_PATTERNS = [
     " for parts",
@@ -452,12 +455,16 @@ def search_items(token: str, browse_url: str, query: str, category_id: str | Non
     headers = {
         "Authorization": f"Bearer {token}",
         "X-EBAY-C-MARKETPLACE-ID": "EBAY_US",
-        "X-EBAY-C-ENDUSERCTX": "affiliateCampaignId=<ePNCampaignId>,affiliateReferenceId=<referenceId>",
     }
+    # eBay Partner Network 캠페인 ID가 설정된 경우에만 어필리에이트 컨텍스트를 보낸다.
+    epn_campaign_id = os.environ.get("EBAY_EPN_CAMPAIGN_ID")
+    if epn_campaign_id:
+        headers["X-EBAY-C-ENDUSERCTX"] = f"affiliateCampaignId={epn_campaign_id}"
 
     all_items = []
     offset = 0
     limit = 200
+    rate_limit_retries = 0
 
     while True:
         params = {
@@ -486,8 +493,19 @@ def search_items(token: str, browse_url: str, query: str, category_id: str | Non
         )
 
         if resp.status_code == 429:
-            log.warning("Rate limited, waiting 5 seconds...")
-            time.sleep(5)
+            rate_limit_retries += 1
+            if rate_limit_retries > RATE_LIMIT_MAX_RETRIES:
+                log.error("Rate limited %d times, giving up on this search", rate_limit_retries - 1)
+                resp.raise_for_status()
+            wait = min(
+                RATE_LIMIT_BASE_WAIT_SECONDS * 2 ** (rate_limit_retries - 1),
+                RATE_LIMIT_MAX_WAIT_SECONDS,
+            )
+            log.warning(
+                "Rate limited, waiting %d seconds (retry %d/%d)...",
+                wait, rate_limit_retries, RATE_LIMIT_MAX_RETRIES,
+            )
+            time.sleep(wait)
             continue
 
         resp.raise_for_status()
