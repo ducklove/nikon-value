@@ -101,6 +101,15 @@ def _make_catalog() -> dict[str, Any]:
                                 'url': 'https://www.ebay.com/itm/123456789012',
                             },
                         ],
+                        'deals': [
+                            {
+                                'title': 'Nikon Z9 Body — low shutter count, boxed',
+                                'price': 3990.0,
+                                'discount_pct': 24.0,
+                                'image': 'https://i.ebayimg.com/images/g/golden-deal/s-l225.jpg',
+                                'url': 'https://www.ebay.com/itm/987654321098',
+                            },
+                        ],
                     },
                     {
                         # Never-scraped product: metric defaults exactly as
@@ -117,6 +126,7 @@ def _make_catalog() -> dict[str, Any]:
                         'count': 0,
                         'count_filtered': 0,
                         'samples': [],
+                        'deals': [],
                     },
                 ],
             },

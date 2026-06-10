@@ -16,6 +16,12 @@ from pathlib import Path
 # 없으므로 nikon_value 패키지를 찾을 수 있도록 보장한다.
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
+from nikon_value.deals import (  # noqa: E402,F401
+    DEAL_MAX_PER_PRODUCT,
+    DEAL_MAX_RATIO,
+    DEAL_MIN_RATIO,
+    extract_deal_listings,
+)
 from nikon_value.ebay import (  # noqa: E402,F401
     ADAPTIVE_MAX_PRICE_STEPS,
     ADAPTIVE_MAX_PRICE_TRIGGER_RATIO,

@@ -7,6 +7,7 @@ from typing import Any
 
 from nikon_value.sitegen.components import (
     build_currency_toggle,
+    build_deal_radar,
     build_film_visual_index,
     build_footer,
     build_hero_manual_hotspots,
@@ -201,7 +202,7 @@ def build_home_page(catalog: dict[str, Any], base_url: str, histories: dict[str,
           </select>
         </div>
       </div>
-    </section>{stale_banner}
+    </section>{stale_banner}{build_deal_radar(catalog)}
 
     <section id=\"rare-watch\" class=\"rare-watch\" aria-labelledby=\"rare-watch-title\" hidden>
       <div class=\"rare-watch__header\">

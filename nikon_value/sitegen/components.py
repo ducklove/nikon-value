@@ -8,6 +8,7 @@ from html import escape
 from typing import Any
 
 from nikon_value.sitegen.data import is_lens_category
+from nikon_value.sitegen.format import render_money_span
 
 GA_MEASUREMENT_ID = 'G-823D75RRWJ'
 # js/auth.js가 meta[name="nikon-api-base"]를 읽어 API 서버 주소를 결정한다.
@@ -376,6 +377,60 @@ def build_lens_visual_index(catalog: dict[str, Any]) -> str:
         if summary:
             sections.append(_build_lens_atlas_section(category, summary))
     return ''.join(sections)
+
+
+DEAL_RADAR_MAX_ITEMS = 12
+
+
+def build_deal_radar(catalog: dict[str, Any]) -> str:
+    """홈 상단 '딜 레이더' 섹션. 딜 데이터가 없으면 빈 문자열을 반환한다."""
+    entries = []
+    for category in catalog['categories']:
+        for product in category['products']:
+            for deal in product.get('deals') or []:
+                if not deal.get('url'):
+                    continue
+                entries.append((deal, product))
+    if not entries:
+        return ''
+
+    entries.sort(key=lambda entry: entry[0].get('discount_pct') or 0, reverse=True)
+    entries = entries[:DEAL_RADAR_MAX_ITEMS]
+
+    cards = []
+    for deal, product in entries:
+        image = deal.get('image') or ''
+        if image:
+            image_tag = f'<img class="deal-card__image" src="{escape(image)}" alt="" loading="lazy">'
+        else:
+            image_tag = '<span class="deal-card__placeholder" aria-hidden="true">Nikon</span>'
+        discount = float(deal.get('discount_pct') or 0)
+        cards.append(
+            f"""
+        <a class="deal-card" href="{escape(deal.get('url', '#'))}" target="_blank" rel="noopener noreferrer nofollow">
+          {image_tag}
+          <div class="deal-card__info">
+            <div class="deal-card__top">
+              <span class="deal-card__badge">-{discount:.0f}%</span>
+              <span class="deal-card__product">{escape(product['name_ko'])}</span>
+            </div>
+            <div class="deal-card__title">{escape(deal.get('title', ''))}</div>
+            <div class="deal-card__price">{render_money_span(deal.get('price'))}<span class="deal-card__median">중앙값 {render_money_span(product.get('median'))}</span></div>
+          </div>
+        </a>"""
+        )
+
+    return f"""
+    <section id="deal-radar" class="deal-radar" aria-labelledby="deal-radar-title">
+      <div class="deal-radar__header">
+        <div>
+          <span class="section-kicker">Deal radar</span>
+          <h2 id="deal-radar-title" class="section-heading">딜 레이더</h2>
+        </div>
+        <p class="deal-radar__summary">중앙값보다 20% 이상 저렴한 현재 매물입니다. 상태와 구성품을 반드시 확인하세요.</p>
+      </div>
+      <div class="deal-radar-grid">{''.join(cards)}</div>
+    </section>"""
 
 
 def product_image(product: dict[str, Any], base_url: str) -> str:
