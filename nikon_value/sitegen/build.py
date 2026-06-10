@@ -8,7 +8,7 @@ import shutil
 import subprocess
 from pathlib import Path
 
-from nikon_value.paths import PROJECT_ROOT
+from nikon_value.paths import DATA_DIR, PROJECT_ROOT
 from nikon_value.sitegen.data import load_catalog, load_catalog_config, load_history, merge_catalog_with_config
 from nikon_value.sitegen.pages import (
     build_404_page,
@@ -111,6 +111,20 @@ def copy_assets(output_dir: Path) -> None:
     shutil.copy2(FILM_HISTORY_JPG_2, output_dir / 'assets' / 'Nikon-camera-history2.jpg')
     shutil.copy2(HERO_JPG, output_dir / 'mynikons.jpg')
     (output_dir / '.nojekyll').write_text('', encoding='utf-8')
+
+    # Pages가 artifact만 서빙하므로, 과거에 저장소 루트에서 직접 서빙되던
+    # 공개 파일들도 산출물에 포함해야 한다:
+    # - auth-complete.html: OAuth 로그인 복귀 페이지
+    # - data/catalog.json: API 서버의 제품 검증·가격 알림 체커가 읽는 URL
+    # - data/products/: 관심목록 가치 대시보드가 상대 경로로 fetch
+    shutil.copy2(PROJECT_ROOT / 'auth-complete.html', output_dir / 'auth-complete.html')
+    ensure_dir(output_dir / 'data')
+    catalog_json = DATA_DIR / 'catalog.json'
+    if catalog_json.exists():
+        shutil.copy2(catalog_json, output_dir / 'data' / 'catalog.json')
+    products_dir = DATA_DIR / 'products'
+    if products_dir.exists():
+        shutil.copytree(products_dir, output_dir / 'data' / 'products')
 
 
 def publish_root_site(output_dir: Path) -> None:

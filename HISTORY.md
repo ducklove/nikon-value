@@ -1,5 +1,18 @@
 # History
 
+## 2.3 - 2026-06-10
+
+### Changed
+
+- GitHub Pages를 Actions artifact 배포로 전환 완료: 루트에 커밋되던 빌드 산출물
+  (`index.html`, `products/` 331장, `sitemap.xml` 등)을 저장소에서 제거하고,
+  데이터 갱신 워크플로는 `data/`만 커밋한 뒤 배포 워크플로를 체인 트리거한다.
+  코드 머지 시에는 배포가 자동 실행되어 템플릿 변경이 3시간 주기를 기다리지 않는다.
+- 빌드 산출물에 `auth-complete.html`(OAuth 복귀)과 `data/`(catalog.json·제품 히스토리)를
+  포함 — API 서버와 대시보드가 쓰는 공개 URL이 그대로 유지된다.
+  로컬 전용 admin 파일은 더 이상 공개 사이트에 배포되지 않는다.
+- admin의 Git Push는 카탈로그·데이터만 커밋하고, 사이트 빌드는 로컬 미리보기 용도로 변경.
+
 ## 2.2 - 2026-06-10
 
 ### Added
