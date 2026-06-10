@@ -101,6 +101,22 @@
   window.nikonValueAuth.isFavorite = function (productId) {
     return favoriteSet.has(productId);
   };
+  // site.js의 applyState가 탭 전환·검색·하트 토글 시마다 호출한다.
+  // 표시 중이고 관심 항목 수가 그대로면 다시 그리지 않는다(재호출 안전).
+  window.nikonValueAuth.onCategoryChange = function (category) {
+    if (category !== 'favorites') {
+      hideDashboard();
+      return;
+    }
+    if (!currentUser) {
+      hideDashboard();
+      return;
+    }
+    var panel = document.getElementById('favorites-dashboard');
+    var stale = !panel || panel.hidden
+      || panel.getAttribute('data-fav-count') !== String(favoriteSet.size);
+    if (stale) renderDashboard();
+  };
 
   // --- UI: Auth area ---
   function renderLoggedIn(user) {
@@ -153,6 +169,7 @@
     showFavoriteButtons(false);
     refreshCatalog();
     renderAlertPanelLoggedOut();
+    hideDashboard();
   }
 
   // --- UI: Favorite buttons on cards ---
@@ -209,30 +226,9 @@
     renderLoggedOut();
   }
 
-  // --- Favorites tab ---
-  function setupFavoritesTab() {
-    var favTab = document.getElementById('favorites-tab');
-    if (!favTab) return;
-    favTab.addEventListener('click', function () {
-      // Deactivate all tabs, activate this one
-      document.querySelectorAll('.category-tab').forEach(function (t) { t.classList.remove('active'); t.setAttribute('aria-pressed', 'false'); });
-      favTab.classList.add('active');
-      favTab.setAttribute('aria-pressed', 'true');
-      // Filter cards
-      document.querySelectorAll('.product-card[data-product-id]').forEach(function (card) {
-        var pid = card.getAttribute('data-product-id');
-        card.style.display = favoriteSet.has(pid) ? '' : 'none';
-      });
-      // Update heading
-      var ctx = document.getElementById('catalog-context');
-      if (ctx) ctx.textContent = '관심 목록';
-      var count = document.getElementById('visible-count');
-      if (count) count.textContent = String(favoriteSet.size);
-      // Hide empty state or show it
-      var empty = document.getElementById('catalog-empty');
-      if (empty) empty.hidden = favoriteSet.size > 0;
-    });
-  }
+  // 참고: 과거의 setupFavoritesTab(자체 탭 필터링)은 site.js의 applyState가
+  // activeCategory === 'favorites'를 처리하면서 호출되지 않는 데드 코드가 되어
+  // 제거했다. 대시보드 토글은 nikonValueAuth.onCategoryChange 훅으로 연동한다.
 
   // --- UI: Price alert panel (제품 상세 페이지 전용) ---
   var alertMap = new Map();
@@ -417,6 +413,209 @@
       }
       alertMap = new Map(alerts.map(function (a) { return [a.product_id, a]; }));
       renderAlertPanelLoggedIn(pid);
+    });
+  }
+
+  // --- UI: Favorites value dashboard (관심 목록 탭 전용) ---
+  var CHART_CDN = 'https://cdn.jsdelivr.net/npm/chart.js@4/dist/chart.umd.min.js';
+  var dashboardChart = null;
+
+  function getCardsData() {
+    var node = document.getElementById('cards-data');
+    if (!node) return [];
+    try {
+      return JSON.parse(node.textContent) || [];
+    } catch (e) {
+      return [];
+    }
+  }
+
+  function ensureDashboard() {
+    var grid = document.getElementById('product-grid');
+    if (!grid) return null;
+    var panel = document.getElementById('favorites-dashboard');
+    if (panel) return panel;
+    panel = document.createElement('section');
+    panel.id = 'favorites-dashboard';
+    panel.className = 'fav-dashboard';
+    panel.setAttribute('aria-label', '관심 목록 가치 요약');
+    panel.hidden = true;
+    grid.insertAdjacentElement('beforebegin', panel);
+    return panel;
+  }
+
+  function hideDashboard() {
+    var panel = document.getElementById('favorites-dashboard');
+    if (panel) panel.hidden = true;
+  }
+
+  function formatUsd(value) {
+    if (value == null || isNaN(value)) return '-';
+    return '$' + Math.round(value).toLocaleString('en-US');
+  }
+
+  function buildDashStat(value, label) {
+    var stat = document.createElement('div');
+    stat.className = 'fav-dashboard__stat';
+    var strong = document.createElement('b');
+    strong.textContent = value;
+    var span = document.createElement('span');
+    span.textContent = label;
+    stat.appendChild(strong);
+    stat.appendChild(span);
+    return stat;
+  }
+
+  function renderDashboard() {
+    var panel = ensureDashboard();
+    if (!panel) return;
+    panel.hidden = false;
+    panel.innerHTML = '';
+    panel.setAttribute('data-fav-count', String(favoriteSet.size));
+
+    var byId = {};
+    getCardsData().forEach(function (c) { byId[c.id] = c; });
+    var items = [];
+    favoriteSet.forEach(function (pid) { if (byId[pid]) items.push(byId[pid]); });
+    var priced = items.filter(function (c) { return c.median != null; });
+    var total = priced.reduce(function (acc, c) { return acc + c.median; }, 0);
+
+    var wrap = document.createElement('div');
+    var kicker = document.createElement('span');
+    kicker.className = 'section-kicker';
+    kicker.textContent = 'My watchlist value';
+    var title = document.createElement('h2');
+    title.className = 'section-heading';
+    title.textContent = '관심 목록 가치';
+    wrap.appendChild(kicker);
+    wrap.appendChild(title);
+    panel.appendChild(wrap);
+
+    var stats = document.createElement('div');
+    stats.className = 'fav-dashboard__stats';
+    stats.appendChild(buildDashStat(String(items.length) + '개', '관심 모델'));
+    stats.appendChild(buildDashStat(formatUsd(total), '현재 중앙값 합산 (' + priced.length + '개 기준)'));
+    panel.appendChild(stats);
+
+    var chartWrap = document.createElement('div');
+    chartWrap.className = 'fav-dashboard__chart';
+    var canvas = document.createElement('canvas');
+    canvas.id = 'fav-dashboard-canvas';
+    chartWrap.appendChild(canvas);
+    panel.appendChild(chartWrap);
+
+    var note = document.createElement('p');
+    note.className = 'fav-dashboard__note';
+    note.id = 'fav-dashboard-note';
+    note.textContent = '추이 데이터를 불러오는 중...';
+    panel.appendChild(note);
+
+    loadDashboardTrend(priced.map(function (c) { return c.id; }));
+  }
+
+  function fetchHistory(pid) {
+    return fetch('data/products/' + encodeURIComponent(pid) + '.json')
+      .then(function (r) { return r.ok ? r.json() : null; })
+      .catch(function () { return null; });
+  }
+
+  function buildSummedSeries(histories) {
+    // 제품별 (날짜→중앙값) 맵을 만들고, forward-fill로 마지막 관측값을 유지하며
+    // 모든 제품의 값이 확보된 날짜부터 합산 시계열을 만든다.
+    var maps = histories.map(function (entries) {
+      var map = {};
+      (entries || []).forEach(function (e) {
+        if (e && e.median != null) map[e.date] = e.median;
+      });
+      return map;
+    });
+    var dateSet = {};
+    maps.forEach(function (map) {
+      Object.keys(map).forEach(function (d) { dateSet[d] = true; });
+    });
+    var dates = Object.keys(dateSet).sort();
+    var last = maps.map(function () { return null; });
+    var series = [];
+    dates.forEach(function (date) {
+      var known = 0;
+      var sum = 0;
+      for (var i = 0; i < maps.length; i++) {
+        if (maps[i][date] != null) last[i] = maps[i][date];
+        if (last[i] != null) { known++; sum += last[i]; }
+      }
+      if (maps.length > 0 && known === maps.length) series.push({ date: date, total: sum });
+    });
+    return series;
+  }
+
+  function ensureChartJs() {
+    if (window.Chart) return Promise.resolve(true);
+    return new Promise(function (resolve) {
+      var script = document.createElement('script');
+      script.src = CHART_CDN;
+      script.onload = function () { resolve(true); };
+      script.onerror = function () { resolve(false); };
+      document.head.appendChild(script);
+    });
+  }
+
+  function renderTrendChart(series) {
+    var canvas = document.getElementById('fav-dashboard-canvas');
+    if (!canvas || !window.Chart) return;
+    if (dashboardChart) {
+      dashboardChart.destroy();
+      dashboardChart = null;
+    }
+    dashboardChart = new window.Chart(canvas.getContext('2d'), {
+      type: 'line',
+      data: {
+        labels: series.map(function (p) { return p.date; }),
+        datasets: [{
+          label: '합산 중앙값 (USD)',
+          data: series.map(function (p) { return Math.round(p.total); }),
+          borderColor: '#1d1d1f',
+          backgroundColor: 'rgba(29, 29, 31, 0.08)',
+          fill: true,
+          tension: 0.25,
+          pointRadius: series.length < 60 ? 2 : 0
+        }]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: { legend: { display: false } },
+        scales: {
+          x: { ticks: { maxTicksLimit: 8 } },
+          y: { ticks: { callback: function (v) { return '$' + Number(v).toLocaleString('en-US'); } } }
+        }
+      }
+    });
+  }
+
+  function loadDashboardTrend(ids) {
+    var note = document.getElementById('fav-dashboard-note');
+    if (!ids.length) {
+      if (note) note.textContent = '시세 데이터가 있는 관심 제품이 없습니다.';
+      return;
+    }
+    Promise.all(ids.map(fetchHistory)).then(function (histories) {
+      var usable = histories.filter(function (h) { return h && h.length; });
+      var series = buildSummedSeries(usable);
+      if (series.length < 2) {
+        if (note) note.textContent = '추이를 그릴 데이터가 아직 부족합니다.';
+        return;
+      }
+      ensureChartJs().then(function (ok) {
+        if (!ok) {
+          if (note) note.textContent = '차트 라이브러리를 불러오지 못했습니다.';
+          return;
+        }
+        if (note) {
+          note.textContent = '히스토리가 있는 ' + usable.length + '개 제품의 중앙값 합산 추이입니다. '
+            + '제품별 첫 관측 이후 구간만 합산에 포함됩니다.';
+        }
+        renderTrendChart(series);
+      });
     });
   }
 

@@ -719,6 +719,45 @@ select:focus-visible {
   color: rgba(226, 247, 234, 0.7);
 }
 
+.fav-dashboard {
+  margin: 0 0 20px;
+  padding: 20px 22px;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+}
+
+.fav-dashboard__stats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px 28px;
+  margin-top: 12px;
+}
+
+.fav-dashboard__stat b {
+  display: block;
+  font-size: 1.4rem;
+  line-height: 1.3;
+}
+
+.fav-dashboard__stat span {
+  font-size: 0.78rem;
+  color: var(--color-text-secondary);
+}
+
+.fav-dashboard__chart {
+  position: relative;
+  height: 240px;
+  margin-top: 16px;
+}
+
+.fav-dashboard__note {
+  margin: 10px 0 0;
+  font-size: 0.78rem;
+  color: var(--color-text-secondary);
+}
+
 .film-atlas {
   margin-top: 20px;
 }
