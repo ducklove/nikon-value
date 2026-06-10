@@ -1,5 +1,33 @@
 # History
 
+## 2.1 - 2026-06-10
+
+### Changed
+
+- 수집·빌드 파이프라인을 `nikon_value/` 패키지로 분리 (`ebay`/`filters`/`llm`/`stats`/`exchange`/`storage`/`fetch`, `sitegen/`).
+  `scripts/*.py`는 기존 임포트 경로와 호환되는 CLI facade로 유지. 빌드 산출물 바이트 동일성 검증 완료.
+- `admin.html`(948줄)의 인라인 CSS/JS를 `css/admin.css`, `js/admin.js`로 분리 (동작 동일).
+- 제품 페이지 Chart.js defer 로드, 카드 렌더링 DocumentFragment 일괄 삽입.
+- API 서버 주소를 빌드 시 `meta[name="nikon-api-base"]`로 주입 가능하게 변경 (`NIKON_API_BASE_URL`).
+
+### Added
+
+- CI 워크플로 (`ci.yml`): push/PR마다 ruff 린트 + pytest + 정적 빌드 스모크. 데이터 봇 커밋은 제외.
+- ruff 린트 설정 도입 및 코드베이스 전체 정리.
+- 파이프라인 순수 함수 단위 테스트 45개 + 관심목록 제품 ID 가드 테스트.
+- Pages artifact 배포 준비 워크플로 (`deploy-pages.yml`, 수동 트리거 — 루트 산출물 커밋 제거 마이그레이션용).
+
+### Fixed
+
+- JWT_SECRET_KEY 미설정/짧은 값으로 서버가 기동되던 문제: 32자 미만이면 기동 거부.
+- 자동 수집 워크플로가 푸시 충돌 시 `rebase -X ours`로 수집 데이터를 조용히 버리던 문제:
+  재시도 후 실패를 표면화해 장애 이슈가 생성되도록 변경.
+- eBay 429 응답에 고정 5초 간격으로 무한 재시도하던 문제: 지수 백오프 + 최대 6회로 제한.
+- 어필리에이트 헤더에 placeholder 더미 값이 전송되던 문제: `EBAY_EPN_CAMPAIGN_ID` 설정 시에만 전송.
+- `auth-complete.html`이 토큰 fragment를 주소창/히스토리에 남기던 문제: 즉시 소거.
+- eBay 응답의 `thumbnailImages`가 빈 배열일 때 샘플 추출이 IndexError로 죽던 문제.
+- 관심목록에 카탈로그 미로드(fail-open) 상태에서 임의 문자열 ID가 저장될 수 있던 문제: 슬러그 형식 가드 추가.
+
 ## 2.0 - 2026-03-16
 
 ### Added
