@@ -441,6 +441,9 @@
       updateLensAtlas();
       updateHeroImage();
       applyCurrencyState();
+      if (window.nikonValueAuth && typeof window.nikonValueAuth.onCategoryChange === 'function') {
+        window.nikonValueAuth.onCategoryChange(activeCategory);
+      }
       syncUrl();
     }
 
