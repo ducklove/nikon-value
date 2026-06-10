@@ -30,13 +30,13 @@ def verify_state(state: str) -> dict:
         if reencoded != state:
             raise ValueError("Invalid state format")
     except Exception:
-        raise ValueError("Invalid state format")
+        raise ValueError("Invalid state format") from None
 
     # Split into data and signature
     try:
         data, sig = decoded.rsplit("|", 1)
     except ValueError:
-        raise ValueError("Invalid state format")
+        raise ValueError("Invalid state format") from None
 
     if not hmac.compare_digest(sig, _sign(data)):
         raise ValueError("Invalid state signature")
@@ -44,7 +44,7 @@ def verify_state(state: str) -> dict:
     try:
         payload = json.loads(data)
     except json.JSONDecodeError:
-        raise ValueError("Invalid state data")
+        raise ValueError("Invalid state data") from None
 
     age = time.time() - payload["ts"]
     if age > OAUTH_STATE_MAX_AGE:

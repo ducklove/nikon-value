@@ -3,7 +3,7 @@ from __future__ import annotations
 import logging
 from urllib.parse import quote, urlsplit
 
-from fastapi import APIRouter, HTTPException, Request, status
+from fastapi import APIRouter, HTTPException, Request
 from fastapi.responses import RedirectResponse
 
 from server.auth.jwt import create_token
@@ -74,16 +74,16 @@ async def oauth_callback(provider: str, request: Request, code: str = "", state:
     try:
         state_data = verify_state(state)
     except ValueError as e:
-        raise HTTPException(status_code=400, detail=f"Invalid state: {e}")
+        raise HTTPException(status_code=400, detail=f"Invalid state: {e}") from None
 
     cfg = PROVIDERS[provider]
     client = get_oauth_client(provider)
 
     try:
-        token = await client.fetch_token(cfg["token_url"], code=code)
+        await client.fetch_token(cfg["token_url"], code=code)
     except Exception:
         logger.exception("Token exchange failed for %s", provider)
-        raise HTTPException(status_code=502, detail="OAuth token exchange failed")
+        raise HTTPException(status_code=502, detail="OAuth token exchange failed") from None
 
     try:
         resp = await client.get(cfg["userinfo_url"])
@@ -91,7 +91,7 @@ async def oauth_callback(provider: str, request: Request, code: str = "", state:
         userinfo = resp.json()
     except Exception:
         logger.exception("Userinfo fetch failed for %s", provider)
-        raise HTTPException(status_code=502, detail="Failed to fetch user info")
+        raise HTTPException(status_code=502, detail="Failed to fetch user info") from None
     finally:
         await client.aclose()
 

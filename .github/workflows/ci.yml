@@ -1,0 +1,48 @@
+name: CI
+
+on:
+  push:
+    # 3시간 주기 데이터 봇 커밋(산출물만 변경)은 CI를 건너뛴다.
+    paths-ignore:
+      - 'data/**'
+      - 'products/**'
+      - 'index.html'
+      - 'resources.html'
+      - '404.html'
+      - 'sitemap.xml'
+      - 'robots.txt'
+  pull_request:
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install dependencies
+        run: pip install -r scripts/requirements.txt -r server/requirements.txt ruff
+
+      - name: Lint (ruff)
+        run: ruff check .
+
+      - name: Run tests
+        run: pytest -q
+
+      - name: Build site smoke test
+        run: |
+          python scripts/build_static_site.py --output /tmp/site-build
+          test -f /tmp/site-build/index.html
+          test -f /tmp/site-build/sitemap.xml
+          count=$(ls /tmp/site-build/products/*.html | wc -l)
+          echo "Built $count product pages"
+          test "$count" -ge 300

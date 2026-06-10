@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from datetime import datetime, timedelta, timezone
+from datetime import UTC, datetime, timedelta
 
 import jwt
 from fastapi import Depends, HTTPException, status
@@ -15,7 +15,7 @@ def create_token(
     user_id: int, provider: str, expire_days: int | None = None
 ) -> str:
     days = expire_days if expire_days is not None else JWT_EXPIRE_DAYS
-    exp = datetime.now(timezone.utc) + timedelta(days=days)
+    exp = datetime.now(UTC) + timedelta(days=days)
     return jwt.encode(
         {"sub": str(user_id), "provider": provider, "exp": exp},
         JWT_SECRET_KEY,
@@ -45,9 +45,9 @@ async def get_current_user(
         raise HTTPException(
             status_code=status.HTTP_401_UNAUTHORIZED,
             detail={"error": "unauthorized", "message": "토큰이 만료되었습니다"},
-        )
+        ) from None
     except jwt.InvalidTokenError:
         raise HTTPException(
             status_code=status.HTTP_401_UNAUTHORIZED,
             detail={"error": "unauthorized", "message": "유효하지 않은 토큰입니다"},
-        )
+        ) from None

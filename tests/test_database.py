@@ -1,5 +1,7 @@
 from __future__ import annotations
 
+import sqlite3
+
 import pytest
 
 
@@ -34,7 +36,7 @@ async def test_unique_provider_constraint(db):
         ("google", "g-unique", "a@example.com", "User A"),
     )
     await db.commit()
-    with pytest.raises(Exception):
+    with pytest.raises(sqlite3.IntegrityError):
         await db.execute(
             "INSERT INTO users (provider, provider_id, email, name) VALUES (?, ?, ?, ?)",
             ("google", "g-unique", "b@example.com", "User B"),

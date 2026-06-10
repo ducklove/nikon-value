@@ -11,7 +11,7 @@ import statistics
 import sys
 import time
 import xml.etree.ElementTree as ET
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 from pathlib import Path
 
 import requests
@@ -138,7 +138,7 @@ def load_text_secret(filename: str, env_name: str) -> str | None:
     """KEY=VALUE 또는 raw text 형식의 시크릿 파일을 읽습니다."""
     key_file = PROJECT_ROOT / filename
     if key_file.exists():
-        with open(key_file, "r") as f:
+        with open(key_file) as f:
             for line in f:
                 line = line.strip()
                 if not line or line.startswith("#"):
@@ -717,7 +717,7 @@ def extract_sample_listings(items: list[dict], max_samples: int = 5) -> list[dic
 
 def load_catalog() -> dict:
     """products.yaml를 로드합니다."""
-    with open(CONFIG_PATH, "r", encoding="utf-8") as f:
+    with open(CONFIG_PATH, encoding="utf-8") as f:
         return yaml.safe_load(f)
 
 
@@ -726,7 +726,7 @@ def load_existing_catalog_output() -> dict | None:
     catalog_path = DATA_DIR / "catalog.json"
     if not catalog_path.exists():
         return None
-    with open(catalog_path, "r", encoding="utf-8") as f:
+    with open(catalog_path, encoding="utf-8") as f:
         return json.load(f)
 
 
@@ -735,7 +735,7 @@ def load_daily_snapshot_for_date(date_str: str) -> dict:
     filepath = DATA_DIR / "daily" / f"{date_str}.json"
     if not filepath.exists():
         return {"date": date_str, "products": {}}
-    with open(filepath, "r", encoding="utf-8") as f:
+    with open(filepath, encoding="utf-8") as f:
         data = json.load(f)
     data["date"] = date_str
     data.setdefault("products", {})
@@ -774,7 +774,7 @@ def update_product_history(product_id: str, date_str: str, stats: dict):
 
     history = []
     if filepath.exists():
-        with open(filepath, "r", encoding="utf-8") as f:
+        with open(filepath, encoding="utf-8") as f:
             history = json.load(f)
 
     # 같은 날짜 데이터가 있으면 교체
@@ -809,7 +809,7 @@ def load_env_file(path: Path):
     """KEY=VALUE 형식의 환경변수 파일을 로드합니다."""
     if not path.exists():
         return
-    with open(path, "r") as f:
+    with open(path) as f:
         for line in f:
             line = line.strip()
             if not line or line.startswith("#"):
@@ -911,7 +911,7 @@ def main():
     else:
         log.info("No OpenRouter API key found, LLM filtering disabled")
 
-    today = datetime.now(timezone.utc).strftime("%Y-%m-%d")
+    today = datetime.now(UTC).strftime("%Y-%m-%d")
     log.info("Fetching prices for %s", today)
 
     try:

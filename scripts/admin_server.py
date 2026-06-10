@@ -102,7 +102,7 @@ class AdminHandler(SimpleHTTPRequestHandler):
 
     def send_catalog(self):
         try:
-            with open(CONFIG_PATH, "r", encoding="utf-8") as f:
+            with open(CONFIG_PATH, encoding="utf-8") as f:
                 data = yaml.safe_load(f)
             self.send_json_response(data, no_store=True)
         except Exception as e:
@@ -151,13 +151,14 @@ class AdminHandler(SimpleHTTPRequestHandler):
             message = data.get("message", "제품 카탈로그 업데이트")
 
             # git add + commit + push
-            run_git = lambda *args: subprocess.run(
-                ["git", *args],
-                cwd=str(PROJECT_ROOT),
-                capture_output=True,
-                text=True,
-                timeout=30,
-            )
+            def run_git(*args):
+                return subprocess.run(
+                    ["git", *args],
+                    cwd=str(PROJECT_ROOT),
+                    capture_output=True,
+                    text=True,
+                    timeout=30,
+                )
 
             # 변경사항 확인
             status = run_git("status", "--porcelain", "--", *PUBLISH_TARGETS)
