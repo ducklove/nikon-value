@@ -23,27 +23,27 @@
   },
   "nikon-z7ii": {
    "median": 2131.61,
-   "mean": 2355.25,
+   "mean": 2377.2,
    "min": 1244.99,
    "max": 4113.24,
-   "q1": 1651.19,
-   "q3": 3000.0,
-   "count": 43,
-   "count_filtered": 43
+   "q1": 1707.45,
+   "q3": 3045.23,
+   "count": 41,
+   "count_filtered": 41
   },
   "nikon-z7": {
    "median": 1423.08,
-   "mean": 1514.6,
-   "min": 1136.78,
+   "mean": 1529.39,
+   "min": 1244.99,
    "max": 2173.24,
-   "q1": 1272.51,
+   "q1": 1312.51,
    "q3": 1734.34,
    "count": 13,
    "count_filtered": 13
   },
   "nikon-z6iii": {
    "median": 2611.2,
-   "mean": 2498.0,
+   "mean": 2498.01,
    "min": 1758.01,
    "max": 3325.11,
    "q1": 2132.0,
@@ -52,31 +52,31 @@
    "count_filtered": 24
   },
   "nikon-z6ii": {
-   "median": 1485.85,
-   "mean": 1454.72,
+   "median": 1493.85,
+   "mean": 1458.14,
    "min": 1045.0,
    "max": 1851.73,
-   "q1": 1367.89,
+   "q1": 1370.12,
    "q3": 1598.32,
-   "count": 55,
-   "count_filtered": 50
+   "count": 54,
+   "count_filtered": 49
   },
   "nikon-z6": {
    "median": 1008.12,
-   "mean": 1016.47,
+   "mean": 1021.09,
    "min": 659.99,
-   "max": 1400.99,
+   "max": 1514.04,
    "q1": 865.97,
    "q3": 1171.93,
    "count": 46,
    "count_filtered": 45
   },
   "nikon-z5": {
-   "median": 937.51,
-   "mean": 959.29,
+   "median": 951.2,
+   "mean": 961.79,
    "min": 620.0,
    "max": 1496.2,
-   "q1": 829.53,
+   "q1": 832.96,
    "q3": 1116.76,
    "count": 66,
    "count_filtered": 58
@@ -102,14 +102,14 @@
    "count_filtered": 13
   },
   "nikon-z50ii": {
-   "median": 1115.21,
-   "mean": 1086.36,
+   "median": 1035.53,
+   "mean": 1078.96,
    "min": 893.99,
    "max": 1501.9,
    "q1": 946.07,
-   "q3": 1189.01,
-   "count": 13,
-   "count_filtered": 13
+   "q3": 1184.25,
+   "count": 12,
+   "count_filtered": 12
   },
   "nikon-z50": {
    "median": 659.46,
@@ -143,7 +143,7 @@
   },
   "nikon-d780": {
    "median": 1352.78,
-   "mean": 1384.28,
+   "mean": 1384.29,
    "min": 1028.0,
    "max": 1801.31,
    "q1": 1149.99,
@@ -173,33 +173,33 @@
   },
   "nikon-d7500": {
    "median": 662.14,
-   "mean": 696.52,
+   "mean": 692.77,
    "min": 416.14,
    "max": 1219.99,
    "q1": 539.14,
    "q3": 816.89,
-   "count": 184,
-   "count_filtered": 179
+   "count": 180,
+   "count_filtered": 175
   },
   "nikon-d5600": {
-   "median": 509.24,
-   "mean": 518.77,
+   "median": 519.99,
+   "mean": 528.53,
    "min": 344.99,
-   "max": 782.99,
-   "q1": 442.66,
-   "q3": 579.99,
-   "count": 102,
-   "count_filtered": 98
+   "max": 809.99,
+   "q1": 440.31,
+   "q3": 589.65,
+   "count": 96,
+   "count_filtered": 95
   },
   "nikon-d500": {
-   "median": 943.81,
-   "mean": 953.92,
+   "median": 942.63,
+   "mean": 953.04,
    "min": 519.99,
    "max": 1480.99,
    "q1": 823.42,
-   "q3": 1088.02,
-   "count": 71,
-   "count_filtered": 68
+   "q3": 1088.15,
+   "count": 70,
+   "count_filtered": 67
   },
   "nikon-d5": {
    "median": 1996.16,
@@ -213,23 +213,23 @@
   },
   "nikon-d3400": {
    "median": 351.24,
-   "mean": 353.43,
+   "mean": 355.3,
    "min": 209.99,
    "max": 533.66,
-   "q1": 327.86,
-   "q3": 427.32,
-   "count": 43,
-   "count_filtered": 38
+   "q1": 329.36,
+   "q3": 427.9,
+   "count": 41,
+   "count_filtered": 36
   },
   "nikon-d7200": {
-   "median": 532.69,
-   "mean": 545.31,
+   "median": 538.95,
+   "mean": 566.77,
    "min": 343.5,
-   "max": 856.99,
-   "q1": 476.61,
-   "q3": 648.26,
-   "count": 72,
-   "count_filtered": 63
+   "max": 969.86,
+   "q1": 479.99,
+   "q3": 682.0,
+   "count": 70,
+   "count_filtered": 64
   },
   "nikon-d810a": {
    "median": 2550.0,
@@ -253,7 +253,7 @@
   },
   "nikon-d810": {
    "median": 852.01,
-   "mean": 863.48,
+   "mean": 863.4,
    "min": 559.99,
    "max": 1290.99,
    "q1": 704.86,
@@ -262,24 +262,24 @@
    "count_filtered": 66
   },
   "nikon-d750": {
-   "median": 725.14,
-   "mean": 762.55,
+   "median": 724.44,
+   "mean": 762.52,
    "min": 469.47,
    "max": 1324.99,
    "q1": 603.0,
    "q3": 894.41,
-   "count": 158,
-   "count_filtered": 153
+   "count": 155,
+   "count_filtered": 150
   },
   "nikon-d4s": {
-   "median": 1690.51,
-   "mean": 1673.19,
+   "median": 1500.0,
+   "mean": 1640.95,
    "min": 1255.63,
    "max": 1998.0,
-   "q1": 1456.47,
-   "q3": 1989.0,
-   "count": 12,
-   "count_filtered": 10
+   "q1": 1440.95,
+   "q3": 1998.0,
+   "count": 11,
+   "count_filtered": 9
   },
   "nikon-d3300": {
    "median": 289.0,
@@ -293,7 +293,7 @@
   },
   "nikon-df": {
    "median": 1199.49,
-   "mean": 1313.62,
+   "mean": 1313.75,
    "min": 849.99,
    "max": 2114.26,
    "q1": 1049.99,
@@ -302,48 +302,48 @@
    "count_filtered": 42
   },
   "nikon-d5300": {
-   "median": 432.43,
-   "mean": 447.1,
+   "median": 432.21,
+   "mean": 446.83,
    "min": 228.92,
    "max": 765.61,
-   "q1": 370.89,
-   "q3": 532.63,
-   "count": 320,
-   "count_filtered": 305
+   "q1": 371.39,
+   "q3": 531.2,
+   "count": 308,
+   "count_filtered": 293
   },
   "nikon-d610": {
-   "median": 599.99,
-   "mean": 619.06,
+   "median": 604.69,
+   "mean": 620.33,
    "min": 359.0,
    "max": 1027.62,
-   "q1": 519.99,
-   "q3": 729.29,
-   "count": 70,
-   "count_filtered": 65
+   "q1": 517.39,
+   "q3": 733.83,
+   "count": 69,
+   "count_filtered": 64
   },
   "nikon-d7100": {
-   "median": 406.57,
-   "mean": 430.56,
+   "median": 410.62,
+   "mean": 432.5,
    "min": 232.69,
    "max": 759.0,
-   "q1": 341.0,
-   "q3": 516.91,
-   "count": 102,
-   "count_filtered": 100
+   "q1": 338.37,
+   "q3": 519.77,
+   "count": 98,
+   "count_filtered": 96
   },
   "nikon-d5200": {
-   "median": 244.9,
-   "mean": 266.49,
-   "min": 170.99,
+   "median": 244.51,
+   "mean": 266.2,
+   "min": 168.0,
    "max": 469.89,
-   "q1": 213.8,
-   "q3": 321.03,
-   "count": 64,
-   "count_filtered": 62
+   "q1": 213.19,
+   "q3": 325.08,
+   "count": 62,
+   "count_filtered": 60
   },
   "nikon-d600": {
-   "median": 440.39,
-   "mean": 468.63,
+   "median": 435.59,
+   "mean": 467.28,
    "min": 288.79,
    "max": 792.05,
    "q1": 369.99,
@@ -352,34 +352,34 @@
    "count_filtered": 90
   },
   "nikon-d3200": {
-   "median": 249.06,
-   "mean": 254.96,
+   "median": 244.13,
+   "mean": 253.3,
    "min": 144.54,
    "max": 438.38,
-   "q1": 212.99,
+   "q1": 210.97,
    "q3": 309.99,
    "count": 87,
    "count_filtered": 79
   },
   "nikon-d800": {
    "median": 499.2,
-   "mean": 551.99,
-   "min": 415.08,
-   "max": 921.0,
-   "q1": 474.5,
-   "q3": 654.13,
-   "count": 181,
+   "mean": 556.4,
+   "min": 416.17,
+   "max": 935.86,
+   "q1": 469.99,
+   "q3": 656.98,
+   "count": 179,
    "count_filtered": 167
   },
   "nikon-d800e": {
-   "median": 717.75,
-   "mean": 767.03,
+   "median": 729.51,
+   "mean": 769.37,
    "min": 529.99,
    "max": 1158.0,
-   "q1": 647.02,
-   "q3": 859.86,
-   "count": 46,
-   "count_filtered": 45
+   "q1": 644.5,
+   "q3": 878.24,
+   "count": 45,
+   "count_filtered": 44
   },
   "nikon-d4": {
    "median": 1239.4,
@@ -392,44 +392,44 @@
    "count_filtered": 12
   },
   "nikon-d5100": {
-   "median": 233.89,
-   "mean": 241.48,
+   "median": 231.76,
+   "mean": 240.1,
    "min": 128.0,
    "max": 398.0,
-   "q1": 191.66,
-   "q3": 287.79,
-   "count": 56,
-   "count_filtered": 55
+   "q1": 191.24,
+   "q3": 287.81,
+   "count": 57,
+   "count_filtered": 56
   },
   "nikon-d3100": {
-   "median": 201.93,
-   "mean": 200.63,
+   "median": 195.73,
+   "mean": 194.44,
    "min": 109.89,
-   "max": 355.15,
-   "q1": 159.17,
-   "q3": 241.98,
-   "count": 79,
-   "count_filtered": 75
+   "max": 328.61,
+   "q1": 158.84,
+   "q3": 231.34,
+   "count": 76,
+   "count_filtered": 70
   },
   "nikon-d7000": {
-   "median": 267.18,
-   "mean": 290.98,
+   "median": 265.45,
+   "mean": 285.51,
    "min": 149.9,
-   "max": 544.99,
-   "q1": 229.0,
-   "q3": 358.0,
-   "count": 174,
-   "count_filtered": 167
+   "max": 516.99,
+   "q1": 228.99,
+   "q3": 349.99,
+   "count": 167,
+   "count_filtered": 161
   },
   "nikon-d5000": {
    "median": 219.97,
-   "mean": 216.11,
+   "mean": 219.65,
    "min": 114.0,
-   "max": 343.72,
-   "q1": 175.31,
-   "q3": 255.72,
-   "count": 64,
-   "count_filtered": 59
+   "max": 379.17,
+   "q1": 175.03,
+   "q3": 257.85,
+   "count": 61,
+   "count_filtered": 57
   },
   "nikon-d3s": {
    "median": 943.69,
@@ -442,34 +442,34 @@
    "count_filtered": 10
   },
   "nikon-d300s": {
-   "median": 338.35,
-   "mean": 364.63,
+   "median": 335.56,
+   "mean": 363.97,
    "min": 159.99,
    "max": 658.0,
-   "q1": 254.07,
-   "q3": 462.81,
-   "count": 77,
-   "count_filtered": 77
+   "q1": 250.16,
+   "q3": 470.68,
+   "count": 75,
+   "count_filtered": 75
   },
   "nikon-d3000": {
-   "median": 160.0,
-   "mean": 175.7,
+   "median": 162.5,
+   "mean": 176.3,
    "min": 83.79,
    "max": 306.0,
    "q1": 137.41,
    "q3": 205.87,
-   "count": 49,
-   "count_filtered": 49
+   "count": 48,
+   "count_filtered": 48
   },
   "nikon-d90": {
-   "median": 262.0,
-   "mean": 270.94,
+   "median": 263.72,
+   "mean": 274.41,
    "min": 99.99,
    "max": 548.0,
-   "q1": 197.99,
-   "q3": 341.27,
-   "count": 218,
-   "count_filtered": 206
+   "q1": 198.61,
+   "q3": 345.02,
+   "count": 209,
+   "count_filtered": 197
   },
   "nikon-d700": {
    "median": 410.38,
@@ -492,64 +492,64 @@
    "count_filtered": 4
   },
   "nikon-d60": {
-   "median": 222.29,
-   "mean": 224.01,
+   "median": 228.17,
+   "mean": 226.89,
    "min": 79.99,
    "max": 466.99,
-   "q1": 152.0,
-   "q3": 285.12,
-   "count": 163,
-   "count_filtered": 158
+   "q1": 154.29,
+   "q3": 288.81,
+   "count": 157,
+   "count_filtered": 152
   },
   "nikon-d300": {
-   "median": 211.42,
-   "mean": 227.07,
+   "median": 212.21,
+   "mean": 227.93,
    "min": 89.57,
-   "max": 428.0,
-   "q1": 179.0,
-   "q3": 281.64,
-   "count": 200,
-   "count_filtered": 190
+   "max": 440.99,
+   "q1": 174.45,
+   "q3": 282.03,
+   "count": 198,
+   "count_filtered": 189
   },
   "nikon-d3": {
-   "median": 592.97,
-   "mean": 612.76,
+   "median": 591.03,
+   "mean": 601.43,
    "min": 410.38,
    "max": 984.71,
-   "q1": 518.91,
-   "q3": 764.4,
-   "count": 30,
-   "count_filtered": 27
+   "q1": 515.45,
+   "q3": 738.86,
+   "count": 29,
+   "count_filtered": 26
   },
   "nikon-d40x": {
-   "median": 214.65,
-   "mean": 219.42,
-   "min": 87.59,
+   "median": 224.58,
+   "mean": 225.5,
+   "min": 92.0,
    "max": 393.4,
-   "q1": 162.19,
-   "q3": 274.25,
-   "count": 110,
-   "count_filtered": 101
+   "q1": 164.53,
+   "q3": 276.77,
+   "count": 102,
+   "count_filtered": 93
   },
   "nikon-d80": {
-   "median": 193.76,
-   "mean": 198.71,
-   "min": 100.19,
+   "median": 193.56,
+   "mean": 198.47,
+   "min": 100.21,
    "max": 357.01,
-   "q1": 162.45,
-   "q3": 242.25,
-   "count": 102,
-   "count_filtered": 96
+   "q1": 161.61,
+   "q3": 243.39,
+   "count": 101,
+   "count_filtered": 95
   },
   "nikon-d40": {
    "median": 138.57,
-   "mean": 139.63,
+   "mean": 140.06,
    "min": 52.1,
    "max": 279.11,
-   "q1": 104.0,
-   "q3": 175.94,
-   "count": 79,
-   "count_filtered": 76
+   "q1": 105.59,
+   "q3": 176.36,
+   "count": 77,
+   "count_filtered": 74
   },
   "nikon-d2xs": {
    "median": 396.71,
@@ -563,33 +563,33 @@
   },
   "nikon-d200": {
    "median": 238.85,
-   "mean": 266.51,
+   "mean": 269.26,
    "min": 134.63,
-   "max": 525.12,
-   "q1": 195.0,
-   "q3": 331.78,
-   "count": 92,
+   "max": 538.99,
+   "q1": 194.99,
+   "q3": 345.98,
+   "count": 91,
    "count_filtered": 87
   },
   "nikon-d50": {
-   "median": 132.26,
-   "mean": 144.19,
+   "median": 152.22,
+   "mean": 160.61,
    "min": 75.0,
-   "max": 304.87,
-   "q1": 94.99,
-   "q3": 186.38,
-   "count": 59,
-   "count_filtered": 57
+   "max": 325.2,
+   "q1": 115.55,
+   "q3": 199.7,
+   "count": 49,
+   "count_filtered": 48
   },
   "nikon-d70s": {
-   "median": 184.99,
-   "mean": 198.36,
-   "min": 77.59,
-   "max": 499.99,
-   "q1": 117.67,
-   "q3": 270.66,
-   "count": 68,
-   "count_filtered": 65
+   "median": 188.93,
+   "mean": 197.2,
+   "min": 79.77,
+   "max": 417.33,
+   "q1": 130.93,
+   "q3": 272.28,
+   "count": 66,
+   "count_filtered": 62
   },
   "nikon-d2hs": {
    "median": 442.11,
@@ -602,18 +602,18 @@
    "count_filtered": 1
   },
   "nikon-d70": {
-   "median": 127.56,
-   "mean": 135.59,
+   "median": 137.84,
+   "mean": 142.9,
    "min": 68.0,
    "max": 273.3,
-   "q1": 87.59,
-   "q3": 170.99,
-   "count": 91,
-   "count_filtered": 87
+   "q1": 105.2,
+   "q3": 175.47,
+   "count": 79,
+   "count_filtered": 75
   },
   "nikon-d2x": {
    "median": 358.64,
-   "mean": 350.96,
+   "mean": 350.51,
    "min": 239.98,
    "max": 537.54,
    "q1": 287.99,
@@ -632,14 +632,14 @@
    "count_filtered": 15
   },
   "nikon-d100": {
-   "median": 156.68,
-   "mean": 152.47,
+   "median": 138.33,
+   "mean": 143.01,
    "min": 95.53,
    "max": 210.97,
-   "q1": 119.09,
-   "q3": 210.11,
-   "count": 8,
-   "count_filtered": 7
+   "q1": 118.19,
+   "q3": 210.97,
+   "count": 7,
+   "count_filtered": 6
   },
   "nikon-d1x": {
    "median": 318.37,
@@ -992,14 +992,14 @@
    "count_filtered": 0
   },
   "nikon-f80": {
-   "median": 179.9,
-   "mean": 183.81,
+   "median": 187.0,
+   "mean": 195.13,
    "min": 110.79,
-   "max": 259.99,
+   "max": 289.99,
    "q1": 164.99,
-   "q3": 209.0,
-   "count": 27,
-   "count_filtered": 23
+   "q3": 215.54,
+   "count": 31,
+   "count_filtered": 28
   },
   "nikon-28ti": {
    "median": 1399.99,
@@ -1013,10 +1013,10 @@
   },
   "nikon-35ti": {
    "median": 989.0,
-   "mean": 1040.95,
+   "mean": 1038.26,
    "min": 739.99,
    "max": 1448.0,
-   "q1": 902.0,
+   "q1": 897.49,
    "q3": 1178.57,
    "count": 41,
    "count_filtered": 41
@@ -1173,11 +1173,11 @@
   },
   "nikkorex-f": {
    "median": 112.64,
-   "mean": 122.93,
+   "mean": 122.53,
    "min": 100.0,
    "max": 168.01,
    "q1": 100.0,
-   "q3": 151.0,
+   "q3": 150.0,
    "count": 5,
    "count_filtered": 5
   },
@@ -1203,7 +1203,7 @@
   },
   "nikkorex-35": {
    "median": 118.18,
-   "mean": 124.07,
+   "mean": 123.79,
    "min": 100.0,
    "max": 168.01,
    "q1": 106.32,
@@ -1267,13 +1267,13 @@
    "min": 170.12,
    "max": 948.01,
    "q1": 299.99,
-   "q3": 647.02,
+   "q3": 647.1,
    "count": 50,
    "count_filtered": 50
   },
   "nikon-s3": {
    "median": 1299.99,
-   "mean": 1411.66,
+   "mean": 1411.67,
    "min": 569.98,
    "max": 2780.31,
    "q1": 934.99,
@@ -1313,8 +1313,8 @@
   },
   "nikon-sp-2005-limited": {
    "median": 5447.54,
-   "mean": 5911.65,
-   "min": 3899.99,
+   "mean": 5875.94,
+   "min": 3649.99,
    "max": 8599.98,
    "q1": 4310.0,
    "q3": 8099.98,
@@ -1342,28 +1342,28 @@
    "count_filtered": 48
   },
   "nikkor-z-24-70-f28-s": {
-   "median": 1706.11,
-   "mean": 1798.13,
+   "median": 1706.32,
+   "mean": 1802.41,
    "min": 1335.89,
    "max": 2229.3,
    "q1": 1609.81,
    "q3": 2063.13,
-   "count": 29,
-   "count_filtered": 29
+   "count": 28,
+   "count_filtered": 28
   },
   "nikkor-z-24-70-f4-s": {
-   "median": 611.77,
-   "mean": 626.63,
+   "median": 613.77,
+   "mean": 628.64,
    "min": 382.29,
    "max": 956.72,
-   "q1": 534.78,
+   "q1": 530.62,
    "q3": 707.53,
-   "count": 104,
-   "count_filtered": 98
+   "count": 105,
+   "count_filtered": 99
   },
   "nikkor-z-70-200-f28-vr-s": {
    "median": 2167.0,
-   "mean": 2191.07,
+   "mean": 2190.92,
    "min": 1539.69,
    "max": 3110.44,
    "q1": 1894.74,
@@ -1433,11 +1433,11 @@
   },
   "nikkor-z-24-200-f4-63-vr": {
    "median": 741.42,
-   "mean": 766.69,
+   "mean": 769.19,
    "min": 573.9,
    "max": 949.93,
    "q1": 682.39,
-   "q3": 864.99,
+   "q3": 878.75,
    "count": 55,
    "count_filtered": 55
   },
@@ -1493,7 +1493,7 @@
   },
   "nikkor-z-28mm-f28": {
    "median": 295.45,
-   "mean": 381.75,
+   "mean": 381.24,
    "min": 126.85,
    "max": 975.99,
    "q1": 255.44,
@@ -1502,14 +1502,14 @@
    "count_filtered": 132
   },
   "nikkor-z-40mm-f2": {
-   "median": 279.44,
-   "mean": 293.99,
+   "median": 279.35,
+   "mean": 292.65,
    "min": 179.0,
    "max": 435.99,
-   "q1": 250.13,
-   "q3": 334.85,
-   "count": 99,
-   "count_filtered": 94
+   "q1": 250.16,
+   "q3": 330.95,
+   "count": 98,
+   "count_filtered": 93
   },
   "nikkor-z-50mm-f12-s": {
    "median": 1668.1,
@@ -1553,11 +1553,11 @@
   },
   "nikkor-z-85mm-f18-s": {
    "median": 679.98,
-   "mean": 705.21,
+   "mean": 707.7,
    "min": 422.28,
    "max": 1053.06,
    "q1": 607.08,
-   "q3": 792.98,
+   "q3": 796.94,
    "count": 61,
    "count_filtered": 57
   },
@@ -1692,24 +1692,24 @@
    "count_filtered": 31
   },
   "nikkor-z-dx-12-28-f35-56-pz-vr": {
-   "median": 344.18,
-   "mean": 359.51,
+   "median": 343.91,
+   "mean": 353.61,
    "min": 237.78,
    "max": 581.75,
    "q1": 300.0,
-   "q3": 419.52,
-   "count": 31,
-   "count_filtered": 30
+   "q3": 412.92,
+   "count": 30,
+   "count_filtered": 29
   },
   "nikkor-z-dx-16-50-f35-63-vr": {
    "median": 237.12,
-   "mean": 252.84,
+   "mean": 253.32,
    "min": 139.99,
    "max": 424.99,
-   "q1": 202.72,
-   "q3": 305.13,
-   "count": 166,
-   "count_filtered": 166
+   "q1": 204.11,
+   "q3": 305.34,
+   "count": 164,
+   "count_filtered": 164
   },
   "nikkor-z-dx-18-140-f35-63-vr": {
    "median": 564.52,
@@ -1723,11 +1723,11 @@
   },
   "nikkor-z-dx-24mm-f17": {
    "median": 321.08,
-   "mean": 350.42,
+   "mean": 348.04,
    "min": 233.77,
    "max": 516.74,
    "q1": 306.51,
-   "q3": 444.65,
+   "q3": 421.21,
    "count": 21,
    "count_filtered": 21
   },
@@ -1773,23 +1773,23 @@
   },
   "af-s-24-70-f28g-ed": {
    "median": 777.69,
-   "mean": 858.87,
+   "mean": 857.44,
    "min": 508.99,
    "max": 1658.96,
-   "q1": 627.34,
-   "q3": 1049.99,
-   "count": 243,
-   "count_filtered": 236
+   "q1": 628.17,
+   "q3": 1044.99,
+   "count": 241,
+   "count_filtered": 234
   },
   "af-s-24-70-f28e-ed-vr": {
-   "median": 1148.75,
-   "mean": 1244.7,
+   "median": 1139.64,
+   "mean": 1243.7,
    "min": 829.3,
    "max": 1998.0,
-   "q1": 962.5,
-   "q3": 1516.21,
-   "count": 60,
-   "count_filtered": 60
+   "q1": 950.0,
+   "q3": 1528.16,
+   "count": 59,
+   "count_filtered": 59
   },
   "af-s-24-85-f35-45g-ed-vr": {
    "median": 273.02,
@@ -1803,23 +1803,23 @@
   },
   "af-s-24-120-f4g-ed-vr": {
    "median": 428.27,
-   "mean": 465.65,
+   "mean": 466.19,
    "min": 250.16,
    "max": 898.0,
-   "q1": 350.6,
+   "q1": 352.95,
    "q3": 575.14,
-   "count": 229,
-   "count_filtered": 222
+   "count": 228,
+   "count_filtered": 221
   },
   "af-s-28-70-f28d-ed-if": {
-   "median": 439.45,
-   "mean": 469.0,
+   "median": 439.0,
+   "mean": 465.91,
    "min": 299.99,
    "max": 848.0,
-   "q1": 344.22,
-   "q3": 579.99,
-   "count": 42,
-   "count_filtered": 40
+   "q1": 342.11,
+   "q3": 554.39,
+   "count": 41,
+   "count_filtered": 39
   },
   "af-p-70-300-f45-63e-ed-vr": {
    "median": null,
@@ -1872,14 +1872,14 @@
    "count_filtered": 21
   },
   "af-s-200-500-f56e-ed-vr": {
-   "median": 1138.97,
-   "mean": 1121.2,
-   "min": 662.17,
+   "median": 1139.48,
+   "mean": 1143.25,
+   "min": 759.99,
    "max": 1544.0,
    "q1": 999.99,
-   "q3": 1254.78,
-   "count": 48,
-   "count_filtered": 45
+   "q3": 1223.6,
+   "count": 50,
+   "count_filtered": 46
   },
   "af-nikkor-20mm-f28d": {
    "median": 200.2,
@@ -1963,17 +1963,17 @@
   },
   "af-s-50mm-f18g": {
    "median": 210.75,
-   "mean": 229.69,
+   "mean": 228.08,
    "min": 134.99,
-   "max": 406.4,
+   "max": 382.48,
    "q1": 188.39,
-   "q3": 277.31,
-   "count": 209,
-   "count_filtered": 201
+   "q3": 269.51,
+   "count": 208,
+   "count_filtered": 199
   },
   "af-s-50mm-f14g": {
    "median": 287.11,
-   "mean": 312.38,
+   "mean": 311.46,
    "min": 196.48,
    "max": 544.99,
    "q1": 246.5,
@@ -2022,8 +2022,8 @@
    "count_filtered": 12
   },
   "af-s-105mm-f14e-ed": {
-   "median": 1414.93,
-   "mean": 1494.81,
+   "median": 1415.04,
+   "mean": 1494.82,
    "min": 1113.11,
    "max": 2074.0,
    "q1": 1278.59,
@@ -2073,7 +2073,7 @@
   },
   "af-s-micro-60mm-f28g-ed": {
    "median": 522.0,
-   "mean": 535.2,
+   "mean": 535.11,
    "min": 349.99,
    "max": 898.99,
    "q1": 399.99,
@@ -2083,7 +2083,7 @@
   },
   "af-micro-105mm-f28d": {
    "median": 239.99,
-   "mean": 257.16,
+   "mean": 257.18,
    "min": 182.0,
    "max": 392.99,
    "q1": 213.43,
@@ -2092,14 +2092,14 @@
    "count_filtered": 79
   },
   "af-s-micro-105mm-f28g-ed-vr": {
-   "median": 513.37,
-   "mean": 565.69,
+   "median": 516.74,
+   "mean": 566.64,
    "min": 344.0,
    "max": 971.29,
-   "q1": 449.8,
-   "q3": 672.71,
-   "count": 88,
-   "count_filtered": 86
+   "q1": 449.3,
+   "q3": 661.77,
+   "count": 85,
+   "count_filtered": 85
   },
   "af-p-dx-10-20-f45-56g-vr": {
    "median": 304.59,
@@ -2113,13 +2113,13 @@
   },
   "af-s-dx-12-24-f4g-if-ed": {
    "median": 258.99,
-   "mean": 263.34,
+   "mean": 265.56,
    "min": 159.0,
    "max": 442.4,
    "q1": 214.99,
-   "q3": 313.0,
-   "count": 38,
-   "count_filtered": 35
+   "q3": 317.23,
+   "count": 37,
+   "count_filtered": 34
   },
   "af-s-dx-16-80-f28-4e-ed-vr": {
    "median": 500.36,
@@ -2142,34 +2142,34 @@
    "count_filtered": 26
   },
   "af-p-dx-18-55-f35-56g-vr": {
-   "median": 116.44,
-   "mean": 115.17,
+   "median": 114.45,
+   "mean": 113.24,
    "min": 60.0,
-   "max": 177.39,
-   "q1": 99.99,
-   "q3": 131.99,
-   "count": 106,
-   "count_filtered": 99
+   "max": 174.36,
+   "q1": 100.02,
+   "q3": 130.85,
+   "count": 112,
+   "count_filtered": 104
   },
   "af-s-dx-18-140-f35-56g-ed-vr": {
-   "median": 221.63,
-   "mean": 230.03,
+   "median": 221.28,
+   "mean": 229.85,
    "min": 139.99,
    "max": 378.0,
    "q1": 189.99,
    "q3": 267.03,
-   "count": 75,
-   "count_filtered": 72
+   "count": 74,
+   "count_filtered": 71
   },
   "af-s-dx-35mm-f18g": {
-   "median": 188.65,
-   "mean": 197.69,
+   "median": 188.47,
+   "mean": 196.15,
    "min": 116.99,
-   "max": 350.0,
-   "q1": 159.69,
-   "q3": 236.44,
-   "count": 181,
-   "count_filtered": 177
+   "max": 335.0,
+   "q1": 158.24,
+   "q3": 231.27,
+   "count": 177,
+   "count_filtered": 176
   },
   "pc-e-nikkor-24mm-f35d-ed": {
    "median": 999.99,
@@ -2202,14 +2202,14 @@
    "count_filtered": 3
   },
   "nikkor-auto-50mm-f14": {
-   "median": 128.43,
-   "mean": 132.16,
+   "median": 128.0,
+   "mean": 131.76,
    "min": 58.99,
    "max": 250.4,
-   "q1": 100.61,
-   "q3": 162.25,
-   "count": 384,
-   "count_filtered": 368
+   "q1": 100.0,
+   "q3": 161.99,
+   "count": 383,
+   "count_filtered": 367
   },
   "nikkor-auto-55mm-f12-s": {
    "median": 360.25,
@@ -2312,28 +2312,28 @@
    "count_filtered": 11
   },
   "nikkor-auto-24mm-f28": {
-   "median": 149.96,
-   "mean": 172.16,
+   "median": 149.04,
+   "mean": 170.86,
    "min": 103.55,
    "max": 316.8,
-   "q1": 130.48,
-   "q3": 223.62,
-   "count": 42,
-   "count_filtered": 41
+   "q1": 130.24,
+   "q3": 223.08,
+   "count": 40,
+   "count_filtered": 39
   },
   "gn-auto-nikkor-45mm-f28": {
-   "median": 303.69,
-   "mean": 366.44,
+   "median": 307.39,
+   "mean": 367.64,
    "min": 136.5,
    "max": 804.99,
-   "q1": 234.98,
-   "q3": 489.65,
-   "count": 79,
-   "count_filtered": 78
+   "q1": 234.99,
+   "q3": 484.88,
+   "count": 80,
+   "count_filtered": 79
   },
   "nikkor-50mm-f14-ai": {
    "median": 168.0,
-   "mean": 180.11,
+   "mean": 180.12,
    "min": 97.0,
    "max": 319.88,
    "q1": 144.99,
@@ -2353,7 +2353,7 @@
   },
   "nikkor-50mm-f18-ai": {
    "median": 148.29,
-   "mean": 159.32,
+   "mean": 159.34,
    "min": 104.99,
    "max": 252.92,
    "q1": 125.49,
@@ -2362,34 +2362,34 @@
    "count_filtered": 65
   },
   "nikkor-50mm-f2-ai": {
-   "median": 136.36,
-   "mean": 150.57,
-   "min": 92.38,
+   "median": 132.49,
+   "mean": 148.09,
+   "min": 89.99,
    "max": 279.99,
-   "q1": 109.98,
-   "q3": 182.58,
-   "count": 42,
-   "count_filtered": 41
+   "q1": 108.59,
+   "q3": 184.48,
+   "count": 44,
+   "count_filtered": 43
   },
   "nikkor-28mm-f35-ai": {
-   "median": 114.9,
-   "mean": 116.42,
-   "min": 44.49,
-   "max": 189.99,
-   "q1": 98.98,
-   "q3": 135.99,
-   "count": 97,
-   "count_filtered": 93
+   "median": 114.03,
+   "mean": 116.25,
+   "min": 48.0,
+   "max": 186.42,
+   "q1": 99.98,
+   "q3": 134.98,
+   "count": 98,
+   "count_filtered": 92
   },
   "nikkor-28mm-f28-ai": {
-   "median": 171.9,
-   "mean": 180.27,
+   "median": 173.5,
+   "mean": 180.79,
    "min": 94.99,
    "max": 294.69,
-   "q1": 149.9,
-   "q3": 209.99,
-   "count": 187,
-   "count_filtered": 177
+   "q1": 149.94,
+   "q3": 210.31,
+   "count": 185,
+   "count_filtered": 175
   },
   "nikkor-35mm-f2-ai": {
    "median": 209.9,
@@ -2412,14 +2412,14 @@
    "count_filtered": 41
   },
   "nikkor-105mm-f25-ai": {
-   "median": 215.0,
-   "mean": 215.0,
+   "median": 299.99,
+   "mean": 316.83,
    "min": 200.0,
-   "max": 229.99,
-   "q1": 200.0,
-   "q3": 229.99,
-   "count": 3,
-   "count_filtered": 3
+   "max": 479.99,
+   "q1": 279.0,
+   "q3": 359.5,
+   "count": 29,
+   "count_filtered": 27
   },
   "nikkor-135mm-f28-ai": {
    "median": 139.99,
@@ -2432,14 +2432,14 @@
    "count_filtered": 155
   },
   "nikkor-24mm-f28-ai": {
-   "median": 170.99,
-   "mean": 172.68,
+   "median": 171.99,
+   "mean": 172.88,
    "min": 84.99,
    "max": 287.0,
    "q1": 139.99,
    "q3": 198.99,
-   "count": 99,
-   "count_filtered": 98
+   "count": 98,
+   "count_filtered": 97
   },
   "nikkor-180mm-f28-ai": {
    "median": 213.16,
@@ -2452,14 +2452,14 @@
    "count_filtered": 1
   },
   "nikkor-200mm-f4-ai": {
-   "median": 124.94,
-   "mean": 133.42,
+   "median": 124.45,
+   "mean": 133.0,
    "min": 51.99,
    "max": 257.82,
-   "q1": 96.99,
-   "q3": 164.31,
-   "count": 207,
-   "count_filtered": 202
+   "q1": 96.92,
+   "q3": 163.66,
+   "count": 209,
+   "count_filtered": 204
   },
   "nikkor-400mm-f35-if-ed": {
    "median": 599.0,
@@ -2482,24 +2482,24 @@
    "count_filtered": 242
   },
   "ai-s-50mm-f14": {
-   "median": 211.25,
-   "mean": 224.78,
+   "median": 211.49,
+   "mean": 225.1,
    "min": 106.0,
-   "max": 400.87,
+   "max": 401.78,
    "q1": 185.5,
-   "q3": 272.0,
+   "q3": 272.02,
    "count": 476,
-   "count_filtered": 448
+   "count_filtered": 449
   },
   "ai-s-35mm-f14": {
-   "median": 572.49,
-   "mean": 604.86,
+   "median": 574.98,
+   "mean": 605.14,
    "min": 212.44,
    "max": 1113.77,
    "q1": 459.0,
    "q3": 729.99,
-   "count": 78,
-   "count_filtered": 76
+   "count": 79,
+   "count_filtered": 77
   },
   "ai-s-28mm-f28": {
    "median": 392.44,
@@ -2532,24 +2532,24 @@
    "count_filtered": 142
   },
   "ai-s-180mm-f28-ed": {
-   "median": 299.67,
-   "mean": 303.89,
+   "median": 299.45,
+   "mean": 302.42,
    "min": 139.99,
-   "max": 489.98,
+   "max": 483.0,
    "q1": 260.0,
-   "q3": 353.6,
-   "count": 135,
-   "count_filtered": 128
+   "q3": 353.45,
+   "count": 134,
+   "count_filtered": 127
   },
   "ai-s-55mm-f28-micro": {
-   "median": 185.44,
-   "mean": 191.5,
+   "median": 185.28,
+   "mean": 191.46,
    "min": 93.5,
    "max": 344.72,
    "q1": 157.99,
-   "q3": 234.98,
-   "count": 286,
-   "count_filtered": 266
+   "q3": 234.99,
+   "count": 285,
+   "count_filtered": 265
   },
   "ai-s-20mm-f28": {
    "median": 334.99,
@@ -2562,8 +2562,8 @@
    "count_filtered": 65
   },
   "ai-s-24mm-f2": {
-   "median": 299.99,
-   "mean": 320.72,
+   "median": 299.0,
+   "mean": 320.32,
    "min": 199.99,
    "max": 519.0,
    "q1": 258.49,
@@ -2572,8 +2572,8 @@
    "count_filtered": 65
   },
   "ai-s-24mm-f28": {
-   "median": 204.99,
-   "mean": 222.68,
+   "median": 209.9,
+   "mean": 222.34,
    "min": 99.74,
    "max": 399.99,
    "q1": 177.0,
@@ -2592,24 +2592,24 @@
    "count_filtered": 7
   },
   "ai-s-35mm-f2": {
-   "median": 304.99,
-   "mean": 302.86,
+   "median": 307.49,
+   "mean": 303.18,
    "min": 194.5,
    "max": 389.98,
    "q1": 277.0,
    "q3": 334.94,
-   "count": 40,
-   "count_filtered": 37
+   "count": 41,
+   "count_filtered": 38
   },
   "ai-s-50mm-f18": {
-   "median": 189.25,
-   "mean": 195.92,
+   "median": 189.12,
+   "mean": 195.43,
    "min": 103.85,
    "max": 309.99,
    "q1": 167.99,
    "q3": 224.99,
-   "count": 155,
-   "count_filtered": 151
+   "count": 154,
+   "count_filtered": 150
   },
   "noct-nikkor-58mm-f12": {
    "median": 5841.1,
@@ -2622,14 +2622,14 @@
    "count_filtered": 1
   },
   "ai-s-85mm-f14": {
-   "median": 538.16,
-   "mean": 585.24,
+   "median": 534.99,
+   "mean": 576.69,
    "min": 299.11,
-   "max": 949.9,
+   "max": 899.99,
    "q1": 499.0,
-   "q3": 679.98,
+   "q3": 666.3,
    "count": 111,
-   "count_filtered": 109
+   "count_filtered": 107
   },
   "ai-s-85mm-f2": {
    "median": 270.0,
@@ -2682,34 +2682,34 @@
    "count_filtered": 19
   },
   "ai-s-200mm-f4": {
-   "median": 127.0,
-   "mean": 130.52,
+   "median": 126.55,
+   "mean": 130.41,
    "min": 59.99,
    "max": 219.0,
-   "q1": 107.69,
-   "q3": 154.44,
-   "count": 51,
-   "count_filtered": 47
+   "q1": 108.34,
+   "q3": 154.22,
+   "count": 52,
+   "count_filtered": 48
   },
   "ai-s-300mm-f45-ed": {
-   "median": 185.28,
-   "mean": 205.04,
+   "median": 184.55,
+   "mean": 203.93,
    "min": 111.6,
    "max": 419.0,
    "q1": 150.17,
-   "q3": 271.73,
+   "q3": 267.99,
    "count": 144,
    "count_filtered": 134
   },
   "ai-s-300mm-f28-ed": {
-   "median": 629.9,
-   "mean": 657.96,
+   "median": 634.44,
+   "mean": 662.7,
    "min": 389.0,
    "max": 1063.34,
    "q1": 504.99,
-   "q3": 769.99,
-   "count": 29,
-   "count_filtered": 29
+   "q3": 789.99,
+   "count": 30,
+   "count_filtered": 30
   },
   "ai-s-400mm-f28-ed": {
    "median": 1929.95,
@@ -2813,7 +2813,7 @@
   },
   "reflex-nikkor-500mm-f8": {
    "median": 243.14,
-   "mean": 264.11,
+   "mean": 263.95,
    "min": 104.2,
    "max": 514.24,
    "q1": 196.95,
@@ -2832,14 +2832,14 @@
    "count_filtered": 22
   },
   "ai-nikkor-45mm-f28p": {
-   "median": 539.99,
-   "mean": 571.1,
+   "median": 519.99,
+   "mean": 566.82,
    "min": 409.98,
    "max": 870.99,
-   "q1": 462.94,
-   "q3": 675.14,
-   "count": 25,
-   "count_filtered": 25
+   "q1": 459.99,
+   "q3": 664.63,
+   "count": 26,
+   "count_filtered": 26
   },
   "pc-nikkor-35mm-f28": {
    "median": 297.72,
@@ -2883,7 +2883,7 @@
   },
   "series-e-28mm-f28": {
    "median": 145.38,
-   "mean": 147.78,
+   "mean": 148.24,
    "min": 83.21,
    "max": 216.66,
    "q1": 126.98,
@@ -2983,13 +2983,13 @@
   },
   "nikon-tc-201": {
    "median": 86.95,
-   "mean": 93.93,
+   "mean": 92.41,
    "min": 44.99,
-   "max": 154.99,
-   "q1": 79.46,
-   "q3": 110.44,
-   "count": 114,
-   "count_filtered": 109
+   "max": 150.95,
+   "q1": 79.25,
+   "q3": 108.85,
+   "count": 112,
+   "count_filtered": 105
   },
   "nikon-tc-301": {
    "median": 125.62,
@@ -3012,34 +3012,34 @@
    "count_filtered": 64
   },
   "nikon-sb-12": {
-   "median": 98.59,
-   "mean": 92.28,
+   "median": 97.18,
+   "mean": 90.91,
    "min": 49.0,
    "max": 165.47,
    "q1": 65.12,
    "q3": 113.3,
-   "count": 14,
-   "count_filtered": 14
+   "count": 15,
+   "count_filtered": 15
   },
   "nikon-sb-24": {
-   "median": 66.72,
-   "mean": 71.57,
+   "median": 67.33,
+   "mean": 72.6,
    "min": 34.22,
    "max": 121.89,
-   "q1": 57.88,
-   "q3": 84.03,
-   "count": 148,
-   "count_filtered": 142
+   "q1": 58.9,
+   "q3": 84.9,
+   "count": 143,
+   "count_filtered": 137
   },
   "nikon-sb-25": {
-   "median": 78.8,
-   "mean": 84.67,
+   "median": 79.77,
+   "mean": 87.02,
    "min": 33.4,
-   "max": 159.75,
-   "q1": 67.33,
+   "max": 165.91,
+   "q1": 64.16,
    "q3": 106.03,
-   "count": 50,
-   "count_filtered": 47
+   "count": 51,
+   "count_filtered": 50
   },
   "nikon-mf-12": {
    "median": 149.99,
@@ -3072,14 +3072,14 @@
    "count_filtered": 9
   },
   "nikon-dp-1": {
-   "median": 179.99,
-   "mean": 197.76,
+   "median": 180.0,
+   "mean": 198.96,
    "min": 108.12,
    "max": 400.95,
    "q1": 144.5,
    "q3": 247.09,
-   "count": 41,
-   "count_filtered": 41
+   "count": 40,
+   "count_filtered": 40
   },
   "nikon-dp-2": {
    "median": 229.99,
@@ -3123,32 +3123,32 @@
   },
   "nikon-f-eye-level-finder": {
    "median": 199.99,
-   "mean": 223.37,
+   "mean": 222.55,
    "min": 109.8,
    "max": 439.99,
-   "q1": 161.91,
-   "q3": 279.99,
-   "count": 95,
-   "count_filtered": 90
+   "q1": 160.95,
+   "q3": 282.49,
+   "count": 97,
+   "count_filtered": 91
   },
   "nikon-de-1": {
-   "median": 317.0,
-   "mean": 326.16,
+   "median": 320.0,
+   "mean": 330.7,
    "min": 149.99,
    "max": 639.99,
    "q1": 243.5,
-   "q3": 427.49,
-   "count": 36,
-   "count_filtered": 33
+   "q3": 437.49,
+   "count": 37,
+   "count_filtered": 34
   },
   "nikon-de-2": {
-   "median": 176.59,
-   "mean": 181.29,
+   "median": 174.38,
+   "mean": 178.58,
    "min": 109.8,
-   "max": 299.99,
-   "q1": 143.69,
-   "q3": 209.99,
-   "count": 53,
+   "max": 279.99,
+   "q1": 144.9,
+   "q3": 199.99,
+   "count": 54,
    "count_filtered": 52
   },
   "nikon-de-3": {
@@ -3166,9 +3166,9 @@
    "mean": 354.93,
    "min": 299.99,
    "max": 443.99,
-   "q1": 329.94,
+   "q1": 327.6,
    "q3": 379.94,
-   "count": 32,
+   "count": 33,
    "count_filtered": 28
   },
   "nikon-da-2": {
@@ -3315,8 +3315,8 @@
  "exchange_rate": {
   "base": "USD",
   "quote": "KRW",
-  "rate": 1514.4494,
-  "reference_date": "2026-07-07",
+  "rate": 1509.0758,
+  "reference_date": "2026-07-08",
   "source": "ECB reference rates"
  }
 }
