@@ -18,6 +18,11 @@ MAX_PRODUCT_HISTORY = 365
 # 이 횟수만큼 연속으로 0건이면 "상한이 낮아서"가 아니라 eBay에 매물이 없는
 # 것으로 보고 적응형 상한 확장을 건너뛴다.
 ZERO_RESULT_STREAK_THRESHOLD = 3
+# 연속 0건이 길어져 확장을 건너뛰는 상태에서도 이 주기(일)마다 한 번은 확장을
+# 재시도한다. 히스토리는 날짜당 한 항목이므로 streak 단위는 '일'이다.
+# 이 탈출구가 없으면 시세가 max_price 위로 올라간 제품은 기본 검색이 계속 0건 →
+# streak 증가 → 확장 영구 차단으로 자력 회복이 불가능해진다.
+ZERO_RESULT_RETRY_INTERVAL_DAYS = 7
 
 _PRODUCT_ID_RE = re.compile(r"^(\s*)-\s+id:\s*(\S+)\s*$")
 _MAX_PRICE_RE = re.compile(r"^(\s*)max_price:\s*(\S+)\s*$")

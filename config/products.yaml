@@ -641,7 +641,7 @@ categories:
     name_en: Nikon E3/E3S
     release_year: 1998
     subcategory: flagship
-    query: Nikon E3 E3S DSLR body -D3 -Series E -lens -nikkor
+    query: Nikon E3 E3S DSLR body -D3 -lens -nikkor
     exclude_title_patterns:
     - series e
     category_id: '31388'
@@ -652,7 +652,7 @@ categories:
     name_en: Nikon E2N/E2NS
     release_year: 1996
     subcategory: flagship
-    query: Nikon E2N E2NS DSLR body -Series E -lens -nikkor
+    query: Nikon E2N E2NS DSLR body -lens -nikkor
     exclude_title_patterns:
     - series e
     category_id: '31388'
@@ -663,7 +663,7 @@ categories:
     name_en: Nikon E2/E2S
     release_year: 1995
     subcategory: flagship
-    query: Nikon E2 E2S DSLR body -Series E -lens -nikkor
+    query: Nikon E2 E2S DSLR body -lens -nikkor
     exclude_title_patterns:
     - series e
     category_id: '31388'
@@ -1227,7 +1227,7 @@ categories:
     name_en: Nikon I
     release_year: 1948
     subcategory: rangefinder
-    query: Nikon I rangefinder -Nikon 1 J -Nikon 1 V -Nikon 1 S -lens -nikkor -filter -hood -cap
+    query: Nikon I rangefinder -lens -nikkor -filter -hood -cap
     category_id: '3323'
     search_category_id: '15230'
     min_price: 1000

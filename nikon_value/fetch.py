@@ -25,6 +25,7 @@ from datetime import UTC, datetime
 import requests
 
 from nikon_value.deals import extract_deal_listings
+from nikon_value.diagnostics import PROBE_MIN_ZERO_STREAK, diagnose_empty_products
 from nikon_value.ebay import collect_prices, get_access_token, get_ebay_urls, search_items_for_product
 from nikon_value.env import load_env_file
 from nikon_value.exchange import (
@@ -38,6 +39,7 @@ from nikon_value.metrics import RunMetrics, append_run_metrics, reset_metrics
 from nikon_value.paths import DATA_DIR, PROJECT_ROOT
 from nikon_value.stats import compute_stats, extract_sample_listings
 from nikon_value.storage import (
+    ZERO_RESULT_RETRY_INTERVAL_DAYS,
     ZERO_RESULT_STREAK_THRESHOLD,
     build_base_product_entry,
     load_catalog,
@@ -84,6 +86,11 @@ def parse_args() -> argparse.Namespace:
         default=[],
         help="특정 제품 ID만 갱신합니다. 쉼표로 여러 개 지정 가능",
     )
+    parser.add_argument(
+        "--no-diagnostics",
+        action="store_true",
+        help="0건 제품 진단 프로브를 건너뜁니다(API 호출을 한 건도 늘리지 않음)",
+    )
     return parser.parse_args()
 
 
@@ -115,6 +122,9 @@ class RunContext:
     openrouter_key: str | None = None
     llm_cache: LlmDecisionCache | None = None
     only_ids: set[str] = field(default_factory=set)
+    diagnostics_enabled: bool = True
+    # 이번 실행에서 0건이 나온 제품 설정. 수집이 끝난 뒤 진단 프로브 후보가 된다.
+    empty_products: list[dict] = field(default_factory=list)
 
 
 @dataclass
@@ -236,6 +246,7 @@ def build_run_context(args: argparse.Namespace) -> RunContext:
         openrouter_key=openrouter_key,
         llm_cache=llm_cache,
         only_ids=parse_only_ids(args.only),
+        diagnostics_enabled=not args.no_diagnostics,
     )
 
 
@@ -256,9 +267,22 @@ def search_product_items(ctx: RunContext, product: dict) -> tuple[list[dict], fl
     """연속 0건 이력을 반영해 제품을 검색합니다."""
     # 연속 0건이 이어진 제품은 상한 문제가 아니라 매물이 없는 것이므로
     # 빈 결과만으로는 확장하지 않는다. 매물이 다시 나타나면 즉시 복귀.
+    #
+    # 다만 "0건이라 확장 안 함"이 그대로 굳으면, 시세가 max_price 위로 올라간
+    # 제품은 기본 검색이 영원히 0건이라 자력 회복이 불가능해진다. 그래서
+    # ZERO_RESULT_RETRY_INTERVAL_DAYS마다 한 번은 확장을 재시도해 탈출구를 둔다.
     streak = zero_result_streak(product["id"])
-    expand_when_empty = streak < ZERO_RESULT_STREAK_THRESHOLD
-    if not expand_when_empty:
+    periodic_retry = (
+        streak >= ZERO_RESULT_STREAK_THRESHOLD
+        and streak % ZERO_RESULT_RETRY_INTERVAL_DAYS == 0
+    )
+    expand_when_empty = streak < ZERO_RESULT_STREAK_THRESHOLD or periodic_retry
+    if periodic_retry:
+        log.info(
+            "  Retrying empty-result expansion despite %d consecutive zero-result days",
+            streak,
+        )
+    elif not expand_when_empty:
         log.info(
             "  Skipping empty-result expansion (%d consecutive zero-result runs)",
             streak,
@@ -390,6 +414,10 @@ def collect_categories(ctx: RunContext) -> tuple[list[dict], dict[str, float]]:
             cat_entry["products"].append(outcome.entry)
             if outcome.max_price_update is not None:
                 max_price_updates[pid] = outcome.max_price_update
+            # 0건 제품은 수집이 끝난 뒤 한 번에 진단한다. 실패한 제품은
+            # 원인이 예외로 이미 드러나 있으므로 후보에서 뺀다.
+            if not outcome.failed and not outcome.entry.get("count"):
+                ctx.empty_products.append(product)
 
             # API 부하 방지
             time.sleep(PRODUCT_REQUEST_INTERVAL)
@@ -397,6 +425,49 @@ def collect_categories(ctx: RunContext) -> tuple[list[dict], dict[str, float]]:
         categories.append(cat_entry)
 
     return categories, max_price_updates
+
+
+# --- 0건 제품 진단 ------------------------------------------------------
+
+
+def run_empty_product_diagnostics(ctx: RunContext) -> None:
+    """0건 제품에 한해 제약 완화 프로브를 돌려 원인을 기록합니다.
+
+    진단 전용이다. 결과는 `data/empty-product-report.json`에만 쌓이고
+    catalog.json·제품 히스토리에는 한 글자도 들어가지 않는다. 계측에 프로브
+    호출을 포함시키려고 `write_outputs` 직전에 돌리며, 진단이 실패해도 수집
+    결과를 무효로 만들지 않도록 예외를 통째로 격리한다.
+    """
+    if not ctx.diagnostics_enabled:
+        log.info("Empty-product diagnostics disabled (--no-diagnostics)")
+        return
+    if not ctx.empty_products:
+        return
+
+    candidates = [
+        product for product in ctx.empty_products
+        if zero_result_streak(product["id"]) >= PROBE_MIN_ZERO_STREAK
+    ]
+    if not candidates:
+        log.info(
+            "Empty-product diagnostics: %d zero-result products, none past the %d-run streak",
+            len(ctx.empty_products), PROBE_MIN_ZERO_STREAK,
+        )
+        return
+
+    zero_streaks = {p["id"]: zero_result_streak(p["id"]) for p in candidates}
+    try:
+        diagnose_empty_products(
+            ctx.token,
+            ctx.browse_url,
+            candidates,
+            ctx.today,
+            zero_streaks,
+            metrics=ctx.metrics,
+            path=DATA_DIR / "empty-product-report.json",
+        )
+    except Exception as exc:
+        log.error("Empty-product diagnostics failed: %s: %s", type(exc).__name__, exc)
 
 
 # --- 결과 저장 ----------------------------------------------------------
@@ -475,6 +546,7 @@ def main():
         "categories": categories,
     }
 
+    run_empty_product_diagnostics(ctx)
     write_outputs(ctx, catalog_output, max_price_updates)
     enforce_failure_threshold(ctx.metrics)
     log.info("Done! Processed %d products.", ctx.metrics.products_processed)

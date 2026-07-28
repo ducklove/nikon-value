@@ -95,7 +95,10 @@ curl -s http://127.0.0.1:8000/health
 systemd 유닛은 [`deploy/nikon-value-api.service`](deploy/nikon-value-api.service)다.
 
 > `server/data/nikon_api.db`에는 다시 만들 수 없는 사용자 데이터가 들어 있고 저장소에
-> 없다. 백업 절차는 위 문서의 "DB 백업" 절을 반드시 볼 것.
+> 없다. 구글 드라이브 원격 백업·복원 절차는
+> [docs/backup-restore.md](docs/backup-restore.md)에 있다
+> (스크립트는 [`scripts/backup_db.py`](scripts/backup_db.py), 타이머는
+> [`deploy/nikon-value-backup.timer`](deploy/nikon-value-backup.timer)).
 
 리버스 프록시 뒤에 둔 경우 `TRUSTED_PROXY_IPS`를 설정해야 rate limit이 사용자별로
 갈린다. 판단 방법은 같은 문서의 "리버스 프록시와 클라이언트 IP" 절에 있다.

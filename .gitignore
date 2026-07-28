@@ -35,3 +35,9 @@ data/llm-cache.json
 
 # 커버리지 산출물
 .coverage
+
+# DB 백업 산출물과 rclone 자격증명.
+# 기본 경로는 저장소 밖(/var/lib)이지만, 운영자가 --out .으로 저장소 안에서
+# 돌릴 수 있으므로 사용자 데이터와 토큰이 커밋되지 않도록 막아 둔다.
+*.db.gz
+rclone.conf

@@ -25,9 +25,12 @@
 ```bash
 sudo apt update
 sudo apt install -y python3 python3-venv git
-# 백업 검증에 쓰는 CLI(선택). 없어도 아래 백업 절차는 파이썬만으로 동작한다.
+# 백업 검증·복원 훈련에 쓰는 CLI. 백업 스크립트 자체는 파이썬 표준 라이브러리만으로 동작한다.
 sudo apt install -y sqlite3
 ```
+
+원격 백업(구글 드라이브)까지 붙일 계획이면 `rclone` 도 필요하다 —
+설치와 인증은 [backup-restore.md](backup-restore.md) 6절에서 다룬다.
 
 전용 계정과 디렉터리를 만든다.
 
@@ -263,6 +266,9 @@ nginx 구성이라면 그 덕에 대체로 잘 동작하지만, 동시에 파이
 들어 있다. `.gitignore` 로 저장소에 없고, eBay 시세와 달리 **다시 수집할 수 없는 유일본**이다.
 이 파일이 날아가면 모든 사용자가 로그인 상태와 관심목록을 잃는다.
 
+> **설치·인증·복원의 전체 절차는 [backup-restore.md](backup-restore.md) 에 있다.**
+> 이 절은 요약과 "한 번만 손으로 뜨고 싶을 때"만 다룬다.
+
 ### `cp` 로 백업하면 안 되는 이유
 
 DB는 WAL 모드(`PRAGMA journal_mode=WAL`)라 최근 커밋이 `-wal` 파일에만 있을 수 있다.
@@ -274,92 +280,75 @@ DB는 WAL 모드(`PRAGMA journal_mode=WAL`)라 최근 커밋이 `-wal` 파일에
 3) VACUUM INTO         : 501행, integrity_check ok
 ```
 
-### 올바른 백업
+이 실패 모드는 `tests/test_backup_db.py` 에 회귀 테스트로 고정돼 있다.
 
-서버를 멈추지 않고 일관된 사본을 만든다. 파이썬 표준 라이브러리만 쓰므로 추가 설치가 없다.
+### 자동 백업 (권장 — 원격 사본까지)
+
+`scripts/backup_db.py` 가 스냅샷 → `integrity_check` 검증 → gzip → 구글 드라이브 업로드 →
+보관 정리를 한 번에 한다. 검증에 실패하면 업로드하지 않고 0이 아닌 코드로 죽으며,
+설정해 두면 텔레그램으로 알림이 온다.
 
 ```bash
-sudo -u nikon /opt/nikon-value/.venv/bin/python - <<'PY'
-import sqlite3, datetime, pathlib
-out = pathlib.Path("/var/backups/nikon-value")
-out.mkdir(parents=True, exist_ok=True)
-stamp = datetime.datetime.now().strftime("%Y%m%d-%H%M%S")
-target = out / f"nikon_api-{stamp}.db"
-src = sqlite3.connect("file:/var/lib/nikon-value/nikon_api.db?mode=ro", uri=True)
-dst = sqlite3.connect(target)
-src.backup(dst)              # 온라인 백업 API: 잠금을 존중하며 WAL 내용까지 포함
-dst.close(); src.close()
-print(target)
-PY
+sudo cp /opt/nikon-value/deploy/nikon-value-backup.{service,timer} /etc/systemd/system/
+sudo cp /opt/nikon-value/deploy/nikon-value-backup.env.example /etc/nikon-value-backup.env
+sudo chmod 600 /etc/nikon-value-backup.env && sudo nano /etc/nikon-value-backup.env
+sudo systemctl daemon-reload
+sudo systemctl enable --now nikon-value-backup.timer
+systemctl list-timers nikon-value-backup.timer
 ```
 
-`sqlite3` CLI 가 있다면 아래도 동등하다.
+구글 드라이브 인증(rclone)은 자격증명을 다루므로 운영자가 직접 해야 한다 —
+[backup-restore.md 6절](backup-restore.md#6-운영자가-직접-해야-하는-것-자동화하지-않았다).
+
+### 한 번만 손으로 뜨기
+
+```bash
+sudo -u nikon /opt/nikon-value/.venv/bin/python /opt/nikon-value/scripts/backup_db.py \
+  --db /var/lib/nikon-value/nikon_api.db \
+  --out /var/lib/nikon-value-backup --no-upload
+```
+
+`sqlite3` CLI 만으로도 동등한 스냅샷을 뜰 수 있다(검증·압축·업로드는 없다).
 
 ```bash
 sudo -u nikon sqlite3 /var/lib/nikon-value/nikon_api.db \
-  ".backup '/var/backups/nikon-value/nikon_api-$(date +%Y%m%d-%H%M%S).db'"
-```
-
-### 자동화 (systemd timer)
-
-`/etc/systemd/system/nikon-value-backup.service` 와 `.timer` 를 만든다. 위 파이썬 블록을
-`/opt/nikon-value/deploy/` 밖의 스크립트(예: `/usr/local/bin/nikon-value-backup`)로 저장하고:
-
-```ini
-# nikon-value-backup.service
-[Service]
-Type=oneshot
-User=nikon
-ExecStart=/usr/local/bin/nikon-value-backup
-
-# nikon-value-backup.timer
-[Timer]
-OnCalendar=daily
-Persistent=true
-[Install]
-WantedBy=timers.target
-```
-
-```bash
-sudo systemctl enable --now nikon-value-backup.timer
-sudo systemctl list-timers nikon-value-backup.timer
+  ".backup '/var/lib/nikon-value-backup/nikon_api-$(date -u +%Y%m%dT%H%M%SZ).db'"
 ```
 
 ### 지켜야 할 것
 
-- **보관 주기**: 최소 7일치. 오래된 파일 정리 —
-  `find /var/backups/nikon-value -name '*.db' -mtime +14 -delete`
-- **원격 사본**: 같은 SD카드에만 두면 카드가 죽을 때 백업도 같이 죽는다. 최소 한 벌은
-  다른 장비나 클라우드로 `rsync`/`rclone` 한다. **저장소에 커밋하지 말 것**(개인정보).
-- **복원 훈련**: 백업은 복원해 보기 전까지 백업이 아니다. 분기에 한 번:
-  ```bash
-  sqlite3 /var/backups/nikon-value/<최신>.db "PRAGMA integrity_check; SELECT COUNT(*) FROM users;"
-  ```
-- 권한: 백업 디렉터리도 `chmod 700`. 계정 정보가 들어 있다.
+- **원격 사본이 핵심이다.** 같은 SD카드에만 두면 카드가 죽을 때 백업도 같이 죽는다.
+  로컬 7일 / 원격 30일이 기본값이다. **백업 파일을 저장소에 커밋하지 말 것**(개인정보).
+- **복원 훈련**: 백업은 복원해 보기 전까지 백업이 아니다. 운영에 손대지 않고 따라 할 수
+  있는 명령 묶음이 [backup-restore.md 8절](backup-restore.md#8-복원-훈련-분기-1회-운영에-손대지-않는다)에 있다.
+- 권한: 백업 디렉터리는 0700, 파일은 0600. 계정 정보가 들어 있다.
 
-### 복원
+### 복원 (요약)
+
+전체 절차와 주의점은 [backup-restore.md 7절](backup-restore.md#7-복원)에 있다. 핵심만:
 
 ```bash
 sudo systemctl stop nikon-value-api
-sudo -u nikon cp /var/lib/nikon-value/nikon_api.db /var/lib/nikon-value/nikon_api.db.broken
-sudo rm -f /var/lib/nikon-value/nikon_api.db-wal /var/lib/nikon-value/nikon_api.db-shm
-sudo -u nikon cp /var/backups/nikon-value/<복원할파일>.db /var/lib/nikon-value/nikon_api.db
+BROKEN=/var/lib/nikon-value/broken-$(date -u +%Y%m%dT%H%M%SZ)
+sudo -u nikon mkdir -p "$BROKEN"
+# .db, -wal, -shm 셋을 한꺼번에 치운다. 이 한 줄이 가장 중요하다.
+sudo -u nikon mv /var/lib/nikon-value/nikon_api.db* "$BROKEN"/
+sudo install -o nikon -g nikon -m 600 <복원할파일>.db /var/lib/nikon-value/nikon_api.db
 sudo systemctl start nikon-value-api
 curl -s http://127.0.0.1:8000/health
 ```
 
-멈춘 상태에서는 `cp` 가 안전하다(위 경고는 "돌아가는 중 복사"에 대한 것이다).
-다만 `-wal`/`-shm` 잔재를 반드시 지워야 옛 WAL 이 새 DB 에 덧씌워지지 않는다.
+`-wal`/`-shm` 잔재를 남기면 옛 WAL 이 새 DB 위에 재생돼 복원한 내용이 조용히 틀어진다.
+`rm` 이 아니라 `mv` 인 이유는 되돌아갈 곳과 원인 분석 재료를 남기기 위해서다.
 
 ---
 
 ## 8. 업그레이드
 
 ```bash
-# 0) 먼저 백업 (7절)
-sudo -u nikon /opt/nikon-value/.venv/bin/python - <<'PY'
-... # 위 백업 블록
-PY
+# 0) 먼저 백업 (7절). 원격까지 올라간 것을 확인하고 넘어간다.
+sudo systemctl start nikon-value-backup.service
+journalctl -u nikon-value-backup -n 20 --no-pager
 
 # 1) 되돌릴 지점을 기록해 둔다
 cd /opt/nikon-value && git rev-parse --short HEAD | sudo -u nikon tee /var/lib/nikon-value/last-good-commit
@@ -411,7 +400,8 @@ DB 도 같이 되돌려야 한다.
 | 재시작이 반복되다 멈춤(`start-limit-hit`) | 설정 오류로 5분 내 5회 실패 | 원인 수정 후 `sudo systemctl reset-failed nikon-value-api && sudo systemctl start nikon-value-api` |
 | 바깥에서만 접속 불가, 안에서는 정상 | 동적 DNS 갱신 실패, 포트포워딩, 프록시/인증서 | `dig +short cantabile.tplinkdns.com` 과 현재 공인 IP 비교, 공유기 설정 확인 |
 | 텔레그램 알림만 안 옴 | `TELEGRAM_BOT_TOKEN` 미설정/폐기 | 서버는 정상이며 알림만 대기 상태다. [telegram-alerts.md](telegram-alerts.md) 참고 |
-| SD카드 불량으로 부팅 불가 | 하드웨어 | 새 카드에 OS 설치 → 1~4절 재실행 → 7절로 DB 복원. **원격 백업이 없으면 여기서 데이터가 끝난다** |
+| SD카드 불량으로 부팅 불가 | 하드웨어 | 새 카드에 OS 설치 → 1~4절 재실행 → [backup-restore.md 7-6절](backup-restore.md#7-6-sd카드가-통째로-죽었을-때)로 원격 백업에서 복원 |
+| 백업 유닛이 `failed` | rclone 인증 만료, 회선, 설정 오타 | `journalctl -u nikon-value-backup -n 50 --no-pager` 후 [backup-restore.md 9절](backup-restore.md#9-장애-대응) |
 
 일단 상태부터 보고 싶을 때:
 

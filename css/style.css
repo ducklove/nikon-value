@@ -746,10 +746,56 @@ select:focus-visible {
   color: var(--color-text-secondary);
 }
 
+/* 합산 추이 축 토글(지수 / 합산액). 버튼 자체는 제품 페이지 기간 선택기와 같은
+   .period-btn을 재사용해 두 화면의 토글이 따로 놀지 않게 한다. */
+.fav-dashboard__modes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  margin-top: 16px;
+}
+
 .fav-dashboard__chart {
   position: relative;
   height: 240px;
   margin-top: 16px;
+}
+
+/* 실선(구성 완전) / 점선(부분 합산) / 주황 점(구성이 바뀐 날) 키.
+   차트에서 선 모양이 바뀌는 이유를 글로 설명하는 자리다. */
+.fav-dashboard__legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 18px;
+  margin: 10px 0 0;
+  padding: 0;
+  list-style: none;
+  font-size: 0.76rem;
+  color: var(--color-text-secondary);
+}
+
+.fav-dashboard__legend-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.fav-dashboard__legend-mark {
+  display: inline-block;
+  width: 20px;
+  border-top: 2px solid var(--color-chart-line);
+}
+
+.fav-dashboard__legend-mark--dashed {
+  border-top-style: dashed;
+}
+
+.fav-dashboard__legend-mark--point {
+  width: 9px;
+  height: 9px;
+  border: 0;
+  border-radius: 50%;
+  background: #c08400;
 }
 
 .fav-dashboard__note {

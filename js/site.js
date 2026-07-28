@@ -134,10 +134,35 @@
     });
   }
 
+  // 관심 목록 대시보드의 합산 시계열.
+  //
+  // 예전 규칙과 왜 바꿨나
+  // ---------------------------------------------------------------------------
+  // 과거에는 "모든 제품이 값을 가진 날짜"만 남겼다(known === maps.length). 그래서
+  // 관심목록에 어제 추가된 신제품이 하나만 있어도 1년치 추이가 이틀로 잘렸다 —
+  // 가장 늦게 시작한 제품 하나가 전체 구간을 결정하는 구조였다.
+  //
+  // 그렇다고 "값이 하나라도 있으면 포함"으로만 바꾸면 더 나쁘다. 신규 제품의 첫
+  // 관측일에 합산액이 계단처럼 뛰어서, 시세가 오른 것과 목록이 늘어난 것을
+  // 구분할 수 없게 된다. 그래서 구간을 살리되 포인트마다 구성을 함께 내보낸다.
+  //
+  //   total  : 그날 값이 확보된 제품들의 forward-fill 합계 (절대액)
+  //   known  : total에 실제로 들어간 제품 수
+  //   missing: 아직 첫 관측이 오지 않아 total에서 빠진 제품 수
+  //   index  : 연쇄(chain-linked) 지수. 첫 포인트 = 100.
+  //
+  // index는 "그날과 그 전날 모두 값이 있던 제품들"의 변동률만 이어 붙인다. 새로
+  // 합류한 제품은 합류 당일의 변동률 계산에서 빠지므로 지수에는 계단이 생기지
+  // 않는다(주가지수의 제수 조정과 같은 방식). 즉 index는 "구성 변화를 걷어낸
+  // 시세 변동", total은 "그 시점 구성에서의 절대액"이고 둘의 의미가 다르다.
+  // 그 차이를 UI가 설명할 수 있도록 known/missing을 같이 돌려준다
+  // (문구 생성은 buildSummedSeriesNote 참고).
+  //
+  // forward-fill 때문에 known은 단조 증가한다 — 한 번 값이 잡힌 제품은 이후
+  // 날짜에서 다시 빠지지 않는다. 아래 소비자들(점선 구간 계산, 안내 문구)이 이
+  // 성질에 기대고 있다.
   function buildSummedSeries(histories) {
-    // 제품별 (날짜→중앙값) 맵을 만들고, forward-fill로 마지막 관측값을 유지하며
-    // 모든 제품의 값이 확보된 날짜부터 합산 시계열을 만든다.
-    var maps = histories.map(function (entries) {
+    var maps = (histories || []).map(function (entries) {
       var map = {};
       (entries || []).forEach(function (e) {
         if (e && e.median != null) map[e.date] = e.median;
@@ -150,6 +175,8 @@
     });
     var dates = Object.keys(dateSet).sort();
     var last = maps.map(function () { return null; });
+    var prev = null; // 직전 포인트의 forward-fill 스냅샷 (연쇄 지수 계산용)
+    var rawIndex = 100;
     var series = [];
     dates.forEach(function (date) {
       var known = 0;
@@ -158,9 +185,87 @@
         if (maps[i][date] != null) last[i] = maps[i][date];
         if (last[i] != null) { known++; sum += last[i]; }
       }
-      if (maps.length > 0 && known === maps.length) series.push({ date: date, total: sum });
+      // 아직 아무 제품도 시작하지 않은 날은 그릴 값이 없다.
+      if (known === 0) return;
+
+      if (prev !== null) {
+        // 양쪽 날짜에 모두 값이 있는 제품만으로 비율을 낸다. 오늘 처음 합류한
+        // 제품은 분자/분모 어디에도 들어가지 않으므로 지수가 튀지 않는다.
+        var base = 0;
+        var curr = 0;
+        for (var j = 0; j < maps.length; j++) {
+          if (prev[j] == null || last[j] == null) continue;
+          base += prev[j];
+          curr += last[j];
+        }
+        // base가 0이면(전부 median 0) 비율을 정의할 수 없어 직전 지수를 유지한다.
+        if (base > 0) rawIndex = rawIndex * (curr / base);
+      }
+
+      series.push({
+        date: date,
+        total: sum,
+        known: known,
+        missing: maps.length - known,
+        index: Math.round(rawIndex * 100) / 100,
+      });
+      prev = last.slice();
     });
     return series;
+  }
+
+  // buildSummedSeries 결과를 사용자에게 설명하는 안내 문구.
+  //
+  // 여기 있는 이유: 합산 절대액의 의미가 구간마다 달라진다는 사실을 정직하게
+  // 말하는 것이 이 대시보드의 핵심이라, 문구가 실제 데이터 상태와 어긋나지
+  // 않도록 순수 함수로 두고 테스트로 고정한다(buildExchangeNote와 같은 패턴).
+  // options.mode: 'indexed'(기본) | 'absolute' — 지금 화면에 보이는 축을 말한다.
+  function buildSummedSeriesNote(series, options) {
+    if (!series || !series.length) return '추이를 그릴 데이터가 아직 부족합니다.';
+
+    var indexed = (options || {}).mode !== 'absolute';
+    var first = series[0];
+    var last = series[series.length - 1];
+    var productCount = first.known + first.missing;
+    var changes = 0;
+    var fullFrom = null;
+    for (var i = 0; i < series.length; i++) {
+      if (i > 0 && series[i].known !== series[i - 1].known) changes += 1;
+      if (fullFrom === null && series[i].missing === 0) fullFrom = series[i].date;
+    }
+
+    var parts = [
+      '히스토리가 있는 ' + productCount + '개 제품의 중앙값 합산 추이입니다 (' +
+      first.date + ' ~ ' + last.date + ').',
+    ];
+
+    if (changes === 0 && first.missing === 0) {
+      parts.push('전 구간에서 ' + productCount + '개 모두 시세 기록이 있어 구성 변화가 없고, 합산액을 그대로 컬렉션 가치로 읽어도 됩니다.');
+      return parts.join(' ');
+    }
+
+    if (changes === 0) {
+      // 시세 기록이 아예 잡히지 않는 제품이 섞인 경우(중앙값이 전부 null 등).
+      parts.push('그중 ' + first.missing + '개는 시세 기록이 없어 전 구간에서 합산에 빠져 있습니다 — 표시된 금액은 ' + first.known + '개 기준입니다(전 구간 점선).');
+    } else {
+      parts.push(
+        '시세 기록이 늦게 시작한 제품이 있어 ' + first.date + '에는 ' + first.known +
+        '개만 합산되고 이후 ' + changes + '번에 걸쳐 ' + last.known + '개까지 늘어납니다. ' +
+        '제품이 합류하는 날(차트의 주황 점)마다 합산액이 계단처럼 뛰므로, 구성이 다른 구간의 금액끼리는 비교할 수 없습니다.'
+      );
+      parts.push(
+        fullFrom
+          ? '점선은 일부만 합산된 구간, 실선은 ' + fullFrom + '부터 ' + productCount + '개가 모두 반영된 구간입니다.'
+          : '아직 ' + last.missing + '개는 시세 기록이 없어 마지막 날도 ' + last.known + '개 기준입니다(전 구간 점선).'
+      );
+    }
+
+    parts.push(
+      indexed
+        ? '지금 보는 지수(첫날=100)는 그날 함께 관측된 제품들의 변동률만 이어 붙여 계산하므로 합류로 인한 점프가 없습니다. 절대 금액은 위 합산 카드와 각 점의 툴팁에서 볼 수 있습니다.'
+        : '지금 보는 합산액에는 이 계단이 그대로 들어 있습니다. 시세 변동만 보려면 지수(첫날=100) 보기로 바꾸세요.'
+    );
+    return parts.join(' ');
   }
 
   // URL 파라미터(?ids=a,b,c)는 신뢰할 수 없는 입력이다. 존재하지 않는 ID, 과다한
@@ -284,6 +389,7 @@
     filterByPeriod,
     movingAverage,
     buildSummedSeries,
+    buildSummedSeriesNote,
     parseCompareIds,
     buildCompareSeries,
   };

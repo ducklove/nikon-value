@@ -6,6 +6,7 @@ import logging
 import math
 import os
 import time
+from dataclasses import dataclass, replace
 
 import requests
 
@@ -36,6 +37,98 @@ def get_ebay_urls(sandbox: bool) -> tuple[str, str]:
     return EBAY_AUTH_URL_PROD, EBAY_BROWSE_URL_PROD
 
 
+@dataclass(frozen=True)
+class SearchConstraints:
+    """Browse API 검색을 좁히는 제약 묶음.
+
+    기본값이 곧 정규 수집의 조건이다. 진단 프로브는 :func:`dataclasses.replace`로
+    제약을 하나씩만 풀어 "어느 제약이 매물을 전부 걷어냈는지"를 가려낸다.
+    """
+
+    condition_ids: tuple[str, ...] = ("3000",)  # USED
+    price_window: bool = True
+    delivery_country: str | None = "KR"
+    buying_options: tuple[str, ...] = ("FIXED_PRICE",)
+    use_category: bool = True
+
+
+DEFAULT_SEARCH_CONSTRAINTS = SearchConstraints()
+# 모든 제약을 푼 상태. "q가 eBay 전체에서 뭐라도 잡는가"를 확인하는 데 쓴다.
+UNCONSTRAINED_SEARCH = SearchConstraints(
+    condition_ids=(),
+    price_window=False,
+    delivery_country=None,
+    buying_options=(),
+    use_category=False,
+)
+
+
+def relax(constraints: SearchConstraints, **changes) -> SearchConstraints:
+    """제약 하나를 바꾼 사본을 만듭니다(프로브 정의용 얇은 헬퍼)."""
+    return replace(constraints, **changes)
+
+
+def build_search_filter(
+    min_price: float,
+    max_price: float,
+    constraints: SearchConstraints = DEFAULT_SEARCH_CONSTRAINTS,
+) -> str:
+    """Browse API `filter` 파라미터 문자열을 만듭니다."""
+    parts = []
+    if constraints.condition_ids:
+        parts.append(f"conditionIds:{{{'|'.join(constraints.condition_ids)}}}")
+    if constraints.price_window:
+        parts.append(f"price:[{min_price}..{max_price}]")
+        parts.append("priceCurrency:USD")
+    if constraints.delivery_country:
+        parts.append(f"deliveryCountry:{constraints.delivery_country}")
+    if constraints.buying_options:
+        parts.append(f"buyingOptions:{{{'|'.join(constraints.buying_options)}}}")
+    return ",".join(parts)
+
+
+def build_search_params(
+    query: str,
+    category_id: str | None,
+    min_price: float,
+    max_price: float,
+    constraints: SearchConstraints = DEFAULT_SEARCH_CONSTRAINTS,
+    limit: int = 200,
+    offset: int = 0,
+) -> dict:
+    """Browse API 검색 쿼리 파라미터를 만듭니다.
+
+    정규 수집과 진단 프로브가 같은 함수를 쓰기 때문에, 프로브의 baseline은
+    정규 수집과 문자 그대로 동일한 요청이 된다(비교의 기준선이 흔들리지 않는다).
+    """
+    params = {
+        "q": query,
+        "sort": "price",
+        "limit": limit,
+        "offset": offset,
+        "fieldgroups": "MATCHING_ITEMS",
+    }
+    search_filter = build_search_filter(min_price, max_price, constraints)
+    if search_filter:
+        params["filter"] = search_filter
+    if category_id and constraints.use_category:
+        params["category_ids"] = category_id
+    return params
+
+
+def build_search_headers(token: str) -> dict:
+    """Browse API 요청 헤더를 만듭니다."""
+    headers = {
+        "Authorization": f"Bearer {token}",
+        "X-EBAY-C-MARKETPLACE-ID": "EBAY_US",
+    }
+    # eBay Partner Network 캠페인 ID가 설정된 경우에만 어필리에이트 컨텍스트를 보낸다.
+    epn_campaign_id = os.environ.get("EBAY_EPN_CAMPAIGN_ID")
+    if epn_campaign_id:
+        headers["X-EBAY-C-ENDUSERCTX"] = f"affiliateCampaignId={epn_campaign_id}"
+    return headers
+
+
 def get_access_token(client_id: str, client_secret: str, auth_url: str) -> str:
     """OAuth 2.0 client credentials grant로 액세스 토큰을 발급받습니다."""
     resp = requests.post(
@@ -59,14 +152,7 @@ def search_items(token: str, browse_url: str, query: str, category_id: str | Non
                  metrics: RunMetrics | None = None) -> list[dict]:
     """Browse API로 중고 매물을 검색합니다. 페이지네이션 처리."""
     run_metrics = resolve_metrics(metrics)
-    headers = {
-        "Authorization": f"Bearer {token}",
-        "X-EBAY-C-MARKETPLACE-ID": "EBAY_US",
-    }
-    # eBay Partner Network 캠페인 ID가 설정된 경우에만 어필리에이트 컨텍스트를 보낸다.
-    epn_campaign_id = os.environ.get("EBAY_EPN_CAMPAIGN_ID")
-    if epn_campaign_id:
-        headers["X-EBAY-C-ENDUSERCTX"] = f"affiliateCampaignId={epn_campaign_id}"
+    headers = build_search_headers(token)
 
     all_items = []
     offset = 0
@@ -74,23 +160,10 @@ def search_items(token: str, browse_url: str, query: str, category_id: str | Non
     rate_limit_retries = 0
 
     while True:
-        params = {
-            "q": query,
-            "filter": ",".join([
-                "conditionIds:{3000}",  # USED
-                f"price:[{min_price}..{max_price}]",
-                "priceCurrency:USD",
-                "deliveryCountry:KR",
-                "buyingOptions:{FIXED_PRICE}",
-            ]),
-            "sort": "price",
-            "limit": limit,
-            "offset": offset,
-            "fieldgroups": "MATCHING_ITEMS",
-        }
-
-        if category_id:
-            params["category_ids"] = category_id
+        params = build_search_params(
+            query, category_id, min_price, max_price,
+            limit=limit, offset=offset,
+        )
 
         resp = requests.get(
             browse_url,

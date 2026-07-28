@@ -8,11 +8,12 @@
 from __future__ import annotations
 
 import json
+import types
 
 import pytest
 import requests
 
-from nikon_value import fetch, storage
+from nikon_value import diagnostics, fetch, storage
 from nikon_value.metrics import RunMetrics
 
 CATALOG = {
@@ -72,7 +73,21 @@ def pipeline(tmp_path, monkeypatch):
     monkeypatch.setenv("EBAY_CLIENT_SECRET", "test-secret")
     monkeypatch.setattr("sys.argv", ["fetch_prices.py"])
 
-    calls: dict[str, list] = {"exchange": [], "metrics": [], "feedback": []}
+    # 진단 프로브 경로에서 실제 eBay 호출이 새어 나가면 즉시 실패시킨다.
+    def _no_network(*args, **kwargs):
+        raise AssertionError("테스트가 실제 eBay를 호출했다")
+
+    monkeypatch.setattr(diagnostics.requests, "get", _no_network)
+
+    calls: dict[str, list] = {"exchange": [], "metrics": [], "feedback": [], "diagnostics": []}
+    # 진단 프로브는 기본적으로 기록만 한다. 실제 프로브 동작은
+    # tests/test_diagnostics.py가 가짜 세션으로 따로 검증한다.
+    monkeypatch.setattr(
+        fetch, "diagnose_empty_products",
+        lambda token, browse_url, candidates, today, streaks, **kw: calls["diagnostics"].append(
+            {"ids": [p["id"] for p in candidates], "streaks": dict(streaks), "path": kw.get("path")}
+        ),
+    )
     monkeypatch.setattr(
         fetch, "append_exchange_rate",
         lambda rate, date: calls["exchange"].append((date, rate)) or True,
@@ -473,3 +488,172 @@ def test_reuse_existing_entry_falls_back_to_an_empty_entry(pipeline):
     assert empty["count"] == 0
     assert empty["samples"] == []
     assert "error" not in empty
+
+
+# --- 0건 제품 자동 진단 -------------------------------------------------
+
+
+def _empty_search(token, browse_url, product, expand_when_empty=True, metrics=None):
+    return [], product["max_price"]
+
+
+def _write_zero_streak(data_dir, product_id: str, runs: int) -> None:
+    history = [{"date": f"2026-07-{10 + i:02d}", "count": 0} for i in range(runs)]
+    (data_dir / "products" / f"{product_id}.json").write_text(
+        json.dumps(history), encoding="utf-8"
+    )
+
+
+def test_diagnostics_only_target_products_past_the_zero_result_streak(pipeline, monkeypatch):
+    calls, data_dir = pipeline
+    _write_zero_streak(data_dir, "nikon-z8", fetch.PROBE_MIN_ZERO_STREAK)
+    monkeypatch.setattr(fetch, "search_items_for_product", _empty_search)
+
+    fetch.main()
+
+    # 두 제품 모두 0건이지만 스트릭이 쌓인 제품만 프로브 후보가 된다.
+    assert calls["diagnostics"] == [
+        {
+            "ids": ["nikon-z8"],
+            "streaks": {"nikon-z8": fetch.PROBE_MIN_ZERO_STREAK + 1},
+            "path": data_dir / "empty-product-report.json",
+        }
+    ]
+
+
+def test_diagnostics_never_run_for_products_that_returned_listings(pipeline, monkeypatch):
+    calls, data_dir = pipeline
+    _write_zero_streak(data_dir, "nikon-z8", 10)
+    monkeypatch.setattr(fetch, "search_items_for_product", _fake_search({}))
+
+    fetch.main()
+
+    assert calls["diagnostics"] == []
+
+
+def test_diagnostics_skip_products_that_failed_with_an_error(pipeline, monkeypatch):
+    """실패한 제품은 원인이 예외로 이미 드러나 있으므로 프로브하지 않는다."""
+    calls, data_dir = pipeline
+    _write_zero_streak(data_dir, "nikon-z8", 10)
+    monkeypatch.setattr(fetch, "PRODUCT_FAILURE_RATE_THRESHOLD", 0.9)
+    monkeypatch.setattr(
+        fetch, "search_items_for_product",
+        _search_that_fails({"nikon-z8": requests.exceptions.ConnectionError("down")}),
+    )
+
+    fetch.main()
+
+    assert calls["diagnostics"] == []
+
+
+def test_the_no_diagnostics_flag_skips_probing_entirely(pipeline, monkeypatch):
+    calls, data_dir = pipeline
+    _write_zero_streak(data_dir, "nikon-z8", 10)
+    monkeypatch.setattr(fetch, "search_items_for_product", _empty_search)
+    monkeypatch.setattr("sys.argv", ["fetch_prices.py", "--no-diagnostics"])
+
+    fetch.main()
+
+    assert calls["diagnostics"] == []
+
+
+def test_a_broken_diagnostic_never_fails_the_collection(pipeline, monkeypatch):
+    calls, data_dir = pipeline
+    _write_zero_streak(data_dir, "nikon-z8", 10)
+    monkeypatch.setattr(fetch, "search_items_for_product", _empty_search)
+
+    def _boom(*args, **kwargs):
+        raise RuntimeError("probe exploded")
+
+    monkeypatch.setattr(fetch, "diagnose_empty_products", _boom)
+
+    fetch.main()
+
+    # 수집 결과는 그대로 저장되고 실행은 성공으로 끝난다.
+    catalog = json.loads((data_dir / "catalog.json").read_text(encoding="utf-8"))
+    assert len(catalog["categories"][0]["products"]) == 2
+    assert calls["metrics"][-1]["products_failed"] == 0
+
+
+def test_probes_do_not_leak_into_the_catalog_or_the_product_history(pipeline, monkeypatch):
+    """진단은 수집 결과를 한 글자도 바꾸지 않는다."""
+    calls, data_dir = pipeline
+    _write_zero_streak(data_dir, "nikon-z8", 10)
+    monkeypatch.setattr(fetch, "search_items_for_product", _empty_search)
+
+    def _probe_and_shout(token, browse_url, candidates, today, streaks, **kw):
+        calls["diagnostics"].append([p["id"] for p in candidates])
+        # 프로브가 매물을 찾아내도 그 결과는 리포트에만 남는다.
+        return {"products": {"nikon-z8": {"verdict": "constraint_suspects"}}}
+
+    monkeypatch.setattr(fetch, "diagnose_empty_products", _probe_and_shout)
+
+    fetch.main()
+
+    catalog = json.loads((data_dir / "catalog.json").read_text(encoding="utf-8"))
+    products = {p["id"]: p for p in catalog["categories"][0]["products"]}
+    assert products["nikon-z8"]["count"] == 0
+    assert products["nikon-z8"]["median"] is None
+
+    history = json.loads((data_dir / "products" / "nikon-z8.json").read_text(encoding="utf-8"))
+    assert history[-1]["count"] == 0
+    assert all(set(entry) <= {"date", *fetch.EMPTY_STATS} for entry in history)
+
+
+def test_probing_writes_only_to_the_report_under_the_run_data_dir(pipeline, monkeypatch):
+    """리포트는 DATA_DIR 안에만 쓴다(저장소의 실제 data/를 건드리지 않는다)."""
+    calls, data_dir = pipeline
+    _write_zero_streak(data_dir, "nikon-z8", 10)
+    monkeypatch.setattr(fetch, "search_items_for_product", _empty_search)
+    monkeypatch.setattr(fetch, "diagnose_empty_products", diagnostics.diagnose_empty_products)
+
+    class _Session:
+        def get(self, url, headers=None, params=None, timeout=None):
+            class _Resp:
+                status_code = 200
+
+                def raise_for_status(self):
+                    pass
+
+                def json(self):
+                    return {"total": 0, "itemSummaries": []}
+
+            return _Resp()
+
+    monkeypatch.setattr(diagnostics.requests, "get", _Session().get)
+
+    fetch.main()
+
+    report = json.loads((data_dir / "empty-product-report.json").read_text(encoding="utf-8"))
+    assert report["products"]["nikon-z8"]["verdict"] == "no_listings"
+    # 프로브 호출이 계측에 잡힌다.
+    assert calls["metrics"][-1]["ebay_diagnostic_probes"] == diagnostics.PROBE_COUNT
+
+
+def test_zero_streak_expansion_has_a_periodic_escape_hatch(monkeypatch):
+    """0건이 굳어도 주기적으로 확장을 재시도해 자력 회복 경로를 남긴다.
+
+    연속 0건이 임계값을 넘으면 빈 결과만으로는 확장하지 않는데(불필요한 호출 방지),
+    이것이 그대로 굳으면 시세가 max_price 위로 올라간 제품은 기본 검색이 영원히
+    0건이라 스스로 복구할 수 없다. ZERO_RESULT_RETRY_INTERVAL_DAYS 주기마다는
+    확장을 허용해야 한다.
+    """
+    seen = []
+
+    def fake_search(token, browse_url, product, *, expand_when_empty=True, metrics=None):
+        seen.append(expand_when_empty)
+        return [], float(product["max_price"])
+
+    monkeypatch.setattr(fetch, "search_items_for_product", fake_search)
+
+    product = {"id": "stuck-product", "query": "q", "category_id": "3323", "min_price": 1, "max_price": 100}
+    ctx = types.SimpleNamespace(token="t", browse_url="b", metrics=None)
+
+    for streak in (0, 2, 3, 6, 7, 13, 14):
+        monkeypatch.setattr(fetch, "zero_result_streak", lambda _pid, s=streak: s)
+        fetch.search_product_items(ctx, product)
+
+    interval = fetch.ZERO_RESULT_RETRY_INTERVAL_DAYS
+    assert interval > fetch.ZERO_RESULT_STREAK_THRESHOLD, "탈출 주기가 임계값보다 짧으면 건너뛰기가 무의미하다"
+    # streak 0·2는 임계값 미만이라 확장, 3·6은 건너뛰기, 7·14는 주기 재시도.
+    assert seen == [True, True, False, False, True, False, True]

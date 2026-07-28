@@ -15,6 +15,7 @@
   var escapeHtml = shared.escapeHtml;
   var formatUsd = shared.formatUsd;
   var buildSummedSeries = shared.buildSummedSeries;
+  var buildSummedSeriesNote = shared.buildSummedSeriesNote;
 
   // --- Token management ---
   function getToken() { return localStorage.getItem(TOKEN_KEY); }
@@ -599,7 +600,26 @@
   }
 
   // --- UI: Favorites value dashboard (관심 목록 탭 전용) ---
+  //
+  // 두 개의 축을 토글로 오간다.
+  //   'indexed'  : buildSummedSeries가 계산한 연쇄 지수(첫날=100). 기본값.
+  //                관심목록에 제품이 늦게 합류해도 값이 튀지 않는 축이다.
+  //   'absolute' : 합산 절대액(USD). "내 컬렉션 가치"를 보고 싶을 때.
+  //                합류 시점에 계단이 생기는 축이라 안내 문구가 그렇게 말한다.
+  // 용어("지수화 (첫날=100)")와 토글 버튼 스타일은 비교 페이지(js/compare.js)와
+  // 맞췄다 — 같은 개념을 두 화면에서 다르게 부르지 않기 위해서다.
   var dashboardChart = null;
+  var dashboardView = 'indexed';
+  var dashboardSeries = null;
+
+  // 구성이 바뀐 날(합산에 들어간 제품 수가 직전 포인트와 다른 날)의 인덱스.
+  function compositionChangeIndexes(series) {
+    var result = [];
+    for (var i = 1; i < series.length; i++) {
+      if (series[i].known !== series[i - 1].known) result.push(i);
+    }
+    return result;
+  }
 
   function getCardsData() {
     var node = document.getElementById('cards-data');
@@ -630,6 +650,12 @@
     if (panel) panel.hidden = true;
   }
 
+  function destroyDashboardChart() {
+    if (!dashboardChart) return;
+    dashboardChart.destroy();
+    dashboardChart = null;
+  }
+
   function buildDashStat(value, label) {
     var stat = document.createElement('div');
     stat.className = 'fav-dashboard__stat';
@@ -642,9 +668,81 @@
     return stat;
   }
 
+  // 보기 토글(지수 / 합산액). 데이터가 실제로 그려지기 전에는 숨겨 둔다.
+  function buildViewToggle() {
+    var modes = document.createElement('div');
+    modes.className = 'fav-dashboard__modes';
+    modes.id = 'fav-dashboard-modes';
+    modes.setAttribute('role', 'group');
+    modes.setAttribute('aria-label', '합산 추이 보기 방식');
+    modes.hidden = true;
+
+    [
+      { view: 'indexed', label: '지수화 (첫날=100)', title: '관심목록 구성이 바뀌어도 튀지 않는 축입니다. 그날 함께 관측된 제품들의 변동률만 이어 붙여 계산합니다.' },
+      { view: 'absolute', label: '합산액 (USD)', title: '중앙값을 그대로 더한 금액입니다. 제품이 합류하는 날 계단처럼 올라갑니다.' },
+    ].forEach(function (mode) {
+      var button = document.createElement('button');
+      button.type = 'button';
+      button.className = 'period-btn';
+      button.setAttribute('data-dashboard-view', mode.view);
+      button.title = mode.title;
+      button.textContent = mode.label;
+      button.addEventListener('click', function () {
+        if (dashboardView === mode.view) return;
+        dashboardView = mode.view;
+        applyDashboardView();
+      });
+      modes.appendChild(button);
+    });
+    return modes;
+  }
+
+  function syncViewButtons() {
+    document.querySelectorAll('[data-dashboard-view]').forEach(function (button) {
+      var active = button.getAttribute('data-dashboard-view') === dashboardView;
+      button.classList.toggle('active', active);
+      button.setAttribute('aria-pressed', active ? 'true' : 'false');
+    });
+  }
+
+  // 차트에서 실선/점선/주황 점이 각각 무슨 뜻인지 알려주는 키.
+  // 점선·주황 점은 실제로 그런 구간이 있을 때만 붙인다(없으면 노이즈다).
+  function renderDashboardLegend(series) {
+    var legend = document.getElementById('fav-dashboard-legend');
+    if (!legend) return;
+    legend.innerHTML = '';
+    legend.hidden = true;
+
+    var productCount = series.length ? series[0].known + series[0].missing : 0;
+    var partial = series.some(function (p) { return p.missing > 0; });
+    var complete = series.some(function (p) { return p.missing === 0; });
+    var changes = compositionChangeIndexes(series).length;
+    if (!partial) return;
+
+    function addItem(markClass, text) {
+      var li = document.createElement('li');
+      li.className = 'fav-dashboard__legend-item';
+      var mark = document.createElement('span');
+      mark.className = 'fav-dashboard__legend-mark ' + markClass;
+      mark.setAttribute('aria-hidden', 'true');
+      li.appendChild(mark);
+      li.appendChild(document.createTextNode(text));
+      legend.appendChild(li);
+    }
+
+    if (complete) {
+      addItem('fav-dashboard__legend-mark--solid', '관심 제품 ' + productCount + '개 전부 합산');
+    }
+    addItem('fav-dashboard__legend-mark--dashed', '일부만 합산 (나머지는 시세 기록 시작 전)');
+    if (changes) addItem('fav-dashboard__legend-mark--point', '합산 구성이 바뀐 날 ' + changes + '곳');
+    legend.hidden = false;
+  }
+
   function renderDashboard() {
     var panel = ensureDashboard();
     if (!panel) return;
+    destroyDashboardChart();
+    dashboardSeries = null;
     panel.hidden = false;
     panel.innerHTML = '';
     panel.setAttribute('data-fav-count', String(favoriteSet.size));
@@ -667,11 +765,17 @@
     wrap.appendChild(title);
     panel.appendChild(wrap);
 
+    // 절대액은 여기 그대로 남는다. 차트 기본 축을 지수로 바꿔도 "지금 내
+    // 컬렉션이 얼마짜리인가"는 사용자가 가장 보고 싶어 하는 숫자라서다.
     var stats = document.createElement('div');
     stats.className = 'fav-dashboard__stats';
+    stats.id = 'fav-dashboard-stats';
     stats.appendChild(buildDashStat(String(items.length) + '개', '관심 모델'));
     stats.appendChild(buildDashStat(formatUsd(total), '현재 중앙값 합산 (' + priced.length + '개 기준)'));
     panel.appendChild(stats);
+
+    panel.appendChild(buildViewToggle());
+    syncViewButtons();
 
     var chartWrap = document.createElement('div');
     chartWrap.className = 'fav-dashboard__chart';
@@ -679,6 +783,12 @@
     canvas.id = 'fav-dashboard-canvas';
     chartWrap.appendChild(canvas);
     panel.appendChild(chartWrap);
+
+    var legend = document.createElement('ul');
+    legend.className = 'fav-dashboard__legend';
+    legend.id = 'fav-dashboard-legend';
+    legend.hidden = true;
+    panel.appendChild(legend);
 
     var note = document.createElement('p');
     note.className = 'fav-dashboard__note';
@@ -702,37 +812,104 @@
     return window.nikonValueChartLoader.ensure();
   }
 
+  var COMPOSITION_MARK_COLOR = '#c08400'; // 제품 페이지 이동평균선과 같은 강조색
+
+  function formatIndex(value) {
+    return Number(value).toFixed(1);
+  }
+
   function renderTrendChart(series) {
     var canvas = document.getElementById('fav-dashboard-canvas');
     if (!canvas || !window.Chart) return;
-    if (dashboardChart) {
-      dashboardChart.destroy();
-      dashboardChart = null;
-    }
+    destroyDashboardChart();
+
+    var indexed = dashboardView === 'indexed';
+    var changeSet = {};
+    compositionChangeIndexes(series).forEach(function (i) { changeSet[i] = true; });
+    var basePointRadius = series.length < 60 ? 2 : 0;
+
     dashboardChart = new window.Chart(canvas.getContext('2d'), {
       type: 'line',
       data: {
         labels: series.map(function (p) { return p.date; }),
         datasets: [{
-          label: '합산 중앙값 (USD)',
-          data: series.map(function (p) { return Math.round(p.total); }),
+          label: indexed ? '합산 지수 (첫날=100)' : '합산 중앙값 (USD)',
+          data: series.map(function (p) { return indexed ? p.index : Math.round(p.total); }),
           borderColor: '#1d1d1f',
           backgroundColor: 'rgba(29, 29, 31, 0.08)',
-          fill: true,
+          // 지수는 변동률 축이라 0까지 칠하면 면적이 의미를 갖는 것처럼 보인다.
+          // 절대액일 때만 채운다(비교 페이지의 지수 보기와 같은 처리).
+          fill: !indexed,
           tension: 0.25,
-          pointRadius: series.length < 60 ? 2 : 0
+          // 구성이 바뀐 날은 눈에 띄게 찍어 "여기서 합산 대상이 달라졌다"를 알린다.
+          pointRadius: series.map(function (p, i) { return changeSet[i] ? 4 : basePointRadius; }),
+          pointHoverRadius: 5,
+          pointBackgroundColor: series.map(function (p, i) { return changeSet[i] ? COMPOSITION_MARK_COLOR : '#1d1d1f'; }),
+          pointBorderColor: series.map(function (p, i) { return changeSet[i] ? COMPOSITION_MARK_COLOR : '#1d1d1f'; }),
+          // 아직 일부 제품만 합산된 구간은 점선 — 같은 선이라도 뜻이 다르다.
+          // (Chart.js는 콜백이 undefined를 돌려주면 데이터셋 기본값을 쓴다)
+          segment: {
+            borderDash: function (ctx) {
+              var point = series[ctx.p1DataIndex];
+              return point && point.missing > 0 ? [5, 4] : undefined;
+            }
+          }
         }]
       },
       options: {
         responsive: true,
         maintainAspectRatio: false,
-        plugins: { legend: { display: false } },
+        interaction: { mode: 'index', intersect: false },
+        plugins: {
+          legend: { display: false },
+          tooltip: {
+            callbacks: {
+              label: function (item) {
+                var point = series[item.dataIndex];
+                if (!point) return null;
+                return indexed
+                  ? '지수 ' + formatIndex(point.index) + ' (첫날=100)'
+                  : '합산액 ' + formatUsd(point.total);
+              },
+              // 두 축을 항상 함께 보여 준다. 지수만 보면 "얼마짜리인가"를 알 수
+              // 없고, 절대액만 보면 그 금액이 몇 개짜리 합인지 알 수 없다.
+              afterBody: function (items) {
+                var point = series[items[0].dataIndex];
+                if (!point) return null;
+                var lines = [
+                  indexed
+                    ? '합산액 ' + formatUsd(point.total)
+                    : '지수 ' + formatIndex(point.index) + ' (첫날=100)'
+                ];
+                lines.push(point.missing
+                  ? '합산에 들어간 제품 ' + point.known + '개 (' + point.missing + '개는 시세 기록 시작 전)'
+                  : '합산에 들어간 제품 ' + point.known + '개 (전부 포함)');
+                return lines;
+              }
+            }
+          }
+        },
         scales: {
           x: { ticks: { maxTicksLimit: 8 } },
-          y: { ticks: { callback: function (v) { return '$' + Number(v).toLocaleString('en-US'); } } }
+          y: {
+            ticks: {
+              callback: function (v) {
+                return indexed ? formatIndex(v) : '$' + Number(v).toLocaleString('en-US');
+              }
+            }
+          }
         }
       }
     });
+  }
+
+  // 축 토글 시 다시 fetch하지 않고 이미 만든 시계열만 다시 그린다.
+  function applyDashboardView() {
+    syncViewButtons();
+    if (!dashboardSeries) return;
+    var note = document.getElementById('fav-dashboard-note');
+    if (note) note.textContent = buildSummedSeriesNote(dashboardSeries, { mode: dashboardView });
+    renderTrendChart(dashboardSeries);
   }
 
   function loadDashboardTrend(ids) {
@@ -753,11 +930,27 @@
           if (note) note.textContent = '차트 라이브러리를 불러오지 못했습니다.';
           return;
         }
-        if (note) {
-          note.textContent = '히스토리가 있는 ' + usable.length + '개 제품의 중앙값 합산 추이입니다. '
-            + '제품별 첫 관측 이후 구간만 합산에 포함됩니다.';
+        dashboardSeries = series;
+        var modes = document.getElementById('fav-dashboard-modes');
+        if (modes) modes.hidden = false;
+        // 구성 변화를 걷어낸 기간 변동률. 합산액 차이로는 구할 수 없는 값이라
+        // (중간에 제품이 늘어난 만큼이 섞인다) 지수 끝값에서 뽑는다.
+        var stats = document.getElementById('fav-dashboard-stats');
+        var change = series[series.length - 1].index - 100;
+        if (stats) {
+          // 관심 항목이 빠르게 바뀌면 이전 fetch가 늦게 도착할 수 있다.
+          // 칩이 두 개 붙지 않게 항상 마지막 결과로 교체한다.
+          var previousChange = document.getElementById('fav-dashboard-change');
+          if (previousChange) previousChange.remove();
+          var changeStat = buildDashStat(
+            (change > 0 ? '+' : '') + change.toFixed(1) + '%',
+            '첫날 대비 시세 변동 (구성 변화 보정)'
+          );
+          changeStat.id = 'fav-dashboard-change';
+          stats.appendChild(changeStat);
         }
-        renderTrendChart(series);
+        renderDashboardLegend(series);
+        applyDashboardView();
       });
     });
   }

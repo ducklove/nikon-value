@@ -40,6 +40,7 @@ class RunMetrics:
     ebay_search_calls: int = 0
     ebay_http_requests: int = 0
     ebay_rate_limited: int = 0
+    ebay_diagnostic_probes: int = 0
     llm_calls: int = 0
     llm_cache_hits: int = 0
     llm_cache_misses: int = 0
@@ -72,6 +73,10 @@ class RunMetrics:
     def record_rate_limited(self, count: int = 1) -> None:
         self.ebay_rate_limited += count
 
+    def record_diagnostic_probe(self, count: int = 1) -> None:
+        """0건 제품 진단 프로브 1건. HTTP 요청 수에도 함께 반영된다."""
+        self.ebay_diagnostic_probes += count
+
     def record_llm_call(self, count: int = 1) -> None:
         self.llm_calls += count
 
@@ -99,6 +104,7 @@ class RunMetrics:
             "ebay_search_calls": self.ebay_search_calls,
             "ebay_http_requests": self.ebay_http_requests,
             "ebay_rate_limited": self.ebay_rate_limited,
+            "ebay_diagnostic_probes": self.ebay_diagnostic_probes,
             "llm_calls": self.llm_calls,
             "llm_cache_hits": self.llm_cache_hits,
             "llm_cache_misses": self.llm_cache_misses,
@@ -113,6 +119,7 @@ class RunMetrics:
             f"({self.products_failed} failed), "
             f"{self.ebay_search_calls} eBay searches "
             f"({self.ebay_http_requests} HTTP requests, {self.ebay_rate_limited} rate limited), "
+            f"{self.ebay_diagnostic_probes} diagnostic probes, "
             f"{self.llm_calls} LLM calls "
             f"({self.llm_cache_hits} cache hits / {self.llm_cache_misses} misses), "
             f"{self.max_price_expansions} max-price expansions, {self.duration_seconds:.1f}s"

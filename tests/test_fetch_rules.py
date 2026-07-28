@@ -556,3 +556,97 @@ def test_explicitly_grouped_products_keep_their_own_generation_listings():
                     dropped.append((product["id"], sample["title"]))
 
     assert not dropped, f"명시 지정이 자기 세대 매물을 걸러낸다: {dropped}"
+
+
+# --- 검색 파라미터 구성 -------------------------------------------------------
+
+
+def test_build_search_filter_matches_the_production_constraint_set():
+    """리팩터링 전 하드코딩되어 있던 filter 문자열을 그대로 재현한다."""
+    assert ebay.build_search_filter(20, 150) == (
+        "conditionIds:{3000},"
+        "price:[20..150],"
+        "priceCurrency:USD,"
+        "deliveryCountry:KR,"
+        "buyingOptions:{FIXED_PRICE}"
+    )
+
+
+def test_relaxing_a_constraint_drops_only_that_clause():
+    relaxed = ebay.relax(ebay.DEFAULT_SEARCH_CONSTRAINTS, delivery_country=None)
+    search_filter = ebay.build_search_filter(20, 150, relaxed)
+
+    assert "deliveryCountry" not in search_filter
+    assert "conditionIds:{3000}" in search_filter
+    assert "price:[20..150]" in search_filter
+
+
+def test_an_unconstrained_search_produces_no_filter_and_no_category():
+    params = ebay.build_search_params(
+        "Nikon FE10", "3323", 20, 150, constraints=ebay.UNCONSTRAINED_SEARCH
+    )
+
+    assert "filter" not in params
+    assert "category_ids" not in params
+
+
+def test_search_params_omit_the_category_when_the_product_has_none():
+    params = ebay.build_search_params("Nikon FE10", None, 20, 150)
+    assert "category_ids" not in params
+
+
+# --- count == 0 의 의미 -------------------------------------------------------
+#
+# "count == 0 이면 eBay 검색이 0건" 추론이 코드에서 실제로 성립하는지 고정한다.
+# 규칙 필터·LLM 필터에는 "전부 걸러내면 원본 유지" 폴백이 있으므로, 비어 있지
+# 않은 입력이 비어 있는 출력이 되는 경로는 없어야 한다.
+
+
+def test_the_rule_filter_can_never_turn_a_non_empty_set_into_an_empty_one():
+    product = {"id": "nikon-fm2", "category_id": "3323"}
+    items = [{"title": "for parts"}, {"title": "broken"}, {"title": "empty box"}]
+
+    assert filter_items_with_rules(items, product)
+
+
+def test_the_llm_filter_can_never_turn_a_non_empty_set_into_an_empty_one(monkeypatch):
+    from nikon_value import llm
+
+    product = {"id": "nikon-fm2", "name_en": "Nikon FM2", "query": "Nikon FM2 body"}
+    items = [{"title": "Nikon FM2 body"}, {"title": "Nikon FM2n body"}]
+
+    class _Resp:
+        status_code = 200
+
+        def raise_for_status(self):
+            pass
+
+        def json(self):
+            return {"choices": [{"message": {"content": '{"indices": []}'}}]}
+
+    # LLM이 전부 탈락시켜도(폴백 1) 원본이 살아남는다.
+    monkeypatch.setattr(llm.requests, "post", lambda *a, **kw: _Resp())
+    assert llm.filter_items_with_llm(items, product, "key") is items
+
+    # 호출 자체가 실패해도(폴백 2) 원본이 살아남는다.
+    def _boom(*a, **kw):
+        raise ConnectionError("down")
+
+    monkeypatch.setattr(llm.requests, "post", _boom)
+    assert llm.filter_items_with_llm(items, product, "key") is items
+
+
+def test_the_only_way_a_non_empty_search_yields_count_zero_is_missing_prices():
+    """유일한 반례: 매물은 있는데 전부 가격이 없는 경우.
+
+    `buyingOptions:{FIXED_PRICE}` 필터가 걸려 있어 실무에서는 거의 나오지
+    않지만 코드상으로는 가능한 경로이므로, baseline 프로브가 이 경우를
+    "검색은 매물을 반환했다"로 구분해 준다.
+    """
+    from nikon_value.stats import compute_stats
+
+    priced = [{"title": "Nikon FM2", "price": {"value": "150.00"}}]
+    unpriced = [{"title": "Nikon FM2"}]
+
+    assert compute_stats(ebay.collect_prices(priced))["count"] == 1
+    assert compute_stats(ebay.collect_prices(unpriced))["count"] == 0
