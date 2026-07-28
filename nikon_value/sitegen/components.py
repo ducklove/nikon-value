@@ -9,6 +9,15 @@ from typing import Any
 
 from nikon_value.sitegen.data import is_lens_category
 from nikon_value.sitegen.format import render_money_span
+from nikon_value.sitegen.liquidity import (
+    GRADE_ABUNDANT,
+    GRADE_NORMAL,
+    GRADE_SCARCE,
+    GRADE_VERY_SCARCE,
+    LIQUIDITY_WINDOW_DAYS,
+    MIN_LIQUIDITY_POINTS,
+    POSITION_LABELS,
+)
 
 GA_MEASUREMENT_ID = 'G-823D75RRWJ'
 # js/auth.js가 meta[name="nikon-api-base"]를 읽어 API 서버 주소를 결정한다.
@@ -197,6 +206,9 @@ def head_block_product(*, title: str, description: str, canonical: str, image_ur
 def build_site_links(active: str, prefix: str = '') -> str:
     links = [
         ('home', f'{prefix}index.html', '시세 목록'),
+        # 비교 뷰는 모든 페이지에서 한 번에 닿아야 쓰인다. 카드마다 버튼을 다는 것보다
+        # 상시 노출 내비게이션 한 칸이 기존 UI를 덜 어지럽힌다.
+        ('compare', f'{prefix}compare.html', '모델 비교'),
         ('resources', f'{prefix}resources.html', '참고 링크'),
     ]
     items = []
@@ -440,6 +452,80 @@ def build_deal_radar(catalog: dict[str, Any]) -> str:
         <p class="deal-radar__summary">중앙값보다 20% 이상 저렴한 현재 매물입니다. 상태와 구성품을 반드시 확인하세요.</p>
       </div>
       <div class="deal-radar-grid">{''.join(cards)}</div>
+    </section>"""
+
+
+LIQUIDITY_GRADE_CLASS = {
+    GRADE_VERY_SCARCE: 'liquidity-grade--very-scarce',
+    GRADE_SCARCE: 'liquidity-grade--scarce',
+    GRADE_NORMAL: 'liquidity-grade--normal',
+    GRADE_ABUNDANT: 'liquidity-grade--abundant',
+}
+
+
+def _format_count(value: Any) -> str:
+    """매물 수 표기. 평균은 소수 1자리지만 정수면 정수로 보여 준다."""
+    number = float(value)
+    if number.is_integer():
+        return f'{int(number):,}개'
+    return f'{number:,.1f}개'
+
+
+def build_liquidity_section(liquidity: dict[str, Any] | None) -> str:
+    """제품 페이지 유동성 섹션.
+
+    표본이 부족하면(compute_liquidity가 None) 숫자를 지어내지 않고 왜 비었는지만
+    적는다 — is_at_yearly_low()가 30일 미만에서 '최저'를 주장하지 않는 것과 같은
+    규율이다.
+    """
+    if not liquidity:
+        return f"""
+    <section class=\"liquidity-section\" aria-labelledby=\"liquidity-title\">
+      <div class=\"section-header-row\">
+        <div>
+          <span class=\"section-kicker\">Listing liquidity</span>
+          <h2 id=\"liquidity-title\" class=\"section-heading\">유동성</h2>
+        </div>
+      </div>
+      <p class=\"detail-note\">최근 {LIQUIDITY_WINDOW_DAYS}일 관측일이 {MIN_LIQUIDITY_POINTS}일 미만이라 유동성 지표를 계산하지 않았습니다.</p>
+    </section>"""
+
+    grade = liquidity['grade']
+    grade_class = LIQUIDITY_GRADE_CLASS.get(grade, LIQUIDITY_GRADE_CLASS[GRADE_NORMAL])
+    zero_pct = round(liquidity['zero_ratio'] * 100)
+    position_label = POSITION_LABELS.get(liquidity['position'] or '', '-')
+
+    stats = [
+        (f'{liquidity["window_days"]}일 평균 매물', _format_count(liquidity['avg_count'])),
+        ('매물 0건인 날', f'{liquidity["zero_days"]}일 ({zero_pct}%)'),
+        ('최장 연속 0건', f'{liquidity["max_zero_streak"]}일'),
+        ('현재 매물 위치', position_label),
+    ]
+    stat_html = '\n'.join(
+        f"""        <div class=\"liquidity-stat\">\n          <span class=\"price-label\">{escape(label)}</span>\n          <span class=\"price-value price-value--small\">{escape(value)}</span>\n        </div>"""
+        for label, value in stats
+    )
+
+    note = (
+        f'{escape(liquidity["first_date"])} ~ {escape(liquidity["last_date"])} 사이 '
+        f'{liquidity["days"]}일을 관측한 결과입니다. 현재 매물 {liquidity["current"]}개, '
+        f'기간 중앙값 {escape(_format_count(liquidity["median_count"]))} '
+        f'(최소 {liquidity["min_count"]}개 · 최대 {liquidity["max_count"]}개).'
+    )
+
+    return f"""
+    <section class=\"liquidity-section\" aria-labelledby=\"liquidity-title\">
+      <div class=\"section-header-row\">
+        <div>
+          <span class=\"section-kicker\">Listing liquidity</span>
+          <h2 id=\"liquidity-title\" class=\"section-heading\">유동성</h2>
+        </div>
+        <span class=\"liquidity-grade {grade_class}\"><span class=\"visually-hidden\">유동성 등급 </span>{escape(grade)}</span>
+      </div>
+      <div class=\"liquidity-grid\">
+{stat_html}
+      </div>
+      <p class=\"detail-note\">{note}</p>
     </section>"""
 
 

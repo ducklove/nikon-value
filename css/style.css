@@ -1787,3 +1787,261 @@ select:focus-visible {
   border-color: #e74c3c;
   color: #e74c3c;
 }
+
+/* === Liquidity (F-7) === */
+/* 유동성 지표. 희소 신호는 카드에서만 조건부로 노출하고(전체의 약 11%),
+   제품 페이지에는 항상 전체 섹션을 둔다. */
+.product-card__liquidity {
+  flex-shrink: 0;
+  padding: 1px 7px;
+  border-radius: 10px;
+  border: 1px solid #d9b8b8;
+  background: #fdf3f3;
+  color: #9c3b3b;
+  font-size: 0.7rem;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.liquidity-section {
+  background: var(--color-surface);
+  border-radius: var(--radius);
+  padding: 24px;
+  margin-bottom: 24px;
+  box-shadow: var(--shadow);
+}
+
+.liquidity-grade {
+  align-self: center;
+  padding: 4px 12px;
+  border-radius: 20px;
+  border: 1px solid var(--color-border);
+  font-size: 0.8rem;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.liquidity-grade--very-scarce {
+  border-color: #d9b8b8;
+  background: #fdf3f3;
+  color: #9c3b3b;
+}
+
+.liquidity-grade--scarce {
+  border-color: #e0cda4;
+  background: #fdf8ec;
+  color: #8a6400;
+}
+
+.liquidity-grade--normal {
+  color: var(--color-text-secondary);
+}
+
+.liquidity-grade--abundant {
+  border-color: #b8d9c4;
+  background: #f2faf5;
+  color: #1f7a45;
+}
+
+.liquidity-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+  margin: 16px 0 12px;
+}
+
+.liquidity-stat {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 12px 14px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+}
+
+/* === Compare view (F-4) === */
+.compare-cta {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--color-text-secondary);
+  text-decoration: none;
+  border-bottom: 1px dashed var(--color-border);
+}
+
+.compare-cta:hover {
+  color: var(--color-text);
+  border-bottom-color: var(--color-text);
+}
+
+.compare-picker {
+  background: var(--color-surface);
+  border-radius: var(--radius);
+  padding: 24px;
+  margin: 24px 0;
+  box-shadow: var(--shadow);
+}
+
+.compare-search {
+  position: relative;
+  margin-top: 16px;
+}
+
+.compare-search .search-input {
+  width: 100%;
+}
+
+.compare-suggestions {
+  position: absolute;
+  z-index: 5;
+  top: calc(100% + 4px);
+  left: 0;
+  right: 0;
+  max-height: 320px;
+  overflow-y: auto;
+  list-style: none;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  box-shadow: var(--shadow-hover);
+}
+
+.compare-suggestion__button {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  width: 100%;
+  padding: 10px 14px;
+  border: none;
+  background: none;
+  text-align: left;
+  cursor: pointer;
+  font-family: var(--font);
+  font-size: 0.85rem;
+  color: var(--color-text);
+}
+
+.compare-suggestion__button:hover {
+  background: var(--color-bg);
+}
+
+.compare-suggestion__button span {
+  font-size: 0.75rem;
+  color: var(--color-text-secondary);
+}
+
+.compare-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  list-style: none;
+  margin-top: 16px;
+}
+
+.compare-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 6px 4px 10px;
+  border: 1px solid var(--color-border);
+  border-radius: 20px;
+  font-size: 0.8rem;
+}
+
+.compare-chip__swatch,
+.compare-legend__swatch {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--chip-color, var(--color-text));
+}
+
+.compare-chip__name {
+  color: var(--color-text);
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.compare-chip__name:hover {
+  text-decoration: underline;
+}
+
+.compare-chip__remove {
+  width: 20px;
+  height: 20px;
+  padding: 0;
+  border: none;
+  border-radius: 50%;
+  background: var(--color-bg);
+  color: var(--color-text-secondary);
+  font-size: 0.9rem;
+  line-height: 1;
+  cursor: pointer;
+  font-family: var(--font);
+}
+
+.compare-chip__remove:hover {
+  background: var(--color-negative);
+  color: #fff;
+}
+
+.compare-modes {
+  display: flex;
+  gap: 4px;
+  flex-wrap: wrap;
+}
+
+.compare-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin-top: 14px;
+  font-size: 0.8rem;
+  color: var(--color-text-secondary);
+}
+
+.compare-legend__item {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.compare-legend__item b {
+  color: var(--color-text);
+}
+
+.compare-table-section {
+  background: var(--color-surface);
+  border-radius: var(--radius);
+  padding: 24px;
+  margin-bottom: 24px;
+  box-shadow: var(--shadow);
+}
+
+.compare-table-wrap {
+  overflow-x: auto;
+  margin-top: 16px;
+}
+
+.compare-table {
+  width: 100%;
+}
+
+.compare-table a {
+  color: var(--color-text);
+}
+
+.compare-table__up { color: var(--color-negative); }
+.compare-table__down { color: var(--color-positive); }
+
+@media (max-width: 720px) {
+  .liquidity-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  /* 좁은 화면에서 제목과 통화 토글이 나란히 붙으면 제목이 두 줄로 쪼개진다. */
+  .compare-picker .section-header-row {
+    flex-wrap: wrap;
+    align-items: flex-start;
+  }
+}

@@ -423,10 +423,28 @@ def test_main_writes_every_document_of_the_artifact(tmp_path: Path) -> None:
         data_dir=_make_data_dir(tmp_path),
     )
 
-    for name in ('index.html', 'resources.html', '404.html', 'robots.txt', 'sitemap.xml'):
+    for name in ('index.html', 'compare.html', 'resources.html', '404.html', 'robots.txt', 'sitemap.xml'):
         assert (output / name).is_file(), f'{name}이 생성되지 않았다'
     assert (output / 'products' / 'nikon-fm2.html').is_file()
     assert BASE_URL in (output / 'sitemap.xml').read_text(encoding='utf-8')
+
+
+@pytest.mark.usefixtures('fixture_catalog_loaders')
+def test_main_keeps_the_compare_page_out_of_the_sitemap(tmp_path: Path) -> None:
+    """?ids= 조합이 무한하므로 비교 페이지는 색인 대상이 아니다."""
+    source_root = _make_source_root(tmp_path)
+    output = tmp_path / 'dist'
+
+    build.main(
+        ['--output', str(output), '--base-url', BASE_URL],
+        project_root=source_root,
+        data_dir=_make_data_dir(tmp_path),
+    )
+
+    assert 'compare.html' not in (output / 'sitemap.xml').read_text(encoding='utf-8')
+    assert '<meta name="robots" content="noindex, follow">' in (output / 'compare.html').read_text(encoding='utf-8')
+    # robots.txt로 막지는 않는다 — 막으면 크롤러가 noindex를 볼 수 없다.
+    assert 'Disallow' not in (output / 'robots.txt').read_text(encoding='utf-8')
 
 
 @pytest.mark.usefixtures('fixture_catalog_loaders')

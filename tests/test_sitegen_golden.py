@@ -41,6 +41,9 @@ GOLDEN_FILES = (
     'home.html',
     'product-nikon-z9.html',
     'product-nikon-z5.html',
+    # 비교 페이지는 noindex 메타·비교 대상 JSON 페이로드·스크립트 로드 순서를
+    # 한꺼번에 고정해야 하는 문서라 골든으로 관리한다.
+    'compare.html',
     'resources.html',
     '404.html',
     'sitemap.xml',
@@ -165,6 +168,7 @@ def _render_all() -> dict[str, str]:
     products = {product['id']: product for product in category['products']}
     rendered = {
         'home.html': pages.build_home_page(catalog, BASE_URL, histories),
+        'compare.html': pages.build_compare_page(catalog, BASE_URL),
         'resources.html': pages.build_resources_page(BASE_URL),
         '404.html': pages.build_404_page(BASE_URL),
         'sitemap.xml': pages.build_sitemap(catalog, BASE_URL),

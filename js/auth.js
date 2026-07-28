@@ -599,7 +599,6 @@
   }
 
   // --- UI: Favorites value dashboard (관심 목록 탭 전용) ---
-  var CHART_CDN = 'https://cdn.jsdelivr.net/npm/chart.js@4/dist/chart.umd.min.js';
   var dashboardChart = null;
 
   function getCardsData() {
@@ -696,15 +695,11 @@
       .catch(function () { return null; });
   }
 
+  // Chart.js 온디맨드 로더는 js/site.js가 window.nikonValueChartLoader로 공개한다
+  // (비교 페이지와 같은 구현 하나만 쓰기 위해 옮겼다). site.js → auth.js 로드
+  // 순서는 nikon_value/sitegen/pages.py가 소유하므로 여기서는 항상 준비돼 있다.
   function ensureChartJs() {
-    if (window.Chart) return Promise.resolve(true);
-    return new Promise(function (resolve) {
-      var script = document.createElement('script');
-      script.src = CHART_CDN;
-      script.onload = function () { resolve(true); };
-      script.onerror = function () { resolve(false); };
-      document.head.appendChild(script);
-    });
+    return window.nikonValueChartLoader.ensure();
   }
 
   function renderTrendChart(series) {

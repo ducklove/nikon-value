@@ -12,6 +12,7 @@ from nikon_value.sitegen.components import (
     build_footer,
     build_hero_manual_hotspots,
     build_lens_visual_index,
+    build_liquidity_section,
     build_product_reference_cards,
     build_site_links,
     head_block,
@@ -34,6 +35,11 @@ from nikon_value.sitegen.format import (
     json_script,
     render_money_range,
     render_money_span,
+)
+from nikon_value.sitegen.liquidity import (
+    LIQUIDITY_WINDOW_DAYS,
+    build_card_scarcity,
+    compute_liquidity,
 )
 
 # 제품 페이지에 인라인으로 싣는 히스토리 포인트 수.
@@ -129,6 +135,9 @@ def build_home_page(catalog: dict[str, Any], base_url: str, histories: dict[str,
                 'rarity_note': product.get('rarity_note'),
                 'delta_pct': None,
                 'at_low': False,
+                # 희소 신호가 있을 때만 채운다. 295개 카드에 '풍부'를 붙이는 건
+                # 정보가 아니라 노이즈다(nikon_value/sitegen/liquidity.py 주석 참고).
+                'scarcity': None,
             })
             if histories:
                 history = histories.get(product['id'], [])
@@ -136,6 +145,7 @@ def build_home_page(catalog: dict[str, Any], base_url: str, histories: dict[str,
                 if change:
                     cards_data[-1]['delta_pct'] = round(change['delta_pct'], 1)
                 cards_data[-1]['at_low'] = is_at_yearly_low(history)
+                cards_data[-1]['scarcity'] = build_card_scarcity(compute_liquidity(history))
 
     tabs.append('<button class="category-tab" type="button" data-category-id="favorites" id="favorites-tab" hidden>관심 목록</button>')
 
@@ -254,6 +264,7 @@ def build_product_page(
     canonical = f"{base_url}/products/{product['id']}.html" if base_url else ''
     image_url = product_image(product, base_url)
     recent_change = compute_price_change(history, 30)
+    liquidity = compute_liquidity(history)
     schema = render_product_offer_schema(product)
     extra_meta = f"  <script type=\"application/ld+json\">{json_script(schema)}</script>\n"
     subcategory_lookup = {
@@ -311,6 +322,9 @@ def build_product_page(
     #   3) 두 데이터의 스키마는 동일하다 — 인라인은 전체 히스토리의 꼬리 구간이다.
     inline_history = history[-INLINE_HISTORY_POINTS:]
     history_url = f"../data/products/{product['id']}.json"
+    # 비교 뷰 진입 동선: 지금 보고 있는 모델을 담은 채로 비교 페이지를 연다.
+    # 비교 페이지에서 나머지 모델을 검색으로 추가하는 흐름이라 여기서는 1개만 넘긴다.
+    compare_href = f"../compare.html?ids={product['id']}"
 
     history_rows = []
     for entry in reversed(inline_history):
@@ -377,10 +391,12 @@ def build_product_page(
     {rare_note_html}
 
     <p class=\"detail-note\">시세는 eBay 미국 현재 매물 기준이며, 실제 체결가와는 차이가 있을 수 있습니다. {movement_note}</p>
+{build_liquidity_section(liquidity)}
 
     <section class=\"chart-section\">
       <div class=\"chart-header\">
         <h2>시세 추이</h2>
+        <a class=\"compare-cta\" href=\"{escape(compare_href)}\">다른 모델과 비교 &rarr;</a>
         <div class=\"period-selector\">
           <button class=\"period-btn\" type=\"button\" data-period=\"30\">1개월</button>
           <button class=\"period-btn\" type=\"button\" data-period=\"90\">3개월</button>
@@ -423,6 +439,126 @@ def build_product_page(
   <script src=\"https://cdn.jsdelivr.net/npm/chart.js@4/dist/chart.umd.min.js\" defer></script>
   <script src=\"../js/site.js\" defer></script>
   <script src=\"../js/auth.js\" defer></script>
+</body>
+</html>
+"""
+
+
+# 한 차트에 겹칠 수 있는 최대 제품 수. URL 파라미터는 신뢰할 수 없는 입력이므로
+# 파이썬(문구)과 js/compare.js(실제 절단)가 같은 값을 쓴다.
+COMPARE_MAX_PRODUCTS = 5
+
+
+def build_compare_page(catalog: dict[str, Any], base_url: str) -> str:
+    """모델 비교 페이지.
+
+    색인 정책
+    --------------------------------------------------------------------------
+    ?ids= 조합은 사실상 무한이라 sitemap에는 넣지 않는다. robots.txt로 막지는
+    않는데, Disallow하면 크롤러가 페이지를 열지 못해 아래 noindex 메타를 볼 수
+    없어 오히려 URL이 색인에 남을 수 있기 때문이다. 대신 noindex, follow로
+    "색인하지 말고 링크는 따라가라"를 명시하고, canonical은 파라미터 없는
+    compare.html로 고정한다.
+    """
+    canonical = f'{base_url}/compare.html' if base_url else ''
+    image_url = f'{base_url}/assets/mynikons-1600.webp' if base_url else 'assets/mynikons-1600.webp'
+    description = '니콘 중고 시세를 모델별로 겹쳐 비교합니다. 최대 5개 모델의 중앙값·매물 수 추이를 한 차트에서 볼 수 있습니다.'
+    exchange_rate = catalog.get('exchange_rate')
+
+    # 비교 대상 선택기와 ID 검증에 쓰는 목록. 썸네일·샘플은 빼서 페이로드를 줄인다.
+    compare_products = []
+    for category in catalog['categories']:
+        for product in sort_products(category['products'], category['id']):
+            compare_products.append({
+                'id': product['id'],
+                'name_ko': product['name_ko'],
+                'name_en': product['name_en'],
+                'category_id': category['id'],
+                'category_label': category['name_ko'],
+                'median': product.get('median'),
+                'count': product.get('count') or 0,
+            })
+
+    extra_meta = '  <meta name="robots" content="noindex, follow">\n'
+
+    return f"""<!DOCTYPE html>
+<html lang=\"ko\">
+{head_block(title='모델 비교 - 니콘 중고 시세 트래커', description=description, canonical=canonical, image_url=image_url, extra_meta=extra_meta)}
+<body data-page=\"compare\" data-compare-max=\"{COMPARE_MAX_PRODUCTS}\">
+  <header class=\"site-header\">
+    <div class=\"container\">
+      <a href=\"index.html\" class=\"back-link\">&larr; 전체 목록</a>
+      <h1 class=\"product-title\">모델 비교</h1>
+      <p class=\"product-subtitle\">최대 {COMPARE_MAX_PRODUCTS}개 모델의 시세 추이를 한 차트에 겹쳐 봅니다.</p>
+    </div>
+  </header>
+  {build_site_links('compare')}
+
+  <main class=\"container\">
+    <section class=\"compare-picker\" aria-labelledby=\"compare-picker-title\">
+      <div class=\"section-header-row\">
+        <div>
+          <span class=\"section-kicker\">Pick models</span>
+          <h2 id=\"compare-picker-title\" class=\"section-heading\">비교할 모델</h2>
+        </div>
+        {build_currency_toggle(exchange_rate, compact=True)}
+      </div>
+      <div class=\"compare-search\">
+        <label class=\"visually-hidden\" for=\"compare-search-input\">비교할 모델 검색</label>
+        <input class=\"search-input\" id=\"compare-search-input\" type=\"search\" role=\"combobox\" aria-expanded=\"false\" aria-autocomplete=\"list\" aria-controls=\"compare-suggestions\" autocomplete=\"off\" placeholder=\"모델명을 입력해 추가 (예: Z8, 50mm)\">
+        <ul class=\"compare-suggestions\" id=\"compare-suggestions\" role=\"listbox\" aria-label=\"검색 결과\" hidden></ul>
+      </div>
+      <ul class=\"compare-chips\" id=\"compare-chips\" aria-label=\"선택한 모델\"></ul>
+      <p class=\"detail-note\" id=\"compare-status\" role=\"status\"></p>
+    </section>
+
+    <section class=\"chart-section\" aria-labelledby=\"compare-chart-title\">
+      <div class=\"chart-header\">
+        <h2 id=\"compare-chart-title\">시세 추이 비교</h2>
+        <div class=\"period-selector\" id=\"compare-periods\">
+          <button class=\"period-btn\" type=\"button\" data-period=\"30\">1개월</button>
+          <button class=\"period-btn\" type=\"button\" data-period=\"90\">3개월</button>
+          <button class=\"period-btn active\" type=\"button\" data-period=\"180\">6개월</button>
+          <button class=\"period-btn\" type=\"button\" data-period=\"365\">1년</button>
+          <button class=\"period-btn\" type=\"button\" data-period=\"0\">전체</button>
+        </div>
+        <div class=\"compare-modes\" role=\"group\" aria-label=\"비교 지표 선택\">
+          <button class=\"period-btn active\" type=\"button\" data-metric=\"median\">중앙값</button>
+          <button class=\"period-btn\" type=\"button\" data-metric=\"count\">매물 수</button>
+          <button class=\"ma-toggle\" type=\"button\" id=\"compare-indexed\" aria-pressed=\"false\" title=\"각 모델의 첫 관측값을 100으로 맞춰 변동률만 비교합니다\">지수화 (첫날=100)</button>
+        </div>
+      </div>
+      <div class=\"chart-container\">
+        <canvas id=\"compare-chart\"></canvas>
+        <p class=\"chart-empty\" id=\"compare-chart-empty\">비교할 모델을 2개 이상 추가하세요.</p>
+      </div>
+      <div class=\"compare-legend\" id=\"compare-legend\"></div>
+    </section>
+
+    <section class=\"compare-table-section\" aria-labelledby=\"compare-table-title\">
+      <div class=\"section-header-row\">
+        <div>
+          <span class=\"section-kicker\">Side by side</span>
+          <h2 id=\"compare-table-title\" class=\"section-heading\">현재 시세 비교</h2>
+        </div>
+      </div>
+      <div class=\"compare-table-wrap\">
+        <table class=\"history-table compare-table\" id=\"compare-table\">
+          <thead>
+            <tr><th>모델</th><th>중앙값</th><th>현재 매물</th><th>{LIQUIDITY_WINDOW_DAYS}일 평균 매물</th><th>기간 변동</th></tr>
+          </thead>
+          <tbody id=\"compare-table-body\"></tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+{build_footer()}
+
+  <script id=\"exchange-rate-data\" type=\"application/json\">{json_script(exchange_rate or {})}</script>
+  <script id=\"compare-products\" type=\"application/json\">{json_script(compare_products)}</script>
+  <script src=\"js/site.js\" defer></script>
+  <script src=\"js/auth.js\" defer></script>
+  <script src=\"js/compare.js\" defer></script>
 </body>
 </html>
 """

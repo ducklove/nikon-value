@@ -27,5 +27,9 @@
 //
 // 내보내는 함수: escapeHtml, getExchangeRate, normalizeCurrency, formatMoney,
 // formatUsd, buildExchangeNote, formatRarePriceHint, filterByPeriod,
-// movingAverage, buildSummedSeries
+// movingAverage, buildSummedSeries, parseCompareIds, buildCompareSeries
+//
+// 참고: site.js는 순수 함수가 아닌 배선도 노출하지만(window.nikonValueCurrency,
+// window.nikonValueChartLoader) 그건 DOM이 필요한 코드라 이 모듈에는 들어오지
+// 않는다. 여기 있는 것은 전부 Node에서 그대로 테스트 가능한 순수 함수다.
 module.exports = require('../site.js');

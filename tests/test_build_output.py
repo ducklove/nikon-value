@@ -106,6 +106,57 @@ def test_robots_points_to_sitemap(site_dir: Path) -> None:
     assert f'Sitemap: {BASE_URL}/sitemap.xml' in robots
 
 
+def test_compare_page_payload_covers_every_config_product(site_dir: Path, config_product_ids: list[str]) -> None:
+    """비교 페이지는 이 목록으로만 ?ids= 를 검증한다 — 빠진 제품은 비교할 수 없다."""
+    html = (site_dir / 'compare.html').read_text(encoding='utf-8')
+    products = _script_json(html, 'compare-products')
+
+    ids = [entry['id'] for entry in products]
+    assert sorted(ids) == sorted(config_product_ids)
+    assert len(ids) == len(set(ids)), 'duplicate product ids in compare-products'
+    for entry in products:
+        assert entry.keys() == {'id', 'name_ko', 'name_en', 'category_id', 'category_label', 'median', 'count'}
+
+
+def test_compare_page_is_excluded_from_indexing(site_dir: Path) -> None:
+    """?ids= 조합은 무한하므로 색인 대상이 아니다. 다만 크롤링 자체를 막으면
+    noindex를 볼 수 없으므로 robots.txt는 건드리지 않는다."""
+    html = (site_dir / 'compare.html').read_text(encoding='utf-8')
+
+    assert '<meta name="robots" content="noindex, follow">' in html
+    assert f'<link rel="canonical" href="{BASE_URL}/compare.html">' in html
+    assert 'compare.html' not in (site_dir / 'sitemap.xml').read_text(encoding='utf-8')
+    assert 'Disallow' not in (site_dir / 'robots.txt').read_text(encoding='utf-8')
+
+
+def test_compare_entry_points_exist_on_home_and_product_pages(
+    site_dir: Path, config_product_ids: list[str]
+) -> None:
+    """진입 동선이 없으면 비교 뷰는 아무도 못 쓴다."""
+    home = (site_dir / 'index.html').read_text(encoding='utf-8')
+    assert '<a class="site-link" href="compare.html">모델 비교</a>' in home
+
+    product_id = config_product_ids[0]
+    product = (site_dir / 'products' / f'{product_id}.html').read_text(encoding='utf-8')
+    assert '<a class="site-link" href="../compare.html">모델 비교</a>' in product
+    # 제품 페이지 CTA는 지금 보고 있는 모델을 담은 채로 비교 페이지를 연다.
+    assert f'href="../compare.html?ids={product_id}"' in product
+
+
+def test_product_pages_render_a_liquidity_section(site_dir: Path, config_product_ids: list[str]) -> None:
+    """count 시계열이 실제로 화면에 나오는지 — 표본이 충분한 제품은 등급까지."""
+    graded = 0
+    for product_id in config_product_ids[::PRODUCT_PAGE_SAMPLE_STEP]:
+        html = (site_dir / 'products' / f'{product_id}.html').read_text(encoding='utf-8')
+        assert 'class="liquidity-section"' in html, product_id
+        if 'liquidity-grid' in html:
+            assert '일 평균 매물' in html
+            assert '매물 0건인 날' in html
+            assert 'liquidity-grade' in html
+            graded += 1
+    assert graded, '유동성 지표가 계산된 제품 페이지가 하나도 없다'
+
+
 def test_sample_product_page_structure(site_dir: Path, config_product_ids: list[str]) -> None:
     html = (site_dir / 'products' / f'{config_product_ids[0]}.html').read_text(encoding='utf-8')
 
@@ -171,7 +222,12 @@ def test_every_local_reference_exists_in_artifact(site_dir: Path) -> None:
     이미지·스크립트가 깨진다. 특정 파일 하나가 아니라 결함 유형 전체를 막는다.
     index/resources/404는 전수 검사하고, products/*.html은 균등 간격 샘플링한다.
     """
-    pages = [site_dir / 'index.html', site_dir / 'resources.html', site_dir / '404.html']
+    pages = [
+        site_dir / 'index.html',
+        site_dir / 'compare.html',
+        site_dir / 'resources.html',
+        site_dir / '404.html',
+    ]
     product_pages = sorted((site_dir / 'products').glob('*.html'))
     assert product_pages, 'products/*.html이 생성되지 않았다'
     pages.extend(product_pages[::PRODUCT_PAGE_SAMPLE_STEP])

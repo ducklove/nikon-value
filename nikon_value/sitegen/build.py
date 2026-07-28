@@ -17,6 +17,7 @@ from nikon_value.paths import DATA_DIR, PROJECT_ROOT
 from nikon_value.sitegen.data import load_catalog, load_catalog_config, load_history, merge_catalog_with_config
 from nikon_value.sitegen.pages import (
     build_404_page,
+    build_compare_page,
     build_home_page,
     build_product_page,
     build_resources_page,
@@ -31,6 +32,8 @@ ASSET_COPY_PLAN: tuple[tuple[str, str], ...] = (
     ('css/style.css', 'css/style.css'),
     ('js/site.js', 'js/site.js'),
     ('js/auth.js', 'js/auth.js'),
+    # 비교 페이지(compare.html) 전용. 홈·제품 페이지는 로드하지 않는다.
+    ('js/compare.js', 'js/compare.js'),
     ('assets/ebay-logo.svg', 'assets/ebay-logo.svg'),
     ('assets/mynikons-800.webp', 'assets/mynikons-800.webp'),
     ('assets/mynikons-1600.webp', 'assets/mynikons-1600.webp'),
@@ -57,6 +60,7 @@ DATA_COPY_PLAN: tuple[tuple[str, str], ...] = (
 STYLE_PATH = PROJECT_ROOT / 'css' / 'style.css'
 SITE_JS_PATH = PROJECT_ROOT / 'js' / 'site.js'
 AUTH_JS_PATH = PROJECT_ROOT / 'js' / 'auth.js'
+COMPARE_JS_PATH = PROJECT_ROOT / 'js' / 'compare.js'
 HERO_JPG = PROJECT_ROOT / 'mynikons.jpg'
 HERO_WEBP_800 = PROJECT_ROOT / 'assets' / 'mynikons-800.webp'
 HERO_WEBP_1600 = PROJECT_ROOT / 'assets' / 'mynikons-1600.webp'
@@ -68,6 +72,7 @@ DEFAULT_OUTPUT = PROJECT_ROOT / 'dist'
 ROOT_PRODUCTS_DIR = PROJECT_ROOT / 'products'
 ROOT_FILES_TO_PUBLISH = [
     'index.html',
+    'compare.html',
     'resources.html',
     '404.html',
     'robots.txt',
@@ -200,6 +205,7 @@ def main(
     copy_assets(output_dir, project_root=project_root, data_dir=data_dir)
 
     (output_dir / 'index.html').write_text(build_home_page(catalog, base_url, histories), encoding='utf-8')
+    (output_dir / 'compare.html').write_text(build_compare_page(catalog, base_url), encoding='utf-8')
     (output_dir / 'resources.html').write_text(build_resources_page(base_url), encoding='utf-8')
     (output_dir / '404.html').write_text(build_404_page(base_url), encoding='utf-8')
     (output_dir / 'robots.txt').write_text(build_robots(base_url), encoding='utf-8')

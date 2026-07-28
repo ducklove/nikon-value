@@ -163,6 +163,116 @@
     return series;
   }
 
+  // URL 파라미터(?ids=a,b,c)는 신뢰할 수 없는 입력이다. 존재하지 않는 ID, 과다한
+  // 개수, 비정상적으로 긴 문자열이 그대로 들어올 수 있으므로 화면에 닿기 전에
+  // 여기서 전부 정규화한다.
+  //   - 문자열이 아니면 빈 배열
+  //   - 길이/조각 수에 상한을 둬서 병적으로 긴 입력에 시간을 쓰지 않는다
+  //   - knownIds에 없는 ID는 버린다 (fetch 시도 자체를 하지 않는다)
+  //   - 중복은 첫 등장만 남긴다
+  //   - 최종적으로 max개까지만 남긴다
+  // 버려진 값은 rejected로 돌려줘 사용자에게 이유를 알릴 수 있게 한다.
+  var COMPARE_IDS_MAX_LENGTH = 2000;
+  var COMPARE_IDS_MAX_SEGMENTS = 50;
+
+  function parseCompareIds(raw, knownIds, max) {
+    var limit = Number.isFinite(max) && max > 0 ? Math.floor(max) : 5;
+    var result = { ids: [], unknown: [], duplicated: 0, overflow: 0, truncated: false };
+    if (typeof raw !== 'string' || raw === '') return result;
+
+    var text = raw;
+    if (text.length > COMPARE_IDS_MAX_LENGTH) {
+      text = text.slice(0, COMPARE_IDS_MAX_LENGTH);
+      result.truncated = true;
+    }
+
+    var known = knownIds instanceof Set ? knownIds : new Set(knownIds || []);
+    var segments = text.split(',');
+    if (segments.length > COMPARE_IDS_MAX_SEGMENTS) {
+      segments = segments.slice(0, COMPARE_IDS_MAX_SEGMENTS);
+      result.truncated = true;
+    }
+
+    var seen = new Set();
+    segments.forEach(function (segment) {
+      var id = String(segment).trim();
+      if (!id) return;
+      if (!known.has(id)) {
+        // 알 수 없는 ID는 하나만 모아 보여 주면 되므로 중복은 접는다.
+        if (result.unknown.indexOf(id) === -1 && result.unknown.length < 5) result.unknown.push(id);
+        return;
+      }
+      if (seen.has(id)) { result.duplicated += 1; return; }
+      seen.add(id);
+      if (result.ids.length >= limit) { result.overflow += 1; return; }
+      result.ids.push(id);
+    });
+
+    return result;
+  }
+
+  // 제품별 히스토리를 하나의 차트 좌표계로 정규화한다.
+  //   items : [{ id, label, history: [{date, median, count, ...}] }]
+  //   metric: 'median' | 'count'  (count는 0도 유효한 값이라 null과 구분한다)
+  //   mode  : 'absolute' | 'indexed' (indexed는 각 시리즈 첫 유효값을 100으로)
+  // 날짜가 겹치지 않는 제품들을 합치므로 labels는 합집합이고, 관측이 없는 날은
+  // null로 남겨 Chart.js가 선을 끊거나(spanGaps) 이어 그릴 수 있게 한다.
+  // 같은 날짜가 두 번 들어간 히스토리(수집 재실행)는 마지막 값만 쓴다.
+  function buildCompareSeries(items, options) {
+    var opts = options || {};
+    var metric = opts.metric === 'count' ? 'count' : 'median';
+    var indexed = opts.mode === 'indexed';
+
+    var prepared = [];
+    var dateSet = {};
+    (items || []).forEach(function (item) {
+      if (!item || !Array.isArray(item.history)) return;
+      var map = {};
+      item.history.forEach(function (entry) {
+        if (!entry || typeof entry.date !== 'string' || !entry.date) return;
+        var value = entry[metric];
+        if (metric === 'count') value = value == null ? 0 : value;
+        if (value == null) return;
+        var num = Number(value);
+        if (!Number.isFinite(num)) return;
+        map[entry.date] = num;
+      });
+      var dates = Object.keys(map);
+      if (!dates.length) return;
+      dates.forEach(function (d) { dateSet[d] = true; });
+      prepared.push({ id: item.id, label: item.label, map: map });
+    });
+
+    var labels = Object.keys(dateSet).sort();
+    var series = prepared.map(function (item) {
+      var base = null;
+      var data = labels.map(function (date) {
+        var value = Object.prototype.hasOwnProperty.call(item.map, date) ? item.map[date] : null;
+        if (value == null) return null;
+        if (!indexed) return value;
+        // 0은 지수화 기준이 될 수 없다(0으로 나눌 수 없다). 매물 수처럼 0에서
+        // 시작하는 시리즈는 처음으로 0이 아닌 값을 기준(=100)으로 잡고,
+        // 그 이전 구간은 null로 남긴다.
+        if (!base) {
+          if (!value) return null;
+          base = value;
+        }
+        return Math.round((value / base) * 1000) / 10;
+      });
+      var valid = data.filter(function (v) { return v != null; });
+      return {
+        id: item.id,
+        label: item.label,
+        data: data,
+        first: valid.length ? valid[0] : null,
+        last: valid.length ? valid[valid.length - 1] : null,
+        points: valid.length,
+      };
+    }).filter(function (item) { return item.points > 0; });
+
+    return { labels: labels, series: series };
+  }
+
   const shared = {
     escapeHtml,
     getExchangeRate,
@@ -174,6 +284,8 @@
     filterByPeriod,
     movingAverage,
     buildSummedSeries,
+    parseCompareIds,
+    buildCompareSeries,
   };
 
   if (typeof window !== 'undefined') window.nikonValueShared = shared;
@@ -235,6 +347,44 @@
       node.textContent = text;
     });
   }
+
+  // 통화 토글 배선. 순수 함수가 아니라서 nikonValueShared(순수 함수 전용)에는
+  // 넣지 않고, 별도 전역으로 노출한다. js/compare.js가 홈·제품 페이지와 똑같은
+  // 토글 동작을 구현 중복 없이 쓰기 위한 것이다 —
+  // window.nikonValueCatalog / window.nikonValueAuth 와 같은 결합 패턴이다.
+  window.nikonValueCurrency = {
+    storageKey: CURRENCY_STORAGE_KEY,
+    getInitial: getInitialCurrency,
+    save: saveCurrency,
+    applyMoney: applyMoneyElements,
+    syncButtons: syncCurrencyButtons,
+    updateNotes: updateExchangeNotes,
+  };
+
+  // Chart.js 온디맨드 로더. 제품 페이지는 차트가 페이지의 본문이라 <script defer>로
+  // 정적 로드하지만, 관심목록 대시보드와 비교 페이지는 "그릴 데이터가 실제로
+  // 생겼을 때"만 필요하다. 같은 구현을 auth.js와 compare.js가 공유한다.
+  const CHART_CDN = 'https://cdn.jsdelivr.net/npm/chart.js@4/dist/chart.umd.min.js';
+  let chartLoadPromise = null;
+
+  function ensureChartJs() {
+    if (window.Chart) return Promise.resolve(true);
+    if (chartLoadPromise) return chartLoadPromise;
+    chartLoadPromise = new Promise((resolve) => {
+      const script = document.createElement('script');
+      script.src = CHART_CDN;
+      script.onload = () => resolve(true);
+      script.onerror = () => {
+        // 다음 호출에서 다시 시도할 수 있게 캐시를 비운다.
+        chartLoadPromise = null;
+        resolve(false);
+      };
+      document.head.appendChild(script);
+    });
+    return chartLoadPromise;
+  }
+
+  window.nikonValueChartLoader = { cdn: CHART_CDN, ensure: ensureChartJs };
 
   function initHeroEasterEgg() {
     const toggles = Array.from(document.querySelectorAll('[data-hero-easter-egg="negative"]'));
@@ -313,6 +463,17 @@
         '</span></div>';
     }
 
+    // 유동성 칩은 희소 신호가 있을 때만 붙는다(전체의 약 11%). 나머지 카드에
+    // '풍부'를 붙이면 정보가 아니라 노이즈라서 서버가 scarcity=null로 내려보낸다.
+    // 근거는 nikon_value/sitegen/liquidity.py 주석 참고.
+    var scarcityHtml = '';
+    if (d.scarcity && d.scarcity.grade) {
+      var s = d.scarcity;
+      var detail = s.days + '일 중 ' + s.zero_pct + '%가 매물 0건, 평균 ' + s.avg + '개';
+      scarcityHtml = '<span class="product-card__liquidity" title="' + escapeHtml(detail) + '">' +
+        '<span class="visually-hidden">유동성 </span>' + escapeHtml(s.grade) + '</span>';
+    }
+
     a.innerHTML = thumb +
       '<div class="product-card__body">' +
         '<div class="product-card__header">' +
@@ -323,7 +484,7 @@
         '<div class="product-card__taxonomy">' + escapeHtml(d.category_label) + '</div>' +
         priceHtml +
         trendHtml +
-        '<div class="product-card__meta"><span>현재 매물 ' + (d.count || 0) + '개</span></div>' +
+        '<div class="product-card__meta"><span>현재 매물 ' + (d.count || 0) + '개</span>' + scarcityHtml + '</div>' +
         rangeHtml +
       '</div>';
     return a;
