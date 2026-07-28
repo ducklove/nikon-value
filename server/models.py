@@ -36,6 +36,20 @@ class AlertsResponse(BaseModel):
     alerts: list[AlertEntry]
 
 
+class TelegramStatusResponse(BaseModel):
+    configured: bool  # 서버에 봇 토큰이 설정돼 있는지
+    linked: bool
+    linked_at: str | None = None
+    bot_username: str | None = None
+
+
+class TelegramLinkCodeResponse(BaseModel):
+    code: str
+    expires_in: int
+    bot_username: str | None = None
+    deep_link: str | None = None
+
+
 class ErrorResponse(BaseModel):
     error: str
     message: str

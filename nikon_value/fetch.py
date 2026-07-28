@@ -15,17 +15,24 @@ import requests
 from nikon_value.deals import extract_deal_listings
 from nikon_value.ebay import collect_prices, get_access_token, get_ebay_urls, search_items_for_product
 from nikon_value.env import load_env_file
-from nikon_value.exchange import _recover_exchange_rate_from_daily, fetch_usd_krw_exchange_rate
+from nikon_value.exchange import (
+    append_exchange_rate,
+    fetch_usd_krw_exchange_rate,
+    recover_exchange_rate_from_history,
+)
 from nikon_value.llm import _openrouter_model, filter_items_with_llm, load_openrouter_key
+from nikon_value.llm_cache import LlmDecisionCache
+from nikon_value.metrics import append_run_metrics, reset_metrics
 from nikon_value.paths import DATA_DIR, PROJECT_ROOT
 from nikon_value.stats import compute_stats, extract_sample_listings
 from nikon_value.storage import (
+    ZERO_RESULT_STREAK_THRESHOLD,
     build_base_product_entry,
-    cleanup_daily_snapshots,
     load_catalog,
-    load_daily_snapshot_for_date,
     load_existing_catalog_output,
+    update_catalog_max_prices,
     update_product_history,
+    zero_result_streak,
 )
 
 logging.basicConfig(
@@ -62,6 +69,7 @@ def parse_only_ids(values: list[str]) -> set[str]:
 def main():
     args = parse_args()
     only_ids = parse_only_ids(args.only)
+    metrics = reset_metrics()
 
     # ebay.key 파일이 있으면 환경변수로 로드
     load_env_file(PROJECT_ROOT / "ebay.key")
@@ -82,7 +90,6 @@ def main():
 
     # 디렉토리 생성
     (DATA_DIR / "products").mkdir(parents=True, exist_ok=True)
-    (DATA_DIR / "daily").mkdir(parents=True, exist_ok=True)
 
     catalog_config = load_catalog()
     existing_catalog = load_existing_catalog_output()
@@ -97,8 +104,11 @@ def main():
     token = get_access_token(client_id, client_secret, auth_url)
 
     openrouter_key = load_openrouter_key()
+    llm_cache = None
     if openrouter_key:
         log.info("OpenRouter API key loaded, LLM filtering enabled (%s)", _openrouter_model())
+        llm_cache = LlmDecisionCache.load()
+        log.info("LLM decision cache loaded: %d entries", llm_cache.entry_count())
     else:
         log.info("No OpenRouter API key found, LLM filtering disabled")
 
@@ -116,10 +126,10 @@ def main():
         if exchange_rate:
             log.warning("Exchange rate refresh failed (%s), keeping existing rate", exc)
         else:
-            exchange_rate = _recover_exchange_rate_from_daily()
+            exchange_rate = recover_exchange_rate_from_history()
             if exchange_rate:
                 log.warning(
-                    "Exchange rate refresh failed (%s), recovered from daily snapshot (%.2f)",
+                    "Exchange rate refresh failed (%s), recovered from exchange rate history (%.2f)",
                     exc, exchange_rate["rate"],
                 )
             else:
@@ -130,11 +140,7 @@ def main():
         "exchange_rate": exchange_rate,
         "categories": [],
     }
-    daily_snapshot = load_daily_snapshot_for_date(today) if only_ids else {
-        "date": today,
-        "products": {},
-    }
-    daily_snapshot["exchange_rate"] = exchange_rate
+    max_price_updates: dict[str, float] = {}
 
     total_products = sum(
         1
@@ -176,16 +182,29 @@ def main():
                 continue
 
             processed += 1
+            metrics.record_product()
             log.info(
                 "[%d/%d] Fetching: %s (%s)",
                 processed, total_products, pid, product["query"],
             )
 
             try:
+                # 연속 0건이 이어진 제품은 상한 문제가 아니라 매물이 없는 것이므로
+                # 빈 결과만으로는 확장하지 않는다. 매물이 다시 나타나면 즉시 복귀.
+                streak = zero_result_streak(pid)
+                expand_when_empty = streak < ZERO_RESULT_STREAK_THRESHOLD
+                if not expand_when_empty:
+                    log.info(
+                        "  Skipping empty-result expansion (%d consecutive zero-result runs)",
+                        streak,
+                    )
+
                 items, effective_max_price = search_items_for_product(
                     token,
                     browse_url,
                     product,
+                    expand_when_empty=expand_when_empty,
+                    metrics=metrics,
                 )
                 if effective_max_price != product["max_price"]:
                     log.info(
@@ -193,10 +212,14 @@ def main():
                         product["max_price"],
                         effective_max_price,
                     )
+                    # 다음 실행에서 같은 확장을 반복하지 않도록 설정에 되먹인다.
+                    max_price_updates[pid] = effective_max_price
 
                 if openrouter_key and items:
                     pre_count = len(items)
-                    items = filter_items_with_llm(items, product, openrouter_key)
+                    items = filter_items_with_llm(
+                        items, product, openrouter_key, cache=llm_cache, metrics=metrics
+                    )
                     log.info(
                         "  LLM filtered: %d → %d items", pre_count, len(items)
                     )
@@ -213,7 +236,6 @@ def main():
                 product_entry["deals"] = deals
                 cat_entry["products"].append(product_entry)
 
-                daily_snapshot["products"][pid] = stats
                 update_product_history(pid, today, stats)
 
                 log.info(
@@ -250,14 +272,27 @@ def main():
         json.dump(catalog_output, f, ensure_ascii=False, indent=1)
     log.info("Saved %s", catalog_path)
 
-    # daily snapshot 저장
-    daily_path = DATA_DIR / "daily" / f"{today}.json"
-    with open(daily_path, "w", encoding="utf-8") as f:
-        json.dump(daily_snapshot, f, ensure_ascii=False, indent=1)
-    log.info("Saved %s", daily_path)
+    # 환율 시계열 append (제품 통계는 data/products/에 이미 있으므로 중복 저장하지 않는다)
+    if append_exchange_rate(exchange_rate, today):
+        log.info("Appended exchange rate for %s", today)
 
-    # 오래된 스냅샷 정리
-    cleanup_daily_snapshots()
+    # 적응형 상한 되먹임: 수집 종료 시 한 번에 저장한다
+    if max_price_updates:
+        updated_ids = update_catalog_max_prices(max_price_updates)
+        log.info(
+            "max_price feedback: %d/%d products updated in config",
+            len(updated_ids), len(max_price_updates),
+        )
+
+    # LLM 판정 캐시 저장
+    if llm_cache is not None and llm_cache.dirty:
+        llm_cache.save()
+        log.info("Saved LLM decision cache: %d entries", llm_cache.entry_count())
+
+    # 실행 계측 기록
+    metrics.finish()
+    log.info(metrics.summary_line())
+    append_run_metrics(metrics)
 
     log.info("Done! Processed %d products.", processed)
 

@@ -215,6 +215,15 @@ def build_site_links(active: str, prefix: str = '') -> str:
     )
 
 
+# 제휴 관계 고지. eBay Partner Network 링크를 노출하는 이상 FTC·공정거래위원회의
+# 추천·보증 심사지침상 대가 관계를 명시해야 하므로 모든 페이지 푸터에 노출한다.
+AFFILIATE_DISCLOSURE = (
+    '이 사이트의 eBay 매물 링크에는 eBay 파트너 네트워크 제휴 링크가 포함될 수 있습니다. '
+    '링크를 통해 구매가 이루어지면 사이트 운영자가 eBay로부터 수수료를 받을 수 있으며, '
+    '구매자가 내는 금액은 달라지지 않습니다. 제휴 여부는 매물 선정과 시세 계산에 영향을 주지 않습니다.'
+)
+
+
 def build_footer(asset_prefix: str = '') -> str:
     return f"""
   <footer class=\"site-footer\">
@@ -224,6 +233,7 @@ def build_footer(asset_prefix: str = '') -> str:
         <span>Powered by eBay Browse API</span>
       </div>
       <p class=\"footer-note\">가격은 현재 eBay 매물 기준이며, 실제 거래가와 다를 수 있습니다.</p>
+      <p class=\"footer-note footer-note--disclosure\">{escape(AFFILIATE_DISCLOSURE)}</p>
     </div>
   </footer>"""
 

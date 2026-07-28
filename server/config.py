@@ -44,8 +44,19 @@ CATALOG_URL = _env(
 
 DB_PATH = _env("DB_PATH", str(Path(__file__).parent / "data" / "nikon_api.db"))
 
+# 텔레그램 알림 채널. 미설정이어도 서버는 정상 기동하며, 발송은 조용히 False를
+# 반환하고 로그만 남긴다(= 알림이 대기 상태로 남아 다음 주기에 재시도된다).
+TELEGRAM_BOT_TOKEN = _env("TELEGRAM_BOT_TOKEN")
+# 안내 문구/딥링크(https://t.me/<username>)용. 선택 사항이며 토큰과 달리 공개 값이다.
+TELEGRAM_BOT_USERNAME = _env("TELEGRAM_BOT_USERNAME").lstrip("@")
+TELEGRAM_API_BASE = _env("TELEGRAM_API_BASE", "https://api.telegram.org")
+
 FAVORITES_MAX = 50
 ALERTS_MAX = 50
 CATALOG_REFRESH_SECONDS = 3600
 
 OAUTH_STATE_MAX_AGE = 300  # 5 minutes
+
+TELEGRAM_LINK_CODE_TTL = 600  # 연동 코드 유효 시간: 10분
+TELEGRAM_POLL_TIMEOUT = 25  # getUpdates long polling 대기(초)
+TELEGRAM_SEND_TIMEOUT = 10  # sendMessage 요청 타임아웃(초)

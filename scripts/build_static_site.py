@@ -22,6 +22,7 @@ from nikon_value.sitegen.build import (  # noqa: E402,F401
     HERO_WEBP_800,
     HERO_WEBP_1600,
     LEGACY_ROOT_FILES_TO_REMOVE,
+    LENS_HERO_JPG,
     ROOT_FILES_TO_PUBLISH,
     ROOT_PRODUCTS_DIR,
     SITE_JS_PATH,
@@ -86,6 +87,7 @@ from nikon_value.sitegen.format import (  # noqa: E402,F401
     render_money_span,
 )
 from nikon_value.sitegen.pages import (  # noqa: E402,F401
+    INLINE_HISTORY_POINTS,
     build_404_page,
     build_home_page,
     build_product_page,

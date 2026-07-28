@@ -20,6 +20,9 @@ concurrency:
 jobs:
   test:
     runs-on: ubuntu-latest
+    # 실제 소요는 30초 내외(의존성 설치 ~11초, 테스트 ~5초, 빌드 스모크 ~1초)다.
+    # 네트워크 지연이나 테스트 증가를 감안해도 충분한 상한.
+    timeout-minutes: 15
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4

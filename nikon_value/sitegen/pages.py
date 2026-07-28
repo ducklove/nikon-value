@@ -36,6 +36,10 @@ from nikon_value.sitegen.format import (
     render_money_span,
 )
 
+# 제품 페이지에 인라인으로 싣는 히스토리 포인트 수.
+# <noscript> 히스토리 표가 쓰는 구간과 같은 값이라 SEO·접근성 요구를 그대로 만족한다.
+INLINE_HISTORY_POINTS = 10
+
 
 def build_home_page(catalog: dict[str, Any], base_url: str, histories: dict[str, list[dict[str, Any]]] | None = None) -> str:
     updated = catalog['updated']
@@ -296,8 +300,20 @@ def build_product_page(
     if not listing_cards:
         listing_cards.append('<p class="detail-note">현재 노출할 샘플 매물이 없습니다.</p>')
 
+    # 전체 히스토리는 dist/data/products/{id}.json으로도 배포되므로 인라인은 최근 구간만 싣는다
+    # (같은 데이터를 산출물에 두 번 싣지 않기 위한 축소).
+    #
+    # js/site.js와의 폴백 계약:
+    #   1) 제품 페이지는 body[data-history-url]이 가리키는 전체 히스토리 JSON을 fetch해 차트를 그린다.
+    #   2) fetch가 실패하거나(오프라인·404·파싱 오류) 응답이 비어 있으면
+    #      <script id="history-data">의 인라인 데이터로 폴백한다.
+    #      인라인 INLINE_HISTORY_POINTS건만으로도 차트가 최소한 그려져야 한다.
+    #   3) 두 데이터의 스키마는 동일하다 — 인라인은 전체 히스토리의 꼬리 구간이다.
+    inline_history = history[-INLINE_HISTORY_POINTS:]
+    history_url = f"../data/products/{product['id']}.json"
+
     history_rows = []
-    for entry in reversed(history[-10:]):
+    for entry in reversed(inline_history):
         history_rows.append(
             f"<tr><td>{escape(entry['date'])}</td><td>{escape(format_money(entry.get('median')))}</td><td>{escape(format_money(entry.get('q1')))} - {escape(format_money(entry.get('q3')))}</td><td>{escape(str(entry.get('count') or 0))}</td></tr>"
         )
@@ -340,7 +356,7 @@ def build_product_page(
     return f"""<!DOCTYPE html>
 <html lang=\"ko\">
 {head_block_product(title=f"{product['name_ko']} - 니콘 중고 시세", description=description, canonical=canonical, image_url=image_url, extra_meta=extra_meta)}
-<body data-page=\"product\" data-default-period=\"180\">
+<body data-page=\"product\" data-default-period=\"180\" data-history-url=\"{escape(history_url)}\">
   <header class=\"site-header\">
     <div class=\"container\">
       <a href=\"../index.html\" class=\"back-link\">&larr; 전체 목록</a>
@@ -403,7 +419,7 @@ def build_product_page(
 {build_footer('../')}
 
   <script id=\"exchange-rate-data\" type=\"application/json\">{json_script(exchange_rate or {})}</script>
-  <script id=\"history-data\" type=\"application/json\">{json_script(history)}</script>
+  <script id=\"history-data\" type=\"application/json\">{json_script(inline_history)}</script>
   <script src=\"https://cdn.jsdelivr.net/npm/chart.js@4/dist/chart.umd.min.js\" defer></script>
   <script src=\"../js/site.js\" defer></script>
   <script src=\"../js/auth.js\" defer></script>

@@ -21,14 +21,15 @@ eBay 현재 매물을 기준으로 니콘 제품 시세를 추적하는 정적 �
 - `admin.html`, `js/admin.js`, `css/admin.css`, `scripts/admin_server.py`
   - 로컬에서만 쓰는 카탈로그 관리 UI와 서버다.
 - `.github/workflows/update-prices.yml`
-  - 가격 데이터를 주기적으로 갱신하고, 공개 페이지 루트 파일도 함께 재생성한다.
+  - 가격 데이터를 주기적으로 갱신해 `data/`만 커밋하고, 배포 워크플로를 체인 트리거한다.
 - `.github/workflows/ci.yml`
   - push/PR마다 ruff 린트, pytest, 정적 빌드 스모크 테스트를 실행한다.
 - `.github/workflows/deploy-pages.yml`
-  - Pages artifact 직접 배포(수동 트리거). 루트 산출물 커밋을 없애는 마이그레이션용 준비 워크플로 —
-    전환 절차는 파일 상단 주석 참고.
-- `index.html`, `products/`
-  - 현재 GitHub Pages가 직접 서빙하는 공개 산출물이다.
+  - 빌드 산출물을 저장소에 커밋하지 않고 Pages artifact로 직접 배포한다.
+    트리거 조건은 파일 상단 주석 참고.
+- `dist/`
+  - 빌드 산출물 디렉터리다. 저장소에 커밋하지 않으며, GitHub Pages는 이 디렉터리를
+    Actions artifact로 업로드해 서빙한다 (자세한 내용은 아래 "배포" 절 참고).
 
 ## 개발
 

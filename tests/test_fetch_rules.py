@@ -1,5 +1,9 @@
-from nikon_value import ebay
+import json
+
+from nikon_value import ebay, storage
 from scripts.fetch_prices import (
+    ZERO_RESULT_STREAK_THRESHOLD,
+    count_trailing_zero_results,
     extract_openrouter_indices,
     extract_openrouter_message_text,
     is_obvious_non_match,
@@ -9,6 +13,7 @@ from scripts.fetch_prices import (
     search_items_for_product,
     should_expand_max_price,
     strip_json_code_fence,
+    zero_result_streak,
 )
 
 
@@ -157,3 +162,98 @@ def test_search_items_for_product_retries_when_results_hit_upper_cap(monkeypatch
     assert search_calls == [2500.0, 3800]
     assert effective_max_price == 3800
     assert len(items) == 2
+
+
+def _zero_streak_product() -> dict:
+    return {
+        "id": "nikon-rare",
+        "query": "Nikon rare body",
+        "category_id": "3323",
+        "min_price": 20,
+        "max_price": 200,
+    }
+
+
+def test_should_expand_max_price_can_refuse_to_expand_on_empty_results():
+    # 기본값은 기존 동작(빈 결과 = 상한이 낮다고 가정)을 유지한다.
+    assert should_expand_max_price([], 200)
+    assert not should_expand_max_price([], 200, expand_when_empty=False)
+    # 결과가 상한에 붙어 있으면 건너뛰기 설정과 무관하게 확장한다.
+    assert should_expand_max_price([199.0], 200, expand_when_empty=False)
+
+
+def test_search_items_for_product_skips_expansion_for_persistently_empty_products(monkeypatch):
+    product = _zero_streak_product()
+    search_calls = []
+
+    def fake_search_items(token, browse_url, query, category_id, min_price, max_price):
+        search_calls.append(max_price)
+        return []
+
+    monkeypatch.setattr(ebay, "search_items", fake_search_items)
+    monkeypatch.setattr(ebay, "filter_items_with_rules", lambda items, product: items)
+
+    items, effective_max_price = search_items_for_product(
+        "token", "browse", product, expand_when_empty=False
+    )
+
+    assert search_calls == [200.0]  # 확장 재검색 없음 (기본값이면 3회)
+    assert effective_max_price == 200.0
+    assert items == []
+
+
+def test_skipping_empty_expansion_still_expands_once_listings_reappear(monkeypatch):
+    """매물이 다시 나타나면 즉시 정상 동작으로 복귀해야 한다."""
+    product = _zero_streak_product()
+    search_calls = []
+
+    def fake_search_items(token, browse_url, query, category_id, min_price, max_price):
+        search_calls.append(max_price)
+        if max_price <= 200:
+            return [{"price": {"value": "199.00"}}]
+        return [{"price": {"value": "199.00"}}, {"price": {"value": "260.00"}}]
+
+    monkeypatch.setattr(ebay, "search_items", fake_search_items)
+    monkeypatch.setattr(ebay, "filter_items_with_rules", lambda items, product: items)
+
+    items, effective_max_price = search_items_for_product(
+        "token", "browse", product, expand_when_empty=False
+    )
+
+    assert search_calls == [200.0, 400]
+    assert effective_max_price == 400
+    assert len(items) == 2
+
+
+def test_count_trailing_zero_results_resets_as_soon_as_listings_appear():
+    assert count_trailing_zero_results([]) == 0
+    assert count_trailing_zero_results([{"date": "d1", "count": 3}]) == 0
+    assert count_trailing_zero_results([
+        {"date": "d1", "count": 0},
+        {"date": "d2", "count": 3},
+        {"date": "d3", "count": 0},
+        {"date": "d4", "count": 0},
+    ]) == 2
+    assert count_trailing_zero_results([{"date": "d1", "count": 0}] * 5) == 5
+    # count 키가 없거나 None인 항목도 0건으로 본다.
+    assert count_trailing_zero_results([{"date": "d1"}, {"date": "d2", "count": None}]) == 2
+
+
+def test_zero_result_streak_reads_the_product_history_file(tmp_path, monkeypatch):
+    monkeypatch.setattr(storage, "DATA_DIR", tmp_path)
+    (tmp_path / "products").mkdir()
+    history = [{"date": f"d{i}", "count": 0} for i in range(ZERO_RESULT_STREAK_THRESHOLD)]
+    (tmp_path / "products" / "nikon-rare.json").write_text(
+        json.dumps(history), encoding="utf-8"
+    )
+
+    assert zero_result_streak("nikon-rare") >= ZERO_RESULT_STREAK_THRESHOLD
+    assert zero_result_streak("nikon-unknown") == 0  # 히스토리가 없으면 정상 동작
+
+
+def test_zero_result_streak_tolerates_a_corrupt_history_file(tmp_path, monkeypatch):
+    monkeypatch.setattr(storage, "DATA_DIR", tmp_path)
+    (tmp_path / "products").mkdir()
+    (tmp_path / "products" / "nikon-rare.json").write_text("{broken", encoding="utf-8")
+
+    assert zero_result_streak("nikon-rare") == 0

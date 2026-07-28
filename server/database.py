@@ -35,7 +35,46 @@ CREATE TABLE IF NOT EXISTS price_alerts (
     updated_at   TEXT DEFAULT (datetime('now')),
     UNIQUE(user_id, product_id)
 );
+
+-- 텔레그램 일회용 연동 코드. 원문 대신 HMAC 해시만 저장하므로 DB가 유출돼도
+-- 코드를 역산해 계정을 가로챌 수 없다. 사용 즉시 행을 삭제해 일회성을 보장한다.
+CREATE TABLE IF NOT EXISTS telegram_link_codes (
+    code_hash  TEXT PRIMARY KEY,
+    user_id    INTEGER NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+    created_at TEXT DEFAULT (datetime('now')),
+    expires_at TEXT NOT NULL
+);
+
+-- 서버 내부 상태 저장용 key/value (예: 텔레그램 getUpdates offset).
+CREATE TABLE IF NOT EXISTS app_state (
+    key   TEXT PRIMARY KEY,
+    value TEXT
+);
 """
+
+# CREATE TABLE IF NOT EXISTS는 이미 존재하는 테이블의 컬럼을 바꾸지 않는다.
+# 운영 중인 DB에도 컬럼이 반영되도록 아래 마이그레이션을 매 기동 시 멱등하게 적용한다.
+COLUMN_MIGRATIONS: tuple[tuple[str, str, str], ...] = (
+    ("users", "telegram_chat_id", "TEXT"),
+    ("users", "telegram_linked_at", "TEXT"),
+)
+
+INDEX_MIGRATIONS: tuple[str, ...] = (
+    # 텔레그램 계정 하나가 여러 사용자에 연결되지 않도록 한다.
+    # SQLite의 UNIQUE 인덱스는 NULL을 중복으로 보지 않으므로 미연동 사용자는 제약을 받지 않는다.
+    "CREATE UNIQUE INDEX IF NOT EXISTS idx_users_telegram_chat_id ON users(telegram_chat_id)",
+)
+
+
+async def _migrate(db: aiosqlite.Connection) -> None:
+    """기존 운영 DB와 신규 DB 양쪽에서 동작하는 멱등 마이그레이션."""
+    for table, column, coltype in COLUMN_MIGRATIONS:
+        cursor = await db.execute(f"PRAGMA table_info({table})")
+        columns = {row[1] for row in await cursor.fetchall()}
+        if column not in columns:
+            await db.execute(f"ALTER TABLE {table} ADD COLUMN {column} {coltype}")
+    for statement in INDEX_MIGRATIONS:
+        await db.execute(statement)
 
 
 async def init_db(path: str | None = None) -> None:
@@ -46,6 +85,7 @@ async def init_db(path: str | None = None) -> None:
     await _db.execute("PRAGMA journal_mode=WAL")
     await _db.execute("PRAGMA foreign_keys=ON")
     await _db.executescript(SCHEMA)
+    await _migrate(_db)
     await _db.commit()
 
 

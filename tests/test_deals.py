@@ -137,3 +137,21 @@ def test_merge_catalog_preserves_deals():
 
     merged_empty = merge_catalog_with_config({"categories": []}, config)
     assert merged_empty["categories"][0]["products"][0]["deals"] == []
+
+
+def test_deal_prefers_affiliate_url_when_present():
+    """EPN 헤더가 설정된 경우 커미션이 잡히는 itemAffiliateWebUrl을 써야 한다."""
+    affiliate_url = "https://www.ebay.com/itm/111?mkcid=1&campid=5338888888"
+    item = _item(60, url="https://www.ebay.com/itm/111")
+    item["itemAffiliateWebUrl"] = affiliate_url
+
+    deals = extract_deal_listings([item], 100.0)
+
+    assert deals[0]["url"] == affiliate_url
+
+
+def test_deal_falls_back_to_plain_url_without_affiliate_field():
+    """EPN 미설정 시에는 itemAffiliateWebUrl이 없으므로 기존 동작을 유지한다."""
+    deals = extract_deal_listings([_item(60, url="https://www.ebay.com/itm/222")], 100.0)
+
+    assert deals[0]["url"] == "https://www.ebay.com/itm/222"

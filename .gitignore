@@ -28,3 +28,10 @@ dist/
 
 # Local API server database (contains user accounts)
 server/data/
+
+# LLM 판정 캐시: 실행마다 전체 블롭이 바뀌므로 저장소에 넣지 않는다.
+# CI에서는 actions/cache로 실행 간 유지된다 (update-prices.yml 참고).
+data/llm-cache.json
+
+# 커버리지 산출물
+.coverage

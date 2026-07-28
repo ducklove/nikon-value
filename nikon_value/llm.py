@@ -2,6 +2,10 @@
 
 규칙 필터를 통과한 매물 타이틀을 LLM으로 재분류해 정확도를 높인다.
 LLM 응답이 비정상이거나 전부를 걸러내면 규칙 필터 결과를 유지한다(폴백).
+
+판정 결과는 LlmDecisionCache에 지속되고, 미캐시 타이틀만 LLM에 보낸다.
+캐시로 판정이 전부 채워진 경우에도 "자동 필터는 틀릴 수 있으므로 데이터를
+지우지 않는다"는 폴백 규율은 동일하게 적용된다.
 """
 
 from __future__ import annotations
@@ -13,6 +17,8 @@ import os
 import requests
 
 from nikon_value.env import load_text_secret
+from nikon_value.llm_cache import LlmDecisionCache
+from nikon_value.metrics import RunMetrics, resolve_metrics
 
 log = logging.getLogger(__name__)
 
@@ -82,14 +88,8 @@ def extract_openrouter_indices(data: dict) -> list[int]:
     return indices
 
 
-def filter_items_with_llm(
-    items: list[dict], product: dict, openrouter_key: str
-) -> list[dict]:
-    """OpenRouter API를 사용하여 리스팅 타이틀이 실제 해당 제품인지 검증합니다."""
-    if not items:
-        return items
-
-    titles = [item.get("title", "") for item in items]
+def build_llm_prompt(titles: list[str], product: dict) -> str:
+    """판정 대상 타이틀 목록으로 분류 프롬프트를 만듭니다."""
     listings_text = "\n".join(f"{i}: \"{t}\"" for i, t in enumerate(titles))
 
     is_accessory = product.get("product_type") == "accessory"
@@ -130,55 +130,115 @@ def filter_items_with_llm(
         + "\n"
         f"Listings:\n{listings_text}"
     )
+    return prompt
+
+
+def _request_llm_indices(prompt: str, openrouter_key: str) -> list[int]:
+    """OpenRouter에 분류를 요청하고 통과 인덱스 목록을 받습니다."""
+    resp = requests.post(
+        OPENROUTER_API_URL,
+        headers={
+            "Authorization": f"Bearer {openrouter_key}",
+            "Content-Type": "application/json",
+            "HTTP-Referer": "https://ducklove.github.io/nikon-value",
+            "X-Title": "Nikon Value",
+        },
+        json={
+            "model": _openrouter_model(),
+            "messages": [
+                {
+                    "role": "system",
+                    "content": (
+                        "You are a camera gear classifier. "
+                        "Return only a JSON object with an indices array."
+                    ),
+                },
+                {
+                    "role": "user",
+                    "content": prompt,
+                },
+            ],
+            "response_format": {"type": "json_object"},
+            "temperature": 0,
+            "max_tokens": 512,
+        },
+        timeout=60,
+    )
+    resp.raise_for_status()
+    return extract_openrouter_indices(resp.json())
+
+
+def _keep_heuristic_set(items: list[dict]) -> list[dict]:
+    """폴백: 자동 필터는 틀릴 수 있으므로 규칙 필터 결과를 그대로 유지한다."""
+    if len(items) <= 5:
+        log.info("  LLM filtered all %d items — accepting (small set)", len(items))
+    else:
+        log.warning("  LLM filtered all %d items — suspicious, keeping heuristic-filtered set", len(items))
+    return items
+
+
+def filter_items_with_llm(
+    items: list[dict],
+    product: dict,
+    openrouter_key: str,
+    cache: LlmDecisionCache | None = None,
+    metrics: RunMetrics | None = None,
+) -> list[dict]:
+    """OpenRouter API를 사용하여 리스팅 타이틀이 실제 해당 제품인지 검증합니다.
+
+    캐시가 주어지면 미캐시 타이틀만 LLM에 보내고 응답을 캐시에 반영한다.
+    폴백(전부 탈락·호출 실패)이 발동한 판정은 신뢰할 수 없으므로 캐시에
+    기록하지 않는다.
+    """
+    if not items:
+        return items
+
+    run_metrics = resolve_metrics(metrics)
+    product_id = product.get("id", "")
+    titles = [item.get("title", "") for item in items]
+
+    cached_keep: list[int] = []
+    pending: list[int] = []
+    for index, title in enumerate(titles):
+        decision = cache.lookup(product_id, title) if cache is not None else None
+        if decision is None:
+            pending.append(index)
+        else:
+            run_metrics.record_llm_cache_hits()
+            if decision:
+                cached_keep.append(index)
+    run_metrics.record_llm_cache_misses(len(pending))
+
+    # 전부 캐시 히트 → LLM 호출 없이 판정. 폴백 규율은 동일하게 적용한다.
+    if not pending:
+        filtered = [items[i] for i in cached_keep]
+        if not filtered:
+            return _keep_heuristic_set(items)
+        return filtered
+
+    prompt = build_llm_prompt([titles[i] for i in pending], product)
 
     try:
-        resp = requests.post(
-            OPENROUTER_API_URL,
-            headers={
-                "Authorization": f"Bearer {openrouter_key}",
-                "Content-Type": "application/json",
-                "HTTP-Referer": "https://ducklove.github.io/nikon-value",
-                "X-Title": "Nikon Value",
-            },
-            json={
-                "model": _openrouter_model(),
-                "messages": [
-                    {
-                        "role": "system",
-                        "content": (
-                            "You are a camera gear classifier. "
-                            "Return only a JSON object with an indices array."
-                        ),
-                    },
-                    {
-                        "role": "user",
-                        "content": prompt,
-                    },
-                ],
-                "response_format": {"type": "json_object"},
-                "temperature": 0,
-                "max_tokens": 512,
-            },
-            timeout=60,
-        )
-        resp.raise_for_status()
-        data = resp.json()
-
-        indices = extract_openrouter_indices(data)
+        run_metrics.record_llm_call()
+        indices = _request_llm_indices(prompt, openrouter_key)
 
         if not isinstance(indices, list):
             log.warning("  LLM returned non-list, skipping filter")
             return items
 
-        valid_indices = [i for i in indices if isinstance(i, int) and 0 <= i < len(items)]
-        filtered = [items[i] for i in valid_indices]
+        llm_keep = {
+            pending[i] for i in indices if isinstance(i, int) and 0 <= i < len(pending)
+        }
+        keep_indices = sorted(set(cached_keep) | llm_keep)
+        filtered = [items[i] for i in keep_indices]
 
         if not filtered:
-            if len(items) <= 5:
-                log.info("  LLM filtered all %d items — accepting (small set)", len(items))
-                return items
-            log.warning("  LLM filtered all %d items — suspicious, keeping heuristic-filtered set", len(items))
-            return items
+            # 폴백 발동 — 판정을 신뢰할 수 없으므로 캐시에도 남기지 않는다.
+            return _keep_heuristic_set(items)
+
+        if cache is not None:
+            for index in pending:
+                cache.record(product_id, titles[index], index in llm_keep)
 
         return filtered
 

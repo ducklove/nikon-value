@@ -10,6 +10,7 @@ import time
 import requests
 
 from nikon_value.filters import filter_items_with_rules
+from nikon_value.metrics import RunMetrics, resolve_metrics
 
 log = logging.getLogger(__name__)
 
@@ -54,8 +55,10 @@ def get_access_token(client_id: str, client_secret: str, auth_url: str) -> str:
 
 
 def search_items(token: str, browse_url: str, query: str, category_id: str | None,
-                 min_price: float, max_price: float) -> list[dict]:
+                 min_price: float, max_price: float,
+                 metrics: RunMetrics | None = None) -> list[dict]:
     """Browse API로 중고 매물을 검색합니다. 페이지네이션 처리."""
+    run_metrics = resolve_metrics(metrics)
     headers = {
         "Authorization": f"Bearer {token}",
         "X-EBAY-C-MARKETPLACE-ID": "EBAY_US",
@@ -95,8 +98,10 @@ def search_items(token: str, browse_url: str, query: str, category_id: str | Non
             params=params,
             timeout=30,
         )
+        run_metrics.record_http_request()
 
         if resp.status_code == 429:
+            run_metrics.record_rate_limited()
             rate_limit_retries += 1
             if rate_limit_retries > RATE_LIMIT_MAX_RETRIES:
                 log.error("Rate limited %d times, giving up on this search", rate_limit_retries - 1)
@@ -176,10 +181,18 @@ def round_price_bound(value: float) -> int:
     return int(math.ceil(value / step) * step)
 
 
-def should_expand_max_price(prices: list[float], current_max_price: float) -> bool:
-    """Retry with a higher max when the current price window looks clipped."""
+def should_expand_max_price(
+    prices: list[float],
+    current_max_price: float,
+    expand_when_empty: bool = True,
+) -> bool:
+    """Retry with a higher max when the current price window looks clipped.
+
+    `expand_when_empty=False`는 "상한이 낮아서 못 찾은 게 아니라 eBay에 매물이
+    없다"고 판단된 제품(연속 0건 누적)에 쓴다. 빈 결과로는 확장하지 않는다.
+    """
     if not prices:
-        return True
+        return expand_when_empty
     return max(prices) >= current_max_price * ADAPTIVE_MAX_PRICE_TRIGGER_RATIO
 
 
@@ -187,12 +200,16 @@ def search_items_for_product(
     token: str,
     browse_url: str,
     product: dict,
+    expand_when_empty: bool = True,
+    metrics: RunMetrics | None = None,
 ) -> tuple[list[dict], float]:
     """Search a product and retry with higher max prices when needed."""
+    run_metrics = resolve_metrics(metrics)
     category_id = product.get("search_category_id", product["category_id"])
     min_price = float(product["min_price"])
     base_max_price = float(product["max_price"])
 
+    run_metrics.record_ebay_search()
     best_items = filter_items_with_rules(
         search_items(
             token,
@@ -209,7 +226,7 @@ def search_items_for_product(
     trial_max_price = base_max_price
 
     for multiplier, min_delta in ADAPTIVE_MAX_PRICE_STEPS:
-        if not should_expand_max_price(best_prices, trial_max_price):
+        if not should_expand_max_price(best_prices, trial_max_price, expand_when_empty):
             break
 
         candidate_max_price = round_price_bound(
@@ -218,6 +235,8 @@ def search_items_for_product(
         if candidate_max_price <= trial_max_price:
             continue
 
+        run_metrics.record_ebay_search()
+        run_metrics.record_max_price_expansion()
         candidate_items = filter_items_with_rules(
             search_items(
                 token,

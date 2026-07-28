@@ -15,6 +15,7 @@ from nikon_value.sitegen.build import (
     HERO_WEBP_800,
     HERO_WEBP_1600,
     LEGACY_ROOT_FILES_TO_REMOVE,
+    LENS_HERO_JPG,
     ROOT_FILES_TO_PUBLISH,
     ROOT_PRODUCTS_DIR,
     SITE_JS_PATH,
@@ -79,6 +80,7 @@ from nikon_value.sitegen.format import (
     render_money_span,
 )
 from nikon_value.sitegen.pages import (
+    INLINE_HISTORY_POINTS,
     build_404_page,
     build_home_page,
     build_product_page,
@@ -104,8 +106,10 @@ __all__ = [
     'HERO_JPG',
     'HERO_WEBP_800',
     'HERO_WEBP_1600',
+    'INLINE_HISTORY_POINTS',
     'LEGACY_ROOT_FILES_TO_REMOVE',
     'LENS_ATLAS_CATEGORIES',
+    'LENS_HERO_JPG',
     'PROJECT_ROOT',
     'RARITY_FIELDS',
     'ROOT_FILES_TO_PUBLISH',

@@ -28,6 +28,8 @@ concurrency:
 jobs:
   build:
     runs-on: ubuntu-latest
+    # 실제 소요 15초 내외(의존성 설치 + 331개 제품 페이지 생성 + artifact 업로드).
+    timeout-minutes: 15
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -51,6 +53,8 @@ jobs:
   deploy:
     needs: build
     runs-on: ubuntu-latest
+    # 실제 소요 15초 내외. Pages API 응답이 지연될 때를 대비한 상한.
+    timeout-minutes: 10
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}

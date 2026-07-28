@@ -83,6 +83,9 @@ def extract_sample_listings(items: list[dict], max_samples: int = 5) -> list[dic
             "currency": item.get("price", {}).get("currency", "USD"),
             "condition": item.get("condition", ""),
             "image": thumbnails[0].get("imageUrl", ""),
-            "url": item.get("itemWebUrl", ""),
+            # itemAffiliateWebUrl은 EBAY_EPN_CAMPAIGN_ID가 설정돼 X-EBAY-C-ENDUSERCTX
+            # 헤더를 보낸 경우에만 내려온다. eBay 파트너 네트워크 커미션은 이 URL로
+            # 유입된 트래픽에만 발생하므로 있으면 우선 쓰고, 없으면 기존 동작을 유지한다.
+            "url": item.get("itemAffiliateWebUrl") or item.get("itemWebUrl", ""),
         })
     return samples

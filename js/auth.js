@@ -86,6 +86,23 @@
 
   function deleteAlert(pid) { return apiFetch('/api/alerts/' + encodeURIComponent(pid), { method: 'DELETE' }); }
 
+  // 텔레그램 연동. 구버전 서버(엔드포인트 없음)에서는 null을 반환해 관련 UI를 숨긴다.
+  function fetchTelegramStatus() {
+    return apiFetch('/api/me/telegram').then(function (r) {
+      if (!r || !r.ok) return null;
+      return r.json().catch(function () { return null; });
+    });
+  }
+
+  function requestTelegramLinkCode() {
+    return apiFetch('/api/me/telegram/link-code', { method: 'PUT' }).then(function (r) {
+      if (!r || !r.ok) return null;
+      return r.json().catch(function () { return null; });
+    });
+  }
+
+  function deleteTelegramLink() { return apiFetch('/api/me/telegram', { method: 'DELETE' }); }
+
   function refreshCatalog() {
     if (window.nikonValueCatalog && typeof window.nikonValueCatalog.refresh === 'function') {
       window.nikonValueCatalog.refresh();
@@ -287,14 +304,17 @@
   }
 
   function renderAlertPanelLoggedOut() {
+    stopTelegramPoll();
+    telegramStatus = null;
     var panel = ensureAlertPanel();
     if (!panel) return;
     panel.innerHTML = '';
     panel.appendChild(buildAlertTitle());
-    panel.appendChild(buildAlertNote('로그인하면 제품별 목표가 알림을 설정할 수 있습니다. 알림 채널(텔레그램·카카오톡)은 연동 준비 중입니다.'));
+    panel.appendChild(buildAlertNote('로그인하면 제품별 목표가 알림을 설정할 수 있습니다. 알림은 텔레그램으로 발송됩니다.'));
   }
 
   function renderAlertPanelLoggedIn(pid) {
+    stopTelegramPoll();
     var panel = ensureAlertPanel();
     if (!panel) return;
     panel.innerHTML = '';
@@ -347,13 +367,167 @@
     panel.appendChild(row);
     panel.appendChild(buildAlertNote(
       existing
-        ? '목표가 USD ' + existing.target_price + ' 도달 시 알림 대상으로 기록됩니다. 알림 채널(텔레그램·카카오톡)은 연동 준비 중입니다.'
-        : '중앙값이 목표가(USD) 이하로 내려가면 알림 대상으로 기록됩니다. 알림 채널(텔레그램·카카오톡)은 연동 준비 중입니다.'
+        ? '중앙값이 목표가 USD ' + existing.target_price + ' 이하로 내려가면 알림을 보내드립니다.'
+        : '중앙값이 목표가(USD) 이하로 내려가면 알림을 보내드립니다.'
     ));
+
+    var channel = buildTelegramSection(pid);
+    if (channel) panel.appendChild(channel);
 
     if (existing && existing.triggered) {
       setAlertStatus('목표가 도달 알림이 발송된 상태입니다. 가격이 회복되면 다시 활성화됩니다.');
     }
+  }
+
+  // --- UI: 텔레그램 알림 채널 ---
+  var telegramStatus = null; // null = 서버가 텔레그램 API를 지원하지 않음(구버전)
+  var telegramPollTimer = null;
+  var telegramPollLeft = 0;
+
+  function stopTelegramPoll() {
+    if (telegramPollTimer) {
+      clearInterval(telegramPollTimer);
+      telegramPollTimer = null;
+    }
+  }
+
+  function buildChannelBtn(text, ghost, onClick) {
+    var btn = document.createElement('button');
+    btn.type = 'button';
+    btn.className = 'price-alert__btn' + (ghost ? ' price-alert__btn--ghost' : '');
+    btn.textContent = text;
+    btn.addEventListener('click', onClick);
+    return btn;
+  }
+
+  function buildChannelRow() {
+    var row = document.createElement('div');
+    row.className = 'price-alert__row';
+    return row;
+  }
+
+  function buildTelegramSection(pid) {
+    // 서버가 텔레그램 API를 지원하지 않으면(구버전) 채널 UI 자체를 노출하지 않는다.
+    if (!telegramStatus) return null;
+
+    var wrap = document.createElement('div');
+
+    if (!telegramStatus.configured) {
+      wrap.appendChild(buildAlertNote(
+        '알림 채널: 텔레그램 봇이 아직 설정되지 않았습니다(관리자 준비 중). '
+        + '설정한 목표가는 그대로 보관되며, 채널이 준비되면 대기 중인 알림이 발송됩니다.'
+      ));
+      return wrap;
+    }
+
+    var row = buildChannelRow();
+    if (telegramStatus.linked) {
+      wrap.appendChild(buildAlertNote('알림 채널: 텔레그램 연동됨. 목표가에 도달하면 텔레그램으로 알려드립니다.'));
+      row.appendChild(buildChannelBtn('텔레그램 연동 해제', true, function () { handleTelegramUnlink(pid); }));
+      wrap.appendChild(row);
+      return wrap;
+    }
+
+    wrap.appendChild(buildAlertNote(
+      '알림 채널: 텔레그램 미연동. 연동해야 알림을 받을 수 있습니다. '
+      + '연동 전에 목표가에 도달한 알림은 사라지지 않고 대기하다가 연동 직후 발송됩니다.'
+    ));
+    row.appendChild(buildChannelBtn('텔레그램 연동하기', false, function () { handleTelegramLink(pid); }));
+    wrap.appendChild(row);
+    var box = document.createElement('div');
+    box.id = 'telegram-link-box';
+    wrap.appendChild(box);
+    return wrap;
+  }
+
+  function refreshTelegramStatus(pid, onLinked) {
+    return fetchTelegramStatus().then(function (status) {
+      if (!status) return false;
+      var wasLinked = telegramStatus && telegramStatus.linked;
+      telegramStatus = status;
+      if (status.linked && !wasLinked) {
+        stopTelegramPoll();
+        renderAlertPanelLoggedIn(pid);
+        if (onLinked) onLinked();
+        return true;
+      }
+      return false;
+    });
+  }
+
+  function renderTelegramLinkCode(pid, data) {
+    var box = document.getElementById('telegram-link-box');
+    if (!box) return;
+    box.innerHTML = '';
+
+    var minutes = Math.max(1, Math.round((data.expires_in || 600) / 60));
+    box.appendChild(buildAlertNote(
+      '아래 일회용 코드를 텔레그램 봇에게 메시지로 보내주세요. ' + minutes + '분 안에 사용해야 하며 한 번만 쓸 수 있습니다.'
+    ));
+
+    var row = buildChannelRow();
+    var code = document.createElement('code');
+    code.textContent = data.code;
+    code.style.fontSize = '1.05rem';
+    code.style.fontWeight = '700';
+    code.style.letterSpacing = '0.12em';
+    row.appendChild(code);
+
+    if (data.deep_link) {
+      var link = document.createElement('a');
+      link.className = 'price-alert__btn';
+      link.href = data.deep_link;
+      link.target = '_blank';
+      link.rel = 'noopener noreferrer';
+      link.textContent = '텔레그램에서 봇 열기';
+      row.appendChild(link);
+    }
+
+    row.appendChild(buildChannelBtn('연동 확인', true, function () {
+      refreshTelegramStatus(pid).then(function (linked) {
+        if (!linked) setAlertStatus('아직 연동이 확인되지 않았습니다. 봇에게 코드를 보낸 뒤 다시 확인해 주세요.');
+      });
+    }));
+    box.appendChild(row);
+
+    if (!data.deep_link && data.bot_username) {
+      box.appendChild(buildAlertNote('봇 계정: @' + data.bot_username));
+    }
+
+    // 코드를 보내면 곧 연동되므로 2분간 5초 간격으로 상태를 확인한다.
+    stopTelegramPoll();
+    telegramPollLeft = 24;
+    telegramPollTimer = setInterval(function () {
+      telegramPollLeft -= 1;
+      if (telegramPollLeft <= 0) { stopTelegramPoll(); return; }
+      refreshTelegramStatus(pid, function () {
+        setAlertStatus('텔레그램 연동이 완료되었습니다.');
+      });
+    }, 5000);
+  }
+
+  function handleTelegramLink(pid) {
+    setAlertStatus('연동 코드를 발급하는 중...');
+    requestTelegramLinkCode().then(function (data) {
+      if (!data || !data.code) {
+        setAlertStatus('연동 코드를 발급하지 못했습니다. 잠시 후 다시 시도해 주세요.', true);
+        return;
+      }
+      setAlertStatus('');
+      renderTelegramLinkCode(pid, data);
+    });
+  }
+
+  function handleTelegramUnlink(pid) {
+    deleteTelegramLink().then(function (r) {
+      if (r && r.ok) {
+        telegramStatus = Object.assign({}, telegramStatus, { linked: false, linked_at: null });
+        renderAlertPanelLoggedIn(pid);
+        setAlertStatus('텔레그램 연동을 해제했습니다.');
+      } else {
+        setAlertStatus('텔레그램 연동 해제에 실패했습니다.', true);
+      }
+    });
   }
 
   function handleAlertSave(pid) {
@@ -403,10 +577,14 @@
       if (alerts === null) {
         // 서버가 아직 알림 API를 지원하지 않으면 패널을 노출하지 않는다.
         removeAlertPanel();
-        return;
+        return null;
       }
       alertMap = new Map(alerts.map(function (a) { return [a.product_id, a]; }));
-      renderAlertPanelLoggedIn(pid);
+      // 텔레그램 API가 없는 구버전 서버면 null이 되어 채널 UI만 조용히 빠진다.
+      return fetchTelegramStatus().then(function (status) {
+        telegramStatus = status;
+        renderAlertPanelLoggedIn(pid);
+      });
     });
   }
 

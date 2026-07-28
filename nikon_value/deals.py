@@ -26,7 +26,8 @@ def extract_deal_listings(
         price = extract_price(item)
         if price is None:
             continue
-        url = item.get("itemWebUrl", "")
+        # itemAffiliateWebUrl은 EPN 헤더를 보낸 경우에만 존재한다 (없으면 기존 동작).
+        url = item.get("itemAffiliateWebUrl") or item.get("itemWebUrl", "")
         if not url:
             continue
         ratio = price / median

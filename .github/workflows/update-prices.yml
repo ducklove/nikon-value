@@ -17,6 +17,12 @@ permissions:
 jobs:
   fetch-prices:
     runs-on: ubuntu-latest
+    # 정상 실행은 7~9분(최근 120회 중앙값 7.7분, p90 9.3분)이지만, eBay가 429를
+    # 반환하면 ebay.py의 지수 백오프(최대 160초 × 최대 6회)가 검색마다 반복되어
+    # 실제로 73~97분까지 늘어난 사례가 있다. 그런 실행도 성공했으므로 관측 최대치
+    # (97분)보다는 여유를 두고, GitHub Actions 기본값 6시간보다는 훨씬 짧게 잡는다.
+    # 상한을 크론 주기(3시간)보다 낮게 유지해야 concurrency 그룹에 실행이 쌓이지 않는다.
+    timeout-minutes: 120
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -29,11 +35,25 @@ jobs:
       - name: Install dependencies
         run: pip install -r scripts/requirements.txt
 
+      # LLM 판정 캐시는 실행마다 거의 전 항목의 최근사용 시각이 갱신되므로,
+      # 저장소에 커밋하면 수 MB 블롭이 3시간마다 통째로 바뀐다(data/daily를 걷어낸
+      # 이유와 같은 문제). Actions 캐시에 두면 저장소를 키우지 않고 실행 간 유지된다.
+      - name: Restore LLM decision cache
+        uses: actions/cache@v4
+        with:
+          path: data/llm-cache.json
+          key: llm-cache-${{ github.run_id }}
+          restore-keys: llm-cache-
+
       - name: Fetch eBay prices
         env:
           EBAY_CLIENT_ID: ${{ secrets.EBAY_CLIENT_ID }}
           EBAY_CLIENT_SECRET: ${{ secrets.EBAY_CLIENT_SECRET }}
           OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
+          # eBay Partner Network 캠페인 ID. 시크릿이 등록되지 않으면 빈 문자열이
+          # 전달되어 ebay.py가 X-EBAY-C-ENDUSERCTX 헤더를 붙이지 않으므로,
+          # 미설정 상태에서도 기존 동작이 그대로 유지된다.
+          EBAY_EPN_CAMPAIGN_ID: ${{ secrets.EBAY_EPN_CAMPAIGN_ID }}
         run: python scripts/fetch_prices.py
 
       - name: Validate public site build
@@ -44,7 +64,9 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add data/
+          # config/products.yaml도 함께 커밋해야 적응형 상한 되먹임이 살아남는다.
+          # (data/만 add하면 갱신된 max_price가 매 실행마다 버려져 효과가 0이 된다)
+          git add data/ config/products.yaml
           if git diff --staged --quiet; then
             echo "No data changes to commit"
             echo "pushed=false" >> "$GITHUB_OUTPUT"

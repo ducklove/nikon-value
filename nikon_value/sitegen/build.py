@@ -27,6 +27,7 @@ HERO_WEBP_800 = PROJECT_ROOT / 'assets' / 'mynikons-800.webp'
 HERO_WEBP_1600 = PROJECT_ROOT / 'assets' / 'mynikons-1600.webp'
 FILM_HISTORY_JPG_1 = PROJECT_ROOT / 'assets' / 'Nikon-camera-history1.jpg'
 FILM_HISTORY_JPG_2 = PROJECT_ROOT / 'assets' / 'Nikon-camera-history2.jpg'
+LENS_HERO_JPG = PROJECT_ROOT / 'assets' / 'nikon-lens-lineup.jpg'
 EBAY_LOGO = PROJECT_ROOT / 'assets' / 'ebay-logo.svg'
 DEFAULT_OUTPUT = PROJECT_ROOT / 'dist'
 ROOT_PRODUCTS_DIR = PROJECT_ROOT / 'products'
@@ -109,6 +110,9 @@ def copy_assets(output_dir: Path) -> None:
     shutil.copy2(HERO_WEBP_1600, output_dir / 'assets' / 'mynikons-1600.webp')
     shutil.copy2(FILM_HISTORY_JPG_1, output_dir / 'assets' / 'Nikon-camera-history1.jpg')
     shutil.copy2(FILM_HISTORY_JPG_2, output_dir / 'assets' / 'Nikon-camera-history2.jpg')
+    # 홈 히어로의 렌즈 카테고리 전용 이미지 — js/site.js의 updateHeroImage()가
+    # z-mount-lenses/f-mount-lenses/classic-lenses 탭에서 노출한다.
+    shutil.copy2(LENS_HERO_JPG, output_dir / 'assets' / 'nikon-lens-lineup.jpg')
     shutil.copy2(HERO_JPG, output_dir / 'mynikons.jpg')
     (output_dir / '.nojekyll').write_text('', encoding='utf-8')
 

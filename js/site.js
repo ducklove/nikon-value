@@ -488,7 +488,9 @@
   }
 
   function initProductPage() {
-    const historyData = readJsonScript('history-data', []);
+    // 인라인 history-data는 최근 10건짜리 부트스트랩 데이터다 (제품 페이지 크기 축소).
+    // 전체 히스토리는 body[data-history-url]에서 가져오고, 실패하면 인라인 데이터로 폴백한다.
+    let historyData = readJsonScript('history-data', []);
     const exchangeData = readJsonScript('exchange-rate-data', {});
     const buttons = Array.from(document.querySelectorAll('.period-btn'));
     const currencyButtons = Array.from(document.querySelectorAll('.currency-toggle__button[data-currency]'));
@@ -502,6 +504,23 @@
     let maEnabled = false;
 
     if (!canvas || !emptyEl) return;
+
+    function loadFullHistory() {
+      const url = document.body.dataset.historyUrl;
+      if (!url || typeof fetch !== 'function') return;
+      fetch(url, { cache: 'no-cache' })
+        .then((res) => (res.ok ? res.json() : Promise.reject(new Error('HTTP ' + res.status))))
+        .then((data) => {
+          // 인라인보다 짧거나 배열이 아니면 무시 — 이미 그려진 차트를 유지한다.
+          if (!Array.isArray(data) || data.length <= historyData.length) return;
+          historyData = data;
+          renderChart(filterByPeriod(historyData, activePeriod));
+        })
+        .catch(() => {
+          // 오프라인·404·파싱 오류: 인라인 10건으로 폴백한다.
+          // (폴백 계약은 nikon_value/sitegen/pages.py 주석 참고)
+        });
+    }
 
     function syncUrl() {
       const next = new URLSearchParams(window.location.search);
@@ -725,6 +744,7 @@
 
     applyCurrencyState();
     applyPeriod(activePeriod);
+    loadFullHistory();
   }
 
   initHeroEasterEgg();

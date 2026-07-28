@@ -1,0 +1,885 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Nikon Value 정량 코드 분석 보고서 — 측정 · 결함 · 개선 · 기능 제안 (2026-07-28)</title>
+<style>
+  :root {
+    --ink: #1c1f26;
+    --ink-soft: #4a5160;
+    --paper: #f6f7f9;
+    --card: #ffffff;
+    --line: #e3e6ec;
+    --accent: #f5c400;
+    --accent-dark: #8a6d00;
+    --navy: #161b26;
+    --good: #1a7f4e;
+    --good-bg: #e8f5ee;
+    --warn: #b25e09;
+    --warn-bg: #fdf1e2;
+    --bad: #b3261e;
+    --bad-bg: #fbeae9;
+    --info: #29539b;
+    --info-bg: #e9eff9;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: "Noto Sans KR", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+    color: var(--ink);
+    background: var(--paper);
+    line-height: 1.65;
+    font-size: 15.5px;
+  }
+  .page { max-width: 1020px; margin: 0 auto; padding: 0 24px 80px; }
+  header.report-header {
+    background: var(--navy);
+    color: #fff;
+    border-bottom: 6px solid var(--accent);
+    padding: 44px 24px 36px;
+  }
+  .report-header .inner { max-width: 1020px; margin: 0 auto; }
+  .report-kicker {
+    display: inline-block;
+    background: var(--accent);
+    color: #1c1500;
+    font-weight: 700;
+    font-size: 12.5px;
+    letter-spacing: .08em;
+    padding: 3px 10px;
+    border-radius: 4px;
+    text-transform: uppercase;
+  }
+  h1.report-title { font-size: 30px; margin: 14px 0 6px; line-height: 1.3; }
+  .report-sub { color: #c7ccd8; font-size: 14.5px; margin: 0; }
+  .report-meta { margin-top: 18px; display: flex; flex-wrap: wrap; gap: 8px; }
+  .report-meta span {
+    background: rgba(255,255,255,.08);
+    border: 1px solid rgba(255,255,255,.15);
+    border-radius: 999px;
+    padding: 3px 12px;
+    font-size: 12.5px;
+    color: #dfe3ec;
+  }
+  h2 {
+    font-size: 23px;
+    margin: 56px 0 18px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid var(--ink);
+  }
+  h2 .sec-no { color: var(--accent-dark); margin-right: 8px; }
+  h3 { font-size: 17.5px; margin: 30px 0 10px; }
+  h4 { font-size: 15px; margin: 20px 0 6px; }
+  p { margin: 10px 0; }
+  code {
+    font-family: "SF Mono", "JetBrains Mono", Consolas, monospace;
+    font-size: .86em;
+    background: #eef0f4;
+    border: 1px solid var(--line);
+    border-radius: 4px;
+    padding: 1px 5px;
+    word-break: break-all;
+  }
+  pre {
+    background: var(--navy);
+    color: #e8ebf2;
+    border-radius: 8px;
+    padding: 16px 18px;
+    overflow-x: auto;
+    font-size: 13px;
+    line-height: 1.55;
+  }
+  pre code { background: none; border: none; color: inherit; padding: 0; }
+  table { width: 100%; border-collapse: collapse; margin: 14px 0 22px; background: var(--card); font-size: 14px; }
+  th, td { border: 1px solid var(--line); padding: 8px 11px; text-align: left; vertical-align: top; }
+  th { background: #eceef3; font-size: 13px; }
+  tbody tr:nth-child(even) { background: #fafbfc; }
+  .toc {
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-left: 5px solid var(--accent);
+    border-radius: 8px;
+    padding: 18px 26px;
+    margin-top: 32px;
+  }
+  .toc strong { font-size: 15px; }
+  .toc ol { margin: 8px 0 2px; padding-left: 22px; columns: 2; column-gap: 40px; }
+  .toc li { margin: 3px 0; break-inside: avoid; }
+  .toc a { color: var(--ink); text-decoration: none; }
+  .toc a:hover { color: var(--accent-dark); text-decoration: underline; }
+  .stat-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 12px; margin: 20px 0; }
+  .stat {
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    padding: 14px 16px;
+  }
+  .stat b { display: block; font-size: 23px; line-height: 1.2; }
+  .stat span { font-size: 12.5px; color: var(--ink-soft); }
+  .grade-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px; margin: 20px 0; }
+  .grade-card { background: var(--card); border: 1px solid var(--line); border-radius: 8px; padding: 14px 16px; display: flex; gap: 14px; align-items: flex-start; }
+  .grade-badge {
+    flex: none; width: 46px; height: 46px; border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 19px; font-weight: 800; color: #fff;
+  }
+  .g-a { background: var(--good); }
+  .g-b { background: #4d7c2a; }
+  .g-bm { background: #8a8a1f; }
+  .g-c { background: var(--warn); }
+  .grade-card b { display: block; font-size: 14.5px; }
+  .grade-card small { color: var(--ink-soft); font-size: 12.5px; line-height: 1.5; display: block; margin-top: 2px; }
+  .badge {
+    display: inline-block; border-radius: 4px; font-size: 11.5px; font-weight: 700;
+    padding: 1px 8px; vertical-align: middle; white-space: nowrap;
+  }
+  .b-p0 { background: var(--bad-bg); color: var(--bad); border: 1px solid #ecc9c6; }
+  .b-p1 { background: var(--warn-bg); color: var(--warn); border: 1px solid #f0d9b8; }
+  .b-p2 { background: var(--info-bg); color: var(--info); border: 1px solid #c8d6ee; }
+  .b-good { background: var(--good-bg); color: var(--good); border: 1px solid #bfe2cf; }
+  .b-done { background: var(--good-bg); color: var(--good); border: 1px solid #bfe2cf; }
+  .callout { border-radius: 8px; padding: 14px 18px; margin: 18px 0; border: 1px solid; }
+  .callout.note { background: var(--info-bg); border-color: #c8d6ee; }
+  .callout.warn { background: var(--warn-bg); border-color: #f0d9b8; }
+  .callout.danger { background: var(--bad-bg); border-color: #ecc9c6; }
+  .callout.good { background: var(--good-bg); border-color: #bfe2cf; }
+  .callout b:first-child { display: block; margin-bottom: 4px; }
+  .arch {
+    background: var(--card); border: 1px solid var(--line); border-radius: 10px;
+    padding: 22px; margin: 18px 0; overflow-x: auto;
+  }
+  .arch-row { display: flex; gap: 14px; align-items: stretch; justify-content: center; flex-wrap: wrap; margin: 8px 0; }
+  .arch-box {
+    border: 1.5px solid var(--ink); border-radius: 8px; padding: 10px 14px;
+    min-width: 180px; background: #fff; text-align: center; font-size: 13px;
+  }
+  .arch-box b { display: block; font-size: 13.5px; }
+  .arch-box small { color: var(--ink-soft); font-size: 11.5px; line-height: 1.45; display: block; }
+  .arch-box.hl { border-color: var(--accent-dark); background: #fffbe8; }
+  .arch-box.ext { border-style: dashed; color: var(--ink-soft); }
+  .arch-arrow { text-align: center; color: var(--ink-soft); font-size: 13px; margin: 2px 0; }
+  .phase {
+    background: var(--card); border: 1px solid var(--line); border-radius: 10px;
+    margin: 16px 0; overflow: hidden;
+  }
+  .phase-head {
+    padding: 12px 18px; background: var(--navy); color: #fff;
+    display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; gap: 6px;
+  }
+  .phase-head b { font-size: 15.5px; }
+  .phase-head span { font-size: 12.5px; color: #c7ccd8; }
+  .phase-body { padding: 6px 20px 14px; }
+  .phase-body ul { margin: 8px 0; padding-left: 20px; }
+  .phase-body li { margin: 7px 0; }
+  ul.tight { margin: 8px 0; padding-left: 20px; }
+  ul.tight li { margin: 6px 0; }
+  .muted { color: var(--ink-soft); }
+  .num { text-align: right; font-variant-numeric: tabular-nums; }
+  .bar-wrap { background: #eceef3; border-radius: 3px; height: 9px; overflow: hidden; min-width: 90px; }
+  .bar { height: 100%; background: var(--good); }
+  .bar.mid { background: var(--warn); }
+  .bar.low { background: var(--bad); }
+  footer.report-footer {
+    margin-top: 70px; padding-top: 18px; border-top: 1px solid var(--line);
+    color: var(--ink-soft); font-size: 12.5px;
+  }
+  @media (max-width: 720px) {
+    .toc ol { columns: 1; }
+    h1.report-title { font-size: 24px; }
+  }
+  @media print {
+    body { background: #fff; font-size: 11.5pt; }
+    header.report-header { padding: 24px; }
+    .page { max-width: none; padding: 0 8mm; }
+    h2 { page-break-after: avoid; }
+    .phase, .grade-card, .callout, table, .arch { page-break-inside: avoid; }
+  }
+</style>
+</head>
+<body>
+
+<header class="report-header">
+  <div class="inner">
+    <span class="report-kicker">Quantitative Code Review</span>
+    <h1 class="report-title">Nikon Value 정량 코드 분석 보고서</h1>
+    <p class="report-sub">실측 지표 · 결함 진단 · 개선 로드맵 · 추가 기능 제안</p>
+    <div class="report-meta">
+      <span>작성일 2026-07-28</span>
+      <span>분석 기준 main @ 445a144b</span>
+      <span>제품 331개 · 카테고리 7개</span>
+      <span>pytest 139개 전체 통과 (2.92s)</span>
+      <span>ruff 0 violations</span>
+      <span>커버리지 60%</span>
+    </div>
+  </div>
+</header>
+
+<div class="page">
+
+<nav class="toc">
+  <strong>목차</strong>
+  <ol>
+    <li><a href="#summary">요약과 종합 등급</a></li>
+    <li><a href="#method">측정 방법 (재현 절차)</a></li>
+    <li><a href="#metrics">정량 지표</a></li>
+    <li><a href="#delta">직전 리뷰(6/10) 대비 개선 현황</a></li>
+    <li><a href="#defects">발견된 결함 (우선순위별)</a></li>
+    <li><a href="#roadmap">개선 방안 로드맵</a></li>
+    <li><a href="#features">추가 기능 제안</a></li>
+    <li><a href="#keep">유지해야 할 자산</a></li>
+    <li><a href="#checklist">실행 체크리스트</a></li>
+  </ol>
+</nav>
+
+<div class="callout note">
+  <b>이 보고서의 성격</b>
+  모든 수치는 저장소를 실제로 빌드·실행해 측정한 값입니다(측정 명령은 2장에 기재). 추정값에는 <span class="muted">"추정"</span>을
+  명시하고 가정을 함께 적었습니다. 직전 리뷰(<code>docs/project-review-2026-06-10.html</code>)와 달리 이 문서는
+  <strong>artifact 배포 전환 이후이므로 공개 사이트에 노출되지 않습니다</strong> — 빌드가 <code>docs/</code>를 산출물에 포함하지 않는 것을 확인했습니다.
+</div>
+
+<!-- ============================================================ -->
+<h2 id="summary"><span class="sec-no">1.</span>요약과 종합 등급</h2>
+
+<p>
+Nikon Value는 GitHub Actions가 3시간마다 eBay 매물을 수집해 331개 니콘 제품의 시세를 정적 사이트로 재생성하고,
+별도 FastAPI 서버가 소셜 로그인·관심목록·가격 알림을 담당하는 이원 구조입니다.
+직전 리뷰에서 지적된 <strong>P0 4건과 P1 5건 중 8건이 해소</strong>되어 구조 부채가 크게 줄었습니다.
+CI가 생겼고(ruff + pytest + JS 문법 + 빌드 스모크), 1,000줄 모놀리식 스크립트 2개는 13개 모듈로 분해됐으며,
+골든 파일 테스트가 빌드 산출물을 바이트 단위로 고정하고 있습니다.
+</p>
+
+<p>
+<strong>종합 등급은 B (직전 B−에서 상향)</strong>입니다. 감점 요인은 성격이 바뀌었습니다.
+과거의 "구조가 무너져 있다"에서 <strong>"구조는 잡혔는데 운영 한계선에 닿아 있다"</strong>로 이동했습니다.
+구체적으로 ① 배포 산출물에서 이미지 1개가 누락돼 3개 카테고리 탭의 히어로 이미지가 깨져 있고,
+② eBay API 호출량이 일일 무료 한도(5,000)에 사실상 도달했으며,
+③ 산출물·저장소에 7~8MB 규모의 순수 중복이 쌓이고 있고,
+④ 가격 알림 기능이 발송 채널 부재로 완전히 비활성 상태입니다.
+</p>
+
+<div class="stat-grid">
+  <div class="stat"><b>331</b><span>추적 제품 (7개 카테고리)</span></div>
+  <div class="stat"><b>4,391줄</b><span>프로덕션 Python (파이프라인 2,901 · 서버 996 · 스크립트 494)</span></div>
+  <div class="stat"><b>2,095줄</b><span>테스트 Python — 프로덕션 대비 0.48</span></div>
+  <div class="stat"><b>139개 / 2.92초</b><span>pytest 전체 통과</span></div>
+  <div class="stat"><b>60%</b><span>구문 커버리지 (1,865 중 742 미커버)</span></div>
+  <div class="stat"><b>A (4.24)</b><span>평균 순환 복잡도 — D등급 3개 함수</span></div>
+  <div class="stat"><b>0.44초</b><span>정적 사이트 전체 빌드 (331 페이지)</span></div>
+  <div class="stat"><b>23 MB</b><span>배포 산출물 — 중복 7MB 포함</span></div>
+  <div class="stat"><b>136 MB</b><span>.git (5개월 · 월 ~27MB 증가)</span></div>
+  <div class="stat"><b>15,158</b><span>추적 중인 현재 매물 수</span></div>
+  <div class="stat"><b>9.4%</b><span>매물 0건 제품 (31/331)</span></div>
+  <div class="stat"><b>~4,792</b><span>일일 eBay 검색 호출 추정 (한도 5,000)</span></div>
+</div>
+
+<h3>영역별 등급</h3>
+<div class="grade-grid">
+  <div class="grade-card"><div class="grade-badge g-a">A−</div><div><b>아키텍처 설계</b><small>정적 사이트 + 자동 파이프라인 + 보조 API 분리. artifact 배포 전환으로 소스/산출물 경계가 명확해짐. API 다운 시에도 시세 조회는 동작하는 graceful degradation 유지.</small></div></div>
+  <div class="grade-card"><div class="grade-badge g-b">B+</div><div><b>데이터 파이프라인</b><small>규칙(51패턴) → LLM → IQR 3중 필터, 적응형 가격 상한, 환율 3단계 폴백. 다만 <code>fetch.main()</code>이 CC 26·커버리지 17%로 남아 있고 API 예산이 한계.</small></div></div>
+  <div class="grade-card"><div class="grade-badge g-b">B+</div><div><b>백엔드 API</b><small>전 쿼리 파라미터화, HMAC state + 5분 만료, JWT 시크릿 길이 검증, rate limit, CORS 단일 오리진. 리버스 프록시 뒤 IP 식별과 배포 문서 부재가 감점.</small></div></div>
+  <div class="grade-card"><div class="grade-badge g-b">B</div><div><b>테스트·CI</b><small>139개 · 골든 파일 · 전체 빌드 불변식까지. 그러나 JS 2,076줄에 테스트 0건이고, 산출물 에셋 존재 검증이 없어 실제 결함(D-1)을 놓쳤음.</small></div></div>
+  <div class="grade-card"><div class="grade-badge g-c">C+</div><div><b>운영·비용 관리</b><small>API 호출 예산·LLM 토큰·저장소 증가에 대한 계측과 상한이 전혀 없음. 서버 배포 문서·Dockerfile·systemd 유닛·의존성 락파일 모두 부재.</small></div></div>
+  <div class="grade-card"><div class="grade-badge g-c">C+</div><div><b>기능 완결성</b><small>가격 알림이 <code>send_price_alert()</code> → 항상 False로 완전 비활성. UI는 노출되어 사용자가 목표가를 설정할 수 있지만 아무것도 발송되지 않음.</small></div></div>
+</div>
+
+<!-- ============================================================ -->
+<h2 id="method"><span class="sec-no">2.</span>측정 방법 (재현 절차)</h2>
+
+<p>Python 3.14 가상환경에 <code>scripts/requirements.txt</code>, <code>server/requirements.txt</code>, <code>ruff</code>, <code>pytest-cov</code>, <code>radon</code>을 설치한 뒤 아래를 실행했습니다.</p>
+
+<pre><code># 린트
+ruff check .
+
+# 테스트 + 커버리지
+JWT_SECRET_KEY=$(python -c "import secrets;print(secrets.token_urlsafe(48))") \
+  pytest -q --cov=nikon_value --cov=server --cov=scripts --cov-report=term-missing
+
+# 복잡도 / 유지보수지수
+radon cc nikon_value server scripts -s -a
+radon mi nikon_value server scripts -s
+
+# 산출물 실측
+time python scripts/build_static_site.py --output /tmp/dist
+du -sh /tmp/dist /tmp/dist/products /tmp/dist/data
+
+# 저장소 증가
+git count-objects -vH
+git rev-list --objects HEAD -- data | wc -l</code></pre>
+
+<p class="muted">
+데이터 품질·API 호출량 지표는 <code>data/catalog.json</code>과 <code>config/products.yaml</code>을 대조하는 일회성 스크립트로 산출했습니다.
+호출량은 실제 로그가 아닌 <em>구성값 기반 추정</em>이며, 가정은 5.2절에 명시했습니다.
+</p>
+
+<!-- ============================================================ -->
+<h2 id="metrics"><span class="sec-no">3.</span>정량 지표</h2>
+
+<h3>3.1 코드 규모</h3>
+
+<table>
+  <thead><tr><th>영역</th><th class="num">줄 수</th><th class="num">파일</th><th>비고</th></tr></thead>
+  <tbody>
+    <tr><td><code>nikon_value/</code> (수집 + 빌드)</td><td class="num">2,901</td><td class="num">12</td><td><code>sitegen/</code> 6개 모듈 1,449줄 포함</td></tr>
+    <tr><td><code>server/</code> (FastAPI)</td><td class="num">996</td><td class="num">17</td><td>auth 4 · api 4 · 코어 9</td></tr>
+    <tr><td><code>scripts/</code> (CLI facade + admin)</td><td class="num">494</td><td class="num">3</td><td><code>admin_server.py</code>가 303줄</td></tr>
+    <tr><td><strong>프로덕션 Python 합계</strong></td><td class="num"><strong>4,391</strong></td><td class="num"><strong>32</strong></td><td>평균 137줄/파일</td></tr>
+    <tr><td><code>tests/</code></td><td class="num">2,095</td><td class="num">20</td><td>골든 파일 7종 별도</td></tr>
+    <tr><td><code>js/</code></td><td class="num">2,076</td><td class="num">3</td><td>site 738 · auth 690 · admin 648</td></tr>
+    <tr><td><code>css/</code></td><td class="num">1,912</td><td class="num">2</td><td>style 1,789 · admin 123</td></tr>
+    <tr><td><code>config/products.yaml</code></td><td class="num">3,335</td><td class="num">1</td><td>사실상 데이터베이스 역할</td></tr>
+    <tr><td><code>.github/workflows/</code></td><td class="num">200</td><td class="num">3</td><td>ci · update-prices · deploy-pages</td></tr>
+  </tbody>
+</table>
+
+<h3>3.2 복잡도</h3>
+
+<p>평균 순환 복잡도 <strong>A (4.24)</strong>, 149개 블록 분석. C 등급(11+) 이상은 10개이며 그중 D 등급 3개는 아래와 같습니다.</p>
+
+<table>
+  <thead><tr><th>함수</th><th>위치</th><th class="num">CC</th><th class="num">커버리지</th><th>진단</th></tr></thead>
+  <tbody>
+    <tr><td><code>build_home_page</code></td><td>sitegen/pages.py:40</td><td class="num">30 (D)</td><td class="num">97%</td><td>f-string 템플릿 + 카드 데이터 조립이 한 함수. 커버리지는 높으나 수정 난도가 큼</td></tr>
+    <tr><td><code>build_product_page</code></td><td>sitegen/pages.py:238</td><td class="num">28 (D)</td><td class="num">97%</td><td>동일. 골든 테스트가 안전망 역할</td></tr>
+    <tr><td><code>main</code></td><td>fetch.py:62</td><td class="num">26 (D)</td><td class="num"><strong>17%</strong></td><td><span class="badge b-p1">P1</span> 200줄 · 인자 파싱 → 인증 → 환율 → 331회 루프 → 저장이 한 덩어리. <strong>복잡도와 미커버가 겹치는 유일한 지점</strong></td></tr>
+    <tr><td><code>is_variant_conflict</code></td><td>filters.py:105</td><td class="num">18 (C)</td><td class="num">59%</td><td>AI/AI-S/non-AI/Series E 세대 판별 — 도메인 본질적 복잡도. 분기별 테스트 보강 대상</td></tr>
+    <tr><td><code>filter_items_with_llm</code></td><td>llm.py:85</td><td class="num">14 (C)</td><td class="num">60%</td><td>프롬프트 조립 + 폴백 3단계. 폴백 경로가 미커버</td></tr>
+  </tbody>
+</table>
+
+<p>유지보수지수(MI)는 전 모듈 A 등급이지만 하위 3개가 낮습니다: <code>sitegen/pages.py</code> 26.17, <code>sitegen/components.py</code> 29.19, <code>scripts/admin_server.py</code> 35.48.</p>
+
+<h3>3.3 테스트와 커버리지</h3>
+
+<p>139개 테스트가 2.92초에 전부 통과합니다. 전체 구문 커버리지는 <strong>60%</strong>(1,865 중 742 미커버)이며, 분포가 매우 이원화되어 있습니다.</p>
+
+<table>
+  <thead><tr><th>모듈</th><th class="num">커버리지</th><th style="width:120px"></th><th>미커버 구간</th></tr></thead>
+  <tbody>
+    <tr><td><code>stats.py</code> · <code>deals.py</code> · <code>server/alerts.py</code> · <code>server/main.py</code></td><td class="num">100%</td><td><div class="bar-wrap"><div class="bar" style="width:100%"></div></div></td><td>—</td></tr>
+    <tr><td><code>sitegen/pages.py</code></td><td class="num">97%</td><td><div class="bar-wrap"><div class="bar" style="width:97%"></div></div></td><td>골든 테스트 효과</td></tr>
+    <tr><td><code>server/api/*</code></td><td class="num">89–98%</td><td><div class="bar-wrap"><div class="bar" style="width:94%"></div></div></td><td>예외 경로 일부</td></tr>
+    <tr><td><code>sitegen/data.py</code></td><td class="num">93%</td><td><div class="bar-wrap"><div class="bar" style="width:93%"></div></div></td><td>파일 I/O</td></tr>
+    <tr><td><code>server/auth/routes.py</code></td><td class="num">48%</td><td><div class="bar-wrap"><div class="bar mid" style="width:48%"></div></div></td><td>OAuth 콜백 전체 (56–127) — 외부 IdP 의존</td></tr>
+    <tr><td><code>ebay.py</code></td><td class="num">65%</td><td><div class="bar-wrap"><div class="bar mid" style="width:65%"></div></div></td><td><code>search_items</code> 페이지네이션·429 백오프 (59–131)</td></tr>
+    <tr><td><code>sitegen/build.py</code></td><td class="num">25%</td><td><div class="bar-wrap"><div class="bar low" style="width:25%"></div></div></td><td><code>copy_assets</code>·<code>publish_root_site</code>·<code>detect_base_url</code> 전부</td></tr>
+    <tr><td><code>exchange.py</code></td><td class="num">25%</td><td><div class="bar-wrap"><div class="bar low" style="width:25%"></div></div></td><td>ECB 파싱·복구 폴백 전부</td></tr>
+    <tr><td><code>storage.py</code></td><td class="num">21%</td><td><div class="bar-wrap"><div class="bar low" style="width:21%"></div></div></td><td>히스토리 롤링·스냅샷 정리 전부</td></tr>
+    <tr><td><code>fetch.py</code></td><td class="num">17%</td><td><div class="bar-wrap"><div class="bar low" style="width:17%"></div></div></td><td><code>main()</code> 전체</td></tr>
+    <tr><td><code>scripts/admin_server.py</code></td><td class="num">0%</td><td><div class="bar-wrap"><div class="bar low" style="width:2%"></div></div></td><td>전체 (로컬 전용이라 의도적일 수 있음)</td></tr>
+    <tr><td><code>js/*.js</code> (2,076줄)</td><td class="num">해당 없음</td><td><div class="bar-wrap"></div></td><td>테스트 0건 — CI는 <code>node --check</code> 문법 검사만</td></tr>
+  </tbody>
+</table>
+
+<div class="callout note">
+  <b>커버리지 60%를 어떻게 읽을 것인가</b>
+  숫자 자체보다 <strong>미커버가 어디에 몰려 있는지</strong>가 중요합니다. 미커버 742줄 중 약 60%가
+  ① 외부 I/O 경계(eBay·ECB·OpenRouter·OAuth)와 ② 파일 시스템 조작(<code>storage</code>·<code>build</code>)에 집중돼 있습니다.
+  이는 "테스트하기 어려운 곳"이 아니라 <strong>"의존성 주입 없이 모듈 최상단에서 직접 I/O를 호출하기 때문에 테스트할 수 없는 곳"</strong>입니다.
+  6장 Phase 1의 핵심 과제입니다.
+</div>
+
+<h3>3.4 빌드 산출물</h3>
+
+<table>
+  <thead><tr><th>항목</th><th class="num">원본</th><th class="num">gzip</th><th>비고</th></tr></thead>
+  <tbody>
+    <tr><td><code>dist/</code> 전체</td><td class="num">23 MB</td><td class="num">—</td><td>빌드 시간 0.44초</td></tr>
+    <tr><td>└ <code>products/</code> 331장</td><td class="num">11.1 MB</td><td class="num">—</td><td>그중 <strong>7.0 MB(63%)가 인라인 <code>history-data</code></strong></td></tr>
+    <tr><td>└ <code>data/products/*.json</code></td><td class="num">8.05 MB</td><td class="num">—</td><td><strong>위 7MB와 동일 데이터의 두 번째 사본</strong></td></tr>
+    <tr><td>└ <code>mynikons.jpg</code></td><td class="num">1.38 MB</td><td class="num">—</td><td><code>&lt;picture&gt;</code> WebP 폴백 전용 — 최신 브라우저는 내려받지 않음</td></tr>
+    <tr><td><code>index.html</code></td><td class="num">279,887 B</td><td class="num"><strong>34,646 B</strong></td><td>67.6%가 <code>cards-data</code> JSON (304장)</td></tr>
+    <tr><td>제품 페이지 1장 (z9)</td><td class="num">35,609 B</td><td class="num">7,168 B</td><td>—</td></tr>
+    <tr><td><code>css/style.css</code></td><td class="num">32,285 B</td><td class="num">6,031 B</td><td>—</td></tr>
+    <tr><td><code>js/site.js</code> + <code>auth.js</code></td><td class="num">51,679 B</td><td class="num">14,075 B</td><td>번들러·미니파이 없음</td></tr>
+  </tbody>
+</table>
+
+<div class="callout good">
+  <b>과장하지 않기 위한 정정</b>
+  원본 280KB인 <code>index.html</code>은 <strong>gzip 후 34.6KB</strong>입니다. GitHub Pages는 gzip/brotli를 자동 적용하므로
+  <strong>사용자 체감 대역폭 문제는 사실상 없습니다</strong>. <code>cards-data</code>에서 null/false 필드(전체 6,384개 중 1,800개, 28%)와
+  파생 가능한 <code>search</code> 필드를 제거해도 gzip 기준 22.1KB → 17.7KB, 즉 4.4KB 절감에 그칩니다.
+  <strong>따라서 페이로드 최적화는 우선순위가 낮습니다.</strong> 실제 문제는 대역폭이 아니라 산출물·저장소 중복(D-3, D-4)입니다.
+</div>
+
+<h3>3.5 데이터 현황과 품질</h3>
+
+<table>
+  <thead><tr><th>지표</th><th class="num">값</th><th>해석</th></tr></thead>
+  <tbody>
+    <tr><td>추적 제품</td><td class="num">331</td><td>바디 133 · 렌즈 159 · 액세서리 39</td></tr>
+    <tr><td>추적 중인 현재 매물</td><td class="num">15,158</td><td>제품당 평균 45.8 · 중앙값 26 · 최대 443</td></tr>
+    <tr><td>매물 0건 제품</td><td class="num">31 (9.4%)</td><td>필름 카메라 18 / F마운트 DSLR 4 / 클래식 렌즈 4 / Z렌즈 3 / F렌즈 2</td></tr>
+    <tr><td>표본 5건 미만</td><td class="num">66 (19.9%)</td><td>IQR 아웃라이어 제거가 작동하지 않는 구간(n&lt;4는 원본 통계 반환)</td></tr>
+    <tr><td>표본 30건 이상</td><td class="num">157 (47.4%)</td><td>중앙값 신뢰도가 확보되는 구간</td></tr>
+    <tr><td>딜 레이더 항목</td><td class="num">617건 / 239개 제품</td><td>제품당 최대 3개, 중앙값의 40–80% 구간</td></tr>
+    <tr><td>일별 스냅샷</td><td class="num">149파일 / 8.3 MB</td><td>보관 한도 400일</td></tr>
+    <tr><td>제품별 히스토리</td><td class="num">331파일 / 8.3 MB</td><td>보관 한도 365포인트</td></tr>
+    <tr><td>환율</td><td class="num">USD 1 = KRW 1,470.11</td><td>ECB 기준 · 3단계 폴백</td></tr>
+  </tbody>
+</table>
+
+<h3>3.6 저장소 증가</h3>
+
+<table>
+  <thead><tr><th>지표</th><th class="num">값</th></tr></thead>
+  <tbody>
+    <tr><td>총 커밋</td><td class="num">1,080 (봇 931 · 사람 149)</td></tr>
+    <tr><td>봇 커밋 비율</td><td class="num">86.2%</td></tr>
+    <tr><td>일일 커밋</td><td class="num">6–8건 (3시간 주기)</td></tr>
+    <tr><td>데이터 커밋 1건당 변경</td><td class="num">83파일 · +1,492 / −1,514줄</td></tr>
+    <tr><td>최근 30커밋 누적</td><td class="num">+82,867 / −55,116줄</td></tr>
+    <tr><td><code>.git</code> 디스크</td><td class="num">136 MB (팩 119 MiB)</td></tr>
+    <tr><td>총 git 객체</td><td class="num">249,935</td></tr>
+    <tr><td>└ <code>data/</code> 관련</td><td class="num">140,722 (<strong>56.3%</strong>)</td></tr>
+    <tr><td>증가 속도</td><td class="num">약 27 MB/월 → <span class="muted">연 ~325 MB (추정)</span></td></tr>
+  </tbody>
+</table>
+
+<!-- ============================================================ -->
+<h2 id="delta"><span class="sec-no">4.</span>직전 리뷰(2026-06-10) 대비 개선 현황</h2>
+
+<p>직전 보고서의 P0 4건 · P1 5건 · P2 다수 중 처리 결과를 코드로 대조했습니다.</p>
+
+<table>
+  <thead><tr><th style="width:80px">항목</th><th>내용</th><th style="width:90px">상태</th><th>근거</th></tr></thead>
+  <tbody>
+    <tr><td>P0-1</td><td>CI에서 테스트를 안 돌린다</td><td><span class="badge b-done">해결</span></td><td><code>ci.yml</code> 신설 — ruff + <code>node --check</code> + pytest + 빌드 스모크(≥300 페이지)</td></tr>
+    <tr><td>P0-2</td><td>JWT 시크릿 무검증</td><td><span class="badge b-done">해결</span></td><td><code>config.py:17</code> 32자 미만이면 <code>RuntimeError</code>로 기동 차단</td></tr>
+    <tr><td>P0-3</td><td>토큰 전달·보관 방식</td><td><span class="badge b-p2">부분</span></td><td><code>auth-complete.html</code>이 fragment를 즉시 <code>replaceState</code>로 제거. 다만 localStorage 7일 보관은 그대로</td></tr>
+    <tr><td>P0-4</td><td>충돌 시 조용한 데이터 유실</td><td><span class="badge b-done">해결</span></td><td><code>-X ours</code> 제거, 3회 재시도 후 실패를 표면화 → 이슈 자동 생성</td></tr>
+    <tr><td>P1-1</td><td>빌드 산출물이 소스 저장소에 커밋</td><td><span class="badge b-done">해결</span></td><td>artifact 배포 전환 완료. 루트 <code>index.html</code>·<code>products/</code> 331장 제거</td></tr>
+    <tr><td>P1-2</td><td>모놀리식 스크립트 2개</td><td><span class="badge b-done">해결</span></td><td>2,397줄 → <code>nikon_value/</code> 12모듈 + <code>sitegen/</code> 6모듈. 바이트 동일성 검증</td></tr>
+    <tr><td>P1-3</td><td>프론트 코드 3원화</td><td><span class="badge b-p2">부분</span></td><td><code>admin.html</code> 인라인 CSS/JS는 분리됨. 그러나 <code>escapeHtml</code>은 여전히 <code>site.js:111</code>·<code>auth.js:623</code>에 중복 정의</td></tr>
+    <tr><td>P1-4</td><td>하드코딩 산재</td><td><span class="badge b-p2">부분</span></td><td>API 주소는 <code>NIKON_API_BASE_URL</code>로 주입 가능해짐. EPN placeholder 문제도 해결. 그러나 GA ID·핫스팟 좌표 84줄은 그대로</td></tr>
+    <tr><td>P1-5</td><td>파이프라인 테스트 공백</td><td><span class="badge b-done">해결</span></td><td>38개 → 139개. <code>compute_stats</code>·적응형 탐색·<code>merge_catalog_with_config</code>·골든 파일 모두 커버</td></tr>
+    <tr><td>P2-1</td><td>fail-open 카탈로그 검증</td><td><span class="badge b-done">해결</span></td><td><code>PRODUCT_ID_RE</code> 슬러그 강제 + <code>test_product_id_guard.py</code>가 설정 전체를 검증</td></tr>
+    <tr><td>P2-2</td><td>429 무한 재시도</td><td><span class="badge b-done">해결</span></td><td>지수 백오프(5→160초) + 최대 6회 (<code>ebay.py:99-113</code>)</td></tr>
+  </tbody>
+</table>
+
+<div class="callout good">
+  <b>평가</b>
+  12개 항목 중 <strong>8건 완전 해결, 4건 부분 해결, 0건 미착수</strong>. 6주간의 리팩토링 캠페인이 실질적으로 완주됐습니다.
+  특히 "테스트 38개 → 139개"와 "산출물 저장소 분리"는 이 프로젝트의 성장 병목을 정확히 제거한 조치입니다.
+</div>
+
+<!-- ============================================================ -->
+<h2 id="defects"><span class="sec-no">5.</span>발견된 결함 (우선순위별)</h2>
+
+<h3>5.1 <span class="badge b-p0">P0</span> D-1 · 배포 산출물에 히어로 이미지 1개가 누락되어 렌즈 카테고리에서 이미지가 깨짐</h3>
+
+<table>
+  <tbody>
+    <tr><th style="width:110px">위치</th><td><code>nikon_value/sitegen/build.py:98-127</code> (<code>copy_assets</code>) ↔ <code>nikon_value/sitegen/pages.py:162</code></td></tr>
+    <tr><th>영향</th><td>렌즈 3개 카테고리 탭 — 제품 <strong>159개(48.0%)</strong>의 열람 경로</td></tr>
+    <tr><th>검증</th><td>빌드 후 <code>dist/assets/</code>에 5개 파일만 존재. <code>nikon-lens-lineup.jpg</code> 없음 (git에는 추적됨)</td></tr>
+  </tbody>
+</table>
+
+<p>
+홈 페이지는 <code>assets/nikon-lens-lineup.jpg</code>를 렌즈 카테고리 전용 히어로로 참조하고
+(<code>site.js:407-412</code>의 <code>updateHeroImage()</code>가 <code>z-mount-lenses</code>·<code>f-mount-lenses</code>·<code>classic-lenses</code> 선택 시 표시),
+이 파일은 저장소에 커밋되어 있습니다. 그러나 <code>copy_assets()</code>는 이 파일을 산출물에 복사하지 않습니다.
+</p>
+
+<p>
+<strong>2.3 이전에는 무해했습니다.</strong> Pages가 저장소 루트를 직접 서빙했으므로 <code>assets/</code>가 그대로 노출됐기 때문입니다.
+artifact 배포로 전환하면서 "산출물에 포함된 것만 서빙된다"로 규칙이 바뀌었고, 이 파일만 이관 목록에서 빠졌습니다.
+<strong>마이그레이션 회귀</strong>입니다.
+</p>
+
+<h4>테스트가 놓친 이유</h4>
+<p>
+<code>test_artifact_is_self_contained_for_pages_deploy</code>는 <code>auth-complete.html</code>·<code>catalog.json</code>·히스토리 JSON의 존재만 확인합니다.
+골든 테스트는 생성된 <em>HTML 문자열</em>을 비교하므로, 문자열에 <code>src="assets/nikon-lens-lineup.jpg"</code>가 들어 있으면 통과합니다
+— 그 경로에 파일이 실제로 있는지는 아무도 검사하지 않습니다.
+</p>
+
+<pre><code># nikon_value/sitegen/build.py — copy_assets()에 1줄 추가
+shutil.copy2(PROJECT_ROOT / 'assets' / 'nikon-lens-lineup.jpg',
+             output_dir / 'assets' / 'nikon-lens-lineup.jpg')
+
+# tests/test_build_output.py — 재발 방지 테스트 (이 종류의 버그 전체를 차단)
+def test_every_local_asset_reference_exists(site_dir):
+    """생성된 모든 HTML의 로컬 src/href가 산출물에 실제로 존재해야 한다."""
+    missing = []
+    for html_path in [site_dir / 'index.html', site_dir / 'resources.html',
+                      *(site_dir / 'products').glob('*.html')]:
+        html = html_path.read_text(encoding='utf-8')
+        for ref in re.findall(r'(?:src|href)="((?!https?:|//|#|mailto:)[^"]+)"', html):
+            target = (html_path.parent / ref.split('?')[0]).resolve()
+            if not target.exists():
+                missing.append(f'{html_path.name} -> {ref}')
+    assert not missing, f'산출물에 없는 참조: {sorted(set(missing))[:20]}'</code></pre>
+
+<h3>5.2 <span class="badge b-p1">P1</span> D-2 · eBay API 호출량이 일일 무료 한도에 도달</h3>
+
+<p>
+<code>ebay.py</code>의 적응형 가격 탐색은 검색 결과 최고가가 상한의 98% 이상이면 상한을 1.5배·2.0배로 올려 재검색합니다.
+훌륭한 설계지만, <strong>발견한 상한을 <code>config/products.yaml</code>에 되먹이지 않기 때문에 같은 확장이 매 실행마다 영구 반복</strong>됩니다.
+</p>
+
+<table>
+  <thead><tr><th>구분</th><th class="num">제품 수</th><th class="num">회당 추가 검색</th></tr></thead>
+  <tbody>
+    <tr><td>기본 검색 (전 제품)</td><td class="num">331</td><td class="num">331</td></tr>
+    <tr><td>매물 0건 → <code>should_expand_max_price</code>가 항상 True 반환</td><td class="num">31</td><td class="num">62</td></tr>
+    <tr><td>관측 최고가 ≥ 설정 상한의 98% → 확장 트리거</td><td class="num">103 (31.1%)</td><td class="num">206</td></tr>
+    <tr><td><strong>회당 합계</strong> <span class="muted">(페이지네이션 제외)</span></td><td class="num">—</td><td class="num"><strong>599</strong></td></tr>
+    <tr><td><strong>일일 (3시간 주기 · 8회)</strong></td><td class="num">—</td><td class="num"><strong>약 4,792</strong></td></tr>
+  </tbody>
+</table>
+
+<p class="muted">
+가정: 확장 트리거 제품은 2단계 모두 실행, 페이지네이션(<code>limit=200</code>)은 미포함(최소 340페이지 추가 요인 존재).
+eBay Browse API 무료 한도는 애플리케이션당 일 5,000회입니다. 실제 호출 로그가 없으므로 <strong>정확한 소진율은 확인 불가</strong>이지만,
+<code>ebay.py</code>에 6단계 지수 백오프 429 핸들러가 이미 구현돼 있다는 사실 자체가 한도에 닿고 있다는 정황 증거입니다.
+</p>
+
+<p>
+설정 상한이 실제 시장 천장보다 낮은 대표 사례: <code>nikon-z7ii</code>(상한 $2,500 / 관측 $3,567),
+<code>nikkor-z-135mm-f18-s-plena</code>($3,000 / $3,476), <code>nikon-z7</code>($1,800 / $2,288).
+<strong>이 103개는 매 수집마다 잘린 가격 창으로 1차 검색을 낭비한 뒤 재검색하고 있으며, 그 결과는 다음 실행에 반영되지 않습니다.</strong>
+</p>
+
+<h3>5.3 <span class="badge b-p1">P1</span> D-3 · 산출물에 7 MB 규모의 동일 데이터 이중 수록</h3>
+
+<p>
+제품 페이지 331장(11.1 MB) 중 <strong>7.0 MB(63%)</strong>가 <code>&lt;script id="history-data"&gt;</code> 인라인 JSON입니다.
+그런데 완전히 같은 데이터가 <code>dist/data/products/*.json</code>(8.05 MB)로 한 번 더 실려 나갑니다
+— 후자는 관심목록 대시보드가 <code>fetch</code>로 읽기 위해 2.3에서 추가된 것입니다.
+</p>
+
+<p>
+사용자 대역폭 관점에서는 문제가 아닙니다(페이지당 gzip 7KB). 실제 비용은 <strong>artifact 업로드/다운로드 시간과 배포 지연</strong>이며,
+데이터 갱신 때마다 23MB artifact가 매번 재생성·재업로드됩니다. 인라인을 제거하고 제품 페이지도 <code>data/products/{id}.json</code>을
+fetch하도록 통일하면 산출물이 약 30% 줄고 데이터 표현이 한 곳으로 수렴합니다.
+다만 <code>&lt;noscript&gt;</code> 히스토리 테이블(SEO·접근성)은 유지해야 하므로, <strong>최근 10건만 인라인 + 전체는 fetch</strong>가 현실적 절충안입니다.
+</p>
+
+<h3>5.4 <span class="badge b-p1">P1</span> D-4 · <code>data/daily/</code>가 <code>data/products/</code>와 100% 중복</h3>
+
+<p>
+최신 스냅샷(<code>2026-07-28.json</code>)의 331개 제품 전부에 대해 <code>data/products/{id}.json</code>의 같은 날짜 항목과 대조한 결과
+<strong>불일치 0건, 누락 0건</strong>이었습니다. 두 저장소는 같은 통계를 축(제품 ↔ 날짜)만 바꿔 담고 있으며,
+<code>daily/</code>만 가진 고유 정보는 <strong>환율 1개 필드</strong>뿐입니다.
+</p>
+
+<p>
+현재 8.3 MB, 보관 한도 400일이므로 <strong>최대 22 MB까지 증가</strong>합니다.
+git 객체 249,935개 중 <code>data/</code> 관련이 140,722개(56.3%)이고 <code>.git</code>은 5개월 만에 136 MB에 도달했습니다.
+</p>
+
+<pre><code># 대안: daily 스냅샷을 환율 시계열로 축소 (제품 통계는 products/가 이미 보유)
+# data/exchange-rates.json  ← 단일 파일, 날짜당 한 줄
+[{"date": "2026-07-28", "rate": 1470.1115, "reference_date": "2026-07-27", "source": "ECB"}, ...]
+# 효과: 8.3MB → 약 20KB, 커밋당 변경 파일 83개 → 약 60개</code></pre>
+
+<div class="callout warn">
+  <b>기존 데이터 처리 주의</b>
+  <code>daily/</code>를 삭제해도 제품 통계는 손실되지 않지만(<code>products/</code>에 동일 내용 존재),
+  <code>_recover_exchange_rate_from_daily()</code>가 이 디렉터리를 폴백 경로로 사용합니다(<code>exchange.py:18-31</code>).
+  스키마를 바꾸기 전에 이 폴백을 새 파일로 먼저 옮기고, 과거 환율은 기존 스냅샷에서 일괄 추출해 이관해야 합니다.
+  <strong>git 히스토리를 재작성해 저장소를 줄이는 방식은 권장하지 않습니다</strong> — 이득 대비 위험이 큽니다.
+</div>
+
+<h3>5.5 <span class="badge b-p1">P1</span> D-5 · 가격 알림이 전면 비활성 상태로 사용자에게 노출됨</h3>
+
+<p>
+<code>server/notify.py:19-22</code>의 <code>send_price_alert()</code>는 <strong>항상 <code>False</code>를 반환</strong>합니다.
+체커는 "발송 성공 시에만 <code>triggered</code> 갱신" 규칙을 따르므로 알림은 영원히 대기 상태로 누적되고,
+매 시간 카탈로그 갱신마다 같은 행을 다시 평가합니다. 설계 의도(채널 연동 시 자동 발송)는 타당하지만,
+<strong>UI는 이미 목표가 입력 패널을 노출하고 있어 사용자는 알림이 동작한다고 믿게 됩니다.</strong>
+</p>
+
+<p>
+<code>auth.js:294</code>·<code>350-351</code>에 "알림 채널(텔레그램·카카오톡)은 연동 준비 중입니다"라는 안내가 있어 완전한 오인은 아니지만,
+6월 10일 SMTP 제거 이후 <strong>7주간 어떤 알림도 발송되지 않은 상태</strong>입니다. 기능 완결이 필요합니다(7장 F-2).
+</p>
+
+<h3>5.6 <span class="badge b-p2">P2</span> D-6 · JS 2,076줄에 테스트 0건</h3>
+
+<p>
+CI의 JS 검증은 <code>node --check</code>(문법 파싱)뿐입니다. 그런데 이 코드에는 테스트가 반드시 필요한 순수 로직이 있습니다.
+</p>
+
+<ul class="tight">
+  <li><code>site.js:39-69</code> <code>formatMoney</code> — USD/KRW 변환, 부호 처리, 정수/소수 분기</li>
+  <li><code>site.js:537-555</code> <code>movingAverage</code> — 달력 기준 7일 윈도우(수집 공백 대응)</li>
+  <li><code>site.js:520-526</code> <code>filterByPeriod</code> — UTC 경계 처리</li>
+  <li><code>auth.js:516-543</code> <code>buildSummedSeries</code> — forward-fill 합산. <strong>모든 제품이 값을 가진 날짜만 포함</strong>하므로, 최근 추가된 제품 하나가 관심목록에 들어오면 추이 차트 구간 전체가 잘림</li>
+  <li><code>auth.js:14-30</code> <code>getReturnToPath</code> — 사이트 루트 추론</li>
+</ul>
+
+<p>Node 내장 <code>node:test</code>를 쓰면 의존성 추가 없이 CI 1줄로 붙습니다.</p>
+
+<pre><code># .github/workflows/ci.yml
+- name: JS unit tests
+  run: node --test tests/js/</code></pre>
+
+<h3>5.7 <span class="badge b-p2">P2</span> D-7 · 운영 산출물 부재</h3>
+
+<table>
+  <thead><tr><th>누락</th><th>영향</th></tr></thead>
+  <tbody>
+    <tr><td>API 서버 배포 문서 (<code>uvicorn</code> 실행법)</td><td>README에 로컬 admin 서버 실행법은 있으나 FastAPI 서버 기동·재시작 절차가 저장소 어디에도 없음. 라즈베리파이 장애 시 복구 절차가 사람 머릿속에만 존재</td></tr>
+    <tr><td>Dockerfile / systemd 유닛</td><td>재현 가능한 배포 불가</td></tr>
+    <tr><td>의존성 락파일</td><td>모두 <code>&gt;=</code> 하한 핀. CI가 매번 최신 버전을 설치하므로 상류 릴리스가 빌드를 깨뜨릴 수 있음 (실제로 Python 3.14 환경에서 slowapi·starlette deprecation 경고 12건 발생)</td></tr>
+    <tr><td>워크플로 <code>timeout-minutes</code></td><td>eBay가 장시간 429를 반환하면 GitHub Actions 기본 6시간까지 공회전. 백오프 최대 대기 160초 × 최대 6회 × 599검색이 이론적 상한</td></tr>
+  </tbody>
+</table>
+
+<h3>5.8 <span class="badge b-p2">P2</span> D-8 · 리버스 프록시 뒤 rate limit 무력화 가능성</h3>
+
+<p>
+<code>rate_limit.py</code>는 <code>slowapi.util.get_remote_address</code>를 사용하며 이는 <code>request.client.host</code>를 읽습니다.
+서버가 <code>cantabile.tplinkdns.com</code> 뒤에서 리버스 프록시(nginx 등)를 거친다면 <strong>모든 요청이 프록시 IP 하나로 집계</strong>되어
+OAuth 5회/분 제한이 전체 사용자 공유 버킷이 됩니다(정상 사용자 차단) 또는 프록시 설정에 따라 무의미해집니다.
+</p>
+<p class="muted">
+저장소에 프록시 설정이 없어 실제 배포 형태를 확인할 수 없습니다. <code>uvicorn --proxy-headers --forwarded-allow-ips=&lt;프록시IP&gt;</code>
+사용 여부를 확인하고, 배포 문서(D-7)에 명시하십시오.
+</p>
+
+<h3>5.9 <span class="badge b-p2">P2</span> 그 외 관찰 사항</h3>
+
+<table>
+  <thead><tr><th style="width:70px">항목</th><th>위치</th><th>내용</th></tr></thead>
+  <tbody>
+    <tr><td>D-9</td><td><code>ebay.py:144-149</code></td><td><code>extract_price</code>가 <code>shippingOptions[0]</code>만 사용 — 최저 배송비가 아닐 수 있음. <code>min(...)</code>으로 바꾸면 배송비 포함가 정확도가 개선됨</td></tr>
+    <tr><td>D-10</td><td><code>deals.py</code> 전반</td><td>딜 매물은 수집 시점 스냅샷이며 검증되지 않음. 인기 딜은 3시간 안에 팔려 링크가 죽을 수 있음. 홈 상단 노출 콘텐츠라 사용자 신뢰에 직결</td></tr>
+    <tr><td>D-11</td><td><code>auth.js:32-39</code></td><td><code>checkHashToken</code>의 <code>/^#token=(.+)$/</code>는 탐욕적 매칭이라 <code>#token=A&amp;return_to=/x</code>를 통째로 토큰으로 저장함. 현재는 <code>auth-complete.html</code>이 실제 흐름을 처리해 도달하지 않지만, 리다이렉트 경로가 바뀌면 즉시 발현되는 잠재 함정</td></tr>
+    <tr><td>D-12</td><td><code>pages.py:518-534</code></td><td>sitemap이 331개 전 제품을 포함 — 매물 0건인 31개는 홈에서 숨기면서 색인은 시킴(thin content). <code>has_catalog_listing_data</code>로 필터링 권장</td></tr>
+    <tr><td>D-13</td><td><code>README.md</code></td><td>"<code>index.html</code>, <code>products/</code> — 현재 GitHub Pages가 직접 서빙하는 공개 산출물"이 2.3 이후 사실과 다름. 같은 문서 하단 배포 절에는 올바르게 적혀 있어 자체 모순</td></tr>
+    <tr><td>D-14</td><td><code>deploy-pages.yml:15</code>, <code>update-prices.yml:77</code></td><td>워크플로가 <code>master</code>를 대상으로 하는데 로컬 브랜치는 <code>main</code>. <strong>이 클론에 remote가 없어 실제 원격 기본 브랜치를 확인할 수 없었습니다</strong> — 원격이 <code>master</code>라면 정상, <code>main</code>이라면 데이터 갱신 후 배포 체인이 끊깁니다. 확인 필요</td></tr>
+    <tr><td>D-15</td><td><code>llm.py</code> 전반</td><td>LLM 판정 결과 캐시 없음. 회당 331호출 · 타이틀 15,158건 → 일 2,648호출 · 약 <span class="muted">1.8M 입력 토큰(추정, 타이틀 60자 가정)</span>. 매물 타이틀은 실행 간 대부분 동일하므로 <code>{타이틀 해시 → 판정}</code> 캐시로 90% 이상 절감 가능</td></tr>
+    <tr><td>D-16</td><td><code>fetch.py:225</code></td><td>제품 루프의 예외 처리가 <code>requests.exceptions.RequestException</code>만 포착. <code>extract_price</code>의 <code>float()</code> 등에서 다른 예외가 나면 331개 전체 수집이 중단되고 <code>catalog.json</code>은 아예 쓰이지 않음(사이트는 이전 데이터 유지). 제품별 격리 필요</td></tr>
+    <tr><td>D-17</td><td><code>js/site.js:111</code>, <code>js/auth.js:623</code></td><td><code>escapeHtml</code> 중복 정의 2곳(직전 리뷰 시점 3곳에서 감소). 구현도 다름 — 하나는 정규식 치환, 하나는 DOM 기반</td></tr>
+  </tbody>
+</table>
+
+<!-- ============================================================ -->
+<h2 id="roadmap"><span class="sec-no">6.</span>개선 방안 로드맵</h2>
+
+<div class="phase">
+  <div class="phase-head"><b>Phase 0 — 즉시 (1일)</b><span>결함 차단</span></div>
+  <div class="phase-body">
+    <ul>
+      <li><strong>D-1 수정</strong>: <code>copy_assets()</code>에 <code>nikon-lens-lineup.jpg</code> 복사 1줄 추가 + 5.1의 에셋 참조 검증 테스트 추가. <span class="muted">이 테스트 하나가 "산출물에 파일이 빠지는" 결함 유형 전체를 차단합니다.</span></li>
+      <li><strong>D-14 확인</strong>: <code>gh api repos/:owner/:repo --jq .default_branch</code>로 원격 기본 브랜치 확인 후 워크플로 참조 일치 여부 검증</li>
+      <li><strong>D-13 수정</strong>: README의 산출물 설명을 artifact 배포 실태에 맞게 정정</li>
+      <li><strong>D-7 일부</strong>: <code>update-prices.yml</code>·<code>ci.yml</code>에 <code>timeout-minutes</code> 설정 (각 90 / 15 권장)</li>
+    </ul>
+  </div>
+</div>
+
+<div class="phase">
+  <div class="phase-head"><b>Phase 1 — 비용·용량 정상화 (1~2주)</b><span>D-2, D-3, D-4, D-15</span></div>
+  <div class="phase-body">
+    <ul>
+      <li><strong>적응형 상한 되먹임 (D-2)</strong>: 확장이 성공하면 <code>config/products.yaml</code>의 <code>max_price</code>를 갱신하고 커밋에 포함. 103개 제품이 정상화되면 회당 검색이 599 → 393회(<strong>34% 절감</strong>), 일 4,792 → 3,144회로 한도 대비 여유 확보</li>
+      <li><strong>매물 0건 처리 (D-2)</strong>: <code>should_expand_max_price</code>가 빈 결과에 True를 반환하는 것은 "상한이 낮아서 못 찾았다"는 가정입니다. 그러나 3회 연속 0건인 제품(현재 31개)은 상한 문제가 아니라 <em>eBay에 매물이 없는 것</em>이므로, 연속 0건 카운터를 두고 확장을 건너뛰면 회당 62회 추가 절감</li>
+      <li><strong>LLM 판정 캐시 (D-15)</strong>: <code>data/llm-cache.json</code>에 <code>{타이틀 SHA1 → bool}</code>를 유지하고 미캐시 타이틀만 LLM에 전달. 신규 매물만 판정하므로 실행 간 중복 제거로 <span class="muted">90%+ 절감 기대</span>. 캐시는 제품 ID별로 분리하고 상한(예: 제품당 2,000건)과 LRU 정리 필요</li>
+      <li><strong>daily 스냅샷 축소 (D-4)</strong>: 환율 시계열 단일 파일로 대체. <code>_recover_exchange_rate_from_daily</code> 폴백을 먼저 이관 → 과거 환율 일괄 추출 → 스키마 전환 순서 준수. 8.3MB → 약 20KB</li>
+      <li><strong>히스토리 인라인 축소 (D-3)</strong>: 제품 페이지는 최근 10건만 인라인(<code>&lt;noscript&gt;</code> 테이블용)하고 차트는 <code>data/products/{id}.json</code>을 fetch. 산출물 23MB → 약 16MB</li>
+    </ul>
+    <p class="muted">Phase 1 완료 시 예상 효과: eBay 호출 −34%, LLM 토큰 −90%, 산출물 −30%, 저장소 증가 속도 −40%.</p>
+  </div>
+</div>
+
+<div class="phase">
+  <div class="phase-head"><b>Phase 2 — 테스트 가능성 회복 (2~3주)</b><span>D-6, 커버리지 60% → 80%</span></div>
+  <div class="phase-body">
+    <ul>
+      <li><strong>I/O 경계 주입</strong>: <code>storage.py</code>(21%)·<code>exchange.py</code>(25%)·<code>sitegen/build.py</code>(25%)가 모듈 상단 상수 경로에 직접 의존합니다. <code>DATA_DIR</code>을 인자로 받는 형태로 바꾸면 <code>tmp_path</code> 픽스처로 즉시 테스트 가능해집니다 — 이 3개 모듈만으로 미커버 168줄이 해소됩니다</li>
+      <li><strong><code>fetch.main()</code> 분해 (CC 26 → 목표 10 이하)</strong>: <code>build_run_context()</code> / <code>process_product()</code> / <code>write_outputs()</code>로 분리. <code>process_product()</code>는 순수 함수에 가까워 테스트가 쉽고, D-16(예외 격리)도 여기서 자연스럽게 해결됩니다</li>
+      <li><strong>JS 단위 테스트 (D-6)</strong>: <code>node:test</code>로 <code>formatMoney</code>·<code>movingAverage</code>·<code>filterByPeriod</code>·<code>buildSummedSeries</code> 커버. 순수 함수를 <code>js/lib/</code>로 추출하면 <code>escapeHtml</code> 중복(D-17)도 동시에 정리됩니다</li>
+      <li><strong>커버리지 게이트</strong>: CI에 <code>--cov-fail-under=75</code>를 넣어 회귀 방지 (현재 60%이므로 Phase 2 완료 후 적용)</li>
+    </ul>
+  </div>
+</div>
+
+<div class="phase">
+  <div class="phase-head"><b>Phase 3 — 운영 성숙 (지속)</b><span>D-5, D-7, D-8</span></div>
+  <div class="phase-body">
+    <ul>
+      <li><strong>알림 채널 연동 (D-5)</strong> — 7장 F-2</li>
+      <li><strong>배포 문서화 (D-7)</strong>: <code>docs/deploy-api-server.md</code> + systemd 유닛 파일. Dockerfile은 라즈베리파이 단일 인스턴스라면 과할 수 있으므로 systemd로 충분</li>
+      <li><strong>의존성 고정 (D-7)</strong>: <code>pip-compile</code>로 <code>requirements.lock</code> 생성, Dependabot으로 주간 갱신 PR</li>
+      <li><strong>프록시 헤더 확인 (D-8)</strong></li>
+      <li><strong>수집 계측</strong>: 실행마다 <code>{검색 호출 수, LLM 호출 수, 429 발생 수, 소요 시간}</code>을 <code>data/run-metrics.json</code>에 누적. <strong>지금은 API 한도 소진율을 아무도 모른다는 것이 가장 큰 운영 리스크</strong>이며, 이 파일 하나면 해결됩니다</li>
+    </ul>
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<h2 id="features"><span class="sec-no">7.</span>추가 기능 제안</h2>
+
+<p>기존 데이터 자산(331제품 × 최대 365일 시계열)에서 도출 가능하고, 구현 비용 대비 효용이 높은 순서로 정리했습니다.</p>
+
+<h3>F-1 · eBay 어필리에이트 수익화 <span class="badge b-good">즉시 · 코드 변경 거의 없음</span></h3>
+<p>
+<code>ebay.py:64-66</code>에 EPN 캠페인 컨텍스트 전송 코드가 이미 있습니다. 그런데
+<code>update-prices.yml</code>은 <code>EBAY_EPN_CAMPAIGN_ID</code>를 전달하지 않습니다 — <strong>즉 어필리에이트 링크가 한 번도 생성된 적이 없습니다.</strong>
+사이트는 이미 딜 레이더 617건 + 제품당 샘플 매물 5건으로 eBay 아웃바운드 링크를 대량 노출하고 있으므로,
+EPN 가입 후 시크릿 1개를 워크플로에 추가하는 것만으로 수익 경로가 열립니다.
+</p>
+<pre><code># .github/workflows/update-prices.yml
+        env:
+          EBAY_CLIENT_ID: ${{ secrets.EBAY_CLIENT_ID }}
+          EBAY_CLIENT_SECRET: ${{ secrets.EBAY_CLIENT_SECRET }}
+          OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
+          EBAY_EPN_CAMPAIGN_ID: ${{ secrets.EBAY_EPN_CAMPAIGN_ID }}   # 추가</code></pre>
+<p class="muted">
+주의: 어필리에이트 링크 사용 시 사이트에 제휴 관계 고지가 필요합니다(FTC·공정위 기준). <code>build_footer()</code>에 한 줄 추가하십시오.
+현재 <code>rel="nofollow"</code>가 붙어 있는데, EPN 링크는 추적 파라미터가 유효해야 하므로 링크 생성 방식 확인이 필요합니다.
+</p>
+
+<h3>F-2 · 텔레그램 알림 채널 <span class="badge b-good">기능 완결</span></h3>
+<p>
+D-5의 해소책입니다. 상태 머신(도달 → 발송 → 회복 시 재무장)과 API·UI가 모두 완성돼 있고
+<code>send_price_alert()</code> 구현 하나만 비어 있습니다. 텔레그램 봇이 최소 경로입니다:
+</p>
+<ul class="tight">
+  <li>DB에 <code>users.telegram_chat_id</code> 컬럼 추가 (nullable)</li>
+  <li><code>/api/me/telegram</code>으로 연동 코드 발급 → 사용자가 봇에 코드 전송 → 서버가 chat_id 저장</li>
+  <li><code>send_price_alert()</code>가 <code>sendMessage</code> 호출 후 성공 여부 반환</li>
+</ul>
+<p class="muted">
+카카오톡은 "나에게 보내기" 외에는 비즈니스 채널 심사가 필요하므로 텔레그램을 먼저 붙이는 편이 현실적입니다.
+대기 중인 알림은 채널 연동 즉시 다음 점검 주기에 자동 발송됩니다 — 기존 설계가 이미 그렇게 되어 있습니다.
+</p>
+
+<h3>F-3 · 실거래가(Sold) 데이터 도입 <span class="badge b-p1">정확도 근본 개선</span></h3>
+<p>
+현재 모든 수치는 <strong>호가(asking price)</strong>입니다. 사이트 곳곳에 "실제 거래가와 다를 수 있습니다"라는 고지가 있고 이는 정직한 처리이지만,
+중고 시세 트래커의 본질적 가치는 실거래가에 있습니다. eBay <em>Marketplace Insights API</em>는 최근 90일 낙찰가를 제공하지만
+파트너 승인이 필요합니다. 승인이 어렵다면 차선책으로 <strong>매물 소멸 추적</strong>이 가능합니다 —
+수집 때마다 아이템 ID를 기록해 두고, 다음 수집에서 사라진 매물을 "판매 추정"으로 분류하면
+호가 대비 실제 성사 가격대를 통계적으로 근사할 수 있습니다. 이미 3시간 간격 수집 인프라가 있으므로 추가 API 비용이 없습니다.
+</p>
+
+<h3>F-4 · 모델 비교 뷰</h3>
+<p>
+"Z6 III vs Z8 vs Z9를 한 차트에서" 같은 요구는 이 카테고리 사이트의 최다 유입 질의입니다.
+데이터(<code>data/products/*.json</code>)와 차트 코드가 이미 있으므로 <code>compare.html?ids=a,b,c</code> 페이지 하나로 구현됩니다.
+관심목록 대시보드의 <code>fetchHistory</code>·Chart.js 온디맨드 로딩 로직을 그대로 재사용할 수 있습니다.
+</p>
+
+<h3>F-5 · 감가 곡선과 "구매 적기" 신호</h3>
+<p>
+누적 5개월(약 150일) 시계열이 쌓였습니다. 제품별 <strong>출시 연차 대비 가격 하락률</strong>을 회귀하면
+"이 렌즈는 연 8% 감가, 현재 추세선 대비 12% 저평가" 같은 판단 근거를 제시할 수 있습니다.
+이미 <code>compute_price_change</code>(30일)와 "1년 내 최저" 뱃지가 있으므로 자연스러운 확장입니다.
+<span class="muted">단, 투자 조언으로 읽히지 않도록 문구 설계에 주의가 필요합니다.</span>
+</p>
+
+<h3>F-6 · 관심목록 → 컬렉션 포트폴리오</h3>
+<p>
+현재 관심목록 대시보드는 중앙값 합산과 추이만 보여줍니다. 여기에 <strong>구매가·구매일 입력</strong>을 추가하면
+"내 장비 총 시세 $12,400 / 취득가 대비 −8%" 같은 개인화 지표가 됩니다.
+카메라 수집가는 이 숫자를 보려고 재방문하므로 리텐션 효과가 큽니다. DB 스키마 확장은
+<code>favorites</code> 테이블에 <code>purchase_price</code>·<code>purchase_date</code> 컬럼 추가로 끝납니다.
+</p>
+
+<h3>F-7 · 유동성 지표 (희소성의 정량화)</h3>
+<p>
+<code>count</code>(현재 매물 수) 시계열은 이미 저장되고 있지만 어디에도 표시되지 않습니다.
+"평균 매물 3건 · 최근 90일 중 21일은 0건" 같은 지표는 희귀 모델 구매자에게 가격만큼 중요한 정보이며,
+현재 <code>is_rare</code>가 수동 설정값(<code>products.yaml</code>)인 것을 <strong>데이터 기반으로 자동 판정</strong>하는 근거도 됩니다.
+추가 수집 없이 기존 데이터만으로 구현됩니다.
+</p>
+
+<h3>F-8 · 딜 레이더 RSS/JSON 피드</h3>
+<p>
+빌드 시 <code>deals.json</code>·<code>deals.xml</code>을 함께 생성하면 재방문 없이도 사용자가 딜을 받아볼 수 있습니다.
+정적 파일 2개 추가로 끝나며, D-10(딜 링크 신선도)의 완화책도 됩니다 — 피드에는 수집 시각을 명시하면 됩니다.
+</p>
+
+<h3>F-9 · 영문 페이지</h3>
+<p>
+데이터 출처가 eBay 미국이고 니콘 클래식 렌즈 수요는 영어권이 훨씬 큽니다.
+<code>name_en</code>·<code>rarity_*</code>가 이미 구조화돼 있고 페이지 빌더가 함수로 분리돼 있으므로,
+문자열 테이블 분리 + <code>/en/</code> 경로 생성으로 대응 가능합니다.
+<span class="muted">sitemap·hreflang 처리 포함. 다만 331 × 2 = 662 페이지가 되므로 D-3(산출물 중복) 해소를 선행하는 편이 좋습니다.</span>
+</p>
+
+<div class="callout note">
+  <b>우선순위 제안</b>
+  <strong>F-1(수익화)</strong>과 <strong>F-2(알림 완결)</strong>은 이미 90% 만들어진 것을 마무리하는 작업이므로 가장 먼저 하십시오.
+  그다음은 기존 데이터만으로 새 가치를 만드는 <strong>F-7 → F-4 → F-6</strong> 순을 권합니다.
+  <strong>F-3(실거래가)</strong>은 이 제품의 정확도 상한을 결정하는 가장 근본적인 개선이지만 외부 승인 의존성이 있으므로 별도 트랙으로 진행하십시오.
+</div>
+
+<!-- ============================================================ -->
+<h2 id="keep"><span class="sec-no">8.</span>유지해야 할 자산</h2>
+
+<p>리팩토링 과정에서 훼손하기 쉬운, 그러나 이 프로젝트의 실질적 경쟁력인 요소들입니다.</p>
+
+<ul class="tight">
+  <li><strong>3중 필터 파이프라인의 폴백 규율</strong> — 규칙 필터가 전부를 걸러내면 원본 유지(<code>filters.py:175-177</code>), LLM이 전부를 걸러내면 규칙 결과 유지(<code>llm.py:176-181</code>), LLM 예외 시에도 규칙 결과 유지(<code>llm.py:185-187</code>). <strong>"자동 필터는 틀릴 수 있으므로 데이터를 지우지 않는다"</strong>는 원칙이 세 곳에 일관되게 구현돼 있습니다. 캐시(Phase 1)를 도입할 때 이 폴백 의미를 반드시 보존하십시오.</li>
+  <li><strong>환율 3단계 폴백</strong> — ECB 실패 → 기존 catalog 값 유지 → 최근 daily 스냅샷 복구. D-4 개편 시 이 3단계를 그대로 옮겨야 합니다.</li>
+  <li><strong>알림 상태 머신의 "발송 성공 시에만 소비" 규칙</strong> — 채널 장애 시 알림이 소실되지 않고 자동 재시도되는 근거입니다. F-2 구현 시 반드시 유지.</li>
+  <li><strong>골든 파일 테스트</strong> — 7종 산출물을 바이트 단위로 고정. Jinja2 마이그레이션 같은 대규모 변경의 유일한 안전망입니다. <code>UPDATE_GOLDENS=1</code> 재생성 절차가 문서화된 것도 좋습니다.</li>
+  <li><strong>API 서버 없이도 동작하는 정적 사이트</strong> — <code>auth.js</code>의 <code>apiFetch</code>가 네트워크 실패를 삼키고 <code>null</code>을 반환해 시세 조회는 계속 동작합니다(<code>auth.js:52-55</code>). 라즈베리파이 다운타임이 사이트 전체 장애로 번지지 않는 구조입니다.</li>
+  <li><strong>admin 서버 3중 방어</strong> — local-only + same-origin + 세션 토큰. 로컬 도구에 대한 적정 수준입니다.</li>
+  <li><strong>수집 실패 시 GitHub 이슈 자동 생성 + 2일 이상 stale 시 사이트 배너</strong> — 개인 프로젝트로서는 드문 수준의 운영 가시성입니다.</li>
+</ul>
+
+<div class="callout warn">
+  <b>과잉 리팩토링 경계</b>
+  <code>build_home_page</code>·<code>build_product_page</code>의 CC 30/28은 수치상 나쁘지만 <strong>커버리지 97% + 골든 테스트로 보호</strong>되고 있어
+  실제 위험은 낮습니다. Jinja2 도입은 "복잡도 수치를 낮추기 위해서"가 아니라 <strong>F-9(영문 페이지)처럼 템플릿 변형이 실제로 필요해질 때</strong>
+  착수하십시오. 반면 <code>fetch.main()</code>의 CC 26은 <strong>커버리지 17%와 겹치므로 실제 위험</strong>이며 Phase 2 대상입니다.
+  같은 복잡도라도 안전망 유무에 따라 우선순위가 달라집니다.
+</div>
+
+<!-- ============================================================ -->
+<h2 id="checklist"><span class="sec-no">9.</span>실행 체크리스트</h2>
+
+<table>
+  <thead><tr><th style="width:60px">순번</th><th>작업</th><th style="width:80px">규모</th><th style="width:90px">우선순위</th></tr></thead>
+  <tbody>
+    <tr><td>1</td><td><code>copy_assets()</code>에 <code>nikon-lens-lineup.jpg</code> 추가 + 에셋 참조 검증 테스트 (D-1)</td><td>1시간</td><td><span class="badge b-p0">P0</span></td></tr>
+    <tr><td>2</td><td>원격 기본 브랜치와 워크플로 <code>master</code> 참조 일치 확인 (D-14)</td><td>10분</td><td><span class="badge b-p0">P0</span></td></tr>
+    <tr><td>3</td><td>README 산출물 설명 정정 (D-13)</td><td>10분</td><td><span class="badge b-p2">P2</span></td></tr>
+    <tr><td>4</td><td>워크플로 <code>timeout-minutes</code> 설정 (D-7)</td><td>10분</td><td><span class="badge b-p1">P1</span></td></tr>
+    <tr><td>5</td><td><code>EBAY_EPN_CAMPAIGN_ID</code> 시크릿 추가 + 제휴 고지 문구 (F-1)</td><td>반나절</td><td><span class="badge b-good">수익</span></td></tr>
+    <tr><td>6</td><td>수집 계측 파일(<code>run-metrics.json</code>) 도입 — <strong>이후 모든 최적화의 측정 기준</strong></td><td>반나절</td><td><span class="badge b-p1">P1</span></td></tr>
+    <tr><td>7</td><td>적응형 상한 되먹임 + 연속 0건 건너뛰기 (D-2)</td><td>2~3일</td><td><span class="badge b-p1">P1</span></td></tr>
+    <tr><td>8</td><td>LLM 판정 캐시 (D-15)</td><td>2~3일</td><td><span class="badge b-p1">P1</span></td></tr>
+    <tr><td>9</td><td>daily 스냅샷 → 환율 시계열 축소 (D-4)</td><td>2일</td><td><span class="badge b-p1">P1</span></td></tr>
+    <tr><td>10</td><td>제품 페이지 히스토리 인라인 축소 (D-3)</td><td>1~2일</td><td><span class="badge b-p1">P1</span></td></tr>
+    <tr><td>11</td><td>텔레그램 알림 채널 (F-2 / D-5)</td><td>3~4일</td><td><span class="badge b-p1">P1</span></td></tr>
+    <tr><td>12</td><td>I/O 경계 주입 → <code>storage</code>·<code>exchange</code>·<code>build</code> 테스트 (D-6)</td><td>3~4일</td><td><span class="badge b-p2">P2</span></td></tr>
+    <tr><td>13</td><td><code>fetch.main()</code> 분해 + 제품별 예외 격리 (D-16)</td><td>2~3일</td><td><span class="badge b-p2">P2</span></td></tr>
+    <tr><td>14</td><td><code>node:test</code> JS 단위 테스트 + <code>js/lib/</code> 공용 추출 (D-6, D-17)</td><td>2일</td><td><span class="badge b-p2">P2</span></td></tr>
+    <tr><td>15</td><td>API 서버 배포 문서 + systemd 유닛 + 의존성 락파일 (D-7)</td><td>1~2일</td><td><span class="badge b-p2">P2</span></td></tr>
+    <tr><td>16</td><td>프록시 헤더 설정 확인 (D-8)</td><td>30분</td><td><span class="badge b-p2">P2</span></td></tr>
+    <tr><td>17</td><td>유동성 지표 · 모델 비교 뷰 (F-7, F-4)</td><td>1주</td><td><span class="badge b-good">기능</span></td></tr>
+  </tbody>
+</table>
+
+<div class="callout good">
+  <b>마무리</b>
+  이 프로젝트의 코드 품질은 <strong>개인 프로젝트 기준으로 상위권</strong>입니다. ruff 위반 0건, 테스트 139개 2.92초 통과,
+  평균 복잡도 A, 골든 파일 테스트, 3단계 폴백 규율 — 6주 전 리뷰의 지적을 실제로 완주한 결과가 수치로 확인됩니다.
+  <br><br>
+  다음 단계의 병목은 코드 구조가 아니라 <strong>계측되지 않은 운영 비용</strong>입니다.
+  eBay 호출량·LLM 토큰·저장소 증가 어느 것도 현재 관측되지 않고 있으며, 세 지표 모두 한계선에 접근 중입니다.
+  체크리스트 6번(계측 도입)을 7~10번보다 먼저 하시길 권하는 이유입니다 — <strong>측정 없이는 최적화 효과도 알 수 없습니다.</strong>
+</div>
+
+<footer class="report-footer">
+  Nikon Value 정량 코드 분석 보고서 · 2026-07-28 · 분석 기준 <code>main @ 445a144b</code><br>
+  측정 환경: Python 3.14.6 / macOS darwin 25.5.0 · pytest 139 passed · ruff 0 violations · radon CC avg 4.24 (A)<br>
+  직전 문서: <code>docs/project-review-2026-06-10.html</code>
+</footer>
+
+</div>
+</body>
+</html>
