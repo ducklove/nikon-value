@@ -4,7 +4,7 @@ import logging
 from contextlib import asynccontextmanager
 from pathlib import Path
 
-from fastapi import FastAPI
+from fastapi import FastAPI, Request
 from fastapi.middleware.cors import CORSMiddleware
 from slowapi import _rate_limit_exceeded_handler
 from slowapi.errors import RateLimitExceeded
@@ -16,7 +16,7 @@ from server.api import telegram as telegram_api
 from server.auth import routes as auth_routes
 from server.config import DB_PATH, FRONTEND_ORIGIN
 from server.database import close_db, init_db
-from server.rate_limit import limiter
+from server.rate_limit import TRUST_PROXY_HEADERS, client_ip, limiter
 
 logging.basicConfig(
     level=logging.INFO,
@@ -54,6 +54,24 @@ app.add_middleware(
 )
 
 app.add_exception_handler(RateLimitExceeded, _rate_limit_exceeded_handler)
+
+@app.get("/health/client-ip")
+@limiter.limit("30/minute")
+async def client_ip_probe(request: Request):
+    """운영자가 자기 배포 형태(리버스 프록시 유무)를 확인하기 위한 진단용 엔드포인트.
+
+    응답의 `client_ip` 가 rate limit 버킷을 가르는 실제 키다. 여러 회선에서 호출해도
+    같은 값이 나온다면 모든 사용자가 한 버킷을 공유하고 있다는 뜻이다.
+    판독법은 docs/deploy-api-server.md 의 "리버스 프록시와 클라이언트 IP" 참고.
+    """
+    return {
+        "client_ip": client_ip(request),
+        "peer_ip": request.client.host if request.client else None,
+        "x_forwarded_for": request.headers.get("x-forwarded-for"),
+        "x_real_ip": request.headers.get("x-real-ip"),
+        "trust_proxy_headers": TRUST_PROXY_HEADERS,
+    }
+
 
 app.include_router(health.router)
 app.include_router(users.router)

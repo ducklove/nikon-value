@@ -58,9 +58,18 @@ def append_exchange_rate(
     return True
 
 
-def fetch_usd_krw_exchange_rate() -> dict[str, object]:
-    """ECB 일일 기준환율에서 USD/KRW 환산값을 가져옵니다."""
-    resp = requests.get(ECB_EXCHANGE_RATES_URL, timeout=30)
+def fetch_usd_krw_exchange_rate(
+    *,
+    session: requests.Session | None = None,
+    url: str = ECB_EXCHANGE_RATES_URL,
+) -> dict[str, object]:
+    """ECB 일일 기준환율에서 USD/KRW 환산값을 가져옵니다.
+
+    session을 주면 그 세션으로 호출한다(테스트 스텁 주입 지점).
+    기본값은 지금까지와 같은 모듈 수준 requests.get이다.
+    """
+    http_get = requests.get if session is None else session.get
+    resp = http_get(url, timeout=30)
     resp.raise_for_status()
 
     root = ET.fromstring(resp.content)

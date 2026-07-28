@@ -2305,6 +2305,8 @@ categories:
     name_en: Nikon GN Auto-Nikkor 45mm f/2.8
     focal_length_min: 45
     subcategory: pre-ai
+    # ID가 nikkor-auto- 접두사 규칙에 걸리지 않아 세대 필터가 적용되지 않던 제품.
+    variant_group: non-ai
     query: Nikon GN Auto Nikkor 45mm f/2.8
     category_id: '78997'
     min_price: 80
@@ -2835,6 +2837,8 @@ categories:
     name_en: Nikon Medical-Nikkor Auto 200mm f/5.6
     focal_length_min: 200
     subcategory: special
+    # ID가 접두사 규칙에 걸리지 않아 세대 필터가 적용되지 않던 제품.
+    variant_group: non-ai
     query: Nikon Medical-Nikkor Auto 200mm f/5.6 -manual -adapter
     category_id: '78997'
     min_price: 200

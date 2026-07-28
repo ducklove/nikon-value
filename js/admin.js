@@ -1,4 +1,11 @@
 (function () {
+// HTML 이스케이프는 js/site.js가 window.nikonValueShared로 공개하는 공용 모듈
+// 하나만 쓴다(admin.html이 admin.js보다 먼저 site.js를 로드한다).
+// 과거 admin.js의 esc()는 DOM textContent 기반이라 큰따옴표를 그대로 흘려서
+// title="${esc(...)}" / value="${esc(...)}" 같은 속성 삽입 지점에서 속성을
+// 탈출할 수 있었다. 통일된 구현은 & < > " ' 를 모두 이스케이프한다.
+const esc = window.nikonValueShared.escapeHtml;
+
 let catalog = null;
 let activeCategoryIndex = null;
 let unsaved = false;
@@ -564,14 +571,6 @@ function showToast(msg, isError) {
   toast.className = 'toast show' + (isError ? ' error' : '');
   clearTimeout(toastTimer);
   toastTimer = setTimeout(() => { toast.className = 'toast'; }, 3000);
-}
-
-// --- Utility ---
-function esc(str) {
-  if (!str) return '';
-  const div = document.createElement('div');
-  div.textContent = str;
-  return div.innerHTML;
 }
 
 // --- Git Push ---

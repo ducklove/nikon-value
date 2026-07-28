@@ -36,6 +36,7 @@ class RunMetrics:
 
     started_at: str = field(default_factory=_utc_now_iso)
     products_processed: int = 0
+    products_failed: int = 0
     ebay_search_calls: int = 0
     ebay_http_requests: int = 0
     ebay_rate_limited: int = 0
@@ -49,6 +50,16 @@ class RunMetrics:
     # --- 카운터 증가 -------------------------------------------------
     def record_product(self, count: int = 1) -> None:
         self.products_processed += count
+
+    def record_product_failure(self, count: int = 1) -> None:
+        """제품 1개 수집이 예외로 실패했다(격리된 실패)."""
+        self.products_failed += count
+
+    def failure_rate(self) -> float:
+        """처리한 제품 대비 실패 비율. 처리한 제품이 없으면 0."""
+        if not self.products_processed:
+            return 0.0
+        return self.products_failed / self.products_processed
 
     def record_ebay_search(self, count: int = 1) -> None:
         """검색 1건(페이지네이션 전) 호출."""
@@ -84,6 +95,7 @@ class RunMetrics:
         return {
             "started_at": self.started_at,
             "products_processed": self.products_processed,
+            "products_failed": self.products_failed,
             "ebay_search_calls": self.ebay_search_calls,
             "ebay_http_requests": self.ebay_http_requests,
             "ebay_rate_limited": self.ebay_rate_limited,
@@ -97,7 +109,8 @@ class RunMetrics:
     def summary_line(self) -> str:
         """실행 종료 로그용 한 줄 요약."""
         return (
-            f"Run metrics: {self.products_processed} products, "
+            f"Run metrics: {self.products_processed} products "
+            f"({self.products_failed} failed), "
             f"{self.ebay_search_calls} eBay searches "
             f"({self.ebay_http_requests} HTTP requests, {self.ebay_rate_limited} rate limited), "
             f"{self.llm_calls} LLM calls "

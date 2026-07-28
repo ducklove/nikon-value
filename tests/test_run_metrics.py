@@ -73,6 +73,20 @@ def test_summary_line_mentions_every_counter():
     assert "2 max-price expansions" in line
 
 
+def test_product_failures_are_counted_and_surfaced_in_the_summary():
+    m = RunMetrics()
+    m.record_product(5)
+    m.record_product_failure()
+
+    assert m.to_dict()["products_failed"] == 1
+    assert m.failure_rate() == pytest.approx(0.2)
+    assert "5 products (1 failed)" in m.finish().summary_line()
+
+
+def test_failure_rate_is_zero_when_nothing_was_processed():
+    assert RunMetrics().failure_rate() == 0.0
+
+
 def test_append_run_metrics_rolls_to_the_configured_limit(tmp_path):
     path = tmp_path / "run-metrics.json"
 

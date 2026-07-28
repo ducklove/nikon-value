@@ -20,6 +20,11 @@ eBay 현재 매물을 기준으로 니콘 제품 시세를 추적하는 정적 �
   - 공개 사이트 공통 스타일이다.
 - `admin.html`, `js/admin.js`, `css/admin.css`, `scripts/admin_server.py`
   - 로컬에서만 쓰는 카탈로그 관리 UI와 서버다.
+- `server/`
+  - 라즈베리파이에서 도는 FastAPI 서버(소셜 로그인·관심목록·가격알림·텔레그램).
+    정적 사이트와 별개로 배포된다 (아래 "API 서버" 절 참고).
+- `deploy/`
+  - API 서버 배포용 systemd 유닛.
 - `.github/workflows/update-prices.yml`
   - 가격 데이터를 주기적으로 갱신해 `data/`만 커밋하고, 배포 워크플로를 체인 트리거한다.
 - `.github/workflows/ci.yml`
@@ -34,10 +39,15 @@ eBay 현재 매물을 기준으로 니콘 제품 시세를 추적하는 정적 �
 ## 개발
 
 ```bash
-pip install -r scripts/requirements.txt -r server/requirements.txt ruff
+pip install -r requirements-dev.lock.txt   # 버전이 고정된 락파일
 ruff check .       # 린트
 pytest -q          # 테스트
 ```
+
+의존성은 상위 선언(`scripts/requirements.txt`, `server/requirements.txt`,
+`requirements-dev.txt`)과 버전이 고정된 락파일(`*.lock.txt`)로 나뉜다. 패키지를 추가하거나
+버전을 올릴 때는 **상위 선언만 고치고 락을 재생성**한다 — 절차는
+[docs/dependency-locks.md](docs/dependency-locks.md) 참고.
 
 공개 사이트의 API 서버 주소는 빌드 시 `NIKON_API_BASE_URL` 환경변수로 바꿀 수 있다
 (페이지의 `meta[name="nikon-api-base"]`로 주입되고, `js/auth.js`가 이를 읽는다).
@@ -67,6 +77,28 @@ python3 scripts/admin_server.py --port 8080
   - `scripts/build_static_site.py --output dist` 실행 (로컬 미리보기·검증용)
 - `Git Push`
   - 카탈로그와 데이터만 커밋/푸시 — 푸시되면 Pages 배포 워크플로가 사이트를 재배포한다
+
+## API 서버 (라즈베리파이)
+
+`server/`는 소셜 로그인·관심목록·가격알림·텔레그램 알림을 담당하는 별도의 FastAPI
+서버로, 가정용 회선의 라즈베리파이에서 `https://cantabile.tplinkdns.com`으로 서비스된다.
+정적 사이트와 수명주기가 완전히 분리되어 있어 이 서버가 죽어도 시세 페이지는 계속 뜬다.
+
+```bash
+# 로컬 실행 (server/.env 필요 — server/.env.example 참고)
+uvicorn server.main:app --reload --port 8000
+curl -s http://127.0.0.1:8000/health
+```
+
+설치·systemd 등록·업그레이드·롤백·**DB 백업**·장애 대응은
+[docs/deploy-api-server.md](docs/deploy-api-server.md)에 정리되어 있다.
+systemd 유닛은 [`deploy/nikon-value-api.service`](deploy/nikon-value-api.service)다.
+
+> `server/data/nikon_api.db`에는 다시 만들 수 없는 사용자 데이터가 들어 있고 저장소에
+> 없다. 백업 절차는 위 문서의 "DB 백업" 절을 반드시 볼 것.
+
+리버스 프록시 뒤에 둔 경우 `TRUSTED_PROXY_IPS`를 설정해야 rate limit이 사용자별로
+갈린다. 판단 방법은 같은 문서의 "리버스 프록시와 클라이언트 IP" 절에 있다.
 
 ## 배포
 

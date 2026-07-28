@@ -177,6 +177,88 @@ def _keep_heuristic_set(items: list[dict]) -> list[dict]:
     return items
 
 
+def _partition_by_cache(
+    titles: list[str],
+    product_id: str,
+    cache: LlmDecisionCache | None,
+    run_metrics: RunMetrics,
+) -> tuple[list[int], list[int]]:
+    """타이틀을 (캐시가 통과시킨 인덱스, LLM에 물어야 할 인덱스)로 나눕니다."""
+    cached_keep: list[int] = []
+    pending: list[int] = []
+
+    for index, title in enumerate(titles):
+        decision = cache.lookup(product_id, title) if cache is not None else None
+        if decision is None:
+            pending.append(index)
+        else:
+            run_metrics.record_llm_cache_hits()
+            if decision:
+                cached_keep.append(index)
+
+    run_metrics.record_llm_cache_misses(len(pending))
+    return cached_keep, pending
+
+
+def _resolve_llm_keep(indices: list, pending: list[int]) -> set[int]:
+    """LLM이 돌려준 인덱스를 원본 인덱스로 되돌립니다(범위 밖·비정수는 무시)."""
+    return {pending[i] for i in indices if isinstance(i, int) and 0 <= i < len(pending)}
+
+
+def _record_decisions(
+    cache: LlmDecisionCache | None,
+    product_id: str,
+    titles: list[str],
+    pending: list[int],
+    llm_keep: set[int],
+) -> None:
+    """이번에 LLM이 판정한 타이틀만 캐시에 기록합니다."""
+    if cache is None:
+        return
+    for index in pending:
+        cache.record(product_id, titles[index], index in llm_keep)
+
+
+def _filter_with_llm_call(
+    items: list[dict],
+    titles: list[str],
+    product: dict,
+    openrouter_key: str,
+    cached_keep: list[int],
+    pending: list[int],
+    cache: LlmDecisionCache | None,
+    run_metrics: RunMetrics,
+) -> list[dict]:
+    """미캐시 타이틀을 LLM에 물어 캐시 판정과 합칩니다.
+
+    응답이 비정상이거나 호출이 실패하면 규칙 필터 결과를 그대로 유지한다.
+    폴백이 발동한 판정은 신뢰할 수 없으므로 캐시에도 남기지 않는다.
+    """
+    prompt = build_llm_prompt([titles[i] for i in pending], product)
+
+    try:
+        run_metrics.record_llm_call()
+        indices = _request_llm_indices(prompt, openrouter_key)
+
+        if not isinstance(indices, list):
+            log.warning("  LLM returned non-list, skipping filter")
+            return items
+
+        llm_keep = _resolve_llm_keep(indices, pending)
+        filtered = [items[i] for i in sorted(set(cached_keep) | llm_keep)]
+
+        if not filtered:
+            # 폴백 발동 — 판정을 신뢰할 수 없으므로 캐시에도 남기지 않는다.
+            return _keep_heuristic_set(items)
+
+        _record_decisions(cache, product.get("id", ""), titles, pending, llm_keep)
+        return filtered
+
+    except Exception as e:
+        log.warning("  LLM filter failed (%s), keeping heuristic-filtered set", e)
+        return items
+
+
 def filter_items_with_llm(
     items: list[dict],
     product: dict,
@@ -196,52 +278,13 @@ def filter_items_with_llm(
     run_metrics = resolve_metrics(metrics)
     product_id = product.get("id", "")
     titles = [item.get("title", "") for item in items]
-
-    cached_keep: list[int] = []
-    pending: list[int] = []
-    for index, title in enumerate(titles):
-        decision = cache.lookup(product_id, title) if cache is not None else None
-        if decision is None:
-            pending.append(index)
-        else:
-            run_metrics.record_llm_cache_hits()
-            if decision:
-                cached_keep.append(index)
-    run_metrics.record_llm_cache_misses(len(pending))
+    cached_keep, pending = _partition_by_cache(titles, product_id, cache, run_metrics)
 
     # 전부 캐시 히트 → LLM 호출 없이 판정. 폴백 규율은 동일하게 적용한다.
     if not pending:
         filtered = [items[i] for i in cached_keep]
-        if not filtered:
-            return _keep_heuristic_set(items)
-        return filtered
+        return filtered or _keep_heuristic_set(items)
 
-    prompt = build_llm_prompt([titles[i] for i in pending], product)
-
-    try:
-        run_metrics.record_llm_call()
-        indices = _request_llm_indices(prompt, openrouter_key)
-
-        if not isinstance(indices, list):
-            log.warning("  LLM returned non-list, skipping filter")
-            return items
-
-        llm_keep = {
-            pending[i] for i in indices if isinstance(i, int) and 0 <= i < len(pending)
-        }
-        keep_indices = sorted(set(cached_keep) | llm_keep)
-        filtered = [items[i] for i in keep_indices]
-
-        if not filtered:
-            # 폴백 발동 — 판정을 신뢰할 수 없으므로 캐시에도 남기지 않는다.
-            return _keep_heuristic_set(items)
-
-        if cache is not None:
-            for index in pending:
-                cache.record(product_id, titles[index], index in llm_keep)
-
-        return filtered
-
-    except Exception as e:
-        log.warning("  LLM filter failed (%s), keeping heuristic-filtered set", e)
-        return items
+    return _filter_with_llm_call(
+        items, titles, product, openrouter_key, cached_keep, pending, cache, run_metrics
+    )

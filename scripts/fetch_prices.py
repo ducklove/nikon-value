@@ -60,6 +60,7 @@ from nikon_value.filters import (  # noqa: E402,F401
     LENS_HOOD_RE,
     NON_AI_TOKEN_RE,
     SERIES_E_TOKEN_RE,
+    VARIANT_GROUPS,
     filter_items_with_rules,
     get_title_variant_group,
     is_camera_body_product,

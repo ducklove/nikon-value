@@ -1,4 +1,8 @@
-"""정적 사이트 빌드 CLI — 출력 정리, 에셋 복사, 페이지 생성, 루트 publish."""
+"""정적 사이트 빌드 CLI — 출력 정리, 에셋 복사, 페이지 생성, 루트 publish.
+
+경로(저장소 루트·데이터 디렉터리)는 모듈 상수를 기본값으로 쓰되 인자로 주입할 수
+있게 열어 두었다. 기본 인자만 쓰면 기존 동작과 100% 동일하다.
+"""
 
 from __future__ import annotations
 
@@ -6,6 +10,7 @@ import argparse
 import os
 import shutil
 import subprocess
+from collections.abc import Sequence
 from pathlib import Path
 
 from nikon_value.paths import DATA_DIR, PROJECT_ROOT
@@ -17,6 +22,36 @@ from nikon_value.sitegen.pages import (
     build_resources_page,
     build_robots,
     build_sitemap,
+)
+
+# 산출물에 그대로 복사되는 정적 에셋: (저장소 루트 기준 소스, 산출물 기준 대상).
+# shutil.copy2 호출을 하나씩 나열하면 새 에셋을 추가할 때 빠뜨리기 쉽고,
+# 실제로 목록 누락 때문에 배포 사이트 이미지가 깨진 적이 있어 데이터로 관리한다.
+ASSET_COPY_PLAN: tuple[tuple[str, str], ...] = (
+    ('css/style.css', 'css/style.css'),
+    ('js/site.js', 'js/site.js'),
+    ('js/auth.js', 'js/auth.js'),
+    ('assets/ebay-logo.svg', 'assets/ebay-logo.svg'),
+    ('assets/mynikons-800.webp', 'assets/mynikons-800.webp'),
+    ('assets/mynikons-1600.webp', 'assets/mynikons-1600.webp'),
+    ('assets/Nikon-camera-history1.jpg', 'assets/Nikon-camera-history1.jpg'),
+    ('assets/Nikon-camera-history2.jpg', 'assets/Nikon-camera-history2.jpg'),
+    # 홈 히어로의 렌즈 카테고리 전용 이미지 — js/site.js의 updateHeroImage()가
+    # z-mount-lenses/f-mount-lenses/classic-lenses 탭에서 노출한다.
+    ('assets/nikon-lens-lineup.jpg', 'assets/nikon-lens-lineup.jpg'),
+    ('mynikons.jpg', 'mynikons.jpg'),
+    # Pages가 artifact만 서빙하므로, 과거에 저장소 루트에서 직접 서빙되던
+    # OAuth 로그인 복귀 페이지도 산출물에 포함해야 한다.
+    ('auth-complete.html', 'auth-complete.html'),
+)
+
+# 수집 데이터 중 산출물에 포함할 항목: (DATA_DIR 기준 소스, 산출물 기준 대상).
+# 아직 수집 전이라 소스가 없을 수 있으므로 존재할 때만 복사한다.
+# - catalog.json: API 서버의 제품 검증·가격 알림 체커가 읽는 URL
+# - products/: 관심목록 가치 대시보드가 상대 경로로 fetch
+DATA_COPY_PLAN: tuple[tuple[str, str], ...] = (
+    ('catalog.json', 'data/catalog.json'),
+    ('products', 'data/products'),
 )
 
 STYLE_PATH = PROJECT_ROOT / 'css' / 'style.css'
@@ -42,15 +77,17 @@ ROOT_FILES_TO_PUBLISH = [
 LEGACY_ROOT_FILES_TO_REMOVE = ['board.html']
 
 
-def parse_args() -> argparse.Namespace:
+def parse_args(argv: Sequence[str] | None = None) -> argparse.Namespace:
+    """CLI 인자를 파싱합니다. argv를 주면 sys.argv 대신 그것을 사용합니다."""
     parser = argparse.ArgumentParser()
     parser.add_argument('--output', default=str(DEFAULT_OUTPUT))
     parser.add_argument('--base-url', default='')
     parser.add_argument('--publish-root', action='store_true')
-    return parser.parse_args()
+    return parser.parse_args(argv)
 
 
-def detect_base_url(cli_value: str) -> str:
+def detect_base_url(cli_value: str, *, project_root: Path = PROJECT_ROOT) -> str:
+    """CLI 인자 → 환경변수 → git remote 순으로 사이트 base URL을 결정합니다."""
     if cli_value:
         return cli_value.rstrip('/')
 
@@ -66,7 +103,7 @@ def detect_base_url(cli_value: str) -> str:
     try:
         remote = subprocess.check_output(
             ['git', 'config', '--get', 'remote.origin.url'],
-            cwd=PROJECT_ROOT,
+            cwd=project_root,
             text=True,
         ).strip()
     except Exception:
@@ -96,61 +133,62 @@ def clean_output(path: Path) -> None:
     ensure_dir(path)
 
 
-def copy_assets(output_dir: Path) -> None:
-    ensure_dir(output_dir / 'css')
-    ensure_dir(output_dir / 'js')
-    ensure_dir(output_dir / 'assets')
+def copy_assets(
+    output_dir: Path,
+    *,
+    project_root: Path = PROJECT_ROOT,
+    data_dir: Path = DATA_DIR,
+) -> None:
+    """정적 에셋과 공개 데이터 파일을 산출물 디렉터리로 복사합니다."""
     ensure_dir(output_dir / 'products')
+    ensure_dir(output_dir / 'data')
 
-    shutil.copy2(STYLE_PATH, output_dir / 'css' / 'style.css')
-    shutil.copy2(SITE_JS_PATH, output_dir / 'js' / 'site.js')
-    shutil.copy2(AUTH_JS_PATH, output_dir / 'js' / 'auth.js')
-    shutil.copy2(EBAY_LOGO, output_dir / 'assets' / 'ebay-logo.svg')
-    shutil.copy2(HERO_WEBP_800, output_dir / 'assets' / 'mynikons-800.webp')
-    shutil.copy2(HERO_WEBP_1600, output_dir / 'assets' / 'mynikons-1600.webp')
-    shutil.copy2(FILM_HISTORY_JPG_1, output_dir / 'assets' / 'Nikon-camera-history1.jpg')
-    shutil.copy2(FILM_HISTORY_JPG_2, output_dir / 'assets' / 'Nikon-camera-history2.jpg')
-    # 홈 히어로의 렌즈 카테고리 전용 이미지 — js/site.js의 updateHeroImage()가
-    # z-mount-lenses/f-mount-lenses/classic-lenses 탭에서 노출한다.
-    shutil.copy2(LENS_HERO_JPG, output_dir / 'assets' / 'nikon-lens-lineup.jpg')
-    shutil.copy2(HERO_JPG, output_dir / 'mynikons.jpg')
+    for source_rel, target_rel in ASSET_COPY_PLAN:
+        target = output_dir / target_rel
+        ensure_dir(target.parent)
+        shutil.copy2(project_root / source_rel, target)
+
     (output_dir / '.nojekyll').write_text('', encoding='utf-8')
 
-    # Pages가 artifact만 서빙하므로, 과거에 저장소 루트에서 직접 서빙되던
-    # 공개 파일들도 산출물에 포함해야 한다:
-    # - auth-complete.html: OAuth 로그인 복귀 페이지
-    # - data/catalog.json: API 서버의 제품 검증·가격 알림 체커가 읽는 URL
-    # - data/products/: 관심목록 가치 대시보드가 상대 경로로 fetch
-    shutil.copy2(PROJECT_ROOT / 'auth-complete.html', output_dir / 'auth-complete.html')
-    ensure_dir(output_dir / 'data')
-    catalog_json = DATA_DIR / 'catalog.json'
-    if catalog_json.exists():
-        shutil.copy2(catalog_json, output_dir / 'data' / 'catalog.json')
-    products_dir = DATA_DIR / 'products'
-    if products_dir.exists():
-        shutil.copytree(products_dir, output_dir / 'data' / 'products')
+    for source_rel, target_rel in DATA_COPY_PLAN:
+        source = data_dir / source_rel
+        if not source.exists():
+            continue
+        target = output_dir / target_rel
+        ensure_dir(target.parent)
+        if source.is_dir():
+            shutil.copytree(source, target)
+        else:
+            shutil.copy2(source, target)
 
 
-def publish_root_site(output_dir: Path) -> None:
+def publish_root_site(output_dir: Path, *, project_root: Path = PROJECT_ROOT) -> None:
+    """산출물을 저장소 루트로 복사해 GitHub Pages 루트 서빙과 동기화합니다."""
     for name in ROOT_FILES_TO_PUBLISH:
         source = output_dir / name
         if source.exists():
-            shutil.copy2(source, PROJECT_ROOT / name)
+            shutil.copy2(source, project_root / name)
 
     for name in LEGACY_ROOT_FILES_TO_REMOVE:
-        target = PROJECT_ROOT / name
+        target = project_root / name
         if target.exists():
             target.unlink()
 
-    if ROOT_PRODUCTS_DIR.exists():
-        shutil.rmtree(ROOT_PRODUCTS_DIR)
-    shutil.copytree(output_dir / 'products', ROOT_PRODUCTS_DIR)
+    root_products_dir = project_root / 'products'
+    if root_products_dir.exists():
+        shutil.rmtree(root_products_dir)
+    shutil.copytree(output_dir / 'products', root_products_dir)
 
 
-def main() -> None:
-    args = parse_args()
+def main(
+    argv: Sequence[str] | None = None,
+    *,
+    project_root: Path = PROJECT_ROOT,
+    data_dir: Path = DATA_DIR,
+) -> None:
+    args = parse_args(argv)
     output_dir = Path(args.output).resolve()
-    base_url = detect_base_url(args.base_url)
+    base_url = detect_base_url(args.base_url, project_root=project_root)
     catalog = merge_catalog_with_config(load_catalog(), load_catalog_config())
     histories = {
         product['id']: load_history(product['id'])
@@ -159,7 +197,7 @@ def main() -> None:
     }
 
     clean_output(output_dir)
-    copy_assets(output_dir)
+    copy_assets(output_dir, project_root=project_root, data_dir=data_dir)
 
     (output_dir / 'index.html').write_text(build_home_page(catalog, base_url, histories), encoding='utf-8')
     (output_dir / 'resources.html').write_text(build_resources_page(base_url), encoding='utf-8')
@@ -184,4 +222,4 @@ def main() -> None:
             (output_dir / 'products' / f"{product['id']}.html").write_text(product_html, encoding='utf-8')
 
     if args.publish_root:
-        publish_root_site(output_dir)
+        publish_root_site(output_dir, project_root=project_root)

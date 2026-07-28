@@ -1,0 +1,17 @@
+version: 2
+updates:
+  # GitHub Actions만 자동 갱신한다.
+  #
+  # pip 생태계는 의도적으로 켜지 않았다. Dependabot은 상위 선언(requirements.txt)을
+  # 갱신하지만 `uv pip compile`을 대신 돌려주지 않으므로, 락파일(*.lock.txt)이 그대로
+  # 남는다. CI는 락파일로 설치하니 그런 PR은 통과하면서도 실제로는 아무 버전도 바뀌지
+  # 않아 오해를 부른다. 파이썬 의존성은 docs/dependency-locks.md의 절차로 분기마다
+  # 직접 재생성한다.
+  - package-ecosystem: github-actions
+    directory: "/"
+    schedule:
+      interval: monthly
+    labels: ["dependencies"]
+    groups:
+      actions:
+        patterns: ["*"]

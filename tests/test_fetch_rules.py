@@ -1,12 +1,21 @@
 import json
+import re
+
+import pytest
+import yaml
 
 from nikon_value import ebay, storage
+from nikon_value.paths import CONFIG_PATH
 from scripts.fetch_prices import (
+    VARIANT_GROUPS,
     ZERO_RESULT_STREAK_THRESHOLD,
     count_trailing_zero_results,
     extract_openrouter_indices,
     extract_openrouter_message_text,
+    filter_items_with_rules,
+    get_title_variant_group,
     is_obvious_non_match,
+    is_variant_conflict,
     matches_product_exclude_patterns,
     normalize_title,
     round_price_bound,
@@ -257,3 +266,293 @@ def test_zero_result_streak_tolerates_a_corrupt_history_file(tmp_path, monkeypat
     (tmp_path / "products" / "nikon-rare.json").write_text("{broken", encoding="utf-8")
 
     assert zero_result_streak("nikon-rare") == 0
+
+
+# --------------------------------------------------------------------------- #
+# 수동 렌즈 세대 필터 (get_title_variant_group / is_variant_conflict)
+#
+# AI / AI-S / non-AI / Series E는 겉모습이 비슷해 eBay 매물이 서로 섞이는데,
+# 세대가 섞이면 시세 중앙값이 그대로 왜곡된다. 이 저장소에서 분기가 가장 많은
+# 순수 함수이므로 세대 조합을 행렬로 훑는다.
+# --------------------------------------------------------------------------- #
+
+# 실제 eBay 타이틀에서 자주 보이는 세대 표기들
+TITLE_AI_S = "Nikon Nikkor 50mm f/1.4 AI-S"
+TITLE_AIS_SPELLED = "Nikon AIS Nikkor 50mm f/1.4"
+TITLE_AI = "Nikon Nikkor 50mm f/1.4 AI"
+TITLE_NON_AI = "Nikkor-S Auto 50mm f/1.4 Non-AI"
+TITLE_NON_AI_SC = "Nikon Nikkor-S.C Auto 55mm f/1.2"
+TITLE_SERIES_E = "Nikon Series E 50mm f/1.8"
+TITLE_E_SERIES = "Nikon E Series 50mm f/1.8"
+TITLE_AF = "AF Nikkor 50mm f/1.8D"
+TITLE_UNMARKED = "Nikon Nikkor 50mm f/1.4"
+
+
+@pytest.mark.parametrize(
+    ("product_id", "expected"),
+    [
+        ("ai-s-50mm-f14", "ai-s"),
+        ("series-e-50mm-f18", "series-e"),
+        ("nikkor-auto-50mm-f14", "non-ai"),
+        ("micro-nikkor-auto-55mm-f35", "non-ai"),
+        ("noct-nikkor-58mm-f12", "non-ai"),
+        ("nikkor-50mm-f14-ai", "ai"),
+        # 접두사 규칙에 해당하지 않는 제품은 세대 필터를 적용하지 않는다.
+        ("nikkor-z-50mm-f18-s", None),
+        ("af-nikkor-50mm-f18d", None),
+        ("nikon-fm2", None),
+    ],
+)
+def test_get_title_variant_group_reads_the_product_id_prefix(product_id, expected):
+    assert get_title_variant_group({"id": product_id}) == expected
+
+
+def test_get_title_variant_group_tolerates_a_product_without_an_id():
+    assert get_title_variant_group({}) is None
+
+
+@pytest.mark.parametrize(
+    ("title", "conflict"),
+    [
+        (TITLE_AI_S, False),
+        (TITLE_AIS_SPELLED, False),  # 'AIS' 붙여쓰기도 같은 세대
+        (TITLE_AI, True),
+        (TITLE_NON_AI, True),
+        (TITLE_SERIES_E, True),
+        (TITLE_AF, True),
+        (TITLE_UNMARKED, True),  # AI-S 표기가 없으면 다른 세대로 본다
+        # AI-S 표기가 있어도 non-AI 표기가 함께 있으면 개조/혼동 매물로 제외
+        ("Nikon Nikkor-S Auto 50mm f/1.4 AI-S converted", True),
+    ],
+)
+def test_ai_s_product_rejects_other_generations(title, conflict):
+    assert is_variant_conflict(title, {"id": "ai-s-50mm-f14"}) is conflict
+
+
+@pytest.mark.parametrize(
+    ("title", "conflict"),
+    [
+        (TITLE_AI, False),
+        (TITLE_AI_S, True),
+        (TITLE_AIS_SPELLED, True),
+        (TITLE_NON_AI, True),
+        (TITLE_SERIES_E, True),
+        (TITLE_AF, True),
+        (TITLE_UNMARKED, True),  # AI 표기가 없으면 세대를 확신할 수 없다
+    ],
+)
+def test_ai_product_rejects_other_generations(title, conflict):
+    assert is_variant_conflict(title, {"id": "nikkor-50mm-f14-ai"}) is conflict
+
+
+@pytest.mark.parametrize(
+    ("title", "conflict"),
+    [
+        (TITLE_NON_AI, False),
+        (TITLE_NON_AI_SC, False),  # 'Nikkor-S.C Auto' 표기
+        (TITLE_AI, True),  # AI 표기만 있고 non-AI 표기가 없으면 다른 세대
+        (TITLE_AI_S, True),
+        (TITLE_SERIES_E, True),
+        (TITLE_AF, True),
+        # non-AI 그룹은 세대 표기가 아예 없는 타이틀을 남긴다 — 초기 Auto 렌즈는
+        # 판매자가 세대를 적지 않는 경우가 많아 AI 그룹과 판정이 다르다.
+        (TITLE_UNMARKED, False),
+    ],
+)
+def test_non_ai_product_rejects_other_generations(title, conflict):
+    assert is_variant_conflict(title, {"id": "nikkor-auto-50mm-f14"}) is conflict
+
+
+@pytest.mark.parametrize(
+    ("title", "conflict"),
+    [
+        (TITLE_SERIES_E, False),
+        (TITLE_E_SERIES, False),  # 'E Series' 어순도 같은 세대
+        (TITLE_AI_S, True),
+        (TITLE_NON_AI, True),
+        (TITLE_AF, True),
+        # Series E 표기가 있어도 AF 개조 매물은 제외
+        ("Nikon Series E 50mm f/1.8 AF converted", True),
+    ],
+)
+def test_series_e_product_rejects_other_generations(title, conflict):
+    assert is_variant_conflict(title, {"id": "series-e-50mm-f18"}) is conflict
+
+
+def test_products_without_a_variant_group_never_conflict():
+    """Z 마운트·AF 렌즈나 바디는 세대 필터를 타지 않는다."""
+    for title in (TITLE_AI_S, TITLE_NON_AI, TITLE_SERIES_E, TITLE_AF):
+        assert is_variant_conflict(title, {"id": "nikon-fm2"}) is False
+
+
+def _generation_from_name(name_en: str) -> str | None:
+    """제품 표시명에서 읽어낸 수동 렌즈 세대 (판단 불가면 None)."""
+    if "AI-S" in name_en:
+        return "ai-s"
+    if "Series E" in name_en:
+        return "series-e"
+    if re.search(r"\bAuto\b", name_en):
+        return "non-ai"
+    if re.search(r"\bAI\b", name_en):
+        return "ai"
+    return None
+
+
+def test_config_product_ids_resolve_to_the_generation_their_name_declares():
+    """설정(config/products.yaml)과 ID 접두사 규칙이 어긋나는지 감시한다.
+
+    제품 ID로 판별한 세대가 표시명이 말하는 세대와 달라지면, 그 제품의 매물이
+    통째로 잘못 걸러져 시세가 왜곡된다. 표시명만으로 세대를 알 수 없는 제품
+    (예: Noct-Nikkor)은 판정 대상에서 제외한다.
+    """
+    config = yaml.safe_load(CONFIG_PATH.read_text(encoding="utf-8"))
+    products = [p for category in config["categories"] for p in category.get("products", [])]
+
+    grouped = {p["id"]: get_title_variant_group(p) for p in products if get_title_variant_group(p)}
+    assert set(grouped.values()) == {"ai-s", "ai", "non-ai", "series-e"}, (
+        "네 세대 그룹이 모두 설정에 존재해야 한다 — 접두사 규칙이 통째로 어긋났을 수 있다"
+    )
+
+    mismatched = {
+        p["id"]: (grouped[p["id"]], _generation_from_name(p["name_en"]))
+        for p in products
+        if p["id"] in grouped
+        and _generation_from_name(p["name_en"]) is not None
+        and _generation_from_name(p["name_en"]) != grouped[p["id"]]
+    }
+
+    assert not mismatched, f"ID가 말하는 세대와 표시명이 다른 제품: {mismatched}"
+
+
+# --------------------------------------------------------------------------- #
+# is_obvious_non_match / filter_items_with_rules
+# --------------------------------------------------------------------------- #
+
+
+def test_is_obvious_non_match_drops_parts_and_accessory_listings():
+    product = {"id": "nikon-fm2", "category_id": "3323"}
+
+    assert is_obvious_non_match("Nikon FM2 body for parts", product)
+    assert is_obvious_non_match("Nikon FM2 camera case", product)
+    assert not is_obvious_non_match("Nikon FM2 black body", product)
+
+
+def test_accessory_products_keep_the_accessory_words_they_are_about():
+    """뷰파인더·포커싱 스크린 자체를 파는 제품은 그 단어로 제외하면 안 된다."""
+    accessory = {"id": "nikon-dw-3", "category_id": "78997", "product_type": "accessory"}
+    body = {"id": "nikon-f3", "category_id": "3323"}
+
+    assert not is_obvious_non_match("Nikon DW-3 waist level viewfinder", accessory)
+    assert is_obvious_non_match("Nikon DW-3 waist level viewfinder", body)
+    # 액세서리라도 부품·고장 매물은 그대로 제외한다.
+    assert is_obvious_non_match("Nikon DW-3 finder for parts", accessory)
+
+
+def test_is_obvious_non_match_drops_lens_hoods():
+    product = {"id": "ai-s-50mm-f14", "category_id": "78997"}
+
+    assert is_obvious_non_match("Nikon HS-9 Lens Hood for 50mm f/1.4 AI-S", product)
+    assert is_obvious_non_match("Nikon HB-32 hood", product)
+
+
+def test_is_obvious_non_match_drops_a_different_lens_generation():
+    product = {"id": "ai-s-50mm-f14", "category_id": "78997"}
+
+    assert is_obvious_non_match("Nikkor-S Auto 50mm f/1.4 Non-AI", product)
+    assert not is_obvious_non_match("Nikon Nikkor 50mm f/1.4 AI-S", product)
+
+
+def test_camera_body_products_drop_listings_bundled_with_a_lens():
+    product = {"id": "nikon-fm2", "category_id": "3323"}
+    lens = {"id": "ai-s-50mm-f14", "category_id": "78997"}
+
+    assert is_obvious_non_match("Nikon FM2 with 50mm kit lens", product)
+    # 같은 문구라도 렌즈 카테고리 제품에는 바디 전용 규칙을 적용하지 않는다.
+    assert not is_obvious_non_match("Nikon Nikkor 50mm f/1.4 AI-S kit lens", lens)
+
+
+def test_filter_items_with_rules_removes_only_the_obvious_non_matches():
+    product = {"id": "nikon-fm2", "category_id": "3323"}
+    items = [
+        {"title": "Nikon FM2 black body"},
+        {"title": "Nikon FM2 body for parts"},
+        {"title": "Nikon FM2n chrome body"},
+    ]
+
+    filtered = filter_items_with_rules(items, product)
+
+    assert [item["title"] for item in filtered] == [
+        "Nikon FM2 black body",
+        "Nikon FM2n chrome body",
+    ]
+
+
+def test_filter_items_with_rules_keeps_the_original_set_when_everything_is_filtered():
+    """전부 걸러지면 규칙이 과했다고 보고 원본을 LLM 단계로 넘긴다."""
+    product = {"id": "nikon-fm2", "category_id": "3323"}
+    items = [{"title": "Nikon FM2 for parts"}, {"title": "Nikon FM2 broken"}]
+
+    assert filter_items_with_rules(items, product) is items
+
+
+def test_filter_items_with_rules_passes_an_empty_list_through():
+    assert filter_items_with_rules([], {"id": "nikon-fm2", "category_id": "3323"}) == []
+
+
+# --- variant_group 명시 지정 -------------------------------------------------
+
+
+def test_explicit_variant_group_overrides_the_id_heuristic():
+    """ID 접두사 규칙에 걸리지 않는 제품도 설정으로 세대를 지정할 수 있다."""
+    product = {"id": "gn-auto-nikkor-45mm-f28", "variant_group": "non-ai"}
+
+    assert get_title_variant_group(product) == "non-ai"
+    assert get_title_variant_group({"id": "gn-auto-nikkor-45mm-f28"}) is None
+
+
+def test_unknown_variant_group_falls_back_to_the_id_heuristic():
+    """오타 등으로 알 수 없는 값이 들어오면 무시하고 기존 추정을 쓴다."""
+    assert get_title_variant_group({"id": "ai-s-nikkor-50mm-f14", "variant_group": "typo"}) == "ai-s"
+    assert get_title_variant_group({"id": "unknown-lens", "variant_group": "typo"}) is None
+
+
+def test_configured_variant_groups_are_all_known_values():
+    """config의 variant_group 값이 is_variant_conflict가 아는 그룹이어야 한다."""
+    config = yaml.safe_load(CONFIG_PATH.read_text(encoding="utf-8"))
+    configured = {
+        product["id"]: product["variant_group"]
+        for category in config["categories"]
+        for product in category["products"]
+        if product.get("variant_group")
+    }
+
+    assert configured, "variant_group을 지정한 제품이 하나도 없다"
+    unknown = {pid: g for pid, g in configured.items() if g not in VARIANT_GROUPS}
+    assert not unknown, f"알 수 없는 variant_group: {unknown}"
+
+
+def test_explicitly_grouped_products_keep_their_own_generation_listings():
+    """명시 지정이 정상 매물을 걸러내면 안 된다 (과필터링 회귀 방지).
+
+    카탈로그의 실제 샘플 타이틀로 검증한다. 세대 표기가 판매자마다 엇갈리는
+    제품(예: Ai-P 45mm f/2.8P)에 그룹을 지정하면 정상 매물이 잘리므로,
+    그런 제품은 애초에 지정하지 않는다는 판단을 이 테스트가 고정한다.
+    """
+    config = yaml.safe_load(CONFIG_PATH.read_text(encoding="utf-8"))
+    catalog = json.loads((CONFIG_PATH.parent.parent / "data" / "catalog.json").read_text(encoding="utf-8"))
+    live = {
+        product["id"]: product
+        for category in catalog["categories"]
+        for product in category["products"]
+    }
+
+    dropped = []
+    for category in config["categories"]:
+        for product in category["products"]:
+            if not product.get("variant_group"):
+                continue
+            for sample in live.get(product["id"], {}).get("samples", []):
+                if is_variant_conflict(sample["title"], product):
+                    dropped.append((product["id"], sample["title"]))
+
+    assert not dropped, f"명시 지정이 자기 세대 매물을 걸러낸다: {dropped}"

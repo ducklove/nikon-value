@@ -60,21 +60,12 @@ def _format_max_price(value: float) -> str:
     return repr(round(number, 2))
 
 
-def update_catalog_max_prices(updates: dict[str, float], path: Path = CONFIG_PATH) -> list[str]:
-    """적응형 탐색이 찾아낸 상한을 products.yaml에 되먹입니다.
+def _rewrite_max_price_lines(lines: list[str], updates: dict[str, float]) -> dict[str, float]:
+    """`max_price:` 라인만 제자리에서 치환하고 실제 적용된 항목을 반환합니다.
 
-    yaml.safe_dump로 통째로 재직렬화하면 주석·순서·구조가 날아가므로
-    해당 `max_price:` 라인만 라인 단위로 치환한다. 저장 전후 파일을 파싱해
-    제품 수·ID 집합·max_price 외 필드가 완전히 동일한지 검증하고, 하나라도
-    어긋나면 아무것도 쓰지 않는다.
+    `lines`를 직접 수정한다. 제품 ID 라인을 만날 때마다 문맥을 갱신하므로
+    subcategory의 `- id:`는 제품으로 오인되지 않는다.
     """
-    if not updates:
-        return []
-
-    original_text = path.read_text(encoding="utf-8")
-    before = yaml.safe_load(original_text)
-
-    lines = original_text.splitlines(keepends=True)
     current_id: str | None = None
     applied: dict[str, float] = {}
 
@@ -93,6 +84,73 @@ def update_catalog_max_prices(updates: dict[str, float], path: Path = CONFIG_PAT
             applied[current_id] = updates[current_id]
             current_id = None  # 제품당 한 번만 치환한다
 
+    return applied
+
+
+def _structure_unchanged(before: dict, after: dict) -> bool:
+    """제품 수·ID 순서·max_price 외 모든 필드가 그대로인지 검증합니다."""
+    before_products = list(iter_config_products(before))
+    after_products = list(iter_config_products(after))
+
+    if (
+        len(before_products) != len(after_products)
+        or [p.get("id") for p in before_products] != [p.get("id") for p in after_products]
+    ):
+        log.error(
+            "max_price feedback aborted: product set changed (%d -> %d)",
+            len(before_products), len(after_products),
+        )
+        return False
+
+    if _config_fingerprint(before) != _config_fingerprint(after):
+        log.error("max_price feedback aborted: fields other than max_price changed")
+        return False
+
+    return True
+
+
+def _max_prices_as_expected(before: dict, after: dict, applied: dict[str, float]) -> bool:
+    """되먹임 대상은 의도한 값으로, 나머지는 한 건도 움직이지 않았는지 검증합니다."""
+    before_by_id = {p.get("id"): p for p in iter_config_products(before)}
+    after_by_id = {p.get("id"): p for p in iter_config_products(after)}
+
+    for product_id, expected in applied.items():
+        actual = after_by_id.get(product_id, {}).get("max_price")
+        if actual is None or float(actual) != float(expected):
+            log.error(
+                "max_price feedback aborted: %s expected %s but parsed %s",
+                product_id, expected, actual,
+            )
+            return False
+
+    # 되먹임 대상이 아닌 제품의 max_price는 한 건도 움직이면 안 된다.
+    for product_id, product in after_by_id.items():
+        if product_id in applied:
+            continue
+        if product.get("max_price") != before_by_id.get(product_id, {}).get("max_price"):
+            log.error("max_price feedback aborted: %s changed unexpectedly", product_id)
+            return False
+
+    return True
+
+
+def update_catalog_max_prices(updates: dict[str, float], path: Path = CONFIG_PATH) -> list[str]:
+    """적응형 탐색이 찾아낸 상한을 products.yaml에 되먹입니다.
+
+    yaml.safe_dump로 통째로 재직렬화하면 주석·순서·구조가 날아가므로
+    해당 `max_price:` 라인만 라인 단위로 치환한다. 저장 전후 파일을 파싱해
+    제품 수·ID 집합·max_price 외 필드가 완전히 동일한지 검증하고, 하나라도
+    어긋나면 아무것도 쓰지 않는다.
+    """
+    if not updates:
+        return []
+
+    original_text = path.read_text(encoding="utf-8")
+    before = yaml.safe_load(original_text)
+
+    lines = original_text.splitlines(keepends=True)
+    applied = _rewrite_max_price_lines(lines, updates)
+
     missing = sorted(set(updates) - set(applied))
     if missing:
         log.warning("max_price feedback: no config line found for %s", ", ".join(missing))
@@ -107,40 +165,8 @@ def update_catalog_max_prices(updates: dict[str, float], path: Path = CONFIG_PAT
         log.error("max_price feedback aborted: rewritten config does not parse (%s)", exc)
         return []
 
-    before_products = list(iter_config_products(before))
-    after_products = list(iter_config_products(after))
-    before_ids = [p.get("id") for p in before_products]
-    after_ids = [p.get("id") for p in after_products]
-
-    if len(before_products) != len(after_products) or before_ids != after_ids:
-        log.error(
-            "max_price feedback aborted: product set changed (%d -> %d)",
-            len(before_products), len(after_products),
-        )
+    if not _structure_unchanged(before, after) or not _max_prices_as_expected(before, after, applied):
         return []
-
-    if _config_fingerprint(before) != _config_fingerprint(after):
-        log.error("max_price feedback aborted: fields other than max_price changed")
-        return []
-
-    before_by_id = {p.get("id"): p for p in before_products}
-    after_by_id = {p.get("id"): p for p in after_products}
-    for product_id, expected in applied.items():
-        actual = after_by_id.get(product_id, {}).get("max_price")
-        if actual is None or float(actual) != float(expected):
-            log.error(
-                "max_price feedback aborted: %s expected %s but parsed %s",
-                product_id, expected, actual,
-            )
-            return []
-
-    # 되먹임 대상이 아닌 제품의 max_price는 한 건도 움직이면 안 된다.
-    for product_id, product in after_by_id.items():
-        if product_id in applied:
-            continue
-        if product.get("max_price") != before_by_id.get(product_id, {}).get("max_price"):
-            log.error("max_price feedback aborted: %s changed unexpectedly", product_id)
-            return []
 
     path.write_text(new_text, encoding="utf-8")
     log.info("Updated max_price for %d products in %s", len(applied), path.name)

@@ -6,6 +6,16 @@
   var API_BASE = (apiBaseMeta && apiBaseMeta.content) || 'https://cantabile.tplinkdns.com';
   var TOKEN_KEY = 'nikon-value-token';
 
+  // 공용 순수 함수 모듈. js/site.js가 window.nikonValueShared로 공개한다.
+  // 페이지는 site.js → auth.js 순서로 <script defer>를 로드하고(defer는 문서 순서대로
+  // 실행된다) 그 순서는 nikon_value/sitegen/pages.py가 소유하므로, 여기서는 항상
+  // 준비된 상태다. 과거 auth.js가 따로 갖고 있던 DOM 기반 escapeHtml은
+  // 큰따옴표를 이스케이프하지 않아 속성값 삽입에 쓰면 위험했다 — 구현을 하나로 합쳤다.
+  var shared = window.nikonValueShared;
+  var escapeHtml = shared.escapeHtml;
+  var formatUsd = shared.formatUsd;
+  var buildSummedSeries = shared.buildSummedSeries;
+
   // --- Token management ---
   function getToken() { return localStorage.getItem(TOKEN_KEY); }
   function setToken(token) { localStorage.setItem(TOKEN_KEY, token); }
@@ -621,11 +631,6 @@
     if (panel) panel.hidden = true;
   }
 
-  function formatUsd(value) {
-    if (value == null || isNaN(value)) return '-';
-    return '$' + Math.round(value).toLocaleString('en-US');
-  }
-
   function buildDashStat(value, label) {
     var stat = document.createElement('div');
     stat.className = 'fav-dashboard__stat';
@@ -689,35 +694,6 @@
     return fetch('data/products/' + encodeURIComponent(pid) + '.json')
       .then(function (r) { return r.ok ? r.json() : null; })
       .catch(function () { return null; });
-  }
-
-  function buildSummedSeries(histories) {
-    // 제품별 (날짜→중앙값) 맵을 만들고, forward-fill로 마지막 관측값을 유지하며
-    // 모든 제품의 값이 확보된 날짜부터 합산 시계열을 만든다.
-    var maps = histories.map(function (entries) {
-      var map = {};
-      (entries || []).forEach(function (e) {
-        if (e && e.median != null) map[e.date] = e.median;
-      });
-      return map;
-    });
-    var dateSet = {};
-    maps.forEach(function (map) {
-      Object.keys(map).forEach(function (d) { dateSet[d] = true; });
-    });
-    var dates = Object.keys(dateSet).sort();
-    var last = maps.map(function () { return null; });
-    var series = [];
-    dates.forEach(function (date) {
-      var known = 0;
-      var sum = 0;
-      for (var i = 0; i < maps.length; i++) {
-        if (maps[i][date] != null) last[i] = maps[i][date];
-        if (last[i] != null) { known++; sum += last[i]; }
-      }
-      if (maps.length > 0 && known === maps.length) series.push({ date: date, total: sum });
-    });
-    return series;
   }
 
   function ensureChartJs() {
@@ -796,13 +772,6 @@
     var menu = document.getElementById('login-menu');
     if (menu) menu.hidden = true;
   });
-
-  // --- Utilities ---
-  function escapeHtml(s) {
-    var d = document.createElement('div');
-    d.textContent = s;
-    return d.innerHTML;
-  }
 
   // --- Observe product grid for card creation ---
   function observeGrid() {

@@ -1,17 +1,35 @@
 (function () {
   'use strict';
 
-  const CURRENCY_STORAGE_KEY = 'nikon-value-currency';
+  // ===========================================================================
+  // 공용 순수 함수 모듈 (UMD)
+  // ---------------------------------------------------------------------------
+  // 이 저장소에는 번들러가 없고, 페이지가 로드하는 <script> 태그 목록은
+  // nikon_value/sitegen/pages.py 와 바이트 단위로 고정된 tests/golden/*.html 이
+  // 함께 소유한다. 즉 "새 JS 파일을 페이지에 한 줄 더 로드"하는 선택지가 없다.
+  // 그래서 모든 페이지에서 가장 먼저 실행되는 site.js가 모듈 정의를 맡고,
+  // 뒤이어 로드되는 auth.js(그리고 admin.html의 admin.js)는 window.nikonValueShared
+  // 전역으로 같은 구현 하나만 쓴다. 기존 window.nikonValueCatalog /
+  // window.nikonValueAuth 결합 방식과 동일한 패턴이라 로드 순서 보장도 그대로다.
+  //
+  // Node(단위 테스트)에서는 js/lib/shared.js 가 이 파일을 require 해서
+  // module.exports 로 같은 객체를 받는다. DOM이 없는 환경에서는 아래 export 직후
+  // 곧바로 return 하므로 브라우저 전용 코드는 실행되지 않는다.
+  // ===========================================================================
 
-  function readJsonScript(id, fallback) {
-    const node = document.getElementById(id);
-    if (!node || !node.textContent) return fallback;
-    try {
-      return JSON.parse(node.textContent);
-    } catch (err) {
-      console.error('Failed to parse JSON payload:', err);
-      return fallback;
-    }
+  // HTML 이스케이프 — 텍스트/속성값 삽입 지점 모두에서 안전해야 하므로
+  // & < > " ' 다섯 문자를 전부 치환한다. 과거에는 site.js(정규식, " 처리)와
+  // auth.js/admin.js(DOM textContent 기반, " 미처리)가 따로 있었는데,
+  // DOM 버전은 title="..." / value="..." 같은 속성 삽입 지점에서 따옴표를
+  // 빠져나갈 수 있어 XSS 위험이 있었다. 정규식 버전으로 통일한다.
+  function escapeHtml(str) {
+    if (str === null || str === undefined) return '';
+    return String(str)
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;')
+      .replace(/'/g, '&#39;');
   }
 
   function getExchangeRate(exchangeData) {
@@ -22,18 +40,6 @@
   function normalizeCurrency(value, exchangeData) {
     if (value === 'krw' && getExchangeRate(exchangeData)) return 'krw';
     return 'usd';
-  }
-
-  function getInitialCurrency(params, exchangeData) {
-    const requested =
-      params.get('currency') ||
-      window.localStorage.getItem(CURRENCY_STORAGE_KEY) ||
-      'usd';
-    return normalizeCurrency(requested, exchangeData);
-  }
-
-  function saveCurrency(currency) {
-    window.localStorage.setItem(CURRENCY_STORAGE_KEY, currency);
   }
 
   function formatMoney(value, options) {
@@ -68,6 +74,13 @@
     return formatted;
   }
 
+  // 관심 목록 대시보드 전용 USD 표기(정수 반올림). formatMoney와 달리 통화 토글을
+  // 타지 않는 자리에서만 쓴다.
+  function formatUsd(value) {
+    if (value == null || isNaN(value)) return '-';
+    return '$' + Math.round(value).toLocaleString('en-US');
+  }
+
   function buildExchangeNote(exchangeData) {
     const rate = getExchangeRate(exchangeData);
     if (!rate) return 'KRW 환산용 환율 데이터를 불러오지 못했습니다.';
@@ -77,6 +90,121 @@
       minimumFractionDigits: 2,
       maximumFractionDigits: 2,
     })} (${source} ${referenceDate} 기준)`;
+  }
+
+  function formatRarePriceHint(value) {
+    if (value === null || value === undefined || value === '') return '공개 표본 부족';
+    const text = String(value).trim();
+    if (!text || text.includes('$')) return text;
+    return /^[0-9,+.\-\u2013\s]+$/.test(text) ? text + '$' : text;
+  }
+
+  function getReferenceDate(data) {
+    if (!data.length) return new Date();
+    return new Date(data[data.length - 1].date + 'T00:00:00Z');
+  }
+
+  // days=0(또는 falsy)은 "전체 기간". 기준일은 마지막 데이터 포인트이고,
+  // 경계 계산은 UTC로만 한다(로컬 타임존이 하루를 밀지 않도록).
+  function filterByPeriod(data, days) {
+    if (!days || data.length === 0) return data;
+    const cutoff = getReferenceDate(data);
+    cutoff.setUTCDate(cutoff.getUTCDate() - days);
+    const cutoffStr = cutoff.toISOString().split('T')[0];
+    return data.filter((entry) => entry.date >= cutoffStr);
+  }
+
+  function movingAverage(data, windowDays) {
+    // 날짜 기준 윈도우 평균: 수집 공백이 있어도 달력상 최근 windowDays일만 묶는다.
+    return data.map((entry, idx) => {
+      const end = new Date(entry.date + 'T00:00:00Z');
+      const start = new Date(end);
+      start.setUTCDate(start.getUTCDate() - (windowDays - 1));
+      const startStr = start.toISOString().split('T')[0];
+      let sum = 0;
+      let count = 0;
+      for (let i = idx; i >= 0; i -= 1) {
+        if (data[i].date < startStr) break;
+        if (data[i].median != null) {
+          sum += data[i].median;
+          count += 1;
+        }
+      }
+      return count ? Math.round((sum / count) * 100) / 100 : null;
+    });
+  }
+
+  function buildSummedSeries(histories) {
+    // 제품별 (날짜→중앙값) 맵을 만들고, forward-fill로 마지막 관측값을 유지하며
+    // 모든 제품의 값이 확보된 날짜부터 합산 시계열을 만든다.
+    var maps = histories.map(function (entries) {
+      var map = {};
+      (entries || []).forEach(function (e) {
+        if (e && e.median != null) map[e.date] = e.median;
+      });
+      return map;
+    });
+    var dateSet = {};
+    maps.forEach(function (map) {
+      Object.keys(map).forEach(function (d) { dateSet[d] = true; });
+    });
+    var dates = Object.keys(dateSet).sort();
+    var last = maps.map(function () { return null; });
+    var series = [];
+    dates.forEach(function (date) {
+      var known = 0;
+      var sum = 0;
+      for (var i = 0; i < maps.length; i++) {
+        if (maps[i][date] != null) last[i] = maps[i][date];
+        if (last[i] != null) { known++; sum += last[i]; }
+      }
+      if (maps.length > 0 && known === maps.length) series.push({ date: date, total: sum });
+    });
+    return series;
+  }
+
+  const shared = {
+    escapeHtml,
+    getExchangeRate,
+    normalizeCurrency,
+    formatMoney,
+    formatUsd,
+    buildExchangeNote,
+    formatRarePriceHint,
+    filterByPeriod,
+    movingAverage,
+    buildSummedSeries,
+  };
+
+  if (typeof window !== 'undefined') window.nikonValueShared = shared;
+  if (typeof module === 'object' && module.exports) module.exports = shared;
+
+  const CURRENCY_STORAGE_KEY = 'nikon-value-currency';
+
+  // DOM이 없으면(Node 단위 테스트) 여기서 끝. 아래는 전부 브라우저 전용이다.
+  if (typeof document === 'undefined') return;
+
+  function readJsonScript(id, fallback) {
+    const node = document.getElementById(id);
+    if (!node || !node.textContent) return fallback;
+    try {
+      return JSON.parse(node.textContent);
+    } catch (err) {
+      console.error('Failed to parse JSON payload:', err);
+      return fallback;
+    }
+  }
+
+  function getInitialCurrency(params, exchangeData) {
+    const requested =
+      params.get('currency') ||
+      window.localStorage.getItem(CURRENCY_STORAGE_KEY) ||
+      'usd';
+    return normalizeCurrency(requested, exchangeData);
+  }
+
+  function saveCurrency(currency) {
+    window.localStorage.setItem(CURRENCY_STORAGE_KEY, currency);
   }
 
   function applyMoneyElements(root, currency, exchangeData) {
@@ -106,18 +234,6 @@
     root.querySelectorAll('[data-exchange-note]').forEach((node) => {
       node.textContent = text;
     });
-  }
-
-  function escapeHtml(str) {
-    if (str === null || str === undefined) return '';
-    return String(str).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
-  }
-
-  function formatRarePriceHint(value) {
-    if (value === null || value === undefined || value === '') return '공개 표본 부족';
-    const text = String(value).trim();
-    if (!text || text.includes('$')) return text;
-    return /^[0-9,+.\-\u2013\s]+$/.test(text) ? text + '$' : text;
   }
 
   function initHeroEasterEgg() {
@@ -531,19 +647,6 @@
       history.replaceState({}, '', target);
     }
 
-    function getReferenceDate(data) {
-      if (!data.length) return new Date();
-      return new Date(data[data.length - 1].date + 'T00:00:00Z');
-    }
-
-    function filterByPeriod(data, days) {
-      if (!days || data.length === 0) return data;
-      const cutoff = getReferenceDate(data);
-      cutoff.setUTCDate(cutoff.getUTCDate() - days);
-      const cutoffStr = cutoff.toISOString().split('T')[0];
-      return data.filter((entry) => entry.date >= cutoffStr);
-    }
-
     function setEmpty(message) {
       emptyEl.hidden = false;
       emptyEl.textContent = message;
@@ -551,26 +654,6 @@
         chartInstance.destroy();
         chartInstance = null;
       }
-    }
-
-    function movingAverage(data, windowDays) {
-      // 날짜 기준 윈도우 평균: 수집 공백이 있어도 달력상 최근 windowDays일만 묶는다.
-      return data.map((entry, idx) => {
-        const end = new Date(entry.date + 'T00:00:00Z');
-        const start = new Date(end);
-        start.setUTCDate(start.getUTCDate() - (windowDays - 1));
-        const startStr = start.toISOString().split('T')[0];
-        let sum = 0;
-        let count = 0;
-        for (let i = idx; i >= 0; i -= 1) {
-          if (data[i].date < startStr) break;
-          if (data[i].median != null) {
-            sum += data[i].median;
-            count += 1;
-          }
-        }
-        return count ? Math.round((sum / count) * 100) / 100 : null;
-      });
     }
 
     function renderChart(data) {

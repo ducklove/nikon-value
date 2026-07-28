@@ -88,8 +88,26 @@ def matches_product_exclude_patterns(normalized_title: str, product: dict) -> bo
     return False
 
 
+VARIANT_GROUPS = frozenset({"ai-s", "ai", "non-ai", "series-e"})
+
+
 def get_title_variant_group(product: dict) -> str | None:
-    """제품 ID를 바탕으로 수동 렌즈 세대 그룹을 판별합니다."""
+    """수동 렌즈 세대 그룹을 판별합니다.
+
+    설정의 variant_group이 있으면 그것을 쓰고, 없으면 제품 ID 접두사로 추정한다.
+    ID는 공개 URL·관심목록·알림 DB의 키라 개명할 수 없으므로, 접두사 규칙에
+    걸리지 않는 제품(예: gn-auto-nikkor-45mm-f28)은 설정에서 직접 지정한다.
+    """
+    explicit = product.get("variant_group")
+    if explicit:
+        if explicit not in VARIANT_GROUPS:
+            log.warning(
+                "  Unknown variant_group %r for %s, falling back to id heuristic",
+                explicit, product.get("id", "?"),
+            )
+        else:
+            return explicit
+
     pid = product.get("id", "")
     if pid.startswith("ai-s-"):
         return "ai-s"

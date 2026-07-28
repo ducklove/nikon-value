@@ -192,6 +192,10 @@
 <!-- Toast -->
 <div class="toast" id="toast"></div>
 
+<!-- site.js는 공용 순수 함수 모듈(window.nikonValueShared)을 정의한다.
+     admin.html에는 data-page가 없어 카탈로그/제품 초기화는 실행되지 않고,
+     admin.js가 쓰는 escapeHtml만 공유된다(구현 중복 제거). -->
+<script src="js/site.js" defer></script>
 <script src="js/admin.js" defer></script>
 </body>
 </html>

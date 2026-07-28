@@ -1,2 +1,6 @@
+# 수집·빌드 파이프라인의 상위 선언(사람이 읽고 편집하는 파일).
+# 실제 설치는 여기서 생성된 scripts/requirements.lock.txt 로 한다.
+# 이 파일을 고친 뒤에는 반드시 락을 재생성할 것 — docs/dependency-locks.md 참고.
+
 requests>=2.31.0
 PyYAML>=6.0.1

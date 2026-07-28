@@ -32,15 +32,27 @@ jobs:
         with:
           python-version: '3.12'
 
+      # 락파일로 설치해 상류 릴리스가 CI를 깨뜨리지 않게 한다.
+      # 갱신 절차는 docs/dependency-locks.md 참고.
       - name: Install dependencies
-        run: pip install -r scripts/requirements.txt -r server/requirements.txt ruff
+        run: pip install -r requirements-dev.lock.txt
+
+      # node --test의 위치 인자 해석이 메이저 버전마다 달라(22에서 디렉터리 재귀 제거)
+      # 러너 기본 Node에 맡기면 조용히 깨진다. 로컬과 같은 22로 고정한다.
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
 
       - name: Lint (ruff)
         run: ruff check .
 
       - name: JS syntax check
         run: |
-          for f in js/*.js; do node --check "$f"; done
+          for f in js/*.js js/lib/*.js; do node --check "$f"; done
+
+      - name: JS unit tests
+        run: node --test tests/js/
 
       - name: Run tests
         run: pytest -q
