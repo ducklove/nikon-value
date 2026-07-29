@@ -1,0 +1,806 @@
+{
+ "updated": "2026-07-29",
+ "products": {
+  "af-nikkor-28mm-f14d-ed": {
+   "product_id": "af-nikkor-28mm-f14d-ed",
+   "name_en": "AF NIKKOR 28mm f/1.4D ED",
+   "query": "Nikon AF Nikkor 28mm f/1.4D ED",
+   "category_id": "78997",
+   "min_price": 1200,
+   "max_price": 4500,
+   "config_fingerprint": "639aac8ecbc2aeff",
+   "zero_result_streak": 139,
+   "first_probed": "2026-07-29",
+   "last_probed": "2026-07-29",
+   "probe_count": 1,
+   "inconclusive_streak": 0,
+   "next_probe_after_days": 14,
+   "verdict": "constraint_suspects",
+   "verdict_ko": "특정 제약을 풀자 매물이 나타났다",
+   "suspects": [
+    "core_query_only"
+   ],
+   "probes": [
+    {
+     "name": "baseline",
+     "description_ko": "정규 수집과 완전히 동일한 요청(기준선)",
+     "query": "Nikon AF Nikkor 28mm f/1.4D ED",
+     "total": 0,
+     "sample_titles": [],
+     "error": null
+    },
+    {
+     "name": "no_condition",
+     "description_ko": "conditionIds 제거 — USED(3000) 외 상태(Open box·Refurbished·Very Good 등) 포함",
+     "query": "Nikon AF Nikkor 28mm f/1.4D ED",
+     "total": 0,
+     "sample_titles": [],
+     "error": null
+    },
+    {
+     "name": "no_delivery_country",
+     "description_ko": "deliveryCountry:KR 제거 — 한국 배송을 하지 않는 셀러 포함",
+     "query": "Nikon AF Nikkor 28mm f/1.4D ED",
+     "total": 0,
+     "sample_titles": [],
+     "error": null
+    },
+    {
+     "name": "no_buying_options",
+     "description_ko": "buyingOptions 제거 — 경매 매물 포함",
+     "query": "Nikon AF Nikkor 28mm f/1.4D ED",
+     "total": 0,
+     "sample_titles": [],
+     "error": null
+    },
+    {
+     "name": "no_price_window",
+     "description_ko": "가격창 제거 — min_price..max_price 밖의 매물 포함",
+     "query": "Nikon AF Nikkor 28mm f/1.4D ED",
+     "total": 0,
+     "sample_titles": [],
+     "error": null
+    },
+    {
+     "name": "no_category",
+     "description_ko": "category_ids 제거 — 다른 eBay 카테고리에 올라온 매물 포함",
+     "query": "Nikon AF Nikkor 28mm f/1.4D ED",
+     "total": 0,
+     "sample_titles": [],
+     "error": null
+    },
+    {
+     "name": "no_query_exclusions",
+     "description_ko": "q의 `-제외어` 제거 — 제외어가 과했는지 확인",
+     "query": "Nikon AF Nikkor 28mm f/1.4D ED",
+     "total": 0,
+     "sample_titles": [],
+     "error": null
+    },
+    {
+     "name": "core_query_only",
+     "description_ko": "q를 모델명만 남기고 모든 제약 해제 — eBay에 매물 자체가 있는지 확인",
+     "query": "Nikon AF Nikkor 28mm",
+     "total": 399,
+     "sample_titles": [
+      "Camera Lens cap for Nikon Nikkor AF 20mm 24mm 28mm 35mm 50mm 85 mm 105mm 135mm",
+      "UV Protective Filter for Nikon Nikkor AF 50mm f1.8, 28mm 24mm f2.8 35mm f2 lens",
+      "Lens Cap Cover Protector for Nikon AF-S NIKKOR 28mm f/1.8G Lens"
+     ],
+     "error": null
+    }
+   ],
+   "history": [
+    {
+     "date": "2026-07-29",
+     "verdict": "constraint_suspects",
+     "suspects": [
+      "core_query_only"
+     ]
+    }
+   ]
+  },
+  "af-p-70-300-f45-63e-ed-vr": {
+   "product_id": "af-p-70-300-f45-63e-ed-vr",
+   "name_en": "AF-P NIKKOR 70-300mm f/4.5-6.3E ED VR",
+   "query": "Nikon AF-P 70-300mm f/4.5-6.3E ED VR",
+   "category_id": "78997",
+   "min_price": 200,
+   "max_price": 700,
+   "config_fingerprint": "f0ad9fb999eb9a72",
+   "zero_result_streak": 150,
+   "first_probed": "2026-07-29",
+   "last_probed": "2026-07-29",
+   "probe_count": 1,
+   "inconclusive_streak": 0,
+   "next_probe_after_days": 14,
+   "verdict": "constraint_suspects",
+   "verdict_ko": "특정 제약을 풀자 매물이 나타났다",
+   "suspects": [
+    "core_query_only"
+   ],
+   "probes": [
+    {
+     "name": "baseline",
+     "description_ko": "정규 수집과 완전히 동일한 요청(기준선)",
+     "query": "Nikon AF-P 70-300mm f/4.5-6.3E ED VR",
+     "total": 0,
+     "sample_titles": [],
+     "error": null
+    },
+    {
+     "name": "no_condition",
+     "description_ko": "conditionIds 제거 — USED(3000) 외 상태(Open box·Refurbished·Very Good 등) 포함",
+     "query": "Nikon AF-P 70-300mm f/4.5-6.3E ED VR",
+     "total": 0,
+     "sample_titles": [],
+     "error": null
+    },
+    {
+     "name": "no_delivery_country",
+     "description_ko": "deliveryCountry:KR 제거 — 한국 배송을 하지 않는 셀러 포함",
+     "query": "Nikon AF-P 70-300mm f/4.5-6.3E ED VR",
+     "total": 0,
+     "sample_titles": [],
+     "error": null
+    },
+    {
+     "name": "no_buying_options",
+     "description_ko": "buyingOptions 제거 — 경매 매물 포함",
+     "query": "Nikon AF-P 70-300mm f/4.5-6.3E ED VR",
+     "total": 0,
+     "sample_titles": [],
+     "error": null
+    },
+    {
+     "name": "no_price_window",
+     "description_ko": "가격창 제거 — min_price..max_price 밖의 매물 포함",
+     "query": "Nikon AF-P 70-300mm f/4.5-6.3E ED VR",
+     "total": 0,
+     "sample_titles": [],
+     "error": null
+    },
+    {
+     "name": "no_category",
+     "description_ko": "category_ids 제거 — 다른 eBay 카테고리에 올라온 매물 포함",
+     "query": "Nikon AF-P 70-300mm f/4.5-6.3E ED VR",
+     "total": 0,
+     "sample_titles": [],
+     "error": null
+    },
+    {
+     "name": "no_query_exclusions",
+     "description_ko": "q의 `-제외어` 제거 — 제외어가 과했는지 확인",
+     "query": "Nikon AF-P 70-300mm f/4.5-6.3E ED VR",
+     "total": 0,
+     "sample_titles": [],
+     "error": null
+    },
+    {
+     "name": "core_query_only",
+     "description_ko": "q를 모델명만 남기고 모든 제약 해제 — eBay에 매물 자체가 있는지 확인",
+     "query": "Nikon AF-P 70-300mm",
+     "total": 1152,
+     "sample_titles": [
+      "Bayonet Lens Hood for Nikon AF-P DX NIKKOR 70-300mm f4.5-6.3G ED replaces HB-77",
+      "JJC LH-77 Lens Hood as HB-77 for Nikon AF-P DX NIKKOR 70-300mm f/4.5-6.3G ED VR",
+      "Replacement LB-77 Lens Hood Shade for Nikon AF-P DX NIKKOR 70-300mm f4.5-6.3G ED"
+     ],
+     "error": null
+    }
+   ],
+   "history": [
+    {
+     "date": "2026-07-29",
+     "verdict": "constraint_suspects",
+     "suspects": [
+      "core_query_only"
+     ]
+    }
+   ]
+  },
+  "fisheye-nikkor-6mm-f28": {
+   "product_id": "fisheye-nikkor-6mm-f28",
+   "name_en": "Nikon Fisheye-Nikkor 6mm f/2.8",
+   "query": "Nikon Fisheye Nikkor 6mm f/2.8 -hood -caps -box -manual",
+   "category_id": "78997",
+   "min_price": 60000,
+   "max_price": 180000,
+   "config_fingerprint": "fab91e8197b3f8da",
+   "zero_result_streak": 143,
+   "first_probed": "2026-07-29",
+   "last_probed": "2026-07-29",
+   "probe_count": 1,
+   "inconclusive_streak": 0,
+   "next_probe_after_days": 14,
+   "verdict": "constraint_suspects",
+   "verdict_ko": "특정 제약을 풀자 매물이 나타났다",
+   "suspects": [
+    "core_query_only"
+   ],
+   "probes": [
+    {
+     "name": "baseline",
+     "description_ko": "정규 수집과 완전히 동일한 요청(기준선)",
+     "query": "Nikon Fisheye Nikkor 6mm f/2.8 -hood -caps -box -manual",
+     "total": 0,
+     "sample_titles": [],
+     "error": null
+    },
+    {
+     "name": "no_condition",
+     "description_ko": "conditionIds 제거 — USED(3000) 외 상태(Open box·Refurbished·Very Good 등) 포함",
+     "query": "Nikon Fisheye Nikkor 6mm f/2.8 -hood -caps -box -manual",
+     "total": 0,
+     "sample_titles": [],
+     "error": null
+    },
+    {
+     "name": "no_delivery_country",
+     "description_ko": "deliveryCountry:KR 제거 — 한국 배송을 하지 않는 셀러 포함",
+     "query": "Nikon Fisheye Nikkor 6mm f/2.8 -hood -caps -box -manual",
+     "total": 0,
+     "sample_titles": [],
+     "error": null
+    },
+    {
+     "name": "no_buying_options",
+     "description_ko": "buyingOptions 제거 — 경매 매물 포함",
+     "query": "Nikon Fisheye Nikkor 6mm f/2.8 -hood -caps -box -manual",
+     "total": 0,
+     "sample_titles": [],
+     "error": null
+    },
+    {
+     "name": "no_price_window",
+     "description_ko": "가격창 제거 — min_price..max_price 밖의 매물 포함",
+     "query": "Nikon Fisheye Nikkor 6mm f/2.8 -hood -caps -box -manual",
+     "total": 0,
+     "sample_titles": [],
+     "error": null
+    },
+    {
+     "name": "no_category",
+     "description_ko": "category_ids 제거 — 다른 eBay 카테고리에 올라온 매물 포함",
+     "query": "Nikon Fisheye Nikkor 6mm f/2.8 -hood -caps -box -manual",
+     "total": 0,
+     "sample_titles": [],
+     "error": null
+    },
+    {
+     "name": "no_query_exclusions",
+     "description_ko": "q의 `-제외어` 제거 — 제외어가 과했는지 확인",
+     "query": "Nikon Fisheye Nikkor 6mm f/2.8",
+     "total": 0,
+     "sample_titles": [],
+     "error": null
+    },
+    {
+     "name": "core_query_only",
+     "description_ko": "q를 모델명만 남기고 모든 제약 해제 — eBay에 매물 자체가 있는지 확인",
+     "query": "Nikon Fisheye Nikkor 6mm",
+     "total": 4,
+     "sample_titles": [
+      "Nikon 5.6/6mm Fisheye-Nikkor 220 ca.1970. very RARE lens",
+      "Nikon Ai 2.8/6mm Fisheye-Nikkor Auto 220° EXTREMELY RARE MUSEUM PIECES ca.1981",
+      "Nikon Ai 2.8/6mm Fisheye-Nikkor Auto 220° EXTREMELY RARE MUSEUM PIECES ca.1981"
+     ],
+     "error": null
+    }
+   ],
+   "history": [
+    {
+     "date": "2026-07-29",
+     "verdict": "constraint_suspects",
+     "suspects": [
+      "core_query_only"
+     ]
+    }
+   ]
+  },
+  "nasa-spec-nikon-f": {
+   "product_id": "nasa-spec-nikon-f",
+   "name_en": "NASA spec Nikon F",
+   "query": "Nikon F NASA camera -manual -brochure -poster -strap -case -finder",
+   "category_id": "3323",
+   "min_price": 8000,
+   "max_price": 50000,
+   "config_fingerprint": "bc1c98e3c22a15b6",
+   "zero_result_streak": 143,
+   "first_probed": "2026-07-29",
+   "last_probed": "2026-07-29",
+   "probe_count": 1,
+   "inconclusive_streak": 0,
+   "next_probe_after_days": 14,
+   "verdict": "constraint_suspects",
+   "verdict_ko": "특정 제약을 풀자 매물이 나타났다",
+   "suspects": [
+    "core_query_only"
+   ],
+   "probes": [
+    {
+     "name": "baseline",
+     "description_ko": "정규 수집과 완전히 동일한 요청(기준선)",
+     "query": "Nikon F NASA camera -manual -brochure -poster -strap -case -finder",
+     "total": 0,
+     "sample_titles": [],
+     "error": null
+    },
+    {
+     "name": "no_condition",
+     "description_ko": "conditionIds 제거 — USED(3000) 외 상태(Open box·Refurbished·Very Good 등) 포함",
+     "query": "Nikon F NASA camera -manual -brochure -poster -strap -case -finder",
+     "total": 0,
+     "sample_titles": [],
+     "error": null
+    },
+    {
+     "name": "no_delivery_country",
+     "description_ko": "deliveryCountry:KR 제거 — 한국 배송을 하지 않는 셀러 포함",
+     "query": "Nikon F NASA camera -manual -brochure -poster -strap -case -finder",
+     "total": 0,
+     "sample_titles": [],
+     "error": null
+    },
+    {
+     "name": "no_buying_options",
+     "description_ko": "buyingOptions 제거 — 경매 매물 포함",
+     "query": "Nikon F NASA camera -manual -brochure -poster -strap -case -finder",
+     "total": 0,
+     "sample_titles": [],
+     "error": null
+    },
+    {
+     "name": "no_price_window",
+     "description_ko": "가격창 제거 — min_price..max_price 밖의 매물 포함",
+     "query": "Nikon F NASA camera -manual -brochure -poster -strap -case -finder",
+     "total": 0,
+     "sample_titles": [],
+     "error": null
+    },
+    {
+     "name": "no_category",
+     "description_ko": "category_ids 제거 — 다른 eBay 카테고리에 올라온 매물 포함",
+     "query": "Nikon F NASA camera -manual -brochure -poster -strap -case -finder",
+     "total": 0,
+     "sample_titles": [],
+     "error": null
+    },
+    {
+     "name": "no_query_exclusions",
+     "description_ko": "q의 `-제외어` 제거 — 제외어가 과했는지 확인",
+     "query": "Nikon F NASA camera",
+     "total": 0,
+     "sample_titles": [],
+     "error": null
+    },
+    {
+     "name": "core_query_only",
+     "description_ko": "q를 모델명만 남기고 모든 제약 해제 — eBay에 매물 자체가 있는지 확인",
+     "query": "Nikon F NASA",
+     "total": 7,
+     "sample_titles": [
+      "VTG Authentic 1980s NASA Space Shuttle Nikon F3 Camera Film Poster Japan",
+      "NEW w/ NASA Paperwork Vintage NIKON Type D Focusing Screen for the  F3 Camera",
+      "Free 1980 Nikon F3 Camera NASA Space Shuttle Columbia Loading Notification Stick"
+     ],
+     "error": null
+    }
+   ],
+   "history": [
+    {
+     "date": "2026-07-29",
+     "verdict": "constraint_suspects",
+     "suspects": [
+      "core_query_only"
+     ]
+    }
+   ]
+  },
+  "nikkor-13mm-f56": {
+   "product_id": "nikkor-13mm-f56",
+   "name_en": "Nikon Nikkor 13mm f/5.6",
+   "query": "Nikon Nikkor 13mm f/5.6 -hood -caps -case -manual",
+   "category_id": "78997",
+   "min_price": 30000,
+   "max_price": 70000,
+   "config_fingerprint": "b2087187f481aae8",
+   "zero_result_streak": 143,
+   "first_probed": "2026-07-29",
+   "last_probed": "2026-07-29",
+   "probe_count": 1,
+   "inconclusive_streak": 0,
+   "next_probe_after_days": 14,
+   "verdict": "constraint_suspects",
+   "verdict_ko": "특정 제약을 풀자 매물이 나타났다",
+   "suspects": [
+    "core_query_only"
+   ],
+   "probes": [
+    {
+     "name": "baseline",
+     "description_ko": "정규 수집과 완전히 동일한 요청(기준선)",
+     "query": "Nikon Nikkor 13mm f/5.6 -hood -caps -case -manual",
+     "total": 0,
+     "sample_titles": [],
+     "error": null
+    },
+    {
+     "name": "no_condition",
+     "description_ko": "conditionIds 제거 — USED(3000) 외 상태(Open box·Refurbished·Very Good 등) 포함",
+     "query": "Nikon Nikkor 13mm f/5.6 -hood -caps -case -manual",
+     "total": 0,
+     "sample_titles": [],
+     "error": null
+    },
+    {
+     "name": "no_delivery_country",
+     "description_ko": "deliveryCountry:KR 제거 — 한국 배송을 하지 않는 셀러 포함",
+     "query": "Nikon Nikkor 13mm f/5.6 -hood -caps -case -manual",
+     "total": 0,
+     "sample_titles": [],
+     "error": null
+    },
+    {
+     "name": "no_buying_options",
+     "description_ko": "buyingOptions 제거 — 경매 매물 포함",
+     "query": "Nikon Nikkor 13mm f/5.6 -hood -caps -case -manual",
+     "total": 0,
+     "sample_titles": [],
+     "error": null
+    },
+    {
+     "name": "no_price_window",
+     "description_ko": "가격창 제거 — min_price..max_price 밖의 매물 포함",
+     "query": "Nikon Nikkor 13mm f/5.6 -hood -caps -case -manual",
+     "total": 0,
+     "sample_titles": [],
+     "error": null
+    },
+    {
+     "name": "no_category",
+     "description_ko": "category_ids 제거 — 다른 eBay 카테고리에 올라온 매물 포함",
+     "query": "Nikon Nikkor 13mm f/5.6 -hood -caps -case -manual",
+     "total": 0,
+     "sample_titles": [],
+     "error": null
+    },
+    {
+     "name": "no_query_exclusions",
+     "description_ko": "q의 `-제외어` 제거 — 제외어가 과했는지 확인",
+     "query": "Nikon Nikkor 13mm f/5.6",
+     "total": 0,
+     "sample_titles": [],
+     "error": null
+    },
+    {
+     "name": "core_query_only",
+     "description_ko": "q를 모델명만 남기고 모든 제약 해제 — eBay에 매물 자체가 있는지 확인",
+     "query": "Nikon Nikkor 13mm",
+     "total": 36,
+     "sample_titles": [
+      "52mm Pro1-D MRC Multi-Resistant UV filter Nikon 1 NIKKOR VR 6.7-13mm f/3.5-5.6",
+      "52mm Pro1-D MRC Multi-Resistant UV filter Nikon 1 NIKKOR VR 6.7-13mm f/3.5-5.6",
+      "(3) 16mm MOVIE CAMERA LENSES incl 1 1.2\" F.4 Tel + Nikkor 1:1.9f=13mm + 1\"-f/2.5"
+     ],
+     "error": null
+    }
+   ],
+   "history": [
+    {
+     "date": "2026-07-29",
+     "verdict": "constraint_suspects",
+     "suspects": [
+      "core_query_only"
+     ]
+    }
+   ]
+  },
+  "nikkor-z-58mm-f095-s-noct": {
+   "product_id": "nikkor-z-58mm-f095-s-noct",
+   "name_en": "NIKKOR Z 58mm f/0.95 S Noct",
+   "query": "Nikon Noct 58mm f/0.95 Z",
+   "category_id": "78997",
+   "min_price": 4000,
+   "max_price": 12000,
+   "config_fingerprint": "4f435ab005d03836",
+   "zero_result_streak": 19,
+   "first_probed": "2026-07-29",
+   "last_probed": "2026-07-29",
+   "probe_count": 1,
+   "inconclusive_streak": 0,
+   "next_probe_after_days": 14,
+   "verdict": "constraint_suspects",
+   "verdict_ko": "특정 제약을 풀자 매물이 나타났다",
+   "suspects": [
+    "core_query_only",
+    "no_delivery_country"
+   ],
+   "probes": [
+    {
+     "name": "baseline",
+     "description_ko": "정규 수집과 완전히 동일한 요청(기준선)",
+     "query": "Nikon Noct 58mm f/0.95 Z",
+     "total": 0,
+     "sample_titles": [],
+     "error": null
+    },
+    {
+     "name": "no_condition",
+     "description_ko": "conditionIds 제거 — USED(3000) 외 상태(Open box·Refurbished·Very Good 등) 포함",
+     "query": "Nikon Noct 58mm f/0.95 Z",
+     "total": 0,
+     "sample_titles": [],
+     "error": null
+    },
+    {
+     "name": "no_delivery_country",
+     "description_ko": "deliveryCountry:KR 제거 — 한국 배송을 하지 않는 셀러 포함",
+     "query": "Nikon Noct 58mm f/0.95 Z",
+     "total": 2,
+     "sample_titles": [
+      "Nikon NIKKOR Z 58mm F0.95 S Noct [Near Mint]",
+      "Used Nikon Z 58mm f/0.95 S Noct Lens"
+     ],
+     "error": null
+    },
+    {
+     "name": "no_buying_options",
+     "description_ko": "buyingOptions 제거 — 경매 매물 포함",
+     "query": "Nikon Noct 58mm f/0.95 Z",
+     "total": 0,
+     "sample_titles": [],
+     "error": null
+    },
+    {
+     "name": "no_price_window",
+     "description_ko": "가격창 제거 — min_price..max_price 밖의 매물 포함",
+     "query": "Nikon Noct 58mm f/0.95 Z",
+     "total": 0,
+     "sample_titles": [],
+     "error": null
+    },
+    {
+     "name": "no_category",
+     "description_ko": "category_ids 제거 — 다른 eBay 카테고리에 올라온 매물 포함",
+     "query": "Nikon Noct 58mm f/0.95 Z",
+     "total": 0,
+     "sample_titles": [],
+     "error": null
+    },
+    {
+     "name": "no_query_exclusions",
+     "description_ko": "q의 `-제외어` 제거 — 제외어가 과했는지 확인",
+     "query": "Nikon Noct 58mm f/0.95 Z",
+     "total": 0,
+     "sample_titles": [],
+     "error": null
+    },
+    {
+     "name": "core_query_only",
+     "description_ko": "q를 모델명만 남기고 모든 제약 해제 — eBay에 매물 자체가 있는지 확인",
+     "query": "Nikon Noct 58mm Z",
+     "total": 19,
+     "sample_titles": [
+      "Professional Nikon Rear Lens Cap Cover for Nikon NIKKOR Z 58mm F0.95 S Noct Lens",
+      "NIKONoriginal Lens Cap Lid Cover Rear 02D#",
+      "Front Lens Cap For Nikon NIKKOR Z 58mm f/0.95 S Noct Lens Z Mount Series Mirror"
+     ],
+     "error": null
+    }
+   ],
+   "history": [
+    {
+     "date": "2026-07-29",
+     "verdict": "constraint_suspects",
+     "suspects": [
+      "core_query_only",
+      "no_delivery_country"
+     ]
+    }
+   ]
+  },
+  "nikkor-z-600mm-f4-tc-vr-s": {
+   "product_id": "nikkor-z-600mm-f4-tc-vr-s",
+   "name_en": "NIKKOR Z 600mm f/4 TC VR S",
+   "query": "Nikon Z 600mm f/4 TC",
+   "category_id": "78997",
+   "min_price": 9000,
+   "max_price": 18000,
+   "config_fingerprint": "cc59ce7a0e7bf607",
+   "zero_result_streak": 133,
+   "first_probed": "2026-07-29",
+   "last_probed": "2026-07-29",
+   "probe_count": 1,
+   "inconclusive_streak": 0,
+   "next_probe_after_days": 14,
+   "verdict": "constraint_suspects",
+   "verdict_ko": "특정 제약을 풀자 매물이 나타났다",
+   "suspects": [
+    "core_query_only",
+    "no_delivery_country"
+   ],
+   "probes": [
+    {
+     "name": "baseline",
+     "description_ko": "정규 수집과 완전히 동일한 요청(기준선)",
+     "query": "Nikon Z 600mm f/4 TC",
+     "total": 0,
+     "sample_titles": [],
+     "error": null
+    },
+    {
+     "name": "no_condition",
+     "description_ko": "conditionIds 제거 — USED(3000) 외 상태(Open box·Refurbished·Very Good 등) 포함",
+     "query": "Nikon Z 600mm f/4 TC",
+     "total": 0,
+     "sample_titles": [],
+     "error": null
+    },
+    {
+     "name": "no_delivery_country",
+     "description_ko": "deliveryCountry:KR 제거 — 한국 배송을 하지 않는 셀러 포함",
+     "query": "Nikon Z 600mm f/4 TC",
+     "total": 1,
+     "sample_titles": [
+      "Nikon NIKKOR Z 600mm f/4 TC VR S Lens Used in perfect condition US Version"
+     ],
+     "error": null
+    },
+    {
+     "name": "no_buying_options",
+     "description_ko": "buyingOptions 제거 — 경매 매물 포함",
+     "query": "Nikon Z 600mm f/4 TC",
+     "total": 0,
+     "sample_titles": [],
+     "error": null
+    },
+    {
+     "name": "no_price_window",
+     "description_ko": "가격창 제거 — min_price..max_price 밖의 매물 포함",
+     "query": "Nikon Z 600mm f/4 TC",
+     "total": 0,
+     "sample_titles": [],
+     "error": null
+    },
+    {
+     "name": "no_category",
+     "description_ko": "category_ids 제거 — 다른 eBay 카테고리에 올라온 매물 포함",
+     "query": "Nikon Z 600mm f/4 TC",
+     "total": 0,
+     "sample_titles": [],
+     "error": null
+    },
+    {
+     "name": "no_query_exclusions",
+     "description_ko": "q의 `-제외어` 제거 — 제외어가 과했는지 확인",
+     "query": "Nikon Z 600mm f/4 TC",
+     "total": 0,
+     "sample_titles": [],
+     "error": null
+    },
+    {
+     "name": "core_query_only",
+     "description_ko": "q를 모델명만 남기고 모든 제약 해제 — eBay에 매물 자체가 있는지 확인",
+     "query": "Nikon Z 600mm TC",
+     "total": 53,
+     "sample_titles": [
+      "NIKON NIKKOR Z 600mm f4 TC VR S Lens Service Repair Manual & Parts List PDF READ",
+      "NIKONoriginal Lens Cap Lid Cover Rear 02D#",
+      "Lens Foot Quick Release Tripod Plate for Nikon Z 800mm f/6.3 VR S & 600mm f/4 TC"
+     ],
+     "error": null
+    }
+   ],
+   "history": [
+    {
+     "date": "2026-07-29",
+     "verdict": "constraint_suspects",
+     "suspects": [
+      "core_query_only",
+      "no_delivery_country"
+     ]
+    }
+   ]
+  },
+  "nikkor-z-dx-50-250-f45-63-vr": {
+   "product_id": "nikkor-z-dx-50-250-f45-63-vr",
+   "name_en": "NIKKOR Z DX 50-250mm f/4.5-6.3 VR",
+   "query": "NIKKOR Z DX 50-250mm f/4.5-6.3 VR",
+   "category_id": "78997",
+   "min_price": 140,
+   "max_price": 400,
+   "config_fingerprint": "29497ff196a6eccd",
+   "zero_result_streak": 139,
+   "first_probed": "2026-07-29",
+   "last_probed": "2026-07-29",
+   "probe_count": 1,
+   "inconclusive_streak": 0,
+   "next_probe_after_days": 14,
+   "verdict": "constraint_suspects",
+   "verdict_ko": "특정 제약을 풀자 매물이 나타났다",
+   "suspects": [
+    "core_query_only"
+   ],
+   "probes": [
+    {
+     "name": "baseline",
+     "description_ko": "정규 수집과 완전히 동일한 요청(기준선)",
+     "query": "NIKKOR Z DX 50-250mm f/4.5-6.3 VR",
+     "total": 0,
+     "sample_titles": [],
+     "error": null
+    },
+    {
+     "name": "no_condition",
+     "description_ko": "conditionIds 제거 — USED(3000) 외 상태(Open box·Refurbished·Very Good 등) 포함",
+     "query": "NIKKOR Z DX 50-250mm f/4.5-6.3 VR",
+     "total": 0,
+     "sample_titles": [],
+     "error": null
+    },
+    {
+     "name": "no_delivery_country",
+     "description_ko": "deliveryCountry:KR 제거 — 한국 배송을 하지 않는 셀러 포함",
+     "query": "NIKKOR Z DX 50-250mm f/4.5-6.3 VR",
+     "total": 0,
+     "sample_titles": [],
+     "error": null
+    },
+    {
+     "name": "no_buying_options",
+     "description_ko": "buyingOptions 제거 — 경매 매물 포함",
+     "query": "NIKKOR Z DX 50-250mm f/4.5-6.3 VR",
+     "total": 0,
+     "sample_titles": [],
+     "error": null
+    },
+    {
+     "name": "no_price_window",
+     "description_ko": "가격창 제거 — min_price..max_price 밖의 매물 포함",
+     "query": "NIKKOR Z DX 50-250mm f/4.5-6.3 VR",
+     "total": 0,
+     "sample_titles": [],
+     "error": null
+    },
+    {
+     "name": "no_category",
+     "description_ko": "category_ids 제거 — 다른 eBay 카테고리에 올라온 매물 포함",
+     "query": "NIKKOR Z DX 50-250mm f/4.5-6.3 VR",
+     "total": 0,
+     "sample_titles": [],
+     "error": null
+    },
+    {
+     "name": "no_query_exclusions",
+     "description_ko": "q의 `-제외어` 제거 — 제외어가 과했는지 확인",
+     "query": "NIKKOR Z DX 50-250mm f/4.5-6.3 VR",
+     "total": 0,
+     "sample_titles": [],
+     "error": null
+    },
+    {
+     "name": "core_query_only",
+     "description_ko": "q를 모델명만 남기고 모든 제약 해제 — eBay에 매물 자체가 있는지 확인",
+     "query": "NIKKOR Z DX 50-250mm",
+     "total": 274,
+     "sample_titles": [
+      "Rokinon MC 80-250mm f/4.5-4.8 AIS Lens for Nikon F Mount",
+      "NIKON BY TELESAR 80~250 f4.5 ZOOM-BENEFITS CHARITY-G60",
+      "Soligor C/D Zoom+Macro 75-250mm f4.5 Lens, Nikon F Mount, TESTED [Excellent] #87"
+     ],
+     "error": null
+    }
+   ],
+   "history": [
+    {
+     "date": "2026-07-29",
+     "verdict": "constraint_suspects",
+     "suspects": [
+      "core_query_only"
+     ]
+    }
+   ]
+  }
+ }
+}
