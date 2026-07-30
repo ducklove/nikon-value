@@ -1,5 +1,5 @@
 {
- "updated": "2026-07-29",
+ "updated": "2026-07-30",
  "products": {
   "af-nikkor-28mm-f14d-ed": {
    "product_id": "af-nikkor-28mm-f14d-ed",
@@ -795,6 +795,819 @@
    "history": [
     {
      "date": "2026-07-29",
+     "verdict": "constraint_suspects",
+     "suspects": [
+      "core_query_only"
+     ]
+    }
+   ]
+  },
+  "nikkorex-auto-35": {
+   "product_id": "nikkorex-auto-35",
+   "name_en": "Nikkorex AUTO 35",
+   "query": "Nikkorex Auto 35 camera -manual -case -strap",
+   "category_id": "15230",
+   "min_price": 40,
+   "max_price": 250,
+   "config_fingerprint": "eacf1b46afddd949",
+   "zero_result_streak": 138,
+   "first_probed": "2026-07-30",
+   "last_probed": "2026-07-30",
+   "probe_count": 1,
+   "inconclusive_streak": 0,
+   "next_probe_after_days": 14,
+   "verdict": "constraint_suspects",
+   "verdict_ko": "특정 제약을 풀자 매물이 나타났다",
+   "suspects": [
+    "core_query_only",
+    "no_condition",
+    "no_price_window",
+    "no_query_exclusions"
+   ],
+   "probes": [
+    {
+     "name": "baseline",
+     "description_ko": "정규 수집과 완전히 동일한 요청(기준선)",
+     "query": "Nikkorex Auto 35 camera -manual -case -strap",
+     "total": 0,
+     "sample_titles": [],
+     "error": null
+    },
+    {
+     "name": "no_condition",
+     "description_ko": "conditionIds 제거 — USED(3000) 외 상태(Open box·Refurbished·Very Good 등) 포함",
+     "query": "Nikkorex Auto 35 camera -manual -case -strap",
+     "total": 1,
+     "sample_titles": [
+      "Nikkorex Auto 35 camera, With Tele 1:4 85/48 Lens Untested"
+     ],
+     "error": null
+    },
+    {
+     "name": "no_delivery_country",
+     "description_ko": "deliveryCountry:KR 제거 — 한국 배송을 하지 않는 셀러 포함",
+     "query": "Nikkorex Auto 35 camera -manual -case -strap",
+     "total": 0,
+     "sample_titles": [],
+     "error": null
+    },
+    {
+     "name": "no_buying_options",
+     "description_ko": "buyingOptions 제거 — 경매 매물 포함",
+     "query": "Nikkorex Auto 35 camera -manual -case -strap",
+     "total": 0,
+     "sample_titles": [],
+     "error": null
+    },
+    {
+     "name": "no_price_window",
+     "description_ko": "가격창 제거 — min_price..max_price 밖의 매물 포함",
+     "query": "Nikkorex Auto 35 camera -manual -case -strap",
+     "total": 1,
+     "sample_titles": [
+      "Vintage Nikon Nikkorex Auto35 35mm film camera for parts or repair"
+     ],
+     "error": null
+    },
+    {
+     "name": "no_category",
+     "description_ko": "category_ids 제거 — 다른 eBay 카테고리에 올라온 매물 포함",
+     "query": "Nikkorex Auto 35 camera -manual -case -strap",
+     "total": 0,
+     "sample_titles": [],
+     "error": null
+    },
+    {
+     "name": "no_query_exclusions",
+     "description_ko": "q의 `-제외어` 제거 — 제외어가 과했는지 확인",
+     "query": "Nikkorex Auto 35 camera",
+     "total": 1,
+     "sample_titles": [
+      "RARE Vintage Nikkorex Auto 35mm Film Camera W/ Leather Case &  Strap 48mm 1:2"
+     ],
+     "error": null
+    },
+    {
+     "name": "core_query_only",
+     "description_ko": "q를 모델명만 남기고 모든 제약 해제 — eBay에 매물 자체가 있는지 확인",
+     "query": "Nikkorex Auto 35",
+     "total": 10,
+     "sample_titles": [
+      "Nippon Kogaku Nikkorex Auto 35 - Parts Repair",
+      "Nikkorex Auto 35 Model 35mm Film Camera, Silver Body",
+      "Nikon Nikkorex Auto 35 SLR Camera W/ Nikkor-H 48mm 1:2 f2 Lens"
+     ],
+     "error": null
+    }
+   ],
+   "history": [
+    {
+     "date": "2026-07-30",
+     "verdict": "constraint_suspects",
+     "suspects": [
+      "core_query_only",
+      "no_condition",
+      "no_price_window",
+      "no_query_exclusions"
+     ]
+    }
+   ]
+  },
+  "nikkorex-zoom-35": {
+   "product_id": "nikkorex-zoom-35",
+   "name_en": "Nikkorex Zoom 35",
+   "query": "Nikkorex Zoom 35 camera -manual -case -strap",
+   "category_id": "15230",
+   "min_price": 40,
+   "max_price": 300,
+   "config_fingerprint": "72c22f7a3a7f721f",
+   "zero_result_streak": 138,
+   "first_probed": "2026-07-30",
+   "last_probed": "2026-07-30",
+   "probe_count": 1,
+   "inconclusive_streak": 0,
+   "next_probe_after_days": 14,
+   "verdict": "constraint_suspects",
+   "verdict_ko": "특정 제약을 풀자 매물이 나타났다",
+   "suspects": [
+    "core_query_only",
+    "no_delivery_country",
+    "no_query_exclusions"
+   ],
+   "probes": [
+    {
+     "name": "baseline",
+     "description_ko": "정규 수집과 완전히 동일한 요청(기준선)",
+     "query": "Nikkorex Zoom 35 camera -manual -case -strap",
+     "total": 0,
+     "sample_titles": [],
+     "error": null
+    },
+    {
+     "name": "no_condition",
+     "description_ko": "conditionIds 제거 — USED(3000) 외 상태(Open box·Refurbished·Very Good 등) 포함",
+     "query": "Nikkorex Zoom 35 camera -manual -case -strap",
+     "total": 0,
+     "sample_titles": [],
+     "error": null
+    },
+    {
+     "name": "no_delivery_country",
+     "description_ko": "deliveryCountry:KR 제거 — 한국 배송을 하지 않는 셀러 포함",
+     "query": "Nikkorex Zoom 35 camera -manual -case -strap",
+     "total": 2,
+     "sample_titles": [
+      "Nikkorex Zoom 35 Camera (Good Condition) 86MM lense",
+      "Nikkorex Zoom 35 Camera (Good Condition)"
+     ],
+     "error": null
+    },
+    {
+     "name": "no_buying_options",
+     "description_ko": "buyingOptions 제거 — 경매 매물 포함",
+     "query": "Nikkorex Zoom 35 camera -manual -case -strap",
+     "total": 0,
+     "sample_titles": [],
+     "error": null
+    },
+    {
+     "name": "no_price_window",
+     "description_ko": "가격창 제거 — min_price..max_price 밖의 매물 포함",
+     "query": "Nikkorex Zoom 35 camera -manual -case -strap",
+     "total": 0,
+     "sample_titles": [],
+     "error": null
+    },
+    {
+     "name": "no_category",
+     "description_ko": "category_ids 제거 — 다른 eBay 카테고리에 올라온 매물 포함",
+     "query": "Nikkorex Zoom 35 camera -manual -case -strap",
+     "total": 0,
+     "sample_titles": [],
+     "error": null
+    },
+    {
+     "name": "no_query_exclusions",
+     "description_ko": "q의 `-제외어` 제거 — 제외어가 과했는지 확인",
+     "query": "Nikkorex Zoom 35 camera",
+     "total": 2,
+     "sample_titles": [
+      "Vintage Nikkorex Zoom 35mm Camera Nikkor Leather Case Untested Parts or Repair",
+      "1960’s Nikon Nikkorex Zoom 35SLR 35mm Camera w/43-86 f3.5 Lens-Strap-Case-Filter"
+     ],
+     "error": null
+    },
+    {
+     "name": "core_query_only",
+     "description_ko": "q를 모델명만 남기고 모든 제약 해제 — eBay에 매물 자체가 있는지 확인",
+     "query": "Nikkorex Zoom 35",
+     "total": 24,
+     "sample_titles": [
+      "Nikon - Nikkorex 35 Zoom Camera - Original Magazine Ad - 1965",
+      "Nikon Nikkorex Zoom35 Instruction Manual Reprint",
+      "Nikon Nikkorex Price List 1964: Auto-35, Reflex Zoom, Movie Cameras & Accessorie"
+     ],
+     "error": null
+    }
+   ],
+   "history": [
+    {
+     "date": "2026-07-30",
+     "verdict": "constraint_suspects",
+     "suspects": [
+      "core_query_only",
+      "no_delivery_country",
+      "no_query_exclusions"
+     ]
+    }
+   ]
+  },
+  "nikon-1": {
+   "product_id": "nikon-1",
+   "name_en": "Nikon I",
+   "query": "Nikon I rangefinder -lens -nikkor -filter -hood -cap",
+   "category_id": "15230",
+   "min_price": 1000,
+   "max_price": 8000,
+   "config_fingerprint": "a62c1eb49bf3a531",
+   "zero_result_streak": 139,
+   "first_probed": "2026-07-30",
+   "last_probed": "2026-07-30",
+   "probe_count": 1,
+   "inconclusive_streak": 0,
+   "next_probe_after_days": 14,
+   "verdict": "constraint_suspects",
+   "verdict_ko": "특정 제약을 풀자 매물이 나타났다",
+   "suspects": [
+    "core_query_only",
+    "no_price_window"
+   ],
+   "probes": [
+    {
+     "name": "baseline",
+     "description_ko": "정규 수집과 완전히 동일한 요청(기준선)",
+     "query": "Nikon I rangefinder -lens -nikkor -filter -hood -cap",
+     "total": 0,
+     "sample_titles": [],
+     "error": null
+    },
+    {
+     "name": "no_condition",
+     "description_ko": "conditionIds 제거 — USED(3000) 외 상태(Open box·Refurbished·Very Good 등) 포함",
+     "query": "Nikon I rangefinder -lens -nikkor -filter -hood -cap",
+     "total": 0,
+     "sample_titles": [],
+     "error": null
+    },
+    {
+     "name": "no_delivery_country",
+     "description_ko": "deliveryCountry:KR 제거 — 한국 배송을 하지 않는 셀러 포함",
+     "query": "Nikon I rangefinder -lens -nikkor -filter -hood -cap",
+     "total": 0,
+     "sample_titles": [],
+     "error": null
+    },
+    {
+     "name": "no_buying_options",
+     "description_ko": "buyingOptions 제거 — 경매 매물 포함",
+     "query": "Nikon I rangefinder -lens -nikkor -filter -hood -cap",
+     "total": 0,
+     "sample_titles": [],
+     "error": null
+    },
+    {
+     "name": "no_price_window",
+     "description_ko": "가격창 제거 — min_price..max_price 밖의 매물 포함",
+     "query": "Nikon I rangefinder -lens -nikkor -filter -hood -cap",
+     "total": 1,
+     "sample_titles": [
+      "Nikon I boxed film camera ca. 1949 Nikon I first rangefinder"
+     ],
+     "error": null
+    },
+    {
+     "name": "no_category",
+     "description_ko": "category_ids 제거 — 다른 eBay 카테고리에 올라온 매물 포함",
+     "query": "Nikon I rangefinder -lens -nikkor -filter -hood -cap",
+     "total": 0,
+     "sample_titles": [],
+     "error": null
+    },
+    {
+     "name": "no_query_exclusions",
+     "description_ko": "q의 `-제외어` 제거 — 제외어가 과했는지 확인",
+     "query": "Nikon I rangefinder",
+     "total": 0,
+     "sample_titles": [],
+     "error": null
+    },
+    {
+     "name": "core_query_only",
+     "description_ko": "q를 모델명만 남기고 모든 제약 해제 — eBay에 매물 자체가 있는지 확인",
+     "query": "Nikon I",
+     "total": 1554,
+     "sample_titles": [
+      "Nikon Nuvis 125i APS Camera (Untested)",
+      "Sandisk SD Extreme PRO 32 64 128 256 GB 512GB 1TB Memory Card Nikon Canon UHS-I",
+      "Camera cap Protective for Nikon Nikonos I II III IV-A V with 35mm W-Nikkor Lens"
+     ],
+     "error": null
+    }
+   ],
+   "history": [
+    {
+     "date": "2026-07-30",
+     "verdict": "constraint_suspects",
+     "suspects": [
+      "core_query_only",
+      "no_price_window"
+     ]
+    }
+   ]
+  },
+  "nikon-d2hs": {
+   "product_id": "nikon-d2hs",
+   "name_en": "Nikon D2Hs",
+   "query": "Nikon D2Hs body",
+   "category_id": "31388",
+   "min_price": 100,
+   "max_price": 500,
+   "config_fingerprint": "83b9f9e629286abe",
+   "zero_result_streak": 3,
+   "first_probed": "2026-07-30",
+   "last_probed": "2026-07-30",
+   "probe_count": 1,
+   "inconclusive_streak": 0,
+   "next_probe_after_days": 14,
+   "verdict": "constraint_suspects",
+   "verdict_ko": "특정 제약을 풀자 매물이 나타났다",
+   "suspects": [
+    "core_query_only"
+   ],
+   "probes": [
+    {
+     "name": "baseline",
+     "description_ko": "정규 수집과 완전히 동일한 요청(기준선)",
+     "query": "Nikon D2Hs body",
+     "total": 0,
+     "sample_titles": [],
+     "error": null
+    },
+    {
+     "name": "no_condition",
+     "description_ko": "conditionIds 제거 — USED(3000) 외 상태(Open box·Refurbished·Very Good 등) 포함",
+     "query": "Nikon D2Hs body",
+     "total": 0,
+     "sample_titles": [],
+     "error": null
+    },
+    {
+     "name": "no_delivery_country",
+     "description_ko": "deliveryCountry:KR 제거 — 한국 배송을 하지 않는 셀러 포함",
+     "query": "Nikon D2Hs body",
+     "total": 0,
+     "sample_titles": [],
+     "error": null
+    },
+    {
+     "name": "no_buying_options",
+     "description_ko": "buyingOptions 제거 — 경매 매물 포함",
+     "query": "Nikon D2Hs body",
+     "total": 0,
+     "sample_titles": [],
+     "error": null
+    },
+    {
+     "name": "no_price_window",
+     "description_ko": "가격창 제거 — min_price..max_price 밖의 매물 포함",
+     "query": "Nikon D2Hs body",
+     "total": 0,
+     "sample_titles": [],
+     "error": null
+    },
+    {
+     "name": "no_category",
+     "description_ko": "category_ids 제거 — 다른 eBay 카테고리에 올라온 매물 포함",
+     "query": "Nikon D2Hs body",
+     "total": 0,
+     "sample_titles": [],
+     "error": null
+    },
+    {
+     "name": "no_query_exclusions",
+     "description_ko": "q의 `-제외어` 제거 — 제외어가 과했는지 확인",
+     "query": "Nikon D2Hs body",
+     "total": 0,
+     "sample_titles": [],
+     "error": null
+    },
+    {
+     "name": "core_query_only",
+     "description_ko": "q를 모델명만 남기고 모든 제약 해제 — eBay에 매물 자체가 있는지 확인",
+     "query": "Nikon D2Hs",
+     "total": 9,
+     "sample_titles": [
+      "Genuine Nikon EG-D100 Audio Video Cable P/N 25271 5' D2HS D200 D300 D50",
+      "Nikon D2H/D2Hs/D2X/D2Xs Apron Bottom Rubber Unit NEW Genuine Part. 1C998-451",
+      "Nikon D2hs 4.1 Megapixel Digital SLR Camera Body AS IS PARTS/REPAIR"
+     ],
+     "error": null
+    }
+   ],
+   "history": [
+    {
+     "date": "2026-07-30",
+     "verdict": "constraint_suspects",
+     "suspects": [
+      "core_query_only"
+     ]
+    }
+   ]
+  },
+  "nikon-e2-e2s": {
+   "product_id": "nikon-e2-e2s",
+   "name_en": "Nikon E2/E2S",
+   "query": "Nikon E2 E2S DSLR body -lens -nikkor",
+   "category_id": "31388",
+   "min_price": 300,
+   "max_price": 2000,
+   "config_fingerprint": "7ca0d2d3e8b0ffda",
+   "zero_result_streak": 137,
+   "first_probed": "2026-07-30",
+   "last_probed": "2026-07-30",
+   "probe_count": 1,
+   "inconclusive_streak": 0,
+   "next_probe_after_days": 14,
+   "verdict": "constraint_suspects",
+   "verdict_ko": "특정 제약을 풀자 매물이 나타났다",
+   "suspects": [
+    "core_query_only",
+    "no_query_exclusions"
+   ],
+   "probes": [
+    {
+     "name": "baseline",
+     "description_ko": "정규 수집과 완전히 동일한 요청(기준선)",
+     "query": "Nikon E2 E2S DSLR body -lens -nikkor",
+     "total": 0,
+     "sample_titles": [],
+     "error": null
+    },
+    {
+     "name": "no_condition",
+     "description_ko": "conditionIds 제거 — USED(3000) 외 상태(Open box·Refurbished·Very Good 등) 포함",
+     "query": "Nikon E2 E2S DSLR body -lens -nikkor",
+     "total": 0,
+     "sample_titles": [],
+     "error": null
+    },
+    {
+     "name": "no_delivery_country",
+     "description_ko": "deliveryCountry:KR 제거 — 한국 배송을 하지 않는 셀러 포함",
+     "query": "Nikon E2 E2S DSLR body -lens -nikkor",
+     "total": 0,
+     "sample_titles": [],
+     "error": null
+    },
+    {
+     "name": "no_buying_options",
+     "description_ko": "buyingOptions 제거 — 경매 매물 포함",
+     "query": "Nikon E2 E2S DSLR body -lens -nikkor",
+     "total": 0,
+     "sample_titles": [],
+     "error": null
+    },
+    {
+     "name": "no_price_window",
+     "description_ko": "가격창 제거 — min_price..max_price 밖의 매물 포함",
+     "query": "Nikon E2 E2S DSLR body -lens -nikkor",
+     "total": 0,
+     "sample_titles": [],
+     "error": null
+    },
+    {
+     "name": "no_category",
+     "description_ko": "category_ids 제거 — 다른 eBay 카테고리에 올라온 매물 포함",
+     "query": "Nikon E2 E2S DSLR body -lens -nikkor",
+     "total": 0,
+     "sample_titles": [],
+     "error": null
+    },
+    {
+     "name": "no_query_exclusions",
+     "description_ko": "q의 `-제외어` 제거 — 제외어가 과했는지 확인",
+     "query": "Nikon E2 E2S DSLR body",
+     "total": 1,
+     "sample_titles": [
+      "Nikon E2s 1st Digital Full Frame Camera body."
+     ],
+     "error": null
+    },
+    {
+     "name": "core_query_only",
+     "description_ko": "q를 모델명만 남기고 모든 제약 해제 — eBay에 매물 자체가 있는지 확인",
+     "query": "Nikon E2 E2S",
+     "total": 5,
+     "sample_titles": [
+      "2x Red+BK Soft Shutter Release Button f/ Nikon Df M2 Fuji X20 X10 X-E2S STX-2",
+      "Silver Soft Shutter Release Button 2PC f Fujifilm X-E2S X-E3 X-E2 Nikon Df M2 F3",
+      "Nikon G AFS lens to Fujifilm X-E2S X-A7 X-A10  X-H1 Adapter Aperture Control"
+     ],
+     "error": null
+    }
+   ],
+   "history": [
+    {
+     "date": "2026-07-30",
+     "verdict": "constraint_suspects",
+     "suspects": [
+      "core_query_only",
+      "no_query_exclusions"
+     ]
+    }
+   ]
+  },
+  "nikon-e2n-e2ns": {
+   "product_id": "nikon-e2n-e2ns",
+   "name_en": "Nikon E2N/E2NS",
+   "query": "Nikon E2N E2NS DSLR body -lens -nikkor",
+   "category_id": "31388",
+   "min_price": 400,
+   "max_price": 2200,
+   "config_fingerprint": "4ee1919846b12ff2",
+   "zero_result_streak": 137,
+   "first_probed": "2026-07-30",
+   "last_probed": "2026-07-30",
+   "probe_count": 1,
+   "inconclusive_streak": 1,
+   "next_probe_after_days": 28,
+   "verdict": "no_listings",
+   "verdict_ko": "어떤 제약을 풀어도 0건 — eBay에 매물이 없다(진짜 희귀)",
+   "suspects": [],
+   "probes": [
+    {
+     "name": "baseline",
+     "description_ko": "정규 수집과 완전히 동일한 요청(기준선)",
+     "query": "Nikon E2N E2NS DSLR body -lens -nikkor",
+     "total": 0,
+     "sample_titles": [],
+     "error": null
+    },
+    {
+     "name": "no_condition",
+     "description_ko": "conditionIds 제거 — USED(3000) 외 상태(Open box·Refurbished·Very Good 등) 포함",
+     "query": "Nikon E2N E2NS DSLR body -lens -nikkor",
+     "total": 0,
+     "sample_titles": [],
+     "error": null
+    },
+    {
+     "name": "no_delivery_country",
+     "description_ko": "deliveryCountry:KR 제거 — 한국 배송을 하지 않는 셀러 포함",
+     "query": "Nikon E2N E2NS DSLR body -lens -nikkor",
+     "total": 0,
+     "sample_titles": [],
+     "error": null
+    },
+    {
+     "name": "no_buying_options",
+     "description_ko": "buyingOptions 제거 — 경매 매물 포함",
+     "query": "Nikon E2N E2NS DSLR body -lens -nikkor",
+     "total": 0,
+     "sample_titles": [],
+     "error": null
+    },
+    {
+     "name": "no_price_window",
+     "description_ko": "가격창 제거 — min_price..max_price 밖의 매물 포함",
+     "query": "Nikon E2N E2NS DSLR body -lens -nikkor",
+     "total": 0,
+     "sample_titles": [],
+     "error": null
+    },
+    {
+     "name": "no_category",
+     "description_ko": "category_ids 제거 — 다른 eBay 카테고리에 올라온 매물 포함",
+     "query": "Nikon E2N E2NS DSLR body -lens -nikkor",
+     "total": 0,
+     "sample_titles": [],
+     "error": null
+    },
+    {
+     "name": "no_query_exclusions",
+     "description_ko": "q의 `-제외어` 제거 — 제외어가 과했는지 확인",
+     "query": "Nikon E2N E2NS DSLR body",
+     "total": 0,
+     "sample_titles": [],
+     "error": null
+    },
+    {
+     "name": "core_query_only",
+     "description_ko": "q를 모델명만 남기고 모든 제약 해제 — eBay에 매물 자체가 있는지 확인",
+     "query": "Nikon E2N E2NS",
+     "total": 0,
+     "sample_titles": [],
+     "error": null
+    }
+   ],
+   "history": [
+    {
+     "date": "2026-07-30",
+     "verdict": "no_listings",
+     "suspects": []
+    }
+   ]
+  },
+  "nikon-e3-e3s": {
+   "product_id": "nikon-e3-e3s",
+   "name_en": "Nikon E3/E3S",
+   "query": "Nikon E3 E3S DSLR body -D3 -lens -nikkor",
+   "category_id": "31388",
+   "min_price": 500,
+   "max_price": 2500,
+   "config_fingerprint": "3e5ece76df217dd4",
+   "zero_result_streak": 137,
+   "first_probed": "2026-07-30",
+   "last_probed": "2026-07-30",
+   "probe_count": 1,
+   "inconclusive_streak": 0,
+   "next_probe_after_days": 14,
+   "verdict": "constraint_suspects",
+   "verdict_ko": "특정 제약을 풀자 매물이 나타났다",
+   "suspects": [
+    "core_query_only"
+   ],
+   "probes": [
+    {
+     "name": "baseline",
+     "description_ko": "정규 수집과 완전히 동일한 요청(기준선)",
+     "query": "Nikon E3 E3S DSLR body -D3 -lens -nikkor",
+     "total": 0,
+     "sample_titles": [],
+     "error": null
+    },
+    {
+     "name": "no_condition",
+     "description_ko": "conditionIds 제거 — USED(3000) 외 상태(Open box·Refurbished·Very Good 등) 포함",
+     "query": "Nikon E3 E3S DSLR body -D3 -lens -nikkor",
+     "total": 0,
+     "sample_titles": [],
+     "error": null
+    },
+    {
+     "name": "no_delivery_country",
+     "description_ko": "deliveryCountry:KR 제거 — 한국 배송을 하지 않는 셀러 포함",
+     "query": "Nikon E3 E3S DSLR body -D3 -lens -nikkor",
+     "total": 0,
+     "sample_titles": [],
+     "error": null
+    },
+    {
+     "name": "no_buying_options",
+     "description_ko": "buyingOptions 제거 — 경매 매물 포함",
+     "query": "Nikon E3 E3S DSLR body -D3 -lens -nikkor",
+     "total": 0,
+     "sample_titles": [],
+     "error": null
+    },
+    {
+     "name": "no_price_window",
+     "description_ko": "가격창 제거 — min_price..max_price 밖의 매물 포함",
+     "query": "Nikon E3 E3S DSLR body -D3 -lens -nikkor",
+     "total": 0,
+     "sample_titles": [],
+     "error": null
+    },
+    {
+     "name": "no_category",
+     "description_ko": "category_ids 제거 — 다른 eBay 카테고리에 올라온 매물 포함",
+     "query": "Nikon E3 E3S DSLR body -D3 -lens -nikkor",
+     "total": 0,
+     "sample_titles": [],
+     "error": null
+    },
+    {
+     "name": "no_query_exclusions",
+     "description_ko": "q의 `-제외어` 제거 — 제외어가 과했는지 확인",
+     "query": "Nikon E3 E3S DSLR body",
+     "total": 0,
+     "sample_titles": [],
+     "error": null
+    },
+    {
+     "name": "core_query_only",
+     "description_ko": "q를 모델명만 남기고 모든 제약 해제 — eBay에 매물 자체가 있는지 확인",
+     "query": "Nikon E3 E3S",
+     "total": 2,
+     "sample_titles": [
+      "NIKON Eyepiece Adapter 04F#",
+      "NIB New Genuine Nikon MH-15 Ni-MH Battery Charger for F100 E3 E3S D1 SLR IOB"
+     ],
+     "error": null
+    }
+   ],
+   "history": [
+    {
+     "date": "2026-07-30",
+     "verdict": "constraint_suspects",
+     "suspects": [
+      "core_query_only"
+     ]
+    }
+   ]
+  },
+  "nikon-el2": {
+   "product_id": "nikon-el2",
+   "name_en": "Nikon EL2",
+   "query": "Nikkormat EL2 camera body",
+   "category_id": null,
+   "min_price": 30,
+   "max_price": 220,
+   "config_fingerprint": "b7dd2512c1a6fc24",
+   "zero_result_streak": 30,
+   "first_probed": "2026-07-30",
+   "last_probed": "2026-07-30",
+   "probe_count": 1,
+   "inconclusive_streak": 0,
+   "next_probe_after_days": 14,
+   "verdict": "constraint_suspects",
+   "verdict_ko": "특정 제약을 풀자 매물이 나타났다",
+   "suspects": [
+    "core_query_only"
+   ],
+   "probes": [
+    {
+     "name": "baseline",
+     "description_ko": "정규 수집과 완전히 동일한 요청(기준선)",
+     "query": "Nikkormat EL2 camera body",
+     "total": 0,
+     "sample_titles": [],
+     "error": null
+    },
+    {
+     "name": "no_condition",
+     "description_ko": "conditionIds 제거 — USED(3000) 외 상태(Open box·Refurbished·Very Good 등) 포함",
+     "query": "Nikkormat EL2 camera body",
+     "total": 0,
+     "sample_titles": [],
+     "error": null
+    },
+    {
+     "name": "no_delivery_country",
+     "description_ko": "deliveryCountry:KR 제거 — 한국 배송을 하지 않는 셀러 포함",
+     "query": "Nikkormat EL2 camera body",
+     "total": 0,
+     "sample_titles": [],
+     "error": null
+    },
+    {
+     "name": "no_buying_options",
+     "description_ko": "buyingOptions 제거 — 경매 매물 포함",
+     "query": "Nikkormat EL2 camera body",
+     "total": 0,
+     "sample_titles": [],
+     "error": null
+    },
+    {
+     "name": "no_price_window",
+     "description_ko": "가격창 제거 — min_price..max_price 밖의 매물 포함",
+     "query": "Nikkormat EL2 camera body",
+     "total": 0,
+     "sample_titles": [],
+     "error": null
+    },
+    {
+     "name": "no_category",
+     "description_ko": "category_ids 제거 — 다른 eBay 카테고리에 올라온 매물 포함",
+     "query": "Nikkormat EL2 camera body",
+     "total": 0,
+     "sample_titles": [],
+     "error": null
+    },
+    {
+     "name": "no_query_exclusions",
+     "description_ko": "q의 `-제외어` 제거 — 제외어가 과했는지 확인",
+     "query": "Nikkormat EL2 camera body",
+     "total": 0,
+     "sample_titles": [],
+     "error": null
+    },
+    {
+     "name": "core_query_only",
+     "description_ko": "q를 모델명만 남기고 모든 제약 해제 — eBay에 매물 자체가 있는지 확인",
+     "query": "Nikkormat EL2",
+     "total": 15,
+     "sample_titles": [
+      "Nikkormat Nikomat EL EL2 Foam Seal Kit | USCamera Premium Nikon Light Seal Kits",
+      "Nikon Nikkormat Nikomat EL /EL2 silver film advance lever. NOS. I",
+      "Nikon Nikkormat EL2 front leather | Parts | $9 | #46 |"
+     ],
+     "error": null
+    }
+   ],
+   "history": [
+    {
+     "date": "2026-07-30",
      "verdict": "constraint_suspects",
      "suspects": [
       "core_query_only"
