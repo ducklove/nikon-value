@@ -1,5 +1,5 @@
 {
- "updated": "2026-07-30",
+ "updated": "2026-07-31",
  "products": {
   "af-nikkor-28mm-f14d-ed": {
    "product_id": "af-nikkor-28mm-f14d-ed",
@@ -1611,6 +1611,834 @@
      "verdict": "constraint_suspects",
      "suspects": [
       "core_query_only"
+     ]
+    }
+   ]
+  },
+  "nikon-em": {
+   "product_id": "nikon-em",
+   "name_en": "Nikon EM",
+   "query": "Nikon EM body -lens -nikkor -filter -hood -cap",
+   "category_id": "3323",
+   "min_price": 20,
+   "max_price": 150,
+   "config_fingerprint": "2b9f85dbd999ed89",
+   "zero_result_streak": 49,
+   "first_probed": "2026-07-31",
+   "last_probed": "2026-07-31",
+   "probe_count": 1,
+   "inconclusive_streak": 0,
+   "next_probe_after_days": 14,
+   "verdict": "constraint_suspects",
+   "verdict_ko": "특정 제약을 풀자 매물이 나타났다",
+   "suspects": [
+    "core_query_only",
+    "no_category",
+    "no_query_exclusions"
+   ],
+   "probes": [
+    {
+     "name": "baseline",
+     "description_ko": "정규 수집과 완전히 동일한 요청(기준선)",
+     "query": "Nikon EM body -lens -nikkor -filter -hood -cap",
+     "total": 0,
+     "sample_titles": [],
+     "error": null
+    },
+    {
+     "name": "no_condition",
+     "description_ko": "conditionIds 제거 — USED(3000) 외 상태(Open box·Refurbished·Very Good 등) 포함",
+     "query": "Nikon EM body -lens -nikkor -filter -hood -cap",
+     "total": 0,
+     "sample_titles": [],
+     "error": null
+    },
+    {
+     "name": "no_delivery_country",
+     "description_ko": "deliveryCountry:KR 제거 — 한국 배송을 하지 않는 셀러 포함",
+     "query": "Nikon EM body -lens -nikkor -filter -hood -cap",
+     "total": 0,
+     "sample_titles": [],
+     "error": null
+    },
+    {
+     "name": "no_buying_options",
+     "description_ko": "buyingOptions 제거 — 경매 매물 포함",
+     "query": "Nikon EM body -lens -nikkor -filter -hood -cap",
+     "total": 0,
+     "sample_titles": [],
+     "error": null
+    },
+    {
+     "name": "no_price_window",
+     "description_ko": "가격창 제거 — min_price..max_price 밖의 매물 포함",
+     "query": "Nikon EM body -lens -nikkor -filter -hood -cap",
+     "total": 0,
+     "sample_titles": [],
+     "error": null
+    },
+    {
+     "name": "no_category",
+     "description_ko": "category_ids 제거 — 다른 eBay 카테고리에 올라온 매물 포함",
+     "query": "Nikon EM body -lens -nikkor -filter -hood -cap",
+     "total": 213,
+     "sample_titles": [
+      "Nikon CF-17 EverReady Body Case for FG/EM Bodies #G832",
+      "Nikon EM 35mm SLR Camera Body, Black (AS IS - For Parts/Repair)",
+      "Nikon EM 35mm Film SLR Camera Body Only – Repair or Spares"
+     ],
+     "error": null
+    },
+    {
+     "name": "no_query_exclusions",
+     "description_ko": "q의 `-제외어` 제거 — 제외어가 과했는지 확인",
+     "query": "Nikon EM body",
+     "total": 3,
+     "sample_titles": [
+      "NIKON EM BODY + MOTOR DRIVE 50MM F1.8 SERIES E LENS ROKINON 28MM F2.8 FLASH LOT",
+      "Nikon EM Black Series 35mm f2.5 Camera Body & Lens Set Used Damaged",
+      "【N MINT w/ Strap】 Nikkor Ai-s Ais 50mm f1.8 Lens + Nikon EM Body from JAPAN J00"
+     ],
+     "error": null
+    },
+    {
+     "name": "core_query_only",
+     "description_ko": "q를 모델명만 남기고 모든 제약 해제 — eBay에 매물 자체가 있는지 확인",
+     "query": "Nikon EM",
+     "total": 1555,
+     "sample_titles": [
+      "Nikon EM Photo Guide Genuine (EN)  system brochure booklet",
+      "Booklet for Camera Nikon EM Photo Guide Help Lighting Angles Etc. How-To",
+      "Nikon EM Photo Guide Manual (EN) 7207041 system brochure lens accessory"
+     ],
+     "error": null
+    }
+   ],
+   "history": [
+    {
+     "date": "2026-07-31",
+     "verdict": "constraint_suspects",
+     "suspects": [
+      "core_query_only",
+      "no_category",
+      "no_query_exclusions"
+     ]
+    }
+   ]
+  },
+  "nikon-f-high-speed": {
+   "product_id": "nikon-f-high-speed",
+   "name_en": "Nikon F High Speed",
+   "query": "Nikon F High Speed camera -manual -brochure -poster -strap -case -finder",
+   "category_id": "3323",
+   "min_price": 5000,
+   "max_price": 30000,
+   "config_fingerprint": "8bdb6943fa6704c8",
+   "zero_result_streak": 145,
+   "first_probed": "2026-07-31",
+   "last_probed": "2026-07-31",
+   "probe_count": 1,
+   "inconclusive_streak": 0,
+   "next_probe_after_days": 14,
+   "verdict": "constraint_suspects",
+   "verdict_ko": "특정 제약을 풀자 매물이 나타났다",
+   "suspects": [
+    "core_query_only",
+    "no_category",
+    "no_price_window"
+   ],
+   "probes": [
+    {
+     "name": "baseline",
+     "description_ko": "정규 수집과 완전히 동일한 요청(기준선)",
+     "query": "Nikon F High Speed camera -manual -brochure -poster -strap -case -finder",
+     "total": 0,
+     "sample_titles": [],
+     "error": null
+    },
+    {
+     "name": "no_condition",
+     "description_ko": "conditionIds 제거 — USED(3000) 외 상태(Open box·Refurbished·Very Good 등) 포함",
+     "query": "Nikon F High Speed camera -manual -brochure -poster -strap -case -finder",
+     "total": 0,
+     "sample_titles": [],
+     "error": null
+    },
+    {
+     "name": "no_delivery_country",
+     "description_ko": "deliveryCountry:KR 제거 — 한국 배송을 하지 않는 셀러 포함",
+     "query": "Nikon F High Speed camera -manual -brochure -poster -strap -case -finder",
+     "total": 0,
+     "sample_titles": [],
+     "error": null
+    },
+    {
+     "name": "no_buying_options",
+     "description_ko": "buyingOptions 제거 — 경매 매물 포함",
+     "query": "Nikon F High Speed camera -manual -brochure -poster -strap -case -finder",
+     "total": 0,
+     "sample_titles": [],
+     "error": null
+    },
+    {
+     "name": "no_price_window",
+     "description_ko": "가격창 제거 — min_price..max_price 밖의 매물 포함",
+     "query": "Nikon F High Speed camera -manual -brochure -poster -strap -case -finder",
+     "total": 1,
+     "sample_titles": [
+      "Quantaray Tech-10 High Speed 70-300mm f/4.0-5.6 Camera Lens  Nikkor Nikon  12C4"
+     ],
+     "error": null
+    },
+    {
+     "name": "no_category",
+     "description_ko": "category_ids 제거 — 다른 eBay 카테고리에 올라온 매물 포함",
+     "query": "Nikon F High Speed camera -manual -brochure -poster -strap -case -finder",
+     "total": 1,
+     "sample_titles": [
+      "Ametek Vision Research Phantom v341 High-Speed Camera Body (Nikon F Mount)"
+     ],
+     "error": null
+    },
+    {
+     "name": "no_query_exclusions",
+     "description_ko": "q의 `-제외어` 제거 — 제외어가 과했는지 확인",
+     "query": "Nikon F High Speed camera",
+     "total": 0,
+     "sample_titles": [],
+     "error": null
+    },
+    {
+     "name": "core_query_only",
+     "description_ko": "q를 모델명만 남기고 모든 제약 해제 — eBay에 매물 자체가 있는지 확인",
+     "query": "Nikon F High Speed",
+     "total": 74,
+     "sample_titles": [
+      "🔥Sigma High-Speed Zoom Multi-Coated Zoom f/3.5 f=80~200mm 62MM Lens For Nikon🔥",
+      "Quantaray Tech-10 High Speed 70-300mm f/4.0-5.6 Lens For Nikon",
+      "Sigma High-Speed Multi-Coated Lens 1:3.5~4 f=80~200mm Good Condition, Free Ship"
+     ],
+     "error": null
+    }
+   ],
+   "history": [
+    {
+     "date": "2026-07-31",
+     "verdict": "constraint_suspects",
+     "suspects": [
+      "core_query_only",
+      "no_category",
+      "no_price_window"
+     ]
+    }
+   ]
+  },
+  "nikon-f2a-25th-anniversary": {
+   "product_id": "nikon-f2a-25th-anniversary",
+   "name_en": "Nikon F2A 25th Anniversary",
+   "query": "Nikon F2A 25th Anniversary -manual -brochure -case -strap -finder",
+   "category_id": "3323",
+   "min_price": 350,
+   "max_price": 1500,
+   "config_fingerprint": "a407ff526149c655",
+   "zero_result_streak": 145,
+   "first_probed": "2026-07-31",
+   "last_probed": "2026-07-31",
+   "probe_count": 1,
+   "inconclusive_streak": 0,
+   "next_probe_after_days": 14,
+   "verdict": "constraint_suspects",
+   "verdict_ko": "특정 제약을 풀자 매물이 나타났다",
+   "suspects": [
+    "core_query_only",
+    "no_category"
+   ],
+   "probes": [
+    {
+     "name": "baseline",
+     "description_ko": "정규 수집과 완전히 동일한 요청(기준선)",
+     "query": "Nikon F2A 25th Anniversary -manual -brochure -case -strap -finder",
+     "total": 0,
+     "sample_titles": [],
+     "error": null
+    },
+    {
+     "name": "no_condition",
+     "description_ko": "conditionIds 제거 — USED(3000) 외 상태(Open box·Refurbished·Very Good 등) 포함",
+     "query": "Nikon F2A 25th Anniversary -manual -brochure -case -strap -finder",
+     "total": 0,
+     "sample_titles": [],
+     "error": null
+    },
+    {
+     "name": "no_delivery_country",
+     "description_ko": "deliveryCountry:KR 제거 — 한국 배송을 하지 않는 셀러 포함",
+     "query": "Nikon F2A 25th Anniversary -manual -brochure -case -strap -finder",
+     "total": 0,
+     "sample_titles": [],
+     "error": null
+    },
+    {
+     "name": "no_buying_options",
+     "description_ko": "buyingOptions 제거 — 경매 매물 포함",
+     "query": "Nikon F2A 25th Anniversary -manual -brochure -case -strap -finder",
+     "total": 0,
+     "sample_titles": [],
+     "error": null
+    },
+    {
+     "name": "no_price_window",
+     "description_ko": "가격창 제거 — min_price..max_price 밖의 매물 포함",
+     "query": "Nikon F2A 25th Anniversary -manual -brochure -case -strap -finder",
+     "total": 0,
+     "sample_titles": [],
+     "error": null
+    },
+    {
+     "name": "no_category",
+     "description_ko": "category_ids 제거 — 다른 eBay 카테고리에 올라온 매물 포함",
+     "query": "Nikon F2A 25th Anniversary -manual -brochure -case -strap -finder",
+     "total": 4,
+     "sample_titles": [
+      "Nikon F2A 25th Anniversary 35mm Film Camera (Body Only) Near Mint",
+      "RARE Nikon F2A 25th Anniversary SLR camera in matching box EXC F2 DP-11",
+      "25th Anniversary [MINT S/N 801xxx] Nikon F2 Photomic A F2A Film Camera FromJAPAN"
+     ],
+     "error": null
+    },
+    {
+     "name": "no_query_exclusions",
+     "description_ko": "q의 `-제외어` 제거 — 제외어가 과했는지 확인",
+     "query": "Nikon F2A 25th Anniversary",
+     "total": 0,
+     "sample_titles": [],
+     "error": null
+    },
+    {
+     "name": "core_query_only",
+     "description_ko": "q를 모델명만 남기고 모든 제약 해제 — eBay에 매물 자체가 있는지 확인",
+     "query": "Nikon F2A 25th Anniversary",
+     "total": 4,
+     "sample_titles": [
+      "RARE Nikon F2A 25th Anniversary SLR camera in matching box EXC F2 DP-11",
+      "25th Anniversary [MINT S/N 801xxx] Nikon F2 Photomic A F2A Film Camera FromJAPAN",
+      "Ultra Rare! No Plate [N MINT 803xxxx] Nikon F2A 25th Anniversary From JAPAN 664A"
+     ],
+     "error": null
+    }
+   ],
+   "history": [
+    {
+     "date": "2026-07-31",
+     "verdict": "constraint_suspects",
+     "suspects": [
+      "core_query_only",
+      "no_category"
+     ]
+    }
+   ]
+  },
+  "nikon-f2t": {
+   "product_id": "nikon-f2t",
+   "name_en": "Nikon F2/T",
+   "query": "Nikon F2/T body -lens -nikkor -filter -hood -cap",
+   "category_id": "3323",
+   "min_price": 300,
+   "max_price": 2500,
+   "config_fingerprint": "c947872f1e1f7650",
+   "zero_result_streak": 134,
+   "first_probed": "2026-07-31",
+   "last_probed": "2026-07-31",
+   "probe_count": 1,
+   "inconclusive_streak": 0,
+   "next_probe_after_days": 14,
+   "verdict": "constraint_suspects",
+   "verdict_ko": "특정 제약을 풀자 매물이 나타났다",
+   "suspects": [
+    "core_query_only",
+    "no_category"
+   ],
+   "probes": [
+    {
+     "name": "baseline",
+     "description_ko": "정규 수집과 완전히 동일한 요청(기준선)",
+     "query": "Nikon F2/T body -lens -nikkor -filter -hood -cap",
+     "total": 0,
+     "sample_titles": [],
+     "error": null
+    },
+    {
+     "name": "no_condition",
+     "description_ko": "conditionIds 제거 — USED(3000) 외 상태(Open box·Refurbished·Very Good 등) 포함",
+     "query": "Nikon F2/T body -lens -nikkor -filter -hood -cap",
+     "total": 0,
+     "sample_titles": [],
+     "error": null
+    },
+    {
+     "name": "no_delivery_country",
+     "description_ko": "deliveryCountry:KR 제거 — 한국 배송을 하지 않는 셀러 포함",
+     "query": "Nikon F2/T body -lens -nikkor -filter -hood -cap",
+     "total": 0,
+     "sample_titles": [],
+     "error": null
+    },
+    {
+     "name": "no_buying_options",
+     "description_ko": "buyingOptions 제거 — 경매 매물 포함",
+     "query": "Nikon F2/T body -lens -nikkor -filter -hood -cap",
+     "total": 0,
+     "sample_titles": [],
+     "error": null
+    },
+    {
+     "name": "no_price_window",
+     "description_ko": "가격창 제거 — min_price..max_price 밖의 매물 포함",
+     "query": "Nikon F2/T body -lens -nikkor -filter -hood -cap",
+     "total": 0,
+     "sample_titles": [],
+     "error": null
+    },
+    {
+     "name": "no_category",
+     "description_ko": "category_ids 제거 — 다른 eBay 카테고리에 올라온 매물 포함",
+     "query": "Nikon F2/T body -lens -nikkor -filter -hood -cap",
+     "total": 18,
+     "sample_titles": [
+      "[MINT w/Case] Nikon F2T Titan Photomic A DP-11 35mm Film SLR Camera Body Japan",
+      "[Top MINT] Nikon F2 T Titan with Name SLR 35mm Film Camera Body From JAPAN",
+      "Nikon F2 Titan F2T Eye Level Black 35mm Film Camera Body From JAPAN Near MINT-"
+     ],
+     "error": null
+    },
+    {
+     "name": "no_query_exclusions",
+     "description_ko": "q의 `-제외어` 제거 — 제외어가 과했는지 확인",
+     "query": "Nikon F2/T body",
+     "total": 0,
+     "sample_titles": [],
+     "error": null
+    },
+    {
+     "name": "core_query_only",
+     "description_ko": "q를 모델명만 남기고 모든 제약 해제 — eBay에 매물 자체가 있는지 확인",
+     "query": "Nikon F2/T",
+     "total": 64,
+     "sample_titles": [
+      "HB-40 Bayonet Lens Hood for NIKON AF-S NIKKOR 24-70mm f/2.=t=",
+      "HB-40 Bayonet Lens Hood for NIKON AF-S NIKKOR 24-70mm f/2.=t=",
+      "HB-40 Bayonet Lens Hood for NIKON AF-S NIKKOR 24-70mm f/2.=t="
+     ],
+     "error": null
+    }
+   ],
+   "history": [
+    {
+     "date": "2026-07-31",
+     "verdict": "constraint_suspects",
+     "suspects": [
+      "core_query_only",
+      "no_category"
+     ]
+    }
+   ]
+  },
+  "nikon-f3-limited": {
+   "product_id": "nikon-f3-limited",
+   "name_en": "Nikon F3 Limited",
+   "query": "Nikon F3 Limited Ando Camera -manual -brochure -strap -case -finder",
+   "category_id": "3323",
+   "min_price": 1500,
+   "max_price": 7000,
+   "config_fingerprint": "9d7e15feaea89d95",
+   "zero_result_streak": 145,
+   "first_probed": "2026-07-31",
+   "last_probed": "2026-07-31",
+   "probe_count": 1,
+   "inconclusive_streak": 1,
+   "next_probe_after_days": 28,
+   "verdict": "no_listings",
+   "verdict_ko": "어떤 제약을 풀어도 0건 — eBay에 매물이 없다(진짜 희귀)",
+   "suspects": [],
+   "probes": [
+    {
+     "name": "baseline",
+     "description_ko": "정규 수집과 완전히 동일한 요청(기준선)",
+     "query": "Nikon F3 Limited Ando Camera -manual -brochure -strap -case -finder",
+     "total": 0,
+     "sample_titles": [],
+     "error": null
+    },
+    {
+     "name": "no_condition",
+     "description_ko": "conditionIds 제거 — USED(3000) 외 상태(Open box·Refurbished·Very Good 등) 포함",
+     "query": "Nikon F3 Limited Ando Camera -manual -brochure -strap -case -finder",
+     "total": 0,
+     "sample_titles": [],
+     "error": null
+    },
+    {
+     "name": "no_delivery_country",
+     "description_ko": "deliveryCountry:KR 제거 — 한국 배송을 하지 않는 셀러 포함",
+     "query": "Nikon F3 Limited Ando Camera -manual -brochure -strap -case -finder",
+     "total": 0,
+     "sample_titles": [],
+     "error": null
+    },
+    {
+     "name": "no_buying_options",
+     "description_ko": "buyingOptions 제거 — 경매 매물 포함",
+     "query": "Nikon F3 Limited Ando Camera -manual -brochure -strap -case -finder",
+     "total": 0,
+     "sample_titles": [],
+     "error": null
+    },
+    {
+     "name": "no_price_window",
+     "description_ko": "가격창 제거 — min_price..max_price 밖의 매물 포함",
+     "query": "Nikon F3 Limited Ando Camera -manual -brochure -strap -case -finder",
+     "total": 0,
+     "sample_titles": [],
+     "error": null
+    },
+    {
+     "name": "no_category",
+     "description_ko": "category_ids 제거 — 다른 eBay 카테고리에 올라온 매물 포함",
+     "query": "Nikon F3 Limited Ando Camera -manual -brochure -strap -case -finder",
+     "total": 0,
+     "sample_titles": [],
+     "error": null
+    },
+    {
+     "name": "no_query_exclusions",
+     "description_ko": "q의 `-제외어` 제거 — 제외어가 과했는지 확인",
+     "query": "Nikon F3 Limited Ando Camera",
+     "total": 0,
+     "sample_titles": [],
+     "error": null
+    },
+    {
+     "name": "core_query_only",
+     "description_ko": "q를 모델명만 남기고 모든 제약 해제 — eBay에 매물 자체가 있는지 확인",
+     "query": "Nikon F3 Limited Ando",
+     "total": 0,
+     "sample_titles": [],
+     "error": null
+    }
+   ],
+   "history": [
+    {
+     "date": "2026-07-31",
+     "verdict": "no_listings",
+     "suspects": []
+    }
+   ]
+  },
+  "nikon-f3af": {
+   "product_id": "nikon-f3af",
+   "name_en": "Nikon F3AF",
+   "query": "Nikon F3AF body -lens -nikkor -filter -hood -cap",
+   "category_id": "3323",
+   "min_price": 150,
+   "max_price": 800,
+   "config_fingerprint": "ee7d07478dd4e66e",
+   "zero_result_streak": 151,
+   "first_probed": "2026-07-31",
+   "last_probed": "2026-07-31",
+   "probe_count": 1,
+   "inconclusive_streak": 0,
+   "next_probe_after_days": 14,
+   "verdict": "constraint_suspects",
+   "verdict_ko": "특정 제약을 풀자 매물이 나타났다",
+   "suspects": [
+    "core_query_only",
+    "no_category"
+   ],
+   "probes": [
+    {
+     "name": "baseline",
+     "description_ko": "정규 수집과 완전히 동일한 요청(기준선)",
+     "query": "Nikon F3AF body -lens -nikkor -filter -hood -cap",
+     "total": 0,
+     "sample_titles": [],
+     "error": null
+    },
+    {
+     "name": "no_condition",
+     "description_ko": "conditionIds 제거 — USED(3000) 외 상태(Open box·Refurbished·Very Good 등) 포함",
+     "query": "Nikon F3AF body -lens -nikkor -filter -hood -cap",
+     "total": 0,
+     "sample_titles": [],
+     "error": null
+    },
+    {
+     "name": "no_delivery_country",
+     "description_ko": "deliveryCountry:KR 제거 — 한국 배송을 하지 않는 셀러 포함",
+     "query": "Nikon F3AF body -lens -nikkor -filter -hood -cap",
+     "total": 0,
+     "sample_titles": [],
+     "error": null
+    },
+    {
+     "name": "no_buying_options",
+     "description_ko": "buyingOptions 제거 — 경매 매물 포함",
+     "query": "Nikon F3AF body -lens -nikkor -filter -hood -cap",
+     "total": 0,
+     "sample_titles": [],
+     "error": null
+    },
+    {
+     "name": "no_price_window",
+     "description_ko": "가격창 제거 — min_price..max_price 밖의 매물 포함",
+     "query": "Nikon F3AF body -lens -nikkor -filter -hood -cap",
+     "total": 0,
+     "sample_titles": [],
+     "error": null
+    },
+    {
+     "name": "no_category",
+     "description_ko": "category_ids 제거 — 다른 eBay 카테고리에 올라온 매물 포함",
+     "query": "Nikon F3AF body -lens -nikkor -filter -hood -cap",
+     "total": 15,
+     "sample_titles": [
+      "[MINT] Nikon F3 AF F3AF Eyelevel Finder 35mm SLR Film Camera Body From JAPAN",
+      "[Near MINT] Nikon F3 AF F3AF Black Body SLR Film Camera AE Finder DX-1 JAPAN",
+      "CLA'd [TOP MINT] Nikon F3 AF HP Finder 35mm SLR Film Camera DE-3 Body JAPAN"
+     ],
+     "error": null
+    },
+    {
+     "name": "no_query_exclusions",
+     "description_ko": "q의 `-제외어` 제거 — 제외어가 과했는지 확인",
+     "query": "Nikon F3AF body",
+     "total": 0,
+     "sample_titles": [],
+     "error": null
+    },
+    {
+     "name": "core_query_only",
+     "description_ko": "q를 모델명만 남기고 모든 제약 해제 — eBay에 매물 자체가 있는지 확인",
+     "query": "Nikon F3AF",
+     "total": 236,
+     "sample_titles": [
+      "Nikon - N2000/F3AF - Original Camera Magazine Report - 1985",
+      "Rare Advertising NIKON L 35 AF EM FE 2 F3 FG Program F3 AF FM 2 Cameras 1983",
+      "Nikon Historical Society Journal 1994: The Nikon F3AF"
+     ],
+     "error": null
+    }
+   ],
+   "history": [
+    {
+     "date": "2026-07-31",
+     "verdict": "constraint_suspects",
+     "suspects": [
+      "core_query_only",
+      "no_category"
+     ]
+    }
+   ]
+  },
+  "nikon-f3h": {
+   "product_id": "nikon-f3h",
+   "name_en": "Nikon F3H",
+   "query": "Nikon F3H camera -F3HP -manual -brochure -strap -case -finder",
+   "category_id": "3323",
+   "min_price": 2500,
+   "max_price": 10000,
+   "config_fingerprint": "4b3be15318482616",
+   "zero_result_streak": 145,
+   "first_probed": "2026-07-31",
+   "last_probed": "2026-07-31",
+   "probe_count": 1,
+   "inconclusive_streak": 0,
+   "next_probe_after_days": 14,
+   "verdict": "constraint_suspects",
+   "verdict_ko": "특정 제약을 풀자 매물이 나타났다",
+   "suspects": [
+    "core_query_only"
+   ],
+   "probes": [
+    {
+     "name": "baseline",
+     "description_ko": "정규 수집과 완전히 동일한 요청(기준선)",
+     "query": "Nikon F3H camera -F3HP -manual -brochure -strap -case -finder",
+     "total": 0,
+     "sample_titles": [],
+     "error": null
+    },
+    {
+     "name": "no_condition",
+     "description_ko": "conditionIds 제거 — USED(3000) 외 상태(Open box·Refurbished·Very Good 등) 포함",
+     "query": "Nikon F3H camera -F3HP -manual -brochure -strap -case -finder",
+     "total": 0,
+     "sample_titles": [],
+     "error": null
+    },
+    {
+     "name": "no_delivery_country",
+     "description_ko": "deliveryCountry:KR 제거 — 한국 배송을 하지 않는 셀러 포함",
+     "query": "Nikon F3H camera -F3HP -manual -brochure -strap -case -finder",
+     "total": 0,
+     "sample_titles": [],
+     "error": null
+    },
+    {
+     "name": "no_buying_options",
+     "description_ko": "buyingOptions 제거 — 경매 매물 포함",
+     "query": "Nikon F3H camera -F3HP -manual -brochure -strap -case -finder",
+     "total": 0,
+     "sample_titles": [],
+     "error": null
+    },
+    {
+     "name": "no_price_window",
+     "description_ko": "가격창 제거 — min_price..max_price 밖의 매물 포함",
+     "query": "Nikon F3H camera -F3HP -manual -brochure -strap -case -finder",
+     "total": 0,
+     "sample_titles": [],
+     "error": null
+    },
+    {
+     "name": "no_category",
+     "description_ko": "category_ids 제거 — 다른 eBay 카테고리에 올라온 매물 포함",
+     "query": "Nikon F3H camera -F3HP -manual -brochure -strap -case -finder",
+     "total": 0,
+     "sample_titles": [],
+     "error": null
+    },
+    {
+     "name": "no_query_exclusions",
+     "description_ko": "q의 `-제외어` 제거 — 제외어가 과했는지 확인",
+     "query": "Nikon F3H camera",
+     "total": 0,
+     "sample_titles": [],
+     "error": null
+    },
+    {
+     "name": "core_query_only",
+     "description_ko": "q를 모델명만 남기고 모든 제약 해제 — eBay에 매물 자체가 있는지 확인",
+     "query": "Nikon F3H",
+     "total": 7,
+     "sample_titles": [
+      "Nikon For Professionals Vintage Red Neck Shoulder Strap - Rare F3P F3T F3H",
+      "Nikon F3 HP Eyepiece for High Eyepoint,FE-3 DE-4 DE-5 Finders,  F3HP F3T F3P F3H",
+      "Nikon F3 HP Eyepiece - 21mm High Eyepoint FE-3 DE-4 DE-5 F3HP F3T F3P F3H"
+     ],
+     "error": null
+    }
+   ],
+   "history": [
+    {
+     "date": "2026-07-31",
+     "verdict": "constraint_suspects",
+     "suspects": [
+      "core_query_only"
+     ]
+    }
+   ]
+  },
+  "nikon-f3p": {
+   "product_id": "nikon-f3p",
+   "name_en": "Nikon F3P",
+   "query": "Nikon F3P body -lens -nikkor -filter -hood -cap",
+   "category_id": "3323",
+   "min_price": 800,
+   "max_price": 4000,
+   "config_fingerprint": "cd0f28e0fcd356f5",
+   "zero_result_streak": 31,
+   "first_probed": "2026-07-31",
+   "last_probed": "2026-07-31",
+   "probe_count": 1,
+   "inconclusive_streak": 0,
+   "next_probe_after_days": 14,
+   "verdict": "constraint_suspects",
+   "verdict_ko": "특정 제약을 풀자 매물이 나타났다",
+   "suspects": [
+    "core_query_only",
+    "no_category"
+   ],
+   "probes": [
+    {
+     "name": "baseline",
+     "description_ko": "정규 수집과 완전히 동일한 요청(기준선)",
+     "query": "Nikon F3P body -lens -nikkor -filter -hood -cap",
+     "total": 0,
+     "sample_titles": [],
+     "error": null
+    },
+    {
+     "name": "no_condition",
+     "description_ko": "conditionIds 제거 — USED(3000) 외 상태(Open box·Refurbished·Very Good 등) 포함",
+     "query": "Nikon F3P body -lens -nikkor -filter -hood -cap",
+     "total": 0,
+     "sample_titles": [],
+     "error": null
+    },
+    {
+     "name": "no_delivery_country",
+     "description_ko": "deliveryCountry:KR 제거 — 한국 배송을 하지 않는 셀러 포함",
+     "query": "Nikon F3P body -lens -nikkor -filter -hood -cap",
+     "total": 0,
+     "sample_titles": [],
+     "error": null
+    },
+    {
+     "name": "no_buying_options",
+     "description_ko": "buyingOptions 제거 — 경매 매물 포함",
+     "query": "Nikon F3P body -lens -nikkor -filter -hood -cap",
+     "total": 0,
+     "sample_titles": [],
+     "error": null
+    },
+    {
+     "name": "no_price_window",
+     "description_ko": "가격창 제거 — min_price..max_price 밖의 매물 포함",
+     "query": "Nikon F3P body -lens -nikkor -filter -hood -cap",
+     "total": 0,
+     "sample_titles": [],
+     "error": null
+    },
+    {
+     "name": "no_category",
+     "description_ko": "category_ids 제거 — 다른 eBay 카테고리에 올라온 매물 포함",
+     "query": "Nikon F3P body -lens -nikkor -filter -hood -cap",
+     "total": 15,
+     "sample_titles": [
+      "Nikon F3P 35mm Film SLR Camera Body Pro Press Model Black From Japan E0426",
+      "Nikon F3P Press Professional 35mm Film SLR Camera Body F Mount Used H0706",
+      "Nikon F3P Press Body 35mm Film SLR Camera Professional Rare from Japan D0729"
+     ],
+     "error": null
+    },
+    {
+     "name": "no_query_exclusions",
+     "description_ko": "q의 `-제외어` 제거 — 제외어가 과했는지 확인",
+     "query": "Nikon F3P body",
+     "total": 0,
+     "sample_titles": [],
+     "error": null
+    },
+    {
+     "name": "core_query_only",
+     "description_ko": "q를 모델명만 남기고 모든 제약 해제 — eBay에 매물 자체가 있는지 확인",
+     "query": "Nikon F3P",
+     "total": 172,
+     "sample_titles": [
+      "Drive Cap Replacement for Nikon F3 Motor Cover Fits for F3 F3T F3HP F3P",
+      "Nikon F3 Motor Drive Cap Replacement Spare Cover Fits for F3 F3T F3HP F3P",
+      "Vivitar Auto Thyristor 2600D SHOE MOUNTS FLASH.NIKON F3,F3HP,F3P,F3T & Digitals"
+     ],
+     "error": null
+    }
+   ],
+   "history": [
+    {
+     "date": "2026-07-31",
+     "verdict": "constraint_suspects",
+     "suspects": [
+      "core_query_only",
+      "no_category"
      ]
     }
    ]
