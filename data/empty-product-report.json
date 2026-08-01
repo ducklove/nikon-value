@@ -1,5 +1,5 @@
 {
- "updated": "2026-07-31",
+ "updated": "2026-08-01",
  "products": {
   "af-nikkor-28mm-f14d-ed": {
    "product_id": "af-nikkor-28mm-f14d-ed",
@@ -2439,6 +2439,719 @@
      "suspects": [
       "core_query_only",
       "no_category"
+     ]
+    }
+   ]
+  },
+  "nikon-f6": {
+   "product_id": "nikon-f6",
+   "name_en": "Nikon F6",
+   "query": "Nikon F6 body -lens -nikkor -filter -hood -cap",
+   "category_id": "3323",
+   "min_price": 800,
+   "max_price": 3000,
+   "config_fingerprint": "c6c9e403b1925dfd",
+   "zero_result_streak": 89,
+   "first_probed": "2026-08-01",
+   "last_probed": "2026-08-01",
+   "probe_count": 1,
+   "inconclusive_streak": 0,
+   "next_probe_after_days": 14,
+   "verdict": "constraint_suspects",
+   "verdict_ko": "특정 제약을 풀자 매물이 나타났다",
+   "suspects": [
+    "core_query_only",
+    "no_category"
+   ],
+   "probes": [
+    {
+     "name": "baseline",
+     "description_ko": "정규 수집과 완전히 동일한 요청(기준선)",
+     "query": "Nikon F6 body -lens -nikkor -filter -hood -cap",
+     "total": 0,
+     "sample_titles": [],
+     "error": null
+    },
+    {
+     "name": "no_condition",
+     "description_ko": "conditionIds 제거 — USED(3000) 외 상태(Open box·Refurbished·Very Good 등) 포함",
+     "query": "Nikon F6 body -lens -nikkor -filter -hood -cap",
+     "total": 0,
+     "sample_titles": [],
+     "error": null
+    },
+    {
+     "name": "no_delivery_country",
+     "description_ko": "deliveryCountry:KR 제거 — 한국 배송을 하지 않는 셀러 포함",
+     "query": "Nikon F6 body -lens -nikkor -filter -hood -cap",
+     "total": 0,
+     "sample_titles": [],
+     "error": null
+    },
+    {
+     "name": "no_buying_options",
+     "description_ko": "buyingOptions 제거 — 경매 매물 포함",
+     "query": "Nikon F6 body -lens -nikkor -filter -hood -cap",
+     "total": 0,
+     "sample_titles": [],
+     "error": null
+    },
+    {
+     "name": "no_price_window",
+     "description_ko": "가격창 제거 — min_price..max_price 밖의 매물 포함",
+     "query": "Nikon F6 body -lens -nikkor -filter -hood -cap",
+     "total": 0,
+     "sample_titles": [],
+     "error": null
+    },
+    {
+     "name": "no_category",
+     "description_ko": "category_ids 제거 — 다른 eBay 카테고리에 올라온 매물 포함",
+     "query": "Nikon F6 body -lens -nikkor -filter -hood -cap",
+     "total": 53,
+     "sample_titles": [
+      "[Excellent] Nikon F6 SLR 35mm Film Camera Body 7320#J0527F",
+      "New Firmware 2026 [MINT+++ /Strap] Nikon F6 35mm SLR Film Camera Body From JAPAN",
+      "New Firmware [TOP MINT] Nikon F6 SLR 35mm Film Camera Body From JAPAN"
+     ],
+     "error": null
+    },
+    {
+     "name": "no_query_exclusions",
+     "description_ko": "q의 `-제외어` 제거 — 제외어가 과했는지 확인",
+     "query": "Nikon F6 body",
+     "total": 0,
+     "sample_titles": [],
+     "error": null
+    },
+    {
+     "name": "core_query_only",
+     "description_ko": "q를 모델명만 남기고 모든 제약 해제 — eBay에 매물 자체가 있는지 확인",
+     "query": "Nikon F6",
+     "total": 519,
+     "sample_titles": [
+      "Camera strap Lug Ring for Nikon FM2 F3 FE2 F4 F5 FA N90s F2 FM F6 EM FM10 F100",
+      "Camera Lens UV filter Hood ft Nikon F F2 F3 FM2 FE2 F4 F5 F6 F100 F90 F801 F801s",
+      "Camera Lens cap cover for Nikon F F2 F3 FM2 FE2 F4 F5 F6 F100 F90 F801 F801s F60"
+     ],
+     "error": null
+    }
+   ],
+   "history": [
+    {
+     "date": "2026-08-01",
+     "verdict": "constraint_suspects",
+     "suspects": [
+      "core_query_only",
+      "no_category"
+     ]
+    }
+   ]
+  },
+  "nikon-fe10": {
+   "product_id": "nikon-fe10",
+   "name_en": "Nikon FE10",
+   "query": "Nikon FE10 -lens -nikkor -filter -hood -cap",
+   "category_id": "3323",
+   "min_price": 20,
+   "max_price": 150,
+   "config_fingerprint": "b92c680e5decb898",
+   "zero_result_streak": 152,
+   "first_probed": "2026-08-01",
+   "last_probed": "2026-08-01",
+   "probe_count": 1,
+   "inconclusive_streak": 0,
+   "next_probe_after_days": 14,
+   "verdict": "constraint_suspects",
+   "verdict_ko": "특정 제약을 풀자 매물이 나타났다",
+   "suspects": [
+    "core_query_only",
+    "no_category",
+    "no_query_exclusions"
+   ],
+   "probes": [
+    {
+     "name": "baseline",
+     "description_ko": "정규 수집과 완전히 동일한 요청(기준선)",
+     "query": "Nikon FE10 -lens -nikkor -filter -hood -cap",
+     "total": 0,
+     "sample_titles": [],
+     "error": null
+    },
+    {
+     "name": "no_condition",
+     "description_ko": "conditionIds 제거 — USED(3000) 외 상태(Open box·Refurbished·Very Good 등) 포함",
+     "query": "Nikon FE10 -lens -nikkor -filter -hood -cap",
+     "total": 0,
+     "sample_titles": [],
+     "error": null
+    },
+    {
+     "name": "no_delivery_country",
+     "description_ko": "deliveryCountry:KR 제거 — 한국 배송을 하지 않는 셀러 포함",
+     "query": "Nikon FE10 -lens -nikkor -filter -hood -cap",
+     "total": 0,
+     "sample_titles": [],
+     "error": null
+    },
+    {
+     "name": "no_buying_options",
+     "description_ko": "buyingOptions 제거 — 경매 매물 포함",
+     "query": "Nikon FE10 -lens -nikkor -filter -hood -cap",
+     "total": 0,
+     "sample_titles": [],
+     "error": null
+    },
+    {
+     "name": "no_price_window",
+     "description_ko": "가격창 제거 — min_price..max_price 밖의 매물 포함",
+     "query": "Nikon FE10 -lens -nikkor -filter -hood -cap",
+     "total": 0,
+     "sample_titles": [],
+     "error": null
+    },
+    {
+     "name": "no_category",
+     "description_ko": "category_ids 제거 — 다른 eBay 카테고리에 올라온 매물 포함",
+     "query": "Nikon FE10 -lens -nikkor -filter -hood -cap",
+     "total": 9,
+     "sample_titles": [
+      "Nikon FE-10 Instruction Book, More Genuine Camera Guides & Owners Manuals Listed",
+      "Photocopy of the Original Nikon FE10 Camera User Manual - Excellent",
+      "Nikon FE10 FE-10 fe10 Instructions User Manual "
+     ],
+     "error": null
+    },
+    {
+     "name": "no_query_exclusions",
+     "description_ko": "q의 `-제외어` 제거 — 제외어가 과했는지 확인",
+     "query": "Nikon FE10",
+     "total": 1,
+     "sample_titles": [
+      "【Mint】Nikon FE10 +  ZOOM NIKKOR 35-70mm f/3.5-4.8 Ais Ai-s from Japan #2460"
+     ],
+     "error": null
+    },
+    {
+     "name": "core_query_only",
+     "description_ko": "q를 모델명만 남기고 모든 제약 해제 — eBay에 매물 자체가 있는지 확인",
+     "query": "Nikon FE10",
+     "total": 60,
+     "sample_titles": [
+      "Battery for Vivitar V3800N, V-4000, Nikon FM-10, FE-10, Nikon EM, FG, FM ~ 10pcs",
+      "CR1/3N Battery fits Nikon FE10 FM2n FA, Dog Watch R6 R7, PIF-275 CR11108",
+      "NIKON FE10 Camera Service Repair Manual & Parts List PDF READ"
+     ],
+     "error": null
+    }
+   ],
+   "history": [
+    {
+     "date": "2026-08-01",
+     "verdict": "constraint_suspects",
+     "suspects": [
+      "core_query_only",
+      "no_category",
+      "no_query_exclusions"
+     ]
+    }
+   ]
+  },
+  "nikon-fg": {
+   "product_id": "nikon-fg",
+   "name_en": "Nikon FG",
+   "query": "Nikon FG -FG-20 -FG20 -lens -nikkor -filter -hood -cap -Objektiv -für -for -mount -Bajonett -Tamron -Sigma -Vivitar -Tokina -Danubia",
+   "category_id": "3323",
+   "min_price": 20,
+   "max_price": 500,
+   "config_fingerprint": "e6959634c7ee2aec",
+   "zero_result_streak": 14,
+   "first_probed": "2026-08-01",
+   "last_probed": "2026-08-01",
+   "probe_count": 1,
+   "inconclusive_streak": 0,
+   "next_probe_after_days": 14,
+   "verdict": "constraint_suspects",
+   "verdict_ko": "특정 제약을 풀자 매물이 나타났다",
+   "suspects": [
+    "core_query_only",
+    "no_category",
+    "no_query_exclusions"
+   ],
+   "probes": [
+    {
+     "name": "baseline",
+     "description_ko": "정규 수집과 완전히 동일한 요청(기준선)",
+     "query": "Nikon FG -FG-20 -FG20 -lens -nikkor -filter -hood -cap -Objektiv -für -for -mount -Bajonett -Tamron -Sigma -Vivitar -Tokina -Danubia",
+     "total": 0,
+     "sample_titles": [],
+     "error": null
+    },
+    {
+     "name": "no_condition",
+     "description_ko": "conditionIds 제거 — USED(3000) 외 상태(Open box·Refurbished·Very Good 등) 포함",
+     "query": "Nikon FG -FG-20 -FG20 -lens -nikkor -filter -hood -cap -Objektiv -für -for -mount -Bajonett -Tamron -Sigma -Vivitar -Tokina -Danubia",
+     "total": 0,
+     "sample_titles": [],
+     "error": null
+    },
+    {
+     "name": "no_delivery_country",
+     "description_ko": "deliveryCountry:KR 제거 — 한국 배송을 하지 않는 셀러 포함",
+     "query": "Nikon FG -FG-20 -FG20 -lens -nikkor -filter -hood -cap -Objektiv -für -for -mount -Bajonett -Tamron -Sigma -Vivitar -Tokina -Danubia",
+     "total": 0,
+     "sample_titles": [],
+     "error": null
+    },
+    {
+     "name": "no_buying_options",
+     "description_ko": "buyingOptions 제거 — 경매 매물 포함",
+     "query": "Nikon FG -FG-20 -FG20 -lens -nikkor -filter -hood -cap -Objektiv -für -for -mount -Bajonett -Tamron -Sigma -Vivitar -Tokina -Danubia",
+     "total": 0,
+     "sample_titles": [],
+     "error": null
+    },
+    {
+     "name": "no_price_window",
+     "description_ko": "가격창 제거 — min_price..max_price 밖의 매물 포함",
+     "query": "Nikon FG -FG-20 -FG20 -lens -nikkor -filter -hood -cap -Objektiv -für -for -mount -Bajonett -Tamron -Sigma -Vivitar -Tokina -Danubia",
+     "total": 0,
+     "sample_titles": [],
+     "error": null
+    },
+    {
+     "name": "no_category",
+     "description_ko": "category_ids 제거 — 다른 eBay 카테고리에 올라온 매물 포함",
+     "query": "Nikon FG -FG-20 -FG20 -lens -nikkor -filter -hood -cap -Objektiv -für -for -mount -Bajonett -Tamron -Sigma -Vivitar -Tokina -Danubia",
+     "total": 141,
+     "sample_titles": [
+      "Nikon FG Back Film Door Replacement Part, USED GOOD CONDITION",
+      "*TOP* Original Nikon FG Black Hand Grip Body 20 Finger w/ Screw Japan Accessory",
+      "Metz SCA Adapter 343 Flash Shoe Nikon FA FE FE2 FG F4 F5 F60 F100 System 300"
+     ],
+     "error": null
+    },
+    {
+     "name": "no_query_exclusions",
+     "description_ko": "q의 `-제외어` 제거 — 제외어가 과했는지 확인",
+     "query": "Nikon FG",
+     "total": 16,
+     "sample_titles": [
+      "Auto Promaster Spectrum 7 MC 75-200mm Zoom Lens with 1A Filter from Nikon FG",
+      "Tamron 70-210mm f/3.8-4 Camera Zoom Lens previously used on Nikon FG w/Caps",
+      "Albinar 52mm camera lens for Nikon FG camera"
+     ],
+     "error": null
+    },
+    {
+     "name": "core_query_only",
+     "description_ko": "q를 모델명만 남기고 모든 제약 해제 — eBay에 매물 자체가 있는지 확인",
+     "query": "Nikon FG",
+     "total": 904,
+     "sample_titles": [
+      "Nikon FG Rewind Shaft  (JYPd5)",
+      "Nikon FG Camera + Lens Dealer Sales Brochure Circa 1980",
+      "Original Nikon FG-20 FG20 Instruction Owners User Manual - English"
+     ],
+     "error": null
+    }
+   ],
+   "history": [
+    {
+     "date": "2026-08-01",
+     "verdict": "constraint_suspects",
+     "suspects": [
+      "core_query_only",
+      "no_category",
+      "no_query_exclusions"
+     ]
+    }
+   ]
+  },
+  "nikon-fisheye-camera": {
+   "product_id": "nikon-fisheye-camera",
+   "name_en": "Nikon Fisheye Camera",
+   "query": "Nikon Fisheye Camera -manual -brochure -poster -lens -nikkor",
+   "category_id": "15230",
+   "min_price": 3000,
+   "max_price": 40000,
+   "config_fingerprint": "027d45a271365735",
+   "zero_result_streak": 140,
+   "first_probed": "2026-08-01",
+   "last_probed": "2026-08-01",
+   "probe_count": 1,
+   "inconclusive_streak": 0,
+   "next_probe_after_days": 14,
+   "verdict": "constraint_suspects",
+   "verdict_ko": "특정 제약을 풀자 매물이 나타났다",
+   "suspects": [
+    "core_query_only"
+   ],
+   "probes": [
+    {
+     "name": "baseline",
+     "description_ko": "정규 수집과 완전히 동일한 요청(기준선)",
+     "query": "Nikon Fisheye Camera -manual -brochure -poster -lens -nikkor",
+     "total": 0,
+     "sample_titles": [],
+     "error": null
+    },
+    {
+     "name": "no_condition",
+     "description_ko": "conditionIds 제거 — USED(3000) 외 상태(Open box·Refurbished·Very Good 등) 포함",
+     "query": "Nikon Fisheye Camera -manual -brochure -poster -lens -nikkor",
+     "total": 0,
+     "sample_titles": [],
+     "error": null
+    },
+    {
+     "name": "no_delivery_country",
+     "description_ko": "deliveryCountry:KR 제거 — 한국 배송을 하지 않는 셀러 포함",
+     "query": "Nikon Fisheye Camera -manual -brochure -poster -lens -nikkor",
+     "total": 0,
+     "sample_titles": [],
+     "error": null
+    },
+    {
+     "name": "no_buying_options",
+     "description_ko": "buyingOptions 제거 — 경매 매물 포함",
+     "query": "Nikon Fisheye Camera -manual -brochure -poster -lens -nikkor",
+     "total": 0,
+     "sample_titles": [],
+     "error": null
+    },
+    {
+     "name": "no_price_window",
+     "description_ko": "가격창 제거 — min_price..max_price 밖의 매물 포함",
+     "query": "Nikon Fisheye Camera -manual -brochure -poster -lens -nikkor",
+     "total": 0,
+     "sample_titles": [],
+     "error": null
+    },
+    {
+     "name": "no_category",
+     "description_ko": "category_ids 제거 — 다른 eBay 카테고리에 올라온 매물 포함",
+     "query": "Nikon Fisheye Camera -manual -brochure -poster -lens -nikkor",
+     "total": 0,
+     "sample_titles": [],
+     "error": null
+    },
+    {
+     "name": "no_query_exclusions",
+     "description_ko": "q의 `-제외어` 제거 — 제외어가 과했는지 확인",
+     "query": "Nikon Fisheye Camera",
+     "total": 0,
+     "sample_titles": [],
+     "error": null
+    },
+    {
+     "name": "core_query_only",
+     "description_ko": "q를 모델명만 남기고 모든 제약 해제 — eBay에 매물 자체가 있는지 확인",
+     "query": "Nikon Fisheye",
+     "total": 1730,
+     "sample_titles": [
+      "INSERT 74mm designed for Nikon 8-15mm fisheye lens",
+      "OPTEKA, \"52 mm 0.43x AF Wide Angle Lens,\" Brand New in Pouch and Original Box",
+      "INSERT 62mm designed for Nikon 10.5 & 16mm fisheye lens"
+     ],
+     "error": null
+    }
+   ],
+   "history": [
+    {
+     "date": "2026-08-01",
+     "verdict": "constraint_suspects",
+     "suspects": [
+      "core_query_only"
+     ]
+    }
+   ]
+  },
+  "nikon-s3m": {
+   "product_id": "nikon-s3m",
+   "name_en": "Nikon S3M",
+   "query": "Nikon S3M rangefinder -lens -nikkor -filter -hood -cap",
+   "category_id": "15230",
+   "min_price": 1500,
+   "max_price": 12000,
+   "config_fingerprint": "2a6132d70bc61a4f",
+   "zero_result_streak": 140,
+   "first_probed": "2026-08-01",
+   "last_probed": "2026-08-01",
+   "probe_count": 1,
+   "inconclusive_streak": 1,
+   "next_probe_after_days": 28,
+   "verdict": "no_listings",
+   "verdict_ko": "어떤 제약을 풀어도 0건 — eBay에 매물이 없다(진짜 희귀)",
+   "suspects": [],
+   "probes": [
+    {
+     "name": "baseline",
+     "description_ko": "정규 수집과 완전히 동일한 요청(기준선)",
+     "query": "Nikon S3M rangefinder -lens -nikkor -filter -hood -cap",
+     "total": 0,
+     "sample_titles": [],
+     "error": null
+    },
+    {
+     "name": "no_condition",
+     "description_ko": "conditionIds 제거 — USED(3000) 외 상태(Open box·Refurbished·Very Good 등) 포함",
+     "query": "Nikon S3M rangefinder -lens -nikkor -filter -hood -cap",
+     "total": 0,
+     "sample_titles": [],
+     "error": null
+    },
+    {
+     "name": "no_delivery_country",
+     "description_ko": "deliveryCountry:KR 제거 — 한국 배송을 하지 않는 셀러 포함",
+     "query": "Nikon S3M rangefinder -lens -nikkor -filter -hood -cap",
+     "total": 0,
+     "sample_titles": [],
+     "error": null
+    },
+    {
+     "name": "no_buying_options",
+     "description_ko": "buyingOptions 제거 — 경매 매물 포함",
+     "query": "Nikon S3M rangefinder -lens -nikkor -filter -hood -cap",
+     "total": 0,
+     "sample_titles": [],
+     "error": null
+    },
+    {
+     "name": "no_price_window",
+     "description_ko": "가격창 제거 — min_price..max_price 밖의 매물 포함",
+     "query": "Nikon S3M rangefinder -lens -nikkor -filter -hood -cap",
+     "total": 0,
+     "sample_titles": [],
+     "error": null
+    },
+    {
+     "name": "no_category",
+     "description_ko": "category_ids 제거 — 다른 eBay 카테고리에 올라온 매물 포함",
+     "query": "Nikon S3M rangefinder -lens -nikkor -filter -hood -cap",
+     "total": 0,
+     "sample_titles": [],
+     "error": null
+    },
+    {
+     "name": "no_query_exclusions",
+     "description_ko": "q의 `-제외어` 제거 — 제외어가 과했는지 확인",
+     "query": "Nikon S3M rangefinder",
+     "total": 0,
+     "sample_titles": [],
+     "error": null
+    },
+    {
+     "name": "core_query_only",
+     "description_ko": "q를 모델명만 남기고 모든 제약 해제 — eBay에 매물 자체가 있는지 확인",
+     "query": "Nikon S3M",
+     "total": 0,
+     "sample_titles": [],
+     "error": null
+    }
+   ],
+   "history": [
+    {
+     "date": "2026-08-01",
+     "verdict": "no_listings",
+     "suspects": []
+    }
+   ]
+  },
+  "reflex-nikkor-2000mm-f11": {
+   "product_id": "reflex-nikkor-2000mm-f11",
+   "name_en": "Nikon Reflex-Nikkor 2000mm f/11",
+   "query": "Nikon Reflex Nikkor 2000mm f/11 -manual -brochure -case",
+   "category_id": "78997",
+   "min_price": 10000,
+   "max_price": 40000,
+   "config_fingerprint": "ec6654104ee93979",
+   "zero_result_streak": 31,
+   "first_probed": "2026-08-01",
+   "last_probed": "2026-08-01",
+   "probe_count": 1,
+   "inconclusive_streak": 0,
+   "next_probe_after_days": 14,
+   "verdict": "constraint_suspects",
+   "verdict_ko": "특정 제약을 풀자 매물이 나타났다",
+   "suspects": [
+    "core_query_only",
+    "no_query_exclusions"
+   ],
+   "probes": [
+    {
+     "name": "baseline",
+     "description_ko": "정규 수집과 완전히 동일한 요청(기준선)",
+     "query": "Nikon Reflex Nikkor 2000mm f/11 -manual -brochure -case",
+     "total": 0,
+     "sample_titles": [],
+     "error": null
+    },
+    {
+     "name": "no_condition",
+     "description_ko": "conditionIds 제거 — USED(3000) 외 상태(Open box·Refurbished·Very Good 등) 포함",
+     "query": "Nikon Reflex Nikkor 2000mm f/11 -manual -brochure -case",
+     "total": 0,
+     "sample_titles": [],
+     "error": null
+    },
+    {
+     "name": "no_delivery_country",
+     "description_ko": "deliveryCountry:KR 제거 — 한국 배송을 하지 않는 셀러 포함",
+     "query": "Nikon Reflex Nikkor 2000mm f/11 -manual -brochure -case",
+     "total": 0,
+     "sample_titles": [],
+     "error": null
+    },
+    {
+     "name": "no_buying_options",
+     "description_ko": "buyingOptions 제거 — 경매 매물 포함",
+     "query": "Nikon Reflex Nikkor 2000mm f/11 -manual -brochure -case",
+     "total": 0,
+     "sample_titles": [],
+     "error": null
+    },
+    {
+     "name": "no_price_window",
+     "description_ko": "가격창 제거 — min_price..max_price 밖의 매물 포함",
+     "query": "Nikon Reflex Nikkor 2000mm f/11 -manual -brochure -case",
+     "total": 0,
+     "sample_titles": [],
+     "error": null
+    },
+    {
+     "name": "no_category",
+     "description_ko": "category_ids 제거 — 다른 eBay 카테고리에 올라온 매물 포함",
+     "query": "Nikon Reflex Nikkor 2000mm f/11 -manual -brochure -case",
+     "total": 0,
+     "sample_titles": [],
+     "error": null
+    },
+    {
+     "name": "no_query_exclusions",
+     "description_ko": "q의 `-제외어` 제거 — 제외어가 과했는지 확인",
+     "query": "Nikon Reflex Nikkor 2000mm f/11",
+     "total": 1,
+     "sample_titles": [
+      "Nikon Reflex-Nikkor 2000mm F/11 Lens With Case #64634 L"
+     ],
+     "error": null
+    },
+    {
+     "name": "core_query_only",
+     "description_ko": "q를 모델명만 남기고 모든 제약 해제 — eBay에 매물 자체가 있는지 확인",
+     "query": "Nikon Reflex Nikkor 2000mm",
+     "total": 1,
+     "sample_titles": [
+      "Nikon Reflex-Nikkor 2000mm F/11 Lens With Case #64634 L"
+     ],
+     "error": null
+    }
+   ],
+   "history": [
+    {
+     "date": "2026-08-01",
+     "verdict": "constraint_suspects",
+     "suspects": [
+      "core_query_only",
+      "no_query_exclusions"
+     ]
+    }
+   ]
+  },
+  "zoom-nikkor-1200-1700mm": {
+   "product_id": "zoom-nikkor-1200-1700mm",
+   "name_en": "Nikon Zoom-Nikkor 1200-1700mm",
+   "query": "Nikon Zoom Nikkor 1200-1700mm -manual -brochure -case",
+   "category_id": "78997",
+   "min_price": 50000,
+   "max_price": 200000,
+   "config_fingerprint": "59c7cb745902f007",
+   "zero_result_streak": 146,
+   "first_probed": "2026-08-01",
+   "last_probed": "2026-08-01",
+   "probe_count": 1,
+   "inconclusive_streak": 0,
+   "next_probe_after_days": 14,
+   "verdict": "constraint_suspects",
+   "verdict_ko": "특정 제약을 풀자 매물이 나타났다",
+   "suspects": [
+    "core_query_only"
+   ],
+   "probes": [
+    {
+     "name": "baseline",
+     "description_ko": "정규 수집과 완전히 동일한 요청(기준선)",
+     "query": "Nikon Zoom Nikkor 1200-1700mm -manual -brochure -case",
+     "total": 0,
+     "sample_titles": [],
+     "error": null
+    },
+    {
+     "name": "no_condition",
+     "description_ko": "conditionIds 제거 — USED(3000) 외 상태(Open box·Refurbished·Very Good 등) 포함",
+     "query": "Nikon Zoom Nikkor 1200-1700mm -manual -brochure -case",
+     "total": 0,
+     "sample_titles": [],
+     "error": null
+    },
+    {
+     "name": "no_delivery_country",
+     "description_ko": "deliveryCountry:KR 제거 — 한국 배송을 하지 않는 셀러 포함",
+     "query": "Nikon Zoom Nikkor 1200-1700mm -manual -brochure -case",
+     "total": 0,
+     "sample_titles": [],
+     "error": null
+    },
+    {
+     "name": "no_buying_options",
+     "description_ko": "buyingOptions 제거 — 경매 매물 포함",
+     "query": "Nikon Zoom Nikkor 1200-1700mm -manual -brochure -case",
+     "total": 0,
+     "sample_titles": [],
+     "error": null
+    },
+    {
+     "name": "no_price_window",
+     "description_ko": "가격창 제거 — min_price..max_price 밖의 매물 포함",
+     "query": "Nikon Zoom Nikkor 1200-1700mm -manual -brochure -case",
+     "total": 0,
+     "sample_titles": [],
+     "error": null
+    },
+    {
+     "name": "no_category",
+     "description_ko": "category_ids 제거 — 다른 eBay 카테고리에 올라온 매물 포함",
+     "query": "Nikon Zoom Nikkor 1200-1700mm -manual -brochure -case",
+     "total": 0,
+     "sample_titles": [],
+     "error": null
+    },
+    {
+     "name": "no_query_exclusions",
+     "description_ko": "q의 `-제외어` 제거 — 제외어가 과했는지 확인",
+     "query": "Nikon Zoom Nikkor 1200-1700mm",
+     "total": 0,
+     "sample_titles": [],
+     "error": null
+    },
+    {
+     "name": "core_query_only",
+     "description_ko": "q를 모델명만 남기고 모든 제약 해제 — eBay에 매물 자체가 있는지 확인",
+     "query": "Nikon Zoom Nikkor 1200-1700mm",
+     "total": 1,
+     "sample_titles": [
+      "Nikon Historical Society Journal 2022; Nikon Zoom Nikkor 1200-1700mm"
+     ],
+     "error": null
+    }
+   ],
+   "history": [
+    {
+     "date": "2026-08-01",
+     "verdict": "constraint_suspects",
+     "suspects": [
+      "core_query_only"
      ]
     }
    ]
