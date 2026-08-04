@@ -653,6 +653,20 @@
    "llm_cache_misses": 0,
    "max_price_expansions": 44,
    "duration_seconds": 339.81
+  },
+  {
+   "started_at": "2026-08-04T05:48:44+00:00",
+   "products_processed": 331,
+   "products_failed": 0,
+   "ebay_search_calls": 373,
+   "ebay_http_requests": 409,
+   "ebay_rate_limited": 0,
+   "ebay_diagnostic_probes": 0,
+   "llm_calls": 0,
+   "llm_cache_hits": 0,
+   "llm_cache_misses": 0,
+   "max_price_expansions": 42,
+   "duration_seconds": 289.57
   }
  ]
 }
