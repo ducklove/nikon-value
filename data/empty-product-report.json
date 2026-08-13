@@ -1,5 +1,5 @@
 {
- "updated": "2026-08-12",
+ "updated": "2026-08-13",
  "products": {
   "af-nikkor-28mm-f14d-ed": {
    "product_id": "af-nikkor-28mm-f14d-ed",
@@ -869,10 +869,10 @@
    "min_price": 40,
    "max_price": 250,
    "config_fingerprint": "eacf1b46afddd949",
-   "zero_result_streak": 138,
+   "zero_result_streak": 152,
    "first_probed": "2026-07-30",
-   "last_probed": "2026-07-30",
-   "probe_count": 1,
+   "last_probed": "2026-08-13",
+   "probe_count": 2,
    "inconclusive_streak": 0,
    "next_probe_after_days": 14,
    "verdict": "constraint_suspects",
@@ -880,7 +880,6 @@
    "suspects": [
     "core_query_only",
     "no_condition",
-    "no_price_window",
     "no_query_exclusions"
    ],
    "probes": [
@@ -922,10 +921,8 @@
      "name": "no_price_window",
      "description_ko": "가격창 제거 — min_price..max_price 밖의 매물 포함",
      "query": "Nikkorex Auto 35 camera -manual -case -strap",
-     "total": 1,
-     "sample_titles": [
-      "Vintage Nikon Nikkorex Auto35 35mm film camera for parts or repair"
-     ],
+     "total": 0,
+     "sample_titles": [],
      "error": null
     },
     {
@@ -950,11 +947,11 @@
      "name": "core_query_only",
      "description_ko": "q를 모델명만 남기고 모든 제약 해제 — eBay에 매물 자체가 있는지 확인",
      "query": "Nikkorex Auto 35",
-     "total": 10,
+     "total": 8,
      "sample_titles": [
-      "Nippon Kogaku Nikkorex Auto 35 - Parts Repair",
       "Nikkorex Auto 35 Model 35mm Film Camera, Silver Body",
-      "Nikon Nikkorex Auto 35 SLR Camera W/ Nikkor-H 48mm 1:2 f2 Lens"
+      "Nikon Nikkorex Auto 35 SLR Camera W/ Nikkor-H 48mm 1:2 f2 Lens",
+      "Nikkorex Auto 35 Leaf Shutter SLR 48mm f2 Lens Untested Back Dent"
      ],
      "error": null
     }
@@ -969,6 +966,15 @@
       "no_price_window",
       "no_query_exclusions"
      ]
+    },
+    {
+     "date": "2026-08-13",
+     "verdict": "constraint_suspects",
+     "suspects": [
+      "core_query_only",
+      "no_condition",
+      "no_query_exclusions"
+     ]
     }
    ]
   },
@@ -980,10 +986,10 @@
    "min_price": 40,
    "max_price": 300,
    "config_fingerprint": "72c22f7a3a7f721f",
-   "zero_result_streak": 138,
+   "zero_result_streak": 152,
    "first_probed": "2026-07-30",
-   "last_probed": "2026-07-30",
-   "probe_count": 1,
+   "last_probed": "2026-08-13",
+   "probe_count": 2,
    "inconclusive_streak": 0,
    "next_probe_after_days": 14,
    "verdict": "constraint_suspects",
@@ -991,7 +997,8 @@
    "suspects": [
     "core_query_only",
     "no_delivery_country",
-    "no_query_exclusions"
+    "no_query_exclusions",
+    "no_condition"
    ],
    "probes": [
     {
@@ -1006,8 +1013,10 @@
      "name": "no_condition",
      "description_ko": "conditionIds 제거 — USED(3000) 외 상태(Open box·Refurbished·Very Good 등) 포함",
      "query": "Nikkorex Zoom 35 camera -manual -case -strap",
-     "total": 0,
-     "sample_titles": [],
+     "total": 1,
+     "sample_titles": [
+      "VINTAGE Nikkorex Zoom 35 Film Camera, Zoom-Nikkor 43–86mm f/3.5 Lens. READ"
+     ],
      "error": null
     },
     {
@@ -1051,8 +1060,8 @@
      "query": "Nikkorex Zoom 35 camera",
      "total": 2,
      "sample_titles": [
-      "Vintage Nikkorex Zoom 35mm Camera Nikkor Leather Case Untested Parts or Repair",
-      "1960’s Nikon Nikkorex Zoom 35SLR 35mm Camera w/43-86 f3.5 Lens-Strap-Case-Filter"
+      "1960’s Nikon Nikkorex Zoom 35SLR 35mm Camera w/43-86 f3.5 Lens-Strap-Case-Filter",
+      "Vintage Nikkorex Zoom 35mm Camera Nikkor Leather Case Untested Parts or Repair"
      ],
      "error": null
     },
@@ -1078,6 +1087,16 @@
       "no_delivery_country",
       "no_query_exclusions"
      ]
+    },
+    {
+     "date": "2026-08-13",
+     "verdict": "constraint_suspects",
+     "suspects": [
+      "core_query_only",
+      "no_delivery_country",
+      "no_query_exclusions",
+      "no_condition"
+     ]
     }
    ]
   },
@@ -1089,17 +1108,16 @@
    "min_price": 1000,
    "max_price": 8000,
    "config_fingerprint": "a62c1eb49bf3a531",
-   "zero_result_streak": 139,
+   "zero_result_streak": 153,
    "first_probed": "2026-07-30",
-   "last_probed": "2026-07-30",
-   "probe_count": 1,
+   "last_probed": "2026-08-13",
+   "probe_count": 2,
    "inconclusive_streak": 0,
    "next_probe_after_days": 14,
    "verdict": "constraint_suspects",
    "verdict_ko": "특정 제약을 풀자 매물이 나타났다",
    "suspects": [
-    "core_query_only",
-    "no_price_window"
+    "core_query_only"
    ],
    "probes": [
     {
@@ -1138,10 +1156,8 @@
      "name": "no_price_window",
      "description_ko": "가격창 제거 — min_price..max_price 밖의 매물 포함",
      "query": "Nikon I rangefinder -lens -nikkor -filter -hood -cap",
-     "total": 1,
-     "sample_titles": [
-      "Nikon I boxed film camera ca. 1949 Nikon I first rangefinder"
-     ],
+     "total": 0,
+     "sample_titles": [],
      "error": null
     },
     {
@@ -1164,11 +1180,11 @@
      "name": "core_query_only",
      "description_ko": "q를 모델명만 남기고 모든 제약 해제 — eBay에 매물 자체가 있는지 확인",
      "query": "Nikon I",
-     "total": 1554,
+     "total": 1538,
      "sample_titles": [
       "Nikon Nuvis 125i APS Camera (Untested)",
       "Sandisk SD Extreme PRO 32 64 128 256 GB 512GB 1TB Memory Card Nikon Canon UHS-I",
-      "Camera cap Protective for Nikon Nikonos I II III IV-A V with 35mm W-Nikkor Lens"
+      "Camera Lens cap cover for Minolta Uniomat I II III 1 2 3 Ansco Anscoset I II III"
      ],
      "error": null
     }
@@ -1180,6 +1196,13 @@
      "suspects": [
       "core_query_only",
       "no_price_window"
+     ]
+    },
+    {
+     "date": "2026-08-13",
+     "verdict": "constraint_suspects",
+     "suspects": [
+      "core_query_only"
      ]
     }
    ]
@@ -1291,10 +1314,10 @@
    "min_price": 300,
    "max_price": 2000,
    "config_fingerprint": "7ca0d2d3e8b0ffda",
-   "zero_result_streak": 137,
+   "zero_result_streak": 151,
    "first_probed": "2026-07-30",
-   "last_probed": "2026-07-30",
-   "probe_count": 1,
+   "last_probed": "2026-08-13",
+   "probe_count": 2,
    "inconclusive_streak": 0,
    "next_probe_after_days": 14,
    "verdict": "constraint_suspects",
@@ -1378,6 +1401,14 @@
    "history": [
     {
      "date": "2026-07-30",
+     "verdict": "constraint_suspects",
+     "suspects": [
+      "core_query_only",
+      "no_query_exclusions"
+     ]
+    },
+    {
+     "date": "2026-08-13",
      "verdict": "constraint_suspects",
      "suspects": [
       "core_query_only",
@@ -1485,10 +1516,10 @@
    "min_price": 500,
    "max_price": 2500,
    "config_fingerprint": "3e5ece76df217dd4",
-   "zero_result_streak": 137,
+   "zero_result_streak": 151,
    "first_probed": "2026-07-30",
-   "last_probed": "2026-07-30",
-   "probe_count": 1,
+   "last_probed": "2026-08-13",
+   "probe_count": 2,
    "inconclusive_streak": 0,
    "next_probe_after_days": 14,
    "verdict": "constraint_suspects",
@@ -1572,6 +1603,13 @@
      "suspects": [
       "core_query_only"
      ]
+    },
+    {
+     "date": "2026-08-13",
+     "verdict": "constraint_suspects",
+     "suspects": [
+      "core_query_only"
+     ]
     }
    ]
   },
@@ -1583,10 +1621,10 @@
    "min_price": 30,
    "max_price": 220,
    "config_fingerprint": "b7dd2512c1a6fc24",
-   "zero_result_streak": 30,
+   "zero_result_streak": 44,
    "first_probed": "2026-07-30",
-   "last_probed": "2026-07-30",
-   "probe_count": 1,
+   "last_probed": "2026-08-13",
+   "probe_count": 2,
    "inconclusive_streak": 0,
    "next_probe_after_days": 14,
    "verdict": "constraint_suspects",
@@ -1657,8 +1695,8 @@
      "query": "Nikkormat EL2",
      "total": 15,
      "sample_titles": [
-      "Nikkormat Nikomat EL EL2 Foam Seal Kit | USCamera Premium Nikon Light Seal Kits",
       "Nikon Nikkormat Nikomat EL /EL2 silver film advance lever. NOS. I",
+      "Nikkormat Nikomat EL EL2 Foam Seal Kit | USCamera Premium Nikon Light Seal Kits",
       "Nikon Nikkormat EL2 front leather | Parts | $9 | #46 |"
      ],
      "error": null
@@ -1667,6 +1705,13 @@
    "history": [
     {
      "date": "2026-07-30",
+     "verdict": "constraint_suspects",
+     "suspects": [
+      "core_query_only"
+     ]
+    },
+    {
+     "date": "2026-08-13",
      "verdict": "constraint_suspects",
      "suspects": [
       "core_query_only"
@@ -3211,6 +3256,111 @@
      "verdict": "constraint_suspects",
      "suspects": [
       "core_query_only"
+     ]
+    }
+   ]
+  },
+  "nikon-f-photomic-tn": {
+   "product_id": "nikon-f-photomic-tn",
+   "name_en": "Nikon F Photomic Tn",
+   "query": "Nikon F Photomic Tn body -lens -nikkor -filter -hood -cap -NASA",
+   "category_id": "15230",
+   "min_price": 200,
+   "max_price": 1500,
+   "config_fingerprint": "80be43c167e2694e",
+   "zero_result_streak": 3,
+   "first_probed": "2026-08-13",
+   "last_probed": "2026-08-13",
+   "probe_count": 1,
+   "inconclusive_streak": 0,
+   "next_probe_after_days": 14,
+   "verdict": "constraint_suspects",
+   "verdict_ko": "특정 제약을 풀자 매물이 나타났다",
+   "suspects": [
+    "core_query_only",
+    "no_price_window"
+   ],
+   "probes": [
+    {
+     "name": "baseline",
+     "description_ko": "정규 수집과 완전히 동일한 요청(기준선)",
+     "query": "Nikon F Photomic Tn body -lens -nikkor -filter -hood -cap -NASA",
+     "total": 0,
+     "sample_titles": [],
+     "error": null
+    },
+    {
+     "name": "no_condition",
+     "description_ko": "conditionIds 제거 — USED(3000) 외 상태(Open box·Refurbished·Very Good 등) 포함",
+     "query": "Nikon F Photomic Tn body -lens -nikkor -filter -hood -cap -NASA",
+     "total": 0,
+     "sample_titles": [],
+     "error": null
+    },
+    {
+     "name": "no_delivery_country",
+     "description_ko": "deliveryCountry:KR 제거 — 한국 배송을 하지 않는 셀러 포함",
+     "query": "Nikon F Photomic Tn body -lens -nikkor -filter -hood -cap -NASA",
+     "total": 0,
+     "sample_titles": [],
+     "error": null
+    },
+    {
+     "name": "no_buying_options",
+     "description_ko": "buyingOptions 제거 — 경매 매물 포함",
+     "query": "Nikon F Photomic Tn body -lens -nikkor -filter -hood -cap -NASA",
+     "total": 0,
+     "sample_titles": [],
+     "error": null
+    },
+    {
+     "name": "no_price_window",
+     "description_ko": "가격창 제거 — min_price..max_price 밖의 매물 포함",
+     "query": "Nikon F Photomic Tn body -lens -nikkor -filter -hood -cap -NASA",
+     "total": 6,
+     "sample_titles": [
+      "Nikon F Photomic TN 35mm Film SLR Camera Body, Chrome, with Prism Finder",
+      "Nikon F Photomic TN 35mm Film Camera Body, Chrome (Body Only)",
+      "Nikon F Photomic TN 35mm Film SLR Camera Body, Chrome (Japan)"
+     ],
+     "error": null
+    },
+    {
+     "name": "no_category",
+     "description_ko": "category_ids 제거 — 다른 eBay 카테고리에 올라온 매물 포함",
+     "query": "Nikon F Photomic Tn body -lens -nikkor -filter -hood -cap -NASA",
+     "total": 0,
+     "sample_titles": [],
+     "error": null
+    },
+    {
+     "name": "no_query_exclusions",
+     "description_ko": "q의 `-제외어` 제거 — 제외어가 과했는지 확인",
+     "query": "Nikon F Photomic Tn body",
+     "total": 0,
+     "sample_titles": [],
+     "error": null
+    },
+    {
+     "name": "core_query_only",
+     "description_ko": "q를 모델명만 남기고 모든 제약 해제 — eBay에 매물 자체가 있는지 확인",
+     "query": "Nikon F Photomic Tn",
+     "total": 66,
+     "sample_titles": [
+      "Nikon/Miranda  -F Photomic TN/Sensorex - Original Camera Magazine Report - 1967",
+      "Nikon -Nikkormat FTN/F Photomic TN - Original Camera Magazine Report - 1968",
+      "Nikon Photomic TN Finder for Nikon F Instruction Manual Reprint"
+     ],
+     "error": null
+    }
+   ],
+   "history": [
+    {
+     "date": "2026-08-13",
+     "verdict": "constraint_suspects",
+     "suspects": [
+      "core_query_only",
+      "no_price_window"
      ]
     }
    ]
