@@ -1,5 +1,5 @@
 {
- "updated": "2026-08-13",
+ "updated": "2026-08-14",
  "products": {
   "af-nikkor-28mm-f14d-ed": {
    "product_id": "af-nikkor-28mm-f14d-ed",
@@ -1727,10 +1727,10 @@
    "min_price": 20,
    "max_price": 150,
    "config_fingerprint": "2b9f85dbd999ed89",
-   "zero_result_streak": 49,
+   "zero_result_streak": 63,
    "first_probed": "2026-07-31",
-   "last_probed": "2026-07-31",
-   "probe_count": 1,
+   "last_probed": "2026-08-14",
+   "probe_count": 2,
    "inconclusive_streak": 0,
    "next_probe_after_days": 14,
    "verdict": "constraint_suspects",
@@ -1785,11 +1785,11 @@
      "name": "no_category",
      "description_ko": "category_ids 제거 — 다른 eBay 카테고리에 올라온 매물 포함",
      "query": "Nikon EM body -lens -nikkor -filter -hood -cap",
-     "total": 213,
+     "total": 231,
      "sample_titles": [
-      "Nikon CF-17 EverReady Body Case for FG/EM Bodies #G832",
       "Nikon EM 35mm SLR Camera Body, Black (AS IS - For Parts/Repair)",
-      "Nikon EM 35mm Film SLR Camera Body Only – Repair or Spares"
+      "VINTAGE NIKON EM CAMERA BODY",
+      "[Near MINT] Nikon EM 35mm SLR Film Camera black Body From JAPAN"
      ],
      "error": null
     },
@@ -1797,10 +1797,8 @@
      "name": "no_query_exclusions",
      "description_ko": "q의 `-제외어` 제거 — 제외어가 과했는지 확인",
      "query": "Nikon EM body",
-     "total": 3,
+     "total": 1,
      "sample_titles": [
-      "NIKON EM BODY + MOTOR DRIVE 50MM F1.8 SERIES E LENS ROKINON 28MM F2.8 FLASH LOT",
-      "Nikon EM Black Series 35mm f2.5 Camera Body & Lens Set Used Damaged",
       "【N MINT w/ Strap】 Nikkor Ai-s Ais 50mm f1.8 Lens + Nikon EM Body from JAPAN J00"
      ],
      "error": null
@@ -1809,7 +1807,7 @@
      "name": "core_query_only",
      "description_ko": "q를 모델명만 남기고 모든 제약 해제 — eBay에 매물 자체가 있는지 확인",
      "query": "Nikon EM",
-     "total": 1555,
+     "total": 1565,
      "sample_titles": [
       "Nikon EM Photo Guide Genuine (EN)  system brochure booklet",
       "Booklet for Camera Nikon EM Photo Guide Help Lighting Angles Etc. How-To",
@@ -1827,6 +1825,15 @@
       "no_category",
       "no_query_exclusions"
      ]
+    },
+    {
+     "date": "2026-08-14",
+     "verdict": "constraint_suspects",
+     "suspects": [
+      "core_query_only",
+      "no_category",
+      "no_query_exclusions"
+     ]
     }
    ]
   },
@@ -1838,10 +1845,10 @@
    "min_price": 5000,
    "max_price": 30000,
    "config_fingerprint": "8bdb6943fa6704c8",
-   "zero_result_streak": 145,
+   "zero_result_streak": 159,
    "first_probed": "2026-07-31",
-   "last_probed": "2026-07-31",
-   "probe_count": 1,
+   "last_probed": "2026-08-14",
+   "probe_count": 2,
    "inconclusive_streak": 0,
    "next_probe_after_days": 14,
    "verdict": "constraint_suspects",
@@ -1934,6 +1941,15 @@
       "no_category",
       "no_price_window"
      ]
+    },
+    {
+     "date": "2026-08-14",
+     "verdict": "constraint_suspects",
+     "suspects": [
+      "core_query_only",
+      "no_category",
+      "no_price_window"
+     ]
     }
    ]
   },
@@ -1945,10 +1961,10 @@
    "min_price": 350,
    "max_price": 1500,
    "config_fingerprint": "a407ff526149c655",
-   "zero_result_streak": 145,
+   "zero_result_streak": 159,
    "first_probed": "2026-07-31",
-   "last_probed": "2026-07-31",
-   "probe_count": 1,
+   "last_probed": "2026-08-14",
+   "probe_count": 2,
    "inconclusive_streak": 0,
    "next_probe_after_days": 14,
    "verdict": "constraint_suspects",
@@ -2039,6 +2055,14 @@
       "core_query_only",
       "no_category"
      ]
+    },
+    {
+     "date": "2026-08-14",
+     "verdict": "constraint_suspects",
+     "suspects": [
+      "core_query_only",
+      "no_category"
+     ]
     }
    ]
   },
@@ -2050,10 +2074,10 @@
    "min_price": 300,
    "max_price": 2500,
    "config_fingerprint": "c947872f1e1f7650",
-   "zero_result_streak": 134,
+   "zero_result_streak": 148,
    "first_probed": "2026-07-31",
-   "last_probed": "2026-07-31",
-   "probe_count": 1,
+   "last_probed": "2026-08-14",
+   "probe_count": 2,
    "inconclusive_streak": 0,
    "next_probe_after_days": 14,
    "verdict": "constraint_suspects",
@@ -2107,9 +2131,9 @@
      "name": "no_category",
      "description_ko": "category_ids 제거 — 다른 eBay 카테고리에 올라온 매물 포함",
      "query": "Nikon F2/T body -lens -nikkor -filter -hood -cap",
-     "total": 18,
+     "total": 21,
      "sample_titles": [
-      "[MINT w/Case] Nikon F2T Titan Photomic A DP-11 35mm Film SLR Camera Body Japan",
+      "[Near MINT] Nikon F2T Titan Eye Level 35mm SLR Film Camera Body From JAPAN",
       "[Top MINT] Nikon F2 T Titan with Name SLR 35mm Film Camera Body From JAPAN",
       "Nikon F2 Titan F2T Eye Level Black 35mm Film Camera Body From JAPAN Near MINT-"
      ],
@@ -2127,7 +2151,7 @@
      "name": "core_query_only",
      "description_ko": "q를 모델명만 남기고 모든 제약 해제 — eBay에 매물 자체가 있는지 확인",
      "query": "Nikon F2/T",
-     "total": 64,
+     "total": 67,
      "sample_titles": [
       "HB-40 Bayonet Lens Hood for NIKON AF-S NIKKOR 24-70mm f/2.=t=",
       "HB-40 Bayonet Lens Hood for NIKON AF-S NIKKOR 24-70mm f/2.=t=",
@@ -2139,6 +2163,14 @@
    "history": [
     {
      "date": "2026-07-31",
+     "verdict": "constraint_suspects",
+     "suspects": [
+      "core_query_only",
+      "no_category"
+     ]
+    },
+    {
+     "date": "2026-08-14",
      "verdict": "constraint_suspects",
      "suspects": [
       "core_query_only",
@@ -2246,10 +2278,10 @@
    "min_price": 150,
    "max_price": 800,
    "config_fingerprint": "ee7d07478dd4e66e",
-   "zero_result_streak": 151,
+   "zero_result_streak": 165,
    "first_probed": "2026-07-31",
-   "last_probed": "2026-07-31",
-   "probe_count": 1,
+   "last_probed": "2026-08-14",
+   "probe_count": 2,
    "inconclusive_streak": 0,
    "next_probe_after_days": 14,
    "verdict": "constraint_suspects",
@@ -2303,11 +2335,11 @@
      "name": "no_category",
      "description_ko": "category_ids 제거 — 다른 eBay 카테고리에 올라온 매물 포함",
      "query": "Nikon F3AF body -lens -nikkor -filter -hood -cap",
-     "total": 15,
+     "total": 11,
      "sample_titles": [
-      "[MINT] Nikon F3 AF F3AF Eyelevel Finder 35mm SLR Film Camera Body From JAPAN",
-      "[Near MINT] Nikon F3 AF F3AF Black Body SLR Film Camera AE Finder DX-1 JAPAN",
-      "CLA'd [TOP MINT] Nikon F3 AF HP Finder 35mm SLR Film Camera DE-3 Body JAPAN"
+      "Nikon F3 AF Film Camera Body",
+      "Nikon F3 AF Body with HP Finder",
+      "Read [Near MINT] Nikon F3 AF F3AF Eyelevel 35mm SLR Film Camera Body From JAPAN"
      ],
      "error": null
     },
@@ -2323,7 +2355,7 @@
      "name": "core_query_only",
      "description_ko": "q를 모델명만 남기고 모든 제약 해제 — eBay에 매물 자체가 있는지 확인",
      "query": "Nikon F3AF",
-     "total": 236,
+     "total": 254,
      "sample_titles": [
       "Nikon - N2000/F3AF - Original Camera Magazine Report - 1985",
       "Rare Advertising NIKON L 35 AF EM FE 2 F3 FG Program F3 AF FM 2 Cameras 1983",
@@ -2340,6 +2372,14 @@
       "core_query_only",
       "no_category"
      ]
+    },
+    {
+     "date": "2026-08-14",
+     "verdict": "constraint_suspects",
+     "suspects": [
+      "core_query_only",
+      "no_category"
+     ]
     }
    ]
   },
@@ -2351,10 +2391,10 @@
    "min_price": 2500,
    "max_price": 10000,
    "config_fingerprint": "4b3be15318482616",
-   "zero_result_streak": 145,
+   "zero_result_streak": 159,
    "first_probed": "2026-07-31",
-   "last_probed": "2026-07-31",
-   "probe_count": 1,
+   "last_probed": "2026-08-14",
+   "probe_count": 2,
    "inconclusive_streak": 0,
    "next_probe_after_days": 14,
    "verdict": "constraint_suspects",
@@ -2423,10 +2463,10 @@
      "name": "core_query_only",
      "description_ko": "q를 모델명만 남기고 모든 제약 해제 — eBay에 매물 자체가 있는지 확인",
      "query": "Nikon F3H",
-     "total": 7,
+     "total": 6,
      "sample_titles": [
-      "Nikon For Professionals Vintage Red Neck Shoulder Strap - Rare F3P F3T F3H",
       "Nikon F3 HP Eyepiece for High Eyepoint,FE-3 DE-4 DE-5 Finders,  F3HP F3T F3P F3H",
+      "Nikon For Professionals Vintage Red Neck Shoulder Strap - Rare F3P F3T F3H",
       "Nikon F3 HP Eyepiece - 21mm High Eyepoint FE-3 DE-4 DE-5 F3HP F3T F3P F3H"
      ],
      "error": null
@@ -2435,6 +2475,13 @@
    "history": [
     {
      "date": "2026-07-31",
+     "verdict": "constraint_suspects",
+     "suspects": [
+      "core_query_only"
+     ]
+    },
+    {
+     "date": "2026-08-14",
      "verdict": "constraint_suspects",
      "suspects": [
       "core_query_only"
@@ -2450,10 +2497,10 @@
    "min_price": 800,
    "max_price": 4000,
    "config_fingerprint": "cd0f28e0fcd356f5",
-   "zero_result_streak": 31,
+   "zero_result_streak": 45,
    "first_probed": "2026-07-31",
-   "last_probed": "2026-07-31",
-   "probe_count": 1,
+   "last_probed": "2026-08-14",
+   "probe_count": 2,
    "inconclusive_streak": 0,
    "next_probe_after_days": 14,
    "verdict": "constraint_suspects",
@@ -2510,8 +2557,8 @@
      "total": 15,
      "sample_titles": [
       "Nikon F3P 35mm Film SLR Camera Body Pro Press Model Black From Japan E0426",
-      "Nikon F3P Press Professional 35mm Film SLR Camera Body F Mount Used H0706",
-      "Nikon F3P Press Body 35mm Film SLR Camera Professional Rare from Japan D0729"
+      "Nikon F3P Press HP Black 35mm SLR Film Camera Body Main Unit Black",
+      "Nikon F3P Press Professional 35mm Film SLR Camera Body F Mount Used H0706"
      ],
      "error": null
     },
@@ -2527,7 +2574,7 @@
      "name": "core_query_only",
      "description_ko": "q를 모델명만 남기고 모든 제약 해제 — eBay에 매물 자체가 있는지 확인",
      "query": "Nikon F3P",
-     "total": 172,
+     "total": 176,
      "sample_titles": [
       "Drive Cap Replacement for Nikon F3 Motor Cover Fits for F3 F3T F3HP F3P",
       "Nikon F3 Motor Drive Cap Replacement Spare Cover Fits for F3 F3T F3HP F3P",
@@ -2539,6 +2586,14 @@
    "history": [
     {
      "date": "2026-07-31",
+     "verdict": "constraint_suspects",
+     "suspects": [
+      "core_query_only",
+      "no_category"
+     ]
+    },
+    {
+     "date": "2026-08-14",
      "verdict": "constraint_suspects",
      "suspects": [
       "core_query_only",
