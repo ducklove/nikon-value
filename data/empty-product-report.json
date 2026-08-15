@@ -1,5 +1,5 @@
 {
- "updated": "2026-08-14",
+ "updated": "2026-08-15",
  "products": {
   "af-nikkor-28mm-f14d-ed": {
    "product_id": "af-nikkor-28mm-f14d-ed",
@@ -2610,10 +2610,10 @@
    "min_price": 800,
    "max_price": 3000,
    "config_fingerprint": "c6c9e403b1925dfd",
-   "zero_result_streak": 89,
+   "zero_result_streak": 103,
    "first_probed": "2026-08-01",
-   "last_probed": "2026-08-01",
-   "probe_count": 1,
+   "last_probed": "2026-08-15",
+   "probe_count": 2,
    "inconclusive_streak": 0,
    "next_probe_after_days": 14,
    "verdict": "constraint_suspects",
@@ -2667,7 +2667,7 @@
      "name": "no_category",
      "description_ko": "category_ids 제거 — 다른 eBay 카테고리에 올라온 매물 포함",
      "query": "Nikon F6 body -lens -nikkor -filter -hood -cap",
-     "total": 53,
+     "total": 54,
      "sample_titles": [
       "[Excellent] Nikon F6 SLR 35mm Film Camera Body 7320#J0527F",
       "New Firmware 2026 [MINT+++ /Strap] Nikon F6 35mm SLR Film Camera Body From JAPAN",
@@ -2687,11 +2687,11 @@
      "name": "core_query_only",
      "description_ko": "q를 모델명만 남기고 모든 제약 해제 — eBay에 매물 자체가 있는지 확인",
      "query": "Nikon F6",
-     "total": 519,
+     "total": 530,
      "sample_titles": [
       "Camera strap Lug Ring for Nikon FM2 F3 FE2 F4 F5 FA N90s F2 FM F6 EM FM10 F100",
-      "Camera Lens UV filter Hood ft Nikon F F2 F3 FM2 FE2 F4 F5 F6 F100 F90 F801 F801s",
-      "Camera Lens cap cover for Nikon F F2 F3 FM2 FE2 F4 F5 F6 F100 F90 F801 F801s F60"
+      "Camera Lens cap cover for Nikon F F2 F3 FM2 FE2 F4 F5 F6 F100 F90 F801 F801s F60",
+      "Camera Lens cap cover  fit Nikon F F2 F3 FM2 FE2 F4 F5 F6 F100 F90 F801 F801s"
      ],
      "error": null
     }
@@ -2699,6 +2699,14 @@
    "history": [
     {
      "date": "2026-08-01",
+     "verdict": "constraint_suspects",
+     "suspects": [
+      "core_query_only",
+      "no_category"
+     ]
+    },
+    {
+     "date": "2026-08-15",
      "verdict": "constraint_suspects",
      "suspects": [
       "core_query_only",
@@ -2715,10 +2723,10 @@
    "min_price": 20,
    "max_price": 150,
    "config_fingerprint": "b92c680e5decb898",
-   "zero_result_streak": 152,
+   "zero_result_streak": 166,
    "first_probed": "2026-08-01",
-   "last_probed": "2026-08-01",
-   "probe_count": 1,
+   "last_probed": "2026-08-15",
+   "probe_count": 2,
    "inconclusive_streak": 0,
    "next_probe_after_days": 14,
    "verdict": "constraint_suspects",
@@ -2776,7 +2784,7 @@
      "total": 9,
      "sample_titles": [
       "Nikon FE-10 Instruction Book, More Genuine Camera Guides & Owners Manuals Listed",
-      "Photocopy of the Original Nikon FE10 Camera User Manual - Excellent",
+      "[Exc+5] Nikon FE10 35mm SLR Film Camera Body From Japan #6832",
       "Nikon FE10 FE-10 fe10 Instructions User Manual "
      ],
      "error": null
@@ -2795,7 +2803,7 @@
      "name": "core_query_only",
      "description_ko": "q를 모델명만 남기고 모든 제약 해제 — eBay에 매물 자체가 있는지 확인",
      "query": "Nikon FE10",
-     "total": 60,
+     "total": 55,
      "sample_titles": [
       "Battery for Vivitar V3800N, V-4000, Nikon FM-10, FE-10, Nikon EM, FG, FM ~ 10pcs",
       "CR1/3N Battery fits Nikon FE10 FM2n FA, Dog Watch R6 R7, PIF-275 CR11108",
@@ -2813,6 +2821,15 @@
       "no_category",
       "no_query_exclusions"
      ]
+    },
+    {
+     "date": "2026-08-15",
+     "verdict": "constraint_suspects",
+     "suspects": [
+      "core_query_only",
+      "no_category",
+      "no_query_exclusions"
+     ]
     }
    ]
   },
@@ -2824,10 +2841,10 @@
    "min_price": 20,
    "max_price": 500,
    "config_fingerprint": "e6959634c7ee2aec",
-   "zero_result_streak": 14,
+   "zero_result_streak": 28,
    "first_probed": "2026-08-01",
-   "last_probed": "2026-08-01",
-   "probe_count": 1,
+   "last_probed": "2026-08-15",
+   "probe_count": 2,
    "inconclusive_streak": 0,
    "next_probe_after_days": 14,
    "verdict": "constraint_suspects",
@@ -2882,11 +2899,11 @@
      "name": "no_category",
      "description_ko": "category_ids 제거 — 다른 eBay 카테고리에 올라온 매물 포함",
      "query": "Nikon FG -FG-20 -FG20 -lens -nikkor -filter -hood -cap -Objektiv -für -for -mount -Bajonett -Tamron -Sigma -Vivitar -Tokina -Danubia",
-     "total": 141,
+     "total": 159,
      "sample_titles": [
       "Nikon FG Back Film Door Replacement Part, USED GOOD CONDITION",
       "*TOP* Original Nikon FG Black Hand Grip Body 20 Finger w/ Screw Japan Accessory",
-      "Metz SCA Adapter 343 Flash Shoe Nikon FA FE FE2 FG F4 F5 F60 F100 System 300"
+      "Nikon Camera FG Instruction Manual Black and White early"
      ],
      "error": null
     },
@@ -2894,7 +2911,7 @@
      "name": "no_query_exclusions",
      "description_ko": "q의 `-제외어` 제거 — 제외어가 과했는지 확인",
      "query": "Nikon FG",
-     "total": 16,
+     "total": 14,
      "sample_titles": [
       "Auto Promaster Spectrum 7 MC 75-200mm Zoom Lens with 1A Filter from Nikon FG",
       "Tamron 70-210mm f/3.8-4 Camera Zoom Lens previously used on Nikon FG w/Caps",
@@ -2906,11 +2923,11 @@
      "name": "core_query_only",
      "description_ko": "q를 모델명만 남기고 모든 제약 해제 — eBay에 매물 자체가 있는지 확인",
      "query": "Nikon FG",
-     "total": 904,
+     "total": 943,
      "sample_titles": [
       "Nikon FG Rewind Shaft  (JYPd5)",
-      "Nikon FG Camera + Lens Dealer Sales Brochure Circa 1980",
-      "Original Nikon FG-20 FG20 Instruction Owners User Manual - English"
+      "Original Nikon FG-20 FG20 Instruction Owners User Manual - English",
+      "POPULAR PHOTOGRAPHY MAGAZINE NOVEMBER 1982 82 MINOLTA X-700 X700 NIKON FG 35MM"
      ],
      "error": null
     }
@@ -2918,6 +2935,15 @@
    "history": [
     {
      "date": "2026-08-01",
+     "verdict": "constraint_suspects",
+     "suspects": [
+      "core_query_only",
+      "no_category",
+      "no_query_exclusions"
+     ]
+    },
+    {
+     "date": "2026-08-15",
      "verdict": "constraint_suspects",
      "suspects": [
       "core_query_only",
@@ -2935,10 +2961,10 @@
    "min_price": 3000,
    "max_price": 40000,
    "config_fingerprint": "027d45a271365735",
-   "zero_result_streak": 140,
+   "zero_result_streak": 154,
    "first_probed": "2026-08-01",
-   "last_probed": "2026-08-01",
-   "probe_count": 1,
+   "last_probed": "2026-08-15",
+   "probe_count": 2,
    "inconclusive_streak": 0,
    "next_probe_after_days": 14,
    "verdict": "constraint_suspects",
@@ -3007,11 +3033,11 @@
      "name": "core_query_only",
      "description_ko": "q를 모델명만 남기고 모든 제약 해제 — eBay에 매물 자체가 있는지 확인",
      "query": "Nikon Fisheye",
-     "total": 1730,
+     "total": 1723,
      "sample_titles": [
       "INSERT 74mm designed for Nikon 8-15mm fisheye lens",
-      "OPTEKA, \"52 mm 0.43x AF Wide Angle Lens,\" Brand New in Pouch and Original Box",
-      "INSERT 62mm designed for Nikon 10.5 & 16mm fisheye lens"
+      "INSERT 62mm designed for Nikon 10.5 & 16mm fisheye lens",
+      "OPTEKA, \"52 mm 0.43x AF Wide Angle Lens,\" Brand New in Pouch and Original Box"
      ],
      "error": null
     }
@@ -3019,6 +3045,13 @@
    "history": [
     {
      "date": "2026-08-01",
+     "verdict": "constraint_suspects",
+     "suspects": [
+      "core_query_only"
+     ]
+    },
+    {
+     "date": "2026-08-15",
      "verdict": "constraint_suspects",
      "suspects": [
       "core_query_only"
@@ -3125,10 +3158,10 @@
    "min_price": 10000,
    "max_price": 40000,
    "config_fingerprint": "ec6654104ee93979",
-   "zero_result_streak": 31,
+   "zero_result_streak": 45,
    "first_probed": "2026-08-01",
-   "last_probed": "2026-08-01",
-   "probe_count": 1,
+   "last_probed": "2026-08-15",
+   "probe_count": 2,
    "inconclusive_streak": 0,
    "next_probe_after_days": 14,
    "verdict": "constraint_suspects",
@@ -3215,6 +3248,14 @@
       "core_query_only",
       "no_query_exclusions"
      ]
+    },
+    {
+     "date": "2026-08-15",
+     "verdict": "constraint_suspects",
+     "suspects": [
+      "core_query_only",
+      "no_query_exclusions"
+     ]
     }
    ]
   },
@@ -3226,10 +3267,10 @@
    "min_price": 50000,
    "max_price": 200000,
    "config_fingerprint": "59c7cb745902f007",
-   "zero_result_streak": 146,
+   "zero_result_streak": 160,
    "first_probed": "2026-08-01",
-   "last_probed": "2026-08-01",
-   "probe_count": 1,
+   "last_probed": "2026-08-15",
+   "probe_count": 2,
    "inconclusive_streak": 0,
    "next_probe_after_days": 14,
    "verdict": "constraint_suspects",
@@ -3308,6 +3349,13 @@
    "history": [
     {
      "date": "2026-08-01",
+     "verdict": "constraint_suspects",
+     "suspects": [
+      "core_query_only"
+     ]
+    },
+    {
+     "date": "2026-08-15",
      "verdict": "constraint_suspects",
      "suspects": [
       "core_query_only"
