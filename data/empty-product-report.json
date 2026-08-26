@@ -1,5 +1,5 @@
 {
- "updated": "2026-08-15",
+ "updated": "2026-08-26",
  "products": {
   "af-nikkor-28mm-f14d-ed": {
    "product_id": "af-nikkor-28mm-f14d-ed",
@@ -9,10 +9,10 @@
    "min_price": 1200,
    "max_price": 4500,
    "config_fingerprint": "639aac8ecbc2aeff",
-   "zero_result_streak": 153,
+   "zero_result_streak": 167,
    "first_probed": "2026-07-29",
-   "last_probed": "2026-08-12",
-   "probe_count": 2,
+   "last_probed": "2026-08-26",
+   "probe_count": 3,
    "inconclusive_streak": 0,
    "next_probe_after_days": 14,
    "verdict": "constraint_suspects",
@@ -81,7 +81,7 @@
      "name": "core_query_only",
      "description_ko": "q를 모델명만 남기고 모든 제약 해제 — eBay에 매물 자체가 있는지 확인",
      "query": "Nikon AF Nikkor 28mm",
-     "total": 417,
+     "total": 427,
      "sample_titles": [
       "Camera Lens cap for Nikon Nikkor AF 20mm 24mm 28mm 35mm 50mm 85 mm 105mm 135mm",
       "UV Protective Filter for Nikon Nikkor AF 50mm f1.8, 28mm 24mm f2.8 35mm f2 lens",
@@ -104,6 +104,13 @@
      "suspects": [
       "core_query_only"
      ]
+    },
+    {
+     "date": "2026-08-26",
+     "verdict": "constraint_suspects",
+     "suspects": [
+      "core_query_only"
+     ]
     }
    ]
   },
@@ -115,10 +122,10 @@
    "min_price": 200,
    "max_price": 700,
    "config_fingerprint": "f0ad9fb999eb9a72",
-   "zero_result_streak": 164,
+   "zero_result_streak": 178,
    "first_probed": "2026-07-29",
-   "last_probed": "2026-08-12",
-   "probe_count": 2,
+   "last_probed": "2026-08-26",
+   "probe_count": 3,
    "inconclusive_streak": 0,
    "next_probe_after_days": 14,
    "verdict": "constraint_suspects",
@@ -187,11 +194,11 @@
      "name": "core_query_only",
      "description_ko": "q를 모델명만 남기고 모든 제약 해제 — eBay에 매물 자체가 있는지 확인",
      "query": "Nikon AF-P 70-300mm",
-     "total": 1185,
+     "total": 1252,
      "sample_titles": [
-      "Bayonet Lens Hood for Nikon AF-P DX NIKKOR 70-300mm f4.5-6.3G ED replaces HB-77",
       "JJC LH-77 Lens Hood as HB-77 for Nikon AF-P DX NIKKOR 70-300mm f/4.5-6.3G ED VR",
-      "Replacement LB-77 Lens Hood Shade for Nikon AF-P DX NIKKOR 70-300mm f4.5-6.3G ED"
+      "Replacement LB-77 Lens Hood Shade for Nikon AF-P DX NIKKOR 70-300mm f4.5-6.3G ED",
+      "JJC Bayonet Lens Hood for Nikon AF-P DX NIKKOR 70-300mm f/4.5-6.3G ED AS HB-77"
      ],
      "error": null
     }
@@ -210,6 +217,13 @@
      "suspects": [
       "core_query_only"
      ]
+    },
+    {
+     "date": "2026-08-26",
+     "verdict": "constraint_suspects",
+     "suspects": [
+      "core_query_only"
+     ]
     }
    ]
   },
@@ -221,10 +235,10 @@
    "min_price": 60000,
    "max_price": 180000,
    "config_fingerprint": "fab91e8197b3f8da",
-   "zero_result_streak": 157,
+   "zero_result_streak": 171,
    "first_probed": "2026-07-29",
-   "last_probed": "2026-08-12",
-   "probe_count": 2,
+   "last_probed": "2026-08-26",
+   "probe_count": 3,
    "inconclusive_streak": 0,
    "next_probe_after_days": 14,
    "verdict": "constraint_suspects",
@@ -293,11 +307,10 @@
      "name": "core_query_only",
      "description_ko": "q를 모델명만 남기고 모든 제약 해제 — eBay에 매물 자체가 있는지 확인",
      "query": "Nikon Fisheye Nikkor 6mm",
-     "total": 6,
+     "total": 2,
      "sample_titles": [
       "NIKON wide angle single focus lens FISHEYE NIKKOR 16MM 2.8D Used",
-      "NIKON wide angle single focus lens FISHEYE NIKKOR 16MM 2.8D Used",
-      "Nikon 5.6/6 mm Fisheye Nikkor 220 circa 1970. very RARE lens"
+      "Nikon Fisheye-Nikkor 6mm F2.8 Ai Lens (1977) Repair Manual Reprint"
      ],
      "error": null
     }
@@ -316,6 +329,13 @@
      "suspects": [
       "core_query_only"
      ]
+    },
+    {
+     "date": "2026-08-26",
+     "verdict": "constraint_suspects",
+     "suspects": [
+      "core_query_only"
+     ]
     }
    ]
   },
@@ -327,10 +347,10 @@
    "min_price": 8000,
    "max_price": 50000,
    "config_fingerprint": "bc1c98e3c22a15b6",
-   "zero_result_streak": 157,
+   "zero_result_streak": 171,
    "first_probed": "2026-07-29",
-   "last_probed": "2026-08-12",
-   "probe_count": 2,
+   "last_probed": "2026-08-26",
+   "probe_count": 3,
    "inconclusive_streak": 0,
    "next_probe_after_days": 14,
    "verdict": "constraint_suspects",
@@ -399,7 +419,7 @@
      "name": "core_query_only",
      "description_ko": "q를 모델명만 남기고 모든 제약 해제 — eBay에 매물 자체가 있는지 확인",
      "query": "Nikon F NASA",
-     "total": 6,
+     "total": 4,
      "sample_titles": [
       "VTG Authentic 1980s NASA Space Shuttle Nikon F3 Camera Film Poster Japan",
       "NEW w/ NASA Paperwork Vintage NIKON Type D Focusing Screen for the  F3 Camera",
@@ -422,6 +442,13 @@
      "suspects": [
       "core_query_only"
      ]
+    },
+    {
+     "date": "2026-08-26",
+     "verdict": "constraint_suspects",
+     "suspects": [
+      "core_query_only"
+     ]
     }
    ]
   },
@@ -433,10 +460,10 @@
    "min_price": 30000,
    "max_price": 70000,
    "config_fingerprint": "b2087187f481aae8",
-   "zero_result_streak": 157,
+   "zero_result_streak": 171,
    "first_probed": "2026-07-29",
-   "last_probed": "2026-08-12",
-   "probe_count": 2,
+   "last_probed": "2026-08-26",
+   "probe_count": 3,
    "inconclusive_streak": 0,
    "next_probe_after_days": 14,
    "verdict": "constraint_suspects",
@@ -505,7 +532,7 @@
      "name": "core_query_only",
      "description_ko": "q를 모델명만 남기고 모든 제약 해제 — eBay에 매물 자체가 있는지 확인",
      "query": "Nikon Nikkor 13mm",
-     "total": 37,
+     "total": 31,
      "sample_titles": [
       "52mm Pro1-D MRC Multi-Resistant UV filter Nikon 1 NIKKOR VR 6.7-13mm f/3.5-5.6",
       "52mm Pro1-D MRC Multi-Resistant UV filter Nikon 1 NIKKOR VR 6.7-13mm f/3.5-5.6",
@@ -524,6 +551,13 @@
     },
     {
      "date": "2026-08-12",
+     "verdict": "constraint_suspects",
+     "suspects": [
+      "core_query_only"
+     ]
+    },
+    {
+     "date": "2026-08-26",
      "verdict": "constraint_suspects",
      "suspects": [
       "core_query_only"
@@ -656,16 +690,17 @@
    "min_price": 9000,
    "max_price": 18000,
    "config_fingerprint": "cc59ce7a0e7bf607",
-   "zero_result_streak": 147,
+   "zero_result_streak": 161,
    "first_probed": "2026-07-29",
-   "last_probed": "2026-08-12",
-   "probe_count": 2,
+   "last_probed": "2026-08-26",
+   "probe_count": 3,
    "inconclusive_streak": 0,
    "next_probe_after_days": 14,
    "verdict": "constraint_suspects",
    "verdict_ko": "특정 제약을 풀자 매물이 나타났다",
    "suspects": [
-    "core_query_only"
+    "core_query_only",
+    "no_delivery_country"
    ],
    "probes": [
     {
@@ -688,8 +723,10 @@
      "name": "no_delivery_country",
      "description_ko": "deliveryCountry:KR 제거 — 한국 배송을 하지 않는 셀러 포함",
      "query": "Nikon Z 600mm f/4 TC",
-     "total": 0,
-     "sample_titles": [],
+     "total": 1,
+     "sample_titles": [
+      "Nikon NIKKOR Z 600mm f/4 TC VR S Lens"
+     ],
      "error": null
     },
     {
@@ -728,7 +765,7 @@
      "name": "core_query_only",
      "description_ko": "q를 모델명만 남기고 모든 제약 해제 — eBay에 매물 자체가 있는지 확인",
      "query": "Nikon Z 600mm TC",
-     "total": 52,
+     "total": 57,
      "sample_titles": [
       "NIKON NIKKOR Z 600mm f4 TC VR S Lens Service Repair Manual & Parts List PDF READ",
       "NIKONoriginal Lens Cap Lid Cover Rear 02D#",
@@ -752,6 +789,14 @@
      "suspects": [
       "core_query_only"
      ]
+    },
+    {
+     "date": "2026-08-26",
+     "verdict": "constraint_suspects",
+     "suspects": [
+      "core_query_only",
+      "no_delivery_country"
+     ]
     }
    ]
   },
@@ -763,10 +808,10 @@
    "min_price": 140,
    "max_price": 400,
    "config_fingerprint": "29497ff196a6eccd",
-   "zero_result_streak": 153,
+   "zero_result_streak": 167,
    "first_probed": "2026-07-29",
-   "last_probed": "2026-08-12",
-   "probe_count": 2,
+   "last_probed": "2026-08-26",
+   "probe_count": 3,
    "inconclusive_streak": 0,
    "next_probe_after_days": 14,
    "verdict": "constraint_suspects",
@@ -835,7 +880,7 @@
      "name": "core_query_only",
      "description_ko": "q를 모델명만 남기고 모든 제약 해제 — eBay에 매물 자체가 있는지 확인",
      "query": "NIKKOR Z DX 50-250mm",
-     "total": 298,
+     "total": 299,
      "sample_titles": [
       "Rokinon MC 80-250mm f/4.5-4.8 AIS Lens for Nikon F Mount",
       "NIKON BY TELESAR 80~250 f4.5 ZOOM-BENEFITS CHARITY-G60",
@@ -854,6 +899,13 @@
     },
     {
      "date": "2026-08-12",
+     "verdict": "constraint_suspects",
+     "suspects": [
+      "core_query_only"
+     ]
+    },
+    {
+     "date": "2026-08-26",
      "verdict": "constraint_suspects",
      "suspects": [
       "core_query_only"
