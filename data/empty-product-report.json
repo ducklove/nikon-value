@@ -1,5 +1,5 @@
 {
- "updated": "2026-08-26",
+ "updated": "2026-08-27",
  "products": {
   "af-nikkor-28mm-f14d-ed": {
    "product_id": "af-nikkor-28mm-f14d-ed",
@@ -921,10 +921,10 @@
    "min_price": 40,
    "max_price": 250,
    "config_fingerprint": "eacf1b46afddd949",
-   "zero_result_streak": 152,
+   "zero_result_streak": 166,
    "first_probed": "2026-07-30",
-   "last_probed": "2026-08-13",
-   "probe_count": 2,
+   "last_probed": "2026-08-27",
+   "probe_count": 3,
    "inconclusive_streak": 0,
    "next_probe_after_days": 14,
    "verdict": "constraint_suspects",
@@ -1027,6 +1027,15 @@
       "no_condition",
       "no_query_exclusions"
      ]
+    },
+    {
+     "date": "2026-08-27",
+     "verdict": "constraint_suspects",
+     "suspects": [
+      "core_query_only",
+      "no_condition",
+      "no_query_exclusions"
+     ]
     }
    ]
   },
@@ -1038,10 +1047,10 @@
    "min_price": 40,
    "max_price": 300,
    "config_fingerprint": "72c22f7a3a7f721f",
-   "zero_result_streak": 152,
+   "zero_result_streak": 166,
    "first_probed": "2026-07-30",
-   "last_probed": "2026-08-13",
-   "probe_count": 2,
+   "last_probed": "2026-08-27",
+   "probe_count": 3,
    "inconclusive_streak": 0,
    "next_probe_after_days": 14,
    "verdict": "constraint_suspects",
@@ -1149,6 +1158,16 @@
       "no_query_exclusions",
       "no_condition"
      ]
+    },
+    {
+     "date": "2026-08-27",
+     "verdict": "constraint_suspects",
+     "suspects": [
+      "core_query_only",
+      "no_delivery_country",
+      "no_query_exclusions",
+      "no_condition"
+     ]
     }
    ]
   },
@@ -1160,10 +1179,10 @@
    "min_price": 1000,
    "max_price": 8000,
    "config_fingerprint": "a62c1eb49bf3a531",
-   "zero_result_streak": 153,
+   "zero_result_streak": 167,
    "first_probed": "2026-07-30",
-   "last_probed": "2026-08-13",
-   "probe_count": 2,
+   "last_probed": "2026-08-27",
+   "probe_count": 3,
    "inconclusive_streak": 0,
    "next_probe_after_days": 14,
    "verdict": "constraint_suspects",
@@ -1232,11 +1251,11 @@
      "name": "core_query_only",
      "description_ko": "q를 모델명만 남기고 모든 제약 해제 — eBay에 매물 자체가 있는지 확인",
      "query": "Nikon I",
-     "total": 1538,
+     "total": 1477,
      "sample_titles": [
+      "Tested Working Nikon Nuvis Mini I APS *SHARP* Point & Shoot Compact Film Camera",
       "Nikon Nuvis 125i APS Camera (Untested)",
-      "Sandisk SD Extreme PRO 32 64 128 256 GB 512GB 1TB Memory Card Nikon Canon UHS-I",
-      "Camera Lens cap cover for Minolta Uniomat I II III 1 2 3 Ansco Anscoset I II III"
+      "Sandisk SD Extreme PRO 32 64 128 256 GB 512GB 1TB Memory Card Nikon Canon UHS-I"
      ],
      "error": null
     }
@@ -1252,6 +1271,13 @@
     },
     {
      "date": "2026-08-13",
+     "verdict": "constraint_suspects",
+     "suspects": [
+      "core_query_only"
+     ]
+    },
+    {
+     "date": "2026-08-27",
      "verdict": "constraint_suspects",
      "suspects": [
       "core_query_only"
@@ -1366,10 +1392,10 @@
    "min_price": 300,
    "max_price": 2000,
    "config_fingerprint": "7ca0d2d3e8b0ffda",
-   "zero_result_streak": 151,
+   "zero_result_streak": 165,
    "first_probed": "2026-07-30",
-   "last_probed": "2026-08-13",
-   "probe_count": 2,
+   "last_probed": "2026-08-27",
+   "probe_count": 3,
    "inconclusive_streak": 0,
    "next_probe_after_days": 14,
    "verdict": "constraint_suspects",
@@ -1466,6 +1492,14 @@
       "core_query_only",
       "no_query_exclusions"
      ]
+    },
+    {
+     "date": "2026-08-27",
+     "verdict": "constraint_suspects",
+     "suspects": [
+      "core_query_only",
+      "no_query_exclusions"
+     ]
     }
    ]
   },
@@ -1477,12 +1511,12 @@
    "min_price": 400,
    "max_price": 2200,
    "config_fingerprint": "4ee1919846b12ff2",
-   "zero_result_streak": 137,
+   "zero_result_streak": 165,
    "first_probed": "2026-07-30",
-   "last_probed": "2026-07-30",
-   "probe_count": 1,
-   "inconclusive_streak": 1,
-   "next_probe_after_days": 28,
+   "last_probed": "2026-08-27",
+   "probe_count": 2,
+   "inconclusive_streak": 2,
+   "next_probe_after_days": 56,
    "verdict": "no_listings",
    "verdict_ko": "어떤 제약을 풀어도 0건 — eBay에 매물이 없다(진짜 희귀)",
    "suspects": [],
@@ -1557,6 +1591,11 @@
      "date": "2026-07-30",
      "verdict": "no_listings",
      "suspects": []
+    },
+    {
+     "date": "2026-08-27",
+     "verdict": "no_listings",
+     "suspects": []
     }
    ]
   },
@@ -1568,10 +1607,10 @@
    "min_price": 500,
    "max_price": 2500,
    "config_fingerprint": "3e5ece76df217dd4",
-   "zero_result_streak": 151,
+   "zero_result_streak": 165,
    "first_probed": "2026-07-30",
-   "last_probed": "2026-08-13",
-   "probe_count": 2,
+   "last_probed": "2026-08-27",
+   "probe_count": 3,
    "inconclusive_streak": 0,
    "next_probe_after_days": 14,
    "verdict": "constraint_suspects",
@@ -1662,6 +1701,13 @@
      "suspects": [
       "core_query_only"
      ]
+    },
+    {
+     "date": "2026-08-27",
+     "verdict": "constraint_suspects",
+     "suspects": [
+      "core_query_only"
+     ]
     }
    ]
   },
@@ -1673,10 +1719,10 @@
    "min_price": 30,
    "max_price": 220,
    "config_fingerprint": "b7dd2512c1a6fc24",
-   "zero_result_streak": 44,
+   "zero_result_streak": 58,
    "first_probed": "2026-07-30",
-   "last_probed": "2026-08-13",
-   "probe_count": 2,
+   "last_probed": "2026-08-27",
+   "probe_count": 3,
    "inconclusive_streak": 0,
    "next_probe_after_days": 14,
    "verdict": "constraint_suspects",
@@ -1745,7 +1791,7 @@
      "name": "core_query_only",
      "description_ko": "q를 모델명만 남기고 모든 제약 해제 — eBay에 매물 자체가 있는지 확인",
      "query": "Nikkormat EL2",
-     "total": 15,
+     "total": 14,
      "sample_titles": [
       "Nikon Nikkormat Nikomat EL /EL2 silver film advance lever. NOS. I",
       "Nikkormat Nikomat EL EL2 Foam Seal Kit | USCamera Premium Nikon Light Seal Kits",
@@ -1764,6 +1810,13 @@
     },
     {
      "date": "2026-08-13",
+     "verdict": "constraint_suspects",
+     "suspects": [
+      "core_query_only"
+     ]
+    },
+    {
+     "date": "2026-08-27",
      "verdict": "constraint_suspects",
      "suspects": [
       "core_query_only"
@@ -3423,10 +3476,10 @@
    "min_price": 200,
    "max_price": 1500,
    "config_fingerprint": "80be43c167e2694e",
-   "zero_result_streak": 3,
+   "zero_result_streak": 17,
    "first_probed": "2026-08-13",
-   "last_probed": "2026-08-13",
-   "probe_count": 1,
+   "last_probed": "2026-08-27",
+   "probe_count": 2,
    "inconclusive_streak": 0,
    "next_probe_after_days": 14,
    "verdict": "constraint_suspects",
@@ -3472,7 +3525,7 @@
      "name": "no_price_window",
      "description_ko": "가격창 제거 — min_price..max_price 밖의 매물 포함",
      "query": "Nikon F Photomic Tn body -lens -nikkor -filter -hood -cap -NASA",
-     "total": 6,
+     "total": 7,
      "sample_titles": [
       "Nikon F Photomic TN 35mm Film SLR Camera Body, Chrome, with Prism Finder",
       "Nikon F Photomic TN 35mm Film Camera Body, Chrome (Body Only)",
@@ -3500,7 +3553,7 @@
      "name": "core_query_only",
      "description_ko": "q를 모델명만 남기고 모든 제약 해제 — eBay에 매물 자체가 있는지 확인",
      "query": "Nikon F Photomic Tn",
-     "total": 66,
+     "total": 69,
      "sample_titles": [
       "Nikon/Miranda  -F Photomic TN/Sensorex - Original Camera Magazine Report - 1967",
       "Nikon -Nikkormat FTN/F Photomic TN - Original Camera Magazine Report - 1968",
@@ -3512,6 +3565,14 @@
    "history": [
     {
      "date": "2026-08-13",
+     "verdict": "constraint_suspects",
+     "suspects": [
+      "core_query_only",
+      "no_price_window"
+     ]
+    },
+    {
+     "date": "2026-08-27",
      "verdict": "constraint_suspects",
      "suspects": [
       "core_query_only",
