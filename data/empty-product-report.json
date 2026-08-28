@@ -1,5 +1,5 @@
 {
- "updated": "2026-08-27",
+ "updated": "2026-08-28",
  "products": {
   "af-nikkor-28mm-f14d-ed": {
    "product_id": "af-nikkor-28mm-f14d-ed",
@@ -1832,10 +1832,10 @@
    "min_price": 20,
    "max_price": 150,
    "config_fingerprint": "2b9f85dbd999ed89",
-   "zero_result_streak": 63,
+   "zero_result_streak": 4,
    "first_probed": "2026-07-31",
-   "last_probed": "2026-08-14",
-   "probe_count": 2,
+   "last_probed": "2026-08-28",
+   "probe_count": 3,
    "inconclusive_streak": 0,
    "next_probe_after_days": 14,
    "verdict": "constraint_suspects",
@@ -1890,11 +1890,11 @@
      "name": "no_category",
      "description_ko": "category_ids 제거 — 다른 eBay 카테고리에 올라온 매물 포함",
      "query": "Nikon EM body -lens -nikkor -filter -hood -cap",
-     "total": 231,
+     "total": 224,
      "sample_titles": [
       "Nikon EM 35mm SLR Camera Body, Black (AS IS - For Parts/Repair)",
-      "VINTAGE NIKON EM CAMERA BODY",
-      "[Near MINT] Nikon EM 35mm SLR Film Camera black Body From JAPAN"
+      "Nikon EM 35mm Film SLR Camera Body Only – Repair or Spares",
+      "Nikon EM 35mm SLR Film Camera Body Untested"
      ],
      "error": null
     },
@@ -1912,7 +1912,7 @@
      "name": "core_query_only",
      "description_ko": "q를 모델명만 남기고 모든 제약 해제 — eBay에 매물 자체가 있는지 확인",
      "query": "Nikon EM",
-     "total": 1565,
+     "total": 1613,
      "sample_titles": [
       "Nikon EM Photo Guide Genuine (EN)  system brochure booklet",
       "Booklet for Camera Nikon EM Photo Guide Help Lighting Angles Etc. How-To",
@@ -1939,6 +1939,15 @@
       "no_category",
       "no_query_exclusions"
      ]
+    },
+    {
+     "date": "2026-08-28",
+     "verdict": "constraint_suspects",
+     "suspects": [
+      "core_query_only",
+      "no_category",
+      "no_query_exclusions"
+     ]
     }
    ]
   },
@@ -1950,18 +1959,17 @@
    "min_price": 5000,
    "max_price": 30000,
    "config_fingerprint": "8bdb6943fa6704c8",
-   "zero_result_streak": 159,
+   "zero_result_streak": 173,
    "first_probed": "2026-07-31",
-   "last_probed": "2026-08-14",
-   "probe_count": 2,
+   "last_probed": "2026-08-28",
+   "probe_count": 3,
    "inconclusive_streak": 0,
    "next_probe_after_days": 14,
    "verdict": "constraint_suspects",
    "verdict_ko": "특정 제약을 풀자 매물이 나타났다",
    "suspects": [
     "core_query_only",
-    "no_category",
-    "no_price_window"
+    "no_category"
    ],
    "probes": [
     {
@@ -2000,10 +2008,8 @@
      "name": "no_price_window",
      "description_ko": "가격창 제거 — min_price..max_price 밖의 매물 포함",
      "query": "Nikon F High Speed camera -manual -brochure -poster -strap -case -finder",
-     "total": 1,
-     "sample_titles": [
-      "Quantaray Tech-10 High Speed 70-300mm f/4.0-5.6 Camera Lens  Nikkor Nikon  12C4"
-     ],
+     "total": 0,
+     "sample_titles": [],
      "error": null
     },
     {
@@ -2028,11 +2034,11 @@
      "name": "core_query_only",
      "description_ko": "q를 모델명만 남기고 모든 제약 해제 — eBay에 매물 자체가 있는지 확인",
      "query": "Nikon F High Speed",
-     "total": 74,
+     "total": 78,
      "sample_titles": [
-      "🔥Sigma High-Speed Zoom Multi-Coated Zoom f/3.5 f=80~200mm 62MM Lens For Nikon🔥",
-      "Quantaray Tech-10 High Speed 70-300mm f/4.0-5.6 Lens For Nikon",
-      "Sigma High-Speed Multi-Coated Lens 1:3.5~4 f=80~200mm Good Condition, Free Ship"
+      "Micro HDMI to HDMI Adapter High Speed Gold Plated Converter Adaptor for Nikon...",
+      "Sigma High-Speed Multi-Coated Lens 1:3.5~4 f=80~200mm Good Condition, Free Ship",
+      "Vintage Sigma High Speed Zoom Lens 1:3.5~4 F=80-200mm Multi Coated for Nikon"
      ],
      "error": null
     }
@@ -2055,6 +2061,14 @@
       "no_category",
       "no_price_window"
      ]
+    },
+    {
+     "date": "2026-08-28",
+     "verdict": "constraint_suspects",
+     "suspects": [
+      "core_query_only",
+      "no_category"
+     ]
     }
    ]
   },
@@ -2066,10 +2080,10 @@
    "min_price": 350,
    "max_price": 1500,
    "config_fingerprint": "a407ff526149c655",
-   "zero_result_streak": 159,
+   "zero_result_streak": 173,
    "first_probed": "2026-07-31",
-   "last_probed": "2026-08-14",
-   "probe_count": 2,
+   "last_probed": "2026-08-28",
+   "probe_count": 3,
    "inconclusive_streak": 0,
    "next_probe_after_days": 14,
    "verdict": "constraint_suspects",
@@ -2126,8 +2140,8 @@
      "total": 4,
      "sample_titles": [
       "Nikon F2A 25th Anniversary 35mm Film Camera (Body Only) Near Mint",
-      "RARE Nikon F2A 25th Anniversary SLR camera in matching box EXC F2 DP-11",
-      "25th Anniversary [MINT S/N 801xxx] Nikon F2 Photomic A F2A Film Camera FromJAPAN"
+      "25th Anniversary [MINT S/N 801xxx] Nikon F2 Photomic A F2A Film Camera FromJAPAN",
+      "Ultra Rare! No Plate [N MINT 803xxxx] Nikon F2A 25th Anniversary From JAPAN 664A"
      ],
      "error": null
     },
@@ -2145,9 +2159,9 @@
      "query": "Nikon F2A 25th Anniversary",
      "total": 4,
      "sample_titles": [
-      "RARE Nikon F2A 25th Anniversary SLR camera in matching box EXC F2 DP-11",
       "25th Anniversary [MINT S/N 801xxx] Nikon F2 Photomic A F2A Film Camera FromJAPAN",
-      "Ultra Rare! No Plate [N MINT 803xxxx] Nikon F2A 25th Anniversary From JAPAN 664A"
+      "Ultra Rare! No Plate [N MINT 803xxxx] Nikon F2A 25th Anniversary From JAPAN 664A",
+      "Nikon F2A 25th Anniversary 35mm Film Camera (Body Only) Near Mint"
      ],
      "error": null
     }
@@ -2168,6 +2182,14 @@
       "core_query_only",
       "no_category"
      ]
+    },
+    {
+     "date": "2026-08-28",
+     "verdict": "constraint_suspects",
+     "suspects": [
+      "core_query_only",
+      "no_category"
+     ]
     }
    ]
   },
@@ -2179,10 +2201,10 @@
    "min_price": 300,
    "max_price": 2500,
    "config_fingerprint": "c947872f1e1f7650",
-   "zero_result_streak": 148,
+   "zero_result_streak": 162,
    "first_probed": "2026-07-31",
-   "last_probed": "2026-08-14",
-   "probe_count": 2,
+   "last_probed": "2026-08-28",
+   "probe_count": 3,
    "inconclusive_streak": 0,
    "next_probe_after_days": 14,
    "verdict": "constraint_suspects",
@@ -2236,11 +2258,11 @@
      "name": "no_category",
      "description_ko": "category_ids 제거 — 다른 eBay 카테고리에 올라온 매물 포함",
      "query": "Nikon F2/T body -lens -nikkor -filter -hood -cap",
-     "total": 21,
+     "total": 20,
      "sample_titles": [
       "[Near MINT] Nikon F2T Titan Eye Level 35mm SLR Film Camera Body From JAPAN",
       "[Top MINT] Nikon F2 T Titan with Name SLR 35mm Film Camera Body From JAPAN",
-      "Nikon F2 Titan F2T Eye Level Black 35mm Film Camera Body From JAPAN Near MINT-"
+      "[MINT+++ ] Nikon F2 T Titan F2T Eye Level 35mm Film Camera Black Body From JAPAN"
      ],
      "error": null
     },
@@ -2256,7 +2278,7 @@
      "name": "core_query_only",
      "description_ko": "q를 모델명만 남기고 모든 제약 해제 — eBay에 매물 자체가 있는지 확인",
      "query": "Nikon F2/T",
-     "total": 67,
+     "total": 47,
      "sample_titles": [
       "HB-40 Bayonet Lens Hood for NIKON AF-S NIKKOR 24-70mm f/2.=t=",
       "HB-40 Bayonet Lens Hood for NIKON AF-S NIKKOR 24-70mm f/2.=t=",
@@ -2281,6 +2303,14 @@
       "core_query_only",
       "no_category"
      ]
+    },
+    {
+     "date": "2026-08-28",
+     "verdict": "constraint_suspects",
+     "suspects": [
+      "core_query_only",
+      "no_category"
+     ]
     }
    ]
   },
@@ -2292,12 +2322,12 @@
    "min_price": 1500,
    "max_price": 7000,
    "config_fingerprint": "9d7e15feaea89d95",
-   "zero_result_streak": 145,
+   "zero_result_streak": 173,
    "first_probed": "2026-07-31",
-   "last_probed": "2026-07-31",
-   "probe_count": 1,
-   "inconclusive_streak": 1,
-   "next_probe_after_days": 28,
+   "last_probed": "2026-08-28",
+   "probe_count": 2,
+   "inconclusive_streak": 2,
+   "next_probe_after_days": 56,
    "verdict": "no_listings",
    "verdict_ko": "어떤 제약을 풀어도 0건 — eBay에 매물이 없다(진짜 희귀)",
    "suspects": [],
@@ -2372,6 +2402,11 @@
      "date": "2026-07-31",
      "verdict": "no_listings",
      "suspects": []
+    },
+    {
+     "date": "2026-08-28",
+     "verdict": "no_listings",
+     "suspects": []
     }
    ]
   },
@@ -2383,10 +2418,10 @@
    "min_price": 150,
    "max_price": 800,
    "config_fingerprint": "ee7d07478dd4e66e",
-   "zero_result_streak": 165,
+   "zero_result_streak": 179,
    "first_probed": "2026-07-31",
-   "last_probed": "2026-08-14",
-   "probe_count": 2,
+   "last_probed": "2026-08-28",
+   "probe_count": 3,
    "inconclusive_streak": 0,
    "next_probe_after_days": 14,
    "verdict": "constraint_suspects",
@@ -2440,7 +2475,7 @@
      "name": "no_category",
      "description_ko": "category_ids 제거 — 다른 eBay 카테고리에 올라온 매물 포함",
      "query": "Nikon F3AF body -lens -nikkor -filter -hood -cap",
-     "total": 11,
+     "total": 10,
      "sample_titles": [
       "Nikon F3 AF Film Camera Body",
       "Nikon F3 AF Body with HP Finder",
@@ -2460,7 +2495,7 @@
      "name": "core_query_only",
      "description_ko": "q를 모델명만 남기고 모든 제약 해제 — eBay에 매물 자체가 있는지 확인",
      "query": "Nikon F3AF",
-     "total": 254,
+     "total": 236,
      "sample_titles": [
       "Nikon - N2000/F3AF - Original Camera Magazine Report - 1985",
       "Rare Advertising NIKON L 35 AF EM FE 2 F3 FG Program F3 AF FM 2 Cameras 1983",
@@ -2485,6 +2520,14 @@
       "core_query_only",
       "no_category"
      ]
+    },
+    {
+     "date": "2026-08-28",
+     "verdict": "constraint_suspects",
+     "suspects": [
+      "core_query_only",
+      "no_category"
+     ]
     }
    ]
   },
@@ -2496,10 +2539,10 @@
    "min_price": 2500,
    "max_price": 10000,
    "config_fingerprint": "4b3be15318482616",
-   "zero_result_streak": 159,
+   "zero_result_streak": 173,
    "first_probed": "2026-07-31",
-   "last_probed": "2026-08-14",
-   "probe_count": 2,
+   "last_probed": "2026-08-28",
+   "probe_count": 3,
    "inconclusive_streak": 0,
    "next_probe_after_days": 14,
    "verdict": "constraint_suspects",
@@ -2568,11 +2611,11 @@
      "name": "core_query_only",
      "description_ko": "q를 모델명만 남기고 모든 제약 해제 — eBay에 매물 자체가 있는지 확인",
      "query": "Nikon F3H",
-     "total": 6,
+     "total": 4,
      "sample_titles": [
       "Nikon F3 HP Eyepiece for High Eyepoint,FE-3 DE-4 DE-5 Finders,  F3HP F3T F3P F3H",
       "Nikon For Professionals Vintage Red Neck Shoulder Strap - Rare F3P F3T F3H",
-      "Nikon F3 HP Eyepiece - 21mm High Eyepoint FE-3 DE-4 DE-5 F3HP F3T F3P F3H"
+      "[*Top Mint in Box*] Nikon MF-12 Data Back for Nikon F3 F3H SLR – Quartz Date"
      ],
      "error": null
     }
@@ -2591,6 +2634,13 @@
      "suspects": [
       "core_query_only"
      ]
+    },
+    {
+     "date": "2026-08-28",
+     "verdict": "constraint_suspects",
+     "suspects": [
+      "core_query_only"
+     ]
     }
    ]
   },
@@ -2602,10 +2652,10 @@
    "min_price": 800,
    "max_price": 4000,
    "config_fingerprint": "cd0f28e0fcd356f5",
-   "zero_result_streak": 45,
+   "zero_result_streak": 59,
    "first_probed": "2026-07-31",
-   "last_probed": "2026-08-14",
-   "probe_count": 2,
+   "last_probed": "2026-08-28",
+   "probe_count": 3,
    "inconclusive_streak": 0,
    "next_probe_after_days": 14,
    "verdict": "constraint_suspects",
@@ -2659,11 +2709,11 @@
      "name": "no_category",
      "description_ko": "category_ids 제거 — 다른 eBay 카테고리에 올라온 매물 포함",
      "query": "Nikon F3P body -lens -nikkor -filter -hood -cap",
-     "total": 15,
+     "total": 17,
      "sample_titles": [
       "Nikon F3P 35mm Film SLR Camera Body Pro Press Model Black From Japan E0426",
-      "Nikon F3P Press HP Black 35mm SLR Film Camera Body Main Unit Black",
-      "Nikon F3P Press Professional 35mm Film SLR Camera Body F Mount Used H0706"
+      "Nikon F3P Press Professional 35mm Film SLR Camera Body F Mount Used H0706",
+      "Nikon F3P Press Body 35mm Film SLR Camera Professional Rare from Japan D0729"
      ],
      "error": null
     },
@@ -2679,7 +2729,7 @@
      "name": "core_query_only",
      "description_ko": "q를 모델명만 남기고 모든 제약 해제 — eBay에 매물 자체가 있는지 확인",
      "query": "Nikon F3P",
-     "total": 176,
+     "total": 164,
      "sample_titles": [
       "Drive Cap Replacement for Nikon F3 Motor Cover Fits for F3 F3T F3HP F3P",
       "Nikon F3 Motor Drive Cap Replacement Spare Cover Fits for F3 F3T F3HP F3P",
@@ -2699,6 +2749,14 @@
     },
     {
      "date": "2026-08-14",
+     "verdict": "constraint_suspects",
+     "suspects": [
+      "core_query_only",
+      "no_category"
+     ]
+    },
+    {
+     "date": "2026-08-28",
      "verdict": "constraint_suspects",
      "suspects": [
       "core_query_only",
