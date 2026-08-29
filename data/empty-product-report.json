@@ -1,5 +1,5 @@
 {
- "updated": "2026-08-28",
+ "updated": "2026-08-29",
  "products": {
   "af-nikkor-28mm-f14d-ed": {
    "product_id": "af-nikkor-28mm-f14d-ed",
@@ -2773,10 +2773,10 @@
    "min_price": 800,
    "max_price": 3000,
    "config_fingerprint": "c6c9e403b1925dfd",
-   "zero_result_streak": 103,
+   "zero_result_streak": 117,
    "first_probed": "2026-08-01",
-   "last_probed": "2026-08-15",
-   "probe_count": 2,
+   "last_probed": "2026-08-29",
+   "probe_count": 3,
    "inconclusive_streak": 0,
    "next_probe_after_days": 14,
    "verdict": "constraint_suspects",
@@ -2830,10 +2830,10 @@
      "name": "no_category",
      "description_ko": "category_ids 제거 — 다른 eBay 카테고리에 올라온 매물 포함",
      "query": "Nikon F6 body -lens -nikkor -filter -hood -cap",
-     "total": 54,
+     "total": 45,
      "sample_titles": [
       "[Excellent] Nikon F6 SLR 35mm Film Camera Body 7320#J0527F",
-      "New Firmware 2026 [MINT+++ /Strap] Nikon F6 35mm SLR Film Camera Body From JAPAN",
+      "Nikon F6 Body 35mm SLR Film Camera",
       "New Firmware [TOP MINT] Nikon F6 SLR 35mm Film Camera Body From JAPAN"
      ],
      "error": null
@@ -2850,7 +2850,7 @@
      "name": "core_query_only",
      "description_ko": "q를 모델명만 남기고 모든 제약 해제 — eBay에 매물 자체가 있는지 확인",
      "query": "Nikon F6",
-     "total": 530,
+     "total": 507,
      "sample_titles": [
       "Camera strap Lug Ring for Nikon FM2 F3 FE2 F4 F5 FA N90s F2 FM F6 EM FM10 F100",
       "Camera Lens cap cover for Nikon F F2 F3 FM2 FE2 F4 F5 F6 F100 F90 F801 F801s F60",
@@ -2875,6 +2875,14 @@
       "core_query_only",
       "no_category"
      ]
+    },
+    {
+     "date": "2026-08-29",
+     "verdict": "constraint_suspects",
+     "suspects": [
+      "core_query_only",
+      "no_category"
+     ]
     }
    ]
   },
@@ -2886,10 +2894,10 @@
    "min_price": 20,
    "max_price": 150,
    "config_fingerprint": "b92c680e5decb898",
-   "zero_result_streak": 166,
+   "zero_result_streak": 180,
    "first_probed": "2026-08-01",
-   "last_probed": "2026-08-15",
-   "probe_count": 2,
+   "last_probed": "2026-08-29",
+   "probe_count": 3,
    "inconclusive_streak": 0,
    "next_probe_after_days": 14,
    "verdict": "constraint_suspects",
@@ -2944,11 +2952,11 @@
      "name": "no_category",
      "description_ko": "category_ids 제거 — 다른 eBay 카테고리에 올라온 매물 포함",
      "query": "Nikon FE10 -lens -nikkor -filter -hood -cap",
-     "total": 9,
+     "total": 11,
      "sample_titles": [
-      "Nikon FE-10 Instruction Book, More Genuine Camera Guides & Owners Manuals Listed",
-      "[Exc+5] Nikon FE10 35mm SLR Film Camera Body From Japan #6832",
-      "Nikon FE10 FE-10 fe10 Instructions User Manual "
+      "Nikon FE10 FE-10 fe10 Instructions User Manual ",
+      "Photocopy of the Original Nikon FE10 Camera User Manual - Excellent",
+      "[Excellent] Nikon FE10 35mm SLR Film Camera Gold Body Only #41538"
      ],
      "error": null
     },
@@ -2966,11 +2974,11 @@
      "name": "core_query_only",
      "description_ko": "q를 모델명만 남기고 모든 제약 해제 — eBay에 매물 자체가 있는지 확인",
      "query": "Nikon FE10",
-     "total": 55,
+     "total": 49,
      "sample_titles": [
       "Battery for Vivitar V3800N, V-4000, Nikon FM-10, FE-10, Nikon EM, FG, FM ~ 10pcs",
-      "CR1/3N Battery fits Nikon FE10 FM2n FA, Dog Watch R6 R7, PIF-275 CR11108",
-      "NIKON FE10 Camera Service Repair Manual & Parts List PDF READ"
+      "NIKON FE10 Camera Service Repair Manual & Parts List PDF READ",
+      "Nikon FE10 Foam Seal Kit | USCamera Premium Custom Light Seal Kits "
      ],
      "error": null
     }
@@ -2987,6 +2995,15 @@
     },
     {
      "date": "2026-08-15",
+     "verdict": "constraint_suspects",
+     "suspects": [
+      "core_query_only",
+      "no_category",
+      "no_query_exclusions"
+     ]
+    },
+    {
+     "date": "2026-08-29",
      "verdict": "constraint_suspects",
      "suspects": [
       "core_query_only",
@@ -3124,10 +3141,10 @@
    "min_price": 3000,
    "max_price": 40000,
    "config_fingerprint": "027d45a271365735",
-   "zero_result_streak": 154,
+   "zero_result_streak": 168,
    "first_probed": "2026-08-01",
-   "last_probed": "2026-08-15",
-   "probe_count": 2,
+   "last_probed": "2026-08-29",
+   "probe_count": 3,
    "inconclusive_streak": 0,
    "next_probe_after_days": 14,
    "verdict": "constraint_suspects",
@@ -3196,11 +3213,11 @@
      "name": "core_query_only",
      "description_ko": "q를 모델명만 남기고 모든 제약 해제 — eBay에 매물 자체가 있는지 확인",
      "query": "Nikon Fisheye",
-     "total": 1723,
+     "total": 1676,
      "sample_titles": [
       "INSERT 74mm designed for Nikon 8-15mm fisheye lens",
-      "INSERT 62mm designed for Nikon 10.5 & 16mm fisheye lens",
-      "OPTEKA, \"52 mm 0.43x AF Wide Angle Lens,\" Brand New in Pouch and Original Box"
+      "OPTEKA, \"52 mm 0.43x AF Wide Angle Lens,\" Brand New in Pouch and Original Box",
+      "INSERT 62mm designed for Nikon 10.5 & 16mm fisheye lens"
      ],
      "error": null
     }
@@ -3219,6 +3236,13 @@
      "suspects": [
       "core_query_only"
      ]
+    },
+    {
+     "date": "2026-08-29",
+     "verdict": "constraint_suspects",
+     "suspects": [
+      "core_query_only"
+     ]
     }
    ]
   },
@@ -3230,15 +3254,18 @@
    "min_price": 1500,
    "max_price": 12000,
    "config_fingerprint": "2a6132d70bc61a4f",
-   "zero_result_streak": 140,
+   "zero_result_streak": 168,
    "first_probed": "2026-08-01",
-   "last_probed": "2026-08-01",
-   "probe_count": 1,
-   "inconclusive_streak": 1,
-   "next_probe_after_days": 28,
-   "verdict": "no_listings",
-   "verdict_ko": "어떤 제약을 풀어도 0건 — eBay에 매물이 없다(진짜 희귀)",
-   "suspects": [],
+   "last_probed": "2026-08-29",
+   "probe_count": 2,
+   "inconclusive_streak": 0,
+   "next_probe_after_days": 14,
+   "verdict": "constraint_suspects",
+   "verdict_ko": "특정 제약을 풀자 매물이 나타났다",
+   "suspects": [
+    "core_query_only",
+    "no_price_window"
+   ],
    "probes": [
     {
      "name": "baseline",
@@ -3276,8 +3303,10 @@
      "name": "no_price_window",
      "description_ko": "가격창 제거 — min_price..max_price 밖의 매물 포함",
      "query": "Nikon S3M rangefinder -lens -nikkor -filter -hood -cap",
-     "total": 0,
-     "sample_titles": [],
+     "total": 1,
+     "sample_titles": [
+      "Extremely Rare Nikon S3M 5cm F1.4 Black Rangefinder Camera w/Box Case Japan F/S"
+     ],
      "error": null
     },
     {
@@ -3300,8 +3329,10 @@
      "name": "core_query_only",
      "description_ko": "q를 모델명만 남기고 모든 제약 해제 — eBay에 매물 자체가 있는지 확인",
      "query": "Nikon S3M",
-     "total": 0,
-     "sample_titles": [],
+     "total": 1,
+     "sample_titles": [
+      "Extremely Rare Nikon S3M 5cm F1.4 Black Rangefinder Camera w/Box Case Japan F/S"
+     ],
      "error": null
     }
    ],
@@ -3310,6 +3341,14 @@
      "date": "2026-08-01",
      "verdict": "no_listings",
      "suspects": []
+    },
+    {
+     "date": "2026-08-29",
+     "verdict": "constraint_suspects",
+     "suspects": [
+      "core_query_only",
+      "no_price_window"
+     ]
     }
    ]
   },
@@ -3321,10 +3360,10 @@
    "min_price": 10000,
    "max_price": 40000,
    "config_fingerprint": "ec6654104ee93979",
-   "zero_result_streak": 45,
+   "zero_result_streak": 59,
    "first_probed": "2026-08-01",
-   "last_probed": "2026-08-15",
-   "probe_count": 2,
+   "last_probed": "2026-08-29",
+   "probe_count": 3,
    "inconclusive_streak": 0,
    "next_probe_after_days": 14,
    "verdict": "constraint_suspects",
@@ -3419,6 +3458,14 @@
       "core_query_only",
       "no_query_exclusions"
      ]
+    },
+    {
+     "date": "2026-08-29",
+     "verdict": "constraint_suspects",
+     "suspects": [
+      "core_query_only",
+      "no_query_exclusions"
+     ]
     }
    ]
   },
@@ -3430,10 +3477,10 @@
    "min_price": 50000,
    "max_price": 200000,
    "config_fingerprint": "59c7cb745902f007",
-   "zero_result_streak": 160,
+   "zero_result_streak": 174,
    "first_probed": "2026-08-01",
-   "last_probed": "2026-08-15",
-   "probe_count": 2,
+   "last_probed": "2026-08-29",
+   "probe_count": 3,
    "inconclusive_streak": 0,
    "next_probe_after_days": 14,
    "verdict": "constraint_suspects",
@@ -3519,6 +3566,13 @@
     },
     {
      "date": "2026-08-15",
+     "verdict": "constraint_suspects",
+     "suspects": [
+      "core_query_only"
+     ]
+    },
+    {
+     "date": "2026-08-29",
      "verdict": "constraint_suspects",
      "suspects": [
       "core_query_only"
