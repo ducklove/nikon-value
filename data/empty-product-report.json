@@ -1,5 +1,5 @@
 {
- "updated": "2026-08-29",
+ "updated": "2026-08-31",
  "products": {
   "af-nikkor-28mm-f14d-ed": {
    "product_id": "af-nikkor-28mm-f14d-ed",
@@ -1295,14 +1295,15 @@
    "config_fingerprint": "83b9f9e629286abe",
    "zero_result_streak": 3,
    "first_probed": "2026-07-30",
-   "last_probed": "2026-07-30",
-   "probe_count": 1,
+   "last_probed": "2026-08-31",
+   "probe_count": 2,
    "inconclusive_streak": 0,
    "next_probe_after_days": 14,
    "verdict": "constraint_suspects",
    "verdict_ko": "특정 제약을 풀자 매물이 나타났다",
    "suspects": [
-    "core_query_only"
+    "core_query_only",
+    "no_delivery_country"
    ],
    "probes": [
     {
@@ -1325,8 +1326,10 @@
      "name": "no_delivery_country",
      "description_ko": "deliveryCountry:KR 제거 — 한국 배송을 하지 않는 셀러 포함",
      "query": "Nikon D2Hs body",
-     "total": 0,
-     "sample_titles": [],
+     "total": 1,
+     "sample_titles": [
+      "Nikon D D2HS 4.1MP Digital SLR Camera (Body Only)"
+     ],
      "error": null
     },
     {
@@ -1365,10 +1368,10 @@
      "name": "core_query_only",
      "description_ko": "q를 모델명만 남기고 모든 제약 해제 — eBay에 매물 자체가 있는지 확인",
      "query": "Nikon D2Hs",
-     "total": 9,
+     "total": 11,
      "sample_titles": [
-      "Genuine Nikon EG-D100 Audio Video Cable P/N 25271 5' D2HS D200 D300 D50",
       "Nikon D2H/D2Hs/D2X/D2Xs Apron Bottom Rubber Unit NEW Genuine Part. 1C998-451",
+      "Nikon D2HS 4.1MP DSLR Camera Body Black - NO POWER - PARTS / REPAIR",
       "Nikon D2hs 4.1 Megapixel Digital SLR Camera Body AS IS PARTS/REPAIR"
      ],
      "error": null
@@ -1380,6 +1383,14 @@
      "verdict": "constraint_suspects",
      "suspects": [
       "core_query_only"
+     ]
+    },
+    {
+     "date": "2026-08-31",
+     "verdict": "constraint_suspects",
+     "suspects": [
+      "core_query_only",
+      "no_delivery_country"
      ]
     }
    ]
