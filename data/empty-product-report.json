@@ -1,5 +1,5 @@
 {
- "updated": "2026-09-09",
+ "updated": "2026-09-10",
  "products": {
   "af-nikkor-28mm-f14d-ed": {
    "product_id": "af-nikkor-28mm-f14d-ed",
@@ -1228,10 +1228,10 @@
    "min_price": 1000,
    "max_price": 8000,
    "config_fingerprint": "a62c1eb49bf3a531",
-   "zero_result_streak": 167,
+   "zero_result_streak": 181,
    "first_probed": "2026-07-30",
-   "last_probed": "2026-08-27",
-   "probe_count": 3,
+   "last_probed": "2026-09-10",
+   "probe_count": 4,
    "inconclusive_streak": 0,
    "next_probe_after_days": 14,
    "verdict": "constraint_suspects",
@@ -1300,11 +1300,11 @@
      "name": "core_query_only",
      "description_ko": "q를 모델명만 남기고 모든 제약 해제 — eBay에 매물 자체가 있는지 확인",
      "query": "Nikon I",
-     "total": 1477,
+     "total": 1508,
      "sample_titles": [
       "Tested Working Nikon Nuvis Mini I APS *SHARP* Point & Shoot Compact Film Camera",
-      "Nikon Nuvis 125i APS Camera (Untested)",
-      "Sandisk SD Extreme PRO 32 64 128 256 GB 512GB 1TB Memory Card Nikon Canon UHS-I"
+      "Sandisk SD Extreme PRO 32 64 128 256 GB 512GB 1TB Memory Card Nikon Canon UHS-I",
+      "Camera Lens cap cover for Minolta Uniomat I II III 1 2 3 Ansco Anscoset I II III"
      ],
      "error": null
     }
@@ -1327,6 +1327,13 @@
     },
     {
      "date": "2026-08-27",
+     "verdict": "constraint_suspects",
+     "suspects": [
+      "core_query_only"
+     ]
+    },
+    {
+     "date": "2026-09-10",
      "verdict": "constraint_suspects",
      "suspects": [
       "core_query_only"
@@ -1452,17 +1459,16 @@
    "min_price": 300,
    "max_price": 2000,
    "config_fingerprint": "7ca0d2d3e8b0ffda",
-   "zero_result_streak": 165,
+   "zero_result_streak": 179,
    "first_probed": "2026-07-30",
-   "last_probed": "2026-08-27",
-   "probe_count": 3,
+   "last_probed": "2026-09-10",
+   "probe_count": 4,
    "inconclusive_streak": 0,
    "next_probe_after_days": 14,
    "verdict": "constraint_suspects",
    "verdict_ko": "특정 제약을 풀자 매물이 나타났다",
    "suspects": [
-    "core_query_only",
-    "no_query_exclusions"
+    "core_query_only"
    ],
    "probes": [
     {
@@ -1517,10 +1523,8 @@
      "name": "no_query_exclusions",
      "description_ko": "q의 `-제외어` 제거 — 제외어가 과했는지 확인",
      "query": "Nikon E2 E2S DSLR body",
-     "total": 1,
-     "sample_titles": [
-      "Nikon E2s 1st Digital Full Frame Camera body."
-     ],
+     "total": 0,
+     "sample_titles": [],
      "error": null
     },
     {
@@ -1559,6 +1563,13 @@
      "suspects": [
       "core_query_only",
       "no_query_exclusions"
+     ]
+    },
+    {
+     "date": "2026-09-10",
+     "verdict": "constraint_suspects",
+     "suspects": [
+      "core_query_only"
      ]
     }
    ]
@@ -1667,10 +1678,10 @@
    "min_price": 500,
    "max_price": 2500,
    "config_fingerprint": "3e5ece76df217dd4",
-   "zero_result_streak": 165,
+   "zero_result_streak": 179,
    "first_probed": "2026-07-30",
-   "last_probed": "2026-08-27",
-   "probe_count": 3,
+   "last_probed": "2026-09-10",
+   "probe_count": 4,
    "inconclusive_streak": 0,
    "next_probe_after_days": 14,
    "verdict": "constraint_suspects",
@@ -1768,6 +1779,13 @@
      "suspects": [
       "core_query_only"
      ]
+    },
+    {
+     "date": "2026-09-10",
+     "verdict": "constraint_suspects",
+     "suspects": [
+      "core_query_only"
+     ]
     }
    ]
   },
@@ -1779,10 +1797,10 @@
    "min_price": 30,
    "max_price": 220,
    "config_fingerprint": "b7dd2512c1a6fc24",
-   "zero_result_streak": 58,
+   "zero_result_streak": 72,
    "first_probed": "2026-07-30",
-   "last_probed": "2026-08-27",
-   "probe_count": 3,
+   "last_probed": "2026-09-10",
+   "probe_count": 4,
    "inconclusive_streak": 0,
    "next_probe_after_days": 14,
    "verdict": "constraint_suspects",
@@ -1877,6 +1895,13 @@
     },
     {
      "date": "2026-08-27",
+     "verdict": "constraint_suspects",
+     "suspects": [
+      "core_query_only"
+     ]
+    },
+    {
+     "date": "2026-09-10",
      "verdict": "constraint_suspects",
      "suspects": [
       "core_query_only"
@@ -3648,10 +3673,10 @@
    "min_price": 200,
    "max_price": 1500,
    "config_fingerprint": "80be43c167e2694e",
-   "zero_result_streak": 17,
+   "zero_result_streak": 31,
    "first_probed": "2026-08-13",
-   "last_probed": "2026-08-27",
-   "probe_count": 2,
+   "last_probed": "2026-09-10",
+   "probe_count": 3,
    "inconclusive_streak": 0,
    "next_probe_after_days": 14,
    "verdict": "constraint_suspects",
@@ -3697,9 +3722,9 @@
      "name": "no_price_window",
      "description_ko": "가격창 제거 — min_price..max_price 밖의 매물 포함",
      "query": "Nikon F Photomic Tn body -lens -nikkor -filter -hood -cap -NASA",
-     "total": 7,
+     "total": 6,
      "sample_titles": [
-      "Nikon F Photomic TN 35mm Film SLR Camera Body, Chrome, with Prism Finder",
+      "Nikon F Photomic TN SLR Camera Body Chrome *Read #426",
       "Nikon F Photomic TN 35mm Film Camera Body, Chrome (Body Only)",
       "Nikon F Photomic TN 35mm Film SLR Camera Body, Chrome (Japan)"
      ],
@@ -3729,7 +3754,7 @@
      "sample_titles": [
       "Nikon/Miranda  -F Photomic TN/Sensorex - Original Camera Magazine Report - 1967",
       "Nikon -Nikkormat FTN/F Photomic TN - Original Camera Magazine Report - 1968",
-      "Nikon Photomic TN Finder for Nikon F Instruction Manual Reprint"
+      "1967 Nikon F Camera Vintage Print Ad Career Camera Photography Photomic TN"
      ],
      "error": null
     }
@@ -3745,6 +3770,14 @@
     },
     {
      "date": "2026-08-27",
+     "verdict": "constraint_suspects",
+     "suspects": [
+      "core_query_only",
+      "no_price_window"
+     ]
+    },
+    {
+     "date": "2026-09-10",
      "verdict": "constraint_suspects",
      "suspects": [
       "core_query_only",
