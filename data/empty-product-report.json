@@ -1,5 +1,5 @@
 {
- "updated": "2026-09-14",
+ "updated": "2026-09-17",
  "products": {
   "af-nikkor-28mm-f14d-ed": {
    "product_id": "af-nikkor-28mm-f14d-ed",
@@ -3883,6 +3883,105 @@
      "suspects": [
       "core_query_only",
       "no_price_window"
+     ]
+    }
+   ]
+  },
+  "uv-nikkor-105mm-f45": {
+   "product_id": "uv-nikkor-105mm-f45",
+   "name_en": "Nikon UV-Nikkor 105mm f/4.5",
+   "query": "Nikon UV Nikkor 105mm f/4.5 -manual -brochure -case",
+   "category_id": "78997",
+   "min_price": 2000,
+   "max_price": 12000,
+   "config_fingerprint": "3cd29aa0f5d15998",
+   "zero_result_streak": 3,
+   "first_probed": "2026-09-17",
+   "last_probed": "2026-09-17",
+   "probe_count": 1,
+   "inconclusive_streak": 0,
+   "next_probe_after_days": 14,
+   "verdict": "constraint_suspects",
+   "verdict_ko": "특정 제약을 풀자 매물이 나타났다",
+   "suspects": [
+    "core_query_only"
+   ],
+   "probes": [
+    {
+     "name": "baseline",
+     "description_ko": "정규 수집과 완전히 동일한 요청(기준선)",
+     "query": "Nikon UV Nikkor 105mm f/4.5 -manual -brochure -case",
+     "total": 0,
+     "sample_titles": [],
+     "error": null
+    },
+    {
+     "name": "no_condition",
+     "description_ko": "conditionIds 제거 — USED(3000) 외 상태(Open box·Refurbished·Very Good 등) 포함",
+     "query": "Nikon UV Nikkor 105mm f/4.5 -manual -brochure -case",
+     "total": 0,
+     "sample_titles": [],
+     "error": null
+    },
+    {
+     "name": "no_delivery_country",
+     "description_ko": "deliveryCountry:KR 제거 — 한국 배송을 하지 않는 셀러 포함",
+     "query": "Nikon UV Nikkor 105mm f/4.5 -manual -brochure -case",
+     "total": 0,
+     "sample_titles": [],
+     "error": null
+    },
+    {
+     "name": "no_buying_options",
+     "description_ko": "buyingOptions 제거 — 경매 매물 포함",
+     "query": "Nikon UV Nikkor 105mm f/4.5 -manual -brochure -case",
+     "total": 0,
+     "sample_titles": [],
+     "error": null
+    },
+    {
+     "name": "no_price_window",
+     "description_ko": "가격창 제거 — min_price..max_price 밖의 매물 포함",
+     "query": "Nikon UV Nikkor 105mm f/4.5 -manual -brochure -case",
+     "total": 0,
+     "sample_titles": [],
+     "error": null
+    },
+    {
+     "name": "no_category",
+     "description_ko": "category_ids 제거 — 다른 eBay 카테고리에 올라온 매물 포함",
+     "query": "Nikon UV Nikkor 105mm f/4.5 -manual -brochure -case",
+     "total": 0,
+     "sample_titles": [],
+     "error": null
+    },
+    {
+     "name": "no_query_exclusions",
+     "description_ko": "q의 `-제외어` 제거 — 제외어가 과했는지 확인",
+     "query": "Nikon UV Nikkor 105mm f/4.5",
+     "total": 0,
+     "sample_titles": [],
+     "error": null
+    },
+    {
+     "name": "core_query_only",
+     "description_ko": "q를 모델명만 남기고 모든 제약 해제 — eBay에 매물 자체가 있는지 확인",
+     "query": "Nikon UV Nikkor 105mm",
+     "total": 22,
+     "sample_titles": [
+      "62mm UV Filter for Nikon Nikkor 70-300mm f/4-5.6G, 105mm f/2.8G IF-ED AF-S Lens",
+      "RISE (UK) 105mm Digital UV ( Ultraviolet ) Filter for Nikon Micro-Nikkor 105mm",
+      "UV FILTER+LENS CAP to Lens Nikon Micro-Nikkor 105mm f/2.8 Lens"
+     ],
+     "error": null
+    }
+   ],
+   "history": [
+    {
+     "date": "2026-09-17",
+     "verdict": "constraint_suspects",
+     "suspects": [
+      "core_query_only"
      ]
     }
    ]
