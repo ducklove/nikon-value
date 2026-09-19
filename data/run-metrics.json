@@ -1,20 +1,6 @@
 {
  "runs": [
   {
-   "started_at": "2026-08-15T01:19:47+00:00",
-   "products_processed": 331,
-   "products_failed": 0,
-   "ebay_search_calls": 364,
-   "ebay_http_requests": 447,
-   "ebay_rate_limited": 0,
-   "ebay_diagnostic_probes": 48,
-   "llm_calls": 0,
-   "llm_cache_hits": 0,
-   "llm_cache_misses": 0,
-   "max_price_expansions": 33,
-   "duration_seconds": 306.38
-  },
-  {
    "started_at": "2026-08-15T03:40:22+00:00",
    "products_processed": 331,
    "products_failed": 0,
@@ -2799,6 +2785,20 @@
    "llm_cache_misses": 0,
    "max_price_expansions": 16,
    "duration_seconds": 276.44
+  },
+  {
+   "started_at": "2026-09-19T10:29:54+00:00",
+   "products_processed": 331,
+   "products_failed": 0,
+   "ebay_search_calls": 348,
+   "ebay_http_requests": 380,
+   "ebay_rate_limited": 0,
+   "ebay_diagnostic_probes": 0,
+   "llm_calls": 0,
+   "llm_cache_hits": 0,
+   "llm_cache_misses": 0,
+   "max_price_expansions": 17,
+   "duration_seconds": 296.5
   }
  ]
 }
