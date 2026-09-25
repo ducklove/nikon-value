@@ -1,5 +1,5 @@
 {
- "updated": "2026-09-24",
+ "updated": "2026-09-25",
  "products": {
   "af-nikkor-28mm-f14d-ed": {
    "product_id": "af-nikkor-28mm-f14d-ed",
@@ -2000,10 +2000,10 @@
    "min_price": 20,
    "max_price": 150,
    "config_fingerprint": "2b9f85dbd999ed89",
-   "zero_result_streak": 18,
+   "zero_result_streak": 32,
    "first_probed": "2026-07-31",
-   "last_probed": "2026-09-11",
-   "probe_count": 4,
+   "last_probed": "2026-09-25",
+   "probe_count": 5,
    "inconclusive_streak": 0,
    "next_probe_after_days": 14,
    "verdict": "constraint_suspects",
@@ -2058,11 +2058,11 @@
      "name": "no_category",
      "description_ko": "category_ids 제거 — 다른 eBay 카테고리에 올라온 매물 포함",
      "query": "Nikon EM body -lens -nikkor -filter -hood -cap",
-     "total": 227,
+     "total": 225,
      "sample_titles": [
       "Nikon EM 35mm SLR Film Camera Body Untested",
-      "【EXC+5】 Nikon EM Black SLR 35mm Film Camera Body w/ Genuine Strap from Japan 544",
-      "[Exc+5] Nikon EM 35mm Black SLR Film Camera Body #7101"
+      "VINTAGE NIKON EM CAMERA BODY",
+      "Nikon EM 35mm Film SLR Manual Focus Camera Body Black Japan"
      ],
      "error": null
     },
@@ -2072,7 +2072,7 @@
      "query": "Nikon EM body",
      "total": 1,
      "sample_titles": [
-      "【N MINT w/ Strap】 Nikkor Ai-s Ais 50mm f1.8 Lens + Nikon EM Body from JAPAN J00"
+      "▶️【N MINT w/ Strap】 Nikkor Ai-s Ais 50mm f1.8 Lens + Nikon EM Body from JAPAN"
      ],
      "error": null
     },
@@ -2080,7 +2080,7 @@
      "name": "core_query_only",
      "description_ko": "q를 모델명만 남기고 모든 제약 해제 — eBay에 매물 자체가 있는지 확인",
      "query": "Nikon EM",
-     "total": 1478,
+     "total": 1457,
      "sample_titles": [
       "Nikon EM Photo Guide Genuine (EN)  system brochure booklet",
       "Booklet for Camera Nikon EM Photo Guide Help Lighting Angles Etc. How-To",
@@ -2125,6 +2125,15 @@
       "no_category",
       "no_query_exclusions"
      ]
+    },
+    {
+     "date": "2026-09-25",
+     "verdict": "constraint_suspects",
+     "suspects": [
+      "core_query_only",
+      "no_category",
+      "no_query_exclusions"
+     ]
     }
    ]
   },
@@ -2136,10 +2145,10 @@
    "min_price": 5000,
    "max_price": 30000,
    "config_fingerprint": "8bdb6943fa6704c8",
-   "zero_result_streak": 187,
+   "zero_result_streak": 201,
    "first_probed": "2026-07-31",
-   "last_probed": "2026-09-11",
-   "probe_count": 4,
+   "last_probed": "2026-09-25",
+   "probe_count": 5,
    "inconclusive_streak": 0,
    "next_probe_after_days": 14,
    "verdict": "constraint_suspects",
@@ -2211,11 +2220,11 @@
      "name": "core_query_only",
      "description_ko": "q를 모델명만 남기고 모든 제약 해제 — eBay에 매물 자체가 있는지 확인",
      "query": "Nikon F High Speed",
-     "total": 83,
+     "total": 78,
      "sample_titles": [
-      "Micro HDMI to HDMI Adapter High Speed Gold Plated Converter Adaptor for Nikon...",
       "Sigma High-Speed Multi-Coated Lens 1:3.5~4 f=80~200mm Good Condition, Free Ship",
-      "Vintage Sigma High Speed Zoom Lens 1:3.5~4 F=80-200mm Multi Coated for Nikon"
+      "Vintage Sigma High Speed Zoom Lens 1:3.5~4 F=80-200mm Multi Coated for Nikon",
+      "Quantaray Tech-10 High Speed 70-300mm f/4.0-5.6 Lens For Nikon"
      ],
      "error": null
     }
@@ -2254,6 +2263,14 @@
       "core_query_only",
       "no_category"
      ]
+    },
+    {
+     "date": "2026-09-25",
+     "verdict": "constraint_suspects",
+     "suspects": [
+      "core_query_only",
+      "no_category"
+     ]
     }
    ]
   },
@@ -2265,10 +2282,10 @@
    "min_price": 350,
    "max_price": 1500,
    "config_fingerprint": "a407ff526149c655",
-   "zero_result_streak": 187,
+   "zero_result_streak": 201,
    "first_probed": "2026-07-31",
-   "last_probed": "2026-09-11",
-   "probe_count": 4,
+   "last_probed": "2026-09-25",
+   "probe_count": 5,
    "inconclusive_streak": 0,
    "next_probe_after_days": 14,
    "verdict": "constraint_suspects",
@@ -2324,9 +2341,9 @@
      "query": "Nikon F2A 25th Anniversary -manual -brochure -case -strap -finder",
      "total": 5,
      "sample_titles": [
-      "25th Anniversary [MINT S/N 801xxx] Nikon F2 Photomic A F2A Film Camera FromJAPAN",
-      "Ultra Rare! No Plate [N MINT 803xxxx] Nikon F2A 25th Anniversary From JAPAN 664A",
-      "Nikon F2A 25th Anniversary 35mm Film Camera (Body Only) Near Mint"
+      "Nikon F2A Photomic 25th Anniversary 35mm SLR Film Camera w/ 50mm 1.8",
+      "RARE Nikon F2A 25th Anniversary SLR camera in matching box EXC F2 DP-11",
+      "25th Anniversary [Top MINT] Nikon F2 Photomic A F2A 35mm Film Camera From JAPAN"
      ],
      "error": null
     },
@@ -2345,8 +2362,8 @@
      "total": 5,
      "sample_titles": [
       "RARE Nikon F2A 25th Anniversary SLR camera in matching box EXC F2 DP-11",
-      "25th Anniversary [MINT S/N 801xxx] Nikon F2 Photomic A F2A Film Camera FromJAPAN",
-      "Ultra Rare! No Plate [N MINT 803xxxx] Nikon F2A 25th Anniversary From JAPAN 664A"
+      "25th Anniversary [Top MINT] Nikon F2 Photomic A F2A 35mm Film Camera From JAPAN",
+      "25th Anniversary [MINT S/N 801xxx] Nikon F2 Photomic A F2A Film Camera FromJAPAN"
      ],
      "error": null
     }
@@ -2383,6 +2400,14 @@
       "core_query_only",
       "no_category"
      ]
+    },
+    {
+     "date": "2026-09-25",
+     "verdict": "constraint_suspects",
+     "suspects": [
+      "core_query_only",
+      "no_category"
+     ]
     }
    ]
   },
@@ -2394,10 +2419,10 @@
    "min_price": 300,
    "max_price": 2500,
    "config_fingerprint": "c947872f1e1f7650",
-   "zero_result_streak": 176,
+   "zero_result_streak": 190,
    "first_probed": "2026-07-31",
-   "last_probed": "2026-09-11",
-   "probe_count": 4,
+   "last_probed": "2026-09-25",
+   "probe_count": 5,
    "inconclusive_streak": 0,
    "next_probe_after_days": 14,
    "verdict": "constraint_suspects",
@@ -2451,11 +2476,11 @@
      "name": "no_category",
      "description_ko": "category_ids 제거 — 다른 eBay 카테고리에 올라온 매물 포함",
      "query": "Nikon F2/T body -lens -nikkor -filter -hood -cap",
-     "total": 21,
+     "total": 22,
      "sample_titles": [
-      "[Near MINT] Nikon F2T Titan Eye Level 35mm SLR Film Camera Body From JAPAN",
-      "[Top MINT] Nikon F2 T Titan with Name SLR 35mm Film Camera Body From JAPAN",
-      "[MINT w/Case] Nikon F2T Titan Photomic A DP-11 35mm Film SLR Camera Body Japan"
+      "Nikon F2 Titan F2T Eye Level Black 35mm Film Camera Body From JAPAN Near MINT-",
+      "[MINT w/Case] Nikon F2T Titan Photomic A DP-11 35mm Film SLR Camera Body Japan",
+      "[Top MINT] Nikon F2 T Titan with Name SLR 35mm Film Camera Body From JAPAN"
      ],
      "error": null
     },
@@ -2471,7 +2496,7 @@
      "name": "core_query_only",
      "description_ko": "q를 모델명만 남기고 모든 제약 해제 — eBay에 매물 자체가 있는지 확인",
      "query": "Nikon F2/T",
-     "total": 68,
+     "total": 63,
      "sample_titles": [
       "HB-40 Bayonet Lens Hood for NIKON AF-S NIKKOR 24-70mm f/2.=t=",
       "HB-40 Bayonet Lens Hood for NIKON AF-S NIKKOR 24-70mm f/2.=t=",
@@ -2507,6 +2532,14 @@
     },
     {
      "date": "2026-09-11",
+     "verdict": "constraint_suspects",
+     "suspects": [
+      "core_query_only",
+      "no_category"
+     ]
+    },
+    {
+     "date": "2026-09-25",
      "verdict": "constraint_suspects",
      "suspects": [
       "core_query_only",
@@ -2619,10 +2652,10 @@
    "min_price": 150,
    "max_price": 800,
    "config_fingerprint": "ee7d07478dd4e66e",
-   "zero_result_streak": 193,
+   "zero_result_streak": 207,
    "first_probed": "2026-07-31",
-   "last_probed": "2026-09-11",
-   "probe_count": 4,
+   "last_probed": "2026-09-25",
+   "probe_count": 5,
    "inconclusive_streak": 0,
    "next_probe_after_days": 14,
    "verdict": "constraint_suspects",
@@ -2676,7 +2709,7 @@
      "name": "no_category",
      "description_ko": "category_ids 제거 — 다른 eBay 카테고리에 올라온 매물 포함",
      "query": "Nikon F3AF body -lens -nikkor -filter -hood -cap",
-     "total": 6,
+     "total": 9,
      "sample_titles": [
       "Nikon F3 AF Film Camera Body",
       "Nikon F3 AF Body with HP Finder",
@@ -2696,7 +2729,7 @@
      "name": "core_query_only",
      "description_ko": "q를 모델명만 남기고 모든 제약 해제 — eBay에 매물 자체가 있는지 확인",
      "query": "Nikon F3AF",
-     "total": 244,
+     "total": 247,
      "sample_titles": [
       "How to Select & use Nikon Cameras FA, FE, FE2, FG, FM2, EM, F3, F3AF, F3T, F3HP",
       "Nikon - N2000/F3AF - Original Camera Magazine Report - 1985",
@@ -2737,6 +2770,14 @@
       "core_query_only",
       "no_category"
      ]
+    },
+    {
+     "date": "2026-09-25",
+     "verdict": "constraint_suspects",
+     "suspects": [
+      "core_query_only",
+      "no_category"
+     ]
     }
    ]
   },
@@ -2748,10 +2789,10 @@
    "min_price": 2500,
    "max_price": 10000,
    "config_fingerprint": "4b3be15318482616",
-   "zero_result_streak": 187,
+   "zero_result_streak": 201,
    "first_probed": "2026-07-31",
-   "last_probed": "2026-09-11",
-   "probe_count": 4,
+   "last_probed": "2026-09-25",
+   "probe_count": 5,
    "inconclusive_streak": 0,
    "next_probe_after_days": 14,
    "verdict": "constraint_suspects",
@@ -2823,8 +2864,8 @@
      "total": 6,
      "sample_titles": [
       "Nikon F3 HP Eyepiece for High Eyepoint,FE-3 DE-4 DE-5 Finders,  F3HP F3T F3P F3H",
-      "Nikon For Professionals Vintage Red Neck Shoulder Strap - Rare F3P F3T F3H",
-      "Nikon F3 HP Eyepiece - 21mm High Eyepoint FE-3 DE-4 DE-5 F3HP F3T F3P F3H"
+      "Nikon F3 HP Eyepiece - 21mm High Eyepoint FE-3 DE-4 DE-5 F3HP F3T F3P F3H",
+      "Nikon MF-14 Date Data Film Back for the F3 F3T F3P F3HP F3AF F3H HP MF14"
      ],
      "error": null
     }
@@ -2857,6 +2898,13 @@
      "suspects": [
       "core_query_only"
      ]
+    },
+    {
+     "date": "2026-09-25",
+     "verdict": "constraint_suspects",
+     "suspects": [
+      "core_query_only"
+     ]
     }
    ]
   },
@@ -2868,10 +2916,10 @@
    "min_price": 800,
    "max_price": 4000,
    "config_fingerprint": "cd0f28e0fcd356f5",
-   "zero_result_streak": 73,
+   "zero_result_streak": 87,
    "first_probed": "2026-07-31",
-   "last_probed": "2026-09-11",
-   "probe_count": 4,
+   "last_probed": "2026-09-25",
+   "probe_count": 5,
    "inconclusive_streak": 0,
    "next_probe_after_days": 14,
    "verdict": "constraint_suspects",
@@ -2925,11 +2973,11 @@
      "name": "no_category",
      "description_ko": "category_ids 제거 — 다른 eBay 카테고리에 올라온 매물 포함",
      "query": "Nikon F3P body -lens -nikkor -filter -hood -cap",
-     "total": 9,
+     "total": 7,
      "sample_titles": [
-      "Nikon F3P HP High Eyepoint 35mm SLR Film Camera Body",
       "Nikon F3P 35mm Film SLR Camera Body Pro Press Model Black From Japan E0426",
-      "[Almost Unused in Box] Nikon F3P Press 35mm SLR Film Camera Body From JAPAN"
+      "Nikon F3P Press Body Black 35mm Film Camera Professional SLR Vintage M0922",
+      "Nikon F3P Press 35mm SLR Film Camera Body w/ MD-4 Motor Drive from Japan E0530"
      ],
      "error": null
     },
@@ -2945,11 +2993,11 @@
      "name": "core_query_only",
      "description_ko": "q를 모델명만 남기고 모든 제약 해제 — eBay에 매물 자체가 있는지 확인",
      "query": "Nikon F3P",
-     "total": 165,
+     "total": 169,
      "sample_titles": [
       "Drive Cap Replacement for Nikon F3 Motor Cover Fits for F3 F3T F3HP F3P",
       "Nikon F3 Motor Drive Cap Replacement Spare Cover Fits for F3 F3T F3HP F3P",
-      "Nikon F3 Motor Drive Cap Replacement Spare Cover Fits for F3 F3T F3HP F3P"
+      "Vivitar Auto Thyristor 2600D SHOE MOUNTS FLASH.NIKON F3,F3HP,F3P,F3T & Digitals"
      ],
      "error": null
     }
@@ -2981,6 +3029,14 @@
     },
     {
      "date": "2026-09-11",
+     "verdict": "constraint_suspects",
+     "suspects": [
+      "core_query_only",
+      "no_category"
+     ]
+    },
+    {
+     "date": "2026-09-25",
      "verdict": "constraint_suspects",
      "suspects": [
       "core_query_only",
