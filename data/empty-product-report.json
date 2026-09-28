@@ -1,5 +1,5 @@
 {
- "updated": "2026-09-26",
+ "updated": "2026-09-28",
  "products": {
   "af-nikkor-28mm-f14d-ed": {
    "product_id": "af-nikkor-28mm-f14d-ed",
@@ -1411,17 +1411,16 @@
    "min_price": 100,
    "max_price": 500,
    "config_fingerprint": "83b9f9e629286abe",
-   "zero_result_streak": 17,
+   "zero_result_streak": 31,
    "first_probed": "2026-07-30",
-   "last_probed": "2026-09-14",
-   "probe_count": 3,
+   "last_probed": "2026-09-28",
+   "probe_count": 4,
    "inconclusive_streak": 0,
    "next_probe_after_days": 14,
    "verdict": "constraint_suspects",
    "verdict_ko": "특정 제약을 풀자 매물이 나타났다",
    "suspects": [
-    "core_query_only",
-    "no_delivery_country"
+    "core_query_only"
    ],
    "probes": [
     {
@@ -1444,10 +1443,8 @@
      "name": "no_delivery_country",
      "description_ko": "deliveryCountry:KR 제거 — 한국 배송을 하지 않는 셀러 포함",
      "query": "Nikon D2Hs body",
-     "total": 1,
-     "sample_titles": [
-      "Nikon D D2HS 4.1MP Digital SLR Camera (Body Only)"
-     ],
+     "total": 0,
+     "sample_titles": [],
      "error": null
     },
     {
@@ -1517,6 +1514,13 @@
      "suspects": [
       "core_query_only",
       "no_delivery_country"
+     ]
+    },
+    {
+     "date": "2026-09-28",
+     "verdict": "constraint_suspects",
+     "suspects": [
+      "core_query_only"
      ]
     }
    ]
