@@ -1,5 +1,5 @@
 {
- "updated": "2026-09-28",
+ "updated": "2026-09-30",
  "products": {
   "af-nikkor-28mm-f14d-ed": {
    "product_id": "af-nikkor-28mm-f14d-ed",
@@ -1021,10 +1021,10 @@
    "min_price": 40,
    "max_price": 250,
    "config_fingerprint": "eacf1b46afddd949",
-   "zero_result_streak": 166,
+   "zero_result_streak": 3,
    "first_probed": "2026-07-30",
-   "last_probed": "2026-08-27",
-   "probe_count": 3,
+   "last_probed": "2026-09-30",
+   "probe_count": 4,
    "inconclusive_streak": 0,
    "next_probe_after_days": 14,
    "verdict": "constraint_suspects",
@@ -1101,7 +1101,7 @@
      "query": "Nikkorex Auto 35",
      "total": 8,
      "sample_titles": [
-      "Nikkorex Auto 35 Model 35mm Film Camera, Silver Body",
+      "Nikkorex Auto 35 with Case for PARTS",
       "Nikon Nikkorex Auto 35 SLR Camera W/ Nikkor-H 48mm 1:2 f2 Lens",
       "Nikkorex Auto 35 Leaf Shutter SLR 48mm f2 Lens Untested Back Dent"
      ],
@@ -1130,6 +1130,15 @@
     },
     {
      "date": "2026-08-27",
+     "verdict": "constraint_suspects",
+     "suspects": [
+      "core_query_only",
+      "no_condition",
+      "no_query_exclusions"
+     ]
+    },
+    {
+     "date": "2026-09-30",
      "verdict": "constraint_suspects",
      "suspects": [
       "core_query_only",
