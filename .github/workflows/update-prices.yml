@@ -25,10 +25,10 @@ jobs:
     timeout-minutes: 120
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
 
       - name: Set up Python
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@v7
         with:
           python-version: '3.12'
 
@@ -39,7 +39,7 @@ jobs:
       # 저장소에 커밋하면 수 MB 블롭이 3시간마다 통째로 바뀐다(data/daily를 걷어낸
       # 이유와 같은 문제). Actions 캐시에 두면 저장소를 키우지 않고 실행 간 유지된다.
       - name: Restore LLM decision cache
-        uses: actions/cache@v4
+        uses: actions/cache@v6
         with:
           path: data/llm-cache.json
           key: llm-cache-${{ github.run_id }}
