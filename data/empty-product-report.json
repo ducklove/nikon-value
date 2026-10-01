@@ -1,5 +1,5 @@
 {
- "updated": "2026-09-30",
+ "updated": "2026-10-01",
  "products": {
   "af-nikkor-28mm-f14d-ed": {
    "product_id": "af-nikkor-28mm-f14d-ed",
@@ -4090,10 +4090,10 @@
    "min_price": 2000,
    "max_price": 12000,
    "config_fingerprint": "3cd29aa0f5d15998",
-   "zero_result_streak": 3,
+   "zero_result_streak": 17,
    "first_probed": "2026-09-17",
-   "last_probed": "2026-09-17",
-   "probe_count": 1,
+   "last_probed": "2026-10-01",
+   "probe_count": 2,
    "inconclusive_streak": 0,
    "next_probe_after_days": 14,
    "verdict": "constraint_suspects",
@@ -4162,11 +4162,11 @@
      "name": "core_query_only",
      "description_ko": "q를 모델명만 남기고 모든 제약 해제 — eBay에 매물 자체가 있는지 확인",
      "query": "Nikon UV Nikkor 105mm",
-     "total": 22,
+     "total": 24,
      "sample_titles": [
       "62mm UV Filter for Nikon Nikkor 70-300mm f/4-5.6G, 105mm f/2.8G IF-ED AF-S Lens",
-      "RISE (UK) 105mm Digital UV ( Ultraviolet ) Filter for Nikon Micro-Nikkor 105mm",
-      "UV FILTER+LENS CAP to Lens Nikon Micro-Nikkor 105mm f/2.8 Lens"
+      "62mm UV Lens Filter for Nikon AF-S NIKKOR 70-300mm F/4.5-5.6, 60mm 105mm f2.8G",
+      "67mm MC UV Lens Filter for Nikon AF-S NIKKOR 18-105mm f/3.5-5.6G, 70-200mm f/4G"
      ],
      "error": null
     }
@@ -4174,6 +4174,13 @@
    "history": [
     {
      "date": "2026-09-17",
+     "verdict": "constraint_suspects",
+     "suspects": [
+      "core_query_only"
+     ]
+    },
+    {
+     "date": "2026-10-01",
      "verdict": "constraint_suspects",
      "suspects": [
       "core_query_only"
