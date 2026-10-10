@@ -1,5 +1,5 @@
 {
- "updated": "2026-10-09",
+ "updated": "2026-10-10",
  "products": {
   "af-nikkor-28mm-f14d-ed": {
    "product_id": "af-nikkor-28mm-f14d-ed",
@@ -3191,10 +3191,10 @@
    "min_price": 800,
    "max_price": 3000,
    "config_fingerprint": "c6c9e403b1925dfd",
-   "zero_result_streak": 145,
+   "zero_result_streak": 159,
    "first_probed": "2026-08-01",
-   "last_probed": "2026-09-26",
-   "probe_count": 5,
+   "last_probed": "2026-10-10",
+   "probe_count": 6,
    "inconclusive_streak": 0,
    "next_probe_after_days": 14,
    "verdict": "constraint_suspects",
@@ -3249,10 +3249,10 @@
      "name": "no_category",
      "description_ko": "category_ids 제거 — 다른 eBay 카테고리에 올라온 매물 포함",
      "query": "Nikon F6 body -lens -nikkor -filter -hood -cap",
-     "total": 51,
+     "total": 43,
      "sample_titles": [
       "Nikon F6 Body 35mm SLR Film Camera",
-      "Nikon F6 35mm SLR Film Camera Body [Near Mint] #3073456",
+      "Tested【NEAR MINT w/ Strap】 Nikon F6 SLR 35mm Film Camera Body From JAPAN ＃401",
       "Firmware Updated 2026 [Near MINT w/Box] Nikon F6 35mm Film Camera Body SLR JAPAN"
      ],
      "error": null
@@ -3271,7 +3271,7 @@
      "name": "core_query_only",
      "description_ko": "q를 모델명만 남기고 모든 제약 해제 — eBay에 매물 자체가 있는지 확인",
      "query": "Nikon F6",
-     "total": 516,
+     "total": 519,
      "sample_titles": [
       "Camera strap Lug Ring for Nikon FM2 F3 FE2 F4 F5 FA N90s F2 FM F6 EM FM10 F100",
       "Camera Lens cap cover for Nikon F F2 F3 FM2 FE2 F4 F5 F6 F100 F90 F801 F801s F60",
@@ -3321,6 +3321,15 @@
       "no_category",
       "no_query_exclusions"
      ]
+    },
+    {
+     "date": "2026-10-10",
+     "verdict": "constraint_suspects",
+     "suspects": [
+      "core_query_only",
+      "no_category",
+      "no_query_exclusions"
+     ]
     }
    ]
   },
@@ -3332,10 +3341,10 @@
    "min_price": 20,
    "max_price": 150,
    "config_fingerprint": "b92c680e5decb898",
-   "zero_result_streak": 208,
+   "zero_result_streak": 222,
    "first_probed": "2026-08-01",
-   "last_probed": "2026-09-26",
-   "probe_count": 5,
+   "last_probed": "2026-10-10",
+   "probe_count": 6,
    "inconclusive_streak": 0,
    "next_probe_after_days": 14,
    "verdict": "constraint_suspects",
@@ -3390,11 +3399,11 @@
      "name": "no_category",
      "description_ko": "category_ids 제거 — 다른 eBay 카테고리에 올라온 매물 포함",
      "query": "Nikon FE10 -lens -nikkor -filter -hood -cap",
-     "total": 9,
+     "total": 8,
      "sample_titles": [
       "Nikon FE10 FE-10 fe10 Instructions User Manual ",
       "[Excellent] Nikon FE10 35mm SLR Film Camera Gold Body Only #41538",
-      "VERY GOOD Nikon FE10 MF Film SLR Camera"
+      "Photocopy of the Original Nikon FE10 Camera User Manual - Excellent"
      ],
      "error": null
     },
@@ -3412,11 +3421,11 @@
      "name": "core_query_only",
      "description_ko": "q를 모델명만 남기고 모든 제약 해제 — eBay에 매물 자체가 있는지 확인",
      "query": "Nikon FE10",
-     "total": 48,
+     "total": 44,
      "sample_titles": [
-      "Battery for Vivitar V3800N, V-4000, Nikon FM-10, FE-10, Nikon EM, FG, FM ~ 10pcs",
+      "Nikon FE10 Foam Seal Kit | USCamera Premium Custom Light Seal Kits ",
       "NIKON FE10 Camera Service Repair Manual & Parts List PDF READ",
-      "Nikon FE10 Foam Seal Kit | USCamera Premium Custom Light Seal Kits "
+      "Nikon FE10 FM10 Battery Holder Cover Assembly - Part # FAA31051-A40"
      ],
      "error": null
     }
@@ -3460,6 +3469,15 @@
     },
     {
      "date": "2026-09-26",
+     "verdict": "constraint_suspects",
+     "suspects": [
+      "core_query_only",
+      "no_category",
+      "no_query_exclusions"
+     ]
+    },
+    {
+     "date": "2026-10-10",
      "verdict": "constraint_suspects",
      "suspects": [
       "core_query_only",
@@ -3612,10 +3630,10 @@
    "min_price": 3000,
    "max_price": 40000,
    "config_fingerprint": "027d45a271365735",
-   "zero_result_streak": 196,
+   "zero_result_streak": 210,
    "first_probed": "2026-08-01",
-   "last_probed": "2026-09-26",
-   "probe_count": 5,
+   "last_probed": "2026-10-10",
+   "probe_count": 6,
    "inconclusive_streak": 0,
    "next_probe_after_days": 14,
    "verdict": "constraint_suspects",
@@ -3684,7 +3702,7 @@
      "name": "core_query_only",
      "description_ko": "q를 모델명만 남기고 모든 제약 해제 — eBay에 매물 자체가 있는지 확인",
      "query": "Nikon Fisheye",
-     "total": 1733,
+     "total": 1829,
      "sample_titles": [
       "INSERT 74mm designed for Nikon 8-15mm fisheye lens",
       "INSERT 62mm designed for Nikon 10.5 & 16mm fisheye lens",
@@ -3728,6 +3746,13 @@
      "suspects": [
       "core_query_only"
      ]
+    },
+    {
+     "date": "2026-10-10",
+     "verdict": "constraint_suspects",
+     "suspects": [
+      "core_query_only"
+     ]
     }
    ]
   },
@@ -3739,12 +3764,12 @@
    "min_price": 1500,
    "max_price": 12000,
    "config_fingerprint": "2a6132d70bc61a4f",
-   "zero_result_streak": 182,
+   "zero_result_streak": 210,
    "first_probed": "2026-08-01",
-   "last_probed": "2026-09-12",
-   "probe_count": 3,
-   "inconclusive_streak": 1,
-   "next_probe_after_days": 28,
+   "last_probed": "2026-10-10",
+   "probe_count": 4,
+   "inconclusive_streak": 2,
+   "next_probe_after_days": 56,
    "verdict": "no_listings",
    "verdict_ko": "어떤 제약을 풀어도 0건 — eBay에 매물이 없다(진짜 희귀)",
    "suspects": [],
@@ -3832,6 +3857,11 @@
      "date": "2026-09-12",
      "verdict": "no_listings",
      "suspects": []
+    },
+    {
+     "date": "2026-10-10",
+     "verdict": "no_listings",
+     "suspects": []
     }
    ]
   },
@@ -3843,10 +3873,10 @@
    "min_price": 10000,
    "max_price": 40000,
    "config_fingerprint": "ec6654104ee93979",
-   "zero_result_streak": 87,
+   "zero_result_streak": 101,
    "first_probed": "2026-08-01",
-   "last_probed": "2026-09-26",
-   "probe_count": 5,
+   "last_probed": "2026-10-10",
+   "probe_count": 6,
    "inconclusive_streak": 0,
    "next_probe_after_days": 14,
    "verdict": "constraint_suspects",
@@ -3965,6 +3995,14 @@
       "core_query_only",
       "no_query_exclusions"
      ]
+    },
+    {
+     "date": "2026-10-10",
+     "verdict": "constraint_suspects",
+     "suspects": [
+      "core_query_only",
+      "no_query_exclusions"
+     ]
     }
    ]
   },
@@ -3976,10 +4014,10 @@
    "min_price": 50000,
    "max_price": 200000,
    "config_fingerprint": "59c7cb745902f007",
-   "zero_result_streak": 202,
+   "zero_result_streak": 216,
    "first_probed": "2026-08-01",
-   "last_probed": "2026-09-26",
-   "probe_count": 5,
+   "last_probed": "2026-10-10",
+   "probe_count": 6,
    "inconclusive_streak": 0,
    "next_probe_after_days": 14,
    "verdict": "constraint_suspects",
@@ -4086,6 +4124,13 @@
     },
     {
      "date": "2026-09-26",
+     "verdict": "constraint_suspects",
+     "suspects": [
+      "core_query_only"
+     ]
+    },
+    {
+     "date": "2026-10-10",
      "verdict": "constraint_suspects",
      "suspects": [
       "core_query_only"
