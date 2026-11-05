@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-04",
+ "updated": "2026-11-05",
  "products": {
   "af-nikkor-28mm-f14d-ed": {
    "product_id": "af-nikkor-28mm-f14d-ed",
@@ -1426,10 +1426,10 @@
    "min_price": 1000,
    "max_price": 8000,
    "config_fingerprint": "a62c1eb49bf3a531",
-   "zero_result_streak": 223,
+   "zero_result_streak": 237,
    "first_probed": "2026-07-30",
-   "last_probed": "2026-10-22",
-   "probe_count": 7,
+   "last_probed": "2026-11-05",
+   "probe_count": 8,
    "inconclusive_streak": 0,
    "next_probe_after_days": 14,
    "verdict": "constraint_suspects",
@@ -1498,7 +1498,7 @@
      "name": "core_query_only",
      "description_ko": "q를 모델명만 남기고 모든 제약 해제 — eBay에 매물 자체가 있는지 확인",
      "query": "Nikon I",
-     "total": 1636,
+     "total": 1599,
      "sample_titles": [
       "Sandisk SD Extreme PRO 32 64 128 256 GB 512GB 1TB Memory Card Nikon Canon UHS-I",
       "Camera cap Protective for Nikon Nikonos I II III IV-A V with 35mm W-Nikkor Lens",
@@ -1554,6 +1554,13 @@
     },
     {
      "date": "2026-10-22",
+     "verdict": "constraint_suspects",
+     "suspects": [
+      "core_query_only"
+     ]
+    },
+    {
+     "date": "2026-11-05",
      "verdict": "constraint_suspects",
      "suspects": [
       "core_query_only"
@@ -1709,10 +1716,10 @@
    "min_price": 300,
    "max_price": 2000,
    "config_fingerprint": "7ca0d2d3e8b0ffda",
-   "zero_result_streak": 221,
+   "zero_result_streak": 235,
    "first_probed": "2026-07-30",
-   "last_probed": "2026-10-22",
-   "probe_count": 7,
+   "last_probed": "2026-11-05",
+   "probe_count": 8,
    "inconclusive_streak": 0,
    "next_probe_after_days": 14,
    "verdict": "constraint_suspects",
@@ -1783,8 +1790,8 @@
      "query": "Nikon E2 E2S",
      "total": 5,
      "sample_titles": [
-      "Silver Soft Shutter Release Button 2PC f Fujifilm X-E2S X-E3 X-E2 Nikon Df M2 F3",
       "2x Red+BK Soft Shutter Release Button f/ Nikon Df M2 Fuji X20 X10 X-E2S STX-2",
+      "Silver Soft Shutter Release Button 2PC f Fujifilm X-E2S X-E3 X-E2 Nikon Df M2 F3",
       "Nikon G AFS lens to Fujifilm X-E2S X-A7 X-A10  X-H1 Adapter Aperture Control"
      ],
      "error": null
@@ -1838,6 +1845,13 @@
     },
     {
      "date": "2026-10-22",
+     "verdict": "constraint_suspects",
+     "suspects": [
+      "core_query_only"
+     ]
+    },
+    {
+     "date": "2026-11-05",
      "verdict": "constraint_suspects",
      "suspects": [
       "core_query_only"
@@ -1954,10 +1968,10 @@
    "min_price": 500,
    "max_price": 2500,
    "config_fingerprint": "3e5ece76df217dd4",
-   "zero_result_streak": 221,
+   "zero_result_streak": 235,
    "first_probed": "2026-07-30",
-   "last_probed": "2026-10-22",
-   "probe_count": 7,
+   "last_probed": "2026-11-05",
+   "probe_count": 8,
    "inconclusive_streak": 0,
    "next_probe_after_days": 14,
    "verdict": "constraint_suspects",
@@ -2079,6 +2093,13 @@
     },
     {
      "date": "2026-10-22",
+     "verdict": "constraint_suspects",
+     "suspects": [
+      "core_query_only"
+     ]
+    },
+    {
+     "date": "2026-11-05",
      "verdict": "constraint_suspects",
      "suspects": [
       "core_query_only"
@@ -4389,10 +4410,10 @@
    "min_price": 200,
    "max_price": 1500,
    "config_fingerprint": "80be43c167e2694e",
-   "zero_result_streak": 73,
+   "zero_result_streak": 87,
    "first_probed": "2026-08-13",
-   "last_probed": "2026-10-22",
-   "probe_count": 6,
+   "last_probed": "2026-11-05",
+   "probe_count": 7,
    "inconclusive_streak": 0,
    "next_probe_after_days": 14,
    "verdict": "constraint_suspects",
@@ -4438,11 +4459,11 @@
      "name": "no_price_window",
      "description_ko": "가격창 제거 — min_price..max_price 밖의 매물 포함",
      "query": "Nikon F Photomic Tn body -lens -nikkor -filter -hood -cap -NASA",
-     "total": 5,
+     "total": 6,
      "sample_titles": [
       "Nikon F Photomic TN 35mm Film Camera Body, Chrome (Body Only)",
-      "Nikon F Photomic TN 35mm Film SLR Camera Body, Chrome (Japan)",
-      "Nikon F Photomic TN 35mm Film Camera Body (Meter Inoperative) #52051"
+      "Nikon F Photomic TN 35mm Film Camera Body (Meter Inoperative) #52051",
+      "-Nikon F Photomic TN SLR Camera Body Chrome-READ(7301)"
      ],
      "error": null
     },
@@ -4466,7 +4487,7 @@
      "name": "core_query_only",
      "description_ko": "q를 모델명만 남기고 모든 제약 해제 — eBay에 매물 자체가 있는지 확인",
      "query": "Nikon F Photomic Tn",
-     "total": 67,
+     "total": 70,
      "sample_titles": [
       "1967 Nikon F Camera Vintage Print Ad Career Camera Photography Photomic TN",
       "Nikon Photomic TN Finder for Nikon F Instruction Manual Reprint",
@@ -4518,6 +4539,14 @@
     },
     {
      "date": "2026-10-22",
+     "verdict": "constraint_suspects",
+     "suspects": [
+      "core_query_only",
+      "no_price_window"
+     ]
+    },
+    {
+     "date": "2026-11-05",
      "verdict": "constraint_suspects",
      "suspects": [
       "core_query_only",
