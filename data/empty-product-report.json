@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-06",
+ "updated": "2026-11-07",
  "products": {
   "af-nikkor-28mm-f14d-ed": {
    "product_id": "af-nikkor-28mm-f14d-ed",
@@ -3461,10 +3461,10 @@
    "min_price": 800,
    "max_price": 3000,
    "config_fingerprint": "c6c9e403b1925dfd",
-   "zero_result_streak": 173,
+   "zero_result_streak": 187,
    "first_probed": "2026-08-01",
-   "last_probed": "2026-10-24",
-   "probe_count": 7,
+   "last_probed": "2026-11-07",
+   "probe_count": 8,
    "inconclusive_streak": 0,
    "next_probe_after_days": 14,
    "verdict": "constraint_suspects",
@@ -3518,11 +3518,11 @@
      "name": "no_category",
      "description_ko": "category_ids 제거 — 다른 eBay 카테고리에 올라온 매물 포함",
      "query": "Nikon F6 body -lens -nikkor -filter -hood -cap",
-     "total": 44,
+     "total": 38,
      "sample_titles": [
+      "Nikon F6 35mm SLR Film Camera Body [Excellent++++] From Japan",
       "Nikon F6 Body 35mm SLR Film Camera",
-      "Firmware Updated 2026 [Near MINT w/Box] Nikon F6 35mm Film Camera Body SLR JAPAN",
-      "New Firmware [MINT w/ MB-40] Nikon F6 SLR 35mm Film Camera Body From JAPAN"
+      "Firmware Updated 2026 [Near MINT w/Box] Nikon F6 35mm Film Camera Body SLR JAPAN"
      ],
      "error": null
     },
@@ -3538,7 +3538,7 @@
      "name": "core_query_only",
      "description_ko": "q를 모델명만 남기고 모든 제약 해제 — eBay에 매물 자체가 있는지 확인",
      "query": "Nikon F6",
-     "total": 510,
+     "total": 514,
      "sample_titles": [
       "Camera strap Lug Ring for Nikon FM2 F3 FE2 F4 F5 FA N90s F2 FM F6 EM FM10 F100",
       "Camera Lens cap cover for Nikon F F2 F3 FM2 FE2 F4 F5 F6 F100 F90 F801 F801s F60",
@@ -3605,6 +3605,14 @@
       "core_query_only",
       "no_category"
      ]
+    },
+    {
+     "date": "2026-11-07",
+     "verdict": "constraint_suspects",
+     "suspects": [
+      "core_query_only",
+      "no_category"
+     ]
     }
    ]
   },
@@ -3616,10 +3624,10 @@
    "min_price": 20,
    "max_price": 150,
    "config_fingerprint": "b92c680e5decb898",
-   "zero_result_streak": 236,
+   "zero_result_streak": 250,
    "first_probed": "2026-08-01",
-   "last_probed": "2026-10-24",
-   "probe_count": 7,
+   "last_probed": "2026-11-07",
+   "probe_count": 8,
    "inconclusive_streak": 0,
    "next_probe_after_days": 14,
    "verdict": "constraint_suspects",
@@ -3674,7 +3682,7 @@
      "name": "no_category",
      "description_ko": "category_ids 제거 — 다른 eBay 카테고리에 올라온 매물 포함",
      "query": "Nikon FE10 -lens -nikkor -filter -hood -cap",
-     "total": 12,
+     "total": 13,
      "sample_titles": [
       "Genuine Nikon FE-10 Instruction Book",
       "Nikon FE10 FE-10 fe10 Instructions User Manual ",
@@ -3696,7 +3704,7 @@
      "name": "core_query_only",
      "description_ko": "q를 모델명만 남기고 모든 제약 해제 — eBay에 매물 자체가 있는지 확인",
      "query": "Nikon FE10",
-     "total": 44,
+     "total": 48,
      "sample_titles": [
       "Battery for Vivitar V3800N, V-4000, Nikon FM-10, FE-10, Nikon EM, FG, FM ~ 10pcs",
       "NIKON FE10 Camera Service Repair Manual & Parts List PDF READ",
@@ -3762,6 +3770,15 @@
     },
     {
      "date": "2026-10-24",
+     "verdict": "constraint_suspects",
+     "suspects": [
+      "core_query_only",
+      "no_category",
+      "no_query_exclusions"
+     ]
+    },
+    {
+     "date": "2026-11-07",
      "verdict": "constraint_suspects",
      "suspects": [
       "core_query_only",
@@ -3927,10 +3944,10 @@
    "min_price": 3000,
    "max_price": 40000,
    "config_fingerprint": "027d45a271365735",
-   "zero_result_streak": 224,
+   "zero_result_streak": 238,
    "first_probed": "2026-08-01",
-   "last_probed": "2026-10-24",
-   "probe_count": 7,
+   "last_probed": "2026-11-07",
+   "probe_count": 8,
    "inconclusive_streak": 0,
    "next_probe_after_days": 14,
    "verdict": "constraint_suspects",
@@ -3999,7 +4016,7 @@
      "name": "core_query_only",
      "description_ko": "q를 모델명만 남기고 모든 제약 해제 — eBay에 매물 자체가 있는지 확인",
      "query": "Nikon Fisheye",
-     "total": 1815,
+     "total": 1833,
      "sample_titles": [
       "INSERT 74mm designed for Nikon 8-15mm fisheye lens",
       "INSERT 62mm designed for Nikon 10.5 & 16mm fisheye lens",
@@ -4053,6 +4070,13 @@
     },
     {
      "date": "2026-10-24",
+     "verdict": "constraint_suspects",
+     "suspects": [
+      "core_query_only"
+     ]
+    },
+    {
+     "date": "2026-11-07",
      "verdict": "constraint_suspects",
      "suspects": [
       "core_query_only"
@@ -4177,10 +4201,10 @@
    "min_price": 10000,
    "max_price": 40000,
    "config_fingerprint": "ec6654104ee93979",
-   "zero_result_streak": 115,
+   "zero_result_streak": 129,
    "first_probed": "2026-08-01",
-   "last_probed": "2026-10-24",
-   "probe_count": 7,
+   "last_probed": "2026-11-07",
+   "probe_count": 8,
    "inconclusive_streak": 0,
    "next_probe_after_days": 14,
    "verdict": "constraint_suspects",
@@ -4315,6 +4339,14 @@
       "core_query_only",
       "no_query_exclusions"
      ]
+    },
+    {
+     "date": "2026-11-07",
+     "verdict": "constraint_suspects",
+     "suspects": [
+      "core_query_only",
+      "no_query_exclusions"
+     ]
     }
    ]
   },
@@ -4326,10 +4358,10 @@
    "min_price": 50000,
    "max_price": 200000,
    "config_fingerprint": "59c7cb745902f007",
-   "zero_result_streak": 230,
+   "zero_result_streak": 244,
    "first_probed": "2026-08-01",
-   "last_probed": "2026-10-24",
-   "probe_count": 7,
+   "last_probed": "2026-11-07",
+   "probe_count": 8,
    "inconclusive_streak": 0,
    "next_probe_after_days": 14,
    "verdict": "constraint_suspects",
@@ -4450,6 +4482,13 @@
     },
     {
      "date": "2026-10-24",
+     "verdict": "constraint_suspects",
+     "suspects": [
+      "core_query_only"
+     ]
+    },
+    {
+     "date": "2026-11-07",
      "verdict": "constraint_suspects",
      "suspects": [
       "core_query_only"
