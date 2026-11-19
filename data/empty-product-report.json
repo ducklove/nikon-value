@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-18",
+ "updated": "2026-11-19",
  "products": {
   "af-nikkor-28mm-f14d-ed": {
    "product_id": "af-nikkor-28mm-f14d-ed",
@@ -1469,10 +1469,10 @@
    "min_price": 1000,
    "max_price": 8000,
    "config_fingerprint": "a62c1eb49bf3a531",
-   "zero_result_streak": 237,
+   "zero_result_streak": 251,
    "first_probed": "2026-07-30",
-   "last_probed": "2026-11-05",
-   "probe_count": 8,
+   "last_probed": "2026-11-19",
+   "probe_count": 9,
    "inconclusive_streak": 0,
    "next_probe_after_days": 14,
    "verdict": "constraint_suspects",
@@ -1541,7 +1541,7 @@
      "name": "core_query_only",
      "description_ko": "q를 모델명만 남기고 모든 제약 해제 — eBay에 매물 자체가 있는지 확인",
      "query": "Nikon I",
-     "total": 1599,
+     "total": 1658,
      "sample_titles": [
       "Sandisk SD Extreme PRO 32 64 128 256 GB 512GB 1TB Memory Card Nikon Canon UHS-I",
       "Camera cap Protective for Nikon Nikonos I II III IV-A V with 35mm W-Nikkor Lens",
@@ -1604,6 +1604,13 @@
     },
     {
      "date": "2026-11-05",
+     "verdict": "constraint_suspects",
+     "suspects": [
+      "core_query_only"
+     ]
+    },
+    {
+     "date": "2026-11-19",
      "verdict": "constraint_suspects",
      "suspects": [
       "core_query_only"
@@ -1767,10 +1774,10 @@
    "min_price": 300,
    "max_price": 2000,
    "config_fingerprint": "7ca0d2d3e8b0ffda",
-   "zero_result_streak": 235,
+   "zero_result_streak": 249,
    "first_probed": "2026-07-30",
-   "last_probed": "2026-11-05",
-   "probe_count": 8,
+   "last_probed": "2026-11-19",
+   "probe_count": 9,
    "inconclusive_streak": 0,
    "next_probe_after_days": 14,
    "verdict": "constraint_suspects",
@@ -1907,6 +1914,13 @@
      "suspects": [
       "core_query_only"
      ]
+    },
+    {
+     "date": "2026-11-19",
+     "verdict": "constraint_suspects",
+     "suspects": [
+      "core_query_only"
+     ]
     }
    ]
   },
@@ -2019,10 +2033,10 @@
    "min_price": 500,
    "max_price": 2500,
    "config_fingerprint": "3e5ece76df217dd4",
-   "zero_result_streak": 235,
+   "zero_result_streak": 249,
    "first_probed": "2026-07-30",
-   "last_probed": "2026-11-05",
-   "probe_count": 8,
+   "last_probed": "2026-11-19",
+   "probe_count": 9,
    "inconclusive_streak": 0,
    "next_probe_after_days": 14,
    "verdict": "constraint_suspects",
@@ -2151,6 +2165,13 @@
     },
     {
      "date": "2026-11-05",
+     "verdict": "constraint_suspects",
+     "suspects": [
+      "core_query_only"
+     ]
+    },
+    {
+     "date": "2026-11-19",
      "verdict": "constraint_suspects",
      "suspects": [
       "core_query_only"
@@ -4555,10 +4576,10 @@
    "min_price": 200,
    "max_price": 1500,
    "config_fingerprint": "80be43c167e2694e",
-   "zero_result_streak": 87,
+   "zero_result_streak": 101,
    "first_probed": "2026-08-13",
-   "last_probed": "2026-11-05",
-   "probe_count": 7,
+   "last_probed": "2026-11-19",
+   "probe_count": 8,
    "inconclusive_streak": 0,
    "next_probe_after_days": 14,
    "verdict": "constraint_suspects",
@@ -4607,7 +4628,7 @@
      "total": 6,
      "sample_titles": [
       "Nikon F Photomic TN 35mm Film Camera Body, Chrome (Body Only)",
-      "Nikon F Photomic TN 35mm Film Camera Body (Meter Inoperative) #52051",
+      "Nikon F Photomic TN 35mm Film SLR Camera Body, Chrome (Japan)",
       "-Nikon F Photomic TN SLR Camera Body Chrome-READ(7301)"
      ],
      "error": null
@@ -4632,11 +4653,11 @@
      "name": "core_query_only",
      "description_ko": "q를 모델명만 남기고 모든 제약 해제 — eBay에 매물 자체가 있는지 확인",
      "query": "Nikon F Photomic Tn",
-     "total": 70,
+     "total": 71,
      "sample_titles": [
-      "1967 Nikon F Camera Vintage Print Ad Career Camera Photography Photomic TN",
       "Nikon Photomic TN Finder for Nikon F Instruction Manual Reprint",
-      "NIKON F PHOTOMIC FTN, TN  METER PRISM  BATTERY ADAPTER"
+      "NIKON F PHOTOMIC FTN, TN  METER PRISM  BATTERY ADAPTER",
+      "Kenko 2X Coversion Lens Auto Tele Plus for Nikon F Photomic TN Nikomat TN"
      ],
      "error": null
     }
@@ -4692,6 +4713,14 @@
     },
     {
      "date": "2026-11-05",
+     "verdict": "constraint_suspects",
+     "suspects": [
+      "core_query_only",
+      "no_price_window"
+     ]
+    },
+    {
+     "date": "2026-11-19",
      "verdict": "constraint_suspects",
      "suspects": [
       "core_query_only",
