@@ -25,10 +25,10 @@ jobs:
     timeout-minutes: 15
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
 
       - name: Set up Python
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@v7
         with:
           python-version: '3.12'
 
@@ -40,7 +40,7 @@ jobs:
       # node --test의 위치 인자 해석이 메이저 버전마다 달라(22에서 디렉터리 재귀 제거)
       # 러너 기본 Node에 맡기면 조용히 깨진다. 로컬과 같은 22로 고정한다.
       - name: Set up Node
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v7
         with:
           node-version: '22'
 
